@@ -10,7 +10,7 @@ Os achados deste tópico ainda não têm parecer do revisor cético (`docs/analy
 
 ## Resposta curta
 
-Tudo abaixo vale para o **2º turno (25/10/2026)**, salvo quando o texto diz "1º turno".
+Tudo abaixo vale para o **2º turno (25/10/2026)**, salvo quando o texto diz "1º turno". Os testes de horário (abertura, encerramento e votos depois das 17h) cobrem as 497.896 seções do Brasil. As 1.310 seções do exterior ficam fora, porque falta o fuso de cada país (ver "Limites").
 
 | Pergunta | O que se encontrou | Rótulo |
 |---|---|---|
@@ -39,7 +39,7 @@ O resultado mostra **o que a urna registrou e quando**. Não mostra **quem** est
 | **Mediana** | O valor do meio: metade das seções fica abaixo, metade acima |
 | **p99** | O valor abaixo do qual ficam 99% das seções. Mostra até onde vão quase todos os casos, deixando de fora só os extremos |
 | **Ponto percentual (p.p.)** | A diferença entre duas porcentagens. De 52% para 51% é uma queda de 1 ponto percentual |
-| **Correlação** | Um número de −1 a +1 que diz se duas coisas sobem e descem juntas. Perto de 0 quer dizer que não há relação |
+| **Correlação** | Um número de −1 a +1 que diz se duas coisas sobem e descem juntas. Perto de 0 quer dizer que não há relação em linha reta entre elas; não exclui uma relação de outro formato |
 | **Comparação dentro da mesma zona** | Comparar seções vizinhas, da mesma zona eleitoral, para que diferenças de região, renda ou preferência política não se misturem ao efeito medido |
 
 ## Como foi feito
@@ -115,21 +115,21 @@ Para votar, cada eleitor passa por um ciclo: o mesário digita o título, a urna
 
 - **Fato.** Por UF, os votos depois das 17h vão de 0,010% (SC) a 0,056% (RO) do total. Depois das 18h, concentram-se em RJ (883), SP (641), BA (287), PE (113) e PB (41).
 - **Fato.** Nas seções com voto tardio, o último voto veio, na mediana, 1,25 minuto depois das 17h. Em 99% delas, até 102 minutos depois. O mais tarde, 126 minutos depois.
-- **Fato.** Comparação com o 1º turno (04/10), sem prorrogação, contada da mesma forma em todas as 497.897 seções do Brasil: 3.725.552 votos depois das 17h e 779.835 depois das 18h, contra 34.330 e 1.993 no 2º turno. Até 186 dos votos do 1º turno depois das 17h podem ser linhas repetidas pela leitura, em 7 seções onde o diário lido tem mais votos que o boletim; isso não muda a ordem de grandeza.
+- **Fato.** Comparação com o 1º turno (04/10), sem prorrogação, contada da mesma forma em todas as 497.897 seções do Brasil: 3.725.552 votos depois das 17h e 779.835 depois das 18h, contra 34.330 e 1.993 no 2º turno. Em 7 seções, o diário lido do 1º turno tem mais votos que o boletim, por causa de linhas repetidas pela leitura. Conferido no diário original: sem as repetições, essas 7 seções têm os mesmos 186 votos depois das 17h e 118 depois das 18h. Nenhuma repetição é de depois das 17h, e os totais acima não mudam.
 - **Hipótese.** O 1º turno tinha mais cargos, o que alonga a fila.
 
 ### 7. Seções abertas até 19h
 
 - **Fato.** 6.352 seções encerraram às 19h de Brasília ou depois (6.257 entre 19h00 e 19h09). Outras 1.260 encerraram entre 17h30 e 18h59. As 6.352 estão em 147 municípios, sobretudo Rio de Janeiro (1.978 seções), São Paulo (1.481), Salvador (730), Petrópolis (285), João Pessoa (265), Itaboraí (237) e Recife (220). Em 313 locais de votação, todas as seções foram até 19h; em 818 locais, só parte delas.
 - **Fato (exemplo conferido no diário original).** **A urna não exigiu as 19h.** Em BA 38490/0002/0047, o mesário mandou encerrar às 17h11, respondeu "SIM" à pergunta "Todas as pessoas presentes já votaram?", cancelou o encerramento às 17h11min59s e só encerrou às 19h04. **Pendente: em verificação** quantas seções fizeram o mesmo. Em 16 seções o boletim registra o encerramento exatamente às 19:00:00.
-- **Fato.** Nessas 6.352 seções houve 4.492 votos depois das 17h, 1.860 depois das 18h e 11 depois das 19h. 3.339 delas não tiveram nenhum voto depois das 17h: ficaram abertas sem receber ninguém.
+- **Fato.** Nessas 6.352 seções houve 4.492 votos depois das 17h, 1.860 depois das 18h e 11 depois das 19h. 3.339 delas não tiveram nenhum voto registrado depois das 17h.
 - **Fato.** No 1º turno, em todas as UFs, não aparece esse degrau. Os encerramentos tardios diminuem aos poucos, como fila: 2.872 seções encerraram entre 18h50 e 18h59, 2.170 entre 19h00 e 19h09 e 1.600 entre 19h10 e 19h19, e alguns seguem até depois das 22h. No 2º turno foram 390, 6.257 e 72 nesses mesmos intervalos.
 - **Fato.** A cópia guardada no repositório da decisão do STF na Reclamação 101.673/BA (PDF em `data/raw/stf/`, documento intitulado "Minuta_ Decisão Liminar") determina a prorrogação "até as 19h, horário de Brasília, do encerramento do recebimento dos votos em todas as seções de todo o Brasil, cabendo ao TSE dar cumprimento" (`docs/hipoteses.md`, H06; o mesmo texto está nos tópicos 8 e 10).
 - **Pendente.** A versão assinada da decisão no portal do STF e o ato do TSE ou dos TREs que a aplicou. O diário mostra só o que aconteceu: as urnas ficaram abertas porque quem as operava decidiu assim. A existência do ato não muda esse registro.
 
 ### 8. Sinais de eleitores que chegaram depois das 17h (risco humano)
 
-Quem estava na fila às 17h é atendido em sequência. Se a urna fica parada por muito tempo e depois volta a receber votos, é sinal de eleitor que chegou depois das 17h.
+Quem estava na fila às 17h é atendido em sequência. Se a urna fica parada por muito tempo e depois volta a receber votos, isso pode ser sinal de eleitor que chegou depois das 17h. Mas a pausa também pode vir de defeito ou troca da urna. Em Ipixuna-AM, no 1º turno (item 11), houve 29 minutos e 54 segundos sem voto durante a troca da urna, já depois das 17h de Brasília.
 
 | Grupo (hora em que o boletim encerrou, Brasília) | Seções no grupo | Seções com voto depois das 17h | Votos depois das 17h | Votos depois das 18h |
 |---|---|---|---|---|
@@ -158,22 +158,22 @@ Não é possível saber em quem cada eleitor tardio votou: o registro dos votos 
 ### 10. Encerramento e emissão do boletim
 
 - **Fato.** Nenhum boletim tem data de encerramento fora de 25/10. Os 29 boletins de urnas de contingência do exterior não têm data de encerramento.
-- **Fato.** Tempo entre o encerramento e a emissão do boletim, pelos horários do próprio boletim: até 4 minutos em 493.502 seções; de 5 a 14 minutos em 4.434; de 15 a 59 minutos em 874; de 1 a 2 horas em 358; 2 horas ou mais em 10 (e 29 sem horário de encerramento, as do exterior citadas acima). O maior foi 2h44min45s (RJ 59250/0090/0232, Volta Redonda). Exemplo conferido no diário original, AC 01082/0004/0440: o encerramento foi confirmado às 17h02 de Brasília, os mesários foram registrados logo depois, e a finalização só começou às 19h00, sem nenhum voto no intervalo.
+- **Fato.** Tempo entre o encerramento e a emissão do boletim, pelos horários do próprio boletim: menos de 5 minutos em 493.502 seções; de 5 a menos de 15 minutos em 4.434; de 15 a menos de 60 minutos em 874; de 1 hora a menos de 2 horas em 358; 2 horas ou mais em 10 (e 29 sem horário de encerramento, as do exterior citadas acima). O maior foi 2h44min45s (RJ 59250/0090/0232, Volta Redonda). Exemplo conferido no diário original, AC 01082/0004/0440: o encerramento foi confirmado às 17h02 de Brasília, os mesários foram registrados logo depois, e a finalização só começou às 19h00, sem nenhum voto no intervalo.
 - **Fato.** 5 seções do Brasil têm boletim, mas o diário lido não tem o início do encerramento no dia: ES 57932/0009/0112, MG 46256/0131/0046, RS 89630/0072/0054, SC 83593/0008/0143 e SP 61654/0014/0250. A ES 57932/0009/0112 é a seção cujo diário apareceu também no pacote da 0085 (item 5); o boletim dela saiu de uma urna de contingência usada só para encerrar.
 - **Hipótese.** Nessas 5, o boletim foi gerado depois de religar a urna ou trocar por outra, e o diário dessa parte ficou em outra mídia. **Pendente.**
-- **Fato.** Em 5.712 seções o boletim saiu de urna de reserva que substituiu a da seção (e em mais 2, de urna de reserva usada só para encerrar), e 11.748 pacotes têm mais de um diário. Em 9 de 499.206 seções com diário lido, a contagem de votos do diário difere da do boletim: as 3 do erro de leitura (item 5) e 6 com menos votos no diário que no boletim (BA 34711/0021/0178: −1; BA 35653/0173/0235: −13; MA 08893/0047/0609: −36; PB 21750/0002/0254: −1; PI 11533/0003/0216: −1; RS 89060/0017/0191: −2). **Pendente:** explicar as 6.
+- **Fato.** Em 5.712 seções o boletim saiu de urna de reserva que substituiu a da seção (e em mais 2, de urna de reserva usada só para encerrar), e 11.748 pacotes têm mais de um diário. Em 9 de 499.206 seções com diário lido, a contagem de votos do diário difere da do boletim: as 3 do erro de leitura (item 5) e 6 com menos votos no diário que no boletim (BA 34711/0021/0178: −1; BA 35653/0173/0235: −13; MA 08893/0047/0609: −36; PB 21750/0002/0254: −1; PI 11533/0003/0216: −1; RS 89060/0017/0191: −2). As 6 estão explicadas no [tópico 2](02-coerencia-entre-arquivos.md) ("As 10 seções em que o diário não bateu de primeira"). Em BA 34711/0021/0178, PB 21750/0002/0254 e PI 11533/0003/0216, o voto que falta foi confirmado e a urna reiniciou antes de registrar "computado". Em RS 89060/0017/0191, um dos 2 é desse tipo e o outro não tem rastro. Em BA 35653/0173/0235 e MA 08893/0047/0609, os 13 e os 36 votos não têm rastro porque o diário da urna que os recebeu não está no pacote. Somados ao do RS, são os 50 votos do [parecer 08](../analysis/cetico-revisor/08-votos-sem-log-contingencia.md).
 
 ### 11. Um caso examinado nos dois turnos: AM, Ipixuna, zona 0045, seção 0063
 
 A seção, numa aldeia indígena, foi examinada a pedido de outro auditor porque o boletim mostra o 22 caindo de 61 para 2 votos entre os turnos, o 13 subindo de 135 para 167 e o comparecimento caindo de 227 para 197. Ipixuna está 2 horas atrás de Brasília: 17h de Brasília são 15h locais. Horários abaixo em hora local, conferidos no diário original.
 
-- **Fato.** **1º turno:** a urna abriu às 6h48 (48 minutos atrasada) e funcionou o dia inteiro sem rede elétrica, na bateria. Às 16h06 o diário registra bateria interna crítica. O último voto na urna original foi às 16h23; a urna de contingência foi preparada entre 16h46 e 16h48 e ficou pronta às 16h53. 175 votos foram na urna original e 52 na reserva.
-- **Fato.** **1º turno: 81 dos 227 votos (35,7%) vieram depois das 17h de Brasília.** O último voto foi às 18h53 locais (20h53 de Brasília). Os votos tardios chegaram em ritmo constante (por hora local: 15h: 22; 16h: 9; 17h: 25; 18h: 25), sem o aspecto de fim de fila. Foi a última seção de Ipixuna a fechar no 1º turno.
+- **Fato.** **1º turno:** a urna abriu às 6h48 (48 minutos atrasada) e funcionou o dia inteiro sem rede elétrica, na bateria. Às 16h06 o diário registra bateria interna crítica. O último voto na urna original foi às 16h26; a urna de contingência foi preparada entre 16h46 e 16h48 e ficou pronta às 16h53. 175 votos foram na urna original e 52 na reserva.
+- **Fato.** **1º turno: 81 dos 227 votos (35,7%) vieram depois das 17h de Brasília.** O último voto foi às 18h53 locais (20h53 de Brasília). Os votos tardios não foram diminuindo com o passar das horas, como numa fila que acaba (por hora local: 15h: 22; 16h: 9, hora da troca de urna; 17h: 25; 18h: 25). Foi a última seção de Ipixuna a fechar no 1º turno.
 - **Fato.** **2º turno:** a urna da seção foi a mesma que serviu de reserva no 1º turno, e não houve troca. Abriu às 6h00 locais (8h de Brasília), foi desligada pela chave às 12h51, religada às 13h23, e encerrou às 15h02 locais (17h02 de Brasília). Nenhum voto depois das 17h de Brasília; 193 dos 197 votos vieram antes das 11h locais.
 - **Fato.** Sem digital (boletim): 55 dos 227 eleitores do 1º turno (24,2%). **Pendente: em verificação** a parcela sem digital entre os votos tardios do 1º turno, a distribuição por hora no 2º turno e de quem é a digital nas liberações manuais.
 - **Fato.** Nenhum intervalo impossível nos dois turnos (mínimo de 73 segundos no 1º e de 40 segundos no 2º).
-- **Hipótese.** O atraso na abertura e a troca da urna (mais de meia hora sem voto) não explicam 3h54 de votação depois das 17h de Brasília no 1º turno. **Pendente:** a autorização do juiz eleitoral, se houver, na ata da seção ou da zona.
-- **O que o caso não mostra:** a queda do 22 não pode ser ligada ao horário, porque o registro dos votos não diz em quem cada eleitor votou. O diário mostra só que, no 1º turno, um terço dos votos veio depois das 17h de Brasília e, no 2º, a votação praticamente terminou às 11h locais.
+- **Hipótese.** O atraso na abertura e a troca da urna (29 minutos e 54 segundos sem voto, das 16h26min22s às 16h56min16s locais) não explicam 3h54 de votação depois das 17h de Brasília no 1º turno. **Pendente:** a autorização do juiz eleitoral, se houver, na ata da seção ou da zona.
+- **O que o caso não mostra:** a queda do 22 não pode ser ligada ao horário, porque o registro dos votos não diz em quem cada eleitor votou. O diário mostra só que, no 1º turno, 81 dos 227 votos (35,7%) vieram depois das 17h de Brasília e, no 2º, a votação praticamente terminou às 11h locais.
 
 ## Prova de que o teste funciona (contraprova)
 
@@ -185,7 +185,7 @@ A seção, numa aldeia indígena, foi examinada a pedido de outro auditor porque
 
 ## O que este resultado prova e o que não prova
 
-- **Prova:** nenhuma urna abriu antes das 8h nem encerrou antes das 17h de Brasília; nenhum voto tem horário depois do encerramento; nenhuma sequência de votos é rápida demais para uma pessoa; os votos depois das 17h são 0,027% do total e não mostram relação consistente com o resultado das seções.
+- **Prova:** nenhuma urna do Brasil abriu antes das 8h nem encerrou antes das 17h de Brasília (o exterior fica fora dos testes de horário); nenhum voto tem horário depois do encerramento; nenhuma sequência de votos é rápida demais para uma pessoa; os votos depois das 17h são 0,027% do total e não mostram relação consistente com o resultado das seções.
 - **Não prova** que só votou depois das 17h quem estava na fila às 17h. A urna não controla isso; o mesário controla. Há seções em que a declaração do mesário de que todos já tinham votado é seguida de novo voto.
 - **Não prova** quem estava diante da urna em cada voto. O tempo do ciclo é compatível com um eleitor, mas também com o mesário digitando. Essa pergunta é do tópico 4.
 - **Não prova** que a extensão até 19h foi autorizada. Isso depende de um documento oficial ainda não conferido.

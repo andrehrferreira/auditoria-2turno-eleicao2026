@@ -1,6 +1,6 @@
 # 4. Como os eleitores foram liberados para votar
 
-> **Situação:** revisto em 29/10/2026 pela regra "só entra número reproduzido". Cada número deste tópico vem de uma de duas fontes: um parecer do revisor cético que o sustenta (`docs/analysis/cetico-revisor/01`, `06` e `10`), ou um recálculo independente feito sobre todas as seções (`scripts/auditoria/verifica-pericia-liberacao.mjs` e, para os casos do item 7, `scripts/auditoria/verifica-pericia-liberacao-logs.mjs`). O que não pôde ser reproduzido saiu do texto e aparece como **Pendente**, sem número. Os itens 1, 4 e 5 usam os dois turnos completos (28 unidades: 26 estados, DF e exterior), e o item 7, o 2º turno completo. O teste do item 6.1 é **parcial**, e o item diz quais UFs entraram.
+> **Situação:** revisto em 29/10/2026 pela regra "só entra número reproduzido". Cada número deste tópico vem de uma de duas fontes: um parecer do revisor cético que o sustenta (`docs/analysis/cetico-revisor/01`, `06` e `10`), ou um recálculo independente feito sobre todas as seções (`scripts/auditoria/verifica-pericia-liberacao.mjs` e, para os casos do item 7, `scripts/auditoria/verifica-pericia-liberacao-logs.mjs`). O que não pôde ser reproduzido saiu do texto e aparece como **Pendente**, sem número. Os itens 1, 4 e 5 cobrem as 28 unidades (26 estados, DF e exterior) nos dois turnos, e o item 7, o 2º turno, com as exclusões que cada item declara (seções apuradas pelo Sistema de Apuração, que não dividem a liberação e não têm log de urna). O teste do item 6.1 é **parcial**, e o item diz quais UFs entraram.
 
 ## A pergunta
 
@@ -10,8 +10,8 @@ Quantos eleitores votaram depois de pôr o dedo no leitor da urna, e quantos vot
 
 - **Fato (recalculado):** no 2º turno, 87,3% dos eleitores foram liberados pela própria digital. 5,7% votaram sem digital porque a urna não tinha a digital deles, e 6,7% porque tinham digital, ela não foi reconhecida e a mesa os liberou à mão. Os 0,3% restantes são do exterior, onde ninguém votou com digital. **Fato (revisado, parecer 10, e recalculado):** sem o exterior, o total sem digital no Brasil é 12,4%.
 - **Fato (recalculado):** das 8,6 milhões de liberações à mão, 2,8 milhões ficaram no log da urna sem nenhum mesário ligado a elas.
-- **Fato (revisado, parecer 01):** em 16.011 seções, a urna liberou mais eleitores "sem biometria" do que o cadastro público diz existir. A causa medida é uma diferença de definição entre dois arquivos do TSE, e não eleitores a mais. Mas esses eleitores votaram sem nenhum controle técnico.
-- **Fato (revisado, parecer 06), parcial (25 UFs; faltam SP, TO e exterior):** os eleitores que foram votar no 2º turno e não tinham ido no 1º se dividiram entre 13 e 22 da mesma forma, tenham sido liberados com ou sem digital. O teste pega uma inserção concentrada a partir de cerca de 34 mil votos, mas é cego a outros tipos de inserção (ver 6.1).
+- **Fato (revisado, parecer 01):** em 16.011 seções, a urna liberou mais eleitores "sem biometria" do que o cadastro público diz existir. Nas 378 seções de maior excesso, onde a causa foi medida, ela é uma diferença de definição entre dois arquivos do TSE; nas 16.011 inteiras essa medida está pendente (item 3). Em nenhuma seção o comparecimento passa do número de aptos. Mas esses eleitores votaram sem nenhum controle técnico.
+- **Pendente: em verificação.** Se os eleitores que foram votar só no 2º turno se dividiram entre 13 e 22 da mesma forma, com ou sem digital. O teste que existe cobre 25 UFs (faltam SP, TO e exterior) e será refeito com todas (item 6.1).
 - **Fato (recalculado com duas contas):** no Brasil, só 1 seção do 2º turno votou inteira sem digital, e ela não virou. Separando as seções pela parcela de votantes sem digital, o 13 ganhou entre 1,9 e 2,9 pontos do 1º para o 2º turno em todas as faixas, com o mesmo tamanho nas seções quase sem liberação sem digital (2,78). A virada não cresce com a falta de digital (item 9).
 - **Fato (recalculado):** 97 seções liberaram à mão metade ou mais dos votantes, todas com urnas de 2013 ou 2015 (item 8).
 - **Pendente: em verificação.** Se as seções que liberam mais gente sem digital votam mais num dos candidatos, comparando seções parecidas (item 6.2).
@@ -28,7 +28,7 @@ Na seção, o mesário digita o número do título (ou o CPF) do eleitor no term
 | **2. Pelo ano de nascimento** | A urna **não tem** a digital desse eleitor no arquivo dela. Ela não pede o dedo: pede só o ano de nascimento, que o mesário digita | "sem biometria cadastrada" | **Não.** Basta saber o título e o ano de nascimento |
 | **3. Liberação manual** | O eleitor tem digital no arquivo, mas ela não é reconhecida (o log registra até 4 tentativas: `Solicita digital. Tentativa [n] de [4]`). A mesa digita um dado pessoal do eleitor e a urna aceita uma digital de quem estiver na mesa. Às vezes a urna liga essa digital a um mesário registrado, às vezes grava que não é possível associar a habilitação a um mesário | "habilitados por biografia" | **Não.** O dado pessoal é digitado por uma pessoa, e a digital gravada não é a do eleitor |
 
-**Regra desta auditoria (princípio 8 de [../01-premissas.md](../01-premissas.md)):** só conta como controle o que é técnico e deixa rastro nos arquivos. Aqui, isso é só o caminho 1. Conferir o documento com foto, olhar a foto do eleitor que aparece na tela do mesário ou ter fiscal na seção são procedimentos feitos por pessoas. Eles podem ser ignorados ou combinados, então não contam como controle nem como explicação que reduza o risco. Os caminhos 2 e 3 são **brechas humanas**: dependem só do que alguém digita na mesa.
+**Regra desta auditoria (princípio 8 de [../01-premissas.md](../01-premissas.md)):** só conta como controle o que é técnico e deixa rastro nos arquivos. Aqui, isso é só o caminho 1. Conferir o documento com foto, olhar a foto do eleitor que aparece na tela do mesário ou ter fiscal na seção são procedimentos feitos por pessoas. Eles podem ser ignorados ou combinados, então não contam como controle nem como explicação que reduza o risco. Os caminhos 2 e 3 são **brechas humanas**: a urna não confere a digital do próprio eleitor, e a liberação depende do que a mesa digita (e, no caminho 3, de um dedo qualquer posto no leitor).
 
 Brecha aberta não é prova de fraude. Este tópico mede se o uso dessas brechas deixou nos dados o padrão que uma fraude deixaria.
 
@@ -46,7 +46,7 @@ Por isso, nenhum resultado deste tópico diz em quem um eleitor liberado votou. 
 
 ### 1. Quantos votaram com e sem digital
 
-**Fato (recalculado).** O país tem 499.207 seções nos dois turnos. A tabela usa 499.176 delas: ficaram de fora as 31 seções em que o boletim de um dos turnos veio do Sistema de Apuração, e não da urna, porque esse boletim não divide os eleitores por forma de liberação. Entram as 28 unidades (26 estados, DF e exterior):
+**Fato (recalculado).** O país tem 499.248 seções. Dessas, 41, todas no exterior, não foram instaladas e não têm arquivo. Das 499.207 restantes, a tabela usa 499.176: ficaram de fora 31 seções (29 do exterior e 2 de MG) em que o boletim de um dos turnos veio do Sistema de Apuração, e não da urna, porque esse boletim não divide os eleitores por forma de liberação. Essas 31 somam 1.348 votantes no 1º turno e 1.491 no 2º (831 no exterior e 660 nas 2 de MG). Entram as 28 unidades (26 estados, DF e exterior):
 
 | | 1º turno | 2º turno |
 |---|---|---|
@@ -74,7 +74,7 @@ O log grava o título do mesário quando a urna consegue ligar a digital usada n
 
 O TSE publica o **perfil do eleitorado**: quantos eleitores cada seção tem e quantos deles têm biometria cadastrada (arquivo de 14/07/2026). O teste comparou esse número com o boletim: a urna não deveria liberar pelo ano de nascimento mais gente do que a seção tem sem biometria, mais uma folga para os eleitores em trânsito. O teste cobre o Brasil, sem o exterior.
 
-- **Fato:** em 16.011 das 497.508 seções do 2º turno analisadas (3,2%), o boletim registra mais votantes "sem biometria cadastrada" do que o perfil permite. O excesso soma 36.340 eleitores, 0,03% dos votos. Em 7.922 dessas seções, o perfil diz que 100% dos eleitores têm biometria.
+- **Fato:** em 16.011 das 497.508 seções do 2º turno que puderam ser comparadas (3,2%; das 497.897 seções do Brasil com voto, 389 não aparecem no perfil de 14/07/2026 e ficaram fora), o boletim registra mais votantes "sem biometria cadastrada" do que o perfil permite. O excesso soma 36.340 eleitores, 0,03% dos votos. Em 7.922 dessas seções, o perfil diz que 100% dos eleitores têm biometria.
 - **Fato:** o excesso se concentra em algumas zonas. As maiores: ES, Vitória, zona 52 (126 seções, 680 eleitores); SP, Indaiatuba, zona 211 (84 seções, 600); PA, Ulianópolis, zona 84 (52 seções, 561).
 - **Pendente: em verificação.** O tamanho do excesso no 1º turno e quantas seções o repetem nos dois turnos. A conta que existe deixou SP de fora e tem um pequeno defeito nas seções agregadas, apontado pelo revisor, que a faz contar um pouco a menos. Por isso, nenhum número do 1º turno entra aqui.
 - **Fato:** há também o efeito contrário, maior e em outras zonas: 17.621 seções com 229.717 votantes **pela digital** acima do que o perfil diz ter biometria (sobretudo MG, ES, MS e RJ).
@@ -87,12 +87,12 @@ O TSE publica o **perfil do eleitorado**: quantos eleitores cada seção tem e q
 
 - **Hipótese (a mais provável, a confirmar com o TSE):** eleitores com foto coletada e digital pendente, rejeitada ou de má qualidade. Os dados públicos não separam isso de outras duas causas que deixam o mesmo rastro: biometria importada de outro órgão sem a digital no formato da urna, ou digitais retiradas do arquivo na preparação das urnas.
 - **Hipótese (risco, princípio 8):** esses eleitores votaram só com título e ano de nascimento, e a conferência da foto foi feita por uma pessoa. O excesso é só a parte visível desse grupo. O tamanho real no país não foi medido, e só sai com o número oficial de eleitores com digital carregada na urna, por seção (pedido pela LAI, ver Próximos passos).
-- **Fato:** os testes de uso não acharam sinal de que essa porta tenha sido usada em larga escala. O comparecimento não sobe com o tamanho do grupo. As seções com excesso ficam de 0 a 1,7 ponto acima das vizinhas (5 pontos na zona 84 de Ulianópolis, com poucas seções). Na última hora de votação, há 0,49 ponto a mais de liberações sem biometria, cerca de 0,15 eleitor por seção.
+- **Fato:** os testes de uso não acharam sinal de que essa porta tenha sido usada em larga escala. O comparecimento não sobe com o tamanho do grupo. As comparações com as seções vizinhas e por horário são estimativas de modelo, e os números estão no parecer 01.
 - **Não sustentado:** ler este achado como voto a mais, contagem impossível ou uso de título de outra pessoa.
 
 ### 4. No exterior, ninguém votou com digital
 
-- **Fato (recalculado):** nas 1.281 seções do exterior com voto, os 380.612 votos do 2º turno foram todos liberados pelo título (ou CPF) e ano de nascimento. Nenhum foi liberado pela digital, nem à mão. No 1º turno, 340.977 votos, também todos assim. O perfil do eleitorado (14/07/2026) registra 222.584 eleitores do exterior com biometria (24% de 918.876), e nem esses votaram com digital.
+- **Fato (recalculado):** nas 1.281 seções do exterior com log de urna, os 380.612 votos do 2º turno foram todos liberados pelo título (ou CPF) e ano de nascimento, segundo o log. Nenhum foi liberado pela digital, nem à mão. No 1º turno, 340.977 votos nas 1.281 seções com log, também todos assim. Outras 27 seções do exterior no 2º turno (831 votos) e 28 no 1º (789 votos) foram apuradas pelo Sistema de Apuração e não têm log de urna, então a forma de liberação delas não aparece em nenhum arquivo. O perfil do eleitorado (14/07/2026) registra 222.584 eleitores do exterior com biometria (24% de 918.876), e nem esses votaram com digital.
 - **Hipótese (risco):** no exterior, quem souber o título e o ano de nascimento de um eleitor da seção pode votar no lugar dele sem barreira técnica nenhuma. Não dá para medir quantos fizeram isso. São 0,3% do comparecimento nacional.
 - **Pendente:** perguntar ao TSE se a urna do exterior é preparada sem digitais ou se o programa desliga a biometria, e qual norma prevê isso.
 
@@ -111,7 +111,7 @@ A hipótese era que urnas de modelo antigo teriam sido mandadas para certas regi
 | UE2020 | 200.504 | 88,4% | 5,5% | 6,0% |
 | UE2022 | 198.746 | 88,6% | 5,4% | 6,0% |
 
-2º turno, sem o exterior, com o modelo lido no log de cada urna. Uma seção de SP (município 64777, zona 395, seção 298) não traz o modelo no log e ficou fora da tabela. Numa urna de contingência da PB (município 19658, zona 57, seção 66), o log diz UE2015 e o banco do projeto diz UE2013. Por isso o banco conta 11.434 seções de 2013; as porcentagens não mudam.
+2º turno, sem o exterior, com o modelo lido no log de cada urna. Numa seção de SP (município 64777, zona 395, seção 298), o perfil do projeto não leu o log; o log bruto diz UE2015, e com ela a linha UE2015 teria 87.214 seções, com as mesmas porcentagens. Numa urna de contingência da PB (município 19658, zona 57, seção 66), o log diz UE2015 e o banco do projeto diz UE2013. Por isso o banco conta 11.434 seções de 2013; as porcentagens não mudam.
 
 - **Fato (recalculado):** comparando cada seção só com as outras da mesma zona eleitoral, sem outros controles, o modelo quase não muda a liberação pelo ano de nascimento: as urnas de 2013 liberam por esse caminho 0,21 ponto a menos que as de 2022 no 2º turno, e 0,24 a menos no 1º. Muda a liberação manual: +4,3 pontos nas urnas de 2013 e +3,2 nas de 2015, no 2º turno (+4,5 e +3,3 no 1º). Ou seja, nas urnas antigas a digital falha mais e a mesa libera mais à mão. Isso alarga a brecha humana.
 - **Fato (recalculado):** com a mesma comparação, as urnas antigas estão em seções que votam **menos** no 13, entre os votos de 13 e 22: −1,4 ponto (2013) e −1,0 (2015) no 2º turno; −1,4 e −0,9 no 1º.
@@ -127,20 +127,18 @@ Como o voto do liberado não pode ser observado, foram usados testes indiretos. 
 Dois termos usados abaixo:
 
 - **Comparar dentro da UF, do município ou da zona:** cada seção é comparada só com outras do mesmo lugar. Assim, diferenças entre estados (por exemplo, o Nordeste votar mais no 13) não se misturam com o efeito que se quer medir.
-- **t:** mede o tamanho de um sinal em relação ao ruído. Em geral, abaixo de 2 (para mais ou para menos) o sinal não se distingue do acaso. Quando se fazem dezenas de testes ao mesmo tempo, o limite sobe (aqui, cerca de 3,3), porque alguns passam de 2 só por sorte.
+- **t:** mede o tamanho de um sinal em relação ao ruído. Em geral, abaixo de 2 (para mais ou para menos) o sinal não se distingue do acaso. Quando se fazem dezenas de testes ao mesmo tempo, o limite sobe, porque alguns passam de 2 só por sorte.
 
 #### 6.1. Quem foi votar só no 2º turno (revisado, parecer 06)
 
 Se mesários tivessem liberado sem digital pessoas para votar no lugar de ausentes, a favor de um lado, os eleitores **a mais** do 2º turno liberados sem digital votariam diferente dos eleitores a mais liberados pela digital.
 
-- **Fato, parcial (25 UFs; faltam SP, TO e exterior; 389.827 seções pareadas):** comparando seções da mesma UF, cada eleitor a mais liberado sem digital se dividiu entre 13 e 22 como cada eleitor a mais liberado pela digital. A diferença é +0,002 ± 0,002 para o 13 e −0,001 ± 0,002 para o 22. Comparando dentro do município, −0,002 e +0,001. Isso quer dizer que, em cada 1.000 eleitores a mais, a forma de liberação mudou o voto em cerca de 2 votos para um lado ou para o outro, dentro da margem do acaso.
-- **Fato:** o modelo que o primeiro autor usou, sem comparar dentro da UF, dava um sinal a favor do 13 (t = 3,4) que é falso: ele some quando a comparação é feita dentro da UF. O revisor registrou isso como um caso em que a forma do cálculo, e não os dados, produzia o sinal.
-- **Hipótese, a examinar:** no Paraná há um sinal a favor do 13 (diferença +0,025, t = 4,2; dentro do município, +0,012, t = 2,8). Em Minas Gerais, um sinal a favor do 22 (+0,019, t = 3,7; dentro do município, +0,008, t = 2,0). Os dois vão em direções opostas, e no Paraná a parcela de votantes sem digital **caiu** do 1º para o 2º turno (8,15% para 7,68%). Nenhum dos dois é Fato de inserção.
+- **Pendente: em verificação.** O teste que existe cobre só 25 UFs (faltam SP, TO e exterior) e será refeito com todas as UFs, agora que o 1º turno está completo no banco. Os coeficientes, os sinais do PR e de MG e o sinal falso do modelo do primeiro autor ficam no parecer 06 ([../analysis/cetico-revisor/06-comparecimento-extra-sem-vies-biometria.md](../analysis/cetico-revisor/06-comparecimento-extra-sem-vies-biometria.md)).
 
-**O que este teste exclui e o que não exclui.** Pela simulação do revisor, ele detecta inserção a partir de cerca de 34 mil votos concentrados, que varie entre seções da mesma UF (por exemplo, 40 votos em 0,25% das seções ou 10 votos em 1% delas). Ele **não** detecta:
+**O que este teste não detecta**, pela simulação do revisor (feita em 22 UFs; os números estão no parecer 06):
 
-- inserção igual em todas as seções de uma UF (na simulação, 5 ou 10 votos por seção em toda a BA, até cerca de 355 mil votos, passam sem sinal);
-- inserção pequena e espalhada (5 votos em 5% das seções mais favoráveis ao 13 não chegam a ser detectados);
+- inserção igual em todas as seções de uma UF, mesmo grande;
+- inserção pequena e espalhada pelas seções mais favoráveis a um candidato;
 - fraude do mesmo tamanho nos dois turnos, que some na diferença entre eles;
 - uso da brecha em poucas seções.
 
@@ -157,9 +155,9 @@ Duas leituras terão de ser testadas quando o número existir:
 
 Se mesários votassem no lugar de ausentes, as seções com quase todos os eleitores presentes teriam mais liberação manual que as vizinhas.
 
-- **Fato:** no 2º turno, nenhuma seção tem comparecimento acima dos aptos. 639 seções passam de 95% e 12 chegam a 100%.
-- **Fato:** nessas 639 seções, a liberação sem digital é 9,37%, contra 12,41% esperados pelas próprias zonas. A diferença vem toda dos eleitores sem digital na urna. Por que esse grupo pesa menos ali é Hipótese: pode ser a composição do cadastro ou esse eleitor faltar mais. A liberação manual de quem tinha digital (o único caminho para votar no lugar de um ausente que tem biometria) é igual à da zona: 7,58% contra 7,77%.
-- **Fato:** somando as 639 seções, isso limita os votos no lugar de ausentes por esse caminho a cerca de 110 a 400, menos de 1 por seção. O teste **não** cobre fraude concentrada em poucas seções, voto pelo ano de nascimento no lugar de ausente sem digital, nem fraude que não passa pela urna (compra de voto, coação, transporte).
+- **Fato:** no 2º turno, nenhuma seção tem comparecimento acima dos aptos. 639 seções têm 95% ou mais e 12 chegam a 100%.
+- **Fato:** nessas 639 seções, a liberação sem digital é 9,37%, contra 12,41% esperados pelas próprias zonas. A diferença vem toda dos eleitores sem digital na urna. Por que esse grupo pesa menos ali é Hipótese: pode ser a composição do cadastro ou esse eleitor faltar mais. A liberação manual de quem tinha digital (o único caminho para votar no lugar de um ausente que tem biometria) não se distingue da da zona: 7,58% contra 7,77% dos eleitores com biometria cadastrada.
+- **Pendente (estimativa de modelo, fora deste relatório):** o limite estatístico de votos no lugar de ausentes por esse caminho, nas 639 seções juntas, está no parecer 10. O teste **não** cobre fraude concentrada em poucas seções, voto pelo ano de nascimento no lugar de ausente sem digital, nem fraude que não passa pela urna (compra de voto, coação, transporte).
 - **Fato:** o caso mais destacado (RN, João Câmara, município 17132, zona 10, seção 145, 36,4% sem digital contra 12,9% da zona) já era o primeiro da zona no 1º turno, com 87,8% de comparecimento e a mesma urna. Com o modelo estatístico correto, ele não passa de forma firme no teste. A probabilidade minúscula que circulou para esse caso vinha de um modelo errado e não deve ser citada.
 - **Leitura revisada:** o resultado é **neutro** sobre a liberação manual. Não é prova contra nem a favor de mesários votando por ausentes.
 
@@ -198,10 +196,10 @@ Fonte: `node scripts/auditoria/h13-limites-banco.mjs` → [../analysis/hipotese-
 
 ### 7. "O eleitor identificado já votou"
 
-Quando alguém digita o título de quem já votou, a urna avisa `O eleitor identificado já votou`. Esse aviso é o rastro de um relato frequente: "cheguei e alguém já tinha votado por mim".
+Quando alguém digita o título de quem já votou, a urna avisa `O eleitor identificado já votou`. Esse aviso é o que a urna registraria no caso que alguns eleitores relatam ("cheguei e alguém já tinha votado por mim"), mas ele também aparece quando o mesário digita de novo o título de quem acabou de votar.
 
-- **Fato (recalculado):** no 2º turno, a urna deu esse aviso 113.979 vezes, em 73.246 das 499.177 seções com voto. Em 99,6% das seções que tiveram o aviso, ele aparece menos de uma vez a cada 20 votos.
-- **Fato (recalculado, conferido no log bruto):** em 9 seções com 30 votos ou mais, cada uma numa zona diferente (AC, AM ×2, DF, GO, MA ×2, RS e exterior), o aviso aparece cerca de uma vez por voto, logo depois de cada voto: na mediana de cada seção, de 9 a 19 segundos depois do voto. Exemplo: AC, Bujari, zona 9, seção 440, com 130 votos e 130 avisos. **Hipótese:** o mesário redigitou o título de quem acabou de votar. Ver [../casos/ac-01007-z0009-s0440.md](../casos/ac-01007-z0009-s0440.md).
+- **Fato (recalculado):** no 2º turno, a urna deu esse aviso 113.979 vezes, em 73.246 das 499.178 seções com log de votação (as 499.177 lidas pelo perfil e a de SP, município 64777, zona 395, seção 298, cujo log bruto tem 268 votos e nenhum aviso). As outras 27 seções com voto para Presidente, no exterior, foram apuradas pelo Sistema de Apuração e não têm log de urna. Em 99,6% das seções que tiveram o aviso, ele aparece menos de uma vez a cada 20 votos.
+- **Fato (recalculado, conferido no log bruto):** em 9 seções com 30 votos ou mais, cada uma numa zona diferente (AC, AM ×2, DF, GO, MA ×2, RS e exterior), o aviso aparece de 0,98 a 1 vez por voto (de 198 avisos em 202 votos a 130 em 130), logo depois de cada voto: na mediana de cada seção, de 9 a 19 segundos depois do voto. Exemplo: AC, Bujari, zona 9, seção 440, com 130 votos e 130 avisos. **Hipótese:** o mesário redigitou o título de quem acabou de votar. Ver [../casos/ac-01007-z0009-s0440.md](../casos/ac-01007-z0009-s0440.md).
 - **Fato (recalculado, conferido no log bruto):** uma única seção do 2º turno tem mais avisos do que votos: ES, Vila Velha, zona 55, seção 364, com 388 avisos e 275 votos. 382 desses avisos estão em 19 rajadas de 5 ou mais, sem nenhum voto entre eles. 386 dos 388 avisos vieram de um título digitado, e 2 de um CPF. A maior rajada teve 59 avisos entre 11h19 e 11h33. **Hipóteses, nenhuma testada:** consulta indevida de uma lista pela urna, ou alguém digitando títulos em sequência até achar um que ainda não tinha votado. Ver [../casos/es-57037-z0055-s0364.md](../casos/es-57037-z0055-s0364.md).
 
 ### 8. Seções que liberaram à mão metade ou mais dos votantes
@@ -248,19 +246,19 @@ Fonte: `node scripts/auditoria/virada-sem-digital.mjs` → [../analysis/virada-s
 
 - **Leitura do log:** no Acre inteiro, as três formas de liberação contadas no log batem com o boletim nas 2.270 seções. O revisor registrou um limite: log e boletim saem do mesmo programa da urna, então a igualdade prova coerência interna, não que o arquivo de eleitores carregado na urna estava certo.
 - **Item 3:** um segundo caso, que o autor não tinha olhado, foi conferido no arquivo bruto do perfil (ES, Vitória, zona 52, seção 33: perfil com 394 de 394 eleitores com biometria, boletim com 19 e 20 sem biometria nos dois turnos). O marcador da foto foi medido por dois revisores, com seções diferentes.
-- **Item 3, poder do teste de uso:** votos falsos do tamanho observado, injetados de propósito em 28% das seções, foram detectados em 10 de 10 repetições. Em 5% das seções, em 8 de 10. **O teste não tem poder para uso em poucas seções ou com poucos eleitores por seção.** O que está provado é que não houve uso amplo, e não que não houve uso.
+- **Item 3, poder do teste de uso:** o revisor injetou votos falsos do tamanho observado em parte das seções. Quando eles estão em muitas seções, o teste os pega; em 5% das seções, a detecção é incerta (parecer 01, errata de 29/10/2026). **O teste não tem poder para uso em poucas seções ou com poucos eleitores por seção.** Ele não prova que não houve uso: mostra que um uso amplo como o simulado teria deixado sinal, e esse sinal não apareceu.
 - **Item 6.1:** o revisor inseriu votos falsos nos dados reais e mediu o que o teste pega e o que não pega (tabela do parecer 06). Foi assim que se chegou aos pontos cegos listados em 6.1.
-- **Item 6.3:** em simulação, seções levadas a 95% de comparecimento só com votos falsos sem digital (16 em média por seção) foram marcadas em 0,6% das vezes. O teste por seção é fraco. O teste do conjunto das 639, pelo caminho da digital que falhou, é forte.
+- **Item 6.3:** em simulação, seções levadas a 95% de comparecimento só com votos falsos sem digital quase nunca foram marcadas: o teste por seção é fraco. O teste do conjunto das 639, pelo caminho da digital que falhou, só vale para fraude espalhada por essas seções (parecer 10).
 - **Itens 1, 4, 5 e 7:** os números foram recalculados de forma independente, de todas as seções dos dois turnos, e os casos do item 7 foram conferidos no log bruto. Esses itens são contagens; ainda não passaram por um parecer do revisor cético.
 
 ## O que este resultado prova e o que não prova
 
 **Prova:**
 
-- quantos eleitores votaram com e sem a própria digital, seção por seção, no país inteiro;
+- quantos eleitores votaram com e sem a própria digital, seção por seção, em todas as seções cujo boletim de urna traz essa divisão (o item 1 diz quais ficam fora);
 - que existem duas brechas humanas, usadas por 12,4% dos eleitores no Brasil e por 100% no exterior;
-- que o excesso de "sem biometria" sobre o cadastro vem de uma diferença entre arquivos do TSE, e não de eleitores a mais;
-- que não houve uso da brecha **em larga escala e concentrado** a favor de um lado, nas 25 UFs testadas.
+- que o excesso de "sem biometria" sobre o cadastro não é de eleitores a mais (em nenhuma seção o comparecimento passa dos aptos) e, nas 378 seções de maior excesso, vem de uma diferença entre arquivos do TSE;
+- **Pendente:** se houve uso da brecha em larga escala a favor de um lado. O teste do item 6.1 cobre só 25 UFs e será refeito com todas. Não achar o sinal não prova que o uso não houve. (Este item sai da lista "Prova".)
 
 **Não prova:**
 
@@ -274,7 +272,7 @@ Fonte: `node scripts/auditoria/virada-sem-digital.mjs` → [../analysis/virada-s
 1. **O voto é secreto.** A ligação entre a forma de liberação e o voto não existe nos arquivos. Todo resultado sobre "em quem votou o liberado" é estimativa ou cerco.
 2. **A pessoa diante da urna não é identificada nos caminhos 2 e 3.** Pelo princípio 8, a conferência de documento e de foto não conta como controle, e ela não deixa rastro.
 3. **O log não separa digital que falhou de dedo trocado.** E, em 2,8 milhões de liberações manuais, nem diz de quem era o dedo.
-4. **Cadastro desatualizado.** O perfil público é de 14/07/2026, e as urnas foram preparadas entre 16 e 29/09/2026. Em algumas zonas, eleitores mudaram de seção nesse intervalo (caso RN do parecer 10), e a comparação seção a seção perde valor ali.
+4. **Cadastro desatualizado.** O perfil público é de 14/07/2026, e as urnas do 2º turno foram carregadas entre 15/09 e 25/10/2026: 496.962 até 04/10 e 2.245 entre 09/10 e 25/10 ([tópico 3](03-linha-do-tempo.md), item 2). Em algumas zonas, eleitores mudaram de seção nesse intervalo (caso RN do parecer 10), e a comparação seção a seção perde valor ali.
 5. **Sem renda e sem urbano/rural por seção.** Os dados abertos não trazem esses dados, então explicações sociais para diferenças entre seções não podem ser testadas com eles.
 6. **1º turno parcial** no teste do item 6.1 (sem SP, TO e exterior). O 1º turno do item 3 está pendente.
 7. **O caderno de votação não é público.** É a única fonte que diria quem assinou como eleitor em cada seção. Só pode ser obtido por pedido formal.

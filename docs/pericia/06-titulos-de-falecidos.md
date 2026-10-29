@@ -8,9 +8,9 @@ O cadastro de eleitores de 2026 tem títulos de pessoas que já morreram? E algu
 
 | Pergunta | Resposta | Rótulo |
 |---|---|---|
-| O cadastro tem títulos de pessoas que provavelmente já morreram? | Sim. Há pelo menos **148.553 títulos de eleitores com 100 anos ou mais sem pessoa viva correspondente**, mesmo supondo que nenhum centenário tenha morrido desde 2022. Com a mortalidade real, a estimativa fica entre 235 e 260 mil. | **Fato** (piso) e **Hipótese** (estimativa) |
+| O cadastro tem títulos de pessoas que provavelmente já morreram? | Sim. No saldo do país, há **148.553 títulos de eleitores com 100 anos ou mais a mais do que as pessoas com 96 anos ou mais contadas no Censo 2022**, supondo que nenhuma delas tenha morrido desde então e que o TSE conte a idade até o fim de julho de 2026. A data em que o TSE conta a idade não está documentada. Contando também quem tinha 95 anos no Censo, o saldo que vale para qualquer data de 2026 é de **94.985**. Quantos sobram com a mortalidade real é estimativa de modelo e fica fora deste relatório. | **Fato** (os dois saldos) e **Pendente** (data da idade; estimativa com mortalidade) |
 | Esses títulos foram usados para votar no 1º turno? | Pela contagem oficial do TSE, compareceram 0,72% dos eleitores de 100+ anos, e 0,26% nos municípios onde sobram títulos. Isso não indica uso sistemático. A contagem é do TSE e não pode ser refeita com os arquivos das urnas. | **Fato**, com ressalva |
-| E no 2º turno? | O TSE ainda não publicou a contagem por idade. Os testes possíveis descartam uso acima de cerca de 10% desses títulos (cerca de 30 mil votos). Uso menor que isso, ou concentrado em poucas seções, não é detectável. | **Fato** (o que o teste descarta) e **Pendente** (o resto) |
+| E no 2º turno? | O TSE ainda não publicou a contagem por idade. Os testes indiretos só conseguem ver uso amplo e espalhado por igual nas seções. Uso concentrado em poucas seções, ou espalhado só nas seções com 1 ou 2 eleitores de 100+, não aparece neles, mesmo quando passa de 10% dos títulos de 100+. | **Fato** (o que os testes não veem) e **Pendente** (quanto uso fica descartado) |
 | Por onde um título de falecido poderia ser usado? | Pelo eleitor sem biometria cadastrada, que a urna libera só com o ano de nascimento. 92% dos títulos de 100+ estão nesse grupo. | **Fato** |
 
 Nenhum CPF foi usado nesta parte da perícia. Tudo vem de números públicos por seção, zona ou município.
@@ -35,7 +35,7 @@ Foram comparadas duas contagens oficiais:
 - **O perfil do eleitorado do TSE** (arquivo `perfil_eleitor_secao`, gerado em 14/07/2026): quantos eleitores há em cada seção, por faixa de idade e com ou sem biometria cadastrada.
 - **O Censo 2022 do IBGE** (tabela 9514): quantas pessoas moravam em cada município, por idade.
 
-Quem tinha 96 anos ou mais no Censo de 2022 é quem pode ter 100 anos ou mais em 2026. Esse grupo de pessoas nascidas na mesma época é chamado de **coorte**. A conta mais simples é: eleitores de 100+ em 2026 menos a coorte de 96+ de 2022. Essa conta supõe que **ninguém** dessa coorte morreu em quatro anos, o que favorece o cadastro. Por isso o resultado é um **piso**: o número verdadeiro só pode ser maior.
+Quem tinha 96 anos ou mais no Censo de 2022 (data de referência: fim de julho de 2022) é quem pode ter 100 anos ou mais até o fim de julho de 2026. Se o TSE contar a idade numa data posterior, por exemplo a da eleição, parte de quem tinha 95 anos no Censo também chega a 100+. Esse grupo de pessoas nascidas na mesma época é chamado de **coorte**. A conta mais simples é: eleitores de 100+ em 2026 menos a coorte de 96+ de 2022. Essa conta supõe que **ninguém** dessa coorte morreu em quatro anos, o que favorece o cadastro. Por isso, se o Censo estiver completo e a idade for contada até o fim de julho de 2026, o resultado é um **piso**. A data em que o TSE conta a idade não está documentada (**Pendente**). Somando à coorte os 53.568 que tinham 95 anos no Censo, o piso vale para qualquer data de 2026: 297.977 − 149.424 − 53.568 = **94.985** (**Fato**).
 
 Depois, aplicou-se a mortalidade medida pelo IBGE (Estatísticas do Registro Civil, tabela 2654, média de 2023 e 2024) para estimar quantos da coorte ainda estariam vivos. Essa parte é estimativa de modelo, e não contagem.
 
@@ -46,9 +46,10 @@ Depois, aplicou-se a mortalidade medida pelo IBGE (Estatísticas do Registro Civ
 | Eleitores aptos com 100 anos ou mais, com domicílio eleitoral no Brasil | 297.977 (298.239 contando o exterior) | **Fato** |
 | Pessoas com 100+ anos no Censo 2022 | 37.814 | **Fato** |
 | Pessoas com 96+ anos no Censo 2022 (a coorte que chega a 100+ em 2026) | 149.424 | **Fato** |
-| **Títulos de 100+ sem pessoa correspondente, supondo que ninguém morreu** | **148.553** | **Fato** (piso) |
-| Coorte ainda viva em 2026, com a mortalidade do IBGE | entre cerca de 38 mil e 63 mil | **Hipótese** (estimativa) |
-| Títulos de 100+ sem pessoa correspondente, com a mortalidade do IBGE | **entre cerca de 235 mil e 260 mil** | **Hipótese** (estimativa) |
+| **Títulos de 100+ sem pessoa correspondente, supondo que ninguém morreu e que a idade é contada até o fim de julho de 2026** | **148.553** | **Fato** (piso, com essa condição) |
+| Pessoas com 95 anos no Censo 2022 | 53.568 | **Fato** |
+| Títulos de 100+ sem pessoa correspondente, supondo que ninguém morreu, para qualquer data de 2026 | **94.985** | **Fato** (piso) |
+| Coorte ainda viva em 2026 e títulos sem pessoa correspondente, com a mortalidade do IBGE | estimativa de modelo, fora deste relatório (detalhes no parecer 02) | **Pendente** |
 | Eleitores de 100+ sem biometria cadastrada | 274.143 (92,0%) | **Fato** |
 
 Para comparação, a parcela sem biometria é de 55,4% entre 90 e 99 anos, 27,9% entre 80 e 89 e 9,7% entre 18 e 69, todas sem o exterior (**Fato**, recontado em todas as seções do perfil pelo script de conferência deste tópico, listado em "Como repetir").
@@ -83,15 +84,15 @@ Pelo princípio 8 desta perícia, uma etapa feita por pessoas **não conta como 
 ### Prova de que o teste funciona (contraprova)
 
 - **Reprodução independente.** O revisor leu de novo os arquivos brutos do TSE e do IBGE com outro programa e chegou aos mesmos números: 297.977, 149.424 e 274.143. A soma dos 5.570 municípios dá exatamente os totais do país, e nenhum município ficou sem par entre TSE e IBGE (**Fato**).
-- **E se o Censo tiver deixado de contar idosos?** Se a população real de muito idosos fosse 1,5 vez a contada (ou seja, se o Censo tivesse deixado de contar um terço deles), ainda sobrariam cerca de 202 mil títulos pela estimativa com mortalidade. Para zerar o piso de 148.553, o Censo teria de ter contado só cerca de metade das pessoas de 96+ (**Fato**, teste de sensibilidade).
+- **E se o Censo tiver deixado de contar idosos?** Para zerar o piso de 148.553, o Censo teria de ter contado no máximo 50,1% das pessoas de 96+ (149.424 de 297.977) (**Fato**, conta direta). O efeito de subcontagens menores sobre a estimativa com mortalidade é conta de modelo e fica fora deste relatório (**Pendente**).
 - **E se forem datas de nascimento inválidas?** O cadastro tem um código próprio para data inválida (1.212 eleitores), separado da faixa de 100+ (**Fato**).
-- **E se a idade for calculada em outra data?** O efeito máximo dessa dúvida é de cerca de 3.000 títulos na estimativa (**Fato**).
+- **E se a idade for calculada em outra data?** A data não está documentada (**Pendente**). Se for posterior ao fim de julho de 2026, o piso de 148.553 deixa de valer. O piso de 94.985, que inclui quem tinha 95 anos no Censo, vale para qualquer data de 2026 (**Fato**).
 - **E se forem eleitores que moram no exterior?** O exterior tem 262 eleitores de 100+ e já foi excluído da conta (**Fato**).
 
 ### O que não se pode afirmar com este teste
 
-- **Município a município, a comparação engana.** O título fica onde a pessoa se alistou, e o Censo conta onde ela mora. Em 1.068 municípios há mais eleitores de 100+ do que moradores de 96+, mas em 4.186 acontece o contrário. O número confiável é o saldo do país (148.553), e não a soma dos municípios com sobra (**Fato**).
-- **Faixa de 90 a 99 anos.** Pode haver sobra também nessa faixa, mas o resultado muda de sinal conforme as premissas do modelo (de 249 mil a mais até 104 mil a menos). Não é achado (**Pendente**).
+- **Município a município, a comparação engana.** O título fica onde a pessoa se alistou, e o Censo conta onde ela mora. Em 1.068 municípios há mais eleitores de 100+ do que moradores de 96+, em 4.186 acontece o contrário e em 316 os dois números são iguais. O número confiável é o saldo do país (148.553), e não a soma dos municípios com sobra (**Fato**).
+- **Faixa de 90 a 99 anos.** Pode haver sobra também nessa faixa, mas o resultado muda de sinal conforme as premissas do modelo. Não é achado (**Pendente**).
 
 ## Parte 2. Esses títulos foram usados para votar?
 
@@ -132,14 +133,14 @@ As três linhas somam os 298.239 eleitores de 100+ e os 2.141 que compareceram.
 
 | Teste indireto, 2º turno | Descarta | Não descarta |
 |---|---|---|
-| Comparar a mesma seção no 1º e no 2º turno | uso feito só no 2º turno acima de cerca de **10% dos títulos de 100+** (cerca de **30 mil votos**) | uso abaixo disso; uso concentrado em poucas seções ou municípios |
-| Comparar seções com mais e menos títulos de 100+ dentro do mesmo município | uso uniforme de cerca de 40% dos títulos (cerca de 119 mil votos) | qualquer uso menor |
+| Comparar a mesma seção no 1º e no 2º turno | uso amplo, feito só no 2º turno e espalhado por igual nas seções com eleitores de 100+ | uso pequeno; uso concentrado em poucas seções ou municípios; uso só nas seções com 1 ou 2 eleitores de 100+. O tamanho exato do que o teste descarta é estatístico (**Pendente**) |
+| Comparar seções com mais e menos títulos de 100+ dentro do mesmo município | só uso uniforme muito amplo, bem maior do que o teste anterior vê (**Pendente**: o limite exato é estatístico) | qualquer uso menor |
 
 Fonte: parecer [../analysis/cetico-revisor/03-centenarios-nao-votam.md](../analysis/cetico-revisor/03-centenarios-nao-votam.md), com simulações em que votos falsos foram inseridos nos dados para ver se o teste os acharia. **Fato** (o que cada teste consegue e não consegue ver).
 
-Exemplos do que passaria despercebido: um título de 100+ usado em cada uma das 86.934 seções da análise do 2º turno que têm algum eleitor dessa idade (as seções agregadas contam junto com a seção principal) somaria 87 mil votos e mal mexeria no resultado do teste. Usar todos os títulos de 100+ de 1% dos municípios também não apareceria (**Fato**, simulação).
+Exemplos do que passaria despercebido: um título de 100+ usado em cada uma das 86.934 seções da análise do 2º turno que têm algum eleitor dessa idade (as seções agregadas contam junto com a seção principal) somaria 86.934 votos e mal mexeria no resultado da comparação dentro do mesmo município. Usar todos os títulos de 100+ das seções que têm só 1 ou 2 deles (61.540 votos) não apareceria em nenhum dos dois testes. Usar todos os títulos de 100+ de 1% dos municípios também não apareceria (**Fato**, simulação).
 
-**Um teste que foi retirado.** Uma análise anterior apresentava como evidência que, "em nenhuma das 22.389 seções com 5 ou mais eleitores de 100+, o comparecimento obriga algum deles a ter votado". O número é verdadeiro, mas o teste não tem **poder** (capacidade de detectar algo que existe): com 99 mil votos falsos inseridos nas seções com mais centenários, ele continuou acusando zero seções. Por isso não é usado como evidência neste relatório (**Fato**).
+**Um teste que foi retirado.** Uma análise anterior apresentava como evidência que, "em nenhuma das 22.389 seções com 5 ou mais eleitores de 100+, o comparecimento obriga algum deles a ter votado". O número é verdadeiro, mas o teste não tem **poder** (capacidade de detectar algo que existe): com 99.471 votos falsos inseridos nas 10% de seções com mais centenários, ele continuou acusando zero seções. Por isso não é usado como evidência neste relatório (**Fato**).
 
 ### Lugares que pedem exame, com números pequenos
 
@@ -147,7 +148,7 @@ Exemplos do que passaria despercebido: um título de 100+ usado em cada uma das 
 
 ### Um caso conferido no arquivo bruto
 
-**Fato:** RJ, Rio de Janeiro, zona 0005, seção 0001, 2º turno. O cadastro tem 40 eleitores de 100+ nessa seção, 39 deles sem biometria. A seção tem 330 eleitores aptos e 202 votaram. Só 7 entraram pelo caminho "sem biometria". Portanto, **no máximo 8** desses 40 títulos podem ter votado (os 7 sem biometria, se todos fossem centenários, e o único com biometria). Fonte: boletim da urna lido diretamente do arquivo.
+**Fato:** RJ, Rio de Janeiro, zona 0005, seção 0001, 2º turno. O cadastro tem 40 eleitores de 100+ nessa seção, 39 deles sem biometria. A seção tem 330 eleitores aptos e 202 votaram. Só 7 entraram pelo caminho "sem biometria". Se a biometria no arquivo da urna for a mesma do perfil, **no máximo 8** desses 40 títulos podem ter votado (os 7 sem biometria, se todos fossem centenários, e o único com biometria). A Parte 3 mostra que as duas nem sempre coincidem, nos dois sentidos. Por isso o limite vale com essa condição. Fonte: boletim da urna lido diretamente do arquivo.
 
 ## Parte 3. Por que o eleitor sem biometria é o ponto fraco
 
@@ -198,15 +199,15 @@ Os revisores procuraram no diário da urna o que acontecia nesses atendimentos e
 ### Prova de que o teste funciona (contraprova)
 
 - **A marca da foto explica o excesso onde foi medida.** Nas 378 seções com excesso de 10 ou mais, tirar os atendimentos com foto zera quase todo o excesso (de 5.560 para 54) (**Fato**). Quanto a marca é rara nas seções sem excesso ainda não foi medido em todas elas (**Pendente**).
-- **O teste de uso consegue achar uso amplo.** Os revisores inseriram votos falsos nos dados, do tamanho do excesso observado, em 28% das seções: o teste os detectou em 10 de 10 repetições. Em 5% das seções, detectou em 8 de 10 (**Fato**, simulação).
+- **O teste de uso consegue achar uso amplo.** Os revisores inseriram votos falsos nos dados, do tamanho do excesso observado, em 28% das seções: o teste os detectou em 10 de 10 repetições. Em 5% das seções, a detecção é incerta: o resultado muda entre rodadas da simulação (**Fato**, simulação).
 - **O teste não consegue achar uso em poucas seções ou em poucos eleitores por seção.** "Não houve uso" não está provado. O que está provado é que não houve uso amplo (**Fato**).
 - **O diário e o boletim batem, mas isso não é conferência independente.** Os dois saem do mesmo programa da urna. A igualdade mostra coerência interna, e não que o arquivo de eleitores gravado na urna estava correto (**Fato**).
 
 ## Um fenômeno vizinho que não é o mesmo: municípios com mais eleitores do que moradores
 
-**Fato:** em 2.898 dos 5.570 municípios (52%), o perfil de julho de 2026 tem mais eleitores de 16+ do que moradores de 12+ no Censo 2022. O fenômeno se concentra em municípios pequenos. O percentual muda conforme a definição de idade e o ano da população (de 44% a 58%).
+**Fato:** em 2.898 dos 5.570 municípios (52%), o perfil de julho de 2026 tem mais eleitores de 16+ do que moradores de 12+ no Censo 2022. O fenômeno se concentra em municípios pequenos. O percentual muda conforme a definição de idade e o ano da população (detalhes no parecer 04).
 
-**Fato:** esses títulos a mais **votam**. No 2º turno, em 579 municípios votou mais gente do que a população de 12+ de 2022. Pela estimativa do revisor (modelo que supõe que os moradores votam à taxa do estado), os títulos excedentes comparecem a cerca de 60% a 70% (afirmação revisada do [parecer 04](../analysis/cetico-revisor/04-eleitorado-acima-populacao.md), a mesma dos tópicos 7 e 10). A parcela liberada por digital nesses municípios é igual à do estado (diferença de até 0,6 ponto). Isso indica pessoas reais, presentes na urna, com título num município diferente de onde moram. Não indica títulos de falecidos em massa.
+**Fato:** no 2º turno, em 579 municípios votou mais gente do que a população de 12+ de 2022. A parcela liberada por digital nesses municípios fica a até 0,6 ponto da do estado. **Hipótese:** isso indica pessoas reais, presentes na urna, com título num município diferente de onde moram, e não títulos de falecidos em massa. Quanto os títulos excedentes comparecem é estimativa de modelo do revisor ([parecer 04](../analysis/cetico-revisor/04-eleitorado-acima-populacao.md)) e fica fora deste relatório (**Pendente**).
 
 **Hipótese:** a maior parte é migração com título mantido na cidade de origem ou domicílio eleitoral por vínculo familiar ou profissional, que a lei permite. Os dados agregados não separam isso de transferência irregular de títulos. É tema de outro tópico, e não deste.
 
@@ -217,7 +218,7 @@ Fonte: parecer [../analysis/cetico-revisor/04-eleitorado-acima-populacao.md](../
 1. **Nenhum CPF foi usado.** A frente descrita aqui usa só contagens públicas por seção, zona e município. A frente por CPF (cruzar títulos com registros de óbito) está descrita no [doc 04](../04-hipotese-titulos-falecidos.md) e não faz parte deste tópico.
 2. **Não é possível dizer que um título específico votou.** O caderno de votação (a lista assinada pelos eleitores na mesa) não é público, e os arquivos da urna não identificam o eleitor.
 3. **Não é possível separar falecidos de vivos com a data de nascimento errada**, entre os títulos de 100+ que não votam.
-4. **O 2º turno não tem contagem oficial por idade.** Os testes indiretos só descartam uso acima de cerca de 10% dos títulos de 100+.
+4. **O 2º turno não tem contagem oficial por idade.** Os testes indiretos só descartam uso amplo e espalhado por igual. Uso concentrado, ou só nas seções com 1 ou 2 eleitores de 100+, não aparece neles. Quanto uso fica descartado é **Pendente**.
 5. **A contagem oficial do 1º turno é do TSE.** Ela é coerente com os outros arquivos, mas não pode ser conferida de forma independente.
 6. **O que dá para afirmar sobre o caminho sem biometria vale para o uso amplo.** Uso em poucas seções, ou de poucos títulos por seção, não aparece nos testes agregados.
 7. **Datas a confirmar.** O fechamento do cadastro (07/05/2026, 150 dias antes do 1º turno) e a data em que o TSE calcula a idade no perfil não estão documentados nos arquivos.
@@ -246,7 +247,7 @@ Fonte: parecer [../analysis/cetico-revisor/04-eleitorado-acima-populacao.md](../
 - **Diário das urnas nos lugares apontados:** horário e sequência das liberações por ano de nascimento em Arame, Icatu e Pirapemas (MA), Redentora (RS), Florianópolis (SC), Pilão Arcado (BA) e nas zonas do excesso de "sem biometria".
 - **Resíduo sem foto de Indaiatuba (SP), zona 0211, seções 0430 a 0444:** medir o tamanho no universo completo e testar a causa.
 - **Marca da foto em todas as seções:** medir a mensagem "Foto do eleitor apresentada" em todas as seções com excesso de 1 a 9 e em todas as seções sem excesso, para saber quantos eleitores estão na situação "foto sem digital" no país.
-- **1º turno completo** para o achado das seções com excesso de "sem biometria", e a comparação seção a seção entre os turnos (o banco ainda não tem todas as UFs do 1º turno).
+- **1º turno completo** para o achado das seções com excesso de "sem biometria", e a comparação seção a seção entre os turnos: refazer as contas, que foram feitas antes de o banco ter todas as UFs do 1º turno.
 
 ## Como repetir
 
@@ -255,7 +256,7 @@ Os números da Parte 1 (estoque):
 ```
 node scripts/auditoria/cetico-centenarios-dados.mjs                       # lê os arquivos brutos do TSE e do IBGE (10 a 20 min)
 node scripts/auditoria/cetico-centenarios-coorte.mjs                      # coorte com mortalidade por idade; concentração por estado e capital
-node scripts/auditoria/cetico-centenarios-excesso-consolidacao.mjs        # piso de 148.553, faixa de 235 a 260 mil, sensibilidade ao Censo
+node scripts/auditoria/cetico-centenarios-excesso-consolidacao.mjs        # piso de 148.553 e sensibilidade ao Censo
 ```
 
 Saídas: `data/parsed/auditoria/cetico/centenarios-dados.json`, `centenarios-coorte.json` e `centenarios-excesso-consolidacao.json`.

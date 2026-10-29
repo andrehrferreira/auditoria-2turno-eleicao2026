@@ -21,7 +21,7 @@ Fonte: a lista oficial de seções do TSE (`data/raw/<turno>/config/*-cs.json`) 
 
 O TSE publica os arquivos de duas formas:
 
-1. **Pacotes por estado.** Um arquivo compactado por UF e um para o exterior, com os arquivos de todas as urnas daquele lugar (28 pacotes por turno, cerca de 124 GB no 2º turno e 95 GB no 1º).
+1. **Pacotes por estado.** Um arquivo compactado por UF e um para o exterior, com os arquivos de todas as urnas daquele lugar (28 pacotes por turno, com 124.135.876.999 bytes no 2º turno e 95.066.353.561 bytes no 1º).
 2. **Endereço de cada seção.** Uma pasta pública por seção, com a lista oficial do que deveria existir lá (o `aux.json`).
 
 Os pacotes por estado foram usados por inteiro. O endereço de cada seção foi usado para buscar arquivos que faltavam nos pacotes e para baixar a lista oficial, que ainda não terminou (ver **Limites**).
@@ -44,11 +44,11 @@ Isso prova que cada arquivo é exatamente o que a nota fiscal da urna lista. Se 
 | Seções "não instaladas" | 41 por turno, todas no exterior | O TSE informa que não houve urna nessas seções. Não existe arquivo, e isso consta da lista oficial de cada uma |
 | Sistema de Apuração | 31 seções no 1º turno (29 no exterior e 2 em MG); 29 no 2º turno, todas no exterior | Votos em cédula de papel, apurados depois num sistema próprio. Os arquivos têm outros nomes, mas seguem o mesmo esquema de impressões digitais e lacres, que também foi conferido |
 | Arquivo faltando no pacote do estado | 1 por turno | No 2º turno, o diário de uma seção de SP (que a lista oficial da seção também não cita). No 1º turno, o registro dos votos de uma seção do MA. Nos dois casos o arquivo **estava publicado no endereço da seção**, foi baixado de lá e a impressão digital confere com a nota fiscal da urna |
-| Seções com situação "Recebida" no site (2º turno) | Parcial: 5.270 até agora (AM, BA, MA, MG, PA, PE, PI, PR, RJ e RS) | A lista oficial dessas seções diz "Recebida", e não "Totalizada". As datas de recebimento anotadas vão de 25/10 a 28/10. Nas 5.270, os votos para presidente no resultado oficial do TSE batem exatamente com o boletim da urna (nenhuma seção diverge). A contagem ainda não inclui 99.596 seções de SP e as 4.384 de TO, cujas listas oficiais estão sendo baixadas (retrato de 29/10/2026, 8h36 de Brasília) |
+| Seções com situação "Recebida" no site (2º turno) | **Pendente** | Na lista oficial, algumas seções têm a situação "Recebida", e não "Totalizada". A quantidade, as UFs, as datas e a comparação dos votos com o boletim da urna só entram quando a lista oficial tiver chegado para todas as seções com urna (falta parte de SP e todo o TO) |
 
 ## Limites
 
-- **Parcial:** a lista oficial de cada seção (`aux.json`), que diz qual pacote o TSE considerou, ainda está sendo baixada devagar, porque o site do TSE bloqueia acessos rápidos. No 2º turno, às 8h36 de 29/10/2026 (horário de Brasília), ela já tinha chegado para 395.227 seções com urna, e faltavam 99.596 de SP e as 4.384 de TO. Em todas as 395.227, o pacote que o TSE indica é exatamente o pacote baixado e conferido. No 1º turno, a lista oficial foi baixada só para 1 seção com urna (a do MA citada acima) e para as 41 não instaladas. Onde ela ainda falta, a conferência usou a nota fiscal da própria urna, o que garante que os arquivos estão íntegros, mas ainda não confirma, pela palavra do TSE, que **o pacote publicado é o que o TSE totalizou**.
+- **Parcial:** a lista oficial de cada seção (`aux.json`), que diz qual pacote o TSE considerou, ainda está sendo baixada devagar, porque o site do TSE bloqueia acessos rápidos. No 2º turno ela ainda não chegou para todas as seções com urna (faltam seções de SP e de TO): **Pendente**, sem número até o download terminar. No 1º turno, a lista oficial foi baixada só para 1 seção com urna (a do MA citada acima) e para as 41 não instaladas. Onde ela ainda falta, a conferência usou a nota fiscal da própria urna, o que garante que os arquivos estão íntegros, mas ainda não confirma, pela palavra do TSE, que **o pacote publicado é o que o TSE totalizou**.
 - Esta etapa diz que os arquivos estão completos e íntegros. **Não** diz se os votos dentro deles são legítimos. Isso é o assunto dos tópicos seguintes.
 
 ## Como repetir

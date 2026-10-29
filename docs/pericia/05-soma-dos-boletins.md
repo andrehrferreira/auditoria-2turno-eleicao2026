@@ -18,11 +18,13 @@ Se somarmos o "placar" de cada urna (o Boletim de Urna), chegamos ao resultado q
 
 **Fato (1º turno, Presidente):** a mesma comparação, seção por seção, nas 499.206 seções que votaram para Presidente no 1º turno (28 UFs), também não tem nenhuma divergência: 0 seções diferentes, 0 só no boletim, 0 só no resultado oficial, e 125.275.835 votos de cada lado. O oficial foi lido direto do mesmo CSV (`scripts/auditoria/verifica-pericia-coerencia-topicos.mjs --turno 1`, cópia de leitura do banco de 29/10/2026, 10h50 UTC). A mesma igualdade aparece no [tópico 8](08-virada-do-2-turno.md), por outro script.
 
-**Pendente:** os demais cargos (governador, senador, deputados). Ver "Próximos passos".
+**Fato (2º turno, Governador):** os votos nominais de Governador no boletim são iguais ao resultado oficial por município e zona (`votacao_candidato_munzona`): 1.026 pares, 0 diferença, e nenhum número com voto no boletim falta no oficial (`scripts/auditoria/verifica-pericia-coerencia-munzona.mjs --turno 2`; [tópico 2](02-coerencia-entre-arquivos.md)).
+
+**Pendente:** os demais cargos do 1º turno (governador, senador, deputados) e, nos dois turnos, brancos, nulos e comparecimento de cada cargo. Ver "Próximos passos".
 
 ## O que foi comparado
 
-- **De um lado:** o boletim de cada urna, lido diretamente do arquivo que a urna gravou e assinou. A integridade desses arquivos foi conferida nos tópicos [0](00-coleta-completa.md) e [1](01-integridade-e-estrutura-dos-arquivos.md).
+- **De um lado:** o boletim de cada urna, lido diretamente do arquivo que o TSE publica (o arquivo que a urna grava e assina). As impressões digitais desses arquivos foram refeitas em todas as seções ([tópico 0](00-coleta-completa.md)). A conferência dos lacres (assinaturas digitais) foi feita numa seção de Vila Velha (ES) e em todas as seções do Acre, e está **Pendente** no país inteiro ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)).
 - **Do outro:** o arquivo oficial de **votação por seção** que o TSE publica no portal de dados abertos (`votacao_secao_2026_BR.csv`, gerado em 26/10/2026 às 12:07). É o resultado que o TSE apresenta como totalizado, seção por seção.
 
 Para cada seção e cada número votado (candidato, branco ou nulo), os dois valores foram comparados. Somar só o total do país poderia esconder erros que se compensam (um a mais aqui, um a menos ali). A comparação seção por seção não deixa isso passar.
@@ -35,7 +37,7 @@ Para cada seção e cada número votado (candidato, branco ou nulo), os dois val
 
 ## Um caso que parecia estranho
 
-**Fato:** algumas seções aparecem no site de resultados com a situação "Recebida", e não "Totalizada". **Parcial** ([tópico 0](00-coleta-completa.md)): 5.270 nas 395.227 seções com urna cuja lista oficial já foi baixada (AM, BA, MA, MG, PA, PE, PI, PR, RJ e RS; ainda faltam 99.596 seções de SP e as 4.384 de TO). Quantas são no país inteiro: **Pendente: em verificação**.
+**Fato:** algumas seções aparecem no site de resultados com a situação "Recebida", e não "Totalizada". Quantas são no país inteiro: **Pendente: em verificação** (a lista oficial com a situação de cada seção ainda está sendo baixada; ver [tópico 0](00-coleta-completa.md)).
 
 **Fato:** como a comparação acima cobre **todas** as seções que votaram para Presidente, essas seções "Recebida" estão incluídas nela: estão no resultado oficial e os votos de Presidente são **iguais** aos do boletim da urna.
 
@@ -43,7 +45,7 @@ Para cada seção e cada número votado (candidato, branco ou nulo), os dois val
 
 ## O que este resultado prova e o que não prova
 
-- **Prova:** o resultado oficial de Presidente no 2º turno é exatamente a soma do que as urnas registraram. Não houve alteração de votos **entre a urna e o resultado divulgado**: nenhum voto somado, tirado ou trocado na totalização.
+- **Prova:** o resultado oficial de Presidente no 2º turno (o arquivo de votação por seção do TSE) é exatamente a soma dos boletins de urna publicados. Nenhum voto foi somado, tirado ou trocado **entre o boletim de cada seção e o resultado oficial**. Para afirmar que cada boletim publicado é o que a urna gravou, é preciso conferir os lacres (assinaturas digitais). Essa conferência foi feita numa seção de Vila Velha (ES) e em todas as seções do Acre, e está **Pendente** no país inteiro ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)).
 - **Não prova** que os votos registrados pelas urnas são todos legítimos. Se alguém votou no lugar de outra pessoa (por exemplo, com liberação sem biometria), esse voto está no boletim **e** no resultado oficial, e os dois batem. Essa possibilidade é examinada no tópico 4, "Como os eleitores foram liberados para votar".
 
 ## Como repetir
@@ -57,4 +59,4 @@ node --max-old-space-size=8192 scripts/auditoria/verifica-pericia-coerencia-topi
 
 ## Próximos passos
 
-- **Pendente:** demais cargos dos dois turnos. O arquivo oficial por seção só traz Presidente. Para governador, senador e deputados, a comparação será por município e zona (`votacao_candidato_munzona`). Pendente: em verificação.
+- **Pendente:** demais cargos do 1º turno (no 2º turno, Governador já bate por município e zona; ver acima). O arquivo oficial por seção só traz Presidente. Para governador, senador e deputados, a comparação será por município e zona (`votacao_candidato_munzona`). Pendente: em verificação.

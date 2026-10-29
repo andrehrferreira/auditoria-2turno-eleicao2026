@@ -10,7 +10,7 @@ Na seção analisada em detalhe, **sim**. As "impressões digitais" dos arquivos
 
 Seção analisada em detalhe: Vila Velha (ES), zona 55, seção 372, 2º turno de 25/10/2026. O mesmo teste foi rodado em todas as 2.270 seções com urna do Acre, e nenhuma falhou (seção "Alcance" abaixo). O download de todas as seções está completo e as impressões digitais dos arquivos foram refeitas em todas elas, nos dois turnos ([tópico 0](00-coleta-completa.md)); a conferência dos lacres no país inteiro ainda não foi feita (**Pendente**).
 
-Há dois limites, explicados adiante: um dos dois lacres usa um método secreto do governo e não pode ser conferido por ninguém de fora; e a "carteira de identidade" da urna foi conferida até a autoridade intermediária do TSE, não até a autoridade raiz.
+Há quatro limites, explicados adiante; os dois principais: um dos dois lacres usa um método secreto do governo e não pode ser conferido por ninguém de fora; e a "carteira de identidade" da urna foi conferida até a autoridade intermediária do TSE, não até a autoridade raiz.
 
 ## O que a urna entrega no fim do dia
 
@@ -18,10 +18,10 @@ Quando a votação termina, a urna grava um conjunto de arquivos. O TSE publica 
 
 | Arquivo | O que é, em palavras simples | Tamanho nesta seção |
 |---|---|---|
-| Boletim de Urna (`-bu.dat`) | O placar da urna: votos de cada candidato, brancos, nulos, quantos eleitores podiam votar e quantos votaram, horário de abertura e de encerramento | 1,5 KB (menos que uma página de texto) |
-| Registro Digital do Voto (`-rdv.dat`) | A lista de todos os votos, um por um, **em ordem embaralhada**. Não tem nome nem identificação de eleitor. Serve para recontar os votos de forma independente | 4,9 KB |
-| Diário da urna (`-log.jez`) | Um arquivo compactado (como um .zip) com o diário de bordo da urna: cada evento com data e hora, desde a preparação da urna semanas antes até o encerramento | 174 KB compactado, 940 KB aberto, quase 10 mil linhas |
-| Pacote de lacres (`-vota.vsc`) | A "nota fiscal" dos arquivos: lista os arquivos que a urna gerou, o tamanho de cada um, a impressão digital de cada um e o lacre de cada um | 61 KB |
+| Boletim de Urna (`-bu.dat`) | O placar da urna: votos de cada candidato, brancos, nulos, quantos eleitores podiam votar e quantos votaram, horário de abertura e de encerramento | 1.527 bytes (menos que uma página de texto) |
+| Registro Digital do Voto (`-rdv.dat`) | A lista de todos os votos, um por um, **em ordem embaralhada**. Não tem nome nem identificação de eleitor. Serve para recontar os votos de forma independente | 5.015 bytes |
+| Diário da urna (`-log.jez`) | Um arquivo compactado (como um .zip) com o diário de bordo da urna: cada evento com data e hora, desde a preparação da urna semanas antes até o encerramento | 177.719 bytes compactado, 962.771 bytes aberto, 9.916 linhas |
+| Pacote de lacres (`-vota.vsc`) | A "nota fiscal" dos arquivos: lista os arquivos que a urna gerou, o tamanho de cada um, a impressão digital de cada um e o lacre de cada um | 62.605 bytes |
 
 Os arquivos de boletim, registro de votos e lacres não são texto comum: estão num formato padronizado de computador (chamado ASN.1), parecido com um formulário de campos fixos. O TSE publica o "molde" desse formulário (a especificação), e com ele cada campo pode ser lido: município, zona, seção, número de cada candidato, quantidade de votos.
 
@@ -32,7 +32,7 @@ O pacote de lacres tem **duas listas** com os mesmos arquivos:
 1. Uma lista lacrada pelo **software de votação do TSE**, com um método de cálculo do governo (chamado CEPESC) que não é público.
 2. Outra lista lacrada pela **própria urna**, com um método público, acompanhada da "carteira de identidade" digital da urna (o certificado).
 
-A urna gerou **11 arquivos**, e o pacote lista os 11. O portal publica 4 deles. Os outros 7 aparecem no pacote apenas com nome, tamanho, impressão digital e lacre. Entre eles estão as imagens das digitais dos eleitores e mesários, que são dados pessoais e por isso não são divulgadas.
+A urna gerou **11 arquivos**, e o pacote lista os 11. O portal publica 4 deles: o boletim, o registro dos votos, o diário e o boletim impresso (`-imgbu.dat`, que vem no arquivo compactado por estado). Os outros 7 aparecem no pacote apenas com nome, tamanho, impressão digital e lacre. Entre eles estão as imagens das digitais dos eleitores e mesários, que são dados pessoais e por isso não são divulgadas.
 
 ## Como funciona a conferência
 
@@ -45,7 +45,7 @@ Pense numa encomenda pelo correio:
 
 Há ainda um **lacre dentro do próprio boletim**. Cada linha de votos do boletim (por exemplo, "candidato 22, 161 votos") tem sua impressão digital, que é calculada a partir da linha anterior, como elos de uma corrente. O último elo é lacrado pela urna. Se alguém mudar uma linha, todos os elos dali para frente mudam e deixam de bater com o lacre.
 
-Os degraus 1 e 2 mostram que **nada mudou entre a nota fiscal e o arquivo baixado**. Os degraus 3 e 4 mostram que **a nota fiscal foi feita por uma urna oficial**.
+Os degraus 1 e 2 mostram que **nada mudou entre a nota fiscal e o arquivo baixado**. Os degraus 3 e 4 mostram que **a nota fiscal foi assinada por uma urna cuja carteira de identidade foi emitida pela autoridade do TSE** (conferida até a autoridade intermediária, com certificados vindos de cópia pública do pacote do TSE; limites 2 e 3).
 
 ## O que foi conferido nesta seção
 
@@ -63,7 +63,7 @@ Os degraus 1 e 2 mostram que **nada mudou entre a nota fiscal e o arquivo baixad
 | 4 | A carteira estava dentro da validade no dia da eleição | Válida de 2022 a 2036 | **Fato** |
 | — | Lacre do software do TSE (método CEPESC) | Não verificável | **Limite** |
 
-No total foram 25 conferências nesta seção, todas com resultado positivo (contagem da versão atual de `src/lacres.js`, refeita em 29/10/2026 nos dois turnos; a mesma contagem, 25 de 25, vale para a seção 364 da mesma zona, citada no tópico 4).
+O programa `src/lacres.js` faz 25 dessas conferências nesta seção (2 da carteira de identidade, 2 da lista da urna, 4 impressões digitais de arquivo, 11 lacres de arquivo e 6 da corrente do boletim), todas com resultado positivo, refeitas em 29/10/2026 nos dois turnos; a mesma contagem, 25 de 25, vale para a seção 364 da mesma zona, citada no tópico 4. As outras linhas da tabela (código do portal, tamanhos, lista do software e número da urna no boletim e no diário) são conferidas à parte, por `src/conferencia.js` e `scripts/auditoria/t15-integridade.mjs`, também com resultado positivo.
 
 ### Prova de que o teste funciona (contraprova)
 
@@ -95,7 +95,7 @@ Fonte dos arquivos: `resultados.tse.jus.br`, baixados em 29/10/2026, com registr
 
 ## Próximos passos
 
-- [ ] Rodar a conferência dos lacres em todas as seções do país, ao fim do download
+- [ ] Rodar a conferência dos lacres em todas as seções do país (o download já está completo; [tópico 0](00-coleta-completa.md))
 - [ ] Conferir uma seção com urna de modelo antigo (2013/2015), que usa outro método de lacre (ECDSA)
 - [ ] Baixar pelo navegador o pacote oficial e os certificados das autoridades do TSE e comparar com as cópias usadas
 - [ ] Comparar o pacote consolidado por estado que o TSE publica com os arquivos baixados seção por seção
