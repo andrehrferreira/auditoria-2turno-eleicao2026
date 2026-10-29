@@ -1,0 +1,23 @@
+{
+  "turno": "2",
+  "pleito": "3221",
+  "ufs": {
+    "ac": {
+      "secoesComUrna": 2270,
+      "agregadas": 141,
+      "agregadasCobertas": 141,
+      "completa": 2270,
+      "imgbuOk": 2270,
+      "conferidoEm": "2026-10-29T05:22:25.930Z"
+    }
+  },
+  "total": {
+    "ufs": 1,
+    "secoesComUrna": 2270,
+    "completas": 2270,
+    "agregadas": 141,
+    "agregadasCobertas": 141
+  },
+  "coberturaTotal": false,
+  "geradoEm": "2026-10-29T05:22:25.931Z"
+}

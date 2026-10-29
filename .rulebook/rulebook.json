@@ -1,0 +1,56 @@
+{
+  "version": "7.5.0",
+  "installedAt": "2026-10-29T05:06:45.402Z",
+  "updatedAt": "2026-10-29T05:06:45.565Z",
+  "projectId": "70dccebe-33f4-4f39-90c3-1ff38e707685",
+  "mode": "full",
+  "features": {
+    "logging": true,
+    "gitHooks": false,
+    "templates": false,
+    "context": false,
+    "health": false,
+    "parallel": false,
+    "smartContinue": false
+  },
+  "coverageThreshold": 95,
+  "language": "en",
+  "outputLanguage": "en",
+  "cliTools": [],
+  "maxParallelTasks": 1,
+  "timeouts": {
+    "taskExecution": 300000,
+    "cliResponse": 60000,
+    "testRun": 120000
+  },
+  "agentsMode": "lean",
+  "orchestration": "judgment",
+  "monorepo": {
+    "detected": false,
+    "tool": null,
+    "packages": []
+  },
+  "languages": [
+    "javascript"
+  ],
+  "modules": [],
+  "modular": true,
+  "rulebookDir": ".rulebook",
+  "gitPushMode": "manual",
+  "skills": {
+    "enabled": [
+      "languages/javascript",
+      "core/karpathy-guidelines",
+      "core/rulebook"
+    ]
+  },
+  "permissions": {
+    "autoApprove": true
+  },
+  "integrations": {
+    "typesafe": {
+      "enabled": true,
+      "askedAt": "2026-10-29T05:06:45.564Z"
+    }
+  }
+}

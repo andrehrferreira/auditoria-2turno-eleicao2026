@@ -1,0 +1,46 @@
+node_modules/
+.env
+.env.*
+
+# Dados brutos e processados (grandes / reproduzíveis via scripts)
+data/raw/
+data/parsed/
+data/db/
+tmp/
+# Manifestos por seção são grandes (regeneráveis pela etapa conferir); resumo/zips/ocorrencias ficam versionados
+data/manifest/*/cobertura/
+data/manifest/*/downloads.jsonl
+
+# NUNCA versionar: base de CPFs e retornos de consultas pessoais (LGPD)
+data/private/
+
+# Rulebook - ignore runtime data, keep specs, tasks and project memory
+/.rulebook/*
+!/.rulebook/specs/
+!/.rulebook/tasks/
+!/.rulebook/archive/
+!/.rulebook/decisions/
+!/.rulebook/knowledge/
+!/.rulebook/learnings/
+!/.rulebook/rulebook.json
+/.claude/worktrees/
+
+# Patterns added by @hivellm/rulebook
+# Added at: 2026-10-29T05:06:45.495Z
+
+*.log
+*.swo
+*.swp
+*~
+.DS_Store
+.cache/
+.env.*.local
+.env.local
+.idea/
+.vscode/
+Thumbs.db
+logs/
+temp/
+
+CLAUDE.local.md
+.rulebook/backup/

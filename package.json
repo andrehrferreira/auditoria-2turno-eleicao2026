@@ -1,0 +1,14 @@
+{
+  "name": "auditoria-2turno-eleicao2026",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Auditoria independente dos arquivos de urna do 2º turno das eleições de 2026",
+  "type": "module",
+  "engines": {
+    "node": ">=22.2"
+  },
+  "scripts": {
+    "coleta": "node src/coleta.js",
+    "test": "node --test \"test/**/*.test.js\""
+  }
+}
