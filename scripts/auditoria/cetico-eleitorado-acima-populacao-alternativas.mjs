@@ -153,7 +153,7 @@ const Xreg = G.map((x) => [x.mortAd / x.p12, x.E70 / x.E, x.R]);
 const yObs = G.map((x) => x.comp2 / x.aptos2);
 const betaObs = ols(Xreg, yObs);
 // Simulação: residentes votam à taxa da UF + ruído (DP dos municípios 0,85 ≤ R ≤ 1 em torno da UF); excesso vota à taxa cex.
-// mulberry32 (Math.imul, 32 bits exatos). O LCG anterior, (seed * 1103515245 + 12345) % 2^31, estourava o double (errata 29/10/2026).
+// mulberry32 (Math.imul, 32 bits exatos). O LCG anterior estourava a precisão do double (errata de 29/10/2026 no parecer).
 let seed = 20261029; const rnd = () => { seed = (seed + 0x6D2B79F5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
 const gauss = () => Math.sqrt(-2 * Math.log(rnd() + 1e-12)) * Math.cos(2 * Math.PI * rnd());
 const base = M.filter((x) => x.R >= 0.85 && x.R <= 1 && x.aptos2);

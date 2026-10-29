@@ -130,3 +130,44 @@ node --max-old-space-size=4096 scripts/auditoria/cetico-b1a-consolidacao.mjs
 ```
 
 Saídas: `data/parsed/auditoria/cetico/b1a-*.json`, `b1a-*.jsonl`, `b1a-*.stdout` (esta consolidação: `b1a-consolidacao.json` e `b1a-consolidacao.stdout`).
+
+## Errata: gerador aleatório (29/10/2026)
+
+**O veredito não muda: sustentado com ressalvas.** Todos os números deste parecer que dependiam do sorteio mudaram pouco. A mudança que pesa é o poder em 5% das seções, que cai de 8 para 6 de 10 repetições. Ela reforça a ressalva que já estava no texto: o teste não pega uso em poucas seções.
+
+**O defeito (Fato).** Os scripts `cetico-b1a-definicoes.mjs`, `cetico-b1a-alternativas.mjs` e `cetico-b1a-poder.mjs` sorteavam com `(semente * 1103515245 + 12345) % 2 ** 31`. O produto passa de 2^53 e o double perde os bits baixos. Com a semente 20261029, a sequência entra em ciclo depois de 7.066 passos, com período de 10.466 valores, e 99,6% dos estados são pares. Esse sorteio decidiu as amostras de log da lente "definições" (excesso de 1 a 9, controles, vizinhas) e as simulações de poder. O gerador agora é mulberry32 (`Math.imul`, `>>> 0`), com a mesma semente e a mesma interface. Nada mais mudou nos scripts. As saídas antigas estão em `data/parsed/auditoria/cetico/antes-gerador/`.
+
+**Outro defeito achado na reexecução (Fato).** Com o gerador antigo e os dados do 2º turno idênticos (β observado igual até a 5ª casa), `cetico-b1a-poder.mjs` já não reproduzia os próprios números na cópia de leitura de 10:50 (`antes-gerador/dados-atuais-gerador-antigo/`). Por exemplo, β médio de 0,5337 para 0,5477 no cenário de 28% e tamanho 1. O motivo é que a consulta não tem `ORDER BY`: a ordem das linhas muda de um arquivo de banco para outro, e o sorteio por posição muda junto. Com qualquer gerador, os números exatos da simulação dependem dessa ordem. A conclusão não depende.
+
+**O que não mudou (Fato).** Tudo o que não passa pelo sorteio deu o mesmo resultado. Nos dois turnos, as partes A e C de `cetico-b1a-definicoes.mjs` saíram iguais. O grupo das 378 seções com excesso de 10 ou mais (2º turno) também saiu igual, seção por seção: 84,8% com foto, excesso de 5.560 para 54, 0 pedidos de digital, log = BU. O mesmo vale para as 187 seções do 1º turno (2.714 para 3) e para o β observado (−0,14, EP 0,08). Os números da lente "log" (`cetico-b1a-log.mjs`, sem sorteio) não foram afetados: 85,8%, 64,4%, 1,1%, 167 de 176, 27 eleitores, 2.308 contra 1.844 e "mais de 100 mil".
+
+**Números citados que mudaram.** As novas amostras quase não se sobrepõem às antigas: 8 das 300 seções de excesso de 1 a 9, 1 dos 400 controles e 69 das 155 vizinhas.
+
+| Onde no parecer | Antes | Depois |
+|---|---|---|
+| Problema 2: foto nas seções com excesso de 1 a 9 (amostra de 300, 2º turno) | 57,6% | 58,2% |
+| Problema 2: foto nos controles sem excesso (400 seções, 2º turno) | 2,0% | 2,2% |
+| Problema 2: excesso de 1 a 9 contando só os sem foto, 2º turno | de 563 para 5 | de 589 para 5 |
+| Problema 2: idem, 1º turno | de 589 para 6 | de 553 para 10 |
+| "Cai cerca de 99% nos dois turnos" (378 + amostra; 187 + amostra) | 99,0% e 99,7% | 99,0% e 99,6% |
+| Problema 3: atendimentos sem biometria medidos ("cerca de 23 mil"), 2º / 1º turno | 23.205 / 20.874 | 23.753 / 21.672; ainda 0 pedidos de digital |
+| Problema 8: resíduo sem foto extrapolado, 2º turno | 31 seções medidas, cerca de 330 eleitores (0,9%) | 31 seções, cerca de 315 (0,9%) |
+| Poder: foto nas vizinhas sem excesso das zonas do topo (2º turno) | 31% | 32% |
+| Poder: grupo "foto sem digital" nas 16.011 seções com excesso (estimativa) | cerca de 52 mil | cerca de 53 mil (53.347 por seção, 53.480 por excesso) |
+| Poder: tamanho observado, 28% das seções | β +0,53 (t 8,35), 10/10 | β +0,50 (t 7,67), 10/10 |
+| Poder: tamanho observado, 5% das seções | 8/10 (β 0,153, t 2,2) | **6/10** (β 0,107, t 1,39) |
+| Poder: metade do tamanho, 28% das seções | 10/10 | 10/10 |
+| Simulação da parte D de `cetico-b1a-alternativas.mjs` (não citada no texto) | β com fraude de −0,23 a 0,11 | de −0,25 a 0,07 |
+
+Com 10 repetições, a detecção tem margem larga. O intervalo de 95% (Clopper-Pearson) vai de 26% a 88% para 6/10 e de 44% a 97% para 8/10. **Recomendação:** o 8 ou 6 de 10 em 5% das seções não deve aparecer como número exato. A frase a usar é "a detecção em 5% das seções é incerta, entre um quarto e quase todas as repetições". Para ter um número firme, é preciso rodar mais repetições e pôr `ORDER BY` na consulta (mudança de método, fora desta errata).
+
+**Fora do gerador (Fato).** A nova `b1a-alternativas.json` foi gerada na cópia de leitura de 10:50, que tem o 1º turno completo. A parte G agora dá 15.027 seções e 33.319 eleitores de excesso no 1º turno (27 UFs, sem o exterior), com 13.695 seções com excesso nos dois turnos. Antes eram 10.941 e 22.146 (19 UFs). Essa diferença vem do dado, não do gerador. A pendência 2 continua: o número do 1º turno nos arquivos do autor e na consolidação não foi refeito aqui.
+
+Comandos (a pré-carga desvia o primário para a cópia de leitura sem mudar os scripts):
+
+```sh
+node --max-old-space-size=4096 --import ./scripts/auditoria/cetico-b1a-leitura.mjs scripts/auditoria/cetico-b1a-poder.mjs
+node --max-old-space-size=4096 --import ./scripts/auditoria/cetico-b1a-leitura.mjs scripts/auditoria/cetico-b1a-alternativas.mjs
+node --max-old-space-size=4096 scripts/auditoria/cetico-b1a-definicoes.mjs --turno 2
+node --max-old-space-size=4096 scripts/auditoria/cetico-b1a-definicoes.mjs --turno 1
+```

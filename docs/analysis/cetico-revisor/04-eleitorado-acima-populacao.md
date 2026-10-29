@@ -153,3 +153,21 @@ Saídas em `data/parsed/auditoria/cetico/`:
 - `eleitorado-acima-populacao-reproducao-go93394-0008-0094-2t.json`.
 
 Todos os scripts leem o banco em modo somente leitura e não usam a rede.
+
+## Errata: gerador aleatório (29/10/2026)
+
+**Fato.** O script `cetico-eleitorado-acima-populacao-alternativas.mjs` usava o gerador `(semente * 1103515245 + 12345) % 2^31`. Esse produto passa de 2^53 e perde precisão no double: o gerador entra em ciclo de cerca de 10,5 mil valores e quase todos os estados são pares. Ele foi trocado por mulberry32 (`Math.imul`, `>>> 0`), com a mesma semente (20261029) e a mesma interface. Nada mais mudou no script. As saídas antigas estão em `data/parsed/auditoria/cetico/antes-gerador/`.
+
+O gerador só entra na simulação de poder (seção 4 do script, 20 repetições por cenário). Tudo o que não depende de sorteio saiu idêntico na nova rodada: o `.tsv` por município é igual byte a byte, e o coeficiente observado continua −0,0459. Logo, os insumos não mudaram, e a diferença abaixo vem só do gerador.
+
+| Número citado neste parecer | Antes | Depois |
+|---|---|---|
+| Coeficiente de R se o excesso nunca votasse (R0 = 1 / R0 = 0,92) | −0,4025 / −0,4893 | −0,4025 / −0,4898 |
+| Desvio entre repetições desses dois cenários ("0,002 a 0,003") | 0,0028 / 0,0018 | 0,0015 / 0,0020 (faixa de 0,0015 a 0,0020) |
+| Excesso que vota a 75% / 100% da taxa dos residentes | −0,0879 / +0,0163 | −0,0886 / +0,0165 |
+| Taxa do excesso equivalente ao observado ("uns 85%") | 85,1% | 85,2% |
+| Distância entre "nunca vota" e o observado ("mais de 100 desvios") | ≈127 desvios | ≈238 desvios |
+
+**O veredito não muda.** Mudou só a 3ª ou 4ª casa decimal. A faixa de −0,40 a −0,49, o "cerca de 9 vezes menor", os 85% e o "mais de 100 desvios" continuam valendo. O desvio entre repetições foi estimado com 20 repetições e já era impreciso por isso. A ordem de grandeza (milésimos) é o que sustenta a conclusão, e ela não mudou.
+
+Execução: o script abre o primário `data/db/eleicao2026.sqlite` (somente leitura). A rodada nova abriu a cópia de leitura vigente (`eleicao2026-20261029T105000.sqlite`, imutável), redirecionada por um módulo de pré-carga externo ao repositório, sem mudar o script. **Recomendação:** trocar a abertura por `abrirLeitura()` de `src/banco-leitura.js`, numa mudança separada.

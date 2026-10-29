@@ -10,12 +10,13 @@ import path from 'node:path';
 import { parseArgs } from 'node:util';
 import { decodificarArquivo } from '../../src/asn1.js';
 import { DIR_DADOS } from '../../src/config.js';
-import { arquivoBu, arquivoVsc } from '../../src/esquemas.js';
+import { arquivoBu } from '../../src/esquemas.js';
 import { acharArquivo, lerBu } from '../../src/lacres.js';
+import { lerResumosVsc, sha512Hex } from '../../src/vsc.js';
 import { DIA_VOTACAO } from '../../src/perfil-secoes.js';
 import { lerEntrada, listarEntradas } from '../../src/zip.js';
 
-const { values } = parseArgs({ options: { turno: { type: 'string', default: '1' }, secao: { type: 'string', multiple: true } } });
+const { values } = parseArgs({ options: { turno: { type: 'string', default: '1' }, secao: { type: 'string', multiple: true }, janela: { type: 'string', multiple: true } } });
 const turno = values.turno;
 const dia = DIA_VOTACAO[turno];
 
@@ -43,7 +44,15 @@ const PADROES = [
   /desligada/, /Erro inesperado/, /Urna pronta/, /substitui|contingência|Contingência/i, /Gerando arquivo de resultado/, /Recupera/i,
 ];
 
+// --janela "<secao>|<urna>|HH:MM:SS|HH:MM:SS": imprime as linhas cruas dessa urna nessa janela (conferência de caso)
+const JANELAS = (values.janela ?? []).map((j) => j.split('|'));
+let secaoAtual = null;
 function descreverLog(caminho, texto) {
+  for (const [sj, uj, ini, fim] of JANELAS) {
+    if (sj !== secaoAtual) continue;
+    const sel = texto.split('\n').filter((l) => l.startsWith(dia) && l.split('\t')[2] === uj && l.slice(11, 19) >= ini && l.slice(11, 19) <= fim);
+    if (sel.length) console.log(`--- janela ${sj} ${caminho} urna ${uj} ${ini}-${fim}\n${sel.map((l) => l.split('\t').slice(0, 5).join(' ')).join('\n')}`);
+  }
   const linhas = texto.split('\n').map((l) => l.replace(/\r$/, ''));
   const doDia = linhas.filter((l) => l.startsWith(dia));
   const urnas = {};
@@ -54,10 +63,19 @@ function descreverLog(caminho, texto) {
     r.linhas++;
     r.ultima = c[0];
     const m = c[4] ?? '';
+    // Classe da habilitação em cada voto computado, com as mesmas mensagens de src/perfil-secoes.js
+    r.classe ??= { biometria: 0, anoNascimento: 0, dadoPessoal: 0, nenhuma: 0 };
+    if (m === 'Aguardando digitação do identificador do eleitor') r.ciclo = {};
+    else if (m.includes('Tipo de habilitação do eleitor [biométrica]')) (r.ciclo ??= {}).bio = true;
+    else if (m.startsWith('Ano de nascimento digitado é igual ao do cadastro')) (r.ciclo ??= {}).ano = true;
+    else if (m === 'Dado digitado confere') (r.ciclo ??= {}).dado = true;
     if (m === 'O voto do eleitor foi computado') {
       r.computados++;
       r.primeiroVoto ??= c[0];
       r.ultimoVoto = c[0];
+      const k = r.ciclo?.bio ? 'biometria' : r.ciclo?.ano ? 'anoNascimento' : r.ciclo?.dado ? 'dadoPessoal' : 'nenhuma';
+      r.classe[k]++;
+      r.ciclo = {};
     }
     if (m === 'Eleitor foi habilitado') r.habilitados++;
     const sec = m.match(/Seção Eleitoral:?\s*(\d+)/i);
@@ -75,6 +93,7 @@ function descreverLog(caminho, texto) {
 async function pacote(sec) {
   const [uf, municipio, zona, secao] = sec.split('/');
   const dir = path.join(DIR_DADOS, 'raw', `${turno}t`, 'urnas', uf, municipio, zona, secao);
+  secaoAtual = sec;
   const r = { secao: sec, turno: Number(turno), diretorio: dir, entradasDiretorio: await readdir(dir), pacotes: [] };
   for (const h of r.entradasDiretorio) {
     const dh = path.join(dir, h);
@@ -101,8 +120,14 @@ async function pacote(sec) {
     const nVsc = acharArquivo(nomes, 'vsc');
     if (nVsc) {
       try {
-        const v = decodificarArquivo(arquivoVsc, await readFile(path.join(dh, nVsc))).conteudo;
-        p.vsc = serial(v);
+        // Lista assinada: nome → SHA-512; confere o hash de cada arquivo do diretório contra ela
+        const lista = lerResumosVsc(await readFile(path.join(dh, nVsc)));
+        p.vsc = {};
+        for (const [nome, h] of lista) {
+          const local = nomes.find((n) => n === nome || n.endsWith(`-${nome.split('.').pop()}`) && nome.endsWith(n.split('-').pop()));
+          const real = local ? sha512Hex(await readFile(path.join(dh, local))) : null;
+          p.vsc[nome] = { arquivoNoDiretorio: local ?? null, hashConfere: real === null ? null : real.toLowerCase() === h.toLowerCase() };
+        }
       } catch (e) {
         p.vscErro = e.message;
       }

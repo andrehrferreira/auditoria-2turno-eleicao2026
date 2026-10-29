@@ -176,12 +176,14 @@ const resumoPoder = (d, movidos, alvoN) => {
   const rz = regFE(d, { y: ds, xs: [xP], fe: (s) => s.zona, w: V2 });
   const rzF = regFE(d, { y: ds, xs: [(s) => +(s.p >= 0.2 && s.p < 0.5), (s) => +(s.p >= 0.5 && s.p < 0.8), (s) => +(s.p >= 0.8)], fe: (s) => s.zona, w: V2 });
   const rt = regFE(d, { y: ds, xs: [(s) => +(s.p >= 0.2)], w: V2 });
+  const rt50 = regFE(d, { y: ds, xs: [(s) => +(s.p >= 0.5)], w: V2 });
   return { secoesAlvo: alvoN, votosMovidos: movidos,
     ganhoFaixa: Object.fromEntries(Object.entries(tf).map(([n, x]) => [n, +x.ganho.toFixed(3)])),
     viradas13: Object.fromEntries(Object.entries(tf).map(([n, x]) => [n, x.v13])),
     zonaBetaP: { b: rz.beta[0], ep: rz.ep[0], t: rz.t[0] },
     zonaFaixas: { b: rzF.beta, ep: rzF.ep, t: rzF.t },
-    tabelaSemFE_dummy20: { b: rt.beta[0], ep: rt.ep[0], t: rt.t[0] } };
+    tabelaSemFE_dummy20: { b: rt.beta[0], ep: rt.ep[0], t: rt.t[0] },
+    tabelaSemFE_dummy50: { b: rt50.beta[0], ep: rt50.ep[0], t: rt50.t[0] } };
 };
 const cenarios = [];
 for (const X of [0, 1, 2, 3, 5, 10]) {
@@ -203,6 +205,22 @@ for (const [frac, X] of [[0.1, 10], [0.1, 20], [0.25, 10]]) {
   const rnd = mulberry32(20261029); const sel = new Set(okV.filter((s) => s.p >= 0.2 && rnd() < frac).map((s) => s.k));
   const alvo = (s) => sel.has(s.k); const { d, movidos } = injeta(okV, alvo, X);
   cenarios.push({ cenario: `${X} votos em ${100 * frac}% das seções >= 20% sem digital (sorteio)`, ...resumoPoder(d, movidos, sel.size) });
+}
+// limiar abaixo de 1 voto por seção: 1 voto numa fração q das seções >= 20% (sorteio), e fração phi dos sem digital com arredondamento sorteado
+for (const q of [0.05, 0.1, 0.2, 0.3, 0.5]) {
+  const rnd = mulberry32(7 + Math.round(q * 1000)); const sel = new Set(okV.filter((s) => s.p >= 0.2 && rnd() < q).map((s) => s.k));
+  const alvo = (s) => sel.has(s.k); const { d, movidos } = injeta(okV, alvo, 1);
+  cenarios.push({ cenario: `1 voto em ${100 * q}% das seções >= 20% sem digital (sorteio)`, ...resumoPoder(d, movidos, sel.size) });
+}
+for (const q of [0.2, 0.5]) {
+  const rnd = mulberry32(11 + Math.round(q * 1000)); const sel = new Set(okV.filter((s) => s.p >= 0.5 && rnd() < q).map((s) => s.k));
+  const alvo = (s) => sel.has(s.k); const { d, movidos } = injeta(okV, alvo, 1);
+  cenarios.push({ cenario: `1 voto em ${100 * q}% das seções >= 50% sem digital (sorteio)`, ...resumoPoder(d, movidos, sel.size) });
+}
+for (const phi of [0.001, 0.0025, 0.005]) {
+  const rnd = mulberry32(99 + Math.round(phi * 1e4)); const alvo = () => true;
+  const { d, movidos } = injeta(okV, alvo, (s) => { const x = phi * (s.c - s.bio); const b = Math.floor(x); return b + (rnd() < x - b ? 1 : 0); });
+  cenarios.push({ cenario: `${100 * phi}% dos votantes sem digital de cada seção, arredondamento sorteado`, ...resumoPoder(d, movidos, okV.length) });
 }
 out.poder.cenarios = cenarios;
 

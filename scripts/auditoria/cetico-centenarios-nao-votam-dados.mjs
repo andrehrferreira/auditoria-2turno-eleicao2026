@@ -165,7 +165,7 @@ if (modo === 'poder') {
   // ---- 3. Simulação de uso: adiciona votos de títulos 100+ (e 90–99 sem biometria) e mede o deslocamento do coeficiente.
   // Cenários: fração f dos títulos usada, concentrada em s% das seções que têm o grupo (sorteadas), ou no município inteiro (s% dos municípios),
   // ou nas seções com MAIS títulos do grupo (alvo preferido de quem fraudasse). O voto adicionado não passa da abstenção observada.
-  // mulberry32 (Math.imul, 32 bits exatos). O LCG anterior, (seed * 1103515245 + 12345) % 2^31, estourava o double (errata 29/10/2026).
+  // mulberry32 (Math.imul, 32 bits exatos). O LCG anterior estourava a precisão do double (errata de 29/10/2026 no parecer).
   let seed = 12345; const rnd = () => { seed = (seed + 0x6D2B79F5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
   function simula(t, grupoIdx, f, s, modoC) {
     const us = unidades[t]; const elig = us.filter((u) => grupoIdx(u) > 0);

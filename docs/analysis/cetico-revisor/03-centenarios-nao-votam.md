@@ -122,3 +122,29 @@ node scripts/auditoria/cetico-centenarios-nao-votam-consolidacao.mjs      # pont
 ```
 
 Saídas em `data/parsed/auditoria/cetico/`: `centenarios-reproducao.json`, `centenarios-oficial.json`, `centenarios-oficial-municipios.tsv`, `faixas-comparecimento.json`, `zonas-comparecimento-faixa.tsv`, `cnv-dados-poder.json`, `centenarios-poder.json`, `centenarios-consolidacao.json`.
+
+## Errata: gerador aleatório (29/10/2026)
+
+**Fato.** O script `cetico-centenarios-nao-votam-dados.mjs poder` (lente de definições) usava o gerador `(semente * 1103515245 + 12345) % 2^31`. Esse produto passa de 2^53 e perde precisão no double: o gerador entra em ciclo de cerca de 10,5 mil valores e quase todos os estados são pares. Ele foi trocado por mulberry32 (`Math.imul`, `>>> 0`), com a mesma semente (12345) e a mesma interface. Nada mais mudou no script. A saída antiga está em `data/parsed/auditoria/cetico/antes-gerador/cnv-dados-poder.json`.
+
+O gerador só sorteia **quais** seções (10%) ou **quais** municípios (10%) recebem o uso simulado. Os cenários "uso uniforme em todas as seções" e "seções com mais centenários (topo)" não sorteiam nada e saíram idênticos. Por isso continuam valendo os números do problema 2 e da tabela de poder: 10% ≈ 30 mil votos, 20%, 30%, só 40% (≈119 mil) passa da regra, 100% nas 5% de seções do topo ≈ 57 mil. Os insumos da simulação (perfil e `secao-turnos.tsv` do demógrafo) não mudaram desde a rodada antiga.
+
+| Número citado (problema 5) | Antes | Depois |
+|---|---|---|
+| Efeito por unidade de uso, uso em 10% dos municípios, 100+, f = 10/20/30/40%, 2º turno | 0,65 / 0,73 / 0,77 / 1,05 | 0,87 / 0,75 / 1,09 / 0,78 |
+| O mesmo, 1º turno | 1,09 / 1,01 / 1,00 / 0,92 | 0,72 / 0,74 / 0,99 / 1,24 |
+| Faixa do efeito por unidade de uso ("≈0,65 a ≈1,2") | ≈0,65 a ≈1,2 | ≈0,72 a ≈1,24 |
+| Absorção pelo efeito fixo quando o uso cobre municípios inteiros ("25–35%") | 23–35% (2º turno) | até 25% (2º turno) e até 28% (1º); nula em outros cenários |
+
+**O veredito não muda.** A frase do problema 5, "o efeito fixo de município absorve pouco do uso proporcional, mas o quanto varia", fica mais forte: a absorção máxima cai de 35% para 25–28%. Cada cenário é um único sorteio. A diferença entre o gerador velho e o novo no mesmo cenário chega a 0,2 a 0,3 por unidade de uso (exemplo: 0,65 → 0,87), e os votos efetivamente inseridos mudam muito (1º turno, f = 40%: 82.798 → 27.036). Nenhum número desse modo deve ser lido além da primeira casa decimal. Para estimar essa absorção com precisão seriam precisos vários sorteios por cenário (**Recomendação**).
+
+**Mudança que não vem do gerador (Fato).** Na rodada nova, o placebo do 1º turno (seção 2 do script, que lê o BU do banco) usou o 1º turno completo: 497.383 seções e 27 UFs. Ficam fora o exterior (`zz`, excluído de propósito) e 2 seções que o filtro do script descarta: estão fora do BU completo com campo de biometria preenchido, ou o comparecimento do BU difere do `detalhe_votacao_secao`. A rodada antiga usou 338.719 seções de 22 UFs, ou seja, um número **parcial** que não estava rotulado como tal. O 2º turno não mudou. Dois números citados mudam:
+
+| Número citado | Antes (parcial, 22 UFs) | Depois (completo, 27 UFs) |
+|---|---|---|
+| Linha 84: p100 na parcela "sem biometria" do BU, 1º turno | +0,034 (EP 0,030) | **+0,010** (EP 0,029), contra 0,007 oficial |
+| Problema 6: parcela sem biometria dos 90–99 sem biometria ("+0,47 a +0,52") | +0,47 (1º) / +0,52 (2º) | **+0,44** (1º) / +0,52 (2º), faixa de +0,44 a +0,52 |
+
+Com o 1º turno completo, o medidor alternativo acerta melhor o ponto de calibração: +0,010 contra 0,007 oficial, dentro de 1 EP. Mesmo assim ele continua **Hipótese fraca**. Há um só ponto de calibração, e para os 90–99 sem biometria a mesma regressão segue dando um valor impossível (+0,44). O limite de "≈7–8% no 2º turno" vem do 2º turno (−0,002, EP 0,036), que não mudou.
+
+Execução: o script abre o primário `data/db/eleicao2026.sqlite` (somente leitura). A rodada nova abriu a cópia de leitura vigente (`eleicao2026-20261029T105000.sqlite`, imutável), redirecionada por um módulo de pré-carga externo ao repositório, sem mudar o script. **Recomendação:** trocar a abertura por `abrirLeitura()` de `src/banco-leitura.js`, numa mudança separada.

@@ -31,7 +31,7 @@ const AUTOR = path.join(DIR_DADOS, 'parsed', 'auditoria', 'matematico');
 const { values } = parseArgs({
   options: {
     pacotes: { type: 'boolean' }, reconciliar: { type: 'boolean' }, estrangeiro: { type: 'boolean' }, interrupcoes: { type: 'boolean' },
-    poder: { type: 'boolean' }, extrair: { type: 'boolean' }, secao: { type: 'string', multiple: true }, turno: { type: 'string', multiple: true },
+    poder: { type: 'boolean' }, extrair: { type: 'boolean' }, intrusa: { type: 'boolean' }, secao: { type: 'string', multiple: true }, turno: { type: 'string', multiple: true },
   },
 });
 
@@ -159,7 +159,7 @@ async function* linhasAutor(turno) {
 
 // ---- --reconciliar ----
 async function modoReconciliar() {
-  const db = abrirLeitura();
+  const { db } = await abrirLeitura();
   const r = {};
   // seções com BU do Sistema de Apuração em algum turno (universo do tópico 04: fora essas)
   const sa = { 1: new Set(), 2: new Set() };
@@ -277,7 +277,7 @@ function ciclosInterrompidos(texto, dia) {
     if (!l.startsWith(dia)) continue;
     const col = l.split('\t');
     const m = col[4] ?? '';
-    if (m === 'Eleitor foi habilitado') ciclo = { inicio: col[0], conf: [], msgs: [] };
+    if (m === 'Eleitor foi habilitado') ciclo = { inicio: col[0], conf: [], msgs: [], msgsT: [] };
     else if (!ciclo) continue;
     else if (m === 'O voto do eleitor foi computado' || m === 'Eleitor foi suspenso e não confirmou nenhum voto' || m === 'Aguardando digitação do identificador do eleitor') ciclo = null;
     else if (m.startsWith('Urna ligada em') || m.startsWith('Iniciando aplicação') || m.startsWith('Inicio do Encerramento') || m === 'Votação suspensa') {
@@ -288,12 +288,15 @@ function ciclosInterrompidos(texto, dia) {
         const mm = linhas[j].split('\t')[4] ?? '';
         if (mm === 'Eleitor foi habilitado') break;
         if (/voto|Voto|recupera|Recupera|MV|Sincroniza|RDV|BU/.test(mm)) ciclo.depois.push(mm);
+        if (mm === 'O eleitor identificado já votou') ciclo.jaVotouDepois = true;
       }
       r.push(ciclo);
       ciclo = null;
     } else {
       if (m.startsWith('Voto confirmado para [')) ciclo.conf.push(CARGO_LOG[m.slice(22, -1)] ?? m.slice(22, -1));
       ciclo.msgs.push(m);
+      ciclo.msgsT.push([col[0].slice(11), m]);
+      if (m.startsWith('Voto confirmado para [')) ciclo.ultimaConf = col[0];
       ciclo.ultima = col[0];
     }
   }
@@ -324,7 +327,8 @@ async function modoInterrupcoes() {
             const temNulo = c.msgs.some((m) => m.startsWith('Atribuido voto nulo'));
             x.ciclos.push({ secao: `${p.uf}/${p.municipio}/${p.zona}/${p.secao}`, tipoUrna: p.tipoUrna, buMenosLog: viraram, interrompidasNoPacote: p.log.interrompidas,
               inicio: c.inicio, ultima: c.ultima ?? null, queda: c.queda, conf: contagem, cargosBu, completo, temNulo,
-              ultimasMsgs: c.msgs.slice(-4), depois: [...new Set(c.depois)].slice(0, 12) });
+              ultimasMsgs: c.msgs.slice(-4), msgsT: c.msgsT.slice(-8), ultimaConf: c.ultimaConf ?? null, jaVotouDepois: !!c.jaVotouDepois,
+              chave: c.msgs.includes('Urna desligada pela chave'), erroNoCiclo: c.msgs.filter((m) => /erro|Erro|ERRO/.test(m)).slice(0, 3), depois: [...new Set(c.depois)].slice(0, 12) });
           }
         }
       } catch (erro) {
@@ -359,7 +363,14 @@ async function modoPoder() {
   const r = {};
   for (const t of [2]) {
     const urnas = [];
-    for await (const p of linhasAutor(t)) if (p.origem === 'urna' && p.log && p.violacoes.length === 0) urnas.push(p);
+    // Base da simulação de poder (não é número da auditoria): reservatório de 20.000 pacotes sem violação, para caber na memória
+    let vistos = 0;
+    for await (const p of linhasAutor(t)) {
+      if (!(p.origem === 'urna' && p.log && p.violacoes.length === 0)) continue;
+      vistos++;
+      if (urnas.length < 20000) urnas.push(p);
+      else { const j = Math.floor(rnd() * vistos); if (j < 20000) urnas[j] = p; }
+    }
     const N = 2000;
     const cenario = { semRastro: { 1: 0, 5: 0, 20: 0 }, mascaradoPorLogDeOutraSecao: 0 };
     for (const k of [1, 5, 20]) {
@@ -393,6 +404,49 @@ async function modoPoder() {
   return r;
 }
 
+// ---- --intrusa: controle do mecanismo. Em todo pacote com 2+ logs, procura no dia uma urna que ligou com uma MV
+// diferente da registrada na sua MI ("Serial da MV original … registrada na MI: X" seguido de "Serial da MV: Y", X ≠ Y)
+// fora do procedimento de contingência, e cruza com BU − votos do log. ----
+async function modoIntrusa() {
+  const r = {};
+  for (const t of (values.turno ?? ['1', '2']).map(Number)) {
+    const lista = await pacotesCandidatos(t, (p) => (p.log?.logs ?? 0) > 1);
+    const x = { candidatos: lista.length, erros: [], comIntrusa: [] };
+    for (const p of lista) {
+      try {
+        const pacs = await arquivosDoPacote(t, p);
+        const pac = pacs.find((q) => q.hash === p.hash) ?? pacs[0];
+        const logs = await lerLogsPacote(path.join(pac.dirHash, acharArquivo(pac.nomes, 'log')));
+        const eventos = new Map();
+        for (const lg of logs) {
+          let original = null;
+          let contingencia = false;
+          for (const bruta of lg.texto.split('\n')) {
+            const col = bruta.replace(/\r$/, '').split('\t');
+            if (!col[0]?.startsWith(DIA_VOTACAO[t])) continue;
+            const m = col[4] ?? '';
+            if (m.startsWith('Urna ligada em')) { original = null; contingencia = false; }
+            if (m === 'Início do procedimento de contingência') contingencia = true;
+            let y;
+            if ((y = /^Serial da MV original da urna que está registrada na MI: (\S+)/.exec(m))) original = y[1];
+            else if ((y = /^Serial da MV: (\S+)/.exec(m)) && original && y[1] !== original && !contingencia) {
+              eventos.set(`${col[2]}|${col[0]}`, { urna: col[2], hora: col[0].slice(11), mvMI: original, mv: y[1], log: lg.caminho });
+            }
+            if ((y = /^GAP erro (\d+)/.exec(m))) for (const e of eventos.values()) if (e.urna === col[2] && !e.gap) e.gap = y[1];
+          }
+        }
+        if (eventos.size) x.comIntrusa.push({ secao: `${p.uf}/${p.municipio}/${p.zona}/${p.secao}`, tipoUrna: p.tipoUrna, comp: p.comparecimento, log: p.log.computados, buMenosLog: p.comparecimento - p.log.computados, eventos: [...eventos.values()] });
+      } catch (erro) {
+        x.erros.push({ secao: `${p.uf}/${p.municipio}/${p.zona}/${p.secao}`, erro: erro.message });
+      }
+    }
+    x.resumo = { pacotes: x.comIntrusa.length, comBUmaiorQueLog: x.comIntrusa.filter((c) => c.buMenosLog > 0).length, comBUigualLog: x.comIntrusa.filter((c) => c.buMenosLog === 0).length };
+    r[t] = x;
+    console.log(`${t}t: ${lista.length} pacotes com 2+ logs, ${x.erros.length} erros; urna com MV de outra MI em ${JSON.stringify(x.resumo)}`);
+  }
+  return r;
+}
+
 // ---- --extrair: grava cada logd.dat das seções pedidas em texto, para conferência linha a linha ----
 async function modoExtrair() {
   const pedidos = values.secao ?? ['1:ba/39934/0183/0175', '1:ba/39934/0183/0181', '1:sp/71072/0002/0035', '1:rs/89036/0083/0044'];
@@ -414,7 +468,7 @@ async function modoExtrair() {
 }
 
 await mkdir(SAIDA, { recursive: true });
-const modos = { extrair: modoExtrair, pacotes: modoPacotes, reconciliar: modoReconciliar, estrangeiro: modoEstrangeiro, interrupcoes: modoInterrupcoes, poder: modoPoder };
+const modos = { intrusa: modoIntrusa, extrair: modoExtrair, pacotes: modoPacotes, reconciliar: modoReconciliar, estrangeiro: modoEstrangeiro, interrupcoes: modoInterrupcoes, poder: modoPoder };
 for (const [nome, fn] of Object.entries(modos)) {
   if (!values[nome]) continue;
   const res = await fn();
