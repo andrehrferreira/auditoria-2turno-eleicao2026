@@ -93,7 +93,10 @@ Para cada seção, a conta é: votos do finalista no 2º turno, menos tudo o que
 
 Fonte: [parecer 01 do cético](../analysis/cetico-revisor/01-b1a-sem-biometria-acima-do-cadastro.md), números reproduzidos por dois caminhos.
 
-- Em 16.011 das 497.508 seções analisadas do 2º turno, o boletim registra mais eleitores "sem biometria cadastrada" do que o cadastro público tem. O excesso soma 36.340 eleitores.
+- Em 16.011 das 497.508 seções do Brasil em que a medida é possível no 2º turno, o boletim registra mais eleitores "sem biometria cadastrada" do que o cadastro público tem. O excesso soma 36.340 eleitores.
+- **Ficam fora da medida** (497.508 + 1.281 + 389 + 29 = 499.207 seções):
+  - as 1.310 seções do exterior, porque o boletim não traz esse detalhe ou não registra comparecimento;
+  - 389 seções do Brasil que não constam do cadastro público de 14/07/2026. **Pendente:** a medida nessas 389.
 - Nenhuma dessas seções tem mais votantes do que eleitores aptos.
 - **Medido só nas 378 seções com excesso de 10 ou mais:** a diferença é de definição. O arquivo da urna tinha a foto desses eleitores, mas não a digital, e o cadastro público os conta como "com biometria". Contando como "sem biometria" só quem também não tem foto, o excesso dessas seções cai de 5.560 para 54. **Pendente:** a mesma medida nas demais seções.
 - **Risco que continua, pela premissa de não confiar em pessoas:** esses eleitores foram liberados só com título, ano de nascimento e a conferência da foto pelo mesário, que é humana e não deixa rastro.
@@ -108,7 +111,10 @@ Fonte: [parecer 01 do cético](../analysis/cetico-revisor/01-b1a-sem-biometria-a
 
 Fonte: [parecer 05 do cético](../analysis/cetico-revisor/05-h10-crescimento-cabe-no-disponivel.md).
 
-Em três UFs, Flávio perdeu votos em seções onde o número de votantes não caiu: **MA 10.652, AM 2.841 e TO 1.778**. Matematicamente, isso só acontece se eleitores trocaram o 22 pelo 13, ou se eleitores do Flávio deixaram de votar e foram substituídos por outros eleitores. **Pendente:** qual das duas.
+- **Onde acontece:** em 26 das 27 UFs e no exterior (só o AP não tem caso), há seções em que Flávio perdeu votos sem que o número de votantes caísse. São 38.235 seções, somando −126.408 votos ([revisão T15](../analysis/modelos/T15/08-virada-do-2-turno/), `scripts/auditoria/t15-08-virada.mjs`).
+- **Nas três UFs onde ele também perdeu votos no total** (tabela do item 2), a perda nessas seções soma **MA 10.652, AM 2.841 e TO 1.778**.
+- **Explicações possíveis:** matematicamente, isso só acontece se eleitores trocaram o 22 pelo 13, ou por branco ou nulo, ou se eleitores do Flávio deixaram de votar e foram substituídos por outros eleitores.
+- **Pendente:** qual dessas explicações, e a mesma conta nas demais UFs.
 
 ## Pendente (sem número até haver reprodução independente)
 

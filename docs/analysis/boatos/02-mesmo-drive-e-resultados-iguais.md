@@ -10,15 +10,18 @@
 
 | Item | Seriais | Usados em mais de uma seção | Esperado por acaso (serial de 32 bits) |
 |---|---|---|---|
-| MR, mídia de resultado (log) | 497.577 | 39 seriais: **1 grupo de 9 seções no AP** + 38 pares em UFs diferentes | 29,0 pares |
-| FV, flash de votação (BU) | 499.149 | 30 pares, quase todos em UFs diferentes | 29,0 pares |
+| MR, mídia de resultado (log) | 497.577 | 39 seriais, 1.668 seções: **31 pares** (26 em UFs diferentes) + **8 grupos grandes**: exterior 1.268, 20, 10 e 9; RJ 169, 115 e 6; AP 9 | 29,0 pares |
+| FV, flash de votação (BU) | 499.149 | 30 seriais: 29 pares + o serial `00000000` em 30 seções (29 do exterior e 1 de MG) | 29,0 pares |
 | Nº interno da urna (BU) | 499.180 | 2: urnas 1808076 (20 seções) e 1762246 (9 seções), todas do exterior | — |
+
+**Correção (29/10/2026):** a primeira versão deste texto dizia "38 pares + o grupo do AP". O script só imprimia os 8 primeiros grupos, e os grupos grandes do exterior e do RJ ficaram de fora da leitura. Os números acima são a contagem completa.
 
 - **Fato:** os pares de FV e de MR em UFs diferentes estão no número que o acaso produz. São coincidência de serial, como duas pessoas fazendo aniversário no mesmo dia numa festa grande.
   - O serial tem 8 dígitos hexadecimais, ou 4,3 bilhões de valores. Com cerca de 499 mil mídias, o acaso dá, em média, 29 pares repetidos.
   - Um cartão não pode estar fisicamente em AL e em PE no mesmo dia.
-- **Fato:** as duas urnas repetidas são do exterior apurado pelo Sistema de Apuração (`saManual`): uma máquina apura várias seções.
-- **Fato (a explicar):** a mídia de resultado **EC793229** aparece em **9 seções do AP** (06025/0012/0013 e 0034; 06114/0012/0044, 0052, 0053, 0054, 0055, 0056 e 0068).
+- **Fato:** as duas urnas repetidas são do exterior apurado pelo Sistema de Apuração (`saManual`): uma máquina apura várias seções. O FV `00000000` é o valor vazio dessas máquinas, que não têm cartão de votação.
+- **Fato (equipe de integridade, [integridade-nacional/03](../integridade-nacional/03-seriais-h11.md)):** nos grupos grandes de MR, o serial identifica a **geração** da mídia (o lote), não o cartão físico, e cada grupo tem uma única geração. Não afeta o lacre: o BU não leva o serial da MR, e o log que o registra é assinado pela urna. Isso explica os grupos do exterior e do RJ.
+- **Fato:** a mídia de resultado **EC793229** aparece em **9 seções do AP**; é um dos grupos de geração descritos acima, em escala menor. Detalhes: (06025/0012/0013 e 0034; 06114/0012/0044, 0052, 0053, 0054, 0055, 0056 e 0068).
 
   | O que muda entre as 9 seções | O que é igual |
   |---|---|
@@ -54,5 +57,5 @@ Uma seção fantasma teria resultado sem urna, sem log ou sem eleitores. Nos dad
 ## Pendente
 
 - Revisão cética.
-- Explicação do TRE-AP para a mídia EC793229.
+- Confirmar com o TSE/TRE que o serial da MR é da geração da mídia (lote), e não do cartão (hoje é a leitura da equipe de integridade, a partir dos dados).
 - Repetir no 1º turno.
