@@ -38,11 +38,35 @@ Atualizado em 29/10/2026, 07:40. O painel `coleta-tse` do Claude Code lê esta t
 | 5. Relatório | Perícia em linguagem simples | em andamento | Tópicos 00, 01, 05, 06 e 08 escritos; 02, 03, 04, 07, 09 e 10 em verificação "só dados 100% corretos" |
 <!-- andamento:fim -->
 
+## Hipóteses em análise
+
+<!-- hipoteses:inicio -->
+Retrato de 29/10/2026. Gerado por `python scripts/relatorios/hipoteses.py` a partir de [docs/relatorios/hipoteses-em-teste.json](docs/relatorios/hipoteses-em-teste.json); relatório completo em [PDF](docs/relatorios/hipoteses-em-teste.pdf). Os números vêm do relatório de perícia (universo completo, conferidos); o registro com toda a evidência está em [docs/hipoteses.md](docs/hipoteses.md) e o quadro em linguagem simples em [docs/pericia/10](docs/pericia/10-quadro-das-hipoteses.md).
+
+| # | Suspeita | Status | O que já se sabe | Próximo teste |
+|---|---|---|---|---|
+| H01 | Votos dados com títulos de pessoas que já morreram | em teste | ≥ 148.553 títulos de 100+ sem pessoa no Censo; 1º turno: 0,72% dos 100+ votaram (TSE) | Comparecimento por idade no 2º turno e óbitos por município (LAI); diários dos municípios destacados |
+| H02 | Seções com quantidade fora do normal de eleitores liberados sem digital | aberta | 16.011 seções com excesso sobre o cadastro (36.340 eleitores); nas 378 maiores, a foto sem digital explica quase tudo | Marca da foto nas 16.011 seções; 1º turno completo; digitais carregadas por seção (LAI) |
+| H03 | A soma das urnas é diferente do resultado oficial | em teste | Presidente igual ao oficial nas 499.205 (2º t.) e 499.206 (1º t.) seções; 50 votos sem rastro no diário em 3 seções | Demais cargos; tabela final dos votos sem rastro no diário (revisão cética 20 e 25) |
+| H04 | Arquivos publicados alterados, ou gerados fora de uma urna oficial | em teste | Hashes de 1.996.828 arquivos por turno, 0 falhas; assinaturas 0 falhas no AC e em 2 seções do ES | Assinaturas no país inteiro; diário corrompido no RJ; versão do programa (revisão cética 21 e 24) |
+| H05 | Mesários liberando outras pessoas no lugar de eleitores da seção, sem digital | aberta | 113.979 avisos "já votou" em 73.246 seções; 601.543 do aumento de comparecimento entraram sem digital | Rajadas e consultas no país inteiro; teste com as 28 UFs; inspeção das 97 seções de liberação em massa |
+| H06 | A prorrogação do horário de votação favoreceu um lado | em teste | 34.330 votos após 17h de Brasília (0,027%), menos de 1% da margem | Decisão assinada e ofício do TSE; diferença de voto das seções tardias; votos após "todos votaram" |
+| H07 | Urnas antigas colocadas de propósito onde se quer dispensar a digital | **refutada** | Todo modelo lê digital (UE2013: 82,2% pela digital); a urna antiga libera mais à mão | Alocação das urnas antigas; trocas de urna por zona |
+| H08 | Votos em sequência rápida demais para uma pessoa | aberta | Menor intervalo entre dois votos no país: 16 segundos | Ciclo completo de eleitor em todos os votos, com os perfis refeitos |
+| H09 | Os arquivos públicos permitem descobrir em quem uma pessoa votou | aberta | Sete arquivos gerados pela urna não são publicados | Ordem do registro dos votos no país inteiro; seções pequenas |
+| H10 | O vencedor cresceu do 1º para o 2º turno mais do que havia de votos disponíveis | **refutada** | A conta fecha em todos os municípios (identidade contábil: não absolve) | Queda de brancos e nulos seção a seção; linha de base de eleições anteriores |
+| H11 | O mesmo cartão de memória usado em mais de uma urna, ou resultado trocado no caminho | em teste | Acre: nenhuma mídia ou urna repetida | Números de série no país; trocas de urna e cargas no dia (revisão cética 24) |
+| H12 | O QR do título digital (e-Título) entrega os dados usados para liberar sem digital, e pode ser forjado | aberta | — | Ler o QR em vários e-Títulos e testar o validador do TSE |
+| H13 | Os eleitores liberados sem digital votaram majoritariamente no 13, sobretudo no Nordeste | em teste | Nordeste: 3,41% a 99,93% dos 4,27 mi liberados podem ter votado no 13; o pior caso no Brasil inteiro inverteria o resultado; virada igual em todas as faixas | Conta com a liberação do diário; seções de CE, PB e PE; revisão cética da virada (parecer 23) |
+
+Na fila, ainda sem número de hipótese: queda de brancos e nulos entre os turnos; urnas carregadas no dia da votação e trocas de urna; votos sem rastro no diário no 1º turno; demais cargos; linha de base de eleições anteriores.
+<!-- hipoteses:fim -->
+
 ## Números do 2º turno (Fatos)
 
 - **499.248** seções com urna, **17.931** agregadas, **41** não instaladas (exterior), **29** apuradas pelo Sistema de Apuração (exterior).
 - Todos os arquivos conferidos pelo hash do manifesto (`vota.vsc`) e pelo SHA-512 de cada arquivo. Um `log.jez` faltava no zip de SP e foi baixado por seção (confere com o `vota.vsc`).
-- **1.088** seções aparecem como "Recebida" no site de resultados (AM e BA): o pacote chegou entre 26 e 28/10, mas os votos para presidente no BU são idênticos aos do resultado oficial de 26/10. Detalhes no doc 03.
+- Seções "Recebida" no site de resultados (em vez de "Totalizada"), **parcial**: 5.270 até agora, em 10 UFs (faltam SP e TO no retrato do aux.json), com datas de 25 a 28/10. Nelas, os votos para presidente no BU são idênticos aos do resultado oficial (0 divergentes). Detalhes na [perícia 00](docs/pericia/00-coleta-completa.md).
 
 ## Como rodar
 

@@ -1,0 +1,325 @@
+{
+  "data": "29/10/2026",
+  "titulo": "Hipóteses em teste",
+  "subtitulo": "Auditoria independente das eleições gerais de 2026 (1º e 2º turno)",
+  "regras": [
+    "Universo completo: todo número vem de todas as seções, nunca de amostra. Dado parcial aparece como parcial, com o que falta.",
+    "Nunca confiar em pessoas: procedimento feito por gente (mesário, cartório, fiscal) não conta como controle nem como explicação benigna. Só conta controle técnico que deixa rastro nos arquivos.",
+    "Só entra aqui número conferido no relatório de perícia (docs/pericia/). Estimativa estatística, amostra e número de terceiros ficam fora.",
+    "Fato é o que os arquivos mostram e um script do repositório reproduz. Hipótese é explicação ainda não provada. Pendente é o que ainda não foi medido."
+  ],
+  "status": {
+    "aberta": "registrada; teste não feito ou só começado",
+    "em teste": "teste em andamento, com resultados parciais",
+    "refutada": "os dados mostram que a hipótese, como foi escrita, é falsa",
+    "sustentada": "os dados confirmam a hipótese (nenhuma até agora)",
+    "inconclusiva": "os dados não permitem decidir"
+  },
+  "hipoteses": [
+    {
+      "id": "H01",
+      "titulo": "Votos dados com títulos de pessoas que já morreram",
+      "status": "em teste",
+      "como": [
+        "Comparar, por idade, o cadastro eleitoral com a população do Censo 2022 (eleitores de 100 anos ou mais × moradores de 96 anos ou mais em 2022).",
+        "Medir quantos eleitores de 100 anos ou mais votaram, nos dois turnos, e onde.",
+        "Ler no diário da urna como foram liberados os eleitores de 100 anos ou mais nas zonas e municípios destacados.",
+        "Frente separada, sem dado pessoal no relatório: cruzar títulos com registros de óbito."
+      ],
+      "sabe": [
+        "O cadastro tem pelo menos 148.553 títulos de 100 anos ou mais sem pessoa correspondente no Censo 2022. É um piso: o número real só pode ser maior.",
+        "No 1º turno, compareceram 2.141 dos 298.239 aptos de 100 anos ou mais (0,72%), pela contagem oficial do TSE. Não houve uso sistemático desses títulos no 1º turno."
+      ],
+      "falta": [
+        "2º turno: o TSE não publica o comparecimento por idade; pedido pela Lei de Acesso à Informação.",
+        "Cancelamentos de título por óbito, por município (pedido pela LAI).",
+        "Ler o diário das urnas nos municípios com comparecimento alto de eleitores de 100 anos ou mais."
+      ],
+      "alternativas": "Óbito depois do fechamento do cadastro; atraso dos cartórios em comunicar óbitos; pessoa viva que mora em outro lugar.",
+      "readme_sabe": "≥ 148.553 títulos de 100+ sem pessoa no Censo; 1º turno: 0,72% dos 100+ votaram (TSE)",
+      "readme_proximo": "Comparecimento por idade no 2º turno e óbitos por município (LAI); diários dos municípios destacados"
+    },
+    {
+      "id": "H02",
+      "titulo": "Seções com quantidade fora do normal de eleitores liberados sem digital",
+      "status": "aberta",
+      "como": [
+        "Comparar, em cada seção, os liberados \"sem biometria\" do boletim com o cadastro público, nos dois turnos.",
+        "Procurar seções e municípios fora do padrão, por modelo de urna, e conferir no diário da urna o caminho de cada liberação."
+      ],
+      "sabe": [
+        "Em 16.011 seções do 2º turno, o boletim registra mais liberados \"sem biometria\" do que o cadastro permite: 36.340 eleitores a mais, 0,03% dos votos. Em nenhuma seção votou mais gente do que os aptos.",
+        "Nas 378 seções com excesso de 10 ou mais, 84,8% desses atendimentos mostram a foto do eleitor na tela, sem pedido de digital. Sem eles, o excesso cai de 5.560 para 54: o arquivo da urna tinha a foto e não a digital."
+      ],
+      "falta": [
+        "Medir a marca da foto nas 16.011 seções, e não só nas 378.",
+        "Refazer o 1º turno com todas as UFs.",
+        "Número oficial de eleitores com digital carregada na urna, por seção (LAI)."
+      ],
+      "alternativas": "Eleitor com foto e sem digital no arquivo da urna; sem biometria cadastrada; leitor com defeito; perfil de idade da seção.",
+      "readme_sabe": "16.011 seções com excesso sobre o cadastro (36.340 eleitores); nas 378 maiores, a foto sem digital explica quase tudo",
+      "readme_proximo": "Marca da foto nas 16.011 seções; 1º turno completo; digitais carregadas por seção (LAI)"
+    },
+    {
+      "id": "H03",
+      "titulo": "A soma das urnas é diferente do resultado oficial",
+      "status": "em teste",
+      "como": [
+        "Comparar o boletim de cada urna com o resultado oficial, seção a seção, em todos os cargos e nos dois turnos.",
+        "Conferir se cada voto do boletim tem o seu registro no diário da urna."
+      ],
+      "sabe": [
+        "Presidente, 2º turno: igual em todas as 499.205 seções com boletim de Presidente. Nenhum voto somado, tirado ou trocado.",
+        "Presidente, 1º turno: igual em todas as 499.206 seções, nas 28 UFs.",
+        "2º turno: 50 votos, em 3 seções que usaram urna de contingência, estão no boletim sem linha de voto no diário publicado."
+      ],
+      "falta": [
+        "Governador, senador e deputados, por município e zona.",
+        "Tabela final, seção por seção, dos votos sem rastro no diário (os auditores chegaram a contagens diferentes; em revisão cética).",
+        "Votos sem rastro no diário no 1º turno (em revisão cética)."
+      ],
+      "alternativas": "Seções não totalizadas; urna de contingência cujo diário não veio no pacote; Sistema de Apuração.",
+      "readme_sabe": "Presidente igual ao oficial nas 499.205 (2º t.) e 499.206 (1º t.) seções; 50 votos sem rastro no diário em 3 seções",
+      "readme_proximo": "Demais cargos; tabela final dos votos sem rastro no diário (revisão cética 20 e 25)"
+    },
+    {
+      "id": "H04",
+      "titulo": "Arquivos publicados alterados, ou gerados fora de uma urna oficial",
+      "status": "em teste",
+      "como": [
+        "Refazer a impressão digital (hash) de cada arquivo publicado e comparar com a nota da urna.",
+        "Conferir a assinatura digital de cada urna e o certificado contra a autoridade do TSE, no país inteiro.",
+        "Conferir a cadeia interna de hashes do boletim e a versão do programa em cada urna."
+      ],
+      "sabe": [
+        "Impressões digitais refeitas em 1.996.828 arquivos por turno, nas 499.207 seções, com 0 falhas.",
+        "Assinaturas: 0 falhas nas 2.270 seções do Acre e em 2 seções do ES."
+      ],
+      "falta": [
+        "Assinaturas no país inteiro.",
+        "Uma seção do RJ com diário corrompido: conferir a assinatura desse diário.",
+        "Verificação do programa na inicialização de cada urna (em revisão cética)."
+      ],
+      "alternativas": "Limite que não muda: um dos lacres usa um método secreto do governo (CEPESC), e o programa da urna por dentro só é conferido pelo Teste de Integridade.",
+      "readme_sabe": "Hashes de 1.996.828 arquivos por turno, 0 falhas; assinaturas 0 falhas no AC e em 2 seções do ES",
+      "readme_proximo": "Assinaturas no país inteiro; diário corrompido no RJ; versão do programa (revisão cética 21 e 24)"
+    },
+    {
+      "id": "H05",
+      "titulo": "Mesários liberando outras pessoas no lugar de eleitores da seção, sem digital",
+      "status": "aberta",
+      "como": [
+        "Contar por seção o aviso \"o eleitor identificado já votou\" e ver o que veio antes e depois dele.",
+        "Procurar rajadas de liberação pelo mesmo mesário, sobretudo perto do encerramento.",
+        "Ver se os eleitores a mais do 2º turno liberados sem digital votaram diferente dos liberados com digital.",
+        "Comparar as seções com comparecimento muito alto com as da mesma zona."
+      ],
+      "sabe": [
+        "No 2º turno, a urna deu o aviso \"já votou\" 113.979 vezes, em 73.246 das 499.177 seções com voto. Uma seção do ES teve 388 avisos para 275 votos.",
+        "Do 1º para o 2º turno, o comparecimento subiu 2.920.461 eleitores (Brasil sem o exterior). Desse aumento, 601.543 (20,6%) entraram sem digital.",
+        "Nas 639 seções com comparecimento acima de 95%, a liberação depois de digital que falhou é igual à da própria zona."
+      ],
+      "falta": [
+        "Rajadas e uso da urna para consultar quem ainda não votou, no país inteiro, incluindo as seções atendidas por urna reserva.",
+        "Refazer com as 28 UFs o teste dos eleitores a mais (hoje parcial, sem SP, TO e exterior).",
+        "Inspeção das 97 seções que liberaram à mão metade ou mais dos votantes."
+      ],
+      "alternativas": "Mesário redigitando o título de quem acabou de votar; eleitor que voltou; fila de idosos; leitor com defeito. Pelo princípio 8, nenhuma delas conta como controle.",
+      "readme_sabe": "113.979 avisos \"já votou\" em 73.246 seções; 601.543 do aumento de comparecimento entraram sem digital",
+      "readme_proximo": "Rajadas e consultas no país inteiro; teste com as 28 UFs; inspeção das 97 seções de liberação em massa"
+    },
+    {
+      "id": "H06",
+      "titulo": "A prorrogação do horário de votação favoreceu um lado",
+      "status": "em teste",
+      "como": [
+        "Contar os votos depois das 17h de Brasília em cada seção, com o fuso de cada município.",
+        "Comparar com o 1º turno e com as seções da mesma zona.",
+        "Ler no diário os votos dados depois de o mesário declarar que todos já tinham votado."
+      ],
+      "sabe": [
+        "No 2º turno, 34.330 votos foram dados depois das 17h de Brasília (0,027% dos votos), em 29.854 seções; 1.993 depois das 18h e 11 depois das 19h.",
+        "Mesmo que todos fossem de um lado só, seriam menos de 1% da diferença final entre os candidatos.",
+        "A decisão do STF (minuta publicada pela imprensa) mandava prorrogar até as 19h \"em todas as seções de todo o Brasil\"."
+      ],
+      "falta": [
+        "Versão assinada da decisão e ofício do TSE que a cumpriu.",
+        "Medir por que as seções com voto tardio votam um pouco diferente das demais da zona: perfil da seção ou efeito real.",
+        "Votos depois da declaração de \"todos votaram\": contagem final."
+      ],
+      "alternativas": "Fila legítima (não conta como controle pelo princípio 8); fuso horário.",
+      "readme_sabe": "34.330 votos após 17h de Brasília (0,027%), menos de 1% da margem",
+      "readme_proximo": "Decisão assinada e ofício do TSE; diferença de voto das seções tardias; votos após \"todos votaram\""
+    },
+    {
+      "id": "H07",
+      "titulo": "Urnas antigas colocadas de propósito onde se quer dispensar a digital",
+      "status": "refutada",
+      "como": [
+        "Comparar a liberação sem digital por modelo de urna, dentro da mesma zona."
+      ],
+      "sabe": [
+        "Todo modelo de urna usado no Brasil lê digital: as urnas de 2013 liberaram 82,2% dos eleitores pela digital. A premissa da hipótese é falsa.",
+        "Nas urnas antigas a digital falha mais e a mesa libera mais à mão (+4,3 pontos na urna de 2013, na mesma zona). Isso alarga a brecha humana."
+      ],
+      "falta": [
+        "Por que as urnas antigas estão onde estão (logística ou escolha).",
+        "Trocas de urna concentradas em zonas com urna antiga (em revisão cética)."
+      ],
+      "alternativas": "Logística do parque de urnas; cobertura biométrica do cadastro.",
+      "readme_sabe": "Todo modelo lê digital (UE2013: 82,2% pela digital); a urna antiga libera mais à mão",
+      "readme_proximo": "Alocação das urnas antigas; trocas de urna por zona"
+    },
+    {
+      "id": "H08",
+      "titulo": "Votos em sequência rápida demais para uma pessoa",
+      "status": "aberta",
+      "como": [
+        "Medir, no diário de cada urna, o intervalo entre votos e entre liberação e voto.",
+        "Conferir se cada voto teve o ciclo completo de eleitor: número digitado, liberação e confirmação."
+      ],
+      "sabe": [
+        "Fora de 3 seções que a ferramenta da auditoria leu errado, o menor intervalo entre dois votos no país é de 16 segundos."
+      ],
+      "falta": [
+        "Confirmar o ciclo completo de eleitor em todos os votos, depois que os perfis dos diários forem refeitos com a leitura corrigida."
+      ],
+      "alternativas": "Resolução de 1 segundo do relógio; eleitor rápido; voto em branco.",
+      "readme_sabe": "Menor intervalo entre dois votos no país: 16 segundos",
+      "readme_proximo": "Ciclo completo de eleitor em todos os votos, com os perfis refeitos"
+    },
+    {
+      "id": "H09",
+      "titulo": "Os arquivos públicos permitem descobrir em quem uma pessoa votou",
+      "status": "aberta",
+      "como": [
+        "Ver se o registro dos votos sai na ordem em que os eleitores votaram, em todas as seções.",
+        "Testar seções pequenas, onde a ordem ou o horário poderiam ligar voto a eleitor."
+      ],
+      "sabe": [
+        "A urna gera sete arquivos que não estão publicados (entre eles, as imagens de digitais)."
+      ],
+      "falta": [
+        "Ordem do registro dos votos no país inteiro.",
+        "Análise das seções pequenas."
+      ],
+      "alternativas": "—",
+      "readme_sabe": "Sete arquivos gerados pela urna não são publicados",
+      "readme_proximo": "Ordem do registro dos votos no país inteiro; seções pequenas"
+    },
+    {
+      "id": "H10",
+      "titulo": "O vencedor cresceu do 1º para o 2º turno mais do que havia de votos disponíveis",
+      "status": "refutada",
+      "como": [
+        "Somar, no país, por município e por seção, os votos disponíveis: eliminados, queda de brancos e nulos e aumento de comparecimento."
+      ],
+      "sabe": [
+        "A conta fecha: o 13 ganhou 10.376.694 votos e o 22, 3.721.538. Os dois somam exatamente o disponível, 14.098.232 votos. Nenhum município passa do limite.",
+        "Essa conta sempre fecha quando os votos somam o comparecimento. Por isso ela não prova ausência de fraude: uma troca de votos do 22 para o 13 abaixo de 6,2% dos votos do 22 passaria sem alarme."
+      ],
+      "falta": [
+        "Novo teste derivado: a queda de brancos e nulos entre os turnos (1.816.000 votos), seção a seção e contra o registro dos votos.",
+        "Linha de base com eleições anteriores por seção."
+      ],
+      "alternativas": "Votos dos eliminados, queda da abstenção e de brancos e nulos.",
+      "readme_sabe": "A conta fecha em todos os municípios (identidade contábil: não absolve)",
+      "readme_proximo": "Queda de brancos e nulos seção a seção; linha de base de eleições anteriores"
+    },
+    {
+      "id": "H11",
+      "titulo": "O mesmo cartão de memória usado em mais de uma urna, ou resultado trocado no caminho",
+      "status": "em teste",
+      "como": [
+        "Conferir os números de série das mídias e da urna em cada seção e procurar repetição entre seções.",
+        "Medir as trocas de urna (urna reserva) e as recuperações de dados por zona."
+      ],
+      "sabe": [
+        "Acre, 2º turno: nenhuma mídia de resultado, de votação ou urna repetida entre as 2.270 seções."
+      ],
+      "falta": [
+        "Números de série no país inteiro.",
+        "Trocas de urna concentradas em algumas zonas e urnas carregadas no próprio dia da votação (em revisão cética)."
+      ],
+      "alternativas": "A mídia de carga é usada em lote na preparação: uma mídia carrega várias urnas.",
+      "readme_sabe": "Acre: nenhuma mídia ou urna repetida",
+      "readme_proximo": "Números de série no país; trocas de urna e cargas no dia (revisão cética 24)"
+    },
+    {
+      "id": "H12",
+      "titulo": "O QR do título digital (e-Título) entrega os dados usados para liberar sem digital, e pode ser forjado",
+      "status": "aberta",
+      "como": [
+        "Ler o conteúdo do QR em vários e-Títulos (com e sem biometria, versões diferentes do aplicativo).",
+        "Ver se o validador do TSE confere o código pela internet ou só lê o conteúdo."
+      ],
+      "sabe": [],
+      "falta": [
+        "Toda a leitura: a feita até agora foi fora do repositório e ainda não foi refeita."
+      ],
+      "alternativas": "A regra de aceitar o e-Título só com foto e a conferência do documento são feitas por pessoas e não deixam rastro (princípio 8).",
+      "readme_sabe": "—",
+      "readme_proximo": "Ler o QR em vários e-Títulos e testar o validador do TSE"
+    },
+    {
+      "id": "H13",
+      "titulo": "Os eleitores liberados sem digital votaram majoritariamente no 13, sobretudo no Nordeste",
+      "status": "em teste",
+      "como": [
+        "Limites aritméticos de cada seção: o mínimo e o máximo de liberados que podem ter votado em cada candidato.",
+        "Comparar, por faixa de liberação sem digital, a virada do 1º para o 2º turno.",
+        "Modelos estatísticos (comparação na mesma zona, entre turnos e por mesário). Os resultados deles são estimativas e ficam fora do relatório de perícia."
+      ],
+      "sabe": [
+        "No Nordeste, 4.269.379 votantes foram liberados sem digital (11,75% do comparecimento da região, menos que no Sudeste e no Sul).",
+        "A aritmética permite que de 3,41% a 99,93% deles tenham votado no 13. Anulando esses votos no pior caso para o 13, ele ainda venceria no país por 166.144 votos.",
+        "No Brasil inteiro, o pior caso aritmético dos 15.884.298 liberados sem digital inverteria o resultado. Isso mede o tamanho da porta, não prova uso.",
+        "Só 1 seção do Brasil votou 100% sem digital, e não virou. O ganho do 13 entre os turnos teve o mesmo tamanho em todas as faixas de liberação sem digital (de 1,9 a 2,9 pontos)."
+      ],
+      "falta": [
+        "A mesma conta com a liberação contada no diário (mesário identificado), depois que os perfis forem refeitos.",
+        "Exame nominal das seções de CE, PB e PE apontadas pelos modelos.",
+        "Revisão cética da comparação por faixa (em andamento)."
+      ],
+      "alternativas": "O voto é secreto: só se cerca ou estima. Perfil da região (o Nordeste vota mais no 13 com ou sem digital); urna antiga; fraude igual nos dois turnos, que some na diferença.",
+      "readme_sabe": "Nordeste: 3,41% a 99,93% dos 4,27 mi liberados podem ter votado no 13; o pior caso no Brasil inteiro inverteria o resultado; virada igual em todas as faixas",
+      "readme_proximo": "Conta com a liberação do diário; seções de CE, PB e PE; revisão cética da virada (parecer 23)"
+    }
+  ],
+  "fila": [
+    {
+      "titulo": "Queda de brancos e nulos entre os turnos",
+      "texto": "Do 1º para o 2º turno, os brancos e nulos caíram 1.816.000 votos, e nenhum controle técnico cobre essa parte. Teste previsto: como a queda se distribui por seção, se acompanha o ganho do 13 e se o registro dos votos confirma o boletim."
+    },
+    {
+      "titulo": "Urnas carregadas no dia da votação e trocas de urna",
+      "texto": "Algumas urnas receberam a carga no próprio dia da votação, e algumas zonas concentram trocas de urna. O achado está em revisão cética; o teste segue para as atas e os diários das urnas originais."
+    },
+    {
+      "titulo": "Votos sem rastro no diário no 1º turno",
+      "texto": "O matemático forense achou seções do 1º turno com votos no boletim sem linha no diário publicado. O achado está em revisão cética, junto com a tabela final do 2º turno."
+    },
+    {
+      "titulo": "Demais cargos",
+      "texto": "Governador, senador e deputados: soma das urnas × resultado oficial, por município e zona, nos dois turnos."
+    },
+    {
+      "titulo": "Linha de base de eleições anteriores",
+      "texto": "Comparar, nas mesmas seções, o comportamento de 2022 (comparecimento, brancos e nulos, liberação sem digital), para separar o que é novo em 2026 do que já acontecia."
+    }
+  ],
+  "lai": [
+    "Critério de \"biometria cadastrada\" no cadastro público e no arquivo da urna.",
+    "Número de eleitores com digital carregada na urna, por seção.",
+    "Comparecimento por idade no 2º turno e cancelamentos de título por óbito, por município.",
+    "Regra que desliga a digital no exterior.",
+    "Critério de distribuição dos modelos de urna.",
+    "Atas e diários das urnas originais nas seções com votos sem rastro no diário e com carga no dia da votação."
+  ],
+  "limites": [
+    "Nenhum arquivo público diz em quem um eleitor votou. O voto de quem foi liberado sem digital só pode ser cercado ou estimado.",
+    "Os arquivos não mostram quem estava na cabine. A brecha humana (liberação sem digital) é risco, não prova de fraude.",
+    "Vários testes não enxergam fraude pequena, espalhada, igual nos dois turnos ou concentrada em poucas seções. Cada hipótese diz o que o seu teste não vê.",
+    "O programa da urna por dentro só é conferido pelo Teste de Integridade e pela verificação das assinaturas."
+  ]
+}
