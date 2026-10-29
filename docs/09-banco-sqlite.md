@@ -13,10 +13,13 @@ node src/referencia.js --turno 2          # se a referência ainda não estiver 
 node src/perfil-secoes.js --turno 2       # opcional: sem ele, perfil_log fica vazio
 node src/banco.js --turno 2 --uf ac       # uma UF
 node src/banco.js --turno 2               # todas as UFs + zz
+node src/banco.js --turno 2 --uf ac --oficial   # também o resultado oficial por seção (dados abertos)
+node src/banco.js --turno 2 --so-oficial        # só o oficial, sem reler os BUs
 ```
 
 - Banco padrão: `data/db/eleicao2026.sqlite` (fora do git). Outro destino: `--banco caminho`.
 - **Idempotente por (turno, UF):** numa transação, apaga as linhas daquela UF e turno e insere de novo. Recarregar não duplica.
+- `--oficial` lê `data/raw/dadosabertos/votacao_secao/votacao_secao_2026_BR.zip` em streaming (uma passada pelo CSV de 1,5 GB para todas as UFs pedidas; cerca de 9 s no teste do AC).
 - O banco lê só o disco, sem acesso à rede. O log não é reprocessado: `perfil_log` vem de `data/parsed/<t>t/perfil/<uf>.jsonl`.
 - Erro numa seção não para a carga: vai para `erro_carga`. O comando sai com código 1 se houver erro.
 - **Medido (Fato, 29/10/2026):** AC 2º turno, 2.270 seções, de 2,6 a 3,9 s por carga, banco com 15,3 MB. **Projeção (Hipótese):** 499.248 seções com urna no 2º turno, de 10 a 15 min e cerca de 3,4 GB, se o disco responder como no AC (os arquivos do AC provavelmente estavam no cache do sistema). O JSON do perfil ocupa cerca de 60% do tamanho. O 1º turno deve ficar maior, porque tem mais cargos.
@@ -37,6 +40,8 @@ Códigos de município, zona e seção ficam como texto com zeros à esquerda, i
 | `voto_rdv` | chave da seção (índice) | RDV agregado por (eleição, cargo, `tipo_voto` do RDV, `digitacao`): `nominal`, `nulo`, `branco`, `nuloAposSuspensao`… (enum próprio do RDV) |
 | `perfil_log` | chave da seção + hash | colunas numéricas do perfil (`votos_computados`, `ja_votou`, `habilitados_pelo_mesario`, `ano_nascimento_sem_biometria`, `maior_rajada_sem_biometria_10min`, `intervalo_minimo_entre_votos`…) e a linha inteira em `dados`, para `json_extract`/`json_each` |
 | `carga` | turno, uf | quando, de onde, quanto tempo, contagem por situação, perfis e erros |
+| `voto_oficial` | chave da seção + cargo + número | votos por seção do `votacao_secao` dos dados abertos do TSE: eleição, cargo, `numero` (`NR_VOTAVEL`; 95 = branco, 96 = nulo), quantidade |
+| `carga_oficial` | turno, uf | quando e de qual arquivo o oficial foi carregado, data de geração do CSV e linhas |
 | `erro_carga` | (turno, uf) | seção, hash, etapa (`bu`, `rdv`, `vsc`, `aux`, `identificacao`, `perfil`, `gravacao`, `leitura`) e mensagem |
 
 **Situação da seção:** `completa` (pacote com BU legível), `incompleta` (pacote no disco sem BU ou com BU ilegível; o motivo fica em `erro_carga`), `sem_arquivo` (o aux diz que não há arquivo, por exemplo "Nao instalada"), `sem_pacote` (nada no disco: aux ausente ou pacote ainda não baixado).
@@ -51,6 +56,8 @@ Códigos de município, zona e seção ficam como texto com zeros à esquerda, i
 | `v_resultado_municipio` | soma por município, eleição, cargo e votável. `secoes` = seções em que o votável aparece |
 | `v_presidente_1t_2t` | por seção e votável de presidente: `votos_1t`, `votos_2t`. Só seções completas nos dois turnos |
 | `v_presidente_1t_2t_secao` | por seção: aptos, comparecimento, sem biometria, por biografia, nominais, brancos e nulos de presidente nos dois turnos, tipo e número interno da urna em cada turno |
+
+| `v_divergencia_bu_oficial` | por seção, cargo e número: `votos_bu` × `votos_oficial` quando diferem, com a `situacao_secao`. Compara só as UFs e os cargos presentes em `voto_oficial` |
 
 As views de 1º × 2º turno ficam vazias até o 1º turno ser carregado (`--turno 1`).
 
@@ -155,6 +162,12 @@ FROM v_presidente_1t_2t_secao
 WHERE uf = 'ac' ORDER BY ABS(variacao) DESC LIMIT 20;
 ```
 
+**A1/B2. BU × resultado oficial por seção** (requer `--oficial`; o esperado é zero linhas):
+
+```sql
+SELECT * FROM v_divergencia_bu_oficial WHERE turno = 2 AND uf = 'ac';
+```
+
 ## Conferência da carga do AC (Fato, 29/10/2026, 2º turno)
 
 - 2.270 seções com urna, todas `completa`; 141 agregadas; 2.270 perfis; 0 erro.
@@ -162,6 +175,7 @@ WHERE uf = 'ac' ORDER BY ABS(variacao) DESC LIMIT 20;
 - AC 01007/0009/0003: LULA 81, FLAVIO BOLSONARO 146 (BU e RDV).
 - BU × RDV: votos nominais iguais em todas as seções. Os nulos do BU (16.410) são a soma de `nulo` (16.359) com `nuloAposSuspensao` (51) do RDV.
 - `votos_computados` do log é igual ao comparecimento do BU em todas as seções.
+- BU × oficial (`votacao_secao_2026_BR.zip`, CSV gerado em 26/10/2026 12:07:25): 2.270 seções e 8.697 linhas de presidente no oficial, **zero divergência** com os BUs. As 141 seções agregadas não aparecem no oficial: os votos delas estão na principal.
 
 ## Limitações
 
@@ -172,4 +186,5 @@ WHERE uf = 'ac' ORDER BY ABS(variacao) DESC LIMIT 20;
 - **Fuso:** o banco não converte horários. A conversão para Brasília é feita na consulta, pelo fuso da UF.
 - **Perfil:** depende de `src/perfil-secoes.js` ter rodado. O perfil é por pacote e lê todos os diretórios do disco; a ligação com `secao` é por `hash` (calculado do `sha256Vsc`). O campo `dados` traz títulos de mesários, que são dado público, mas as regras do doc 05 valem para qualquer publicação: só agregados, sem título nem nome.
 - **Seção com mais de um pacote:** só um entra nos votos (ver acima). Os outros não são carregados.
+- **Oficial só de presidente:** o `votacao_secao_2026_BR.zip` traz só o cargo 1 (Fato, AC, 29/10/2026). Governador não é comparado até haver o arquivo oficial com esse cargo. O BU e o oficial omitem votável com zero voto, e a view trata ausência como zero.
 - **Consulta livre e cargo sem código constitucional:** `cargo` guarda o número da consulta livre, que não tem nome em `cargo`.

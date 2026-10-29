@@ -1,9 +1,10 @@
 import { createReadStream } from 'node:fs';
-import { mkdir, readFile, readdir } from 'node:fs/promises';
+import { mkdir, open, readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { createInterface } from 'node:readline';
 import { DatabaseSync } from 'node:sqlite';
 import { parseArgs } from 'node:util';
+import { createInflateRaw } from 'node:zlib';
 import { decodificarArquivo } from './asn1.js';
 import { DIR_DADOS, TURNOS, UFS, caminhos, dirSecao } from './config.js';
 import { CARGO_CONSTITUCIONAL, arquivoBu, arquivoRdv, arquivoVsc } from './esquemas.js';
@@ -13,12 +14,15 @@ import { acharArquivo } from './lacres.js';
 import { carregarReferencia } from './referencia.js';
 import { criarProgresso } from './registro.js';
 import { hashDiretorio } from './vsc.js';
+import { listarEntradas } from './zip.js';
 
 // Carrega BUs, RDVs, índice de seções, referência e perfis de log (src/perfil-secoes.js) num SQLite único para os
 // dois turnos (doc 09). Carga idempotente por (turno, UF): apaga e insere de novo numa transação.
 // Fonte da verdade continua sendo o binário: o banco é um índice para consulta (SQL/LLM).
 
 export const BANCO_PADRAO = path.join(DIR_DADOS, 'db', 'eleicao2026.sqlite');
+// Dados abertos do TSE: votos por seção dos dois turnos (NR_VOTAVEL 95 = branco, 96 = nulo).
+export const ZIP_OFICIAL = path.join(DIR_DADOS, 'raw', 'dadosabertos', 'votacao_secao', 'votacao_secao_2026_BR.zip');
 const CODIGO_CARGO = Object.fromEntries(Object.entries(CARGO_CONSTITUCIONAL).map(([codigo, nome]) => [nome, Number(codigo)]));
 const codigoDoCargo = (c) => (c?.cargoConstitucional ? CODIGO_CARGO[c.cargoConstitucional] : c?.numeroCargoConsultaLivre) ?? null;
 const CHAVE = 'turno INTEGER NOT NULL, uf TEXT NOT NULL, municipio TEXT NOT NULL, zona TEXT NOT NULL, secao TEXT NOT NULL';
@@ -96,6 +100,15 @@ CREATE TABLE IF NOT EXISTS erro_carga (
   turno INTEGER NOT NULL, uf TEXT NOT NULL, municipio TEXT, zona TEXT, secao TEXT, hash TEXT, etapa TEXT NOT NULL, mensagem TEXT NOT NULL
 );
 CREATE INDEX IF NOT EXISTS erro_carga_uf ON erro_carga (turno, uf);
+CREATE TABLE IF NOT EXISTS voto_oficial (
+  ${CHAVE}, eleicao INTEGER NOT NULL, cargo INTEGER NOT NULL, numero INTEGER NOT NULL, quantidade INTEGER NOT NULL,
+  PRIMARY KEY (turno, uf, municipio, zona, secao, cargo, numero)
+);
+CREATE INDEX IF NOT EXISTS voto_oficial_cargo ON voto_oficial (turno, uf, cargo);
+CREATE TABLE IF NOT EXISTS carga_oficial (
+  turno INTEGER NOT NULL, uf TEXT NOT NULL, carregado_em TEXT NOT NULL, origem TEXT NOT NULL, data_geracao TEXT, linhas INTEGER NOT NULL,
+  PRIMARY KEY (turno, uf)
+);
 
 DROP VIEW IF EXISTS v_resultado_secao;
 CREATE VIEW v_resultado_secao AS
@@ -145,6 +158,26 @@ FROM secao s1
 JOIN secao s2 ON s2.turno = 2 AND ${MESMA_SECAO('s2', 's1')}
 LEFT JOIN municipio m ON m.codigo = s2.municipio
 WHERE s1.turno = 1 AND s1.situacao = 'completa' AND s2.situacao = 'completa';
+
+DROP VIEW IF EXISTS v_divergencia_bu_oficial;
+CREATE VIEW v_divergencia_bu_oficial AS
+WITH bu AS (
+  SELECT turno, uf, municipio, zona, secao, cargo,
+    CASE tipo_voto WHEN 'branco' THEN 95 WHEN 'nulo' THEN 96 ELSE numero END AS numero, SUM(quantidade) AS quantidade
+  FROM voto_bu v
+  -- só UFs e cargos presentes no oficial carregado (o votacao_secao_2026_BR traz só presidente)
+  WHERE EXISTS (SELECT 1 FROM voto_oficial o WHERE o.turno = v.turno AND o.uf = v.uf AND o.cargo = v.cargo)
+  GROUP BY turno, uf, municipio, zona, secao, cargo, 7
+)
+SELECT COALESCE(b.turno, o.turno) AS turno, COALESCE(b.uf, o.uf) AS uf, COALESCE(b.municipio, o.municipio) AS municipio,
+  COALESCE(b.zona, o.zona) AS zona, COALESCE(b.secao, o.secao) AS secao, COALESCE(b.cargo, o.cargo) AS cargo,
+  COALESCE(b.numero, o.numero) AS numero, b.quantidade AS votos_bu, o.quantidade AS votos_oficial,
+  (SELECT s.situacao FROM secao s WHERE s.turno = COALESCE(b.turno, o.turno) AND s.uf = COALESCE(b.uf, o.uf)
+    AND s.municipio = COALESCE(b.municipio, o.municipio) AND s.zona = COALESCE(b.zona, o.zona) AND s.secao = COALESCE(b.secao, o.secao)) AS situacao_secao
+FROM bu b
+FULL OUTER JOIN voto_oficial o ON o.turno = b.turno AND o.uf = b.uf AND o.municipio = b.municipio AND o.zona = b.zona
+  AND o.secao = b.secao AND o.cargo = b.cargo AND o.numero = b.numero
+WHERE IFNULL(b.quantidade, 0) <> IFNULL(o.quantidade, 0);
 `;
 
 /** Abre (ou cria) o banco com o esquema, as views e a tabela de cargos. */
@@ -455,22 +488,118 @@ export async function carregarUf(db, { turno, uf, dirDados = DIR_DADOS, concorre
   return { uf, secoes: lista.length, ...contagem, agregadas: indice.agregadas.length, linhasPerfil, erros, duracaoMs: Date.now() - inicio };
 }
 
+/** Divide uma linha do CSV do TSE (separador ';', campos entre aspas, "" como aspa escapada). */
+function camposCsv(linha) {
+  const campos = [];
+  let atual = '';
+  let aspas = false;
+  for (let i = 0; i < linha.length; i++) {
+    const ch = linha[i];
+    if (aspas) {
+      if (ch === '"' && linha[i + 1] === '"') {
+        atual += '"';
+        i++;
+      } else if (ch === '"') aspas = false;
+      else atual += ch;
+    } else if (ch === '"') aspas = true;
+    else if (ch === ';') {
+      campos.push(atual);
+      atual = '';
+    } else atual += ch;
+  }
+  campos.push(atual);
+  return campos;
+}
+
+/** Linhas do CSV dentro do zip, em streaming (o CSV nacional passa de 1,5 GB descomprimido). */
+async function* linhasCsvDoZip(arquivoZip) {
+  const handle = await open(arquivoZip, 'r');
+  let entrada;
+  let inicio;
+  try {
+    entrada = (await listarEntradas(handle)).find((e) => e.nome.toLowerCase().endsWith('.csv'));
+    if (!entrada) throw new Error(`${path.basename(arquivoZip)} sem CSV`);
+    const cabecalho = Buffer.alloc(30);
+    await handle.read(cabecalho, 0, 30, entrada.offsetLocal);
+    inicio = entrada.offsetLocal + 30 + cabecalho.readUInt16LE(26) + cabecalho.readUInt16LE(28);
+  } finally {
+    await handle.close();
+  }
+  if (![0, 8].includes(entrada.metodo)) throw new Error(`método de compressão ${entrada.metodo} não suportado`);
+  let fluxo = createReadStream(arquivoZip, { start: inicio, end: inicio + entrada.tamanhoComprimido - 1 });
+  if (entrada.metodo === 8) fluxo = fluxo.pipe(createInflateRaw());
+  // Só UF e campos numéricos são usados: ler como latin1 não altera nenhum deles.
+  yield* createInterface({ input: fluxo.setEncoding('latin1'), crlfDelay: Infinity });
+}
+
+const COLUNAS_OFICIAL = ['NR_TURNO', 'SG_UF', 'CD_ELEICAO', 'CD_MUNICIPIO', 'NR_ZONA', 'NR_SECAO', 'CD_CARGO', 'NR_VOTAVEL', 'QT_VOTOS'];
+
+/**
+ * Carrega votacao_secao (dados abertos do TSE) do turno nas UFs pedidas, numa passada só pelo CSV.
+ * Idempotente por (turno, UF). Serve para comparar BU × resultado oficial (v_divergencia_bu_oficial, H03).
+ */
+export async function carregarOficial(db, { turno, ufs, arquivoZip = ZIP_OFICIAL }) {
+  const t = Number(turno);
+  const alvo = new Set(ufs);
+  const linhas = Object.fromEntries(ufs.map((uf) => [uf, 0]));
+  let dataGeracao = null;
+  await emTransacao(db, async () => {
+    for (const uf of ufs) {
+      db.prepare('DELETE FROM voto_oficial WHERE turno = ? AND uf = ?').run(t, uf);
+      db.prepare('DELETE FROM carga_oficial WHERE turno = ? AND uf = ?').run(t, uf);
+    }
+    const inserir = db.prepare(`INSERT INTO voto_oficial VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+      ON CONFLICT DO UPDATE SET quantidade = quantidade + excluded.quantidade`);
+    let col = null;
+    let total = 0;
+    for await (const linha of linhasCsvDoZip(arquivoZip)) {
+      if (!linha) continue;
+      let c = linha.split(';');
+      if (!col) {
+        col = Object.fromEntries(c.map((nome, i) => [nome.replace(/^"|"$/g, ''), i]));
+        total = c.length;
+        const faltando = COLUNAS_OFICIAL.filter((nome) => col[nome] === undefined);
+        if (faltando.length) throw new Error(`CSV oficial sem as colunas ${faltando.join(', ')}`);
+        continue;
+      }
+      const campo = (nome) => c[col[nome]].replace(/^"|"$/g, '');
+      if (campo('NR_TURNO') !== String(t)) continue;
+      const uf = campo('SG_UF').toLowerCase();
+      if (!alvo.has(uf)) continue;
+      if (c.length !== total) c = camposCsv(linha); // ';' dentro de algum campo entre aspas
+      if (col.DT_GERACAO !== undefined) dataGeracao ??= `${campo('DT_GERACAO')} ${campo('HH_GERACAO')}`;
+      inserir.run(
+        t, uf, campo('CD_MUNICIPIO').padStart(5, '0'), campo('NR_ZONA').padStart(4, '0'), campo('NR_SECAO').padStart(4, '0'),
+        Number(campo('CD_ELEICAO')), Number(campo('CD_CARGO')), Number(campo('NR_VOTAVEL')), Number(campo('QT_VOTOS')),
+      );
+      linhas[uf]++;
+    }
+    const registro = db.prepare('INSERT INTO carga_oficial VALUES (?, ?, ?, ?, ?, ?)');
+    for (const uf of ufs) registro.run(t, uf, new Date().toISOString(), arquivoZip, dataGeracao, linhas[uf]);
+  });
+  return { dataGeracao, linhas };
+}
+
 async function principal() {
   const { values } = parseArgs({
     options: {
       turno: { type: 'string', default: '2' }, uf: { type: 'string' }, banco: { type: 'string' },
-      concorrencia: { type: 'string', default: '32' }, ajuda: { type: 'boolean', short: 'h' },
+      concorrencia: { type: 'string', default: '32' }, oficial: { type: 'boolean' }, 'so-oficial': { type: 'boolean' },
+      'arquivo-oficial': { type: 'string', default: ZIP_OFICIAL }, ajuda: { type: 'boolean', short: 'h' },
     },
   });
   if (values.ajuda) {
     console.log(`Carrega BUs, RDVs, índice de seções e perfis de log num SQLite (doc 09).
 
-Uso: node src/banco.js --turno 2 [--uf ac,sp] [--banco caminho]
+Uso: node src/banco.js --turno 2 [--uf ac,sp] [--banco caminho] [--oficial]
 
   --turno <1|2>        turno (padrão: 2)
   --uf <ac,sp,...>     UFs a carregar (padrão: todas + zz); recarregar uma UF substitui as linhas dela
   --banco <arquivo>    destino (padrão: data/db/eleicao2026.sqlite)
-  --concorrencia <n>   seções lidas do disco ao mesmo tempo (padrão: 32)`);
+  --concorrencia <n>   seções lidas do disco ao mesmo tempo (padrão: 32)
+  --oficial            também carrega votacao_secao (dados abertos) das mesmas UFs em voto_oficial
+  --so-oficial         carrega só voto_oficial, sem reler os BUs
+  --arquivo-oficial    zip do votacao_secao (padrão: data/raw/dadosabertos/votacao_secao/votacao_secao_2026_BR.zip)`);
     return;
   }
   const turno = values.turno;
@@ -488,11 +617,17 @@ Uso: node src/banco.js --turno 2 [--uf ac,sp] [--banco caminho]
     const ref = await carregarReferenciaNoBanco(db, turno, await carregarReferencia(turno));
     console.log(`[banco ${turno}t] referência: ${ref.candidatos} candidatos, ${ref.municipios} municípios`);
     let comErro = false;
-    for (const uf of ufs) {
+    for (const uf of values['so-oficial'] ? [] : ufs) {
       const r = await carregarUf(db, { turno, uf, concorrencia, progresso: process.stdout.isTTY });
       if (r.erros) comErro = true;
       console.log(`[banco ${turno}t] ${uf}: ${r.secoes} seções (${r.completa} completas, ${r.incompleta} incompletas, ${r.sem_arquivo} sem arquivo, `
         + `${r.sem_pacote} sem pacote), ${r.agregadas} agregadas, ${r.linhasPerfil} perfis, ${r.erros} erro(s) · ${(r.duracaoMs / 1000).toFixed(1)} s`);
+    }
+    if (values.oficial || values['so-oficial']) {
+      const inicio = Date.now();
+      const o = await carregarOficial(db, { turno, ufs, arquivoZip: path.resolve(values['arquivo-oficial']) });
+      const resumo = Object.entries(o.linhas).map(([uf, n]) => `${uf} ${n}`).join(', ');
+      console.log(`[banco ${turno}t] oficial (gerado em ${o.dataGeracao}): ${resumo} linhas · ${((Date.now() - inicio) / 1000).toFixed(1)} s`);
     }
     console.log(`Banco: ${caminho}${comErro ? ' · houve erros: SELECT * FROM erro_carga' : ''}`);
     process.exitCode = comErro ? 1 : 0;

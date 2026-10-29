@@ -55,9 +55,13 @@ export async function baixarConjuntos(nomes, { destino = DIR_DESTINO } = {}) {
         }
         try {
           let ultimo = 0;
+          let impressoEm = 0;
           const info = await baixarArquivoGrande(url, arquivo, {
             aoProgresso: ({ inicio, total, recebidos }) => {
               ultimo = recebidos === 0 ? inicio : ultimo + recebidos;
+              // Uma linha a cada 2 s: sem o limite, o log chegou a 11,6 MB num download de 2,5 GB.
+              if (Date.now() - impressoEm < 2000) return;
+              impressoEm = Date.now();
               process.stdout.write(`\r[dadosabertos] ${relativo} ${formatarBytes(ultimo)}/${formatarBytes(total)}   `);
             },
           });

@@ -5,9 +5,10 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { abrirBanco, carregarReferenciaNoBanco, carregarUf } from '../src/banco.js';
+import { abrirBanco, carregarOficial, carregarReferenciaNoBanco, carregarUf } from '../src/banco.js';
 import { carregarReferencia } from '../src/referencia.js';
 import { hashDiretorio } from '../src/vsc.js';
+import { montarZip } from './auxiliares.js';
 
 // Árvore mínima no layout de data/ montada com as fixtures reais:
 //   AC 01007/0009/0002 contingência (BU + vota.vsc, sem aux.json) + diretório órfão com nome antigo
@@ -190,4 +191,35 @@ test('views: resultado por município e comparação 1º × 2º turno de preside
   assert.equal(s.nome_municipio, 'BUJARI');
   assert.deepEqual([s.comparecimento_1t, s.comparecimento_2t, s.nominal_1t, s.branco_2t, s.nulo_2t], [232, 232, 220, 5, 7]);
   assert.ok(s.aptos_1t >= 232 && s.aptos_1t === s.aptos_2t);
+});
+
+test('voto_oficial (dados abertos) e divergência BU × oficial só nos cargos do oficial', async (t) => {
+  const { db, dados } = await preparar(t);
+  await carregarUf(db, { turno: '2', uf: 'ac', dirDados: dados });
+  // CSV fictício no formato do votacao_secao do TSE; um nome com ';' entre aspas força o parser completo
+  const cab = ['DT_GERACAO', 'HH_GERACAO', 'NR_TURNO', 'CD_ELEICAO', 'SG_UF', 'CD_MUNICIPIO', 'NR_ZONA', 'NR_SECAO', 'CD_CARGO', 'NR_VOTAVEL', 'NM_VOTAVEL', 'QT_VOTOS'];
+  const linha = (turno, uf, secao, numero, nome, votos) => ['"26/10/2026"', '"12:07:25"', turno, 6258, `"${uf}"`, 1007, 9, secao, 1, numero, `"${nome}"`, votos].join(';');
+  const csv = [
+    cab.map((c) => `"${c}"`).join(';'),
+    linha(2, 'AC', 2, 13, 'CANDIDATO TREZE', 76),
+    linha(2, 'AC', 2, 22, 'CANDIDATO; VINTE E DOIS', 143),
+    linha(2, 'AC', 2, 95, 'BRANCO', 5),
+    linha(2, 'AC', 2, 96, 'NULO', 7),
+    linha(2, 'AC', 5, 13, 'CANDIDATO TREZE', 10),
+    linha(1, 'AC', 2, 13, 'OUTRO TURNO', 999),
+    linha(2, 'SP', 2, 13, 'OUTRA UF', 999),
+  ].join('\r\n');
+  const zip = path.join(dados, 'votacao_secao_teste.zip');
+  await writeFile(zip, montarZip([{ nome: 'votacao_secao.csv', dados: Buffer.from(csv, 'latin1'), comprimir: true }]));
+
+  const r = await carregarOficial(db, { turno: '2', ufs: ['ac'], arquivoZip: zip });
+  assert.deepEqual(r, { dataGeracao: '26/10/2026 12:07:25', linhas: { ac: 5 } });
+  await carregarOficial(db, { turno: '2', ufs: ['ac'], arquivoZip: zip });
+  assert.equal(um(db, 'SELECT COUNT(*) n FROM voto_oficial').n, 5, 'recarregar não duplica');
+
+  // Governador está no BU mas não no oficial: não entra na comparação
+  assert.deepEqual(linhas(db, 'SELECT secao, cargo, numero, votos_bu, votos_oficial, situacao_secao FROM v_divergencia_bu_oficial ORDER BY secao'), [
+    { secao: '0002', cargo: 1, numero: 22, votos_bu: 144, votos_oficial: 143, situacao_secao: 'completa' },
+    { secao: '0005', cargo: 1, numero: 13, votos_bu: null, votos_oficial: 10, situacao_secao: 'sem_pacote' },
+  ]);
 });

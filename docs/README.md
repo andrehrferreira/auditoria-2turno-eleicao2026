@@ -19,6 +19,7 @@ Trabalhos anteriores, com a mesma linha metodológica:
 | [06-leitura-bu-rdv-log.md](06-leitura-bu-rdv-log.md) | Como ler BU, RDV, `.vsc` e log de 2026 e verificar as assinaturas: campos, enums, Ed521, urna de contingência, armadilhas |
 | [07-checklist-auditoria.md](07-checklist-auditoria.md) | O que auditar quando a coleta fechar 100%: fonte, método e explicações alternativas de cada item |
 | [08-coordenacao-modelos.md](08-coordenacao-modelos.md) | Uso de GPT Astra, Grok e Kimi 3 como revisores: como chamar, regras de dados, papéis e tarefas |
+| [09-banco-sqlite.md](09-banco-sqlite.md) | Banco SQLite dos dois turnos (BU, RDV, seções, perfil de log, resultado oficial): como carregar, esquema, views e consultas para o checklist |
 | [hipoteses.md](hipoteses.md) | Registro vivo das hipóteses, com status e evidências |
 | [casos/](casos/) | Análises de seções específicas (ex.: [ES 57037/0055/0372](casos/es-57037-z0055-s0372.md)) |
 | [pericia/](pericia/) | Relatório de perícia, em linguagem simples para leigos |
