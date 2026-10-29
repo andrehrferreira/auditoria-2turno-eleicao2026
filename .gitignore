@@ -46,3 +46,6 @@ temp/
 
 CLAUDE.local.md
 .rulebook/backup/
+
+# Saídas do navegador (Playwright MCP)
+.playwright-mcp/

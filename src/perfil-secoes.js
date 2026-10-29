@@ -181,20 +181,58 @@ async function textosDeLog(handle, profundidade = 0) {
 }
 
 const chaveTempo = (linha) => `${linha.slice(6, 10)}${linha.slice(3, 5)}${linha.slice(0, 2)}${linha.slice(11, 19)}`;
+const SECAO_DECLARADA = /\tSeção Eleitoral: (\d+)\t/;
 
-/** Lê todos os logs do pacote e junta as linhas em ordem de data/hora (ordem estável dentro do mesmo segundo). */
-export async function lerLogs(caminho) {
+/**
+ * Junta os logs de um pacote para a seção `secao` (auditores A e C, docs/analysis/coerencia-contagem/03):
+ * - a mesma linha copiada em dois .jez do pacote (urna, data/hora e hash de encadeamento iguais) conta uma vez;
+ * - cada linha pertence à seção que a urna declarou por último ("Seção Eleitoral: NNNN"); linhas de outra seção
+ *   (ex.: urna do RED que recuperou outra seção antes) ficam fora e são contadas em `outrasSecoes`.
+ * Linhas antes de qualquer declaração ficam.
+ * Ordem (matemático forense, docs/analysis/matematico-forense/02): as linhas NÃO são reordenadas por hora, porque a
+ * hora volta quando o relógio da urna é ajustado no dia e porque linhas de urnas diferentes não podem ser intercaladas.
+ * Cada log fica na ordem em que foi gravado; os logs do pacote entram pela hora da última linha (a urna que quebrou
+ * termina antes da reserva). Cópias do mesmo log (MI/ME) somem pela deduplicação.
+ */
+export function juntarLogs(textos, secao) {
+  const vistas = new Set();
+  const linhas = [];
+  const outrasSecoes = {};
+  let duplicadas = 0;
+  const ultimaLinha = (t) => t.split('\n').filter((l) => /^\d\d\/\d\d\/\d{4} /.test(l)).at(-1) ?? '';
+  const ordenados = textos.map((t, i) => [chaveTempo(ultimaLinha(t)), i, t])
+    .sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : a[1] - b[1]))
+    .map(([, , t]) => t);
+  for (const texto of ordenados) {
+    let declarada = null;
+    for (const linha of texto.split('\n')) {
+      if (!/^\d\d\/\d\d\/\d{4} /.test(linha)) continue;
+      const m = SECAO_DECLARADA.exec(linha);
+      if (m) declarada = m[1].padStart(4, '0');
+      if (declarada !== null && secao !== undefined && declarada !== secao) {
+        outrasSecoes[declarada] = (outrasSecoes[declarada] ?? 0) + 1;
+        continue;
+      }
+      const c = linha.split('\t');
+      const chave = `${c[0]}\t${c[2]}\t${c[c.length - 1]}`;
+      if (vistas.has(chave)) {
+        duplicadas++;
+        continue;
+      }
+      vistas.add(chave);
+      linhas.push(linha);
+    }
+  }
+  return { texto: linhas.join('\n'), quantidade: textos.length, duplicadas, outrasSecoes };
+}
+
+/** Lê todos os logs do pacote e junta as linhas da seção `secao` (ver juntarLogs). */
+export async function lerLogs(caminho, secao) {
   const handle = await open(caminho);
   try {
     const textos = await textosDeLog(handle);
     if (textos.length === 0) throw new Error('log.jez sem logd.dat');
-    // Um log só já está em ordem; com mais de um (contingência), ordena pela data/hora calculada uma vez por linha.
-    if (textos.length === 1) return { texto: textos[0], quantidade: 1 };
-    const linhas = textos.flatMap((t) => t.split('\n').filter((l) => /^\d\d\/\d\d\/\d{4} /.test(l)))
-      .map((l, i) => [chaveTempo(l), i, l])
-      .sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : a[1] - b[1]))
-      .map(([, , l]) => l);
-    return { texto: linhas.join('\n'), quantidade: textos.length };
+    return juntarLogs(textos, secao);
   } finally {
     await handle.close();
   }
@@ -224,8 +262,13 @@ export async function perfisUf(baseUf, { turno, uf }) {
             vistos.add(sha256Vsc);
             let log = null;
             if (nome('log')) {
-              const { texto, quantidade } = await lerLogs(path.join(dir, nome('log')));
-              log = { logsNoPacote: quantidade, ...perfilLog(texto, DIA_VOTACAO[turno]) };
+              const { texto, quantidade, duplicadas, outrasSecoes } = await lerLogs(path.join(dir, nome('log')), secao);
+              log = {
+                logsNoPacote: quantidade,
+                ...(duplicadas ? { linhasDuplicadas: duplicadas } : {}),
+                ...(Object.keys(outrasSecoes).length ? { linhasOutraSecao: outrasSecoes } : {}),
+                ...perfilLog(texto, DIA_VOTACAO[turno]),
+              };
             }
             linhas.push(JSON.stringify({ turno: Number(turno), uf, municipio, zona, secao, sha256Vsc, pacotesNaSecao: pacotes.length, bu: perfilBu(await readFile(path.join(dir, nome('bu')))), log }));
           } catch (erro) {

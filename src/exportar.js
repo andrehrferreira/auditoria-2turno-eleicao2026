@@ -4,6 +4,7 @@ import path from 'node:path';
 import { parseArgs } from 'node:util';
 import { lerTlv, filhos, decodificarArquivo } from './asn1.js';
 import { DIR_DADOS, TURNOS, caminhos, dirSecao, urlArquivo } from './config.js';
+import { auxDoDisco } from './conferencia.js';
 import { CARGO_CONSTITUCIONAL, arquivoBu, arquivoRdv, arquivoVsc, envelope } from './esquemas.js';
 import { carregarAcs, verificarLacres } from './lacres.js';
 import { DIA_VOTACAO, perfilLog } from './perfil-secoes.js';
@@ -210,7 +211,10 @@ export async function exportarSecao({ turno, secao, referencia = null, acs = [],
   const aux = JSON.parse((await lerOuNulo(path.join(dir, 'aux.json')))?.toString('utf8') ?? 'null');
   const municipio = referencia?.municipios.get(secao.municipio) ?? null;
   const ctx = contexto(referencia, secao.uf);
-  const hashes = (aux?.hashes ?? []).filter((h) => h.hash && h.hash !== '0');
+  // Sem aux.json (ex.: 1º turno, cujo aux ainda não foi baixado), os pacotes vêm do disco, como na conferência.
+  const fontePacotes = aux ? 'aux' : 'disco';
+  const efetivo = aux ?? (await auxDoDisco(dir));
+  const hashes = (efetivo.hashes ?? []).filter((h) => h.hash && h.hash !== '0');
   const pacotes = [];
   for (const h of hashes) {
     const dirHash = path.join(dir, h.hash);
@@ -232,9 +236,11 @@ export async function exportarSecao({ turno, secao, referencia = null, acs = [],
       zona: secao.zona, secao: secao.secao,
     },
     statusTSE: aux?.st ?? null,
+    fontePacotes,
     avisos: [
       ...(referencia ? [] : ['Referência de candidatos/municípios ausente: rode `node src/referencia.js --turno N`.']),
-      ...(aux ? [] : ['aux.json ausente: rode a etapa aux da coleta.']),
+      ...(aux ? [] : ['aux.json ausente: pacotes lidos do disco (diretórios de hash com manifesto); status oficial do TSE indisponível.']),
+      ...(!aux && hashes.length === 0 ? ['Nenhum pacote no disco para esta seção.'] : []),
       ...(aux && hashes.length === 0 ? [`Seção sem arquivo oficial (status do TSE: ${aux.st}).`] : []),
     ],
     pacotes,

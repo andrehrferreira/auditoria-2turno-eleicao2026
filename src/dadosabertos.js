@@ -16,6 +16,12 @@ export const CONJUNTOS = {
   votacao_secao: { descricao: 'votos por seção e candidato (os dois turnos)', arquivos: ['votacao_secao/votacao_secao_2026_BR.zip'] },
   detalhe_votacao_secao: { descricao: 'aptos, comparecimento e abstenção por seção', arquivos: ['detalhe_votacao_secao/detalhe_votacao_secao_2026.zip'] },
   votacao_candidato_munzona: { descricao: 'votos por candidato, município e zona', arquivos: ['votacao_candidato_munzona/votacao_candidato_munzona_2026.zip'] },
+  consulta_cand: { descricao: 'candidaturas 2026 (situação, cancelamentos, números)', arquivos: ['consulta_cand/consulta_cand_2026.zip'] },
+  historico_munzona: {
+    descricao: 'linha de base: votos por candidato, município e zona em 2022 e 2018',
+    arquivos: ['votacao_candidato_munzona/votacao_candidato_munzona_2022.zip', 'votacao_candidato_munzona/votacao_candidato_munzona_2018.zip'],
+  },
+  perfil_comparecimento_abstencao: { descricao: 'comparecimento e abstenção por faixa etária, gênero etc.', arquivos: ['perfil_comparecimento_abstencao/perfil_comparecimento_abstencao_2026.zip'] },
   eleitorado_local_votacao: { descricao: 'eleitorado por local de votação', arquivos: ['eleitorado_locais_votacao/eleitorado_local_votacao_2026.zip'] },
   perfil_eleitor_secao: {
     descricao: 'perfil do eleitorado por seção (idade, biometria...), um zip por UF',

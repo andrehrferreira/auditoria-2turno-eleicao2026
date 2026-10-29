@@ -3,7 +3,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
-import { lerLogs, perfilBu, perfilLog } from '../src/perfil-secoes.js';
+import { juntarLogs, lerLogs, perfilBu, perfilLog } from '../src/perfil-secoes.js';
 import { diretorioTemporario, montarZip } from './auxiliares.js';
 
 // Log sintético no formato do logd.dat (TAB: data hora, nível, nº urna, aplicação, mensagem, hash). Títulos fictícios.
@@ -104,6 +104,38 @@ test('lerLogs junta o log da urna de contingência com o da urna original (jez a
   assert.equal(quantidade, 2);
   assert.deepEqual(texto.split('\n').map((l) => l.slice(11, 19)), ['08:00:01', '09:00:00', '13:00:00', '13:30:00']);
   assert.equal(perfilLog(texto, '25/10/2026').votosComputados, 2);
+});
+
+test('juntarLogs conta uma vez o log copiado em dois .jez do pacote (contingência BA 39870, MG 40690)', () => {
+  const comHash = (hora, msg, hash) => linha(hora, msg).replace(/0{16}$/, hash);
+  const original = [comHash('09:00:00', 'O voto do eleitor foi computado', 'AAAA000000000001'), comHash('09:01:00', 'O voto do eleitor foi computado', 'AAAA000000000002')].join('\n');
+  const { texto, duplicadas } = juntarLogs([original, original], '0002');
+  assert.equal(duplicadas, 2);
+  assert.equal(perfilLog(texto, '25/10/2026').votosComputados, 2);
+});
+
+test('juntarLogs separa as linhas que a urna declarou como de outra seção (RED, ES 57932/0009/0085)', () => {
+  const recuperada = [
+    linha('08:00:00', 'Seção Eleitoral: 0112'),
+    linha('09:00:00', 'O voto do eleitor foi computado'),
+    linha('10:00:00', 'Seção Eleitoral: 0085'),
+    linha('11:00:00', 'O voto do eleitor foi computado'),
+  ].join('\n');
+  const { texto, outrasSecoes } = juntarLogs([recuperada], '0085');
+  assert.deepEqual(outrasSecoes, { '0112': 2 });
+  assert.equal(perfilLog(texto, '25/10/2026').votosComputados, 1);
+  // sem a seção (scripts antigos), nada é separado
+  assert.equal(perfilLog(juntarLogs([recuperada]).texto, '25/10/2026').votosComputados, 2);
+});
+
+test('juntarLogs não reordena por hora: relógio ajustado no dia e urnas diferentes ficam na ordem gravada (PI 12190/0063/0345)', () => {
+  // relógio da urna volta de 08:15 para 07:36 no meio do ciclo do eleitor
+  const ajustado = [linha('08:15:00', 'Aguardando digitação do identificador do eleitor'), linha('07:36:00', 'Eleitor foi habilitado'), linha('07:36:30', 'O voto do eleitor foi computado')].join('\n');
+  assert.deepEqual(juntarLogs([ajustado]).texto.split('\n').map((l) => l.slice(11, 19)), ['08:15:00', '07:36:00', '07:36:30']);
+  // reserva com relógio atrasado: entra depois da urna que quebrou (termina depois), sem intercalar linhas
+  const original = [linha('09:00:00', 'A'), linha('10:00:00', 'B')].join('\n');
+  const reserva = [linha('09:30:00', 'C').replace('02199150', '02199151'), linha('11:00:00', 'D').replace('02199150', '02199151')].join('\n');
+  assert.deepEqual(juntarLogs([reserva, original]).texto.split('\n').map((l) => l.split('\t')[4]), ['A', 'B', 'C', 'D']);
 });
 
 test('perfilBu: BU do Sistema de Apuração ([1] dadosSA) não confunde dados do SA com o detalhamento do comparecimento', () => {

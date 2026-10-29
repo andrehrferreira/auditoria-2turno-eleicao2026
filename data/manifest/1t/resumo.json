@@ -1,0 +1,271 @@
+{
+  "turno": "1",
+  "pleito": "3220",
+  "ufs": {
+    "ac": {
+      "secoesComUrna": 2270,
+      "agregadas": 141,
+      "agregadasCobertas": 141,
+      "completa": 2270,
+      "completasSemAux": 2270,
+      "imgbuOk": 2270,
+      "conferidoEm": "2026-10-29T07:35:48.274Z"
+    },
+    "al": {
+      "secoesComUrna": 7101,
+      "agregadas": 145,
+      "agregadasCobertas": 145,
+      "completa": 7101,
+      "completasSemAux": 7101,
+      "imgbuOk": 7101,
+      "conferidoEm": "2026-10-29T07:35:57.853Z"
+    },
+    "am": {
+      "secoesComUrna": 8157,
+      "agregadas": 420,
+      "agregadasCobertas": 420,
+      "completa": 8157,
+      "completasSemAux": 8157,
+      "imgbuOk": 8157,
+      "conferidoEm": "2026-10-29T07:36:21.635Z"
+    },
+    "ap": {
+      "secoesComUrna": 1914,
+      "agregadas": 57,
+      "agregadasCobertas": 57,
+      "completa": 1914,
+      "completasSemAux": 1914,
+      "imgbuOk": 1914,
+      "conferidoEm": "2026-10-29T07:36:26.869Z"
+    },
+    "ba": {
+      "secoesComUrna": 35476,
+      "agregadas": 2474,
+      "agregadasCobertas": 2474,
+      "completa": 35476,
+      "completasSemAux": 35476,
+      "imgbuOk": 35476,
+      "conferidoEm": "2026-10-29T07:38:09.507Z"
+    },
+    "ce": {
+      "secoesComUrna": 23765,
+      "agregadas": 1885,
+      "agregadasCobertas": 1885,
+      "completa": 23765,
+      "completasSemAux": 23765,
+      "imgbuOk": 23765,
+      "conferidoEm": "2026-10-29T07:39:15.838Z"
+    },
+    "df": {
+      "secoesComUrna": 6969,
+      "agregadas": 81,
+      "agregadasCobertas": 81,
+      "completa": 6969,
+      "completasSemAux": 6969,
+      "imgbuOk": 6969,
+      "conferidoEm": "2026-10-29T07:39:35.691Z"
+    },
+    "es": {
+      "secoesComUrna": 9844,
+      "agregadas": 279,
+      "agregadasCobertas": 279,
+      "completa": 9844,
+      "completasSemAux": 9844,
+      "imgbuOk": 9844,
+      "conferidoEm": "2026-10-29T07:40:03.460Z"
+    },
+    "go": {
+      "secoesComUrna": 15686,
+      "agregadas": 540,
+      "agregadasCobertas": 540,
+      "completa": 15686,
+      "completasSemAux": 15686,
+      "imgbuOk": 15686,
+      "conferidoEm": "2026-10-29T07:40:48.558Z"
+    },
+    "ma": {
+      "secoesComUrna": 18093,
+      "agregadas": 1701,
+      "agregadasCobertas": 1701,
+      "completa": 18093,
+      "completasSemAux": 18092,
+      "imgbuOk": 18093,
+      "conferidoEm": "2026-10-29T07:58:55.926Z"
+    },
+    "mg": {
+      "secoesComUrna": 52062,
+      "agregadas": 2131,
+      "agregadasCobertas": 2131,
+      "completa": 52062,
+      "completasSemAux": 52062,
+      "imgbuOk": 52062,
+      "conferidoEm": "2026-10-29T07:44:12.087Z"
+    },
+    "ms": {
+      "secoesComUrna": 7106,
+      "agregadas": 178,
+      "agregadasCobertas": 178,
+      "completa": 7106,
+      "completasSemAux": 7106,
+      "imgbuOk": 7106,
+      "conferidoEm": "2026-10-29T07:44:32.175Z"
+    },
+    "mt": {
+      "secoesComUrna": 8287,
+      "agregadas": 688,
+      "agregadasCobertas": 688,
+      "completa": 8287,
+      "completasSemAux": 8287,
+      "imgbuOk": 8287,
+      "conferidoEm": "2026-10-29T07:44:55.523Z"
+    },
+    "pa": {
+      "secoesComUrna": 20827,
+      "agregadas": 1255,
+      "agregadasCobertas": 1255,
+      "completa": 20827,
+      "completasSemAux": 20827,
+      "imgbuOk": 20827,
+      "conferidoEm": "2026-10-29T07:45:56.083Z"
+    },
+    "pb": {
+      "secoesComUrna": 10712,
+      "agregadas": 133,
+      "agregadasCobertas": 133,
+      "completa": 10712,
+      "completasSemAux": 10712,
+      "imgbuOk": 10712,
+      "conferidoEm": "2026-10-29T07:46:25.739Z"
+    },
+    "pe": {
+      "secoesComUrna": 21418,
+      "agregadas": 673,
+      "agregadasCobertas": 673,
+      "completa": 21418,
+      "completasSemAux": 21418,
+      "imgbuOk": 21418,
+      "conferidoEm": "2026-10-29T07:47:27.064Z"
+    },
+    "pi": {
+      "secoesComUrna": 10225,
+      "agregadas": 1036,
+      "agregadasCobertas": 1036,
+      "completa": 10225,
+      "completasSemAux": 10225,
+      "imgbuOk": 10225,
+      "conferidoEm": "2026-10-29T07:47:55.662Z"
+    },
+    "pr": {
+      "secoesComUrna": 27142,
+      "agregadas": 194,
+      "agregadasCobertas": 194,
+      "completa": 27142,
+      "completasSemAux": 27142,
+      "imgbuOk": 27142,
+      "conferidoEm": "2026-10-29T07:49:13.652Z"
+    },
+    "rj": {
+      "secoesComUrna": 37675,
+      "agregadas": 1063,
+      "agregadasCobertas": 1063,
+      "completa": 37675,
+      "completasSemAux": 37675,
+      "imgbuOk": 37675,
+      "conferidoEm": "2026-10-29T07:51:04.353Z"
+    },
+    "rn": {
+      "secoesComUrna": 8115,
+      "agregadas": 221,
+      "agregadasCobertas": 221,
+      "completa": 8115,
+      "completasSemAux": 8115,
+      "imgbuOk": 8115,
+      "conferidoEm": "2026-10-29T07:51:24.389Z"
+    },
+    "ro": {
+      "secoesComUrna": 4698,
+      "agregadas": 243,
+      "agregadasCobertas": 243,
+      "completa": 4698,
+      "completasSemAux": 4698,
+      "imgbuOk": 4698,
+      "conferidoEm": "2026-10-29T07:51:35.036Z"
+    },
+    "rr": {
+      "secoesComUrna": 1519,
+      "agregadas": 108,
+      "agregadasCobertas": 108,
+      "completa": 1519,
+      "completasSemAux": 1519,
+      "imgbuOk": 1519,
+      "conferidoEm": "2026-10-29T07:51:38.611Z"
+    },
+    "rs": {
+      "secoesComUrna": 27547,
+      "agregadas": 191,
+      "agregadasCobertas": 191,
+      "completa": 27547,
+      "completasSemAux": 27547,
+      "imgbuOk": 27547,
+      "conferidoEm": "2026-10-29T07:52:41.941Z"
+    },
+    "sc": {
+      "secoesComUrna": 17326,
+      "agregadas": 232,
+      "agregadasCobertas": 232,
+      "completa": 17326,
+      "completasSemAux": 17326,
+      "imgbuOk": 17326,
+      "conferidoEm": "2026-10-29T07:53:23.047Z"
+    },
+    "se": {
+      "secoesComUrna": 5923,
+      "agregadas": 144,
+      "agregadasCobertas": 144,
+      "completa": 5923,
+      "completasSemAux": 5923,
+      "imgbuOk": 5923,
+      "conferidoEm": "2026-10-29T07:53:37.066Z"
+    },
+    "sp": {
+      "secoesComUrna": 103656,
+      "agregadas": 248,
+      "agregadasCobertas": 248,
+      "completa": 103656,
+      "completasSemAux": 103656,
+      "imgbuOk": 103656,
+      "conferidoEm": "2026-10-29T07:57:43.821Z"
+    },
+    "to": {
+      "secoesComUrna": 4384,
+      "agregadas": 106,
+      "agregadasCobertas": 106,
+      "completa": 4384,
+      "completasSemAux": 4384,
+      "imgbuOk": 4384,
+      "conferidoEm": "2026-10-29T07:57:53.698Z"
+    },
+    "zz": {
+      "secoesComUrna": 1351,
+      "agregadas": 1364,
+      "agregadasCobertas": 1364,
+      "completa": 1310,
+      "sem_arquivos_oficiais": 41,
+      "completasSemAux": 1310,
+      "imgbuOk": 1310,
+      "conferidoEm": "2026-10-29T07:58:39.986Z"
+    }
+  },
+  "total": {
+    "ufs": 28,
+    "secoesComUrna": 499248,
+    "completas": 499207,
+    "semArquivosOficiais": 41,
+    "completasSemAux": 499206,
+    "contabilizadas": 499248,
+    "agregadas": 17931,
+    "agregadasCobertas": 17931
+  },
+  "coberturaTotal": true,
+  "geradoEm": "2026-10-29T07:58:55.926Z"
+}

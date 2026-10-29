@@ -298,7 +298,17 @@ async function principal() {
   let falhas = 0;
   let comFalha = 0;
   for (const dir of dirs) {
-    const { urna, resultados, observacoes } = await verificarDiretorio(dir, { acs, dataEleicao: new Date(values.data) });
+    // Arquivo truncado ou bloco ausente conta como falha da seção, sem interromper o lote (revisão T07, A1).
+    let verificado;
+    try {
+      verificado = await verificarDiretorio(dir, { acs, dataEleicao: new Date(values.data) });
+    } catch (erro) {
+      console.log(`\n${dir}\nFALHA [leitura] ${erro.message}`);
+      falhas++;
+      comFalha++;
+      continue;
+    }
+    const { urna, resultados, observacoes } = verificado;
     console.log(`\n${dir}\nurna ${urna.nome} (${urna.algoritmo}), emitida pela ${urna.emissor}`);
     for (const r of resultados) console.log(`${r.ok ? 'OK   ' : 'FALHA'} [${r.camada}] ${r.item}${r.obs ? ` (${r.obs})` : ''}`);
     for (const o of observacoes) console.log(`OBS   ${o}`);
