@@ -94,7 +94,7 @@ Para votar, cada eleitor passa por um ciclo: o mesário digita o título, a urna
   - em ES 57932/0009/0085, o pacote traz também o diário de outra seção, a 0112 da mesma zona (304 votos, o mesmo número do boletim da 0112). Ele veio junto porque a mesma urna de contingência foi usada nas duas seções. A leitura misturou os votos das duas urnas.
 - **Fato.** Sem essas 3 seções, o **menor intervalo entre dois votos é de 16 segundos** (3 seções), seguido de 17 segundos (4 seções). Das 7, 3 são do exterior. Exemplo conferido no diário original, RS 88390/0162/0403: título digitado às 10:30:38, eleitor habilitado pela digital às 10:30:45, voto às 10:30:51; próximo título às 10:30:57, habilitação às 10:31:03, voto às 10:31:07.
 - **Fato.** Da habilitação até o voto, nas seções com 1 cargo (só presidente): mínimo de 2 segundos, em 2.656 seções.
-- **Pendente: em verificação.** O tempo mínimo do ciclo com 2 cargos (presidente e governador). A medida anterior cobria só 4 UFs e não foi refeita para as 11 UFs com 2º turno para governador.
+- **Pendente: em verificação.** O tempo mínimo do ciclo com 2 cargos (presidente e governador). A medida anterior cobria só 4 UFs e não foi refeita para as 6 UFs com 2º turno para governador (AC, AM, DF, ES, RN e TO, pelos boletins no banco; tópico 9 e `scripts/auditoria/verifica-pericia-coerencia-topicos.mjs`).
 - Conclusão do item: **Fato.** Não há sequência fisicamente impossível de votos no 2º turno. Os únicos intervalos abaixo de 16 segundos vinham de erro de leitura desta auditoria. **Pendente:** contar, em todas as seções, se existe algum voto sem habilitação de eleitor antes dele.
 - **Risco (princípio 8).** O tempo do ciclo não mostra **quem** digitou. Um ciclo curto com liberação pelo ano de nascimento também pode ser feito pelo próprio mesário. Exemplo conferido no diário original: em PE 24570/0147/0393, às 8h17, três eleitores seguidos foram liberados pelo ano de nascimento, com votos às 8h17min19s, 8h17min43s e 8h17min59s. Esse risco é examinado pelo padrão de liberação sem digital (tópico 4), não pelo intervalo.
 
@@ -124,7 +124,8 @@ Para votar, cada eleitor passa por um ciclo: o mesário digita o título, a urna
 - **Fato (exemplo conferido no diário original).** **A urna não exigiu as 19h.** Em BA 38490/0002/0047, o mesário mandou encerrar às 17h11, respondeu "SIM" à pergunta "Todas as pessoas presentes já votaram?", cancelou o encerramento às 17h11min59s e só encerrou às 19h04. **Pendente: em verificação** quantas seções fizeram o mesmo. Em 16 seções o boletim registra o encerramento exatamente às 19:00:00.
 - **Fato.** Nessas 6.352 seções houve 4.492 votos depois das 17h, 1.860 depois das 18h e 11 depois das 19h. 3.339 delas não tiveram nenhum voto depois das 17h: ficaram abertas sem receber ninguém.
 - **Fato.** No 1º turno, em todas as UFs, não aparece esse degrau. Os encerramentos tardios diminuem aos poucos, como fila: 2.872 seções encerraram entre 18h50 e 18h59, 2.170 entre 19h00 e 19h09 e 1.600 entre 19h10 e 19h19, e alguns seguem até depois das 22h. No 2º turno foram 390, 6.257 e 72 nesses mesmos intervalos.
-- **Pendente.** A imprensa noticiou em 26/10/2026 uma decisão judicial que prorrogou a votação até 19h onde as urnas ainda estavam abertas às 17h (`docs/hipoteses.md`, H06). A versão assinada da decisão, o horário dela e o ato do TSE ou dos TREs que a aplicou não foram conferidos na fonte original, e as reportagens divergem no horário. O diário mostra só o que aconteceu: as urnas ficaram abertas porque quem as operava decidiu assim. A existência do ato não muda esse registro.
+- **Fato.** A cópia guardada no repositório da decisão do STF na Reclamação 101.673/BA (PDF em `data/raw/stf/`, documento intitulado "Minuta_ Decisão Liminar") determina a prorrogação "até as 19h, horário de Brasília, do encerramento do recebimento dos votos em todas as seções de todo o Brasil, cabendo ao TSE dar cumprimento" (`docs/hipoteses.md`, H06; o mesmo texto está nos tópicos 8 e 10).
+- **Pendente.** A versão assinada da decisão no portal do STF e o ato do TSE ou dos TREs que a aplicou. O diário mostra só o que aconteceu: as urnas ficaram abertas porque quem as operava decidiu assim. A existência do ato não muda esse registro.
 
 ### 8. Sinais de eleitores que chegaram depois das 17h (risco humano)
 
@@ -210,7 +211,7 @@ A saída fica em `data/parsed/auditoria/verifica-pericia/linha-do-tempo.json`. A
 
 - **Pendente:** revisão cética dos itens deste tópico (`docs/analysis/cetico-revisor/`).
 - **Pendente:** refazer, no universo completo, as medidas que dependem de reler cada diário: religamentos por causa e tempo parado, votos depois do "SIM", cancelamentos de encerramento, votos depois de pausa e forma de liberação dos votos tardios.
-- **Pendente:** conferir na fonte original a decisão judicial e o ato do TSE ou dos TREs que estenderam o horário até 19h, com a lista de locais, e cruzar com os 313 locais inteiros e os 818 mistos.
+- **Pendente:** conferir a versão assinada da decisão judicial no portal do STF e o ato do TSE ou dos TREs que estenderam o horário até 19h, com a lista de locais, e cruzar com os 313 locais inteiros e os 818 mistos.
 - **Pendente:** repetir a linha do tempo completa no 1º turno.
 - **Pendente:** conferir os lacres das 5 urnas carregadas no dia da eleição e das 20 de Volta Redonda.
 - **Pendente:** corrigir a leitura dos diários e repetir as contas.

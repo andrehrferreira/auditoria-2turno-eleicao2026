@@ -15,7 +15,7 @@ Quantos eleitores votaram depois de pôr o dedo no leitor da urna, e quantos vot
 - **Fato (recalculado com duas contas):** no Brasil, só 1 seção do 2º turno votou inteira sem digital, e ela não virou. Separando as seções pela parcela de votantes sem digital, o 13 ganhou entre 1,9 e 2,9 pontos do 1º para o 2º turno em todas as faixas, com o mesmo tamanho nas seções quase sem liberação sem digital (2,78). A virada não cresce com a falta de digital (item 9).
 - **Fato (recalculado):** 97 seções liberaram à mão metade ou mais dos votantes, todas com urnas de 2013 ou 2015 (item 8).
 - **Pendente: em verificação.** Se as seções que liberam mais gente sem digital votam mais num dos candidatos, comparando seções parecidas (item 6.2).
-- **Pendente:** se os eleitores liberados sem digital votaram majoritariamente no 13, e se isso foi mais forte no Nordeste. Os métodos estão escritos e rodando. Ainda não há resultado.
+- **Fato (recalculado com duas contas):** no Nordeste, de 3,41% a 99,93% dos liberados sem digital podem ter votado no 13. Mesmo no pior caso para o 13, anulando esses votos, ele ainda venceria por 166.144 votos. No Brasil inteiro, porém, o pior caso aritmético dos 15,9 milhões de liberados sem digital inverteria o resultado: a aritmética, sozinha, não fecha essa porta (item 6.4). Em quem os liberados de fato votaram é estimativa e fica fora deste relatório.
 - **Limite que não muda:** o voto é secreto. Nenhum arquivo diz em quem votou o eleitor liberado sem digital. Esse voto só pode ser cercado por cima e por baixo, ou estimado pela comparação entre seções, mas nunca observado.
 
 ## Antes de começar: como uma pessoa é liberada para votar
@@ -163,24 +163,38 @@ Se mesários votassem no lugar de ausentes, as seções com quase todos os eleit
 - **Fato:** o caso mais destacado (RN, João Câmara, município 17132, zona 10, seção 145, 36,4% sem digital contra 12,9% da zona) já era o primeiro da zona no 1º turno, com 87,8% de comparecimento e a mesma urna. Com o modelo estatístico correto, ele não passa de forma firme no teste. A probabilidade minúscula que circulou para esse caso vinha de um modelo errado e não deve ser citada.
 - **Leitura revisada:** o resultado é **neutro** sobre a liberação manual. Não é prova contra nem a favor de mesários votando por ausentes.
 
-#### 6.4. Os liberados votaram majoritariamente no 13, sobretudo no Nordeste? (Pendente)
+#### 6.4. Os liberados votaram majoritariamente no 13, sobretudo no Nordeste?
 
-Essa hipótese (registrada como H13) foi apresentada ao projeto e está em análise. Em 29/10/2026 havia cinco métodos escritos, cada um com o seu script, e nenhum resultado redigido ou revisado. Por isso, nenhum número dela entra aqui.
+Essa hipótese (H13) foi apresentada ao projeto. O voto de quem foi liberado sem digital não é registrado em lugar nenhum (ver "Por que não dá para ver em quem o liberado votou"). Por isso, a resposta tem duas partes: o que a aritmética garante, que entra aqui, e o que só se estima com modelos estatísticos, que fica fora deste relatório.
 
-| Método | O que pergunta | Script |
-|---|---|---|
-| Descritivo | Onde e quanto se liberou sem digital, por região e por UF, nos dois turnos. Não tenta adivinhar voto | `scripts/auditoria/liberacao-descritivo-distribuicao.mjs` |
-| Limites | Em cada seção, o mínimo e o máximo de liberados que podem ter votado no 13 e no 22, sem nenhuma suposição (o raciocínio de "Por que não dá para ver em quem o liberado votou"). Compara com o que se veria se a liberação fosse sorteada entre as seções da zona | `scripts/auditoria/liberacao-limites-deterministicos.mjs` |
-| Comparação entre seções | Depois de descontar zona, perfil do eleitorado e eleitores liberados pela digital, as seções com mais liberados votam mais no 13? Por região e por UF do Nordeste | `scripts/auditoria/liberacao-ecologico-regressao.mjs` |
-| Entre turnos | Quando uma seção liberou mais gente sem digital no 2º turno do que no 1º, o acréscimo acompanhou votos a mais no 13, além do que acompanha um eleitor a mais qualquer? Dois testes principais, no Nordeste, foram fixados antes de rodar, para não escolher o teste depois de ver o resultado | `scripts/auditoria/liberacao-entreturnos-painel.mjs` |
-| Por mesário | Concentração das liberações por mesário (com pseudônimo, nunca o título) e relação com o voto | `scripts/auditoria/liberacao-mesarios-dados.mjs` |
+**Quantos foram liberados sem digital, por região (2º turno, Brasil sem o exterior):**
 
-O que já existe nos itens revisados e toca o Nordeste:
+- **Fato (recalculado):** no Nordeste, 4.269.379 votantes foram liberados sem digital: 11,75% do comparecimento da região. O Nordeste **não** é a região que mais libera sem digital. No Sudeste, a parcela é de 13,97%, e no Sul, de 12,26%. No Brasil todo, sem o exterior, é de 12,4% (item 1).
 
-- **Fato (revisado, parecer 06, e recalculado com todas as seções das duas UFs):** a parcela de votantes sem digital quase não mudou entre os turnos em BA (12,01% para 12,26%) e PE (13,92% para 14,33%). Os nove estados do Nordeste estão entre as 25 UFs do teste do item 6.1, que não achou diferença de voto entre os eleitores a mais liberados com e sem digital. Esse teste não foi feito separado por região.
-- **Fato (recalculado):** o Nordeste tem um pouco mais de urnas de 2013: 3,5% das seções da região, contra 1,8% nas demais (sem o exterior). Nelas a liberação manual sobe tanto no Nordeste (10,6% contra 6,4% nas urnas de 2022) quanto fora dele (11,0% contra 5,8%).
+**O que a aritmética garante, sem nenhuma suposição:**
 
-Qualquer resposta a essa pergunta será uma estimativa ou um cerco, pelo motivo explicado no início: o voto do liberado não é registrado em lugar nenhum.
+Em cada seção se sabe quantos foram liberados sem digital e quantos votos teve cada candidato. Isso fixa um mínimo e um máximo de liberados que podem ter votado no 13. Por exemplo, numa seção com 100 liberados e só 30 votos no 13, no máximo 30 liberados votaram no 13.
+
+- **Fato (recalculado com duas contas):** no Nordeste, a parte dos liberados sem digital que votou no 13 está em algum ponto entre **3,41% e 99,93%**. A aritmética sozinha não diz onde.
+- **Fato (recalculado com duas contas):** suponha o pior caso para o 13 no Nordeste: em cada seção, os liberados deram ao 13 o máximo possível e ao 22 o mínimo, e esses votos são anulados. Mesmo assim, a margem nacional do 13 cai de 4.430.191 para **166.144**, e o 13 continua vencendo.
+- **Fato (recalculado com duas contas):** feito o mesmo para **todo o Brasil**, sem o exterior, com os 15.884.298 liberados sem digital, o pior caso aritmético **inverteria** o resultado: a margem iria a −11.119.111. Só o Sudeste já bastaria (−2.692.865). Isso não é sinal de fraude: é o tamanho da porta. Quer dizer que a aritmética, sozinha, não descarta que a liberação sem digital tenha decidido a eleição. Só os testes estatísticos limitam quanto dela pode ter sido usado.
+
+| Região | Liberados sem digital | Parte que pode ter votado no 13 | Margem nacional no pior caso para o 13 |
+|---|---|---|---|
+| Norte | 937.030 | 0,88% a 99,68% | 3.498.326 |
+| Nordeste | 4.269.379 | 3,41% a 99,93% | 166.144 |
+| Centro-Oeste | 993.788 | 0,44% a 99,56% | 3.443.691 |
+| Sudeste | 7.389.540 | 0,76% a 97,92% | −2.692.865 |
+| Sul | 2.294.561 | 0,14% a 98,68% | 2.186.357 |
+| Brasil (sem exterior) | 15.884.298 | 1,37% a 98,78% | −11.119.111 |
+
+Na última coluna, cada linha anula só os liberados daquela região. Liberados sem digital = sem digital na urna (ano de nascimento) + digital não reconhecida (liberação manual), pelo boletim. O exterior fica de fora porque o boletim de lá não traz a divisão, e lá todos votaram sem digital (item 4).
+
+Fonte: `node scripts/auditoria/h13-limites-banco.mjs` → [../analysis/hipotese-liberacao-mesario/06-limites-pelo-banco.md](../analysis/hipotese-liberacao-mesario/06-limites-pelo-banco.md), com a tabela por UF. A mesma conta foi feita por outro caminho, a partir dos perfis dos boletins (`scripts/auditoria/liberacao-limites-deterministicos.mjs`), e as duas dão o mesmo resultado no Nordeste: 3,4% a 99,9% (a outra conta publica uma casa decimal) e a mesma margem de 166.144. Exclusões: as 1.310 seções do exterior. Nenhuma seção do Brasil ficou sem o detalhamento no boletim.
+
+**O que fica fora deste relatório:** cinco métodos estatísticos estimaram em quem os liberados votaram e se votaram diferente de quem usou a digital na mesma zona. Também mediram que tamanho de fraude cada teste seria capaz de ver. Essas medidas são estimativas de modelo, e por isso nenhum número delas entra aqui. Estão em [../analysis/hipotese-liberacao-mesario/00-sintese.md](../analysis/hipotese-liberacao-mesario/00-sintese.md), com a revisão cética em [../analysis/cetico-revisor/15-h13-liberacao-mesario.md](../analysis/cetico-revisor/15-h13-liberacao-mesario.md), [18](../analysis/cetico-revisor/18-h13-liberacao-reproducao.md) e [19](../analysis/cetico-revisor/19-h13-liberacao-poder.md).
+
+- **Pendente:** a mesma conta aritmética com a liberação contada no log (mesário identificado), depois que os perfis dos logs forem regerados com a ordem das linhas corrigida.
 
 ### 7. "O eleitor identificado já votou"
 
@@ -283,7 +297,7 @@ Os detalhes técnicos estão em [../analysis/biometria-mesarios/](../analysis/bi
 
 ## Próximos passos
 
-- **Pendente:** terminar H13 (item 6.4), com os cinco métodos, e passar pelo revisor cético.
+- **Pendente:** refazer a conta do item 6.4 com a liberação contada no log, depois dos perfis regerados.
 - **Pendente:** reproduzir de forma independente a comparação do item 6.2 e a do item 5 com os controles de perfil do eleitorado, e passar as duas pelo revisor cético.
 - **Pendente:** parecer do revisor cético para as contagens dos itens 1, 2, 4, 5 e 7.
 - **Pendente:** medir o marcador da foto nas 16.011 seções do item 3, nas seções sem excesso e no país inteiro, para saber o tamanho real do grupo "tem foto, não tem digital na urna".

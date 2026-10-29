@@ -16,7 +16,9 @@ Se somarmos o "placar" de cada urna (o Boletim de Urna), chegamos ao resultado q
 | Brancos | 1.430.496 | 1.430.496 | 0 |
 | Seções com alguma diferença | — | — | **0 de 499.205** |
 
-**Pendente:** 1º turno e os demais cargos (governador, senador, deputados). Ver "Próximos passos".
+**Fato (1º turno, Presidente):** a mesma comparação, seção por seção, nas 499.206 seções que votaram para Presidente no 1º turno (28 UFs), também não tem nenhuma divergência: 0 seções diferentes, 0 só no boletim, 0 só no resultado oficial, e 125.275.835 votos de cada lado. O oficial foi lido direto do mesmo CSV (`scripts/auditoria/verifica-pericia-coerencia-topicos.mjs --turno 1`, cópia de leitura do banco de 29/10/2026, 10h50 UTC). A mesma igualdade aparece no [tópico 8](08-virada-do-2-turno.md), por outro script.
+
+**Pendente:** os demais cargos (governador, senador, deputados). Ver "Próximos passos".
 
 ## O que foi comparado
 
@@ -33,7 +35,7 @@ Para cada seção e cada número votado (candidato, branco ou nulo), os dois val
 
 ## Um caso que parecia estranho
 
-**Fato:** algumas seções aparecem no site de resultados com a situação "Recebida", e não "Totalizada". Quantas são no país inteiro: **Pendente: em verificação** (a situação do site só foi registrada para parte das seções).
+**Fato:** algumas seções aparecem no site de resultados com a situação "Recebida", e não "Totalizada". **Parcial** ([tópico 0](00-coleta-completa.md)): 5.270 nas 395.227 seções com urna cuja lista oficial já foi baixada (AM, BA, MA, MG, PA, PE, PI, PR, RJ e RS; ainda faltam 99.596 seções de SP e as 4.384 de TO). Quantas são no país inteiro: **Pendente: em verificação**.
 
 **Fato:** como a comparação acima cobre **todas** as seções que votaram para Presidente, essas seções "Recebida" estão incluídas nela: estão no resultado oficial e os votos de Presidente são **iguais** aos do boletim da urna.
 
@@ -50,9 +52,9 @@ Para cada seção e cada número votado (candidato, branco ou nulo), os dois val
 node src/banco.js --turno 2 --oficial      # carrega boletins e resultado oficial no banco (doc 09)
 node scripts/h03-bu-x-oficial.mjs 2        # compara e lista qualquer seção divergente
 node scripts/auditoria/verifica-pericia-soma-boletins.mjs   # conferência independente: lê o CSV oficial direto do zip
+node --max-old-space-size=8192 scripts/auditoria/verifica-pericia-coerencia-topicos.mjs --turno 1   # o mesmo, 1º turno
 ```
 
 ## Próximos passos
 
-- **Pendente:** 1º turno, Presidente (o banco ainda não tem todas as UFs do 1º turno).
 - **Pendente:** demais cargos dos dois turnos. O arquivo oficial por seção só traz Presidente. Para governador, senador e deputados, a comparação será por município e zona (`votacao_candidato_munzona`). Pendente: em verificação.

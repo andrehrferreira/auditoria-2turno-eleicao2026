@@ -146,7 +146,7 @@ Duas leituras do risco:
 - **Fato.** C4 e C5: 0 diferença (o C5 fica sem as 2 seções de MG citadas abaixo, que não trazem o detalhamento da liberação).
 - **Fato.** C6: 0 diferença, fora 2 seções de MG apuradas em parte com cédula pelo Sistema de Apuração (MG 41238/0039/0168 e 50075/0047/0041, motivo registrado no boletim: "urna chegou após o início da votação").
 - **Fato.** C2: das 153.095 seções com urna e diário lido (fora as 2 do Sistema de Apuração), 3 não bateram de primeira e fecharam na recontagem do arquivo bruto, com 0 voto sem rastro.
-- **Pendente.** C2 de 43.633 seções do AM e da BA: o diário do 1º turno dessas UFs ainda não foi lido para o banco.
+- **Pendente.** C2 de 43.633 seções do AM e da BA: o diário do 1º turno dessas UFs não estava lido no banco quando a conta foi feita. A cópia de leitura de 29/10/2026 (10h50 UTC) já tem os diários do 1º turno nas 28 UFs; a conta ainda não foi refeita.
 
 ### Os 107 números de candidato que faltam no resultado por município
 
@@ -194,7 +194,7 @@ Fonte: `docs/analysis/cetico-revisor/10-a7-comparecimento-alto-sem-digital.md`, 
 1. **Coerência não é legitimidade.** Os três registros saem do mesmo programa. Um voto dado por outra pessoa no lugar do eleitor fica coerente nos três. A única defesa técnica com rastro é a digital do eleitor (tópico 4).
 2. **Lacres.** Até onde a conferência dos lacres foi feita está no tópico 1. Nas 3 seções dos 50 votos, o cético conferiu as assinaturas (0 falha). Além disso, o diário não traz a corrente de elos lacrada que o boletim tem: ele é protegido só pelo lacre do arquivo inteiro.
 3. **Os 50 votos só se esclarecem com dados que não são públicos:** o diário interno das urnas que gravaram esses votos, os arquivos de digitais capturadas dessas seções e a ata da mesa.
-4. **1º turno parcial:** só as 13 UFs listadas acima; faltam 14 UFs e o exterior. O diário de AM e BA do 1º turno ainda não foi lido.
+4. **1º turno parcial:** só as 13 UFs listadas acima; faltam 14 UFs e o exterior. O C2 de AM e BA do 1º turno ainda não foi feito.
 5. **Pendente.** A conferência independente do matemático forense sobre a corrente de elos do boletim e o ciclo de cada eleitor no diário (`docs/analysis/matematico-forense/01-catalogo.md`, itens I1 a I3 e I10 a I12) ainda não tem resultado escrito.
 
 ## Como repetir
@@ -225,6 +225,6 @@ Saídas do autor em `data/parsed/auditoria/contagem/` (`coerencia-*`, `log-pacot
 - [ ] **Pendente.** Pedir, pela via de fiscalização, o diário interno das urnas que gravaram os votos sem diário (MA 08893/0047/0609: urna 01663580; BA 35653/0173/0235: urna 01681986), o diário interno guardado pela urna 01833178 na recarga em campo, os arquivos de digitais capturadas dessas seções e a ata da mesa das 3 seções.
 - [ ] **Pendente.** Comparar a votação dessas 3 seções com a do 1º turno.
 - [ ] **Pendente.** Baixar `consulta_cand_2026` e confirmar a situação dos 107 números.
-- [ ] **Pendente.** Refazer o 1º turno com as 14 UFs restantes e o exterior; ler o diário do 1º turno de AM e BA.
+- [ ] **Pendente.** Refazer o 1º turno com as 14 UFs restantes e o exterior, e o C2 de AM e BA (os dados das 28 UFs já estão na cópia de leitura de 29/10/2026).
 - [ ] **Pendente.** Medir no país inteiro quantos votos confirmados antes de reinício da urna entraram ou não no boletim (inclusive nas seções com um só diário).
 - [ ] **Pendente.** Teste automático com boletim e registro alterados de propósito (contraprova de C1 a C6).

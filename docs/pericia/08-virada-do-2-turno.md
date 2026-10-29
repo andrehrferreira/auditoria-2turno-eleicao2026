@@ -62,7 +62,7 @@ Em **todas as seções com boletim de presidente**, a soma dos votos (candidatos
 
 - Conta 1: perfis tirados de cada boletim (`src/comparar-turnos.js`), nas 499.176 seções comparadas entre os turnos.
 - Conta 2: banco de dados carregado dos boletins, comparando a soma dos votos com o comparecimento da eleição de presidente.
-- **Cuidado de leitura:** nas 27 seções do exterior apuradas manualmente, o campo geral de comparecimento do boletim vem zerado; o comparecimento da eleição de presidente é o que vale.
+- **Cuidado de leitura:** nas 29 seções do exterior apuradas pelo Sistema de Apuração, em cada turno, e em 2 seções de MG no 1º turno, o campo geral de comparecimento do boletim vem zerado. O que vale é o comparecimento da eleição de presidente.
 
 ## 3b. Alguma urna só fecha se eleitor de um finalista tiver ido para o outro? (Fato, duas contas independentes)
 
@@ -81,11 +81,11 @@ Para cada seção, a conta é: votos do finalista no 2º turno, menos tudo o que
 
 ## 4. Prorrogação do horário de votação (Fato)
 
-- **A decisão:** o ministro Cristiano Zanin, do STF, na Reclamação 101.673/BA (pedido da coligação de Lula contra os municípios de Salvador, Feira de Santana e Lauro de Freitas, por falta de transporte público), determinou "prorrogação por duas horas, até as 19h, horário de Brasília, do encerramento do recebimento dos votos em todas as seções de todo o Brasil, cabendo ao TSE dar cumprimento". Cópia: `data/raw/stf/rcl-101673-zanin-25out26.pdf`.
-- **Votos dados depois das 17h de Brasília no 2º turno, por duas contas independentes:**
-  - 34.330 votos em todas as urnas (Auditor C, [linha-do-tempo/02](../analysis/linha-do-tempo/02-votos-apos-17h.md));
-  - 34.066 votos nas urnas de seção que registram horário de abertura e de último voto (`scripts/h06-votos-apos-17h.mjs`).
-  - A diferença vem só do critério de quais urnas entram. Depois das 18h: 1.993 e 1.960.
+- **A decisão:** liminar do STF na Reclamação 101.673/BA (pedido da coligação de Lula contra os municípios de Salvador, Feira de Santana e Lauro de Freitas, por falta de transporte público). O texto determina "prorrogação por duas horas, até as 19h, horário de Brasília, do encerramento do recebimento dos votos em todas as seções de todo o Brasil, cabendo ao TSE dar cumprimento". O arquivo lido é a "Minuta_ Decisão Liminar" publicada pelo Poder360 (`data/raw/stf/rcl-101673-zanin-25out26.pdf`), não a versão assinada.
+- **Votos dados depois das 17h de Brasília no 2º turno, por duas contas independentes com recortes diferentes:**
+  - 34.330 votos (Auditor C, [linha-do-tempo/02](../analysis/linha-do-tempo/02-votos-apos-17h.md)): Brasil sem o exterior, contando também as urnas reserva (contingência);
+  - 34.066 votos (`scripts/h06-votos-apos-17h.mjs`): só as urnas da própria seção, com o exterior pelo relógio local. Sem o exterior, 33.668.
+  - A diferença vem das urnas reserva e do exterior. Depois das 18h: 1.993 e 1.960.
 - **Tamanho em relação ao resultado:** mesmo que os 34.330 votos fossem todos para um só candidato, seriam 0,77% da diferença de 4.430.191 votos.
 - **Pendente:** versão assinada da decisão no portal do STF e horário do ofício do TSE aos TREs.
 
@@ -95,8 +95,14 @@ Fonte: [parecer 01 do cético](../analysis/cetico-revisor/01-b1a-sem-biometria-a
 
 - Em 16.011 das 497.508 seções analisadas do 2º turno, o boletim registra mais eleitores "sem biometria cadastrada" do que o cadastro público tem. O excesso soma 36.340 eleitores.
 - Nenhuma dessas seções tem mais votantes do que eleitores aptos.
-- Segundo o parecer, a diferença vem quase toda de definição: o arquivo da urna tinha a foto desses eleitores, mas não a digital, e o cadastro público os conta como "com biometria".
+- **Medido só nas 378 seções com excesso de 10 ou mais:** a diferença é de definição. O arquivo da urna tinha a foto desses eleitores, mas não a digital, e o cadastro público os conta como "com biometria". Contando como "sem biometria" só quem também não tem foto, o excesso dessas seções cai de 5.560 para 54. **Pendente:** a mesma medida nas demais seções.
 - **Risco que continua, pela premissa de não confiar em pessoas:** esses eleitores foram liberados só com título, ano de nascimento e a conferência da foto pelo mesário, que é humana e não deixa rastro.
+
+## 5b. Votantes a mais no 2º turno, com e sem digital (Fato, mesmo número dos tópicos 4, 7 e 10)
+
+- **Nas 499.176 seções comparadas,** o comparecimento subiu 2.960.096 do 1º para o 2º turno.
+- **No Brasil sem o exterior,** subiu 2.920.461. Desse aumento, **601.543 (20,6%) entraram sem digital**: eleitor sem biometria cadastrada ou liberação manual pelo mesário.
+- Como os votantes foram liberados está no [tópico 4](04-liberacao-dos-eleitores.md).
 
 ## 6. Perda de votos do Flávio em seções onde o comparecimento não caiu (Fato, revisado pelo cético)
 
@@ -110,11 +116,10 @@ Em três UFs, Flávio perdeu votos em seções onde o número de votantes não c
 |---|---|---|
 | Comparação de cada seção com as vizinhas, 1º × 2º turno | Apontar seções fora do padrão | 1 conta feita (`src/comparar-turnos.js`); em revisão |
 | Para onde foram os votos dos eliminados | Estimar a divisão entre os finalistas | estimativa estatística: não entra no relatório |
-| Troca de votos pela urna × voto dos eliminados | Separar as duas explicações pela proporção | em revisão (parecer 16 do cético, em andamento) |
-| Resultado por modelo de urna e por dia de preparação | Procurar padrão técnico | em revisão |
-| Curva da apuração | Ver se a forma da curva é explicada pela ordem de chegada das cidades | em revisão |
-| Votantes a mais sem digital, 1º × 2º turno | Medir a porta de voto no lugar de eleitor ausente | 1 conta com as 28 UFs; revisão do cético feita com 25 UFs |
-| Teste de Integridade (urnas conferidas com cédulas de papel) | Controle externo contra troca de votos pelo programa da urna | o TSE publicou que não houve divergência; faltam os relatórios por TRE |
+| Troca de votos pela urna × voto dos eliminados | Separar as duas explicações pela proporção | [parecer 16](../analysis/cetico-revisor/16-topico-8-virada.md): só descarta troca uniforme proporcional aos votos do 22 |
+| Resultado por modelo de urna e por dia de preparação | Procurar padrão técnico | parecer 16: sustentado com ressalvas |
+| Curva da apuração | Ver se a forma da curva é explicada pela ordem de chegada das cidades | parecer 16: sustentado com ressalvas; **não serve como contraprova** contra votos alterados |
+| Teste de Integridade (urnas conferidas com cédulas de papel) | Controle externo contra troca de votos pelo programa da urna | há só declarações de "sem divergência" do TSE, do TRE-SP e do TRE-AL; o resultado do teste com biometria não foi obtido |
 | Pesquisas de véspera | Comparação externa à urna | números da imprensa: não entram no relatório |
 | Assinaturas digitais de todos os boletins | Provar que cada arquivo saiu de uma urna oficial e não foi alterado | verificação nacional em andamento |
 

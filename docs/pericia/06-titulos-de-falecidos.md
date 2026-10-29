@@ -167,7 +167,7 @@ Isso é uma **brecha**, e não prova de uso. O que prova uso é rastro nos dados
 **Fato:** em 16.011 das 497.508 seções do 2º turno analisadas (3,2%), o boletim da urna registra **mais** eleitores liberados "sem biometria cadastrada" do que o perfil público do TSE diz existir naquela seção, já descontada uma folga para os eleitores em trânsito. A diferença soma 36.340 eleitores (0,03% dos votos). Em 7.922 dessas seções, o perfil público diz que **todos** os eleitores têm biometria. Ficaram fora da conta só as seções sem comparecimento, as seções cujo boletim não traz o detalhamento do comparecimento e as que não têm cadastro correspondente no perfil (lista no parecer 01).
 
 - Concentra-se em algumas zonas: Vitória (ES), zona 0052 (126 seções, 680 eleitores); Indaiatuba (SP), zona 0211 (84 seções, 600); Ulianópolis (PA), zona 0084 (52 seções, 561).
-- **1º turno: Pendente, em verificação.** O banco ainda não tem o 1º turno completo. A contagem do 1º turno, e a comparação seção a seção entre os dois turnos, só entram neste relatório depois de refeitas com todas as UFs.
+- **1º turno: Pendente, em verificação.** A conta existente do 1º turno foi feita antes de o banco ter todas as UFs. A contagem do 1º turno, e a comparação seção a seção entre os dois turnos, só entram neste relatório depois de refeitas com todas as UFs.
 - Caso conferido no arquivo bruto: Indaiatuba (SP), zona 0211, seção 0438, 2º turno. O boletim registra 65 eleitores sem biometria; o diário da urna tem 65 liberações só por ano de nascimento que terminaram em voto. O perfil público diz que a seção tem 337 eleitores, todos com biometria.
 
 À primeira vista, isso parecia uma contagem impossível: a urna liberando sem digital mais gente do que existe sem digital.
@@ -206,7 +206,7 @@ Os revisores procuraram no diário da urna o que acontecia nesses atendimentos e
 
 **Fato:** em 2.898 dos 5.570 municípios (52%), o perfil de julho de 2026 tem mais eleitores de 16+ do que moradores de 12+ no Censo 2022. O fenômeno se concentra em municípios pequenos. O percentual muda conforme a definição de idade e o ano da população (de 44% a 58%).
 
-**Fato:** esses títulos a mais **votam**. No 2º turno, em 579 municípios votou mais gente do que a população de 12+ de 2022. Pela estimativa do revisor (modelo que supõe que os moradores votam à taxa do estado), os títulos excedentes comparecem a algo entre 42% e 71%, conforme a faixa de municípios. A parcela liberada por digital nesses municípios é igual à do estado (diferença de até 0,6 ponto). Isso indica pessoas reais, presentes na urna, com título num município diferente de onde moram. Não indica títulos de falecidos em massa.
+**Fato:** esses títulos a mais **votam**. No 2º turno, em 579 municípios votou mais gente do que a população de 12+ de 2022. Pela estimativa do revisor (modelo que supõe que os moradores votam à taxa do estado), os títulos excedentes comparecem a cerca de 60% a 70% (afirmação revisada do [parecer 04](../analysis/cetico-revisor/04-eleitorado-acima-populacao.md), a mesma dos tópicos 7 e 10). A parcela liberada por digital nesses municípios é igual à do estado (diferença de até 0,6 ponto). Isso indica pessoas reais, presentes na urna, com título num município diferente de onde moram. Não indica títulos de falecidos em massa.
 
 **Hipótese:** a maior parte é migração com título mantido na cidade de origem ou domicílio eleitoral por vínculo familiar ou profissional, que a lei permite. Os dados agregados não separam isso de transferência irregular de títulos. É tema de outro tópico, e não deste.
 

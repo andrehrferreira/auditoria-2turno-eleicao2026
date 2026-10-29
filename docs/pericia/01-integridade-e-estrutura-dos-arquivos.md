@@ -8,7 +8,7 @@ Os arquivos que o TSE publica na internet são exatamente os que a urna gerou no
 
 Na seção analisada em detalhe, **sim**. As "impressões digitais" dos arquivos baixados batem com as que a urna anotou, e os "lacres" (assinaturas digitais) da urna foram conferidos e são válidos. Mudar um único voto no arquivo é detectado na hora.
 
-Seção analisada em detalhe: Vila Velha (ES), zona 55, seção 372, 2º turno de 25/10/2026. O mesmo teste foi rodado em todas as 2.270 seções com urna do Acre, e nenhuma falhou (seção "Alcance" abaixo). A conferência de todo o país depende do download completo, em andamento.
+Seção analisada em detalhe: Vila Velha (ES), zona 55, seção 372, 2º turno de 25/10/2026. O mesmo teste foi rodado em todas as 2.270 seções com urna do Acre, e nenhuma falhou (seção "Alcance" abaixo). O download de todas as seções está completo e as impressões digitais dos arquivos foram refeitas em todas elas, nos dois turnos ([tópico 0](00-coleta-completa.md)); a conferência dos lacres no país inteiro ainda não foi feita (**Pendente**).
 
 Há dois limites, explicados adiante: um dos dois lacres usa um método secreto do governo e não pode ser conferido por ninguém de fora; e a "carteira de identidade" da urna foi conferida até a autoridade intermediária do TSE, não até a autoridade raiz.
 
@@ -52,7 +52,7 @@ Os degraus 1 e 2 mostram que **nada mudou entre a nota fiscal e o arquivo baixad
 | Degrau | Conferência | Resultado | Rótulo |
 |---|---|---|---|
 | 1 | Impressão digital do pacote de lacres = código informado pelo portal | Igual | **Fato** |
-| 2 | Tamanho e impressão digital do Boletim de Urna, do Registro Digital do Voto e do diário = valores na nota fiscal | Iguais nas duas listas | **Fato** |
+| 2 | Tamanho e impressão digital do Boletim de Urna, do Registro Digital do Voto, do boletim impresso (`-imgbu.dat`) e do diário = valores na nota fiscal | Iguais nas duas listas | **Fato** |
 | 2 | Impressão digital de cada lista = valor anotado no cabeçalho dela | Igual nas duas listas | **Fato** |
 | 3 | Lacre da urna em cada um dos 11 arquivos da lista (inclusive os 7 não publicados) | 11 de 11 válidos | **Fato** |
 | 3 | Lacre da urna na lista inteira | Válido | **Fato** |
@@ -63,7 +63,7 @@ Os degraus 1 e 2 mostram que **nada mudou entre a nota fiscal e o arquivo baixad
 | 4 | A carteira estava dentro da validade no dia da eleição | Válida de 2022 a 2036 | **Fato** |
 | — | Lacre do software do TSE (método CEPESC) | Não verificável | **Limite** |
 
-No total foram 24 conferências nesta seção, todas com resultado positivo.
+No total foram 25 conferências nesta seção, todas com resultado positivo (contagem da versão atual de `src/lacres.js`, refeita em 29/10/2026 nos dois turnos; a mesma contagem, 25 de 25, vale para a seção 364 da mesma zona, citada no tópico 4).
 
 ### Prova de que o teste funciona (contraprova)
 
@@ -90,7 +90,7 @@ Fonte dos arquivos: `resultados.tse.jus.br`, baixados em 29/10/2026, com registr
 
 | Conjunto | Seções conferidas | Resultado |
 |---|---|---|
-| ES · Vila Velha · zona 55 · seção 372 | 1 | 24 de 24 conferências positivas |
+| ES · Vila Velha · zona 55 · seções 364 e 372, nos dois turnos | 2 | 25 de 25 conferências positivas em cada seção e turno |
 | AC · todas as seções com urna | 2.270 (3.310 cópias de pacotes, porque 1.040 seções foram baixadas por dois caminhos) | Todas as conferências positivas, em todas as cópias |
 
 ## Próximos passos
