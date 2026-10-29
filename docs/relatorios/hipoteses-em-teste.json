@@ -2,6 +2,7 @@
   "data": "29/10/2026",
   "titulo": "Hipóteses em teste",
   "subtitulo": "Auditoria independente das eleições gerais de 2026 (1º e 2º turno)",
+  "aviso": "Os números, os status e os textos mudam conforme os testes avançam e passam pela revisão cética. Nenhuma hipótese de fraude foi sustentada até agora, e também não é possível afirmar que não houve fraude: cada hipótese diz o que o seu teste não enxerga. Brecha humana é risco, não prova.",
   "regras": [
     "Universo completo: todo número vem de todas as seções, nunca de amostra. Dado parcial aparece como parcial, com o que falta.",
     "Nunca confiar em pessoas: procedimento feito por gente (mesário, cartório, fiscal) não conta como controle nem como explicação benigna. Só conta controle técnico que deixa rastro nos arquivos.",

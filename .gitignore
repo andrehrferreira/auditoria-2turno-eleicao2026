@@ -49,3 +49,7 @@ CLAUDE.local.md
 
 # Saídas do navegador (Playwright MCP)
 .playwright-mcp/
+
+# Python
+__pycache__/
+*.pyc

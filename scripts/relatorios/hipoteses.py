@@ -41,7 +41,7 @@ def atualizar_readme(d):
         linhas.append(f'| {h["id"]} | {h["titulo"]} | {status} | {h["readme_sabe"]} | {h["readme_proximo"]} |')
     linhas += ['', 'Na fila, ainda sem número de hipótese: ' + '; '.join(f['titulo'].lower() for f in d['fila']) + '.', FIM]
     bloco = '\n'.join(linhas)
-    texto = README.read_text(encoding='utf-8')
+    texto = README.read_text(encoding='utf-8').replace('\r\n', '\n')
     if INICIO in texto:
         texto = re.sub(re.escape(INICIO) + r'.*?' + re.escape(FIM), lambda _: bloco, texto, flags=re.S)
     else:
@@ -49,7 +49,7 @@ def atualizar_readme(d):
         if alvo not in texto:
             raise SystemExit(f'README sem a seção "{alvo}" para ancorar as hipóteses')
         texto = texto.replace(alvo, f'## Hipóteses em análise\n\n{bloco}\n\n{alvo}', 1)
-    README.write_text(texto, encoding='utf-8')
+    README.write_text(texto, encoding='utf-8', newline='\n')
     print(f'README atualizado: {len(d["hipoteses"])} hipóteses')
 
 
@@ -93,7 +93,14 @@ def gerar_pdf(d):
     hist = []
     # capa
     hist += [Spacer(1, 60 * mm), p(d['titulo'], capa_t), Spacer(1, 4 * mm), p(d['subtitulo'], capa_s),
-             Spacer(1, 3 * mm), p(f'Retrato de {d["data"]}', capa_s), Spacer(1, 18 * mm)]
+             Spacer(1, 3 * mm), p(f'Retrato de {d["data"]}', capa_s), Spacer(1, 10 * mm)]
+    aviso = Table([[Paragraph('<font name="Corpo-B">Análise em andamento. Nada aqui é conclusão final.</font> '
+                              + escape(d['aviso']), corpo)]], colWidths=[None])
+    aviso.setStyle(TableStyle([('BACKGROUND', (0, 0), (-1, -1), colors.HexColor('#fff4e5')),
+                               ('LINEBEFORE', (0, 0), (0, -1), 3, colors.HexColor('#b26a00')),
+                               ('LEFTPADDING', (0, 0), (-1, -1), 10), ('RIGHTPADDING', (0, 0), (-1, -1), 10),
+                               ('TOPPADDING', (0, 0), (-1, -1), 8), ('BOTTOMPADDING', (0, 0), (-1, -1), 8)]))
+    hist += [aviso, Spacer(1, 8 * mm)]
     resumo = {}
     for h in d['hipoteses']:
         resumo[h['status']] = resumo.get(h['status'], 0) + 1
@@ -160,7 +167,7 @@ def gerar_pdf(d):
         c.saveState()
         c.setFont('Corpo', 8.5)
         c.setFillColor(suave)
-        c.drawString(18 * mm, 11 * mm, f'{d["titulo"]} · {d["subtitulo"]} · {d["data"]}')
+        c.drawString(18 * mm, 11 * mm, f'{d["titulo"]} · {d["data"]} · análise em andamento, não é conclusão final')
         c.drawRightString(A4[0] - 18 * mm, 11 * mm, f'{doc.page}')
         c.restoreState()
 

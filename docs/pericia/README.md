@@ -1,5 +1,8 @@
 # Relatório de perícia: arquivos das urnas das eleições de 2026 (1º e 2º turno)
 
+> [!WARNING]
+> **Relatório em elaboração. Nada aqui é conclusão final.** Os tópicos são atualizados conforme os testes avançam e passam pela revisão cética; o que ainda não foi medido aparece como **Pendente**, sem número. Nenhuma hipótese de fraude foi sustentada até agora, e também não é possível afirmar que não houve fraude: cada tópico diz o que os seus testes não enxergam.
+
 Este relatório é escrito para quem não é da área de tecnologia. Cada termo técnico é explicado na primeira vez que aparece, e há um glossário no fim desta página.
 
 Toda afirmação traz um destes rótulos:
