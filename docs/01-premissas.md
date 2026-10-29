@@ -31,8 +31,10 @@ Verificar, com dados públicos e métodos reproduzíveis, a consistência intern
 | A soma dos BUs bate com a totalização divulgada? | Sim | BU por seção vs. resultado consolidado |
 | O RDV de cada seção é coerente com o BU? | Sim | RDV traz os votos embaralhados da seção |
 | O horário e o ritmo dos votos em cada urna são plausíveis? | Sim | Log de urna: eventos com data/hora |
-| Quantos eleitores foram habilitados sem biometria? | Sim **[a confirmar no parse de 2026]** | Em 2022 e 2024 o log registrava os eventos de habilitação e as tentativas de digital |
-| A urna que emitiu o BU é a mesma do log? | Sim | Correspondência esperada/efetivada, série da urna |
+| Quantos eleitores foram habilitados sem biometria? | Sim (confirmado em 2026) | Log (4 formas de habilitação) e BU (`detalhamentoComparecimento`) batem entre si. Ver doc 06 |
+| A urna que emitiu o BU é a mesma do log? | Sim (confirmado em 2026) | Nº interno da urna no BU, no log e no certificado do `.vsc` |
+| Os arquivos publicados são os que a urna gerou, assinados por urna oficial? | Sim, com limites | Hash + assinatura Ed521/ECDSA da urna + certificado da AC do TSE (`src/lacres.js`). A assinatura de software (CEPESC) não é verificável e a cadeia de certificados para na AC intermediária. Ver [pericia/01](pericia/01-integridade-e-estrutura-dos-arquivos.md) |
+| Em que horário cada voto foi computado? | Sim | Log, em horário **local** da UF: converter para Brasília (doc 07) |
 | Qual título votou em qual candidato? | **Não** | O voto é secreto por desenho: o RDV embaralha e o log não identifica o eleitor |
 | Um título específico compareceu? | **Não pelos arquivos de urna** | Depende do caderno/folha de votação, que não é público. Ver doc 04 |
 

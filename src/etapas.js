@@ -6,7 +6,7 @@ import { pipeline } from 'node:stream/promises';
 import {
   dirSecao, interpretarNomeUrna, nomeZip, urlArquivo, urlAux, urlConfigUf, urlZip,
 } from './config.js';
-import { conferirSecao, hashesForaDoAux } from './conferencia.js';
+import { conferirSecao, ehManifesto, hashesForaDoAux } from './conferencia.js';
 import { baixarArquivoGrande, baixarBuffer, emParalelo, salvarAtomico } from './http.js';
 import { montarSecoes } from './indice.js';
 import { criarProgresso, formatarBytes } from './registro.js';
@@ -41,6 +41,8 @@ const sha256 = (buffer) => createHash('sha256').update(buffer).digest('hex');
 
 /** Caminho relativo a data/, sempre com '/', para o manifesto ser portável entre sistemas. */
 const relativo = (ctx, caminho) => path.relative(ctx.dirDados, caminho).split(path.sep).join('/');
+
+const CONTABILIZADA = new Set(['completa', 'sem_arquivos_oficiais']);
 
 /** Etapa 1: lista de seções por UF a partir do `cs.json` oficial. */
 export async function etapaIndice(ctx) {
@@ -112,8 +114,8 @@ export async function etapaZips(ctx) {
 }
 
 async function extrairSecao(handle, itens, dirUrnas) {
-  const itemVota = itens.find((i) => i.info.tipo === 'vota.vsc');
-  if (!itemVota) throw new Error('seção no zip sem vota.vsc');
+  const itemVota = itens.find((i) => ehManifesto(i.info.tipo));
+  if (!itemVota) throw new Error('seção no zip sem vota.vsc nem sa.vsc');
   const vota = await lerEntrada(handle, itemVota.entrada);
   const dirHash = path.join(dirSecao(dirUrnas, itemVota.info), hashDiretorio(vota));
 
@@ -199,7 +201,7 @@ export async function etapaExtrair(ctx, indice) {
 export async function etapaAux(ctx, indice) {
   const { pleito, ufs, dirs, registro, concorrencia } = ctx;
   const secoes = ufs.flatMap((uf) => indice.get(uf).principais);
-  const progresso = criarProgresso('aux', secoes.length);
+  const progresso = criarProgresso('aux', secoes.length, { sufixo: () => `limite=${ctx.controle.taxa.toFixed(0)}/s bloqueios=${ctx.controle.bloqueios}` });
 
   await emParalelo(secoes, concorrencia, async (s) => {
     const destino = path.join(dirSecao(dirs.urnas, s), 'aux.json');
@@ -210,7 +212,7 @@ export async function etapaAux(ctx, indice) {
     }
     const url = urlAux(pleito, s);
     try {
-      const buffer = await baixarBuffer(url);
+      const buffer = await baixarBuffer(url, { controle: ctx.controle });
       JSON.parse(buffer.toString('utf8'));
       await salvarAtomico(destino, buffer);
       progresso.avancar();
@@ -240,7 +242,7 @@ export async function etapaConferir(ctx, indice) {
         const baixar = reparar
           ? async (hash, nome, destino) => {
             const url = urlArquivo(pleito, s, hash, nome);
-            const buffer = await baixarBuffer(url);
+            const buffer = await baixarBuffer(url, { controle: ctx.controle });
             await salvarAtomico(destino, buffer);
             await registro.download({ etapa: 'conferir', url, caminho: relativo(ctx, destino), bytes: buffer.length, sha256: sha256(buffer) });
           }
@@ -248,7 +250,7 @@ export async function etapaConferir(ctx, indice) {
         const resultado = await conferirSecao({ dir, aux, baixar });
         const extras = await hashesForaDoAux(dir, aux);
         registros.push({ uf: s.uf, municipio: s.municipio, zona: s.zona, secao: s.secao, agregadas: s.agregadas, ...resultado, ...(extras.length ? { hashesForaDoAux: extras } : {}) });
-        if (resultado.situacao === 'completa') progresso.avancar();
+        if (CONTABILIZADA.has(resultado.situacao)) progresso.avancar();
         else progresso.falhar();
       } catch (erro) {
         progresso.falhar();
@@ -262,13 +264,15 @@ export async function etapaConferir(ctx, indice) {
 
     const porSituacao = {};
     for (const r of registros) porSituacao[r.situacao] = (porSituacao[r.situacao] ?? 0) + 1;
-    const completas = new Set(registros.filter((r) => r.situacao === 'completa').map((r) => `${r.municipio}/${r.zona}/${r.secao}`));
+    // "Contabilizada" = completa, ou sem arquivo por status oficial do TSE (ex.: aux "Nao instalada").
+    const contabilizadas = new Set(registros.filter((r) => CONTABILIZADA.has(r.situacao)).map((r) => `${r.municipio}/${r.zona}/${r.secao}`));
     const imgbu = registros.flatMap((r) => r.hashes ?? []).filter((h) => h.imgbu === 'ok').length;
     resumo.ufs[uf] = {
       secoesComUrna: principais.length,
       agregadas: agregadas.length,
-      agregadasCobertas: agregadas.filter((a) => completas.has(`${a.municipio}/${a.zona}/${a.principal}`)).length,
+      agregadasCobertas: agregadas.filter((a) => contabilizadas.has(`${a.municipio}/${a.zona}/${a.principal}`)).length,
       ...porSituacao,
+      completasSemAux: registros.filter((r) => r.situacao === 'completa' && r.fonte === 'disco').length,
       imgbuOk: imgbu,
       conferidoEm: new Date().toISOString(),
     };
@@ -280,11 +284,14 @@ export async function etapaConferir(ctx, indice) {
     ufs: linhas.length,
     secoesComUrna: soma('secoesComUrna'),
     completas: soma('completa'),
+    semArquivosOficiais: soma('sem_arquivos_oficiais'),
+    completasSemAux: soma('completasSemAux'),
+    contabilizadas: soma('completa') + soma('sem_arquivos_oficiais'),
     agregadas: soma('agregadas'),
     agregadasCobertas: soma('agregadasCobertas'),
   };
   resumo.coberturaTotal = resumo.total.ufs === ctx.totalUfs
-    && resumo.total.completas === resumo.total.secoesComUrna
+    && resumo.total.contabilizadas === resumo.total.secoesComUrna
     && resumo.total.agregadasCobertas === resumo.total.agregadas;
   resumo.geradoEm = new Date().toISOString();
   await salvarAtomico(caminhoResumo, JSON.stringify(resumo, null, 2));
@@ -292,12 +299,12 @@ export async function etapaConferir(ctx, indice) {
   console.table(Object.fromEntries(linhas.map(([uf, v]) => [uf.toUpperCase(), {
     'com urna': v.secoesComUrna, completas: v.completa ?? 0, incompletas: v.incompleta ?? 0,
     'sem aux': v.sem_aux ?? 0, 'sem arquivos oficiais': v.sem_arquivos_oficiais ?? 0, erro: v.erro ?? 0,
-    agregadas: `${v.agregadasCobertas}/${v.agregadas}`, imgbu: v.imgbuOk,
+    agregadas: `${v.agregadasCobertas}/${v.agregadas}`, imgbu: v.imgbuOk, 'sem aux (só disco)': v.completasSemAux ?? 0,
   }])));
-  const pct = resumo.total.secoesComUrna ? ((resumo.total.completas / resumo.total.secoesComUrna) * 100).toFixed(3) : '0';
-  console.log(`[conferir] ${resumo.total.completas}/${resumo.total.secoesComUrna} seções com urna completas (${pct}%) · agregadas cobertas ${resumo.total.agregadasCobertas}/${resumo.total.agregadas} · cobertura total: ${resumo.coberturaTotal ? 'SIM' : 'NÃO'}`);
+  const pct = resumo.total.secoesComUrna ? ((resumo.total.contabilizadas / resumo.total.secoesComUrna) * 100).toFixed(3) : '0';
+  console.log(`[conferir] ${resumo.total.contabilizadas}/${resumo.total.secoesComUrna} seções contabilizadas (${pct}%): ${resumo.total.completas} completas (${resumo.total.completasSemAux} conferidas só pelo disco, sem aux) + ${resumo.total.semArquivosOficiais} sem arquivo oficial · agregadas cobertas ${resumo.total.agregadasCobertas}/${resumo.total.agregadas} · cobertura total: ${resumo.coberturaTotal ? 'SIM' : 'NÃO'}`);
   return ufs.every((uf) => {
     const v = resumo.ufs[uf];
-    return v.completa === v.secoesComUrna && v.agregadasCobertas === v.agregadas;
+    return (v.completa ?? 0) + (v.sem_arquivos_oficiais ?? 0) === v.secoesComUrna && v.agregadasCobertas === v.agregadas;
   });
 }

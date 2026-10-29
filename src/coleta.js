@@ -2,6 +2,7 @@ import path from 'node:path';
 import { parseArgs } from 'node:util';
 import { DIR_DADOS, TURNOS, UFS, caminhos } from './config.js';
 import { etapaAux, etapaConferir, etapaExtrair, etapaIndice, etapaZips } from './etapas.js';
+import { criarControleTaxa } from './http.js';
 import { criarRegistro } from './registro.js';
 
 const ETAPAS = ['indice', 'zips', 'extrair', 'aux', 'conferir'];
@@ -18,6 +19,8 @@ Uso: node src/coleta.js [opções]
   --atualizar-indice       baixa de novo os cs.json mesmo se já existirem
   --reextrair              extrai os zips de novo mesmo se já marcados como extraídos
   --sem-reparo             etapa conferir só verifica, não baixa o que falta
+  --taxa-inicial <n>       requisições/s por seção no início; sobe sozinha e cai no HTTP 429 (padrão: 50)
+  --taxa-maxima <n>        teto da taxa de requisições/s por seção (padrão: 500)
   -h, --ajuda              mostra esta ajuda
 
 Saída: código 0 somente se a conferência fechar 100% das seções das UFs processadas.`;
@@ -39,6 +42,8 @@ async function main() {
       'atualizar-indice': { type: 'boolean', default: false },
       reextrair: { type: 'boolean', default: false },
       'sem-reparo': { type: 'boolean', default: false },
+      'taxa-inicial': { type: 'string', default: '50' },
+      'taxa-maxima': { type: 'string', default: '500' },
       ajuda: { type: 'boolean', short: 'h', default: false },
     },
   });
@@ -70,6 +75,11 @@ async function main() {
     atualizarIndice: values['atualizar-indice'],
     reextrair: values.reextrair,
     reparar: !values['sem-reparo'],
+    // Taxa de requisições por seção ao resultados.tse.jus.br: adaptativa, compartilhada por aux e conferir.
+    controle: criarControleTaxa({
+      inicial: inteiroPositivo(values['taxa-inicial'], 'taxa-inicial'),
+      maximo: inteiroPositivo(values['taxa-maxima'], 'taxa-maxima'),
+    }),
   };
 
   let codigo = 0;

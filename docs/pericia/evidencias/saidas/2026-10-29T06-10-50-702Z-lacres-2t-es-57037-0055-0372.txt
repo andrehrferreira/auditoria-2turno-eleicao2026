@@ -1,0 +1,30 @@
+
+data\raw\secoes\es\57037\0055\0372\2b347879353379634131534d7077675677735448544d3974334f6a6c49687150566e6949724f56614174413d
+urna UEAO02199150 (ed521), emitida pela AC UE2020
+OK    [certificado] certificado UEAO02199150 assinado pela AC UE2020 (chave de acue2020.der)
+OK    [certificado] certificado da urna válido na data da eleição (2022-05-28 a 2036-02-04)
+OK    [lista] SHA-512 da lista de arquivos confere
+OK    [lista] assinatura da urna sobre a lista de arquivos
+OK    [arquivo] o03221es5703700550372-bu.dat: SHA-512 do arquivo = hash lacrado
+OK    [arquivo] o03221es5703700550372-bu.dat: assinatura da urna sobre o hash
+OK    [arquivo] o03221es5703700550372-rdv.dat: SHA-512 do arquivo = hash lacrado
+OK    [arquivo] o03221es5703700550372-rdv.dat: assinatura da urna sobre o hash
+OK    [arquivo] o03221es5703700550372-jufa.dat: assinatura da urna sobre o hash (arquivo não disponível; conferido só o lacre do hash)
+OK    [arquivo] o03221es5703700550372-imgbu.dat: assinatura da urna sobre o hash (arquivo não disponível; conferido só o lacre do hash)
+OK    [arquivo] o03221es5703700550372-imgze.dat: assinatura da urna sobre o hash (arquivo não disponível; conferido só o lacre do hash)
+OK    [arquivo] o03221es5703700550372-hash.dat: assinatura da urna sobre o hash (arquivo não disponível; conferido só o lacre do hash)
+OK    [arquivo] o03221es5703700550372-wsqbio.jez: assinatura da urna sobre o hash (arquivo não disponível; conferido só o lacre do hash)
+OK    [arquivo] o03221es5703700550372-wsqman.jez: assinatura da urna sobre o hash (arquivo não disponível; conferido só o lacre do hash)
+OK    [arquivo] o03221es5703700550372-wsqmes.jez: assinatura da urna sobre o hash (arquivo não disponível; conferido só o lacre do hash)
+OK    [arquivo] o03221es5703700550372-mr.ver: assinatura da urna sobre o hash (arquivo não disponível; conferido só o lacre do hash)
+OK    [arquivo] o03221es5703700550372-log.jez: SHA-512 do arquivo = hash lacrado
+OK    [arquivo] o03221es5703700550372-log.jez: assinatura da urna sobre o hash
+OK    [bu] eleição 6258: 4 tuplas com hash recalculado igual ao gravado
+OK    [bu] eleição 6258: último hash recalculado = gravado
+OK    [bu] eleição 6258: assinatura da urna sobre o último hash
+OK    [bu] eleição 6260: 4 tuplas com hash recalculado igual ao gravado
+OK    [bu] eleição 6260: último hash recalculado = gravado
+OK    [bu] eleição 6260: assinatura da urna sobre o último hash
+24 conferências, 0 falha(s)
+
+RESUMO: 1 diretório(s) de seção, 0 com falha, 0 falha(s) no total

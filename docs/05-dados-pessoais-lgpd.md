@@ -12,7 +12,7 @@ A base própria de pessoas (CPFs) e qualquer retorno de consulta por CPF são **
 | 4 | Exemplos, testes e documentação usam **dados fictícios** |
 | 5 | Os retornos de APIs pagas ficam em `data/private/` e seguem a mesma regra 1 |
 | 6 | Cada consulta externa registra finalidade, data e volume num log local, sem o CPF em claro |
-| 6a | O **log da urna** traz o número do título dos mesários (registro, habilitação, encerramento). Em qualquer saída, mascarar como "Mesário A/B/C…" (doc 06) |
+| 6a | Arquivos **públicos** do TSE (BU, RDV, log, `.vsc`) **não precisam de máscara** (decisão de 29/10/2026). Isso inclui o título dos mesários que aparece no log. Publicar acusação ligada a pessoa identificada continua passando por revisão jurídica antes |
 | 7 | Nenhum resultado individual ("fulano está morto e votou") é publicado. Casos individuais que pareçam relevantes vão, como **rascunho**, para a autoridade competente (MPE/TRE), com revisão humana |
 
 ## Pendências (Recomendação)

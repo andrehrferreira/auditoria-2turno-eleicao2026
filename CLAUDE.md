@@ -52,3 +52,11 @@ CHANGELOG per PR/release, not per task. See `.rulebook/specs/orchestration.md`.
   `/clear` is free — state lives in `.rulebook/`.
 
 <!-- RULEBOOK:END -->
+
+## Modelos auxiliares (GPT Astra, Grok, Kimi 3)
+- Use GPT Astra (`cx/gpt-6-astra`), Grok (`xai/grok-4.6`) e Kimi 3 (`kimi/kimi-k3`) como revisores
+  independentes, pelo 9Router local, com `node src/modelos.js <prompt.md> <dir> [astra grok kimi]`.
+- O Claude coordena e divide as tarefas. A tabela de tarefas e as regras ficam em `docs/08-coordenacao-modelos.md`.
+- Nunca mandar a base de CPFs nem `data/private/` no prompt (arquivos públicos do TSE podem ir, doc 05 regra 6a).
+  A resposta de um modelo é Hipótese até que um script do repo a reproduza.
+  Só o Claude muda o status em `docs/hipoteses.md`.

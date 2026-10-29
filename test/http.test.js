@@ -4,7 +4,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import path from 'node:path';
 import test from 'node:test';
-import { ErroHttp, baixarArquivoGrande, baixarBuffer, emParalelo } from '../src/http.js';
+import { ErroHttp, baixarArquivoGrande, baixarBuffer, criarControleTaxa, emParalelo } from '../src/http.js';
 import { diretorioTemporario } from './auxiliares.js';
 
 async function servidor(t, tratar) {
@@ -88,6 +88,54 @@ test('repete erro transitório (503) até conseguir', async (t) => {
   });
   assert.equal((await baixarBuffer(`${url}/x`, opcoesRapidas)).toString(), 'ok');
   assert.equal(pedidos.length, 3);
+});
+
+function relogioFalso() {
+  let t = 0;
+  return { agora: () => t, dormir: async (ms) => { t += ms; } };
+}
+
+test('controle de taxa espaça as requisições conforme a taxa', async () => {
+  const relogio = relogioFalso();
+  const controle = criarControleTaxa({ inicial: 10, ...relogio });
+  for (let i = 0; i < 5; i++) await controle.aguardarVez();
+  assert.equal(relogio.agora(), 400); // 5 vezes a 10/s: 0, 100, 200, 300, 400 ms
+});
+
+test('no 429 todos pausam juntos, a taxa cai à metade e a pausa dobra se repetir', async () => {
+  const relogio = relogioFalso();
+  const controle = criarControleTaxa({ inicial: 40, pausaBaseMs: 1000, ...relogio });
+  controle.limitado();
+  controle.limitado(); // mesmo surto: conta uma vez
+  assert.equal(controle.taxa, 20);
+  assert.equal(controle.bloqueios, 1);
+  await controle.aguardarVez();
+  assert.ok(relogio.agora() >= 1000);
+  controle.limitado();
+  const antes = relogio.agora();
+  await controle.aguardarVez();
+  assert.ok(relogio.agora() - antes >= 2000);
+  assert.equal(controle.taxa, 10);
+});
+
+test('a taxa sobe 10% a cada janela de respostas sem 429, até o máximo', () => {
+  const controle = criarControleTaxa({ inicial: 100, maximo: 115, janelaSucessos: 3, ...relogioFalso() });
+  for (let i = 0; i < 3; i++) controle.sucesso();
+  assert.ok(Math.abs(controle.taxa - 110) < 1e-9);
+  for (let i = 0; i < 3; i++) controle.sucesso();
+  assert.equal(controle.taxa, 115);
+});
+
+test('baixarBuffer com controle trata 429 como pausa global e conclui', async (t) => {
+  const { url, pedidos } = await servidor(t, (req, res, n) => {
+    if (n <= 2) { res.writeHead(429); res.end(); return; }
+    res.writeHead(200);
+    res.end('ok');
+  });
+  const controle = criarControleTaxa({ inicial: 50, pausaBaseMs: 20 });
+  assert.equal((await baixarBuffer(`${url}/x`, { controle, esperaBaseMs: 1 })).toString(), 'ok');
+  assert.equal(pedidos.length, 3);
+  assert.equal(controle.bloqueios, 2);
 });
 
 test('emParalelo respeita o limite e processa todos os itens', async () => {

@@ -20,7 +20,7 @@ A hipótese mistura três afirmações diferentes, e cada uma tem evidência e p
 
 **Fato, por desenho do sistema.** BU, RDV e log não identificam o eleitor. Pelos arquivos públicos não é possível dizer que o título X votou.
 
-**[a confirmar no parse de 2026]** O log registra eventos de habilitação: título digitado, biometria aceita ou recusada, liberação sem biometria. Isso permite um **teste indireto** por seção:
+**Fato (confirmado no log de 2026, doc 06).** O log registra eventos de habilitação: o **tipo** de identificador digitado (CPF ou título, **sem o número do eleitor**), biometria aceita ou recusada, liberação por ano de nascimento, por dado pessoal ou pelo mesário. O BU traz o mesmo total por forma de habilitação. Como o número do eleitor não aparece, o log não permite ligar um voto a um título de falecido; isso permite só um **teste indireto** por seção:
 
 - taxa de habilitação **sem biometria** por seção, comparada com o 1º turno e com 2022;
 - seções com comparecimento acima do esperado em relação aos óbitos recentes do município (SIM/Registro Civil);

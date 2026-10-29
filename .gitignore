@@ -10,6 +10,8 @@ tmp/
 # Manifestos por seção são grandes (regeneráveis pela etapa conferir); resumo/zips/ocorrencias ficam versionados
 data/manifest/*/cobertura/
 data/manifest/*/downloads.jsonl
+# Saídas grandes e cópias de referência da perícia: o hash de cada uma fica em docs/pericia/evidencias/cadeia.jsonl
+data/evidencias/
 
 # NUNCA versionar: base de CPFs e retornos de consultas pessoais (LGPD)
 data/private/

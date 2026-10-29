@@ -2,6 +2,11 @@ import { readdir, readFile, rename } from 'node:fs/promises';
 import path from 'node:path';
 import { hashDiretorio, lerResumosVsc, sha512Hex } from './vsc.js';
 
+// Manifesto assinado da seção: `-vota.vsc` (urna) ou `-sa.vsc` (Sistema de Apuração, ex.: exterior).
+export const TIPOS_MANIFESTO = new Set(['vota', 'sa']);
+const SUFIXOS_MANIFESTO = ['vota.vsc', 'sa.vsc'];
+export const ehManifesto = (tipoArquivo) => SUFIXOS_MANIFESTO.includes(tipoArquivo);
+
 async function lerOuNulo(caminho) {
   try {
     return await readFile(caminho);
@@ -40,14 +45,51 @@ async function garantir(caminho, valido, baixar) {
   return avaliar();
 }
 
+// Arquivos exigidos por pacote, como o aux.json os lista (urna e Sistema de Apuração).
+const EXIGIDOS = { 'vota.vsc': ['vota', 'bu', 'rdv', 'log'], 'sa.vsc': ['sa', 'busa', 'rdv', 'logsa'] };
+const EXTENSAO = { vota: 'vota.vsc', sa: 'sa.vsc', bu: 'bu.dat', busa: 'busa.dat', rdv: 'rdv.dat', log: 'log.jez', logsa: 'logsa.jez' };
+
 /**
- * Confere uma seção principal contra o `aux.json` oficial.
+ * Sem aux.json, monta a lista esperada a partir do disco: cada diretório de hash com um manifesto
+ * (`-vota.vsc`/`-sa.vsc`) vira um pacote que exige os mesmos arquivos que o aux exigiria.
+ * O nome do diretório veio de hashDiretorio(manifesto) na extração do zip; a conferência refaz essa conta.
+ */
+export async function auxDoDisco(dir) {
+  let itens;
+  try {
+    itens = await readdir(dir, { withFileTypes: true });
+  } catch (erro) {
+    if (erro.code === 'ENOENT') return { st: null, hashes: [] };
+    throw erro;
+  }
+  const hashes = [];
+  for (const d of itens.filter((i) => i.isDirectory()).sort((a, b) => a.name.localeCompare(b.name))) {
+    const nomes = await readdir(path.join(dir, d.name));
+    const manifesto = nomes.find((n) => SUFIXOS_MANIFESTO.some((s) => n.endsWith(`-${s}`)));
+    if (!manifesto) continue;
+    const sufixo = SUFIXOS_MANIFESTO.find((s) => manifesto.endsWith(`-${s}`));
+    const prefixo = manifesto.slice(0, -(sufixo.length + 1));
+    hashes.push({ hash: d.name, st: null, arq: EXIGIDOS[sufixo].map((tp) => ({ nm: `${prefixo}-${EXTENSAO[tp]}`, tp })) });
+  }
+  return { st: null, hashes };
+}
+
+/**
+ * Confere uma seção principal contra o `aux.json` oficial ou, sem ele, contra o que está no disco (`fonte`).
  * Para cada hash: SHA-256 do vota.vsc = nome do hash; SHA-512 de cada arquivo = valor no vota.vsc.
  * `baixar(hash, nome, destino)` é opcional; sem ele, só verifica.
  */
 export async function conferirSecao({ dir, aux, baixar }) {
-  if (!aux) return { situacao: 'sem_aux', hashes: [] };
-  const hashes = aux.hashes ?? [];
+  const fonte = aux ? 'aux' : 'disco';
+  const efetivo = aux ?? (await auxDoDisco(dir));
+  if (!aux && efetivo.hashes.length === 0) return { situacao: 'sem_aux', fonte, hashes: [] };
+  const r = await conferirContra({ dir, aux: efetivo, baixar });
+  return { ...r, fonte };
+}
+
+async function conferirContra({ dir, aux, baixar }) {
+  // Seção sem urna ("Nao instalada"): o aux traz hash "0", st "Sem arquivo" e arq com nome vazio.
+  const hashes = (aux.hashes ?? []).filter((h) => h.hash && h.hash !== '0' && (h.arq ?? []).some((a) => a.nm));
   if (hashes.length === 0) return { situacao: 'sem_arquivos_oficiais', statusAux: aux.st ?? null, hashes: [] };
 
   const resultado = [];
@@ -60,28 +102,29 @@ export async function conferirSecao({ dir, aux, baixar }) {
     resultado.push(registro);
 
     const baixarArquivo = (nome) => (baixar ? () => baixar(h.hash, nome, path.join(dirHash, nome)) : null);
-    const arqVota = (h.arq ?? []).find((a) => a.tp === 'vota');
-    if (!arqVota) {
+    const arqManifesto = (h.arq ?? []).find((a) => TIPOS_MANIFESTO.has(a.tp));
+    if (!arqManifesto) {
       registro.arquivos.vota = 'nao_listado_no_aux';
       continue;
     }
+    const tpManifesto = arqManifesto.tp;
 
-    const vota = await garantir(path.join(dirHash, arqVota.nm), (b) => hashDiretorio(b) === h.hash, baixarArquivo(arqVota.nm));
-    registro.arquivos.vota = vota.estado;
-    if (vota.erro) registro.erros.vota = vota.erro;
-    if (vota.estado !== 'ok') continue;
+    const manifesto = await garantir(path.join(dirHash, arqManifesto.nm), (b) => hashDiretorio(b) === h.hash, baixarArquivo(arqManifesto.nm));
+    registro.arquivos[tpManifesto] = manifesto.estado;
+    if (manifesto.erro) registro.erros[tpManifesto] = manifesto.erro;
+    if (manifesto.estado !== 'ok') continue;
 
     let resumos;
     try {
-      resumos = lerResumosVsc(vota.buffer);
+      resumos = lerResumosVsc(manifesto.buffer);
     } catch (erro) {
-      registro.arquivos.vota = 'vsc_ilegivel';
-      registro.erros.vota = erro.message;
+      registro.arquivos[tpManifesto] = 'vsc_ilegivel';
+      registro.erros[tpManifesto] = erro.message;
       continue;
     }
 
     for (const arq of h.arq) {
-      if (arq.tp === 'vota') continue;
+      if (arq.tp === tpManifesto) continue;
       const esperado = resumos.get(arq.nm);
       if (!esperado) {
         registro.arquivos[arq.tp] = 'nao_listado_no_vsc';
@@ -93,7 +136,7 @@ export async function conferirSecao({ dir, aux, baixar }) {
     }
 
     // imgbu só vem no zip por UF (não é publicado por seção): confere se presente, não é exigido.
-    const nomeImgbu = arqVota.nm.replace(/-vota\.vsc$/, '-imgbu.dat');
+    const nomeImgbu = arqManifesto.nm.replace(/-vota\.vsc$/, '-imgbu.dat').replace(/-sa\.vsc$/, '-imgbusa.dat');
     const esperadoImgbu = resumos.get(nomeImgbu);
     if (esperadoImgbu) {
       registro.imgbu = (await garantir(path.join(dirHash, nomeImgbu), (b) => sha512Hex(b) === esperadoImgbu, null)).estado;

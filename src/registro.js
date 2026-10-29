@@ -20,7 +20,7 @@ export function criarRegistro(dirManifesto) {
 }
 
 /** Linha de progresso no terminal, atualizada no máximo a cada `intervaloMs`. */
-export function criarProgresso(rotulo, total, { intervaloMs = 2000, formatar = (n) => String(n) } = {}) {
+export function criarProgresso(rotulo, total, { intervaloMs = 2000, formatar = (n) => String(n), sufixo = () => '' } = {}) {
   const inicio = Date.now();
   let feitos = 0;
   let falhas = 0;
@@ -33,7 +33,7 @@ export function criarProgresso(rotulo, total, { intervaloMs = 2000, formatar = (
     const segundos = Math.max(1, (agora - inicio) / 1000);
     const pct = total ? ((feitos / total) * 100).toFixed(1) : '?';
     const taxa = formatar(feitos / segundos);
-    process.stdout.write(`\r[${rotulo}] ${formatar(feitos)}/${formatar(total)} (${pct}%) ${taxa}/s falhas=${falhas}   `);
+    process.stdout.write(`\r[${rotulo}] ${formatar(feitos)}/${formatar(total)} (${pct}%) ${taxa}/s falhas=${falhas} ${sufixo()}   `);
   };
 
   return {

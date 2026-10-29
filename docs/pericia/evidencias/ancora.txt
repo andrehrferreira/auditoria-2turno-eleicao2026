@@ -1,0 +1,4 @@
+7465fb25b6112ea66745024a9e40c96abd1f299708b4b916e48bc458f53db77b
+
+SHA-256 da entrada 11 de cadeia.jsonl (2026-10-29T06:25:46.930Z).
+Este valor resume toda a cadeia: qualquer alteração em entradas anteriores muda este hash.

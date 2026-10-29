@@ -3,9 +3,11 @@ import path from 'node:path';
 export const CICLO = 'ele2026';
 
 // Códigos de pleito conferidos em https://resultados.tse.jus.br/oficial/comum/config/ele-c.json
+// `eleicoes`: código da eleição → cargos (CargoConstitucional), também conferidos no ele-c.json
+// (no 2º turno, as eleições são o campo `cdt2` das do 1º).
 export const TURNOS = {
-  1: { pleito: '3220', sufixo: '1t' },
-  2: { pleito: '3221', sufixo: '2t' },
+  1: { pleito: '3220', sufixo: '1t', eleicoes: { 6257: [1], 6259: [3, 5, 6, 7, 8] } },
+  2: { pleito: '3221', sufixo: '2t', eleicoes: { 6258: [1], 6260: [3] } },
 };
 
 export const UFS = [

@@ -43,15 +43,73 @@ export async function comRetentativa(fn, { tentativas = 6, esperaBaseMs = 1000 }
   }
 }
 
-export async function baixarBuffer(url, { timeoutMs = 60_000, tentativas, esperaBaseMs } = {}) {
+/**
+ * Controle de taxa compartilhado entre requisições simultâneas (aumento aditivo, redução multiplicativa).
+ * O servidor do TSE responde 429 sem Retry-After quando a taxa passa do limite e bloqueia o IP por um tempo:
+ * no 429, todas as requisições pausam juntas e a taxa cai pela metade; a cada `janelaSucessos` respostas
+ * sem 429, a taxa sobe 10%.
+ */
+export function criarControleTaxa({
+  inicial = 50, minimo = 5, maximo = 500, pausaBaseMs = 30_000, pausaMaximaMs = 600_000, janelaSucessos = 200,
+  agora = () => Date.now(), dormir = esperar,
+} = {}) {
+  let taxa = inicial;
+  let proximoSlot = 0;
+  let pausaAte = 0;
+  let pausaAtualMs = pausaBaseMs;
+  let sucessosSeguidos = 0;
+  let bloqueios = 0;
+
+  return {
+    async aguardarVez() {
+      for (;;) {
+        const t = agora();
+        if (t < pausaAte) {
+          await dormir(pausaAte - t);
+          continue;
+        }
+        const slot = Math.max(t, proximoSlot);
+        proximoSlot = slot + 1000 / taxa;
+        if (slot > t) await dormir(slot - t);
+        if (agora() >= pausaAte) return;
+      }
+    },
+    sucesso() {
+      sucessosSeguidos++;
+      if (sucessosSeguidos >= janelaSucessos) {
+        sucessosSeguidos = 0;
+        taxa = Math.min(maximo, taxa * 1.1);
+        pausaAtualMs = pausaBaseMs;
+      }
+    },
+    limitado() {
+      const t = agora();
+      sucessosSeguidos = 0;
+      if (t < pausaAte) return; // várias respostas 429 do mesmo surto contam uma vez
+      bloqueios++;
+      taxa = Math.max(minimo, taxa / 2);
+      pausaAte = t + pausaAtualMs;
+      pausaAtualMs = Math.min(pausaMaximaMs, pausaAtualMs * 2);
+    },
+    get taxa() { return taxa; },
+    get bloqueios() { return bloqueios; },
+  };
+}
+
+export async function baixarBuffer(url, { timeoutMs = 60_000, tentativas, esperaBaseMs, controle } = {}) {
   return comRetentativa(async () => {
+    if (controle) await controle.aguardarVez();
     const res = await fetch(url, { signal: AbortSignal.timeout(timeoutMs) });
     if (!res.ok) {
       await res.body?.cancel();
-      throw new ErroHttp(url, res.status, lerRetryAfter(res));
+      if (controle && res.status === 429) controle.limitado();
+      // Com controle, a espera do 429 é a pausa global (aguardarVez), não o backoff individual.
+      throw new ErroHttp(url, res.status, controle && res.status === 429 ? 0 : lerRetryAfter(res));
     }
-    return Buffer.from(await res.arrayBuffer());
-  }, { tentativas, esperaBaseMs });
+    const corpo = Buffer.from(await res.arrayBuffer());
+    controle?.sucesso();
+    return corpo;
+  }, { tentativas: tentativas ?? (controle ? 30 : undefined), esperaBaseMs });
 }
 
 /** Grava via arquivo temporário + rename, para nunca deixar arquivo final pela metade. */

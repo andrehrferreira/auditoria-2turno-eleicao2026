@@ -41,7 +41,7 @@ O JSON traz `st` (ex.: `Totalizada`) e uma lista `hashes[]`. Cada hash tem `hash
 | `bu` | `o03221sp6106902390162-bu.dat` | Boletim de Urna, binário |
 | `rdv` | `o03221sp6106902390162-rdv.dat` | Registro Digital do Voto, binário |
 | `log` | `o03221sp6106902390162-log.jez` | Log da urna. **Em 2026 é ZIP** (assinatura `PK`), não 7z como em 2022/2024. Contém um único `logd.dat` em ISO-8859-1 |
-| `vota` | `o03221sp6106902390162-vota.vsc` | Arquivo DER/ASN.1 (provável pacote de assinaturas). O `hash` da seção é o SHA-256 dele (ver abaixo) |
+| `vota` | `o03221sp6106902390162-vota.vsc` | Pacote de assinaturas (DER/ASN.1): hash SHA-512 e assinatura de cada arquivo da urna, mais o certificado da urna. O `hash` da seção é o SHA-256 dele (ver abaixo). Verificação: [06-leitura-bu-rdv-log.md](06-leitura-bu-rdv-log.md) |
 
 Os arquivos ficam no mesmo diretório do `aux.json`, sob o subdiretório do hash:
 
@@ -71,14 +71,19 @@ https://cdn.tse.jus.br/estatistica/sead/eleicoes/eleicoes2026/arqurnatot/bu_imgb
 
 Conferido para `AC` (HTTP 200, `Last-Modified: Mon, 26 Oct 2026 19:56:12 GMT`).
 
-**[a confirmar]** Disponibilidade das demais UFs e do 1º turno (`_1t_`), e se o conteúdo do zip é idêntico ao dos arquivos por seção. Validar comparando SHA-256 numa amostra.
+**Fato (29/10/2026, doc 03).** Os zips das 27 UFs + ZZ respondem (HEAD, ~132 GB no total). No AC, os 1.040 `vota.vsc` baixados por seção são idênticos aos do zip (mesmo SHA-256), e as assinaturas das 2.270 seções conferem (doc 06). O zip traz também o `imgbu.dat`, que por seção dá 404.
+
+**Fato (29/10/2026).** Os zips do 1º turno (`..._2026_1t_{UF}.zip`) existem para as 27 UFs + ZZ: HEAD 200 nos 28, somando 95.066.353.561 bytes (~88,5 GiB).
+
+**[a confirmar]** A identidade zip × arquivo por seção nas demais UFs e no 1º turno. A etapa `conferir` vai testar isso, porque baixa por seção o que divergir e registra o que baixou em `downloads.jsonl`.
 
 ## Decodificação do BU/RDV
 
 - Em 2024 o crawler capturava o BU já decodificado pelo console do site (objeto `entidadeBoletimUrna`), via Puppeteer.
 - **Recomendação.** Em 2026, decodificar o `.dat` direto pela especificação ASN.1 que o TSE publica, sem depender do front-end do site. É mais rápido, não exige navegador e permite validar assinatura e hash.
-- **[a confirmar]** URL da especificação ASN.1 do BU/RDV e das ferramentas de verificação de 2026, no portal do TSE (seção "Arquivos de urna" / "Eleições 2026").
+- **Fato.** A página de Eleições 2026 do TSE lista o item "Formato dos arquivos de BU, RDV e assinatura digital" (ZIP), segundo resultado de busca; a página responde 403 a acesso automatizado e não foi aberta diretamente.
 - **Fato.** Mesmo sem a especificação, os `.dat` de 2026 são DER e dão para ler com um leitor DER genérico. O mapa dos campos observados está em [06-leitura-bu-rdv-log.md](06-leitura-bu-rdv-log.md).
+- **Fato (29/10/2026).** Especificação oficial localizada: pacote do TSE `formato-arquivos-bu-rdv-ass-digital-v2.zip` (arquivos de 25/09/2024; `spec/bu.asn1`, `rdv.asn1`, `assinatura.asn1` e scripts Python de exemplo). O portal do TSE responde 403 a acesso automatizado; a cópia usada veio do espelho <https://github.com/doccaz/urnas-br/tree/main/docv2>, com SHA-256 `1e423054f32b8ba056960c58ada167d702c2618cc4d1dfd5de88f5090c84a235`, igual ao registrado de forma independente pelo projeto DataUrnas-BR. **[a confirmar]** baixar direto do portal do TSE (navegador) e comparar o SHA-256. O `.vsc` de 2026 difere da v2 em detalhes (ver doc 06).
 
 ## Dados abertos complementares
 

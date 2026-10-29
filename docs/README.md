@@ -16,7 +16,9 @@ Trabalhos anteriores, com a mesma linha metodológica:
 | [03-coleta-bus-logs.md](03-coleta-bus-logs.md) | Plano de coleta de BUs, RDVs e logs, com integridade e retomada |
 | [04-hipotese-titulos-falecidos.md](04-hipotese-titulos-falecidos.md) | Hipótese de votos com títulos de falecidos: o que é testável e com quais fontes |
 | [05-dados-pessoais-lgpd.md](05-dados-pessoais-lgpd.md) | Regras para a base de CPFs e para publicar resultados |
-| [06-leitura-bu-rdv-log.md](06-leitura-bu-rdv-log.md) | Como ler BU, RDV, `.vsc` e log de 2026: campos observados, enums, armadilhas |
+| [06-leitura-bu-rdv-log.md](06-leitura-bu-rdv-log.md) | Como ler BU, RDV, `.vsc` e log de 2026 e verificar as assinaturas: campos, enums, Ed521, urna de contingência, armadilhas |
+| [07-checklist-auditoria.md](07-checklist-auditoria.md) | O que auditar quando a coleta fechar 100%: fonte, método e explicações alternativas de cada item |
+| [08-coordenacao-modelos.md](08-coordenacao-modelos.md) | Uso de GPT Astra, Grok e Kimi 3 como revisores: como chamar, regras de dados, papéis e tarefas |
 | [hipoteses.md](hipoteses.md) | Registro vivo das hipóteses, com status e evidências |
 | [casos/](casos/) | Análises de seções específicas (ex.: [ES 57037/0055/0372](casos/es-57037-z0055-s0372.md)) |
 | [pericia/](pericia/) | Relatório de perícia, em linguagem simples para leigos |
