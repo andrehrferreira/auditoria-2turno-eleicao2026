@@ -61,6 +61,49 @@ Códigos de município, zona e seção ficam como texto com zeros à esquerda, i
 
 As views de 1º × 2º turno ficam vazias até o 1º turno ser carregado (`--turno 1`).
 
+## Leitura sem concorrência: cópia de leitura
+
+O arquivo `data/db/eleicao2026.sqlite` é o **primário**, e nele só a carga (`src/banco.js`) escreve. As consultas leem uma **cópia de leitura** em `data/db/leitura/`, aberta como imutável, sem bloqueio e sem ler o WAL.
+
+**Por que (Fato, 29/10/2026):** durante a carga do 1º turno, dezenas de agentes liam o primário ao mesmo tempo. Com leitores sempre abertos, o SQLite não conseguia aplicar o WAL ao banco: o WAL chegou a 4,7 GB e a carga ficou ~8 vezes mais lenta.
+
+```
+node src/banco-leitura.js --publicar          # nova cópia (VACUUM INTO, consistente) e torna-a vigente
+node src/banco-leitura.js --status            # cópia vigente e cópias antigas
+node src/banco-leitura.js --remover-antigas   # apaga cópias antigas que ninguém esteja usando
+```
+
+- Nos scripts, use `abrirLeitura()` de `src/banco-leitura.js`, que devolve `{ db, fonte, ponteiro }`, em vez de abrir o primário. Se nenhuma cópia foi publicada, ela cai no primário só leitura e avisa.
+- A cópia vigente é a indicada em `data/db/leitura/atual.json`, que registra também as UFs carregadas por turno no momento da cópia. Cada cópia tem nome próprio porque no Windows um arquivo aberto não pode ser substituído. Quem estava lendo a anterior continua nela até fechar.
+- **Publique uma cópia nova depois de cada carga.** Até lá, a cópia não vê o que foi carregado depois dela.
+
+### Índices da cópia de leitura (auditoria de 29/10/2026)
+
+O `EXPLAIN QUERY PLAN` das consultas usadas pela equipe mostrou que as consultas de presidente (`turno = ? AND cargo = 1`) liam **todas** as linhas do turno, de todos os cargos, para depois filtrar. No 1º turno isso passa de dezenas de milhões de linhas. Faltava também rodar o `ANALYZE`, então o planejador escolhia índice sem estatísticas. A publicação da cópia agora cria, só nela (`INDICES_LEITURA` em `src/banco-leitura.js`):
+
+| Índice | Para |
+|---|---|
+| `leitura_voto_bu_presidente` (parcial, `WHERE cargo = 1`, cobridor) | Presidente por seção, município ou total. Responde só pelo índice |
+| `leitura_voto_bu_cargo_numero` `(turno, cargo, numero, uf, quantidade)` | Totais nacionais e por UF de qualquer cargo ou candidato |
+| `leitura_voto_oficial_cargo_numero` `(turno, cargo, numero, quantidade)` | Totais do resultado oficial |
+| `leitura_secao_eleicao_eleicao` `(turno, eleicao)` | Aptos e comparecimento por eleição |
+| `leitura_secao_agregada_principal` | Agregadas de uma seção principal |
+
+Também roda `ANALYZE` e `PRAGMA optimize`. Ao abrir, `abrirLeitura()` liga `mmap_size`, um `cache_size` grande e `temp_store = MEMORY`.
+
+**Regra para quem escreve consulta:** filtre presidente com **`cargo = 1` literal**, não `cargo = ?`. O índice parcial só é usado quando o planejador vê a constante. Os índices ficam fora do primário de propósito: eles atrasariam a carga.
+
+## Consulta pela linha de comando
+
+`scripts/sql.mjs` abre o banco sempre em modo somente leitura:
+
+```
+node scripts/sql.mjs --tabelas                      # tabelas e views
+node scripts/sql.mjs --esquema secao                # colunas
+node scripts/sql.mjs "select uf, count(*) n from secao where turno=2 group by uf"
+node scripts/sql.mjs --arquivo q.sql --formato csv > saida.csv   # também --formato json; --limite N na tabela
+```
+
 ## Consultas de exemplo
 
 Sempre que der, filtre por `turno` e `uf`: os índices começam por eles.

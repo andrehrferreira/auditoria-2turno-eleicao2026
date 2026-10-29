@@ -6,31 +6,36 @@ Trabalhos anteriores: [2º turno 2022](https://github.com/andrehrferreira/audito
 
 ## Andamento
 
-Atualizado em 29/10/2026, 05:05. O painel `coleta-tse` do Claude Code lê esta tabela: mantenha o formato e os marcadores.
+Atualizado em 29/10/2026, 07:40. O painel `coleta-tse` do Claude Code lê esta tabela: mantenha o formato e os marcadores.
 
 <!-- andamento:inicio -->
 | Fase | Etapa | Status | Detalhe |
 |---|---|---|---|
-| 1. Coleta | Arquivos de urna do 2º turno | concluída | 499.248/499.248 seções contabilizadas (499.207 completas + 41 não instaladas); 17.931/17.931 agregadas |
-| 1. Coleta | Arquivos de urna do 1º turno | em andamento | 28/28 zips baixados e extraídos; conferência rodando |
-| 1. Coleta | aux.json do 2º turno (status oficial por seção) | em andamento | ~25%, a 20/s em segundo plano (limite do TSE); não bloqueia nada |
+| 1. Coleta | Arquivos de urna do 2º turno | concluída | 499.248/499.248 seções (499.207 completas + 41 não instaladas); 17.931/17.931 agregadas |
+| 1. Coleta | Arquivos de urna do 1º turno | concluída | 499.248/499.248 seções (499.207 completas + 41 não instaladas); 17.931/17.931 agregadas |
+| 1. Coleta | aux.json do 2º turno (status oficial por seção) | em andamento | 65% (326 mil de 499 mil), 20/s, sem bloqueio do TSE |
 | 1. Coleta | aux.json do 1º turno | pendente | Começa depois do aux do 2º turno |
-| 1. Coleta | Dados abertos (resultado oficial, perfil do eleitorado) | concluída | 32 arquivos em data/raw/dadosabertos |
-| 1. Coleta | Candidatos e municípios (referência) | concluída | 2º turno; 1º turno: falta rodar src/referencia.js --turno 1 |
-| 2. Leitura | Decodificador pela especificação oficial (BU, RDV, imgbu, vsc) | concluída | src/asn1.js + src/esquemas.js; 0 campos fora da spec nas amostras |
+| 1. Coleta | Dados abertos (resultado oficial, perfil do eleitorado, comparecimento por idade, candidaturas, 2018 e 2022) | concluída | data/raw/dadosabertos |
+| 1. Coleta | Candidatos e municípios (referência) | concluída | 1º e 2º turno |
+| 2. Leitura | Decodificador pela especificação oficial (BU, RDV, imgbu, vsc) | concluída | src/asn1.js + src/esquemas.js |
 | 2. Leitura | Conversor de seção para JSON legível | concluída | src/exportar.js, sob demanda |
-| 2. Leitura | Banco SQLite para consultas | em andamento | src/banco.js pronto (doc 09): AC carregado e conferido (BU = RDV = log = oficial); carga nacional pendente (~10–15 min, ~3,4 GB) |
-| 2. Leitura | Perfil por seção (métricas de log e BU) | em andamento | 2º turno: 28/28 UFs; 1º turno: 2/28 |
-| 3. Integridade | Assinaturas e hashes (H04) | em andamento | AC inteiro e casos ES/ZZ: 0 falhas; nacional pendente (~20 h de CPU) |
-| 3. Integridade | Cadeia de evidências da perícia | em andamento | docs/pericia/evidencias (âncora + cadeia) |
-| 4. Análises | A1/B2: soma dos BUs × resultado oficial (H03) | em andamento | AC: 0 divergência para presidente; 1.088 seções "Recebida": BU = oficial; país inteiro pendente. O CSV oficial só traz presidente |
-| 4. Análises | A5/B1: liberação sem biometria e mesários (H02/H05) | em andamento | 1ª passada exploratória no 2º turno; caso AC 01007/0009/0440 ("já votou" depois de cada voto, docs/casos); falta linha de base |
-| 4. Análises | B5: 1º × 2º turno na mesma seção (H10) | em andamento | src/comparar-turnos.js: AC e AL; depende do 1º turno completo |
-| 4. Análises | A12: seriais das mídias (H11) | em andamento | AC sem repetição; país pendente |
-| 4. Análises | C1: sigilo do voto (H09) | em andamento | Busca de título em ES: 0 ocorrências |
-| 4. Análises | A2, A3/A4, A6, A7, A8, A10, A13, B3, B4 | pendente | Dependem do banco nacional e do 1º turno |
-| 4. Análises | C2: títulos de falecidos (H01) | bloqueada | Precisa de fonte de óbito por CPF (doc 04) e base legal (doc 05) |
-| 5. Relatório | Perícia em linguagem simples | em andamento | docs/pericia/01 (integridade e estrutura dos arquivos) |
+| 2. Leitura | Banco SQLite para consultas | concluída | 1º e 2º turno: 28/28 UFs, 499.248 seções cada, 0 erro de carga; resultado oficial carregado |
+| 2. Leitura | Cópia de leitura com índices analíticos | em andamento | Recarga do perfil de AM/BA (1º turno) e publicação da cópia com índices (doc 09) |
+| 2. Leitura | Perfil por seção (métricas de log e BU) | concluída | 1º e 2º turno: 28/28 UFs; regeneração de BA, ES, MG e SP com deduplicação de log pendente (sessão -64) |
+| 3. Integridade | Assinaturas e hashes no país inteiro (H04) | em andamento | Auditor E rodando; AC, ES e ZZ: 0 falha; 3 seções de contingência exigem corte de 1 byte no certificado (defeito de leitura) |
+| 3. Integridade | Cadeia de evidências da perícia | em andamento | docs/pericia/evidencias |
+| 4. Análises | A1/B2: soma dos BUs × resultado oficial (H03) | em andamento | 2º turno: igual em todos os cargos e campos, seção a seção. 1º turno: votos de candidaturas excluídas viraram nulo técnico (RJ governador: decidiu o 1º turno); refazer com 28 UFs |
+| 4. Análises | Coerência BU × RDV × log | concluída | 2º turno: 3 seções com 50 votos sem log; mecanismo encontrado (erro 72 na contingência); risco aberto em 13 votos na BA |
+| 4. Análises | B5/H10: crescimento entre turnos | concluída | H10 refutada como escrita (parecer 05); linha de base 2018/2022 |
+| 4. Análises | C2/H01: títulos de falecidos | em andamento | Cadastro: ≥148.553 títulos 100+ sem pessoa; uso no 1º turno: 0,72% (oficial); mínimo de 157 votos 100+ sem biometria; 2º turno: arquivo oficial ainda sem dados |
+| 4. Análises | A5/B1/H02/H05: liberação sem biometria e mesários | em andamento | 16 mil seções explicadas por "foto sem digital"; Auditor B rodando |
+| 4. Análises | H13: liberados sem biometria votaram no 13, sobretudo no Nordeste? | em andamento | 5 métodos + revisão cética rodando |
+| 4. Análises | A2/B3/H06: votos após 17h e encerramento às 19h | em andamento | 34.330 / 34.066 votos após 17h (duas contas); em revisão cética |
+| 4. Análises | A10/H08: sequências impossíveis | em andamento | Nenhuma encontrada; em revisão cética |
+| 4. Análises | A3/A4 e forense estatística | em andamento | Sem marca clássica de fraude em larga escala; em revisão cética (poder do teste) |
+| 4. Análises | Aumento de comparecimento entre turnos | em andamento | Estatístico rodando |
+| 4. Análises | A8, A12/H11, A13, B4 | em andamento | Integridade, segurança, matemático e biometria ainda trabalhando |
+| 5. Relatório | Perícia em linguagem simples | em andamento | Tópicos 00, 01, 05, 06 e 08 escritos; 02, 03, 04, 07, 09 e 10 em verificação "só dados 100% corretos" |
 <!-- andamento:fim -->
 
 ## Números do 2º turno (Fatos)
@@ -69,7 +74,7 @@ Os dados ficam em `data/` (fora do git): `raw/<t>t/zip` (zips do TSE), `raw/<t>t
 
 ## Próximos passos
 
-1. Fechar a conferência do 1º turno e rodar `src/referencia.js --turno 1`.
+1. Rodar `src/referencia.js --turno 1` (candidatos do 1º turno).
 2. Carga nacional no SQLite (dois turnos) e comparação BU × resultado oficial em todo o país (H03).
 3. Perfil por seção do 1º turno e comparação entre turnos (H05, H10).
 4. Verificação de assinaturas no país inteiro (H04), em paralelo.

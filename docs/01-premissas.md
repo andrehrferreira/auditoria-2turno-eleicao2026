@@ -23,6 +23,16 @@ Verificar, com dados públicos e métodos reproduzíveis, a consistência intern
 5. **Linha de base antes de alarme.** Uma métrica só é "anômala" contra uma referência: 1º turno de 2026, 2º turno de 2022, mesma seção, mesmo município ou mesmo modelo de urna.
 6. **Sem acesso indevido.** Só se usam fontes públicas, canais oficiais ou serviços contratados. Não se automatiza CAPTCHA nem se contorna autenticação ou limite de uso de sistemas governamentais.
 7. **Dados pessoais protegidos.** Nenhum CPF, nome ou título aparece em repositório, relatório ou gráfico. Ver doc 05.
+8. **Nunca confiar em pessoas (modelo de ameaça).** Toda etapa executada por gente pode ser ignorada ou burlada: mesário, presidente de mesa, eleitor, fiscal, servidor. Motivos possíveis: pagamento, militância, pressão ou erro. Por isso:
+   - regra de procedimento ("o mesário confere o documento com foto", "o presidente digita o ano informado pelo eleitor") **não conta como controle** nem como explicação que reduz risco;
+   - só conta como controle o que é **técnico e deixa rastro verificável** nos arquivos: biometria do eleitor registrada no log, assinatura da urna, hash, cadeia de hashes;
+   - cada brecha que dependa só de comportamento humano é registrada como **risco** e precisa de um teste nos dados que mostre se ela foi usada (padrões no log por seção, por mesário, por horário);
+   - continua valendo o princípio 4: brecha aberta não prova que houve fraude. O que prova é o rastro nos dados.
+9. **Universo completo, nunca amostra** (decisão do André, 29/10/2026). Todo número da auditoria é calculado sobre **todas** as seções, todos os logs e todos os eleitores do universo em questão:
+   - não se extrapola de amostra, nem se estima o total a partir de parte dos dados. Se uma conta for cara, ela roda inteira em paralelo ou em várias etapas, mas roda inteira;
+   - conferir casos no arquivo bruto é permitido e recomendado, **só para confirmar** o que já foi medido no universo inteiro. Esses casos nunca viram número da auditoria;
+   - quando um dado estiver incompleto (exemplo: 1º turno ainda carregando), o resultado fica marcado como **parcial**, informando as UFs incluídas e as que faltam. Ele é refeito com o universo completo antes de entrar no relatório de perícia;
+   - toda exclusão (por exemplo, seções sem detalhamento no BU) é listada com a contagem exata e o motivo. Nada sai em silêncio.
 
 ## O que os arquivos públicos permitem e não permitem provar
 

@@ -60,3 +60,9 @@ CHANGELOG per PR/release, not per task. See `.rulebook/specs/orchestration.md`.
 - Nunca mandar a base de CPFs nem `data/private/` no prompt (arquivos públicos do TSE podem ir, doc 05 regra 6a).
   A resposta de um modelo é Hipótese até que um script do repo a reproduza.
   Só o Claude muda o status em `docs/hipoteses.md`.
+
+## Relatório de perícia (docs/pericia/)
+- Jamais colocar no relatório de perícia dado incompleto, parcial, estimado ou não conferido.
+- Só entra número 100% correto: universo completo (todas as seções, todas as UFs), conferido nos arquivos oficiais, com script que o reproduz.
+- Fica fora: estimativa estatística, amostra, "cerca de", número de terceiros não conferido (imprensa, pesquisas) e conta feita sobre suposição.
+- O que ainda não está completo entra só como **Pendente**, sem número. Os detalhes ficam em docs/analysis/.

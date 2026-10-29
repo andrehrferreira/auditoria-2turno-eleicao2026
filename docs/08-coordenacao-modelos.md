@@ -50,14 +50,16 @@ Status: `pendente` · `em andamento` · `concluída` · `bloqueada`
 |---|---|---|---|---|---|
 | T01 | Revisar o método da 1ª passada de liberações sem biometria: controles de idade, zona rural e linha de base do 1º turno | H05, H02 | GPT Astra | pendente | — |
 | T02 | Desenhar o teste da soma dos BUs contra a totalização, incluindo seções não totalizadas e votos em separado | H03 | GPT Astra | bloqueada | depende da coleta do 2T a 100% e do resultado oficial |
-| T03 | Desenhar o balanço por seção entre 1º e 2º turno: o que conta como "maior que o disponível" | H10 | GPT Astra | bloqueada | depende do 1º turno baixado |
-| T04 | Houve extensão do horário de votação em 25/10/2026? Levantar atos do TSE e dos TREs | H06 | Grok | pendente | — |
-| T05 | Premissa: modelo antigo de urna dispensa biometria? Levantar fonte normativa ou técnica | H07 | Grok | pendente | — |
+| T03 | Revisar o método de comparação da mesma seção entre 1º e 2º turno (`src/comparar-turnos.js`), incluindo o balanço "maior que o disponível" | H10 | GPT Astra | concluída | [parecer](analysis/modelos/T03/parecer.md): método v2 |
+| T04 | Houve extensão do horário de votação em 25/10/2026? Levantar atos do TSE e dos TREs | H06 | Claude | pendente | Grok sem acesso à web ([parecer](analysis/modelos/T04/parecer.md)) |
+| T05 | Premissa: modelo antigo de urna dispensa biometria? Levantar fonte normativa ou técnica | H07 | Claude | pendente | idem T04 |
 | T06 | Fontes legais de óbito sem CAPTCHA e sem dado pessoal (agregados por município, SIM/DataSUS, CRC) | H01 | Grok | pendente | — |
-| T07 | Revisar a verificação de assinaturas (`src/lacres.js`, `src/ed521.js`) contra o doc 06 | H04 | Kimi 3 | pendente | — |
+| T07 | Revisar a verificação de assinaturas (`src/lacres.js`, `src/ed521.js`) contra o doc 06 | H04 | Kimi 3 | em andamento | [parecer](analysis/modelos/T07/parecer.md): 1 correção feita, 2 a verificar |
 | T08 | Definir o limite de "sequência humanamente impossível" e as armadilhas da resolução de tempo do log | H08 | Kimi 3 | pendente | — |
 | T09 | Ordem do RDV e do log: é possível ligar voto a eleitor em seções pequenas? | H09 | Kimi 3 | pendente | — |
 | T10 | Coordenação, código, execução nos dados e registro das evidências | todas | Claude | em andamento | `docs/hipoteses.md` |
+| T11 | Interpretar a liberação manual com digital que não é de mesário cadastrado (31% das manuais no AC) | H05 | Kimi 3 | concluída | [parecer](analysis/modelos/T11/parecer.md): números reconciliados, doc 06 corrigido |
+| T13 | Conteúdo e validação do QR do e-Título; documentos que o mesário pode aceitar | H12 | Claude | pendente | idem T04 |
 
 ## Critério de conclusão de uma tarefa
 

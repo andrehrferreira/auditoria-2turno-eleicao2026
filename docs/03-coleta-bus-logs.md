@@ -72,6 +72,8 @@ Resultado no ZZ: 1310 completas (1281 urna + 29 SA) + 41 não instaladas = 1351/
 
 - **499.248/499.248 seções com urna contabilizadas**: 499.207 completas (arquivos presentes; manifesto pelo hash; SHA-512 de cada arquivo conferido) + 41 `Nao instalada` (exterior). **17.931/17.931 agregadas** cobertas. `resumo.json`: `coberturaTotal: true`.
 - Na conferência, 415.566 seções foram verificadas só pelo disco, porque o aux ainda estava baixando. O aux continua em segundo plano, para registrar o status oficial.
+- **1º turno (Fato, 29/10/2026):** 499.248/499.248 seções contabilizadas (499.207 completas + 41 `Nao instalada`, confirmadas pelo aux) e 17.931/17.931 agregadas.
+- **Caso MA 07846/0074/0228 (1º turno):** o zip do MA não traz o `-rdv.dat` dessa seção, mas o aux o lista e ele está publicado por seção (13.573 bytes; o SHA-512 confere com o `vota.vsc`). Foi baixado e gravado.
 - **Caso SP 64777/0395/0298:** o zip de SP não traz o `-log.jez` dessa seção, e o `aux.json` oficial lista só bu, rdv e vota. Mesmo assim, o log está publicado no endereço por seção (192.093 bytes) e o SHA-512 dele confere com o `vota.vsc`. Foi baixado e gravado. **Hipótese:** falha pontual na montagem do zip e do aux pelo TSE.
 
 ## Medições no AC (29/10/2026)

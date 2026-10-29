@@ -1,0 +1,2 @@
+ok   kimi/kimi-k3: docs\analysis\modelos\T11\kimi.md
+ok   cx/gpt-6-astra: docs\analysis\modelos\T11\astra.md
