@@ -50,7 +50,7 @@ Atualizado em 30/10/2026. O painel `coleta-tse` do Claude Code lê esta tabela: 
 | 4. Análises | A3/A4 e forense estatística | em andamento | Parecer 13: sem marca de fraude concentrada; os testes não veem fraude espalhada ou proporcional |
 | 4. Análises | Aumento de comparecimento entre turnos | em andamento | Estatístico concluído; em revisão cética (parecer 22) |
 | 5. Relatório | Perícia em linguagem simples | em andamento | Resumo executivo e tópicos 00 a 12; revisão geral (T20) e consenso T22 aplicados; texto independente do processo |
-| 5. Relatório | Relatório completo (PDF assinado) | em andamento | [docs/relatorio/relatorio.pdf](docs/relatorio/relatorio.pdf), 176 páginas, assinado em 30/10 com a revisão geral, o consenso T22 e a busca por carteiras fora do padrão |
+| 5. Relatório | Relatório completo (PDF assinado) | em andamento | [docs/relatorio/relatorio.pdf](docs/relatorio/relatorio.pdf), 224 páginas, assinado em 30/10: tópicos 0 a 14, resumo executivo e Anexo B com as tabelas de dados de cada gráfico (planilhas embutidas no PDF) |
 | 5. Relatório | Relatório temático: certificado vencido da AC URNA (PDF assinado) | em andamento | [docs/relatorio/temas/certificado-ac-urna.pdf](docs/relatorio/temas/certificado-ac-urna.pdf), 34 páginas, assinado: pedido ao TSE no início, carteiras fora do padrão, consenso T23 e planilhas das urnas embutidas |
 | 5. Relatório | Relatório das hipóteses em teste (PDF) | concluída | [docs/relatorios/hipoteses-em-teste.pdf](docs/relatorios/hipoteses-em-teste.pdf), H01 a H26, retrato de 30/10 |
 <!-- andamento:fim -->

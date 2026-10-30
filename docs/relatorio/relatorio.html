@@ -164,7 +164,7 @@ li figure.grafico{margin-top:.6em}
   .capa{height:247mm;min-height:0}
 }
 
-@page{@bottom-left{content:"Versão 37c1f28 · gerado em 30/10/2026"}}
+@page{@bottom-left{content:"Versão 0e36aeb · gerado em 30/10/2026"}}
 #resumo{page:p-resumo}
 @page p-resumo{@top-right{content:"Resumo: os principais achados"}}
 #como-ler{page:p-como-ler}
@@ -201,8 +201,13 @@ li figure.grafico{margin-top:.6em}
 @page p-t12{@top-right{content:"12 · Sigilo do voto: os arquivos públicos permitem ligar um voto a um eleitor?"}}
 #t13{page:p-t13}
 @page p-t13{@top-right{content:"13 · A mesa e o atendimento de cada eleitor: sessões sem fim registrado, votos em bloco e “já votou”"}}
+#t14{page:p-t14}
+@page p-t14{@top-right{content:"14 · Outras formas de fraude testadas: cidade inteira, voto nulo combinado, exterior, recarga da urna, eleitores em trânsito e resultado trocado no caminho"}}
 #anexo-a{page:p-anexo-a}
 @page p-anexo-a{@top-right{content:"Anexo A · Glossário"}}
+#anexo-b{page:p-anexo-b}
+@page p-anexo-b{size:A4 landscape;@top-right{content:"Anexo B · Tabelas de dados"}}
+#anexo-b table.tabela{font-size:7pt;line-height:1.25}#anexo-b th,#anexo-b td{padding-left:3.5pt;padding-right:3.5pt}#anexo-b th:first-child,#anexo-b td:first-child{padding-left:0}#anexo-b th:last-child,#anexo-b td:last-child{padding-right:0}
 </style>
 </head>
 <body>
@@ -214,10 +219,10 @@ li figure.grafico{margin-top:.6em}
 <p class="capa-resumo">Exame dos arquivos públicos do TSE: boletins de urna, registros digitais do voto, diários das urnas e assinaturas digitais, em todas as seções.</p>
 </div>
 <dl class="capa-meta">
-<div><dt>Data de geração</dt><dd>30 de outubro de 2026, 06:04</dd></div>
-<div><dt>Versão</dt><dd>37c1f28</dd></div>
-
-
+<div><dt>Data de geração</dt><dd>30 de outubro de 2026, 08:04</dd></div>
+<div><dt>Versão</dt><dd>0e36aeb</dd></div>
+<div class="capa-anexos"><dt>Anexos</dt><dd><span class="digital">lacres-por-modelo-2t.csv</span>, <span class="digital">autoverificacao-destino.csv</span>, <span class="digital">seriais-cartao-votacao-pares.csv</span>, <span class="digital">troca-urna-por-modelo.csv</span>, <span class="digital">chegada-bu-por-minuto.csv</span>, <span class="digital">h03-1t-nulo-tecnico-por-cargo.csv</span>, <span class="digital">h03-1t-nulo-tecnico-uf-cargo.csv</span>, <span class="digital">h03-1t-fechamento-uf-cargo.csv</span>, <span class="digital">h03-1t-governador-rj-df.csv</span>, <span class="digital">h14-parcela-13-1t-2t.csv</span>, <span class="digital">h14-carga-reserva.csv</span>, <span class="digital">h14-rastro-sinais.csv</span>, <span class="digital">h09-rdv-ordem.csv</span>, <span class="digital">h09-suspensao-por-papel.csv</span>.<span class="capa-nota">Arquivos embutidos neste PDF: abra pelo painel de anexos do leitor de PDF (ícone de clipe).</span></dd></div>
+<div class="capa-assinatura"><dt>Assinatura</dt><dd>Documento assinado digitalmente por Auditoria independente das urnas — Eleições 2026. Impressão digital do certificado <span class="inteiro">(SHA-256):</span> <span class="digital">CF:FB:8B:52:0A:97:11:94:8D:5A:32:FF:4A:5A:4E:1D:F7:6F:A9:84:E2:26:9F:16:8C:DF:62:3C:28:F3:CB:E3</span>.<span class="capa-nota">O leitor de PDF vai avisar que o certificado não é de uma autoridade certificadora reconhecida: ele é da própria auditoria. A assinatura serve para mostrar se o arquivo foi alterado depois de assinado; confira se a impressão digital acima é a mesma do certificado da assinatura.</span></dd></div>
 <div><dt>Situação</dt><dd>Documento em elaboração — conteúdo atualizado conforme os testes e as verificações independentes</dd></div>
 </dl>
 </section>
@@ -235,7 +240,7 @@ li figure.grafico{margin-top:.6em}
 <h2 id="resumo-os-principais-achados">Os principais achados</h2>
 <h3 id="resumo-o-que-foi-conferido-e-bate">O que foi conferido e bate</h3>
 <p><strong>1. A soma das urnas é igual ao resultado oficial.</strong> <strong class="com-rotulo"><span class="rotulo">Fato</span>.</strong> 2º turno, Presidente: 0 diferença em 499.205 seções, conferidas uma a uma (as 499.207 com boletim menos 2 do exterior em que ninguém votou). 1º turno, todos os cargos: 0 divergência nos totais das 499.207 seções com boletim; a única diferença é a classificação de 630.541 votos como nulo técnico (item 10). Nenhuma seção do 2º turno teve mais votantes que eleitores aptos. <strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> os demais campos do 2º turno. → <a href="#t05">tópico 5</a>, <a href="#t02">tópico 2</a></p>
-<p><strong>2. Os arquivos dos dois turnos não foram alterados depois de assinados.</strong> <strong class="com-rotulo"><span class="rotulo">Fato</span>.</strong> A urna assina seus arquivos com uma assinatura digital, um lacre eletrônico que denuncia qualquer mudança posterior. 2º turno: 499.207 pacotes conferidos, 0 falha; arquivos adulterados de propósito foram rejeitados, o que mostra que a conferência funciona. 1º turno: os 499.207 pacotes desse turno também passaram, sem nenhum arquivo alterado; num deles, de MG, o boletim impresso foi publicado fora da lista lacrada. Todas as urnas anotam a mesma versão de programa (10.23.0.0); é o que o próprio programa declara, e não prova qual programa rodou (ver “O que não dá para afirmar”). → <a href="#t01">tópico 1</a></p>
+<p><strong>2. Os arquivos dos dois turnos não foram alterados depois de assinados.</strong> <strong class="com-rotulo"><span class="rotulo">Fato</span>.</strong> A urna assina seus arquivos com uma assinatura digital, um lacre eletrônico que denuncia qualquer mudança posterior. 2º turno: 499.207 pacotes conferidos, 0 falha; arquivos adulterados de propósito foram rejeitados, o que mostra que a conferência funciona. 1º turno: os 499.207 pacotes desse turno também passaram, sem nenhum arquivo alterado; num deles, de MG, o boletim impresso foi publicado fora da lista lacrada. Todas as urnas anotam a mesma versão de programa (10.23.0.0); é o que o próprio programa declara, e não prova qual programa rodou (ver “O que não dá para afirmar”). Em todas as seções com urna dos dois turnos, o resultado foi assinado pela própria urna que ele declara, menos em 17 seções em que os votos foram recuperados por outra urna, e nenhuma seção fantasma foi encontrada. → <a href="#t01">tópico 1</a>, <a href="#t14">tópico 14</a></p>
 <p><strong>3. Boletim e lista de votos são iguais; o diário confirma quase todos os votos.</strong> <strong class="com-rotulo"><span class="rotulo">Fato</span>.</strong> No 2º turno, boletim e lista de votos são iguais em todas as seções e cargos (539.815 comparações, 0 diferença). Há votos do boletim sem a linha “voto computado” no diário: 54 em 6 seções no 2º turno e 159 em 9 no 1º. Em 10 dessas seções, o diário mostra o atendimento do eleitor, e a urna caiu ou foi desligada antes de gravar a última linha. Nas outras 5, os arquivos mostram como o diário se perdeu: outra urna, ligada com o cartão de votos da seção, gravou o próprio diário por cima (numa delas, a recusa dessa urna é inferida, sem linha de erro). No 1º turno, boletim e lista de votos também são iguais (2.490.805 comparações, 0 diferença), e, nos dois turnos, todo eleitor liberado aparece no diário com um fim registrado: voto gravado, desistência ou parada da urna. <strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> qual urna gravou 15 desses votos, numa seção de SP. → <a href="#t02">tópico 2</a>, <a href="#t13">tópico 13</a></p>
 <p><strong>4. A virada cabe nos votos que estavam disponíveis.</strong> <strong class="com-rotulo"><span class="rotulo">Fato</span>.</strong> O ganho dos dois finalistas do 1º para o 2º turno é exatamente o que estava disponível (votos dos eliminados, queda de brancos e nulos, aumento do comparecimento): 14.098.232. A suspeita “o vencedor cresceu mais do que havia de votos” foi <strong>refutada</strong>. Limite: essa conta sempre fecha quando cada urna tem tantos votos quantos votantes (o que foi conferido), e não mede troca de votos do 22 para o 13: uma troca assim só reduz o ganho do 22 (3.721.538), e ela só chamaria atenção se o fizesse perder votos no total. → <a href="#t08">tópico 8</a></p>
 <p><strong>5. Nas urnas trocadas por reserva, o teste de votos não encontrou diferença em relação às vizinhas.</strong> <strong class="com-rotulo"><span class="rotulo">Fato</span>.</strong> No 2º turno, 5.714 seções votaram com urna reserva (a que substitui a urna com defeito). Nas 2.818 trocas novas, o teste que compara a mudança da parcela do 13 entre os turnos com a das seções sem troca da mesma zona não encontrou diferença. Não encontrar diferença não prova que os votos foram iguais: quer dizer que o teste não separou a diferença do acaso. Os números do teste estão na análise técnica separada da auditoria. Mesmo que todos os 742.671 votos do 13 nas 5.714 seções com reserva fossem, na verdade, do 22, o 13 venceria por 2.944.849. → <a href="#t11">tópico 11</a></p>
@@ -256,7 +261,7 @@ li figure.grafico{margin-top:.6em}
 <li><strong>Que não houve fraude.</strong> “O teste não achou” quer dizer que não apareceu o rastro que aquele teste procura. Fraude pequena, espalhada por igual, concentrada em poucas seções ou igual nos dois turnos pode passar pelos testes. → <a href="#t07">tópico 7</a></li>
 </ul>
 <h2 id="resumo-pendências-e-perguntas-ao-tse">Pendências e perguntas ao TSE</h2>
-<p class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> demais campos do 2º turno contra o resultado oficial (<a href="#t05">tópico 5</a>); se a ordem de registro dos boletins dependeu do voto (<a href="#t03">tópico 3</a>); os testes de votos em bloco (H15) e do “já votou” (H17) (<a href="#t13">tópico 13</a>); as hipóteses H18 a H24, registradas depois, cujos testes ainda não passaram pela revisão independente (<a href="#t10">tópico 10</a>).</p>
+<p class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> demais campos do 2º turno contra o resultado oficial (<a href="#t05">tópico 5</a>); se a ordem de registro dos boletins dependeu do voto (<a href="#t03">tópico 3</a>); os testes de votos em bloco (H15) e do “já votou” (H17) (<a href="#t13">tópico 13</a>); as atas das recargas de urna sem motivo escrito no diário e a lista de sorteio do Teste de Integridade (<a href="#t14">tópico 14</a>); as hipóteses H19, H20 e H26, registradas depois e ainda não levadas a este relatório (<a href="#t10">tópico 10</a>).</p>
 <p><strong>Perguntas ao TSE e aos TREs:</strong> o certificado em vigor da AC URNA e os das autoridades raiz; de quem são os números de título gravados na interrupção do eleitor; quantos eleitores tinham digital carregada na urna, por seção; quantos eleitores de 100+ votaram no 2º turno; onde os boletins esperaram entre 17:10 e 19:03 do 2º turno; o motivo da troca de urnas entre as zonas 1 e 2 de Aracaju.</p>
 <h2 id="resumo-quadro-das-hipóteses-de-fraude">Quadro das hipóteses de fraude</h2>
 <p><strong>Aberta:</strong> teste não feito ou só começado. <strong>Em teste:</strong> em andamento. <strong>Refutada:</strong> os dados mostram que a hipótese, como foi escrita, é falsa. Nenhuma foi <strong>sustentada</strong> (confirmada). Detalhes no <a href="#t10">tópico 10</a>.</p>
@@ -281,7 +286,13 @@ li figure.grafico{margin-top:.6em}
 <tr><td>H15</td><td>Votos no lugar de ausentes, liberados em bloco pela mesa</td><td>em teste</td><td><a href="#t13">tópico 13</a></td></tr>
 <tr><td>H16</td><td>Eleitor liberado sem fim registrado, ou voto sem eleitor liberado</td><td>em teste</td><td><a href="#t13">tópico 13</a></td></tr>
 <tr><td>H17</td><td>A mesa impediu eleitores de votar, ou votou no lugar de quem chegou depois</td><td>em teste</td><td><a href="#t13">tópico 13</a></td></tr>
-<tr><td>H18 a H24</td><td>Registradas depois</td><td><strong class="com-rotulo"><span class="rotulo">Pendente</span></strong></td><td><a href="#t10">tópico 10</a></td></tr>
+<tr><td>H18</td><td>Mudança igual em todas as urnas de uma cidade</td><td>em teste</td><td><a href="#t14">tópico 14</a></td></tr>
+<tr><td>H21</td><td>Voto nulo usado como “senha” de compra de voto</td><td>em teste</td><td><a href="#t14">tópico 14</a></td></tr>
+<tr><td>H22</td><td>Exterior e seções apuradas em cédula usados para pôr votos</td><td>em teste</td><td><a href="#t14">tópico 14</a></td></tr>
+<tr><td>H23</td><td>Urna carregada de novo, ou fora do dia previsto</td><td>em teste</td><td><a href="#t14">tópico 14</a></td></tr>
+<tr><td>H24</td><td>Eleitores em trânsito usados para inflar seções</td><td>em teste</td><td><a href="#t14">tópico 14</a></td></tr>
+<tr><td>H27</td><td>Resultado trocado no caminho, ou seção fantasma</td><td>em teste</td><td><a href="#t14">tópico 14</a></td></tr>
+<tr><td>H19, H20 e H26</td><td>Registradas depois</td><td><strong class="com-rotulo"><span class="rotulo">Pendente</span></strong></td><td><a href="#t10">tópico 10</a></td></tr>
 </tbody>
 </table>
 </section>
@@ -491,7 +502,21 @@ li figure.grafico{margin-top:.6em}
 <li class="sum-2"><a href="#t13-pedido-aos-tres"><span class="num">13.9</span><span class="texto">Pedido aos TREs</span></a></li>
 <li class="sum-2"><a href="#t13-próximos-passos"><span class="num">13.10</span><span class="texto">Próximos passos</span></a></li>
 </ol></li>
+<li class="sum-1"><a href="#t14"><span class="num">14</span><span class="texto">Outras formas de fraude testadas: cidade inteira, voto nulo combinado, exterior, recarga da urna, eleitores em trânsito e resultado trocado no caminho</span></a><ol>
+<li class="sum-2"><a href="#t14-a-pergunta"><span class="num">14.1</span><span class="texto">A pergunta</span></a></li>
+<li class="sum-2"><a href="#t14-resposta-curta"><span class="num">14.2</span><span class="texto">Resposta curta</span></a></li>
+<li class="sum-2"><a href="#t14-termos-usados-neste-tópico"><span class="num">14.3</span><span class="texto">Termos usados neste tópico</span></a></li>
+<li class="sum-2"><a href="#t14-como-foi-feito"><span class="num">14.4</span><span class="texto">Como foi feito</span></a></li>
+<li class="sum-2"><a href="#t14-o-que-foi-encontrado"><span class="num">14.5</span><span class="texto">O que foi encontrado</span></a></li>
+<li class="sum-2"><a href="#t14-prova-de-que-o-teste-funciona-contraprova"><span class="num">14.6</span><span class="texto">Prova de que o teste funciona (contraprova)</span></a></li>
+<li class="sum-2"><a href="#t14-limites-o-que-não-se-pode-afirmar"><span class="num">14.7</span><span class="texto">Limites (o que não se pode afirmar)</span></a></li>
+<li class="sum-2"><a href="#t14-pendentes-sem-número-salvo-onde-indicado"><span class="num">14.8</span><span class="texto">Pendentes (sem número, salvo onde indicado)</span></a></li>
+<li class="sum-2"><a href="#t14-pedidos-ao-tse-e-aos-tres"><span class="num">14.9</span><span class="texto">Pedidos ao TSE e aos TREs</span></a></li>
+<li class="sum-2"><a href="#t14-próximos-passos"><span class="num">14.10</span><span class="texto">Próximos passos</span></a></li>
+</ol></li>
 <li class="sum-1 sum-anexo"><a href="#anexo-a"><span class="num">Anexo A</span><span class="texto">Glossário</span></a><ol>
+</ol></li>
+<li class="sum-1 sum-anexo"><a href="#anexo-b"><span class="num">Anexo B</span><span class="texto">Tabelas de dados</span></a><ol>
 </ol></li>
 </ol>
 </nav>
@@ -503,7 +528,7 @@ li figure.grafico{margin-top:.6em}
 <tbody>
 <tr><td>0</td><td><a href="#t00">Os arquivos de todas as urnas foram obtidos?</a></td><td>Foram examinadas todas as urnas ou só uma amostra?</td><td>Concluído para os dois turnos: todas as seções, arquivos conferidos um a um, sem nenhuma falha. Pendente: a lista oficial de parte das seções (no 2º turno, faltam parte de SP e o TO) e as seções com situação “Recebida”.</td></tr>
 <tr><td>1</td><td><a href="#t01">Integridade e estrutura dos arquivos</a></td><td>Os arquivos que o TSE publica são os mesmos que a urna gerou? O que tem dentro de cada um?</td><td>Concluído para os dois turnos: nenhum arquivo alterado depois de assinado (2º turno com revisão independente). Inclui o que a urna anota sobre o próprio programa e o certificado vencido da AC URNA. Pendente: contagem das inicializações, boletim impresso de uma seção de MG no 1º turno e resposta do TSE sobre a AC URNA.</td></tr>
-<tr><td>2</td><td><a href="#t02">Coerência entre os arquivos de uma mesma urna</a></td><td>O boletim, o registro dos votos e o diário da urna contam a mesma história?</td><td>Concluído para o 2º turno. 1º turno parcial: falta comparar boletim × registro dos votos e as contas internas; diário × boletim está concluído. Concluída a identificação da urna e dos cartões nos dois turnos. Pendente: a urna que gravou 15 votos numa seção de SP no 1º turno e as demais conferências de identificação.</td></tr>
+<tr><td>2</td><td><a href="#t02">Coerência entre os arquivos de uma mesma urna</a></td><td>O boletim, o registro dos votos e o diário da urna contam a mesma história?</td><td>Concluído para o 2º turno. 1º turno: boletim × registro dos votos e diário × boletim concluídos; faltam as contas internas do boletim. Concluída a identificação da urna e dos cartões nos dois turnos. Concluída em 30/10/2026, com revisão independente, a carga no dia da votação nos dois turnos. Pendente: a urna que gravou 15 votos numa seção de SP no 1º turno e as demais conferências de identificação.</td></tr>
 <tr><td>3</td><td><a href="#t03">Linha do tempo da urna</a></td><td>O que a urna fez da preparação até o envio do resultado, e em que horário?</td><td>Números conferidos por uma segunda conta; a apuração na noite do 2º turno também com revisão independente. Pendente: os números que dependem de nova leitura dos diários, onde os boletins esperaram e se a ordem de registro dependeu do voto.</td></tr>
 <tr><td>4</td><td><a href="#t04">Como os eleitores foram liberados para votar</a></td><td>Quantos votaram com digital, quantos sem, e por quê?</td><td>Concluído para o 2º turno, com revisão independente; o teste de uso da liberação sem digital a favor de um lado não decide. Pendente: parte do 1º turno e testes de detalhe (PR, SP, inserção detectável, votos na faixa entre modelos).</td></tr>
 <tr><td>5</td><td><a href="#t05">Soma dos boletins × resultado oficial</a></td><td>Somando todas as urnas, chega-se ao resultado divulgado?</td><td>Concluído: 2º turno, Presidente seção a seção e Governador por zona; 1º turno, todos os cargos. Pendente: demais campos do 2º turno, voto por candidato e seção nos outros cargos, situação das candidaturas excluídas e consulta popular de PE.</td></tr>
@@ -511,10 +536,11 @@ li figure.grafico{margin-top:.6em}
 <tr><td>7</td><td><a href="#t07">Limites desta perícia</a></td><td>O que estes arquivos permitem afirmar e o que não permitem</td><td>Revisto e atualizado com os demais tópicos em 30/10/2026.</td></tr>
 <tr><td>8</td><td><a href="#t08">A virada do 2º turno</a></td><td>O que os números oficiais mostram sobre a virada?</td><td>Escrito só com números reproduzidos de forma independente; testes ainda em revisão aparecem como Pendente, sem número.</td></tr>
 <tr><td>9</td><td><a href="#t09">Padrões estatísticos de fraude</a></td><td>Os resultados de Presidente mostram as marcas estatísticas que fraudes grandes costumam deixar?</td><td>Parcial: os números exatos foram refeitos por uma segunda conta; os que dependem de simulação estão Pendentes. O tópico ainda não teve revisão independente completa.</td></tr>
-<tr><td>10</td><td><a href="#t10">Quadro geral das hipóteses de fraude testadas</a></td><td>Quais suspeitas de fraude foram testadas, como, e o que se concluiu?</td><td>Atualizado em 30/10/2026: 18 hipóteses no quadro (H01 a H17 e H25). As registradas depois (H18 a H24) estão Pendentes.</td></tr>
-<tr><td>11</td><td><a href="#t11">Urnas trocadas por reserva no 2º turno</a></td><td>As seções que votaram com urna reserva no 2º turno mostram votos ou rastro técnico fora do normal, comparadas com elas mesmas no 1º turno e com as vizinhas?</td><td>Concluído para o 2º turno, com revisão independente. Pendente: motivo da troca de urnas em Aracaju, causa do comparecimento menor das reservas herdadas no 1º turno e os demais pontos listados no tópico.</td></tr>
+<tr><td>10</td><td><a href="#t10">Quadro geral das hipóteses de fraude testadas</a></td><td>Quais suspeitas de fraude foram testadas, como, e o que se concluiu?</td><td>Atualizado em 30/10/2026: 24 hipóteses no quadro (H01 a H18, H21 a H25 e H27), cada uma depois da sua revisão independente. As registradas depois (H19, H20 e H26) estão Pendentes.</td></tr>
+<tr><td>11</td><td><a href="#t11">Urnas trocadas por reserva no 2º turno</a></td><td>As seções que votaram com urna reserva no 2º turno mostram votos ou rastro técnico fora do normal, comparadas com elas mesmas no 1º turno e com as vizinhas?</td><td>Concluído para o 2º turno, com revisão independente; em 30/10/2026, corrigida a contagem dos votos dados antes da troca (155.663) e acrescentadas 3 reservas carregadas durante a votação do 1º turno. Pendente: motivo da troca de urnas em Aracaju, causa do comparecimento menor das reservas herdadas no 1º turno e os demais pontos listados no tópico.</td></tr>
 <tr><td>12</td><td><a href="#t12">Sigilo do voto</a></td><td>Os arquivos públicos permitem ligar um voto a um eleitor?</td><td>Concluído para os dois turnos, com revisão independente. Pendente: de quem são os números de título gravados no diário (pergunta ao TSE) e a busca em formas codificadas.</td></tr>
 <tr><td>13</td><td><a href="#t13">A mesa e o atendimento de cada eleitor</a></td><td>Todo eleitor liberado tem um fim registrado no diário? A mesa liberou votos em bloco, impediu alguém de votar ou votou no lugar de quem chegou depois?</td><td>Escrito em 30/10/2026, com revisão independente. Concluído para os dois turnos o atendimento de cada eleitor, a lista de votos × boletim do 1º turno e a causa das interrupções. Pendente: os testes de votos em bloco (H15) e do “já votou” (H17) e o pedido de ata e caderno de votação de duas seções.</td></tr>
+<tr><td>14</td><td><a href="#t14">Outras formas de fraude testadas</a></td><td>Uma fraude pode ter escapado aos outros testes mudando por igual todas as urnas de uma cidade, combinando um voto nulo como “senha”, usando o exterior ou as seções em cédula, carregando a urna de novo, usando eleitores em trânsito ou trocando o resultado no caminho até o TSE?</td><td>Escrito em 30/10/2026, com revisão independente, para os dois turnos (H18, H21, H22, H23, H24 e H27). Não se achou resultado trocado nem seção fantasma; ficaram casos para apuração, e cada item diz o que o teste não enxerga. Pendente: atas das recargas sem motivo escrito e das cargas no dia, lista de sorteio do Teste de Integridade, verificação local de 19 cidades e de números nulos, e a origem de 2 urnas da BA.</td></tr>
 </tbody>
 </table>
 <p><strong>Relatórios temáticos</strong> (cada um sai também em PDF próprio):</p>
@@ -937,7 +963,8 @@ sem nova carga: 2º turno (181 anotações) 128; 1º turno (146 anotações) 99<
 <li>em 2 seções do 2º turno (49 votos) e 3 do 1º (152 votos), todas com urna reserva, o diário da urna que gravou os votos não está no pacote publicado. Os arquivos mostram como ele se perdeu: outra urna foi ligada com o cartão de votos da seção e gravou o próprio diário por cima. Os boletins dessas 5 seções estão assinados, e as assinaturas conferem.</li>
 </ul>
 <p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (dois turnos, com revisão independente):</strong> cada pacote foi gerado pela urna que o boletim diz. O número da urna é o mesmo no boletim, no pacote de lacres e na carteira de identidade digital da urna em todas as seções, menos nas que tiveram o boletim regravado por outra urna (3 no 2º turno, 14 no 1º), que têm a explicação no próprio pacote. Nenhum cartão de votação, nenhuma urna e nenhum código de carga aparece no boletim de duas seções do mesmo município ou da mesma zona. No 2º turno, nenhuma urna escreveu no diário de duas seções ao mesmo tempo (seção “Identificação da urna e dos cartões”).</p>
-<p class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span> (1º turno):</strong> a comparação dos boletins com o registro dos votos (C1) e as demais contas internas (C3 a C6) ainda não foram refeitas no país inteiro; por ser parcial, o resultado não entra neste relatório. A comparação do diário com o boletim (C2) foi feita no país inteiro (acima), e a do boletim com o resultado oficial, em todos os cargos, está no <a href="#t05">tópico 5</a>.</p>
+<p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (1º turno, país inteiro):</strong> o boletim e o registro dos votos são iguais em todas as seções e em todos os cargos (2.490.805 comparações, 0 diferença), conferido por uma segunda verificação independente (<a href="#t13">tópico 13</a>).</p>
+<p class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span> (1º turno):</strong> as demais contas internas do boletim (C3 a C6) ainda não foram refeitas no país inteiro; por ser parcial, o resultado não entra neste relatório. A comparação do diário com o boletim (C2) foi feita no país inteiro (acima), e a do boletim com o resultado oficial, em todos os cargos, está no <a href="#t05">tópico 5</a>.</p>
 <p>O que este resultado <strong>não</strong> prova: que quem votou era de fato o eleitor. Um voto dado por outra pessoa no lugar de um eleitor ausente gera boletim, registro e diário coerentes entre si. Esse ponto fica no tópico 4.</p>
 <h2 id="t02-os-três-registros-e-por-que-compará-los"><span class="num" data-ger>2.3</span> Os três registros, e por que compará-los</h2>
 <table class="tabela cols-3 texto">
@@ -1292,7 +1319,9 @@ sem nova carga: 2º turno (181 anotações) 128; 1º turno (146 anotações) 99<
 </li>
 <li><p>Em <strong>5 seções</strong> do 2º turno (MS 90514/0008/0486, MS 91650/0051/0044, PR 74918/0056/0037, PR 75833/0043/0397 e SP 61816/0016/0436), a urna foi carregada na manhã da própria votação, e a votação abriu atrasada. Isso foi conferido por dois caminhos: pelo diário e pela data da carga anotada no boletim. Nas 5, a conferência das assinaturas da carga está registrada com sucesso. A carga em si é feita por pessoas, fora da vista da mesa. Além delas, na BA 35653/0173/0235, a urna original foi recarregada no dia com a preparação de outra seção (seção “Votos do boletim sem rastro completo no diário”, acima).</p>
 </li>
-<li class="com-rotulo rotulo-pendente"><p class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> a mesma conta de carga no dia da votação no 1º turno.</p>
+<li><p>No 1º turno, 7 boletins vieram de urna carregada no próprio dia da votação: 4 urnas de seção (MG 48852/0190/0107, PR 75353/0003/0495, SC 83194/0027/0056 e SC 83194/0027/0057) e 3 reservas (BA 33197/0036/0003, SC 83518/0046/0038 e SC 83518/0046/0113). Nas 7, a hora digitada e o relógio interno da urna coincidem, e a carga terminou com sucesso. Nas 2 reservas de SC, a abertura gravada é a da urna original, e a reserva continuou a votação já aberta.</p>
+</li>
+<li><p>Além desses 7, 3 reservas foram carregadas durante a votação do 1º turno, em 04/10 (MT 91677/0020/0419, às 08:03; MT 91677/0020/0669, às 09:51; RS 85090/0144/0063, às 10:30). Não geraram boletim no 1º turno, em nenhuma seção, e foram usadas como reserva dessas seções só no 2º turno. Nas 3, o relógio interno fica a menos de 1 minuto da hora digitada, e a carga terminou com sucesso (<a href="#t11">tópico 11</a>, item 7). A carga no dia, nos dois turnos, foi conferida por uma segunda verificação independente, que leu de novo todos os pacotes dos dois turnos (<a href="#t14">tópico 14</a>, item 4).</p>
 </li>
 <li class="com-rotulo rotulo-pendente"><p class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> a concentração de trocas de urna em algumas zonas é teste estatístico e fica fora deste relatório. O ponto que resiste às duas formas de cálculo usadas na revisão independente são as zonas 1 e 2 de Aracaju (SE). Para elas, é preciso pedir ao TRE-SE os registros de troca de urna. Anomalia estatística não é prova: indica onde pedir as atas.</p>
 </li>
@@ -1329,7 +1358,7 @@ sem nova carga: 2º turno (181 anotações) 128; 1º turno (146 anotações) 99<
 <li class="com-rotulo rotulo-pendente"><span class="caixa" role="img" aria-label="a fazer"></span><strong class="com-rotulo"><span class="rotulo">Pendente</span>.</strong> Teste automático com boletim e registro alterados de propósito (contraprova de C1 a C6).</li>
 <li><span class="caixa feita" role="img" aria-label="feito"></span>Identificação da urna e dos cartões nos dois turnos, com revisão independente.</li>
 <li class="com-rotulo rotulo-pendente"><span class="caixa" role="img" aria-label="a fazer"></span><strong class="com-rotulo"><span class="rotulo">Pendente</span>.</strong> Recontar com programa próprio as demais conferências de identificação (cartão de votação, modelo, mídia e código de carga).</li>
-<li class="com-rotulo rotulo-pendente"><span class="caixa" role="img" aria-label="a fazer"></span><strong class="com-rotulo"><span class="rotulo">Pendente</span>.</strong> Carga no dia da votação no 1º turno.</li>
+<li><span class="caixa feita" role="img" aria-label="feito"></span>Carga no dia da votação no 1º turno (7 boletins, mais 3 reservas carregadas em 04/10 e usadas só no 2º turno), com segunda verificação independente.</li>
 <li class="com-rotulo rotulo-pendente"><span class="caixa" role="img" aria-label="a fazer"></span><strong class="com-rotulo"><span class="rotulo">Pendente</span>.</strong> Pedir ao TRE-SE os registros de troca de urna das zonas 1 e 2 de Aracaju, e aos TREs do RJ e do AP e ao TSE (exterior) o procedimento de geração das mídias de resultado.</li>
 </ul>
 </section>
@@ -4047,17 +4076,18 @@ sem nova carga: 2º turno (181 anotações) 128; 1º turno (146 anotações) 99<
 <section class="topico" id="t10">
 <h1 id="t10-10-quadro-geral-das-hipóteses-de-fraude-testadas" class="titulo-topico"><span class="num">10</span> <span class="texto">Quadro geral das hipóteses de fraude testadas</span></h1>
 <blockquote>
-<p><strong>Situação:</strong> escrito em 29/10/2026 (H14 acrescentada, H09 atualizada e H15, H16, H17 e H25 acrescentadas em 30/10/2026, cada uma depois da sua conferência independente) a partir do registro de hipóteses da auditoria e das conferências independentes. Regra deste tópico: só fica no texto o número que foi refeito de forma independente, por uma conferência independente que o sustenta ou pela recontagem deste tópico, sobre o universo completo. O que ainda não foi refeito aparece como <strong class="com-rotulo"><span class="rotulo">Pendente</span>: em verificação</strong>, sem número. Os números do 1º turno que vêm de dados ainda em carga estão marcados <strong>parcial</strong>, com a lista dos estados que faltam.</p>
+<p><strong>Situação:</strong> escrito em 29/10/2026 (H14 acrescentada, H09 atualizada e H15, H16, H17, H25, H18, H21, H22, H23, H24 e H27 acrescentadas em 30/10/2026, cada uma depois da sua conferência independente) a partir do registro de hipóteses da auditoria e das conferências independentes. Regra deste tópico: só fica no texto o número que foi refeito de forma independente, por uma conferência independente que o sustenta ou pela recontagem deste tópico, sobre o universo completo. O que ainda não foi refeito aparece como <strong class="com-rotulo"><span class="rotulo">Pendente</span>: em verificação</strong>, sem número. Os números do 1º turno que vêm de dados ainda em carga estão marcados <strong>parcial</strong>, com a lista dos estados que faltam.</p>
 </blockquote>
 <h2 id="t10-a-pergunta"><span class="num" data-ger>10.1</span> A pergunta</h2>
 <p>Quais suspeitas de fraude foram testadas nos arquivos das urnas de 2026, como cada uma foi testada, e o que se concluiu até agora?</p>
 <h2 id="t10-resposta-curta"><span class="num" data-ger>10.2</span> Resposta curta</h2>
 <ul>
-<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> este quadro traz 18 hipóteses (H01 a H17 e H25). As outras registradas depois (H18 a H24) entram aqui quando forem levadas à perícia. Duas foram <strong>refutadas</strong>: H10 (“o crescimento de um finalista não cabe nos votos disponíveis”) e H07 (“urnas antigas não leem digital”), esta pela premissa (todo modelo lê digital, item 5 do tópico 4). Nenhuma foi <strong>sustentada</strong>. As outras estão <strong>abertas</strong> ou <strong>em teste</strong>.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> este quadro traz 24 hipóteses (H01 a H18, H21 a H25 e H27). As outras registradas depois (H19, H20 e H26) entram aqui quando forem levadas à perícia. Duas foram <strong>refutadas</strong>: H10 (“o crescimento de um finalista não cabe nos votos disponíveis”) e H07 (“urnas antigas não leem digital”), esta pela premissa (todo modelo lê digital, item 5 do tópico 4). Nenhuma foi <strong>sustentada</strong>. As outras estão <strong>abertas</strong> ou <strong>em teste</strong>.</li>
 <li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> nenhum teste feito até agora encontrou, nos arquivos públicos, sinal de fraude na soma das urnas, na contagem por urna, no horário dos votos ou no intervalo entre votos. Isso não quer dizer que toda fraude grande o bastante para mudar o resultado de Presidente deixaria esse sinal: há formas de fraude, mesmo grandes, que esses testes não enxergam (inserção igual em todas as seções de um estado, fraude igual nos dois turnos, uso da liberação sem digital; ver H05 e H13).</li>
 <li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> alguns testes acharam <strong>brechas humanas</strong>, isto é, pontos em que só uma pessoa (o mesário, o cartório) decide, sem rastro técnico. A maior delas: o eleitor que a urna libera sem digital, só com o número do título e o ano de nascimento. Essas brechas são <strong>riscos</strong>, não provas de fraude.</li>
 <li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> um teste achou um problema de <strong>publicação</strong>, que não é sinal de fraude no resultado: o diário público da urna traz, na mensagem de suspensão do eleitor, números com formato de título que não são de nenhum mesário, presidente ou servidor registrado no diário de qualquer urna do país (H09, <a href="#t12">tópico 12</a>). De quem são esses números é <strong class="com-rotulo"><span class="rotulo">Hipótese</span></strong>, com a confirmação <strong class="com-rotulo"><span class="rotulo">Pendente</span></strong>.</li>
 <li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> um teste achou uma <strong>lacuna de controle</strong> nas chaves do TSE: o cartório digital das urnas antigas (AC URNA) continuou carimbando carteiras de urna depois de o certificado dele vencer (H25, <span class="link-sem-destino">relatório temático</span><span class="ref-completo" data-ger> (documento à parte)</span>). O teste que compara os votos das seções com essas carteiras com os das vizinhas não encontrou diferença; isso não prova que os votos foram iguais.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> em todas as seções com urna dos dois turnos, o resultado foi assinado pela própria urna que ele declara, menos nas 17 seções em que os votos foram recuperados por outra urna, e nenhuma seção fantasma foi encontrada (H27, <a href="#t14">tópico 14</a>).</li>
 <li>Os números dos testes estatísticos citados neste quadro estão na análise técnica separada da auditoria. Aqui fica o resultado em palavras (“o teste encontrou diferença” ou “não encontrou”). O acaso sempre produz alguma diferença entre dois grupos; o teste só diz que encontrou diferença quando ela é grande demais para vir do acaso.</li>
 <li><strong>Não é possível afirmar</strong> que não houve nenhuma fraude. Os arquivos públicos não mostram quem estava na cabine nem permitem conferir o programa da urna por dentro. Vários testes também não enxergam fraude pequena, espalhada ou concentrada em poucas seções. Esses limites estão descritos em cada hipótese.</li>
 </ul>
@@ -4096,7 +4126,13 @@ sem nova carga: 2º turno (181 anotações) 128; 1º turno (146 anotações) 99<
 <tr><td>H15</td><td>Votos no lugar de eleitores ausentes, liberados em bloco pela mesa sem digital</td><td>Sequências de liberações sem digital do mesmo mesário, ritmo e horário, nas mesmas urnas nos dois turnos; parcela sem digital na última hora de cada seção</td><td>A parcela de votos sem digital não sobe na última hora com voto de cada seção (12,64% contra 12,69% nas horas anteriores, 2º turno). O teste de blocos foi refeito, mas só enxerga votos seguidos, liberados pelo mesmo mesário registrado, em ritmo mais regular que o de uma pessoa; não enxerga bloco pequeno, intercalado ou liberado pelas vias em que a urna não anota mesário: <strong class="com-rotulo"><span class="rotulo">Pendente</span></strong>. Caso para apuração de campo: SP 64017/0391/0164</td><td>em teste</td><td>sim, com ressalvas (alcance do teste estreito)</td><td><a href="#t13">tópico 13</a></td></tr>
 <tr><td>H16</td><td>Eleitor liberado sem fim registrado no diário, ou voto gravado sem eleitor liberado</td><td>Cada atendimento no diário de todas as urnas dos dois turnos; votos por cargo × boletim; lista de votos × boletim e boletim inteiro repetido no 1º turno; causa das interrupções</td><td>0 atendimento sem fim registrado e 0 voto sem eleitor liberado, nos dois turnos (128.244.427 liberações no 2º turno e 125.322.998 no 1º). 1º turno: lista de votos e boletim iguais em 2.490.805 comparações (749.120.705 votos); nenhum boletim inteiro igual ao de outra seção (68.595.557 pares). Interrupções com erro ou falta de energia anotados: 481 de 1.378 (2º) e 1.008 de 5.721 (1º); em 21 (2º) e 118 (1º) o eleitor confirmou todos os cargos, a urna foi desligada pela chave e o voto não foi gravado nem contado. Não enxerga programa adulterado que grave registros coerentes</td><td>em teste</td><td>sim, sustentado (com correção: 0 voto sem liberação no 1º turno, e não 2)</td><td><a href="#t13">tópico 13</a></td></tr>
 <tr><td>H17</td><td>A mesa impediu eleitores de votar, ou alguém votou no lugar de quem chegou depois (“já votou”)</td><td>Atendimentos que terminam sem voto; “já votou” logo depois de voto sem digital; casos conferidos no diário</td><td>Atendimentos perdidos (eleitor suspenso sem votar ou liberação cancelada): 805.368 de 139.310.955 no 2º turno e 1.206.250 de 136.390.914 no 1º; os atendimentos sem desfecho anotado ficam fora (<strong class="com-rotulo"><span class="rotulo">Pendente</span></strong>). Teste do “já votou”: <strong class="com-rotulo"><span class="rotulo">Pendente</span></strong>. Caso para apuração de campo: PR 78573/0083/0101 (no 2º turno, 16 de 26 votos sem digital seguidos de “já votou”; nenhum depois dos 270 votos pela digital; as 19 liberações à mão feitas por digitais não associadas a mesário registrado)</td><td>em teste</td><td>sim, com ressalvas</td><td><a href="#t13">tópico 13</a></td></tr>
+<tr><td>H18</td><td>Mudança igual em todas as urnas de uma cidade, para que nenhuma urna destoe das vizinhas</td><td>Virada de cada cidade contra o esperado pelo próprio 1º turno (Presidente, governador e senador), calculado com as outras cidades do estado; urnas da mesma cidade parecidas demais entre si</td><td>0 de 5.241 cidades com urnas parecidas demais. 19 cidades pequenas mudaram mais que o esperado (4 para o 13, 15 para o 22), somando 5.695 votos além do esperado; lista para verificação local. Não enxerga mudança pequena espalhada por muitas cidades nem igual num estado inteiro</td><td>em teste</td><td>sim, sustentado com ressalvas (pontos cegos maiores que os declarados)</td><td><a href="#t14">tópico 14, item 1</a></td></tr>
+<tr><td>H21</td><td>Voto nulo com número combinado, usado como “senha” de compra de voto e conferido na lista de votos</td><td>Cada número nulo digitado nos dois turnos (39.348.069 no 1º e 3.180.131 no 2º): raro no resto do estado ou do país e concentrado em poucas zonas; números de erro de digitação separados</td><td>2º turno: nenhum número concentrado e raro, mas no voto para Presidente e governador (dois dígitos) o teste não tinha como encontrar o esquema. 1º turno: 19 números de deputado, 648 ocorrências, quase todos a uma ou duas teclas de um deputado muito votado na região. Goiatins (TO) se explica pela eleição de prefeito no mesmo dia</td><td>em teste</td><td>sim, sustentado como fato do teste, sem valor de absolvição no voto para Presidente</td><td><a href="#t14">tópico 14, item 2</a></td></tr>
+<tr><td>H22</td><td>Exterior (sem digital) e seções apuradas em cédula usados para pôr votos</td><td>Todas as 1.351 seções do exterior nos dois turnos: comparecimento, boletim × diário, horário, intervalo e votos por hora; hora de chegada dos resultados em cédula</td><td>0 seção com mais votantes que aptos; boletim igual ao diário nas 1.281 urnas; 0 voto fora do horário; menor intervalo 16 s. Comparecimento de 341.766 para 381.443, com o aumento pela manhã. No 2º turno, os 29 resultados em cédula chegaram ao TSE 160 minutos ou mais depois do fechamento do posto</td><td>em teste</td><td>sim, sustentado (ressalva na hora dos resultados em cédula)</td><td><a href="#t14">tópico 14, item 3</a></td></tr>
+<tr><td>H23</td><td>Urna carregada de novo, ou fora do dia previsto, para receber programa ou dados diferentes</td><td>Código de carga do boletim no diário da urna; recargas e motivo pelo diário guardado; cargas no dia da votação contra o relógio da urna; votos das seções com recarga</td><td>Código de carga do boletim no diário da própria urna em 499.207 de 499.207 seções, nos dois turnos. Recargas: 2.674 no 1º turno e 1.770 novas no 2º. Num grupo pequeno de seções, o motivo da recarga não aparece no diário: não é sinal de fraude por si, e as atas foram pedidas ao TSE (<strong class="com-rotulo"><span class="rotulo">Pendente</span></strong>). Carga no dia: 7 boletins no 1º turno, mais 3 reservas carregadas em 04/10 e usadas no 2º, e 5 boletins no 2º, todos com relógio e hora digitada coincidentes. Votos: o teste não encontrou diferença na parcela de cada finalista</td><td>em teste</td><td>sim, sustentado com ressalvas</td><td><a href="#t14">tópico 14, item 4</a></td></tr>
+<tr><td>H24</td><td>Eleitores em trânsito, ou atributos especiais (preso, militar, servidor, deficiência visual), usados para inflar seções</td><td>Contas de aptos, trânsito e eleitores de outro estado em todas as seções; liberação sem digital nas seções com 10+ em trânsito contra o mesmo local</td><td>0 violação nas contas, nos dois turnos; total de aptos igual nos dois turnos (158.745.079). Nas seções com 10+ em trânsito, menos liberação sem digital que no mesmo local (3.254 de 5.251 locais no 1º turno; 3.150 de 5.113 no 2º): sinal contrário ao de inflar seção. Balanço entre saídas e chegadas: <strong class="com-rotulo"><span class="rotulo">Pendente</span></strong>. Atributos especiais: sem dado público por seção</td><td>em teste</td><td>sim, sustentado com ressalvas</td><td><a href="#t14">tópico 14, item 5</a></td></tr>
 <tr><td>H25</td><td>O certificado do cartório digital das urnas antigas (AC URNA) venceu antes da eleição; um sistema alterado poderia assinar com chave aceita, e a totalização não conferiria a validade</td><td>Carteira de cada urna nos dois turnos (data, cartório, número de série, repetições); votos das urnas antigas contra os das novas; votos das seções com carteira emitida depois do vencimento</td><td>O certificado publicado da AC URNA vale até 18/07/2026. A chave dele carimbou 54 carteiras de urna com início de validade entre 20/07 e 19/10/2026, usadas em 53 seções no 2º turno e 45 no 1º; todas apontam para o certificado vencido. O teste que compara a mudança dos votos dessas seções entre os turnos com a das vizinhas não encontrou diferença. Nenhum dos 12 testes combinados antes encontrou diferença entre urnas antigas e novas (eles cobrem 0,5% das seções de urna antiga). As assinaturas das 99.957 seções do 2º turno conferem, e os votos delas estão no resultado oficial. Nenhuma das 503.525 carteiras dos dois turnos está fora do molde do seu cartório; uma montada igual ao molde com a chave verdadeira não seria apontada. Não testável nos arquivos: se a totalização confere a validade</td><td>em teste</td><td>sim, sustentado com ressalvas</td><td><span class="link-sem-destino">relatório temático</span><span class="ref-completo" data-ger> (documento à parte)</span>; <a href="#t01">tópico 1</a></td></tr>
+<tr><td>H27</td><td>Resultado de uma seção trocado no caminho por outro, assinado por outra urna; ou seção que não existe, com resultado contado</td><td>Quem assinou cada pacote dos dois turnos; urna e carga do boletim na lista prévia do TSE (feita antes da votação) e na lista final; casos fora da lista abertos no diário; pacotes de recuperação de dados; seções contra o cadastro de locais e o resultado oficial</td><td>Todo resultado assinado pela própria urna que ele declara, menos 17 recuperações de dados feitas em outra urna (4.090 votos), assinadas por reserva da lista prévia. 0 seção fantasma. 45 seções (17 e 28) com o registro da urna só no dia da votação; no 2º turno, em 25 das 28, junto com o resultado; as urnas foram preparadas dias antes e abriram às 8 h. 11 urnas do 2º turno fora de todas as listas prévias, todas a própria urna do boletim. 5 seções de SE com votação do 1º turno que não virou resultado (Hipótese: Teste de Integridade)</td><td>em teste</td><td>sim, sustentado com ressalvas</td><td><a href="#t14">tópico 14, item 6</a></td></tr>
 </tbody>
 </table>
 <h2 id="t10-hipótese-por-hipótese"><span class="num" data-ger>10.5</span> Hipótese por hipótese</h2>
@@ -4271,6 +4307,46 @@ sem nova carga: 2º turno (181 anotações) 128; 1º turno (146 anotações) 99<
 <li><strong>Pode-se afirmar:</strong> os registros de cada atendimento são coerentes com o boletim e a lista de votos em todas as urnas dos dois turnos.</li>
 <li><strong>Não se pode afirmar:</strong> que o programa da urna era o oficial (um programa adulterado grava registros coerentes), nem de quem é o dedo posto no leitor nas liberações à mão.</li>
 </ul>
+<h3 id="t10-h18-mudança-igual-em-todas-as-urnas-de-uma-cidade">H18. Mudança igual em todas as urnas de uma cidade</h3>
+<p>O texto segue as afirmações revisadas pela conferência independente (sustentado com ressalvas). Termos e detalhes no <a href="#t14">tópico 14, item 1</a>.</p>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (revisado):</strong> nenhuma das 5.241 cidades em que dava para medir tem urnas parecidas demais entre si, o sinal de um resultado fixado.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (revisado):</strong> 19 cidades pequenas mudaram do 1º para o 2º turno mais do que o esperado pelo próprio 1º turno: 4 para o lado do 13 e 15 para o lado do 22, somando 5.695 votos além do esperado. <strong class="com-rotulo"><span class="rotulo">Hipótese</span>:</strong> cidades de voto volátil; a maioria já tinha mudado bruscamente em 2018 ou 2022. <strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> verificação local; os nomes não entram neste relatório antes dela.</li>
+<li><strong>Não se pode afirmar:</strong> nada sobre mudança pequena numa cidade, nem sobre mudança espalhada por muitas cidades ou igual num estado inteiro: nesses casos a régua do próprio estado se move junto.</li>
+</ul>
+<h3 id="t10-h21-voto-nulo-usado-como-senha-de-compra-de-voto">H21. Voto nulo usado como “senha” de compra de voto</h3>
+<p>O texto segue as afirmações revisadas pela conferência independente. Termos e detalhes no <a href="#t14">tópico 14, item 2</a>.</p>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (revisado):</strong> no 2º turno, nenhum número nulo concentrado e raro. No voto para Presidente e governador, de dois dígitos, todo número possível é de partido ou de candidato, ou fica a uma tecla de um deles: o teste não tinha como encontrar o esquema nesses cargos.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (revisado):</strong> no 1º turno, 19 números de deputado ficaram concentrados, com 648 ocorrências no país. <strong class="com-rotulo"><span class="rotulo">Hipótese</span>:</strong> erro de digitação; quase todos ficam a uma ou duas teclas do número de um deputado muito votado na região. <strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> verificação local dos que ficam sem essa explicação.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (revisado):</strong> em Goiatins (TO), 309 dos 575 votos nulos para Presidente do 2º turno foram 77 ou 20, os números dos dois candidatos da eleição suplementar para prefeito feita no mesmo dia.</li>
+<li><strong>Não se pode afirmar:</strong> nada sobre esquema com número comum ou com um número diferente em cada seção (número com menos de 10 ocorrências no estado não é testado).</li>
+</ul>
+<h3 id="t10-h22-exterior-e-seções-apuradas-em-cédula">H22. Exterior e seções apuradas em cédula</h3>
+<p>O texto segue as afirmações revisadas pela conferência independente (sustentado; ressalva na hora dos resultados em cédula). Termos, tabela por hora e detalhes no <a href="#t14">tópico 14, item 3</a>.</p>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (revisado):</strong> nas 1.351 seções do exterior, nos dois turnos, nenhuma com mais votantes que aptos; nas 1.281 urnas, o boletim tem os mesmos votos que o diário; nenhum voto fora do horário; menor intervalo entre dois votos de 16 segundos (2º turno).</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (revisado):</strong> o comparecimento subiu de 341.766 para 381.443 (11,6%), principalmente pela manhã. O relógio das urnas da Europa acompanhou o fim do horário de verão, no dia do 2º turno, e por isso a comparação por hora vale.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (revisado):</strong> no 2º turno, os 29 resultados em cédula chegaram ao TSE 160 minutos ou mais depois do fechamento do posto. A hora não confere o conteúdo digitado; as atas das juntas estão <strong>Pendentes</strong>.</li>
+<li><strong>Não se pode afirmar:</strong> que todo votante do exterior era o próprio eleitor: sem digital, um voto no lugar de ausente, feito aos poucos e em muitos lugares, não se distingue de mobilização.</li>
+</ul>
+<h3 id="t10-h23-recarga-e-carga-da-urna-fora-do-previsto">H23. Recarga e carga da urna fora do previsto</h3>
+<p>O texto segue as afirmações revisadas pela conferência independente (sustentado com ressalvas). Termos, casos e lista de seções no <a href="#t14">tópico 14, item 4</a>.</p>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (revisado):</strong> o código de carga do boletim está no diário da própria urna, no mesmo pacote, em 499.207 de 499.207 seções, nos dois turnos.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (revisado):</strong> 2.674 recargas no 1º turno e 1.770 novas no 2º, quase todas com motivo no diário. Num grupo pequeno de seções, o motivo da recarga não aparece no diário (sem contar como motivo uma linha de erro de rotina que aparece em quase todas as urnas). Não é sinal de fraude por si. <strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> as atas, pedidas ao TSE.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (revisado):</strong> carga no dia da votação: 7 boletins no 1º turno, mais 3 reservas carregadas durante a votação de 04/10 e usadas só no 2º turno, e 5 boletins no 2º turno; em todos, a hora digitada e o relógio da urna coincidem.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (revisado):</strong> nas seções com recarga, o teste não encontrou diferença na parcela de cada finalista em relação às vizinhas. <strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> o comparecimento, refeito sem 2 seções que votaram em cédula no 1º turno.</li>
+<li><strong>Não se pode afirmar:</strong> o motivo de cada recarga (decisão de pessoas, registrada só na ata), nem que o programa carregado era o oficial.</li>
+</ul>
+<h3 id="t10-h24-eleitores-em-trânsito-e-atributos-especiais">H24. Eleitores em trânsito e atributos especiais</h3>
+<p>O texto segue as afirmações revisadas pela conferência independente (sustentado com ressalvas). Termos e detalhes no <a href="#t14">tópico 14, item 5</a>.</p>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (revisado):</strong> em todas as seções dos dois turnos, aptos = eleitores da seção + eleitores em trânsito; nenhuma seção com mais votantes que aptos, nem com mais eleitores de outro estado votando do que inscritos. Total de aptos igual nos dois turnos: 158.745.079.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (revisado):</strong> nas seções com 10 ou mais eleitores em trânsito, a parte dos votos liberados sem digital ficou abaixo da das outras seções do mesmo local em 3.254 de 5.251 locais no 1º turno e em 3.150 de 5.113 no 2º: o contrário do que o uso do trânsito para pôr votos deixaria.</li>
+<li class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> o balanço entre saídas e chegadas de eleitores em trânsito (depende do cadastro usado na carga, que não é público).</li>
+<li><strong>Não se pode afirmar:</strong> nada sobre presos, militares, servidores ou pessoas com deficiência visual: os arquivos públicos não trazem esses números por seção.</li>
+</ul>
 <h3 id="t10-h25-o-certificado-vencido-da-ac-urna">H25. O certificado vencido da AC URNA</h3>
 <p>O texto segue as afirmações revisadas pela conferência independente (o achado dos 54 sustentado; ressalvas na data de emissão, na palavra “contínua”, no “modelo de cadeia” e no rótulo exploratório de parte dos votos). Termos, tabelas, gráficos e as perguntas ao TSE estão no <span class="link-sem-destino">relatório temático</span><span class="ref-completo" data-ger> (documento à parte)</span>.</p>
 <ul>
@@ -4285,6 +4361,17 @@ sem nova carga: 2º turno (181 anotações) 128; 1º turno (146 anotações) 99<
 <li><strong>Pode-se afirmar:</strong> a validade vencida não permite, por si, forjar uma carteira; as assinaturas das urnas antigas conferem nos dois turnos; e os testes de votos não encontraram diferença entre as urnas antigas, inclusive as que receberam carteira depois do vencimento, e as vizinhas, no tamanho que eles enxergam.</li>
 <li><strong>Não se pode afirmar:</strong> que a totalização “aceitou certificado vencido” (não se sabe se ela confere certificados, nem com qual certificado); que o cartório foi renovado com a mesma chave; quem operou a chave e se as emissões foram autorizadas; que a chave ficou só com o TSE; nem que nenhuma urna rodou programa alterado e assinado com a chave verdadeira.</li>
 <li class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> resposta do TSE às perguntas do relatório temático; lista de revogação e política da AC URNA.</li>
+</ul>
+<h3 id="t10-h27-resultado-trocado-no-caminho-e-seções-fantasmas">H27. Resultado trocado no caminho e seções fantasmas</h3>
+<p>O texto segue as afirmações revisadas pela conferência independente (sustentado com ressalvas; a afirmação de que os arquivos não explicam 5 trocas em SE foi refutada). Termos, tabelas e casos no <a href="#t14">tópico 14, item 6</a>.</p>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (revisado):</strong> 499.207 pacotes em cada turno, todos na lista final do TSE e vice-versa. Em todas as seções com urna, o resultado foi assinado pela própria urna que ele declara, menos nas 17 recuperações de dados feitas em outra urna (14 no 1º turno e 3 no 2º; 4.090 votos), assinadas por uma reserva da lista prévia. É do desenho da recuperação de dados, não desta eleição.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (revisado):</strong> contra a lista prévia, feita antes da votação, 11 urnas do 2º turno não aparecem em nenhuma lista prévia dos dois turnos; todas são a própria urna do boletim, e nenhuma assinou mais de uma seção.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (revisado):</strong> em 45 seções (17 no 1º turno e 28 no 2º), o registro da urna só chegou ao TSE no dia da votação; no 2º turno, em 25 das 28, junto com o próprio resultado. Em todas, a urna foi preparada antes do dia, abriu no início da votação e não foi trocada no meio do dia, e os votos não destoam das vizinhas nem do 1º turno. O registro no dia acontece em toda eleição com listas disponíveis (194 seções no 1º turno de 2022 e 82 em 2024, sem o DF).</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (revisado):</strong> nas 5 seções de SE, a urna do 2º turno tem no diário um dia de votação de 04/10, quase sem digital, que não virou resultado. <strong class="com-rotulo"><span class="rotulo">Hipótese</span>:</strong> Teste de Integridade do 1º turno. <strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> a lista de sorteio do TRE-SE.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (revisado):</strong> nenhuma seção fantasma: toda seção com resultado está no cadastro de locais e no resultado oficial, e nenhuma teve mais votantes do que eleitores. O código de carga se repete entre os turnos em 494.382 seções, sempre com a mesma urna; ele é identificador, não senha.</li>
+<li class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> de onde vieram as 2 urnas da BA, zona 71, que não constam de lista nenhuma; a regra da totalização para resultado que chega sem registro da urna; a comparação das seções novas com 2022.</li>
+<li><strong>Não se pode afirmar:</strong> que quem tem acesso à preparação ou à transmissão não poderia gerar um registro válido; nem nada sobre programa adulterado e assinado com a chave oficial.</li>
 </ul>
 <h2 id="t10-testes-revisados-que-não-têm-número-de-hipótese"><span class="num" data-ger>10.6</span> Testes revisados que não têm número de hipótese</h2>
 <ul>
@@ -4302,6 +4389,8 @@ sem nova carga: 2º turno (181 anotações) 128; 1º turno (146 anotações) 99<
 <ul>
 <li class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> conferência independente de H03 (demais campos do 2º turno), H04 do 1º turno, H06 (votos depois das 17h; a apuração já foi conferida), H07, H08 e H12. H09 já foi conferida; falta a resposta do TSE sobre a suspensão.</li>
 <li class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> H15 e H17, os testes estatísticos refeitos com o alcance pedido pela conferência independente, e os pedidos de ata e caderno de votação das seções PR 78573/0083/0101 e SP 64017/0391/0164 (<a href="#t13">tópico 13</a>).</li>
+<li class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> H18, H21, H22, H23, H24 e H27, os pedidos e verificações listados no <a href="#t14">tópico 14</a>: verificação local das 19 cidades e dos números nulos sem explicação, atas das recargas sem motivo escrito e das cargas no dia, atas das seções em cédula, lista de sorteio do Teste de Integridade, origem das 2 urnas da BA e regra da totalização.</li>
+<li class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> levar a este quadro H19, H20 e H26.</li>
 <li class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> refazer os itens marcados <strong class="com-rotulo"><span class="rotulo">Pendente</span>: em verificação</strong>.</li>
 <li class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> refazer com o 1º turno completo os números marcados como parciais.</li>
 <li><del>Pendente: conferência das assinaturas do 1º turno</del> — feita em 30/10/2026: 499.207 pacotes, 0 falha de arquivo (tópico 1).</li>
@@ -4312,7 +4401,7 @@ sem nova carga: 2º turno (181 anotações) 128; 1º turno (146 anotações) 99<
 <section class="topico" id="t11">
 <h1 id="t11-11-urnas-trocadas-por-reserva-no-2º-turno" class="titulo-topico"><span class="num">11</span> <span class="texto">Urnas trocadas por reserva no 2º turno</span></h1>
 <blockquote>
-<p><strong>Situação:</strong> escrito em 30/10/2026. A pergunta foi estudada em duas frentes: os votos e o rastro técnico. As duas passaram por uma segunda verificação independente, que refez as contas sobre todas as seções dos dois turnos e concluiu “sustentado, com ressalvas”. O texto usa só as afirmações que resistiram a essa verificação. Para este tópico, cada número foi conferido mais uma vez contra os resultados das duas frentes, da segunda verificação e do banco de dados da auditoria. É a hipótese H14 do <a href="#t10">quadro das hipóteses</a>.</p>
+<p><strong>Situação:</strong> escrito em 30/10/2026. A pergunta foi estudada em duas frentes: os votos e o rastro técnico. As duas passaram por uma segunda verificação independente, que refez as contas sobre todas as seções dos dois turnos e concluiu “sustentado, com ressalvas”. O texto usa só as afirmações que resistiram a essa verificação. Para este tópico, cada número foi conferido mais uma vez contra os resultados das duas frentes, da segunda verificação e do banco de dados da auditoria. Em 30/10/2026, uma nova conferência no arquivo original, voto a voto, corrigiu a contagem dos votos dados antes da troca (cópias do mesmo diário contadas uma vez) e acrescentou 3 reservas carregadas durante a votação do 1º turno (item 7). É a hipótese H14 do <a href="#t10">quadro das hipóteses</a>.</p>
 </blockquote>
 <h2 id="t11-a-pergunta"><span class="num" data-ger>11.1</span> A pergunta</h2>
 <p>Pedido do auditor (29/10/2026): as urnas trocadas por urna reserva no 2º turno podem ter sido manipuladas? Para responder, compara-se cada seção que votou com reserva no 2º turno com <strong>ela mesma</strong> no 1º turno, e com as seções vizinhas que não trocaram de urna, para ver se aparece algum padrão fora do normal.</p>
@@ -4358,7 +4447,7 @@ sem nova carga: 2º turno (181 anotações) 128; 1º turno (146 anotações) 99<
 <p><strong>Quando a troca nova foi feita (Fato, pela data da contingência gravada no diário da reserva).</strong> É a definição recomendada pela segunda verificação, porque tem rastro direto:</p>
 <ul>
 <li><strong>848</strong> entre os turnos (antes de 25/10);</li>
-<li><strong>1.968</strong> no dia do 2º turno. Em 1.423 delas a urna original já tinha recebido votos antes da troca (155.894 votos);</li>
+<li><strong>1.968</strong> no dia do 2º turno. Em 1.423 delas, o diário mostra que a urna usada antes da reserva já tinha recebido votos antes da troca: 155.663 votos. Em 2 dessas seções, o pacote traz duas cópias do mesmo diário dessa urna, e cada voto foi contado uma vez. Em outras 2 seções (BA 35653/0173/0235 e MA 08893/0047/0609), também houve votos antes da troca, mas o diário da urna que os recebeu não está no pacote (49 votos; ver o <a href="#t02">tópico 2</a>);</li>
 <li><strong>2</strong> sem registro de contingência no diário da reserva.</li>
 </ul>
 <p>A outra forma de dividir, pela atividade da urna original no dia 25/10, classifica 133 seções de outro jeito (trocas feitas na madrugada ou na manhã de 25/10 em que a urna original não ligou nesse dia). O total de 2.818 é o mesmo, e o resultado dos votos não muda com nenhuma das duas definições.</p>
@@ -4558,7 +4647,10 @@ sem nova carga: 2º turno (181 anotações) 128; 1º turno (146 anotações) 99<
 <ul>
 <li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> as 125 trocas novas com reserva de outra zona são 78 trocas feitas entre os turnos (9,2% das 848) e 47 feitas no dia (2,4% das 1.968). Somadas às 45 herdadas, são 170 seções. Todas são do mesmo estado da seção: nenhuma reserva veio de outra UF. Das 125, 89 receberam reserva de outra zona da mesma cidade e 36 de outro município. O maior bloco é o de Aracaju (item 5).</li>
 <li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (o que fica registrado):</strong> depois de ler o cartão de votos da seção, a reserva passa a gravar a zona e a seção desse cartão. Em SE 31054/0001/0130, a zona 0002 passa a 0001 (trecho acima). Em AM 02550/0032/0848, “Seção Eleitoral: 0000” passa a “Seção Eleitoral: 0848”. A zona da carga fica no diário, e o código de carga e o histórico de cargas ficam no boletim. Foi por esse rastro que a auditoria achou as 170.</li>
-<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (liberação sem digital nas reservas de outra zona):</strong> nessas 125 reservas, 11,2% dos votos que a própria reserva recebeu saíram sem digital (3.222 de 28.884). Nas mesmas seções, no 1º turno, com a urna original, foram 12,4% (4.120 de 33.287). Nas demais reservas das trocas novas, 15,3% (83.754 de 546.478). Nenhuma das 125 passou de 50% sem digital. Se a carga de outra zona não tivesse as digitais dos eleitores da seção, nenhum deles poderia ser liberado pela digital, e quase todos teriam de ser liberados sem ela; não foi o que aconteceu. Isso indica que a reserva de outra zona funcionou como reserva da própria zona.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (liberação sem digital nas reservas de outra zona):</strong> nessas 125 reservas, 11,2% dos votos que a própria reserva recebeu saíram sem digital (3.222 de 28.884). Nas mesmas seções, no 1º turno, com a urna original, foram 12,4% (4.120 de 33.287). Nas demais reservas das trocas novas, 15,3% (83.754 de 546.478). Nenhuma das 125 passou de 50% sem digital. Se a carga de outra zona não tivesse as digitais dos eleitores da seção, nenhum deles poderia ser liberado pela digital, e quase todos teriam de ser liberados sem ela; não foi o que aconteceu. Isso indica que a reserva de outra zona funcionou como reserva da própria zona.<ul>
+<li>Os 28.884 e os 546.478 são votos que a própria reserva registrou no diário; somam 575.362. O comparecimento dessas 2.818 seções no boletim é 731.639. Os outros 156.277 votos estão assim: 155.663 foram registrados no diário pela urna usada antes da reserva; 563 estão nas 2 seções sem registro de contingência, em que todos os votos ficaram no diário da urna anterior e a reserva só encerrou a votação; e 51 constam do boletim sem a linha de voto no diário, nas 3 seções explicadas no <a href="#t02">tópico 2</a> (BA 35653/0173/0235, MA 08893/0047/0609 e RS 89060/0017/0191).</li>
+</ul>
+</li>
 <li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (votos):</strong> o teste de votos não encontrou diferença entre essas 125 seções e a zona, já com a correção para muitos testes. Não encontrar diferença não prova que os votos foram iguais.</li>
 <li class="com-rotulo rotulo-hipótese"><strong class="com-rotulo"><span class="rotulo">Hipótese</span>:</strong> o cadastro dos eleitores da seção chega à reserva pelo cartão de votos, ou a carga da reserva cobre mais que a zona. O diário não diz qual das duas.</li>
 <li><strong>Lacuna de controle (Fato nos 170 casos aceitos):</strong> a contingência não <strong>bloqueia</strong> reserva carregada para outra zona; só a <strong>registra</strong>. Não se pode afirmar que “nada impede” a troca: uma tentativa recusada não deixaria pacote publicado, e por isso não se sabe, por exemplo, se a urna recusaria reserva de outro estado.</li>
@@ -4643,7 +4735,7 @@ sem nova carga: 2º turno (181 anotações) 128; 1º turno (146 anotações) 99<
 <li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> o relógio que volta sem ajuste aparece no diário da reserva em 114 seções, dentro do esperado pela mesma taxa.</li>
 <li>Os valores esperados por essas taxas estão na análise técnica separada da auditoria.</li>
 <li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (<a href="#t01">tópico 1</a>):</strong> todas as 499.207 urnas do 2º turno registram a mesma versão de programa, 10.23.0.0.</li>
-<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (carga):</strong> nenhuma das 2.818 reservas foi carregada no dia da votação. 2.546 foram carregadas até 04/10 (para o 1º turno) e ficaram guardadas, 261 entre 05/10 e 23/10 e 11 na véspera, 24/10. As 5 cargas no dia da votação do 2º turno são de urnas de seção (<a href="#t02">tópico 2</a>).</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (carga):</strong> nenhuma das 2.818 reservas foi carregada no dia da votação do 2º turno. 2.546 foram carregadas até 04/10, para o 1º turno; 3 delas no próprio dia da votação do 1º turno, durante a votação (MT 91677/0020/0419, MT 91677/0020/0669 e RS 85090/0144/0063), sem gerar boletim no 1º turno, e foram guardadas. 261 foram carregadas entre 05/10 e 23/10 e 11 na véspera, 24/10. As 5 cargas no dia da votação do 2º turno são de urnas de seção (<a href="#t02">tópico 2</a>).</li>
 </ul>
 <p><strong>Conclusão:</strong> nas 2.818 seções, o diário da reserva não mostra nenhum dos sinais que uma adulteração <strong>sem a assinatura do TSE</strong>, ou uma verificação de assinatura pulada, deixaria. Também não há pacote com lacre quebrado nem versão diferente. <strong>Os arquivos públicos não permitem detectar um programa adulterado e assinado com a chave oficial</strong>, porque é o próprio programa que escreve o diário: um programa assim grava as mesmas mensagens de SUCESSO e a mesma versão.</p>
 <h2 id="t11-prova-de-que-o-teste-funciona-contraprova"><span class="num" data-ger>11.6</span> Prova de que o teste funciona (contraprova)</h2>
@@ -5332,6 +5424,307 @@ sem nova carga: 2º turno (181 anotações) 128; 1º turno (146 anotações) 99<
 <li class="com-rotulo rotulo-pendente"><span class="caixa" role="img" aria-label="a fazer"></span><strong class="com-rotulo"><span class="rotulo">Pendente</span>.</strong> Pedidos de ata e caderno de votação das duas seções.</li>
 </ul>
 </section>
+<section class="topico" id="t14">
+<h1 id="t14-14-outras-formas-de-fraude-testadas-cidade-inteira-voto-nulo-combinado-exterior-recarga-da-urna-eleitores-em-trânsito-e-resultado-trocado-no-caminho" class="titulo-topico"><span class="num">14</span> <span class="texto">Outras formas de fraude testadas: cidade inteira, voto nulo combinado, exterior, recarga da urna, eleitores em trânsito e resultado trocado no caminho</span></h1>
+<blockquote>
+<p><strong>Situação:</strong> escrito em 30/10/2026. Reúne seis hipóteses do <a href="#t10">quadro das hipóteses</a>: H18 (mudança igual em todas as urnas de uma cidade), H21 (voto nulo usado como “senha” de compra de voto), H22 (exterior e seções apuradas em cédula), H23 (recarga e carga da urna fora do previsto), H24 (eleitores em trânsito) e H27 (resultado trocado no caminho e seções fantasmas). As seis passaram por uma segunda verificação independente, que refez as contas com programas próprios sobre todas as seções e procurou explicações que a primeira análise não tinha considerado. Ela confirmou os números e corrigiu o alcance de cada teste: H18, H22, H23, H24 e H27 sustentadas, com ressalvas que este texto já usa; na H21, o resultado do 2º turno é um fato do teste, mas o teste não tinha como encontrar o esquema no voto para Presidente. O texto usa só as afirmações que resistiram a essa verificação, e cada seção diz o que o teste não enxerga.</p>
+</blockquote>
+<h2 id="t14-a-pergunta"><span class="num" data-ger>14.1</span> A pergunta</h2>
+<p>Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, arquivos alterados, liberação de eleitor sem digital, troca de urna. Este tópico testa seis formas mais difíceis de ver, pensadas para escapar desses testes:</p>
+<ol>
+<li><strong>H18:</strong> mudar um pouco o resultado de <strong>todas</strong> as urnas de uma cidade, por igual, para que nenhuma urna destoe das vizinhas.</li>
+<li><strong>H21:</strong> combinar com o eleitor comprado um <strong>número sem candidato</strong> (voto nulo) e conferir depois, nos arquivos públicos, se ele apareceu na seção.</li>
+<li><strong>H22:</strong> usar o <strong>exterior</strong>, onde ninguém vota com digital, ou as seções apuradas em <strong>cédula de papel</strong>, para pôr votos.</li>
+<li><strong>H23:</strong> <strong>carregar a urna de novo</strong>, ou fora do dia previsto, para pôr nela um programa ou dados diferentes.</li>
+<li><strong>H24:</strong> usar os <strong>eleitores em trânsito</strong> (quem vota fora da própria seção) para inflar seções.</li>
+<li><strong>H27:</strong> <strong>trocar o resultado de uma seção no caminho</strong> até o TSE por outro, assinado por outra urna, ou contar o resultado de uma <strong>seção que não existe</strong>.</li>
+</ol>
+<h2 id="t14-resposta-curta"><span class="num" data-ger>14.2</span> Resposta curta</h2>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (H18):</strong> nenhuma das 5.241 cidades em que dava para medir tem urnas parecidas demais entre si, o sinal de um resultado fabricado. 19 cidades pequenas mudaram do 1º para o 2º turno mais do que o esperado, para os dois lados (4 para o 13 e 15 para o 22); a mudança além do esperado soma 5.695 votos. O teste <strong>não enxerga</strong> uma mudança pequena espalhada por muitas cidades, nem uma mudança igual num estado inteiro (item 1).</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (H21):</strong> no 2º turno, nenhum número nulo concentrado e raro. <strong>Mas o teste não tinha como encontrar esse esquema no voto para Presidente</strong>: com dois dígitos, todo número possível é número de partido ou de candidato, ou fica a uma tecla de um deles. No 1º turno, para deputado, sobraram 19 números concentrados, com 648 ocorrências no país, quase todos a uma ou duas teclas do número de um deputado muito votado na região (item 2).</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (H22):</strong> nas 1.351 seções do exterior, nos dois turnos, nenhuma seção teve mais votantes que eleitores; em todas as 1.281 urnas, o boletim tem os mesmos votos que o diário; nenhum voto fora do horário; o menor intervalo entre dois votos foi de 16 segundos. O comparecimento subiu de 341.766 para 381.443, e o aumento veio principalmente de manhã. No 2º turno, os 29 resultados apurados em cédula chegaram ao TSE pelo menos 160 minutos depois do fim da votação no posto (item 3).</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (H23):</strong> em todas as 499.207 seções de cada turno, o código de carga do boletim está no diário da própria urna, no mesmo pacote. As recargas deixam rastro: 2.674 no 1º turno e 1.770 novas no 2º. Num grupo pequeno de seções, o motivo da recarga não aparece no diário; isso não é sinal de fraude (um defeito visto só pelo operador não deixa linha no diário), e as atas foram pedidas ao TSE (<strong class="com-rotulo"><span class="rotulo">Pendente</span></strong>). Nas cargas feitas no próprio dia da votação, a hora digitada e o relógio da urna coincidem (item 4).</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (H24):</strong> em todas as seções dos dois turnos, os eleitores aptos são a soma dos eleitores da seção e dos em trânsito, e o total do país foi o mesmo nos dois turnos: 158.745.079. Nas seções com 10 ou mais eleitores em trânsito, a parte dos votos liberados sem digital foi <strong>menor</strong> que nas outras seções do mesmo local, ao contrário do que um uso fraudulento do trânsito deixaria (item 5).</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (H27):</strong> em todas as seções com urna dos dois turnos, o resultado foi assinado pela própria urna que ele diz ter votado, menos nas 17 seções em que os votos foram recuperados por outra urna (recuperação de dados), em que assinou uma urna de reserva registrada para a região. Nenhuma seção fantasma. Em 45 seções, o registro da urna só chegou ao TSE no dia da votação; no 2º turno, quase sempre junto com o próprio resultado (item 6).</li>
+<li><strong>Não se pode afirmar:</strong> que nenhuma dessas formas de fraude foi usada em escala pequena, espalhada ou de um jeito que os arquivos públicos não registram. Cada item diz o que o teste não enxerga.</li>
+</ul>
+<h2 id="t14-termos-usados-neste-tópico"><span class="num" data-ger>14.3</span> Termos usados neste tópico</h2>
+<ul>
+<li><strong>Virada:</strong> a mudança, do 1º para o 2º turno, da diferença entre os votos do 13 e do 22 numa cidade ou seção, em pontos percentuais.</li>
+<li><strong>Esperado:</strong> o resultado que se esperava de uma cidade a partir de como ela votou no 1º turno para Presidente, governador e senador. O esperado é calculado com as outras cidades do mesmo estado, sem a própria cidade. É como corrigir a nota de um aluno pela média da turma: funciona para achar o aluno que destoa, mas, se a turma inteira colar, a média sobe junto e ninguém destoa.</li>
+<li><strong>Inserção igual numa cidade:</strong> acrescentar ou trocar a mesma pequena parte dos votos em todas as urnas de uma cidade. Como pôr a mesma pitada de sal em todos os pratos de um restaurante: nenhum prato fica com gosto diferente dos outros; só se nota comparando com o cardápio de antes.</li>
+<li><strong>Voto nulo digitado:</strong> quando o eleitor digita um número que não é de candidato nem de partido, a urna registra o voto como nulo e guarda, na lista de votos (RDV), o número digitado.</li>
+<li><strong>Família de números (erro de digitação):</strong> números que ficam a uma tecla de um número válido (cada dígito diferente trocado por uma tecla vizinha no teclado da urna), ou que mantêm o número do partido. São os números que as pessoas digitam por engano, como quem erra um dígito do telefone.</li>
+<li><strong>Eleição suplementar:</strong> eleição refeita num município, por exemplo para prefeito, marcada para o mesmo dia de outra eleição.</li>
+<li><strong>Sistema de Apuração (cédula):</strong> em seções pequenas do exterior, o voto é em cédula de papel; a mesa conta as cédulas e digita o resultado num computador, que gera o boletim.</li>
+<li><strong>Carga:</strong> a instalação, antes da eleição, do programa e dos dados da seção na urna, feita pelo cartório eleitoral. É como instalar o sistema num computador novo. Cada carga recebe um <strong>código de carga</strong> único, gravado no boletim e no diário da urna.</li>
+<li><strong>Recarga:</strong> carregar a urna de novo. O diário da carga anterior fica guardado dentro do novo, como uma pasta dentro de outra. Por isso a recarga deixa rastro, e dá para saber a ordem.</li>
+<li><strong>Eleitor em trânsito:</strong> quem pediu para votar, naquele turno, numa seção diferente da sua: por exemplo, quem está viajando, trabalhando como mesário em outra seção ou preso provisório. Quem vem de <strong>outro estado</strong> só pode votar para Presidente.</li>
+<li><strong>Correspondência:</strong> o registro “urna X, carga Y, seção Z” que o cartório manda ao TSE depois de carregar a urna. É como o registro que liga a placa de um carro ao dono.</li>
+<li><strong>Lista prévia:</strong> a lista de correspondências esperadas que o TSE publica antes da votação (uma na véspera e outra na manhã do dia), com a urna que cada seção deveria usar e as urnas de reserva de cada zona. É como a lista de chamada da escola, feita antes da prova.</li>
+<li><strong>Lista final:</strong> a lista de correspondências efetivadas, publicada depois da votação, com a urna que cada seção de fato usou.</li>
+<li><strong>Recuperação de dados (Recuperador de Dados, RED):</strong> quando a urna não consegue gerar o boletim, o cartório lê o cartão de votos dela com um programa próprio e gera o boletim. Às vezes isso é feito em outra urna.</li>
+<li><strong>Teste de Integridade:</strong> auditoria pública feita no dia da votação. Algumas urnas são sorteadas e retiradas da seção na véspera; no dia, num local público, voluntários votam em cédulas de papel, os votos são digitados nessa urna, e no fim o boletim é comparado com as cédulas. Como um cliente oculto numa loja. Os eleitores da seção sorteada votam numa urna substituta.</li>
+<li><strong>Seção fantasma:</strong> seção que não existe de fato, mas tem resultado assinado e contado.</li>
+</ul>
+<h2 id="t14-como-foi-feito"><span class="num" data-ger>14.4</span> Como foi feito</h2>
+<p><strong>Universo (Fato).</strong> Todas as seções dos dois turnos, na cópia de leitura do banco de dados da auditoria de 29/10/2026, com as 28 UFs (os 27 estados e o exterior). Onde a medida depende do diário da urna, os diários foram lidos inteiros, nos pacotes originais. Nas medidas de H27, foram usadas também as listas de correspondências publicadas pelo TSE nos dados abertos, de 2022, 2024 e 2026. Nenhuma medida usa amostra.</p>
+<ol>
+<li><strong>H18:</strong> para cada cidade, a virada foi comparada com o esperado. Foram usadas as 497.897 seções do Brasil, sem o exterior. Um segundo teste procurou cidades com urnas parecidas demais entre si, nas cidades com pelo menos 10 seções de 20 votos ou mais.</li>
+<li><strong>H21:</strong> cada número nulo digitado, em cada cargo, nos dois turnos, foi testado: ele é raro no resto do estado ou do país e concentrado em poucas zonas? Os números de família (erro de digitação) foram separados.</li>
+<li><strong>H22:</strong> cada seção do exterior, nos dois turnos: comparecimento, boletim × diário, horário e intervalo dos votos, votos por hora, hora do resultado das seções em cédula.</li>
+<li><strong>H23:</strong> em todos os pacotes dos dois turnos, o código de carga do boletim foi procurado no diário da mesma urna; as recargas foram contadas pelos diários guardados dentro dos novos, e o motivo, pelas linhas do diário antes da recarga; as cargas no dia da votação foram conferidas contra o relógio interno da urna.</li>
+<li><strong>H24:</strong> as contas de eleitores aptos, em trânsito e de outro estado, seção por seção; a liberação sem digital nas seções com muitos eleitores em trânsito, comparada com as outras seções do mesmo local de votação.</li>
+<li><strong>H27:</strong> para cada pacote, quem assinou, e se a urna e a carga do boletim estão na lista prévia e na lista final; cada caso fora das listas foi aberto no diário original; os pacotes de recuperação de dados; as seções com resultado contra o cadastro de locais e o resultado oficial.</li>
+</ol>
+<h2 id="t14-o-que-foi-encontrado"><span class="num" data-ger>14.5</span> O que foi encontrado</h2>
+<h3 id="t14-1-mudança-igual-em-todas-as-urnas-de-uma-cidade-h18">1. Mudança igual em todas as urnas de uma cidade (H18)</h3>
+<p><strong>A suspeita.</strong> Uma fraude esperta poderia mudar um pouco o resultado de todas as urnas de uma cidade, por igual. Assim nenhuma urna ficaria diferente das vizinhas, e os testes que comparam seções vizinhas não veriam nada.</p>
+<p><strong>O que foi medido.</strong> Cada uma das 5.570 cidades foi comparada com o esperado a partir do seu próprio 1º turno. Um segundo teste procurou o sinal de um resultado “fabricado”: urnas de uma mesma cidade parecidas demais entre si. Em eleições reais, as urnas de uma cidade variam bastante, porque os bairros votam diferente.</p>
+<p><strong>O resultado.</strong></p>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> nenhuma das 5.241 cidades onde dava para medir tem urnas parecidas demais entre si. As cidades menores, sem 10 seções de 20 votos ou mais, ficaram fora dessa parte do teste.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> 19 cidades pequenas (de 6 a 96 seções) mudaram mais do que o esperado: 4 para o lado do 13 e 15 para o lado do 22. A mudança além do esperado soma 5.695 votos: 589 nas 4 cidades do 13 e 5.106 nas 15 do 22. Com outras escolhas de cálculo (sem os votos de governador e senador, ou sem tirar a própria cidade do cálculo do esperado), saem 21 cidades, das quais 18 e 19, respectivamente, são as mesmas.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (conferido no arquivo original):</strong> numa seção de uma das cidades apontadas, o boletim do 2º turno tem os mesmos votos do 13 e do 22 que a base da auditoria, com as assinaturas conferidas.</li>
+<li class="com-rotulo rotulo-hipótese"><strong class="com-rotulo"><span class="rotulo">Hipótese</span> (benigna):</strong> a maioria dessas 19 cidades já tinha tido mudanças bruscas em 2018 ou 2022. São cidades de voto que muda muito de uma eleição para outra.</li>
+<li class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> as 19 cidades ficam numa lista para verificação local. Os nomes não entram neste relatório enquanto essa verificação não for feita.</li>
+</ul>
+<p><strong>O que o teste não enxerga.</strong></p>
+<ul>
+<li>Uma mudança pequena numa cidade isolada. O teste só marca mudanças grandes; o tamanho mínimo que ele enxerga é uma estimativa e fica fora deste relatório.</li>
+<li>Uma mudança pequena espalhada por muitas cidades ao mesmo tempo, ou igual num estado inteiro. Nesses casos, a régua do próprio estado se move junto. Num teste de laboratório, em que votos foram trocados de propósito nos dados de um estado inteiro, ou de muitas cidades de uma região, o teste quase não marcou cidades. Para esses casos é preciso uma régua de fora (eleições anteriores, pesquisas).</li>
+<li>Um resultado fabricado que imite a variação natural entre urnas: o teste de “urnas parecidas demais” só pega o resultado fixado sem variação.</li>
+</ul>
+<h3 id="t14-2-voto-nulo-usado-como-senha-de-compra-de-voto-h21">2. Voto nulo usado como “senha” de compra de voto (H21)</h3>
+<p><strong>A suspeita.</strong> A urna guarda, na lista de votos, o número que cada eleitor digitou, inclusive quando o voto é nulo. Em tese, um comprador de votos poderia combinar um número sem candidato e depois conferir, nos arquivos públicos, quantas vezes ele apareceu na seção.</p>
+<p><strong>O que foi medido.</strong> Todos os votos nulos digitados: 39.348.069 no 1º turno e 3.180.131 no 2º. Para cada número, em cada cargo: ele aparece muito num lugar só e quase nada no resto do estado ou do país? Os números de família (a uma tecla de um número válido, ou com o número de um partido) foram separados, porque milhares de pessoas os digitam por engano.</p>
+<p><strong>O resultado.</strong></p>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> no 2º turno, nenhum número nulo concentrado e raro.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (alcance):</strong> no voto para Presidente e para governador, que têm números de dois dígitos, <strong>todo</strong> número possível é número de partido ou de candidato, ou fica a uma tecla de um deles. Por isso o teste <strong>não tinha como encontrar</strong> esse esquema nesses cargos. O “nenhum” do 2º turno é resultado do teste, não prova de que o esquema não existiu.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> no 1º turno, para deputado, sobraram 19 números concentrados, com 648 ocorrências no país.</li>
+<li class="com-rotulo rotulo-hipótese"><strong class="com-rotulo"><span class="rotulo">Hipótese</span> (erro de digitação):</strong> quase todos ficam a uma ou duas teclas do número de um deputado muito votado naquela região. Vários trocam o 5 pelo 6 ou pelo 8 no começo do número de um partido.</li>
+<li class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> os poucos números que ficam sem essa explicação (quantos são depende de quanto voto o deputado vizinho precisa ter na região) vão para verificação local. Os números e as zonas não entram neste relatório enquanto ela não for feita.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (o caso mais chamativo do 2º turno tem explicação nos arquivos):</strong> em Goiatins (TO), no voto para Presidente, os nulos com 77 foram de 5 no 1º turno para 185 no 2º, e os nulos com 20, de 9 para 124: juntos, 309 dos 575 votos nulos para Presidente da cidade. No mesmo dia houve eleição suplementar para prefeito em Goiatins, e os dois candidatos eram o 77 (3.863 votos) e o 20 (3.446). É o número do prefeito digitado no campo de Presidente. Conferido no boletim e na lista de votos.</li>
+</ul>
+<p><strong>O que o teste não enxerga.</strong></p>
+<ul>
+<li>O voto para Presidente e para governador (dois dígitos, item acima).</li>
+<li>Um esquema que use um número comum, de família.</li>
+<li>Um esquema com um número diferente em cada seção ou para cada cabo eleitoral: número que aparece menos de 10 vezes no estado nunca chega a ser testado. No 1º turno, estavam nesse caso 167.913 votos nulos para deputado federal e 320.253 para deputado estadual.</li>
+</ul>
+<h3 id="t14-3-exterior-e-seções-apuradas-em-cédula-h22">3. Exterior e seções apuradas em cédula (H22)</h3>
+<p><strong>A suspeita.</strong> No exterior não há digital: o eleitor se identifica com documento, e a urna é liberada pelo mesário. Isso poderia ser usado para pôr votos de quem não foi votar, com comparecimento ou ritmo fora do normal. Em postos pequenos, o voto é em cédula de papel, contado e digitado por pessoas.</p>
+<p><strong>O que foi medido.</strong> Todas as 1.351 seções do exterior, nos dois turnos:</p>
+<table class="tabela cols-3">
+<thead><tr><th></th><th class="d">1º turno</th><th class="d">2º turno</th></tr></thead>
+<tbody>
+<tr><td>Seções com urna</td><td class="d">1.281</td><td class="d">1.281</td></tr>
+<tr><td>Seções apuradas em cédula</td><td class="d">29</td><td class="d">29</td></tr>
+<tr><td>Seções não instaladas</td><td class="d">41</td><td class="d">41</td></tr>
+<tr><td>Eleitores aptos</td><td class="d">916.111</td><td class="d">916.260</td></tr>
+<tr><td>Comparecimento</td><td class="d">341.766</td><td class="d">381.443</td></tr>
+</tbody>
+</table>
+<p><strong>O resultado.</strong></p>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> nenhuma seção teve mais votantes que eleitores aptos, nos dois turnos.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> em todas as 1.281 seções com urna, nos dois turnos, o número de votos do boletim é igual ao número de votos registrados no diário da urna.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> nenhum voto fora do horário de votação. O menor intervalo entre dois votos da mesma urna foi de 19 segundos no 1º turno e de 16 segundos no 2º; nenhum abaixo de 15 segundos.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> nenhuma seção votou só num dos turnos. As 29 seções em cédula são as mesmas nos dois turnos, e 23 delas já tinham sido apuradas assim em 2022.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> o comparecimento subiu 11,6% do 1º para o 2º turno, e o aumento veio principalmente pela manhã, não numa onda no fim do dia:</li>
+</ul>
+<table class="tabela cols-7 texto">
+<thead><tr><th>Hora local</th><th class="d">8 h</th><th class="d">9 h</th><th class="d">10 h</th><th class="d">11 h</th><th class="d">12 h</th><th class="d">13 h</th><th class="d">14 h</th><th class="d">15 h</th><th class="d">16 h</th><th class="d">17 h</th><th class="d">18 h</th></tr></thead>
+<tbody>
+<tr><td>Votos no 2º turno menos votos no 1º</td><td class="d">+13.573</td><td class="d">+6.878</td><td class="d">+8.829</td><td class="d">+7.360</td><td class="d">+5.063</td><td class="d">+1.891</td><td class="d">−652</td><td class="d">−783</td><td class="d">−721</td><td class="d">−1.704</td><td class="d">−99</td></tr>
+</tbody>
+</table>
+<p><strong>Como ler:</strong> cada coluna é uma hora do dia, no horário do país da seção. O número é quantos votos a mais (ou a menos) as urnas do exterior registraram nessa hora no 2º turno, em comparação com o 1º. Os maiores aumentos estão nas primeiras horas; a partir das 14 h, o 2º turno teve menos votos que o 1º. Fonte: diários das seções com urna nos dois turnos.</p>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (o relógio das urnas estava na hora local):</strong> a Europa, Israel e o Líbano saíram do horário de verão na madrugada do dia do 2º turno. Se o relógio das urnas não tivesse acompanhado a mudança, o horário em que os mesários se registraram antes da abertura, medido pelo relógio da urna, teria saltado 1 hora nesses países e não nos outros. Ele mudou o mesmo tanto nas 585 seções dos países que mudaram de horário e nas 685 dos demais, com diferença de poucos minutos entre os dois grupos. Por isso a comparação por hora é válida.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (seções em cédula):</strong> no 2º turno, cada um dos 29 resultados apurados em cédula foi recebido pelo TSE pelo menos 160 minutos depois do fim da votação no próprio posto, pelo relógio do servidor do TSE. No 1º turno, a base não tem a hora de recebimento desses resultados (<strong class="com-rotulo"><span class="rotulo">Pendente</span></strong>).</li>
+</ul>
+<p><strong>O que o teste não enxerga.</strong></p>
+<ul>
+<li>Sem digital, não dá para distinguir nos arquivos um eleitor real de alguém que votou no lugar de um eleitor ausente, se isso foi feito aos poucos e em muitos lugares.</li>
+<li>A contagem das cédulas depende só das pessoas que a fizeram. A hora de chegada do resultado não confere o conteúdo digitado; quem confere é a ata da junta (<strong class="com-rotulo"><span class="rotulo">Pendente</span></strong>).</li>
+<li>“Nenhum voto antes das 8 h” não prova nada sozinho: a urna só abre às 8 h do próprio relógio. O que mostra que o relógio estava certo é o teste do horário de verão, acima.</li>
+</ul>
+<h3 id="t14-4-recarga-e-carga-da-urna-fora-do-previsto-h23">4. Recarga e carga da urna fora do previsto (H23)</h3>
+<p><strong>A suspeita.</strong> A urna poderia ser carregada de novo, ou carregada fora do dia previsto, longe da cerimônia oficial, para receber um programa ou dados diferentes.</p>
+<p><strong>O que foi medido.</strong> Todos os pacotes dos dois turnos (499.207 em cada um) e todos os diários dentro deles: 507.327 no 1º turno e 512.173 no 2º. Nenhum diário traz mais de uma carga.</p>
+<p><strong>O resultado.</strong></p>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> em todas as 499.207 seções de cada turno, o código de carga do boletim aparece no diário da própria urna, no mesmo pacote. Não houve exceção.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (recargas):</strong> 2.674 recargas no 1º turno (2.669 antes do dia da votação, 4 no dia e 1 com data digitada impossível) e 1.770 recargas novas no 2º (1.762 entre os turnos e 8 no dia 25/10). Na maior parte, o diário mostra o motivo: uma falha registrada, uma urna de reserva preparada para uma seção, ou dados de carga refeitos.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (sem motivo escrito):</strong> num grupo pequeno de seções, a urna que votou tinha sido recarregada, e o motivo não aparece no diário da carga anterior. Não vale como motivo uma mensagem de erro sobre a mídia de resultado que aparece em 498.698 seções na preparação do 2º turno: é uma linha de rotina, gravada a cada vez que a urna é ligada, e não diz nada sobre a urna.<ul>
+<li>Isso <strong>não é sinal de fraude</strong>. Um defeito visto só pelo operador não deixa linha no diário. O motivo fica na ata do cartório, que não é pública.</li>
+<li class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> as atas dessas seções, pedidas ao TSE.</li>
+<li>Exemplo, conferido no diário original, numa seção de MG: a mesma urna foi carregada duas vezes em 24/10, às 09:29 e às 10:00, com a mesma mídia de carga, e o código do boletim é o da segunda. Às 10:00:33, o diário anota “Copiando conteúdo da pasta logs em carga sobreposta”, o rastro da recarga. A carga anterior tinha passado pelo teste e pela votação simulada e sido desligada normalmente: o diário não diz por que recarregaram. Um erro do cartão de votação aparece às 10:23, depois da recarga, e por isso não pode ser o motivo dela.</li>
+</ul>
+</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (carga no dia da votação):</strong><ul>
+<li>1º turno: 7 boletins vieram de urna carregada no próprio dia da votação (4 urnas de seção e 3 reservas; lista no <a href="#t02">tópico 2</a>). Além deles, 3 reservas foram carregadas durante a votação de 04/10 e usadas só no 2º turno (MT 91677/0020/0419, MT 91677/0020/0669 e RS 85090/0144/0063; <a href="#t11">tópico 11</a>, item 7).</li>
+<li>2º turno: 5 boletins (<a href="#t02">tópico 2</a>).</li>
+<li>Em todos esses casos, a hora digitada pelo operador e o relógio interno da urna ficam a menos de 1 minuto um do outro, e a carga terminou com sucesso. Estas são contagens de boletins vindos de urna carregada no dia, seja a primeira carga ou uma recarga; não são a mesma conta das recargas no dia (4 e 8), acima.</li>
+</ul>
+</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (votos):</strong> nas seções com recarga, e nas seções com carga fora dos dias de maior movimento da zona, o teste que compara a parcela de cada finalista com a das vizinhas não encontrou diferença. Não encontrar diferença não prova que os votos foram iguais.</li>
+<li class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> o comparecimento das seções com recarga entre os turnos. A primeira conta incluía 2 seções de MG que votaram em cédula no 1º turno e por isso têm comparecimento zero no boletim desse turno; está sendo refeita sem elas.</li>
+</ul>
+<p><strong>O que o teste não enxerga.</strong></p>
+<ul>
+<li>O motivo de cada recarga: é decisão de pessoas e fica na ata.</li>
+<li>A carga em si é feita por pessoas. O código de carga e o diário mostram que a carga existiu e quando; não mostram que o programa carregado era o oficial, se ele estava assinado com a chave verdadeira (<a href="#t01">tópico 1</a>).</li>
+<li>Uma urna carregada e não usada não deixa pacote publicado.</li>
+</ul>
+<h3 id="t14-5-eleitores-em-trânsito-h24">5. Eleitores em trânsito (H24)</h3>
+<p><strong>A suspeita.</strong> O trânsito, ou atributos especiais do eleitor (preso, militar, servidor da Justiça Eleitoral, pessoa com deficiência visual), poderia ser usado para pôr votos em seções.</p>
+<p><strong>O que foi medido.</strong> As contas de eleitores de cada seção, nos dois turnos, e a liberação sem digital nas seções com muitos eleitores em trânsito.</p>
+<p><strong>O resultado.</strong></p>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> em todas as seções dos dois turnos, o total de eleitores aptos de cada seção é a soma dos eleitores da seção com os eleitores em trânsito.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> nenhuma seção teve mais votantes do que eleitores aptos.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> nenhuma seção teve mais eleitores de outro estado votando (eles só votam para Presidente) do que eleitores de outro estado inscritos nela. Compareceram 165.584 dos 182.612 eleitores de outro estado no 1º turno (90,68%) e 24.727 dos 26.740 no 2º (92,47%).</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> o total de eleitores aptos do país foi o mesmo nos dois turnos: 158.745.079. O que as seções ganharam de eleitores próprios no 2º turno (11.039) é exatamente o que o trânsito perdeu.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> se o trânsito fosse usado para pôr votos de quem não foi votar, esses votos teriam de ser liberados sem a digital do eleitor. Nas seções com 10 ou mais eleitores em trânsito, aconteceu o contrário: a parte dos votos liberados sem digital ficou <strong>abaixo</strong> da das outras seções do mesmo local de votação em 3.254 dos 5.251 locais comparáveis no 1º turno e em 3.150 dos 5.113 no 2º.</li>
+</ul>
+<p><strong>O que o teste não enxerga.</strong></p>
+<ul>
+<li>Os arquivos públicos não dizem, por seção, quantos eleitores são presos, militares, servidores da Justiça Eleitoral ou pessoas com deficiência visual. Essa parte da pergunta não pode ser respondida com eles.</li>
+<li class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> o balanço entre os eleitores que saíram de cada seção e os que chegaram a outras. A conta depende do cadastro usado na carga das urnas, que não é público, e por isso fica sem número.</li>
+<li class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> as poucas seções em que a liberação sem digital passa do que o cadastro de digitais da própria seção explica seguem para o teste de votos em bloco (<a href="#t13">tópico 13</a>).</li>
+</ul>
+<h3 id="t14-6-resultado-trocado-no-caminho-e-seções-fantasmas-h27">6. Resultado trocado no caminho e seções fantasmas (H27)</h3>
+<p><strong>A suspeita.</strong> Cada urna “assina” o resultado da sua seção. Alguém com acesso ao caminho entre a urna e o TSE poderia trocar esse resultado por outro, assinado por outra urna com carteira de identidade válida (uma urna alterada, uma reserva, ou a urna usada na recuperação de dados). Ou poderia contar o resultado de uma seção que não existe.</p>
+<p><strong>O que foi medido.</strong> Para cada pacote dos dois turnos, quem assinou e se a urna e a carga declaradas no boletim estão na lista prévia (feita antes da votação) e na lista final. Cada caso fora da lista prévia foi aberto no diário original.</p>
+<p><strong>O resultado.</strong></p>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (lista final):</strong> 499.207 pacotes em cada turno, todos na lista final, e nenhuma linha da lista final sem pacote. A urna e a carga do boletim são as da lista final em todos. Esse teste é fraco: a lista final registra a urna que o próprio boletim declara.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (quem assinou):</strong> em todas as seções com urna, o resultado foi assinado pela própria urna que o boletim declara, menos nas 17 recuperações de dados feitas em outra urna (abaixo), em que assinou uma urna de reserva da lista prévia.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (lista prévia, que é independente do pacote):</strong> na lista da véspera, o par urna e carga do boletim aparece na linha da própria seção, ou como reserva da própria zona:</li>
+</ul>
+<table class="tabela cols-3">
+<thead><tr><th>Onde o par urna e carga do boletim aparece</th><th class="d">1º turno</th><th class="d">2º turno</th></tr></thead>
+<tbody>
+<tr><td>Lista da véspera, na linha da própria seção</td><td class="d">495.981</td><td class="d">496.138</td></tr>
+<tr><td>Lista da véspera, como reserva da própria zona</td><td class="d">2.953</td><td class="d">2.549</td></tr>
+<tr><td><strong>Subtotal: lista da véspera</strong></td><td class="d"><strong>498.934</strong></td><td class="d"><strong>498.687</strong></td></tr>
+<tr><td>Só na lista da manhã do dia</td><td class="d">179</td><td class="d">345</td></tr>
+<tr><td>Lista da véspera, mas como reserva de <strong>outra</strong> zona</td><td class="d">44</td><td class="d">98</td></tr>
+<tr><td>Só na lista final, registrado antes do dia</td><td class="d">2</td><td class="d">20</td></tr>
+<tr><td>Só na lista final, registrado no dia da votação</td><td class="d">17</td><td class="d">28</td></tr>
+<tr><td><strong>Total de seções com urna</strong></td><td class="d"><strong>499.176</strong></td><td class="d"><strong>499.178</strong></td></tr>
+</tbody>
+</table>
+<p><strong>Como ler:</strong> cada linha conta as seções em que a urna que votou, com a carga que ela declara, foi achada naquele lugar das listas. As linhas somam o total de seções com urna de cada turno (sem as apuradas em cédula). A reserva de outra zona é o mesmo assunto do <a href="#t11">tópico 11</a>, item 6.</p>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> a lista prévia não lista tudo. Ela traz uma urna por seção e as reservas de cada zona; uma urna preparada e registrada depois, ou registrada e não incluída, fica de fora. No 2º turno, 11 urnas que assinaram resultado não aparecem em nenhuma lista prévia dos dois turnos. Todas são a própria urna do boletim da seção; nenhuma assinou mais de uma seção nem assinou pacote que declara outra urna. Não há assinante “estranho”.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (as 45 seções com registro só no dia):</strong> em 17 seções do 1º turno e 28 do 2º, o registro da urna só chegou ao TSE no dia da votação, depois da abertura. No 2º turno, em 25 das 28, o registro chegou junto com o próprio resultado, no mesmo segundo ou até 3 segundos antes dele. Nessas seções, a lista de chamada não serve de prova feita antes.<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> em todas as 45, o diário mostra que a urna que votou foi preparada <strong>antes</strong> do dia, abriu no início da votação e recebeu o primeiro voto em poucos minutos. Nenhuma foi trocada no meio do dia.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> os votos e o comparecimento dessas seções ficaram dentro do que se vê nas outras seções do mesmo local de votação e no 1º turno da própria seção.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> o registro no próprio dia da votação acontece em toda eleição cujas listas estão disponíveis, e em 2026 foi menos frequente:</li>
+</ul>
+</li>
+</ul>
+<table class="tabela cols-3 texto">
+<thead><tr><th>Eleição</th><th class="d">Seções com o registro da urna recebido pelo TSE no dia da votação</th><th class="d">… às 17 h ou depois (hora local)</th></tr></thead>
+<tbody>
+<tr><td>2022, 1º turno</td><td class="d">194</td><td class="d">80</td></tr>
+<tr><td>2024, 1º turno (sem o DF, que não tem eleição municipal)</td><td class="d">82</td><td class="d">51</td></tr>
+<tr><td>2026, 1º turno</td><td class="d">26</td><td class="d">14</td></tr>
+<tr><td>2026, 2º turno</td><td class="d">35</td><td class="d">28</td></tr>
+</tbody>
+</table>
+<p><strong>Como ler:</strong> a mesma contagem, feita do mesmo jeito nas três eleições, na lista final do TSE, sem as seções apuradas em cédula. Ela conta todo registro recebido no dia da votação, a qualquer hora; os 17 e 28 do texto são os que, além disso, não estavam em nenhuma lista prévia.</p>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (4 urnas que não estavam em nenhuma lista prévia):</strong> BA 33774/0071/0150, BA 39144/0071/0170, PA 05355/0104/0093 e SE 31054/0002/0524. Nas 4, o diário mostra a preparação dias antes da votação (carga de seção, ou carga de reserva seguida do procedimento que a transforma em urna da seção), abertura às 08:00 e primeiro voto em até 2 minutos. A urna que a lista prévia esperava era a do 1º turno. Nas 2 seções da BA, o 13 teve 95,0% e 82,5% dos votos do 13 e do 22 no 2º turno, e 95,2% e 85,4% no 1º turno, com outra urna: o resultado não destoa do da própria seção no 1º turno.<ul>
+<li class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span> (sem explicação nos arquivos):</strong> por que as urnas do 1º turno dessas 4 seções foram trocadas; de onde vieram as 2 urnas da BA, que não aparecem como reserva em nenhuma lista; e por que o registro de uma carga feita de 4 a 22 dias antes só chegou com o resultado.</li>
+</ul>
+</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (5 seções de SE):</strong> SE 31690/0012/0087, 31712/0013/0082, 31755/0005/0143, 32476/0023/0118 e 32514/0035/0057. A urna que votou no 2º turno tem no diário um dia inteiro de votação da mesma seção em 04/10, quase sem digital, que não virou resultado. O resultado oficial do 1º turno veio de outra urna, carregada em 03/10:</li>
+</ul>
+<table class="tabela cols-6 texto">
+<thead><tr><th>Seção (SE)</th><th class="d">04/10, votos no diário da urna do 2º turno</th><th class="d">… liberados pela digital</th><th>Fim da votação</th><th class="d">1º turno oficial (outra urna): votantes / pela digital</th><th class="d">2º turno: votantes / pela digital</th></tr></thead>
+<tbody>
+<tr><td>31690/0012/0087</td><td class="d">164</td><td class="d">1</td><td>17:02</td><td class="d">169 / 157</td><td class="d">183 / 168</td></tr>
+<tr><td>31712/0013/0082</td><td class="d">189</td><td class="d">0</td><td>17:10</td><td class="d">192 / 182</td><td class="d">192 / 182</td></tr>
+<tr><td>31755/0005/0143</td><td class="d">180</td><td class="d">2</td><td>17:16</td><td class="d">174 / 165</td><td class="d">174 / 165</td></tr>
+<tr><td>32476/0023/0118</td><td class="d">155</td><td class="d">1</td><td>17:02</td><td class="d">274 / 237</td><td class="d">279 / 235</td></tr>
+<tr><td>32514/0035/0057</td><td class="d">202</td><td class="d">1</td><td>17:05</td><td class="d">262 / 246</td><td class="d">263 / 246</td></tr>
+</tbody>
+</table>
+<ul>
+<li class="com-rotulo rotulo-hipótese"><strong class="com-rotulo"><span class="rotulo">Hipótese</span>:</strong> essas urnas foram sorteadas para o Teste de Integridade do 1º turno. A urna sorteada sai da seção na véspera (daí a carga nova de 03/10 na seção), recebe no dia votos de cédulas de papel digitados sem a digital do eleitor e, no 2º turno, volta à seção. O rastro é técnico (o diário assinado). <strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> a lista das seções sorteadas pelo TRE-SE, que confirmaria ou não.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> em 2 delas (0082 e 0143), os votantes e os liberados pela digital são iguais nos dois turnos, mas a distribuição dos votos por hora é diferente entre os turnos (na 0143, 18 votos entre 12 h e 13 h no 1º turno e 8 no 2º), o que afasta uma cópia da votação do 1º turno.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (2 seções do MA, 09210/0001/0124 e 0125):</strong> a mesma urna, com a carga de 28/09, registrada na lista prévia do 1º turno, votou nos dois turnos com eleitores liberados pela digital. Em 03/10, outras urnas foram carregadas para essas seções e passaram a ser as “esperadas” do 2º turno, mas nunca votaram. O que ficou desatualizado foi a lista, não o pacote.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (recuperação de dados):</strong> 66 pacotes dos dois turnos foram gerados por recuperação de dados.<ul>
+<li>Em 49, a recuperação rodou na própria urna da seção, e o pacote leva a assinatura dela.</li>
+<li>Em <strong>17</strong> (14 no 1º turno e 3 no 2º), ela rodou em outra urna. Nesses, a única “assinatura” dos votos recuperados é a da urna que fez a recuperação: 4.090 votos (3.271 no 1º turno e 819 no 2º). As 17 urnas que fizeram a recuperação estão na lista prévia como reservas: 16 da mesma zona e 1 de outra zona do mesmo município.</li>
+<li>Isso faz parte de como o procedimento funciona: a urna original não conseguiu gerar o resultado, e a única chave disponível para lacrar o pacote é a da urna onde a recuperação roda. Não é falha desta eleição.</li>
+</ul>
+</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (seções fantasmas):</strong> nenhuma seção com resultado fica fora do cadastro de locais de votação ou do resultado oficial, e nenhuma teve mais votantes do que eleitores.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (seções novas):</strong> no 2º turno, 433 das 40.740 seções que não existiam em 2022 com o mesmo número (“seções novas”) tiveram comparecimento de 95% ou mais, contra 206 das 458.438 antigas. Onde há seções antigas do mesmo tamanho e com o mesmo perfil de eleitorado para comparar, a maior parte dessa diferença desaparece; a conta está na análise técnica separada da auditoria. Parte das seções novas (pequenas, com eleitorado recente) não tem seção antiga parecida para comparar. Nada nos pacotes dessas seções aponta troca.<ul>
+<li class="com-rotulo rotulo-hipótese"><strong class="com-rotulo"><span class="rotulo">Hipótese</span>:</strong> seção nova tem eleitorado recente, sem eleitores que morreram ou se mudaram e continuam no cadastro, e por isso comparece mais.</li>
+<li class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span>:</strong> comparar com o comparecimento das mesmas seções em 2022, que não está na base.</li>
+</ul>
+</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (código de carga):</strong> em 494.382 seções, o código de carga do 2º turno é o mesmo do 1º, sempre com a mesma urna. O código é um número de identificação, publicado no boletim e na lista prévia; não é segredo. A barreira contra um pacote falso é a chave da urna (a assinatura), não o código.</li>
+</ul>
+<p><strong>O que o teste não enxerga.</strong></p>
+<ul>
+<li>Quem tem acesso à preparação das urnas ou à transmissão pode gerar um registro de urna válido. Nas 45 seções com registro só no dia, não havia registro anterior ao resultado.</li>
+<li>Nas 17 recuperações feitas em outra urna, o diário da urna original só é coberto pela chave da urna que fez a recuperação.</li>
+<li>Um programa adulterado e assinado com a chave oficial, que gere resultado, diário e assinatura normais (<a href="#t01">tópico 1</a>).</li>
+</ul>
+<h2 id="t14-prova-de-que-o-teste-funciona-contraprova"><span class="num" data-ger>14.6</span> Prova de que o teste funciona (contraprova)</h2>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (H18):</strong> num teste de laboratório, votos trocados de propósito numa cidade isolada foram marcados pelo teste na maioria das vezes quando a mudança era grande, e raramente quando era pequena. É o que o teste promete: ele vê a mudança grande numa cidade, não a pequena nem a espalhada (o tamanho exato é estimativa e fica fora). O mesmo teste de laboratório mostrou o ponto cego: a mudança feita num estado inteiro quase não marcou cidades.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (H21):</strong> o teste de concentração acende quando há número concentrado. Sem o filtro de erro de digitação, ele aponta Goiatins no 2º turno, onde a concentração existe e tem causa conhecida (a eleição de prefeito).</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (H22):</strong> o teste do horário de verão é a régua do relógio: se as urnas da Europa estivessem 1 hora adiantadas, o horário de chegada dos mesários de 585 seções teria saltado 1 hora, todas juntas.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (H23):</strong> a busca de recargas, refeita por uma segunda leitura de todos os pacotes, achou as mesmas 2.674 e 1.770 recargas, nenhuma a mais. A ordem das cargas foi conferida pela posição do diário guardado (o mais antigo fica dentro do mais novo) em todas as urnas com duas ou mais cargas no mesmo pacote (2.543 no 1º turno e 4.183 no 2º): a ordem concorda em todas. E uma regra que contasse qualquer linha de erro como motivo esconderia parte das recargas sem motivo escrito, por causa da linha de rotina descrita no item 4; por isso essa linha não é aceita como motivo.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (H27):</strong> o teste acusa quando há o que acusar: foi ele que achou as 45 seções com registro só no dia, as 11 urnas fora das listas prévias, as 17 recuperações assinadas por outra urna e as 5 seções de SE com votação do Teste de Integridade, cada uma conferida no diário original.</li>
+<li class="com-rotulo rotulo-pendente"><strong class="com-rotulo"><span class="rotulo">Pendente</span> (H24):</strong> não houve teste com dados alterados de propósito para mostrar que as contas de aptos e de trânsito acusariam uma alteração.</li>
+</ul>
+<h2 id="t14-limites-o-que-não-se-pode-afirmar"><span class="num" data-ger>14.7</span> Limites (o que não se pode afirmar)</h2>
+<ol>
+<li><strong>Fraude pequena ou espalhada.</strong> Os testes de cidade (H18) e de número nulo (H21) só veem o que se concentra. Uma mudança pequena espalhada por muitas cidades, ou igual num estado inteiro, ou um número diferente em cada seção, não aparece.</li>
+<li><strong>Quem estava na cabine.</strong> No exterior e em toda liberação sem digital, os arquivos não distinguem o eleitor real de alguém que votou no lugar dele (<a href="#t04">tópico 4</a>).</li>
+<li><strong>O que depende de pessoas.</strong> O motivo de cada recarga, a decisão de trocar uma urna, a contagem das cédulas e o envio do registro da urna ao TSE são feitos por pessoas. Pela regra desta perícia, isso não conta como controle; o que conta é o rastro técnico, e onde ele existe, foi conferido.</li>
+<li><strong>O programa da urna.</strong> Nenhum teste deste tópico enxerga um programa adulterado e assinado com a chave oficial, que grava diário e resultado normais (<a href="#t07">tópico 7</a>).</li>
+<li><strong>Atributos do eleitor.</strong> Preso, militar, servidor da Justiça Eleitoral e deficiência visual não estão nos arquivos públicos por seção.</li>
+</ol>
+<h2 id="t14-pendentes-sem-número-salvo-onde-indicado"><span class="num" data-ger>14.8</span> Pendentes (sem número, salvo onde indicado)</h2>
+<ul>
+<li><strong>H18:</strong> verificação local das 19 cidades; uma régua de fora (eleições anteriores) para a mudança espalhada por muitas cidades ou por um estado.</li>
+<li><strong>H21:</strong> verificação local dos números que ficam sem explicação.</li>
+<li><strong>H22:</strong> atas das juntas das 29 seções apuradas em cédula; hora de recebimento dos resultados em cédula do 1º turno.</li>
+<li><strong>H23:</strong> atas das seções com recarga sem motivo escrito no diário (pedidas ao TSE) e das cargas feitas no dia da votação; o comparecimento das seções com recarga entre os turnos, refeito sem as 2 seções que votaram em cédula no 1º turno; os diários do 2º turno sem a linha final da carga; as recargas sem motivo escrito do 1º turno.</li>
+<li><strong>H24:</strong> o balanço entre saídas e chegadas de eleitores em trânsito, que depende do cadastro usado na carga.</li>
+<li><strong>H27:</strong> a lista das seções sorteadas para o Teste de Integridade, por TRE, nos dois turnos; o comparecimento das seções em 2022, para comparar as seções novas.</li>
+</ul>
+<h2 id="t14-pedidos-ao-tse-e-aos-tres"><span class="num" data-ger>14.9</span> Pedidos ao TSE e aos TREs</h2>
+<ul>
+<li><strong>Atas das recargas sem motivo escrito no diário:</strong> pedidas ao TSE; a lista das seções vai num pedido separado, fora deste relatório.</li>
+<li><strong>Atas das cargas no dia da votação:</strong> os 7 boletins do 1º turno e os 5 do 2º (<a href="#t02">tópico 2</a>) e as 3 reservas carregadas durante a votação de 04/10.</li>
+<li><strong>Teste de Integridade:</strong> a lista das seções sorteadas, por TRE, nos dois turnos, a começar pelo TRE-SE.</li>
+<li><strong>Regra da totalização:</strong> o que acontece com um resultado que chega sem registro da urna (fica parado, é recusado ou gera o registro?) e quem o libera.</li>
+<li><strong>Origem das 2 urnas da BA, zona 71,</strong> que não constam de lista nenhuma, e por que as urnas do 1º turno dessas seções foram trocadas.</li>
+<li><strong>Por que a lista da véspera do 2º turno</strong> não traz registros recebidos 11 dias antes, como nas seções MG 41238/0331/0001 e 0197.</li>
+<li><strong>Uso de reserva de uma zona em outra</strong>, e de um município em outro.</li>
+</ul>
+<h2 id="t14-próximos-passos"><span class="num" data-ger>14.10</span> Próximos passos</h2>
+<ul class="tarefas">
+<li><span class="caixa feita" role="img" aria-label="feito"></span>H18, H21, H22, H23, H24 e H27 medidas em todas as seções, com segunda verificação independente.</li>
+<li class="com-rotulo rotulo-pendente"><span class="caixa" role="img" aria-label="a fazer"></span><strong class="com-rotulo"><span class="rotulo">Pendente</span>.</strong> Pedidos de atas e de listas acima.</li>
+<li class="com-rotulo rotulo-pendente"><span class="caixa" role="img" aria-label="a fazer"></span><strong class="com-rotulo"><span class="rotulo">Pendente</span>.</strong> Verificação local das 19 cidades da H18 e dos números da H21 sem explicação.</li>
+<li class="com-rotulo rotulo-pendente"><span class="caixa" role="img" aria-label="a fazer"></span><strong class="com-rotulo"><span class="rotulo">Pendente</span>.</strong> Refazer o comparecimento das seções com recarga entre os turnos (H23).</li>
+<li class="com-rotulo rotulo-pendente"><span class="caixa" role="img" aria-label="a fazer"></span><strong class="com-rotulo"><span class="rotulo">Pendente</span>.</strong> Comparar as seções novas com 2022 (H27).</li>
+</ul>
+</section>
 <section class="anexo" id="anexo-a">
 <p class="sobretitulo" data-ger>Anexo A</p><h1 id="leia-glossário" class="titulo-secao">Glossário</h1>
 <table class="tabela cols-2 texto">
@@ -5353,6 +5746,11 @@ sem nova carga: 2º turno (181 anotações) 128; 1º turno (146 anotações) 99<
 <tr><td><strong>Autoverificação</strong></td><td>A conferência que a urna faz, cada vez que é ligada, das assinaturas dos seus próprios programas. O resultado de cada etapa (“SUCESSO” ou “ERRO”) fica anotado no diário</td></tr>
 <tr><td><strong>Inicialização</strong></td><td>Cada vez que a urna é ligada e o programa começa a rodar</td></tr>
 <tr><td><strong>Carga</strong></td><td>A instalação, antes da eleição, do programa e dos dados da seção na urna, feita por técnicos da Justiça Eleitoral com um cartão próprio (mídia de carga). Cada instalação recebe um código de carga</td></tr>
+<tr><td><strong>Recarga</strong></td><td>Carregar a urna de novo. O diário da carga anterior fica guardado dentro do novo, como uma pasta dentro de outra. Por isso a recarga deixa rastro, e dá para saber a ordem (<a href="#t14">tópico 14</a>)</td></tr>
+<tr><td><strong>Correspondência (urna × seção)</strong></td><td>O registro “urna X, carga Y, seção Z” que o cartório manda ao TSE depois de carregar a urna. É como o registro que liga a placa de um carro ao dono</td></tr>
+<tr><td><strong>Lista prévia</strong></td><td>A lista de correspondências esperadas que o TSE publica antes da votação (uma na véspera e outra na manhã do dia), com a urna que cada seção deveria usar e as urnas de reserva de cada zona. É como a lista de chamada da escola, feita antes da prova</td></tr>
+<tr><td><strong>Teste de Integridade</strong></td><td>Auditoria pública feita no dia da votação. Algumas urnas são sorteadas e retiradas da seção na véspera; no dia, num local público, voluntários votam em cédulas de papel, os votos são digitados nessa urna, e no fim o boletim é comparado com as cédulas. Como um cliente oculto numa loja. Os eleitores da seção sorteada votam numa urna substituta</td></tr>
+<tr><td><strong>Eleitor em trânsito</strong></td><td>Quem pediu para votar, naquele turno, numa seção diferente da sua: por exemplo, quem está viajando, trabalhando como mesário em outra seção ou preso provisório. Quem vem de outro estado só pode votar para Presidente</td></tr>
 <tr><td><strong>Nulo técnico</strong></td><td>Voto dado na urna a um número que a totalização não aceita como válido, por exemplo de candidatura que ficou fora da disputa. O voto está no boletim, mas a totalização o soma como nulo, numa conta à parte</td></tr>
 <tr><td><strong>Cartão de votação (mídia de votação, MV)</strong></td><td>O cartão de memória onde a urna grava os votos. Na troca por urna reserva, ele passa da urna com defeito para a reserva</td></tr>
 <tr><td><strong>Mídia de resultado (MR)</strong></td><td>O cartão de memória em que a urna grava o resultado no fim do dia, para levá-lo ao cartório</td></tr>
@@ -5379,6 +5777,348 @@ sem nova carga: 2º turno (181 anotações) 128; 1º turno (146 anotações) 99<
 <tr><td><strong>Atendimento do eleitor (sessão)</strong></td><td>O trecho do diário da urna que vai da liberação do eleitor até o fim registrado: voto gravado, desistência ou parada da urna. Como a ficha de um paciente no pronto-socorro, que abre na entrada e fecha na alta (<a href="#t13">tópico 13</a>)</td></tr>
 <tr><td><strong>Caderno de votação</strong></td><td>A lista de eleitores da seção, em papel, que cada eleitor assina ao votar. Não é pública. É o único registro de quem assinou e em que ordem</td></tr>
 <tr><td><strong>LAI</strong> (Lei de Acesso à Informação)</td><td>A lei que permite a qualquer pessoa pedir informações a órgãos públicos</td></tr>
+</tbody>
+</table>
+</section>
+<section class="anexo" id="anexo-b">
+<p class="sobretitulo" data-ger>Anexo B</p><h1 id="dados-tabelas-de-dados" class="titulo-secao">Tabelas de dados</h1>
+<p>Cada gráfico deste relatório foi desenhado a partir de uma tabela de números. Este anexo traz essas tabelas, na ordem das figuras e com o mesmo título de cada gráfico, para quem quiser conferir os valores um a um.</p>
+<p>Os números seguem o padrão brasileiro: o ponto separa os milhares e a vírgula separa os decimais. Nos títulos das colunas, “1t” e “2t” querem dizer 1º e 2º turno, e “pct” quer dizer porcentagem.</p>
+<p>Cada tabela vai também inteira, como planilha embutida neste PDF: abra pelo painel de anexos do leitor de PDF (ícone de clipe). Quando a tabela tem mais de 60 linhas, aqui aparecem só as 60 primeiras.</p>
+<h3 id="dados-figura-11--lacres-conferidos-no-2º-turno-por-modelo-de-urna">Figura 1.1 — Lacres conferidos no 2º turno, por modelo de urna</h3>
+<p>Planilha embutida neste PDF: <code>lacres-<wbr>por-<wbr>modelo-<wbr>2t.<wbr>csv</code> (4 linhas).</p>
+<table class="tabela cols-5 texto">
+<thead><tr><th class="d">Modelo urna</th><th>Autoridade</th><th>Metodo lacre</th><th class="d">Pacotes</th><th class="d">Pacotes com falha</th></tr></thead>
+<tbody>
+<tr><td class="d">2020</td><td>AC UE2020</td><td>Ed521</td><td class="d">200.504</td><td class="d">0</td></tr>
+<tr><td class="d">2022</td><td>AC UE2022</td><td>Ed521</td><td class="d">198.746</td><td class="d">0</td></tr>
+<tr><td class="d">2015</td><td>AC URNA</td><td>ECDSA</td><td class="d">87.502</td><td class="d">0</td></tr>
+<tr><td class="d">2013</td><td>AC URNA</td><td>ECDSA</td><td class="d">12.455</td><td class="d">0</td></tr>
+</tbody>
+</table>
+<h3 id="dados-figura-12--o-que-aconteceu-depois-de-cada-erro-anotado-na-autoverificação">Figura 1.2 — O que aconteceu depois de cada erro anotado na autoverificação</h3>
+<p>Planilha embutida neste PDF: <code>autoverificacao-<wbr>destino.<wbr>csv</code> (3 linhas).</p>
+<table class="tabela cols-4">
+<thead><tr><th>Destino</th><th>Descricao</th><th class="d">Eventos 2t</th><th class="d">Eventos 1t</th></tr></thead>
+<tbody>
+<tr><td>novaCarga</td><td>Programa instalado de novo (nova carga) na mesma urna</td><td class="d">36</td><td class="d">36</td></tr>
+<tr><td>trocaUrna</td><td>Urna trocada por reserva</td><td class="d">17</td><td class="d">11</td></tr>
+<tr><td>semNovaCarga</td><td>Mesma urna religada, sem nova carga</td><td class="d">128</td><td class="d">99</td></tr>
+</tbody>
+</table>
+<h3 id="dados-figura-21--cartões-de-votação-com-o-mesmo-número-encontrado--previsto-pelo-acaso">Figura 2.1 — Cartões de votação com o mesmo número: encontrado × previsto pelo acaso</h3>
+<p>Planilha embutida neste PDF: <code>seriais-<wbr>cartao-<wbr>votacao-<wbr>pares.<wbr>csv</code> (3 linhas).</p>
+<table class="tabela cols-4">
+<thead><tr><th>Comparacao</th><th class="d">Pares observados</th><th class="d">Esperado pelo acaso</th><th class="d">Pares no mesmo municipio</th></tr></thead>
+<tbody>
+<tr><td>2º turno</td><td class="d">29</td><td class="d">29,01</td><td class="d">0</td></tr>
+<tr><td>1º turno</td><td class="d">30</td><td class="d">29,01</td><td class="d">0</td></tr>
+<tr><td>entre turnos</td><td class="d">59</td><td class="d">58,0</td><td class="d">0</td></tr>
+</tbody>
+</table>
+<h3 id="dados-figura-22--urnas-trocadas-por-reserva-entre-o-1º-e-o-2º-turno-por-modelo">Figura 2.2 — Urnas trocadas por reserva entre o 1º e o 2º turno, por modelo</h3>
+<p>Planilha embutida neste PDF: <code>troca-<wbr>urna-<wbr>por-<wbr>modelo.<wbr>csv</code> (4 linhas).</p>
+<table class="tabela cols-4">
+<thead><tr><th class="d">Modelo urna 1t</th><th class="d">Secoes</th><th class="d">Trocas novas 2t</th><th class="d">Por mil secoes</th></tr></thead>
+<tbody>
+<tr><td class="d">2013</td><td class="d">11.921</td><td class="d">416</td><td class="d">34,90</td></tr>
+<tr><td class="d">2015</td><td class="d">88.035</td><td class="d">894</td><td class="d">10,16</td></tr>
+<tr><td class="d">2020</td><td class="d">200.463</td><td class="d">970</td><td class="d">4,84</td></tr>
+<tr><td class="d">2022</td><td class="d">198.757</td><td class="d">538</td><td class="d">2,71</td></tr>
+</tbody>
+</table>
+<h3 id="dados-figura-31--2º-turno-boletins-já-emitidos-pelas-urnas--boletins-já-registrados-pelo-tse">Figura 3.1 — 2º turno: boletins já emitidos pelas urnas × boletins já registrados pelo TSE</h3>
+<p>Planilha embutida neste PDF: <code>chegada-<wbr>bu-<wbr>por-<wbr>minuto.<wbr>csv</code> (601 linhas).</p>
+<table class="tabela cols-7 texto">
+<thead><tr><th>Hora brasilia</th><th class="d">Bu emitidos 2t acumulado</th><th class="d">Bu emitidos 2t pct das 497897 do brasil</th><th class="d">Secoes registradas 2t no minuto</th><th class="d">Secoes registradas 2t acumulado</th><th class="d">Secoes registradas 2t pct das 499248</th><th class="d">Secoes totalizadas 2t no minuto</th><th class="d">Secoes registradas 1t no minuto</th><th class="d">Secoes registradas 1t acumulado</th><th class="d">Secoes registradas 1t pct das 499248</th></tr></thead>
+<tbody>
+<tr><td>17:00</td><td class="d">1.300</td><td class="d">0,2611</td><td class="d">0</td><td class="d">0</td><td class="d">0,0000</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0,0000</td></tr>
+<tr><td>17:01</td><td class="d">17.953</td><td class="d">3,6058</td><td class="d">0</td><td class="d">0</td><td class="d">0,0000</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0,0000</td></tr>
+<tr><td>17:02</td><td class="d">127.689</td><td class="d">25,6457</td><td class="d">0</td><td class="d">0</td><td class="d">0,0000</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0,0000</td></tr>
+<tr><td>17:03</td><td class="d">256.392</td><td class="d">51,4950</td><td class="d">1</td><td class="d">1</td><td class="d">0,0002</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0,0000</td></tr>
+<tr><td>17:04</td><td class="d">344.779</td><td class="d">69,2471</td><td class="d">1</td><td class="d">2</td><td class="d">0,0004</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0,0000</td></tr>
+<tr><td>17:05</td><td class="d">399.343</td><td class="d">80,2059</td><td class="d">1.088</td><td class="d">1.090</td><td class="d">0,2183</td><td class="d">1.061</td><td class="d">0</td><td class="d">0</td><td class="d">0,0000</td></tr>
+<tr><td>17:06</td><td class="d">432.429</td><td class="d">86,8511</td><td class="d">458</td><td class="d">1.548</td><td class="d">0,3101</td><td class="d">418</td><td class="d">0</td><td class="d">0</td><td class="d">0,0000</td></tr>
+<tr><td>17:07</td><td class="d">453.083</td><td class="d">90,9993</td><td class="d">322</td><td class="d">1.870</td><td class="d">0,3746</td><td class="d">391</td><td class="d">0</td><td class="d">0</td><td class="d">0,0000</td></tr>
+<tr><td>17:08</td><td class="d">465.508</td><td class="d">93,4948</td><td class="d">0</td><td class="d">1.870</td><td class="d">0,3746</td><td class="d">0</td><td class="d">927</td><td class="d">927</td><td class="d">0,1857</td></tr>
+<tr><td>17:09</td><td class="d">473.481</td><td class="d">95,0962</td><td class="d">0</td><td class="d">1.870</td><td class="d">0,3746</td><td class="d">0</td><td class="d">148</td><td class="d">1.075</td><td class="d">0,2153</td></tr>
+<tr><td>17:10</td><td class="d">478.429</td><td class="d">96,0900</td><td class="d">1</td><td class="d">1.871</td><td class="d">0,3748</td><td class="d">0</td><td class="d">285</td><td class="d">1.360</td><td class="d">0,2724</td></tr>
+<tr><td>17:11</td><td class="d">481.528</td><td class="d">96,7124</td><td class="d">1</td><td class="d">1.872</td><td class="d">0,3750</td><td class="d">0</td><td class="d">375</td><td class="d">1.735</td><td class="d">0,3475</td></tr>
+<tr><td>17:12</td><td class="d">483.565</td><td class="d">97,1215</td><td class="d">0</td><td class="d">1.872</td><td class="d">0,3750</td><td class="d">0</td><td class="d">487</td><td class="d">2.222</td><td class="d">0,4451</td></tr>
+<tr><td>17:13</td><td class="d">484.923</td><td class="d">97,3942</td><td class="d">0</td><td class="d">1.872</td><td class="d">0,3750</td><td class="d">0</td><td class="d">621</td><td class="d">2.843</td><td class="d">0,5695</td></tr>
+<tr><td>17:14</td><td class="d">485.844</td><td class="d">97,5792</td><td class="d">0</td><td class="d">1.872</td><td class="d">0,3750</td><td class="d">0</td><td class="d">465</td><td class="d">3.308</td><td class="d">0,6626</td></tr>
+<tr><td>17:15</td><td class="d">486.522</td><td class="d">97,7154</td><td class="d">1</td><td class="d">1.873</td><td class="d">0,3752</td><td class="d">0</td><td class="d">469</td><td class="d">3.777</td><td class="d">0,7565</td></tr>
+<tr><td>17:16</td><td class="d">487.018</td><td class="d">97,8150</td><td class="d">0</td><td class="d">1.873</td><td class="d">0,3752</td><td class="d">0</td><td class="d">479</td><td class="d">4.256</td><td class="d">0,8525</td></tr>
+<tr><td>17:17</td><td class="d">487.420</td><td class="d">97,8957</td><td class="d">0</td><td class="d">1.873</td><td class="d">0,3752</td><td class="d">0</td><td class="d">480</td><td class="d">4.736</td><td class="d">0,9486</td></tr>
+<tr><td>17:18</td><td class="d">487.717</td><td class="d">97,9554</td><td class="d">0</td><td class="d">1.873</td><td class="d">0,3752</td><td class="d">0</td><td class="d">468</td><td class="d">5.204</td><td class="d">1,0424</td></tr>
+<tr><td>17:19</td><td class="d">487.997</td><td class="d">98,0116</td><td class="d">0</td><td class="d">1.873</td><td class="d">0,3752</td><td class="d">0</td><td class="d">471</td><td class="d">5.675</td><td class="d">1,1367</td></tr>
+<tr><td>17:20</td><td class="d">488.224</td><td class="d">98,0572</td><td class="d">0</td><td class="d">1.873</td><td class="d">0,3752</td><td class="d">0</td><td class="d">481</td><td class="d">6.156</td><td class="d">1,2331</td></tr>
+<tr><td>17:21</td><td class="d">488.407</td><td class="d">98,0940</td><td class="d">0</td><td class="d">1.873</td><td class="d">0,3752</td><td class="d">0</td><td class="d">483</td><td class="d">6.639</td><td class="d">1,3298</td></tr>
+<tr><td>17:22</td><td class="d">488.579</td><td class="d">98,1285</td><td class="d">0</td><td class="d">1.873</td><td class="d">0,3752</td><td class="d">0</td><td class="d">466</td><td class="d">7.105</td><td class="d">1,4231</td></tr>
+<tr><td>17:23</td><td class="d">488.717</td><td class="d">98,1562</td><td class="d">0</td><td class="d">1.873</td><td class="d">0,3752</td><td class="d">0</td><td class="d">445</td><td class="d">7.550</td><td class="d">1,5123</td></tr>
+<tr><td>17:24</td><td class="d">488.857</td><td class="d">98,1844</td><td class="d">0</td><td class="d">1.873</td><td class="d">0,3752</td><td class="d">0</td><td class="d">472</td><td class="d">8.022</td><td class="d">1,6068</td></tr>
+<tr><td>17:25</td><td class="d">488.976</td><td class="d">98,2083</td><td class="d">0</td><td class="d">1.873</td><td class="d">0,3752</td><td class="d">0</td><td class="d">467</td><td class="d">8.489</td><td class="d">1,7004</td></tr>
+<tr><td>17:26</td><td class="d">489.077</td><td class="d">98,2285</td><td class="d">1</td><td class="d">1.874</td><td class="d">0,3754</td><td class="d">0</td><td class="d">461</td><td class="d">8.950</td><td class="d">1,7927</td></tr>
+<tr><td>17:27</td><td class="d">489.165</td><td class="d">98,2462</td><td class="d">0</td><td class="d">1.874</td><td class="d">0,3754</td><td class="d">0</td><td class="d">913</td><td class="d">9.863</td><td class="d">1,9756</td></tr>
+<tr><td>17:28</td><td class="d">489.268</td><td class="d">98,2669</td><td class="d">1</td><td class="d">1.875</td><td class="d">0,3756</td><td class="d">0</td><td class="d">961</td><td class="d">10.824</td><td class="d">2,1681</td></tr>
+<tr><td>17:29</td><td class="d">489.346</td><td class="d">98,2826</td><td class="d">1</td><td class="d">1.876</td><td class="d">0,3758</td><td class="d">0</td><td class="d">1.090</td><td class="d">11.914</td><td class="d">2,3864</td></tr>
+<tr><td>17:30</td><td class="d">489.403</td><td class="d">98,2940</td><td class="d">1</td><td class="d">1.877</td><td class="d">0,3760</td><td class="d">0</td><td class="d">977</td><td class="d">12.891</td><td class="d">2,5821</td></tr>
+<tr><td>17:31</td><td class="d">489.469</td><td class="d">98,3073</td><td class="d">0</td><td class="d">1.877</td><td class="d">0,3760</td><td class="d">0</td><td class="d">966</td><td class="d">13.857</td><td class="d">2,7756</td></tr>
+<tr><td>17:32</td><td class="d">489.529</td><td class="d">98,3193</td><td class="d">1</td><td class="d">1.878</td><td class="d">0,3762</td><td class="d">0</td><td class="d">873</td><td class="d">14.730</td><td class="d">2,9504</td></tr>
+<tr><td>17:33</td><td class="d">489.570</td><td class="d">98,3276</td><td class="d">1</td><td class="d">1.879</td><td class="d">0,3764</td><td class="d">0</td><td class="d">1.885</td><td class="d">16.615</td><td class="d">3,3280</td></tr>
+<tr><td>17:34</td><td class="d">489.642</td><td class="d">98,3420</td><td class="d">0</td><td class="d">1.879</td><td class="d">0,3764</td><td class="d">0</td><td class="d">1.413</td><td class="d">18.028</td><td class="d">3,6110</td></tr>
+<tr><td>17:35</td><td class="d">489.674</td><td class="d">98,3485</td><td class="d">0</td><td class="d">1.879</td><td class="d">0,3764</td><td class="d">0</td><td class="d">1.445</td><td class="d">19.473</td><td class="d">3,9005</td></tr>
+<tr><td>17:36</td><td class="d">489.726</td><td class="d">98,3589</td><td class="d">0</td><td class="d">1.879</td><td class="d">0,3764</td><td class="d">0</td><td class="d">1.432</td><td class="d">20.905</td><td class="d">4,1873</td></tr>
+<tr><td>17:37</td><td class="d">489.758</td><td class="d">98,3653</td><td class="d">0</td><td class="d">1.879</td><td class="d">0,3764</td><td class="d">0</td><td class="d">1.456</td><td class="d">22.361</td><td class="d">4,4789</td></tr>
+<tr><td>17:38</td><td class="d">489.790</td><td class="d">98,3718</td><td class="d">0</td><td class="d">1.879</td><td class="d">0,3764</td><td class="d">0</td><td class="d">1.431</td><td class="d">23.792</td><td class="d">4,7656</td></tr>
+<tr><td>17:39</td><td class="d">489.821</td><td class="d">98,3780</td><td class="d">0</td><td class="d">1.879</td><td class="d">0,3764</td><td class="d">0</td><td class="d">2.374</td><td class="d">26.166</td><td class="d">5,2411</td></tr>
+<tr><td>17:40</td><td class="d">489.854</td><td class="d">98,3846</td><td class="d">0</td><td class="d">1.879</td><td class="d">0,3764</td><td class="d">0</td><td class="d">1.930</td><td class="d">28.096</td><td class="d">5,6277</td></tr>
+<tr><td>17:41</td><td class="d">489.874</td><td class="d">98,3886</td><td class="d">0</td><td class="d">1.879</td><td class="d">0,3764</td><td class="d">0</td><td class="d">1.912</td><td class="d">30.008</td><td class="d">6,0106</td></tr>
+<tr><td>17:42</td><td class="d">489.901</td><td class="d">98,3940</td><td class="d">0</td><td class="d">1.879</td><td class="d">0,3764</td><td class="d">0</td><td class="d">1.920</td><td class="d">31.928</td><td class="d">6,3952</td></tr>
+<tr><td>17:43</td><td class="d">489.919</td><td class="d">98,3977</td><td class="d">0</td><td class="d">1.879</td><td class="d">0,3764</td><td class="d">0</td><td class="d">1.922</td><td class="d">33.850</td><td class="d">6,7802</td></tr>
+<tr><td>17:44</td><td class="d">489.947</td><td class="d">98,4033</td><td class="d">1</td><td class="d">1.880</td><td class="d">0,3766</td><td class="d">0</td><td class="d">1.922</td><td class="d">35.772</td><td class="d">7,1652</td></tr>
+<tr><td>17:45</td><td class="d">489.967</td><td class="d">98,4073</td><td class="d">0</td><td class="d">1.880</td><td class="d">0,3766</td><td class="d">0</td><td class="d">1.903</td><td class="d">37.675</td><td class="d">7,5463</td></tr>
+<tr><td>17:46</td><td class="d">489.981</td><td class="d">98,4101</td><td class="d">0</td><td class="d">1.880</td><td class="d">0,3766</td><td class="d">0</td><td class="d">1.935</td><td class="d">39.610</td><td class="d">7,9339</td></tr>
+<tr><td>17:47</td><td class="d">489.995</td><td class="d">98,4129</td><td class="d">0</td><td class="d">1.880</td><td class="d">0,3766</td><td class="d">0</td><td class="d">2.403</td><td class="d">42.013</td><td class="d">8,4153</td></tr>
+<tr><td>17:48</td><td class="d">490.015</td><td class="d">98,4169</td><td class="d">0</td><td class="d">1.880</td><td class="d">0,3766</td><td class="d">0</td><td class="d">2.415</td><td class="d">44.428</td><td class="d">8,8990</td></tr>
+<tr><td>17:49</td><td class="d">490.055</td><td class="d">98,4250</td><td class="d">0</td><td class="d">1.880</td><td class="d">0,3766</td><td class="d">0</td><td class="d">2.405</td><td class="d">46.833</td><td class="d">9,3807</td></tr>
+<tr><td>17:50</td><td class="d">490.086</td><td class="d">98,4312</td><td class="d">1</td><td class="d">1.881</td><td class="d">0,3768</td><td class="d">0</td><td class="d">2.400</td><td class="d">49.233</td><td class="d">9,8614</td></tr>
+<tr><td>17:51</td><td class="d">490.115</td><td class="d">98,4370</td><td class="d">0</td><td class="d">1.881</td><td class="d">0,3768</td><td class="d">0</td><td class="d">2.561</td><td class="d">51.794</td><td class="d">10,3744</td></tr>
+<tr><td>17:52</td><td class="d">490.147</td><td class="d">98,4435</td><td class="d">0</td><td class="d">1.881</td><td class="d">0,3768</td><td class="d">0</td><td class="d">3.168</td><td class="d">54.962</td><td class="d">11,0090</td></tr>
+<tr><td>17:53</td><td class="d">490.168</td><td class="d">98,4477</td><td class="d">1</td><td class="d">1.882</td><td class="d">0,3770</td><td class="d">0</td><td class="d">2.828</td><td class="d">57.790</td><td class="d">11,5754</td></tr>
+<tr><td>17:54</td><td class="d">490.198</td><td class="d">98,4537</td><td class="d">0</td><td class="d">1.882</td><td class="d">0,3770</td><td class="d">0</td><td class="d">2.858</td><td class="d">60.648</td><td class="d">12,1479</td></tr>
+<tr><td>17:55</td><td class="d">490.219</td><td class="d">98,4579</td><td class="d">1</td><td class="d">1.883</td><td class="d">0,3772</td><td class="d">0</td><td class="d">2.955</td><td class="d">63.603</td><td class="d">12,7398</td></tr>
+<tr><td>17:56</td><td class="d">490.236</td><td class="d">98,4613</td><td class="d">0</td><td class="d">1.883</td><td class="d">0,3772</td><td class="d">0</td><td class="d">2.914</td><td class="d">66.517</td><td class="d">13,3234</td></tr>
+<tr><td>17:57</td><td class="d">490.267</td><td class="d">98,4676</td><td class="d">0</td><td class="d">1.883</td><td class="d">0,3772</td><td class="d">0</td><td class="d">2.854</td><td class="d">69.371</td><td class="d">13,8951</td></tr>
+<tr><td>17:58</td><td class="d">490.297</td><td class="d">98,4736</td><td class="d">0</td><td class="d">1.883</td><td class="d">0,3772</td><td class="d">0</td><td class="d">2.865</td><td class="d">72.236</td><td class="d">14,4690</td></tr>
+<tr><td>17:59</td><td class="d">490.335</td><td class="d">98,4812</td><td class="d">1</td><td class="d">1.884</td><td class="d">0,3774</td><td class="d">0</td><td class="d">2.860</td><td class="d">75.096</td><td class="d">15,0418</td></tr>
+</tbody>
+</table>
+<p>… e mais 541 linhas na planilha embutida no PDF.</p>
+<h3 id="dados-figura-32--seções-registradas-pelo-tse-em-cada-minuto-2º-e-1º-turno">Figura 3.2 — Seções registradas pelo TSE em cada minuto, 2º e 1º turno</h3>
+<p>Os dados desta figura estão na mesma planilha da Figura 3.1, mostrada acima.</p>
+<h3 id="dados-figura-51--votos-contados-como-nulo-técnico-no-1º-turno-por-cargo">Figura 5.1 — Votos contados como “nulo técnico” no 1º turno, por cargo</h3>
+<p>Planilha embutida neste PDF: <code>h03-<wbr>1t-<wbr>nulo-<wbr>tecnico-<wbr>por-<wbr>cargo.<wbr>csv</code> (6 linhas).</p>
+<table class="tabela cols-7 texto">
+<thead><tr><th>Cargo</th><th class="d">Pares uf cargo</th><th class="d">Pares com nulo tecnico</th><th class="d">Nulo tecnico</th><th class="d">Votos nominais</th><th class="d">Votos de legenda</th><th class="d">Numeros de candidato</th><th class="d">Legendas de partido</th></tr></thead>
+<tbody>
+<tr><td>Presidente</td><td class="d">1</td><td class="d">1</td><td class="d">5.246</td><td class="d">5.246</td><td class="d">0</td><td class="d">1</td><td class="d">0</td></tr>
+<tr><td>Governador</td><td class="d">27</td><td class="d">7</td><td class="d">342.427</td><td class="d">342.427</td><td class="d">0</td><td class="d">9</td><td class="d">0</td></tr>
+<tr><td>Senador</td><td class="d">27</td><td class="d">6</td><td class="d">221.990</td><td class="d">221.990</td><td class="d">0</td><td class="d">8</td><td class="d">0</td></tr>
+<tr><td>Dep. Federal</td><td class="d">27</td><td class="d">25</td><td class="d">50.153</td><td class="d">48.241</td><td class="d">1.912</td><td class="d">127</td><td class="d">4</td></tr>
+<tr><td>Dep. Estadual</td><td class="d">26</td><td class="d">23</td><td class="d">10.238</td><td class="d">10.238</td><td class="d">0</td><td class="d">102</td><td class="d">0</td></tr>
+<tr><td>Dep. Distrital</td><td class="d">1</td><td class="d">1</td><td class="d">487</td><td class="d">487</td><td class="d">0</td><td class="d">3</td><td class="d">0</td></tr>
+</tbody>
+</table>
+<h3 id="dados-figura-52--nulo-técnico-nos-cargos-de-presidente-governador-e-senador">Figura 5.2 — Nulo técnico nos cargos de presidente, governador e senador</h3>
+<p>Planilha embutida neste PDF: <code>h03-<wbr>1t-<wbr>nulo-<wbr>tecnico-<wbr>uf-<wbr>cargo.<wbr>csv</code> (63 linhas).</p>
+<table class="tabela cols-5 texto">
+<thead><tr><th>Uf</th><th>Cargo</th><th class="d">Nulo tecnico</th><th class="d">Itens</th><th>Numeros</th></tr></thead>
+<tbody>
+<tr><td>RJ</td><td>Governador</td><td class="d">274.411</td><td class="d">1</td><td>nº 10</td></tr>
+<tr><td>SP</td><td>Senador</td><td class="d">131.009</td><td class="d">2</td><td>nº 300, nº 290</td></tr>
+<tr><td>AM</td><td>Senador</td><td class="d">57.518</td><td class="d">1</td><td>nº 181</td></tr>
+<tr><td>SE</td><td>Governador</td><td class="d">33.195</td><td class="d">2</td><td>nº 22, nº 45</td></tr>
+<tr><td>RJ</td><td>Dep. Federal</td><td class="d">24.223</td><td class="d">4</td><td>nº 7062, nº 7088, nº 2705, nº 4087</td></tr>
+<tr><td>SP</td><td>Governador</td><td class="d">22.370</td><td class="d">1</td><td>nº 29</td></tr>
+<tr><td>PE</td><td>Senador</td><td class="d">18.179</td><td class="d">1</td><td>nº 355</td></tr>
+<tr><td>DF</td><td>Governador</td><td class="d">8.456</td><td class="d">1</td><td>nº 55</td></tr>
+<tr><td>SP</td><td>Dep. Federal</td><td class="d">6.910</td><td class="d">22</td><td>nº 1120, legenda 29, nº 2929, nº 3696, nº 3660, nº 2999, nº 2900, nº 2989, nº 2919, nº 2768, nº 2726, nº 2909, nº 4585, nº 4095, nº 3622, nº 3686, nº 2959, nº 3677, nº 2949, nº 2939, nº 2979, nº 2739</td></tr>
+<tr><td>DF</td><td>Senador</td><td class="d">6.323</td><td class="d">1</td><td>nº 555</td></tr>
+<tr><td>PI</td><td>Senador</td><td class="d">6.188</td><td class="d">2</td><td>nº 333, nº 338</td></tr>
+<tr><td>Brasil</td><td>Presidente</td><td class="d">5.246</td><td class="d">1</td><td>nº 28</td></tr>
+<tr><td>MG</td><td>Dep. Federal</td><td class="d">4.047</td><td class="d">10</td><td>nº 1399, nº 2555, nº 4489, nº 7022, nº 1290, nº 2505, nº 4589, nº 2025, nº 4525, nº 2501</td></tr>
+<tr><td>MS</td><td>Senador</td><td class="d">2.773</td><td class="d">1</td><td>nº 365</td></tr>
+<tr><td>BA</td><td>Dep. Federal</td><td class="d">2.724</td><td class="d">6</td><td>nº 1277, nº 2026, nº 2258, nº 4525, nº 3654, nº 4021</td></tr>
+<tr><td>CE</td><td>Dep. Federal</td><td class="d">2.544</td><td class="d">3</td><td>nº 1300, nº 1224, nº 1016</td></tr>
+<tr><td>RN</td><td>Governador</td><td class="d">2.378</td><td class="d">2</td><td>nº 50, nº 29</td></tr>
+<tr><td>GO</td><td>Dep. Federal</td><td class="d">2.307</td><td class="d">5</td><td>nº 1378, nº 1000, nº 4514, nº 1248, nº 2772</td></tr>
+<tr><td>RJ</td><td>Dep. Estadual</td><td class="d">2.242</td><td class="d">13</td><td>nº 40023, nº 10111, nº 15022, nº 15666, nº 15041, nº 15800, nº 12016, nº 10077, nº 20202, nº 70057, nº 15766, nº 12211, nº 10528</td></tr>
+<tr><td>MG</td><td>Dep. Estadual</td><td class="d">2.154</td><td class="d">20</td><td>nº 10122, nº 11100, nº 15222, nº 23123, nº 10500, nº 77111, nº 35351, nº 33600, nº 15321, nº 44055, nº 45445, nº 33033, nº 40133, nº 30747, nº 35111, nº 15620, nº 20124, nº 12015, nº 33773, nº 35810</td></tr>
+<tr><td>SE</td><td>Dep. Federal</td><td class="d">1.352</td><td class="d">9</td><td>legenda 25, nº 7700, nº 7777, nº 7711, legenda 77, nº 7733, nº 2055, nº 3033, nº 7722</td></tr>
+<tr><td>PE</td><td>Dep. Federal</td><td class="d">1.327</td><td class="d">8</td><td>nº 4033, nº 2266, nº 7055, nº 7090, nº 7740, nº 1811, nº 1840, nº 1881</td></tr>
+<tr><td>TO</td><td>Governador</td><td class="d">1.027</td><td class="d">1</td><td>nº 35</td></tr>
+<tr><td>RS</td><td>Dep. Estadual</td><td class="d">983</td><td class="d">5</td><td>nº 10800, nº 35555, nº 35222, nº 35147, nº 35432</td></tr>
+<tr><td>PB</td><td>Dep. Federal</td><td class="d">873</td><td class="d">10</td><td>nº 7070, legenda 70, nº 7080, nº 7010, nº 2727, nº 7040, nº 7030, nº 2777, nº 2700, nº 7060</td></tr>
+<tr><td>BA</td><td>Dep. Estadual</td><td class="d">754</td><td class="d">1</td><td>nº 10100</td></tr>
+<tr><td>SC</td><td>Dep. Federal</td><td class="d">746</td><td class="d">5</td><td>nº 1550, nº 7777, nº 7077, nº 5093, nº 2557</td></tr>
+<tr><td>AM</td><td>Dep. Federal</td><td class="d">733</td><td class="d">1</td><td>nº 7777</td></tr>
+<tr><td>RN</td><td>Dep. Estadual</td><td class="d">710</td><td class="d">2</td><td>nº 13013, nº 18777</td></tr>
+<tr><td>PI</td><td>Dep. Federal</td><td class="d">674</td><td class="d">4</td><td>nº 1112, nº 7022, nº 3321, nº 3322</td></tr>
+<tr><td>GO</td><td>Dep. Estadual</td><td class="d">631</td><td class="d">5</td><td>nº 22133, nº 20070, nº 30200, nº 18728, nº 18333</td></tr>
+<tr><td>PB</td><td>Governador</td><td class="d">590</td><td class="d">1</td><td>nº 27</td></tr>
+<tr><td>SP</td><td>Dep. Estadual</td><td class="d">503</td><td class="d">4</td><td>nº 33666, nº 33300, nº 33190, nº 50121</td></tr>
+<tr><td>SC</td><td>Dep. Estadual</td><td class="d">498</td><td class="d">6</td><td>nº 50044, nº 14007, nº 36007, nº 36358, nº 18800, nº 36123</td></tr>
+<tr><td>DF</td><td>Dep. Distrital</td><td class="d">487</td><td class="d">3</td><td>nº 22001, nº 45222, nº 15333</td></tr>
+<tr><td>RS</td><td>Dep. Federal</td><td class="d">358</td><td class="d">12</td><td>nº 7001, nº 4580, nº 7077, nº 3545, nº 7044, nº 2723, nº 7710, nº 7029, nº 3603, nº 3666, nº 3612, nº 3684</td></tr>
+<tr><td>PE</td><td>Dep. Estadual</td><td class="d">316</td><td class="d">6</td><td>nº 10555, nº 22500, nº 22145, nº 20192, nº 18181, nº 20615</td></tr>
+<tr><td>ES</td><td>Dep. Estadual</td><td class="d">293</td><td class="d">6</td><td>nº 27999, nº 15151, nº 30222, nº 15678, nº 30444, nº 35400</td></tr>
+<tr><td>SE</td><td>Dep. Estadual</td><td class="d">273</td><td class="d">1</td><td>nº 20444</td></tr>
+<tr><td>ES</td><td>Dep. Federal</td><td class="d">259</td><td class="d">1</td><td>nº 2772</td></tr>
+<tr><td>RR</td><td>Dep. Federal</td><td class="d">258</td><td class="d">8</td><td>nº 1588, nº 1515, nº 2201, nº 2700, nº 2710, nº 2727, nº 2525, nº 7750</td></tr>
+<tr><td>RO</td><td>Dep. Federal</td><td class="d">243</td><td class="d">2</td><td>nº 5544, nº 3312</td></tr>
+<tr><td>MS</td><td>Dep. Estadual</td><td class="d">157</td><td class="d">3</td><td>nº 50777, nº 25511, nº 70456</td></tr>
+<tr><td>CE</td><td>Dep. Estadual</td><td class="d">145</td><td class="d">3</td><td>nº 18888, nº 33444, nº 33622</td></tr>
+<tr><td>DF</td><td>Dep. Federal</td><td class="d">139</td><td class="d">1</td><td>nº 4577</td></tr>
+<tr><td>RN</td><td>Dep. Federal</td><td class="d">126</td><td class="d">5</td><td>nº 4088, nº 7000, nº 2711, nº 4588, nº 2799</td></tr>
+<tr><td>PR</td><td>Dep. Estadual</td><td class="d">120</td><td class="d">3</td><td>nº 14900, nº 45030, nº 77678</td></tr>
+<tr><td>AP</td><td>Dep. Estadual</td><td class="d">95</td><td class="d">2</td><td>nº 22888, nº 13690</td></tr>
+<tr><td>TO</td><td>Dep. Estadual</td><td class="d">94</td><td class="d">2</td><td>nº 22777, nº 55666</td></tr>
+<tr><td>MA</td><td>Dep. Federal</td><td class="d">76</td><td class="d">5</td><td>nº 3370, nº 2777, nº 3369, nº 3044, nº 3365</td></tr>
+<tr><td>PR</td><td>Dep. Federal</td><td class="d">71</td><td class="d">1</td><td>nº 3522</td></tr>
+<tr><td>AL</td><td>Dep. Estadual</td><td class="d">61</td><td class="d">5</td><td>nº 25222, nº 77222, nº 25125, nº 77333, nº 25551</td></tr>
+<tr><td>PA</td><td>Dep. Estadual</td><td class="d">59</td><td class="d">4</td><td>nº 44300, nº 25255, nº 30085, nº 45899</td></tr>
+<tr><td>RO</td><td>Dep. Estadual</td><td class="d">58</td><td class="d">2</td><td>nº 55055, nº 33012</td></tr>
+<tr><td>PA</td><td>Dep. Federal</td><td class="d">53</td><td class="d">1</td><td>nº 2340</td></tr>
+<tr><td>AC</td><td>Dep. Federal</td><td class="d">45</td><td class="d">3</td><td>nº 4000, nº 4022, nº 4033</td></tr>
+<tr><td>AP</td><td>Dep. Federal</td><td class="d">37</td><td class="d">2</td><td>nº 3012, nº 2772</td></tr>
+<tr><td>MT</td><td>Dep. Estadual</td><td class="d">31</td><td class="d">2</td><td>nº 18500, nº 18777</td></tr>
+<tr><td>PI</td><td>Dep. Estadual</td><td class="d">31</td><td class="d">2</td><td>nº 45333, nº 44700</td></tr>
+<tr><td>TO</td><td>Dep. Federal</td><td class="d">23</td><td class="d">2</td><td>nº 2777, nº 4045</td></tr>
+</tbody>
+</table>
+<p>… e mais 3 linhas na planilha embutida no PDF.</p>
+<h3 id="dados-figura-53--nulo-técnico-nos-cargos-de-deputado-por-estado-1º-turno">Figura 5.3 — Nulo técnico nos cargos de deputado, por estado, 1º turno</h3>
+<p>Planilha embutida neste PDF: <code>h03-<wbr>1t-<wbr>fechamento-<wbr>uf-<wbr>cargo.<wbr>csv</code> (109 linhas).</p>
+<table class="tabela cols-7 texto">
+<thead><tr><th>Uf</th><th>Cargo</th><th class="d">Secoes</th><th class="d">Aptos</th><th class="d">Comparecimento</th><th class="d">Brancos</th><th class="d">Nulos</th><th class="d">Nominais validos</th><th class="d">Legenda valida</th><th class="d">Anulados</th><th class="d">Anulados sub judice</th><th class="d">Nulo tecnico</th><th class="d">Validos</th><th class="d">Total</th><th>Campos iguais boletim oficial</th></tr></thead>
+<tbody>
+<tr><td>Brasil</td><td>Presidente</td><td class="d">499.207</td><td class="d">158.745.079</td><td class="d">125.275.835</td><td class="d">2.300.798</td><td class="d">3.669.003</td><td class="d">119.300.788</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">5.246</td><td class="d">119.300.788</td><td class="d">125.275.835</td><td>11 de 11</td></tr>
+<tr><td>AC</td><td>Governador</td><td class="d">2.270</td><td class="d">613.316</td><td class="d">487.971</td><td class="d">8.926</td><td class="d">39.398</td><td class="d">439.647</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">439.647</td><td class="d">487.971</td><td>11 de 11</td></tr>
+<tr><td>AC</td><td>Senador</td><td class="d">2.270</td><td class="d">613.316</td><td class="d">487.971</td><td class="d">38.954</td><td class="d">61.686</td><td class="d">730.058</td><td class="d">0</td><td class="d">0</td><td class="d">145.244</td><td class="d">0</td><td class="d">730.058</td><td class="d">975.942</td><td>11 de 11</td></tr>
+<tr><td>AC</td><td>Dep. Federal</td><td class="d">2.270</td><td class="d">613.316</td><td class="d">487.971</td><td class="d">11.808</td><td class="d">7.506</td><td class="d">448.322</td><td class="d">14.163</td><td class="d">0</td><td class="d">6.127</td><td class="d">45</td><td class="d">462.485</td><td class="d">487.971</td><td>11 de 11</td></tr>
+<tr><td>AC</td><td>Dep. Estadual</td><td class="d">2.270</td><td class="d">613.316</td><td class="d">487.971</td><td class="d">9.032</td><td class="d">5.748</td><td class="d">443.621</td><td class="d">26.391</td><td class="d">0</td><td class="d">3.160</td><td class="d">19</td><td class="d">470.012</td><td class="d">487.971</td><td>11 de 11</td></tr>
+<tr><td>AL</td><td>Governador</td><td class="d">7.101</td><td class="d">2.439.190</td><td class="d">1.935.820</td><td class="d">56.303</td><td class="d">169.903</td><td class="d">1.709.614</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">1.709.614</td><td class="d">1.935.820</td><td>11 de 11</td></tr>
+<tr><td>AL</td><td>Senador</td><td class="d">7.101</td><td class="d">2.439.190</td><td class="d">1.935.820</td><td class="d">226.942</td><td class="d">358.097</td><td class="d">3.286.601</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">3.286.601</td><td class="d">3.871.640</td><td>11 de 11</td></tr>
+<tr><td>AL</td><td>Dep. Federal</td><td class="d">7.101</td><td class="d">2.439.190</td><td class="d">1.935.820</td><td class="d">76.452</td><td class="d">60.860</td><td class="d">1.744.644</td><td class="d">53.697</td><td class="d">0</td><td class="d">167</td><td class="d">0</td><td class="d">1.798.341</td><td class="d">1.935.820</td><td>11 de 11</td></tr>
+<tr><td>AL</td><td>Dep. Estadual</td><td class="d">7.101</td><td class="d">2.439.190</td><td class="d">1.935.820</td><td class="d">68.334</td><td class="d">63.915</td><td class="d">1.688.825</td><td class="d">114.549</td><td class="d">0</td><td class="d">136</td><td class="d">61</td><td class="d">1.803.374</td><td class="d">1.935.820</td><td>11 de 11</td></tr>
+<tr><td>AM</td><td>Governador</td><td class="d">8.157</td><td class="d">2.796.053</td><td class="d">2.232.271</td><td class="d">50.340</td><td class="d">109.946</td><td class="d">2.071.985</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">2.071.985</td><td class="d">2.232.271</td><td>11 de 11</td></tr>
+<tr><td>AM</td><td>Senador</td><td class="d">8.157</td><td class="d">2.796.053</td><td class="d">2.232.271</td><td class="d">229.054</td><td class="d">336.125</td><td class="d">3.841.845</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">57.518</td><td class="d">3.841.845</td><td class="d">4.464.542</td><td>11 de 11</td></tr>
+<tr><td>AM</td><td>Dep. Federal</td><td class="d">8.157</td><td class="d">2.796.053</td><td class="d">2.232.271</td><td class="d">68.407</td><td class="d">43.646</td><td class="d">2.063.900</td><td class="d">55.352</td><td class="d">0</td><td class="d">233</td><td class="d">733</td><td class="d">2.119.252</td><td class="d">2.232.271</td><td>11 de 11</td></tr>
+<tr><td>AM</td><td>Dep. Estadual</td><td class="d">8.157</td><td class="d">2.796.053</td><td class="d">2.232.271</td><td class="d">59.294</td><td class="d">47.363</td><td class="d">2.033.211</td><td class="d">91.910</td><td class="d">134</td><td class="d">359</td><td class="d">0</td><td class="d">2.125.121</td><td class="d">2.232.271</td><td>11 de 11</td></tr>
+<tr><td>AP</td><td>Governador</td><td class="d">1.914</td><td class="d">576.359</td><td class="d">476.019</td><td class="d">2.964</td><td class="d">24.308</td><td class="d">448.747</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">448.747</td><td class="d">476.019</td><td>11 de 11</td></tr>
+<tr><td>AP</td><td>Senador</td><td class="d">1.914</td><td class="d">576.359</td><td class="d">476.019</td><td class="d">22.756</td><td class="d">46.057</td><td class="d">883.225</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">883.225</td><td class="d">952.038</td><td>11 de 11</td></tr>
+<tr><td>AP</td><td>Dep. Federal</td><td class="d">1.914</td><td class="d">576.359</td><td class="d">476.019</td><td class="d">8.049</td><td class="d">7.237</td><td class="d">447.950</td><td class="d">11.730</td><td class="d">0</td><td class="d">1.016</td><td class="d">37</td><td class="d">459.680</td><td class="d">476.019</td><td>11 de 11</td></tr>
+<tr><td>AP</td><td>Dep. Estadual</td><td class="d">1.914</td><td class="d">576.359</td><td class="d">476.019</td><td class="d">6.662</td><td class="d">5.356</td><td class="d">432.501</td><td class="d">18.230</td><td class="d">1.734</td><td class="d">11.441</td><td class="d">95</td><td class="d">450.731</td><td class="d">476.019</td><td>11 de 11</td></tr>
+<tr><td>BA</td><td>Governador</td><td class="d">35.476</td><td class="d">11.304.314</td><td class="d">9.046.179</td><td class="d">233.096</td><td class="d">521.993</td><td class="d">8.291.090</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">8.291.090</td><td class="d">9.046.179</td><td>11 de 11</td></tr>
+<tr><td>BA</td><td>Senador</td><td class="d">35.476</td><td class="d">11.304.314</td><td class="d">9.046.179</td><td class="d">1.218.996</td><td class="d">2.454.953</td><td class="d">14.418.409</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">14.418.409</td><td class="d">18.092.358</td><td>11 de 11</td></tr>
+<tr><td>BA</td><td>Dep. Federal</td><td class="d">35.476</td><td class="d">11.304.314</td><td class="d">9.046.179</td><td class="d">405.559</td><td class="d">356.005</td><td class="d">8.001.270</td><td class="d">280.546</td><td class="d">0</td><td class="d">75</td><td class="d">2.724</td><td class="d">8.281.816</td><td class="d">9.046.179</td><td>11 de 11</td></tr>
+<tr><td>BA</td><td>Dep. Estadual</td><td class="d">35.476</td><td class="d">11.304.314</td><td class="d">9.046.179</td><td class="d">463.958</td><td class="d">394.288</td><td class="d">7.383.214</td><td class="d">780.491</td><td class="d">0</td><td class="d">23.474</td><td class="d">754</td><td class="d">8.163.705</td><td class="d">9.046.179</td><td>11 de 11</td></tr>
+<tr><td>CE</td><td>Governador</td><td class="d">23.765</td><td class="d">6.991.044</td><td class="d">5.905.522</td><td class="d">170.316</td><td class="d">329.111</td><td class="d">5.406.095</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">5.406.095</td><td class="d">5.905.522</td><td>11 de 11</td></tr>
+<tr><td>CE</td><td>Senador</td><td class="d">23.765</td><td class="d">6.991.044</td><td class="d">5.905.522</td><td class="d">845.706</td><td class="d">1.247.655</td><td class="d">9.715.006</td><td class="d">0</td><td class="d">0</td><td class="d">2.677</td><td class="d">0</td><td class="d">9.715.006</td><td class="d">11.811.044</td><td>11 de 11</td></tr>
+<tr><td>CE</td><td>Dep. Federal</td><td class="d">23.765</td><td class="d">6.991.044</td><td class="d">5.905.522</td><td class="d">236.392</td><td class="d">144.944</td><td class="d">5.355.689</td><td class="d">165.953</td><td class="d">0</td><td class="d">0</td><td class="d">2.544</td><td class="d">5.521.642</td><td class="d">5.905.522</td><td>11 de 11</td></tr>
+<tr><td>CE</td><td>Dep. Estadual</td><td class="d">23.765</td><td class="d">6.991.044</td><td class="d">5.905.522</td><td class="d">279.884</td><td class="d">169.713</td><td class="d">5.080.897</td><td class="d">374.675</td><td class="d">0</td><td class="d">208</td><td class="d">145</td><td class="d">5.455.572</td><td class="d">5.905.522</td><td>11 de 11</td></tr>
+<tr><td>DF</td><td>Governador</td><td class="d">6.969</td><td class="d">2.243.988</td><td class="d">1.817.921</td><td class="d">74.774</td><td class="d">81.454</td><td class="d">1.651.394</td><td class="d">0</td><td class="d">0</td><td class="d">1.843</td><td class="d">8.456</td><td class="d">1.651.394</td><td class="d">1.817.921</td><td>11 de 11</td></tr>
+<tr><td>DF</td><td>Senador</td><td class="d">6.969</td><td class="d">2.243.988</td><td class="d">1.817.921</td><td class="d">200.921</td><td class="d">198.041</td><td class="d">3.226.319</td><td class="d">0</td><td class="d">0</td><td class="d">4.238</td><td class="d">6.323</td><td class="d">3.226.319</td><td class="d">3.635.842</td><td>11 de 11</td></tr>
+<tr><td>DF</td><td>Dep. Federal</td><td class="d">6.969</td><td class="d">2.243.988</td><td class="d">1.817.921</td><td class="d">99.027</td><td class="d">46.814</td><td class="d">1.602.806</td><td class="d">56.251</td><td class="d">427</td><td class="d">12.457</td><td class="d">139</td><td class="d">1.659.057</td><td class="d">1.817.921</td><td>11 de 11</td></tr>
+<tr><td>DF</td><td>Dep. Distrital</td><td class="d">6.969</td><td class="d">2.243.988</td><td class="d">1.817.921</td><td class="d">77.934</td><td class="d">39.956</td><td class="d">1.626.978</td><td class="d">71.631</td><td class="d">0</td><td class="d">935</td><td class="d">487</td><td class="d">1.698.609</td><td class="d">1.817.921</td><td>11 de 11</td></tr>
+<tr><td>ES</td><td>Governador</td><td class="d">9.844</td><td class="d">2.987.584</td><td class="d">2.348.612</td><td class="d">110.040</td><td class="d">126.401</td><td class="d">2.112.171</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">2.112.171</td><td class="d">2.348.612</td><td>11 de 11</td></tr>
+<tr><td>ES</td><td>Senador</td><td class="d">9.844</td><td class="d">2.987.584</td><td class="d">2.348.612</td><td class="d">319.565</td><td class="d">347.732</td><td class="d">4.029.927</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">4.029.927</td><td class="d">4.697.224</td><td>11 de 11</td></tr>
+<tr><td>ES</td><td>Dep. Federal</td><td class="d">9.844</td><td class="d">2.987.584</td><td class="d">2.348.612</td><td class="d">133.292</td><td class="d">80.076</td><td class="d">2.074.898</td><td class="d">60.087</td><td class="d">0</td><td class="d">0</td><td class="d">259</td><td class="d">2.134.985</td><td class="d">2.348.612</td><td>11 de 11</td></tr>
+<tr><td>ES</td><td>Dep. Estadual</td><td class="d">9.844</td><td class="d">2.987.584</td><td class="d">2.348.612</td><td class="d">128.244</td><td class="d">64.894</td><td class="d">2.027.889</td><td class="d">114.900</td><td class="d">0</td><td class="d">12.392</td><td class="d">293</td><td class="d">2.142.789</td><td class="d">2.348.612</td><td>11 de 11</td></tr>
+<tr><td>GO</td><td>Governador</td><td class="d">15.686</td><td class="d">5.074.870</td><td class="d">3.966.488</td><td class="d">170.266</td><td class="d">165.646</td><td class="d">3.630.576</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">3.630.576</td><td class="d">3.966.488</td><td>11 de 11</td></tr>
+<tr><td>GO</td><td>Senador</td><td class="d">15.686</td><td class="d">5.074.870</td><td class="d">3.966.488</td><td class="d">591.005</td><td class="d">659.977</td><td class="d">6.681.994</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">6.681.994</td><td class="d">7.932.976</td><td>11 de 11</td></tr>
+<tr><td>GO</td><td>Dep. Federal</td><td class="d">15.686</td><td class="d">5.074.870</td><td class="d">3.966.488</td><td class="d">225.997</td><td class="d">129.285</td><td class="d">3.484.122</td><td class="d">123.622</td><td class="d">0</td><td class="d">1.155</td><td class="d">2.307</td><td class="d">3.607.744</td><td class="d">3.966.488</td><td>11 de 11</td></tr>
+<tr><td>GO</td><td>Dep. Estadual</td><td class="d">15.686</td><td class="d">5.074.870</td><td class="d">3.966.488</td><td class="d">209.348</td><td class="d">118.393</td><td class="d">3.413.510</td><td class="d">224.475</td><td class="d">0</td><td class="d">131</td><td class="d">631</td><td class="d">3.637.985</td><td class="d">3.966.488</td><td>11 de 11</td></tr>
+<tr><td>MA</td><td>Governador</td><td class="d">18.093</td><td class="d">5.180.851</td><td class="d">4.158.395</td><td class="d">93.669</td><td class="d">169.646</td><td class="d">3.846.156</td><td class="d">0</td><td class="d">0</td><td class="d">48.924</td><td class="d">0</td><td class="d">3.846.156</td><td class="d">4.158.395</td><td>11 de 11</td></tr>
+<tr><td>MA</td><td>Senador</td><td class="d">18.093</td><td class="d">5.180.851</td><td class="d">4.158.395</td><td class="d">532.747</td><td class="d">642.198</td><td class="d">7.117.850</td><td class="d">0</td><td class="d">0</td><td class="d">23.995</td><td class="d">0</td><td class="d">7.117.850</td><td class="d">8.316.790</td><td>11 de 11</td></tr>
+<tr><td>MA</td><td>Dep. Federal</td><td class="d">18.093</td><td class="d">5.180.851</td><td class="d">4.158.395</td><td class="d">129.047</td><td class="d">57.286</td><td class="d">3.857.063</td><td class="d">113.904</td><td class="d">0</td><td class="d">1.019</td><td class="d">76</td><td class="d">3.970.967</td><td class="d">4.158.395</td><td>11 de 11</td></tr>
+<tr><td>MA</td><td>Dep. Estadual</td><td class="d">18.093</td><td class="d">5.180.851</td><td class="d">4.158.395</td><td class="d">145.541</td><td class="d">88.574</td><td class="d">3.650.791</td><td class="d">271.195</td><td class="d">0</td><td class="d">2.294</td><td class="d">0</td><td class="d">3.921.986</td><td class="d">4.158.395</td><td>11 de 11</td></tr>
+<tr><td>MG</td><td>Governador</td><td class="d">52.062</td><td class="d">16.361.188</td><td class="d">12.627.167</td><td class="d">658.416</td><td class="d">556.916</td><td class="d">11.410.371</td><td class="d">0</td><td class="d">1.464</td><td class="d">0</td><td class="d">0</td><td class="d">11.410.371</td><td class="d">12.627.167</td><td>11 de 11</td></tr>
+<tr><td>MG</td><td>Senador</td><td class="d">52.062</td><td class="d">16.361.188</td><td class="d">12.627.167</td><td class="d">2.200.110</td><td class="d">2.528.738</td><td class="d">20.522.302</td><td class="d">0</td><td class="d">3.184</td><td class="d">0</td><td class="d">0</td><td class="d">20.522.302</td><td class="d">25.254.334</td><td>11 de 11</td></tr>
+<tr><td>MG</td><td>Dep. Federal</td><td class="d">52.062</td><td class="d">16.361.188</td><td class="d">12.627.167</td><td class="d">699.059</td><td class="d">453.843</td><td class="d">11.049.070</td><td class="d">331.081</td><td class="d">6.921</td><td class="d">83.146</td><td class="d">4.047</td><td class="d">11.380.151</td><td class="d">12.627.167</td><td>11 de 11</td></tr>
+<tr><td>MG</td><td>Dep. Estadual</td><td class="d">52.062</td><td class="d">16.361.188</td><td class="d">12.627.167</td><td class="d">827.100</td><td class="d">486.837</td><td class="d">10.527.875</td><td class="d">781.451</td><td class="d">807</td><td class="d">943</td><td class="d">2.154</td><td class="d">11.309.326</td><td class="d">12.627.167</td><td>11 de 11</td></tr>
+<tr><td>MS</td><td>Governador</td><td class="d">7.106</td><td class="d">2.021.869</td><td class="d">1.539.009</td><td class="d">80.522</td><td class="d">95.189</td><td class="d">1.363.298</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">1.363.298</td><td class="d">1.539.009</td><td>11 de 11</td></tr>
+<tr><td>MS</td><td>Senador</td><td class="d">7.106</td><td class="d">2.021.869</td><td class="d">1.539.009</td><td class="d">225.530</td><td class="d">241.656</td><td class="d">2.608.059</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">2.773</td><td class="d">2.608.059</td><td class="d">3.078.018</td><td>11 de 11</td></tr>
+<tr><td>MS</td><td>Dep. Federal</td><td class="d">7.106</td><td class="d">2.021.869</td><td class="d">1.539.009</td><td class="d">81.203</td><td class="d">37.039</td><td class="d">1.367.994</td><td class="d">52.768</td><td class="d">0</td><td class="d">0</td><td class="d">5</td><td class="d">1.420.762</td><td class="d">1.539.009</td><td>11 de 11</td></tr>
+<tr><td>MS</td><td>Dep. Estadual</td><td class="d">7.106</td><td class="d">2.021.869</td><td class="d">1.539.009</td><td class="d">81.571</td><td class="d">39.819</td><td class="d">1.287.378</td><td class="d">94.428</td><td class="d">445</td><td class="d">35.211</td><td class="d">157</td><td class="d">1.381.806</td><td class="d">1.539.009</td><td>11 de 11</td></tr>
+<tr><td>MT</td><td>Governador</td><td class="d">8.287</td><td class="d">2.634.992</td><td class="d">2.049.718</td><td class="d">82.690</td><td class="d">110.735</td><td class="d">1.856.293</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">1.856.293</td><td class="d">2.049.718</td><td>11 de 11</td></tr>
+<tr><td>MT</td><td>Senador</td><td class="d">8.287</td><td class="d">2.634.992</td><td class="d">2.049.718</td><td class="d">233.512</td><td class="d">290.660</td><td class="d">3.575.264</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">3.575.264</td><td class="d">4.099.436</td><td>11 de 11</td></tr>
+<tr><td>MT</td><td>Dep. Federal</td><td class="d">8.287</td><td class="d">2.634.992</td><td class="d">2.049.718</td><td class="d">93.665</td><td class="d">51.445</td><td class="d">1.843.036</td><td class="d">58.683</td><td class="d">0</td><td class="d">2.889</td><td class="d">0</td><td class="d">1.901.719</td><td class="d">2.049.718</td><td>11 de 11</td></tr>
+<tr><td>MT</td><td>Dep. Estadual</td><td class="d">8.287</td><td class="d">2.634.992</td><td class="d">2.049.718</td><td class="d">78.422</td><td class="d">43.839</td><td class="d">1.822.273</td><td class="d">103.557</td><td class="d">0</td><td class="d">1.596</td><td class="d">31</td><td class="d">1.925.830</td><td class="d">2.049.718</td><td>11 de 11</td></tr>
+<tr><td>PA</td><td>Governador</td><td class="d">20.827</td><td class="d">6.258.162</td><td class="d">5.062.750</td><td class="d">106.097</td><td class="d">389.825</td><td class="d">4.564.841</td><td class="d">0</td><td class="d">0</td><td class="d">1.987</td><td class="d">0</td><td class="d">4.564.841</td><td class="d">5.062.750</td><td>11 de 11</td></tr>
+<tr><td>PA</td><td>Senador</td><td class="d">20.827</td><td class="d">6.258.162</td><td class="d">5.062.750</td><td class="d">458.028</td><td class="d">694.097</td><td class="d">8.957.562</td><td class="d">0</td><td class="d">0</td><td class="d">15.813</td><td class="d">0</td><td class="d">8.957.562</td><td class="d">10.125.500</td><td>11 de 11</td></tr>
+<tr><td>PA</td><td>Dep. Federal</td><td class="d">20.827</td><td class="d">6.258.162</td><td class="d">5.062.750</td><td class="d">148.260</td><td class="d">80.987</td><td class="d">4.704.803</td><td class="d">127.434</td><td class="d">0</td><td class="d">1.213</td><td class="d">53</td><td class="d">4.832.237</td><td class="d">5.062.750</td><td>11 de 11</td></tr>
+<tr><td>PA</td><td>Dep. Estadual</td><td class="d">20.827</td><td class="d">6.258.162</td><td class="d">5.062.750</td><td class="d">150.725</td><td class="d">85.734</td><td class="d">4.514.993</td><td class="d">310.127</td><td class="d">0</td><td class="d">1.112</td><td class="d">59</td><td class="d">4.825.120</td><td class="d">5.062.750</td><td>11 de 11</td></tr>
+<tr><td>PB</td><td>Governador</td><td class="d">10.712</td><td class="d">3.241.966</td><td class="d">2.677.904</td><td class="d">127.816</td><td class="d">262.876</td><td class="d">2.286.622</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">590</td><td class="d">2.286.622</td><td class="d">2.677.904</td><td>11 de 11</td></tr>
+<tr><td>PB</td><td>Senador</td><td class="d">10.712</td><td class="d">3.241.966</td><td class="d">2.677.904</td><td class="d">442.542</td><td class="d">630.504</td><td class="d">4.282.762</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">0</td><td class="d">4.282.762</td><td class="d">5.355.808</td><td>11 de 11</td></tr>
+<tr><td>PB</td><td>Dep. Federal</td><td class="d">10.712</td><td class="d">3.241.966</td><td class="d">2.677.904</td><td class="d">154.973</td><td class="d">117.898</td><td class="d">2.330.421</td><td class="d">69.528</td><td class="d">0</td><td class="d">4.211</td><td class="d">873</td><td class="d">2.399.949</td><td class="d">2.677.904</td><td>11 de 11</td></tr>
+</tbody>
+</table>
+<p>… e mais 49 linhas na planilha embutida no PDF.</p>
+<h3 id="dados-figura-54--governo-do-rj-1º-turno-a-conta-da-maioria-absoluta">Figura 5.4 — Governo do RJ, 1º turno: a conta da maioria absoluta</h3>
+<p>Planilha embutida neste PDF: <code>h03-<wbr>1t-<wbr>governador-<wbr>rj-<wbr>df.<wbr>csv</code> (10 linhas).</p>
+<table class="tabela cols-3 texto">
+<thead><tr><th>Uf</th><th>Medida</th><th class="d">Valor</th></tr></thead>
+<tbody>
+<tr><td>RJ</td><td>votos do nº 22 (eleito no 1º turno)</td><td class="d">4.271.199</td></tr>
+<tr><td>RJ</td><td>votos válidos (oficial)</td><td class="d">8.394.627</td></tr>
+<tr><td>RJ</td><td>percentual do nº 22 nos válidos (oficial)</td><td class="d">50,880</td></tr>
+<tr><td>RJ</td><td>votos válidos a mais, de outros candidatos, que levariam o nº 22 a exatamente 50%</td><td class="d">147.771</td></tr>
+<tr><td>RJ</td><td>votos do nº 10, classificados como nulo técnico</td><td class="d">274.411</td></tr>
+<tr><td>DF</td><td>votos do nº 11 (líder, foi ao 2º turno)</td><td class="d">825.530</td></tr>
+<tr><td>DF</td><td>votos válidos (oficial)</td><td class="d">1.651.394</td></tr>
+<tr><td>DF</td><td>percentual do nº 11 nos válidos</td><td class="d">49,990</td></tr>
+<tr><td>DF</td><td>votos que faltaram ao nº 11 para a maioria absoluta</td><td class="d">168</td></tr>
+<tr><td>DF</td><td>votos do nº 55, classificados como nulo técnico</td><td class="d">8.456</td></tr>
+</tbody>
+</table>
+<h3 id="dados-figura-111--parcela-do-13-entre-os-votos-do-13-e-do-22-no-1º-e-no-2º-turno">Figura 11.1 — Parcela do 13 entre os votos do 13 e do 22, no 1º e no 2º turno</h3>
+<p>Planilha embutida neste PDF: <code>h14-<wbr>parcela-<wbr>13-<wbr>1t-<wbr>2t.<wbr>csv</code> (3 linhas).</p>
+<table class="tabela cols-5 texto">
+<thead><tr><th>Grupo</th><th class="d">Secoes</th><th class="d">Parcela 13 pct 1t</th><th class="d">Parcela 13 pct 2t</th><th class="d">Variacao pontos</th></tr></thead>
+<tbody>
+<tr><td>Sem troca (mesma urna de seção nos dois turnos)</td><td class="d">491.843</td><td class="d">48,99</td><td class="d">51,78</td><td class="d">2,8</td></tr>
+<tr><td>Troca nova: reserva diferente da urna do 1º turno</td><td class="d">2.818</td><td class="d">48,73</td><td class="d">51,5</td><td class="d">2,77</td></tr>
+<tr><td>Reserva herdada: a mesma reserva nos dois turnos</td><td class="d">2.893</td><td class="d">49,02</td><td class="d">51,85</td><td class="d">2,84</td></tr>
+</tbody>
+</table>
+<h3 id="dados-figura-112--para-onde-a-reserva-foi-carregada-troca-nova--reserva-herdada">Figura 11.2 — Para onde a reserva foi carregada: troca nova × reserva herdada</h3>
+<p>Planilha embutida neste PDF: <code>h14-<wbr>carga-<wbr>reserva.<wbr>csv</code> (2 linhas).</p>
+<table class="tabela cols-7 texto">
+<thead><tr><th>O que a carga gravou</th><th class="d">Troca nova secoes</th><th class="d">Troca nova total</th><th class="d">Troca nova pct</th><th class="d">Herdada secoes</th><th class="d">Herdada total</th><th class="d">Herdada pct</th><th class="d">Sem troca secoes</th><th class="d">Sem troca total</th></tr></thead>
+<tbody>
+<tr><td>Município de outra cidade</td><td class="d">524</td><td class="d">2.818</td><td class="d">18,59</td><td class="d">521</td><td class="d">2.893</td><td class="d">18,01</td><td class="d">0</td><td class="d">491.489</td></tr>
+<tr><td>Outra zona eleitoral</td><td class="d">125</td><td class="d">2.818</td><td class="d">4,44</td><td class="d">45</td><td class="d">2.893</td><td class="d">1,56</td><td class="d">0</td><td class="d">491.489</td></tr>
+</tbody>
+</table>
+<h3 id="dados-figura-113--sinais-no-diário-e-no-pacote-urna-reserva--urna-comum-2º-turno">Figura 11.3 — Sinais no diário e no pacote: urna reserva × urna comum, 2º turno</h3>
+<p>Planilha embutida neste PDF: <code>h14-<wbr>rastro-<wbr>sinais.<wbr>csv</code> (4 linhas).</p>
+<table class="tabela cols-7 texto">
+<thead><tr><th>Sinal</th><th class="d">Troca nova secoes</th><th class="d">Troca nova total</th><th class="d">Troca nova pct</th><th class="d">Controle secoes</th><th class="d">Controle total</th><th class="d">Controle pct</th><th class="d">Herdada secoes</th><th class="d">Herdada total</th><th class="d">Herdada pct</th></tr></thead>
+<tbody>
+<tr><td>Pacote com lacre quebrado</td><td class="d">0</td><td class="d">2.818</td><td class="d">0</td><td class="d">0</td><td class="d">491.489</td><td class="d">0</td><td class="d">0</td><td class="d">2.893</td><td class="d">0</td></tr>
+<tr><td>Inicialização de votação com etapa de verificação sem SUCESSO</td><td class="d">0</td><td class="d">2.818</td><td class="d">0</td><td class="d">0</td><td class="d">491.489</td><td class="d">0</td><td class="d">0</td><td class="d">2.893</td><td class="d">0</td></tr>
+<tr><td>Mensagem de erro de assinatura no diário da urna que votou</td><td class="d">6</td><td class="d">2.818</td><td class="d">0,21</td><td class="d">767</td><td class="d">491.489</td><td class="d">0,16</td><td class="d">4</td><td class="d">2.893</td><td class="d">0,14</td></tr>
+<tr><td>Relógio que voltou sem ajuste registrado (diário da urna que votou)</td><td class="d">114</td><td class="d">2.818</td><td class="d">4,05</td><td class="d">21.634</td><td class="d">491.489</td><td class="d">4,4</td><td class="d">151</td><td class="d">2.893</td><td class="d">5,22</td></tr>
+</tbody>
+</table>
+<h3 id="dados-figura-121--listas-de-votos-do-rdv-em-ordem-de-tipo-e-número-por-origem">Figura 12.1 — Listas de votos do RDV em ordem de tipo e número, por origem</h3>
+<p>Planilha embutida neste PDF: <code>h09-<wbr>rdv-<wbr>ordem.<wbr>csv</code> (10 linhas).</p>
+<table class="tabela cols-6 texto">
+<thead><tr><th>Turno</th><th>Origem da lista</th><th class="d">Listas</th><th class="d">Ordenadas por tipo e numero</th><th class="d">Fora de ordem</th><th class="d">Ordenadas pct</th></tr></thead>
+<tbody>
+<tr><td>1º turno</td><td>Urna da seção</td><td class="d">2.475.472</td><td class="d">2.475.472</td><td class="d">0</td><td class="d">100</td></tr>
+<tr><td>1º turno</td><td>Urna reserva</td><td class="d">15.044</td><td class="d">15.044</td><td class="d">0</td><td class="d">100</td></tr>
+<tr><td>1º turno</td><td>Recuperador de Dados (RED)</td><td class="d">250</td><td class="d">250</td><td class="d">0</td><td class="d">100</td></tr>
+<tr><td>1º turno</td><td>Apuração em papel no exterior (cédulas)</td><td class="d">29</td><td class="d">29</td><td class="d">0</td><td class="d">100</td></tr>
+<tr><td>1º turno</td><td>Apuração mista em MG: cédulas digitadas</td><td class="d">10</td><td class="d">1</td><td class="d">9</td><td class="d">10</td></tr>
+<tr><td>1º turno</td><td>Apuração mista em MG: cópia do boletim</td><td class="d">10</td><td class="d">6</td><td class="d">4</td><td class="d">60</td></tr>
+<tr><td>2º turno</td><td>Urna da seção</td><td class="d">533.659</td><td class="d">533.659</td><td class="d">0</td><td class="d">100</td></tr>
+<tr><td>2º turno</td><td>Urna reserva</td><td class="d">6.110</td><td class="d">6.110</td><td class="d">0</td><td class="d">100</td></tr>
+<tr><td>2º turno</td><td>Recuperador de Dados (RED)</td><td class="d">19</td><td class="d">19</td><td class="d">0</td><td class="d">100</td></tr>
+<tr><td>2º turno</td><td>Apuração em papel no exterior (cédulas)</td><td class="d">29</td><td class="d">29</td><td class="d">0</td><td class="d">100</td></tr>
+</tbody>
+</table>
+<h3 id="dados-figura-122--de-quem-é-o-número-gravado-quando-o-mesário-suspende-um-eleitor">Figura 12.2 — De quem é o número gravado quando o mesário suspende um eleitor</h3>
+<p>Planilha embutida neste PDF: <code>h09-<wbr>suspensao-<wbr>por-<wbr>papel.<wbr>csv</code> (4 linhas).</p>
+<table class="tabela cols-7 texto">
+<thead><tr><th>Turno</th><th>Mensagem</th><th class="d">Linhas no dia</th><th class="d">Mesario registrado na propria urna</th><th class="d">Outro papel registrado</th><th class="d">Numero com digito verificador errado</th><th class="d">Sem papel nenhum no pais</th><th class="d">Sem papel nenhum no pais pct</th></tr></thead>
+<tbody>
+<tr><td>1º turno</td><td>Título é válido para suspender</td><td class="d">82.403</td><td class="d">69.912</td><td class="d">569</td><td class="d">0</td><td class="d">11.922</td><td class="d">14,47</td></tr>
+<tr><td>1º turno</td><td>Título é inválido para suspender</td><td class="d">55.959</td><td class="d">200</td><td class="d">130</td><td class="d">12068</td><td class="d">43.561</td><td class="d">77,84</td></tr>
+<tr><td>2º turno</td><td>Título é válido para suspender</td><td class="d">8.498</td><td class="d">6.507</td><td class="d">38</td><td class="d">0</td><td class="d">1.953</td><td class="d">22,98</td></tr>
+<tr><td>2º turno</td><td>Título é inválido para suspender</td><td class="d">4.990</td><td class="d">10</td><td class="d">5</td><td class="d">1364</td><td class="d">3.611</td><td class="d">72,36</td></tr>
 </tbody>
 </table>
 </section>
