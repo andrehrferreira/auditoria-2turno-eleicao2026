@@ -15,7 +15,7 @@ import { DATA_ELEICAO, DIR_H25 } from './seguranca-h25-lib.mjs';
 //      AC × modelo do .vsc × modelo do log; número no log da própria seção, carga do log = carga do BU, log começa antes
 //      do dia da eleição; número que não aparece em nenhum log dos dois turnos.
 //   3. Série e emissão: série × data (inversões), tamanho da série; sessões de emissão (intervalo ≤ 60 min), emissões
-//      sozinhas no dia, de madrugada (0h–5h59, horário de Brasília = UTC−3), fim de semana, feriado nacional; validade
+//      sozinhas no dia, de madrugada (0h–5h59, horário de Brasília: UTC−3, UTC−2 no horário de verão até 2019), fim de semana, feriado nacional; validade
 //      (duração e teto) por AC.
 //   4. Os 54 emitidos pela AC URNA depois de 18/07/2026: mesmos campos, comparados com os anteriores.
 // Saídas: data/parsed/auditoria/seguranca-h25/padrao-resumo.json e padrao-candidatos.json;
@@ -60,7 +60,13 @@ for (let a = 2011; a <= 2027; a++) {
   feriados.set(dia(-2), 'Sexta-feira Santa');
   feriados.set(dia(60), 'Corpus Christi');
 }
-const local = (iso) => new Date(Date.parse(iso) - 3 * 3600e3); // Brasília, UTC−3 (sem horário de verão)
+// Horário de Brasília: UTC−3, e UTC−2 no horário de verão, que vigorou até fevereiro de 2019 (decretos 6.558/2008 e
+// 9.242/2017). Começa à 0h do domingo de início (03:00 UTC) e termina à 0h do domingo de fim, ainda em UTC−2 (02:00 UTC).
+const VERAO = [['2011-10-16', '2012-02-26'], ['2012-10-21', '2013-02-17'], ['2013-10-20', '2014-02-16'], ['2014-10-19', '2015-02-22'],
+  ['2015-10-18', '2016-02-21'], ['2016-10-16', '2017-02-19'], ['2017-10-15', '2018-02-18'], ['2018-11-04', '2019-02-17']]
+  .map(([a, b]) => [Date.parse(`${a}T03:00:00Z`), Date.parse(`${b}T02:00:00Z`)]);
+const emVerao = (t) => VERAO.some(([a, b]) => t >= a && t < b);
+const local = (iso) => { const t = Date.parse(iso); return new Date(t - (emVerao(t) ? 2 : 3) * 3600e3); };
 
 // ---------- 1. certificados distintos ----------
 const certs = new Map(); // certSha → compacto
@@ -80,7 +86,7 @@ for (const t of [2, 1]) {
     }
     const ac = acDe(d);
     const cn = d.sujeito.find((a) => a.oid === '2.5.4.3')?.valor ?? null;
-    const dur = Math.round((Date.parse(d.na) - Date.parse(d.nb)) / 864e5 * 1000) / 1000;
+    const dur = (Date.parse(d.na) - Date.parse(d.nb)) / 1000; // segundos, sem arredondar
     certs.set(d.certSha, { ac, cn, serie: d.serie, nb: d.nb, na: d.na, dur, molde: d.molde, turnos: [t], ecdsaRS: d.ecdsaRS ?? null, assinaturaBytes: d.assinaturaBytes });
     const m = ((moldes[ac] ??= {})[d.molde] ??= { n: 0, obj: d.moldeObj, exemplos: [] });
     m.n++;
@@ -122,6 +128,7 @@ const emissao = {};
 const candidatos = new Map(); // sha → [motivos]
 const marca = (sha, motivo) => { const l = candidatos.get(sha) ?? []; l.push(motivo); candidatos.set(sha, l); };
 const horaCsv = {};
+const categoriaDuracao = (seg) => (seg === 5000 * 86400 ? '5000 dias' : seg === 5000 * 86400 + 1 ? '5000 dias e 1 s' : `outra: ${seg - 5000 * 86400} s além de 5000 dias`);
 // ano de fabricação em massa = ano com 10 mil certificados ou mais na AC; os demais são recertificação (manutenção)
 const anoMassa = {};
 for (const [ac, lista] of Object.entries(porAc)) { const n = {}; for (const c of lista) inc(n, local(c.nb).toISOString().slice(0, 4)); anoMassa[ac] = new Set(Object.keys(n).filter((a) => n[a] >= 10000)); }
@@ -129,7 +136,7 @@ for (const [ac, lista] of Object.entries(porAc)) {
   lista.sort((a, b) => (a.nb < b.nb ? -1 : a.nb > b.nb ? 1 : serieN(a.serie) < serieN(b.serie) ? -1 : 1));
   const e = (emissao[ac] = { certificados: lista.length, inversoesSerieData: 0, exemplosInversao: [], serieMin: null, serieMax: null,
     sessoes: 0, sessoesTamanho: {}, sozinhosNoDia: 0, sozinhosNoDiaLista: [], madrugada: 0, fimDeSemana: 0, feriado: 0,
-    porAno: {}, sozinhoEIncomum: [], duracao: {}, tetos: {}, duracaoOutra: [], serieSaltoMaior: [] });
+    porAno: {}, emHorarioDeVerao: 0, sozinhoEIncomum: [], duracao: {}, tetos: {}, duracaoOutra: [], serieSaltoMaior: [] });
   let maxSerie = -1n;
   let sessao = 1;
   const porDia = {};
@@ -147,6 +154,7 @@ for (const [ac, lista] of Object.entries(porAc)) {
     if (i > 0 && Date.parse(c.nb) - Date.parse(lista[i - 1].nb) <= 3600e3) sessao++;
     else if (i > 0) { inc(e.sessoesTamanho, sessao > 9 ? (sessao > 99 ? '100+' : '10-99') : String(sessao)); e.sessoes++; sessao = 1; }
     const l = local(c.nb);
+    if (emVerao(Date.parse(c.nb))) e.emHorarioDeVerao++;
     const dia = l.toISOString().slice(0, 10);
     const ano = dia.slice(0, 4);
     const a = (e.porAno[ano] ??= { n: 0, madrugada: 0, fimDeSemana: 0, feriado: 0, sozinhosNoDia: 0 });
@@ -169,9 +177,9 @@ for (const [ac, lista] of Object.entries(porAc)) {
     }
     // validade
     const teto = c.na.endsWith('T23:00:00Z') && c.na.startsWith('2037-12-31') ? 'teto 31/12/2037 23:00' : null;
-    const cat = teto ?? (Math.abs(c.dur - 5000) < 0.001 ? '5000 dias exatos' : `outra: ${c.dur} dias até ${c.na}`);
+    const cat = teto ?? categoriaDuracao(c.dur);
     inc(e.duracao, cat.startsWith('outra') ? 'outra' : cat);
-    if (cat.startsWith('outra')) e.duracaoOutra.push({ cn: c.cn, serie: c.serie, nb: c.nb, na: c.na, dias: c.dur });
+    if (cat !== 'teto 31/12/2037 23:00' && cat !== '5000 dias') e.duracaoOutra.push({ cn: c.cn, serie: c.serie, nb: c.nb, na: c.na, segundosAlemDe5000Dias: c.dur - 5000 * 86400, categoria: cat });
   });
   inc(e.sessoesTamanho, sessao > 9 ? (sessao > 99 ? '100+' : '10-99') : String(sessao));
   e.sessoes++;
@@ -243,7 +251,8 @@ const numerosEmLog = new Set();
 const numerosEmLogComCarga = new Set();
 const numeros = {}; // modelo → Set(número)
 const r2 = { diretorios: {}, acModelo: {}, modeloVscLog: {}, cnIgualIdHW: {}, numeroNoLogDaSecao: {}, cargaLogIgualBu: {}, logAntesDaEleicao: {},
-  semLog: {}, porTipo: {}, excecoes: [], certificadoAntesDaCarga: {}, menorFolgaCarga: null };
+  semLog: {}, porTipo: {}, excecoes: [], certificadoAntesDaCarga: {}, menorFolgaCarga: null, cnIgualBu: {}, cnDiferenteBu: [], anoDaCarga: {} };
+const certsPorNumero = new Map(); // número da urna → Set(certSha)
 const dirsPorCert = new Map();
 for (const t of [2, 1]) {
   const eleicao = DATA_ELEICAO[t];
@@ -262,6 +271,12 @@ for (const t of [2, 1]) {
     const tipo = `tipoUrna ${d.tipoUrna} origem ${d.origem}`;
     inc(r2.porTipo, `${t}t ${tipo}`);
     inc(r2.cnIgualIdHW, `${t}t ${Number(num) === d.idHW ? 'sim' : 'não'}`);
+    inc(r2.cnIgualBu, `${t}t ${Number(num) === d.numeroInternoUrna ? 'sim' : 'não'}`);
+    if (Number(num) !== d.numeroInternoUrna) r2.cnDiferenteBu.push({ t, secao: `${d.uf}/${d.mun}/${d.zona}/${d.secao}`, tipoUrna: d.tipoUrna, cn: c.cn, numeroNoBu: d.numeroInternoUrna, logs: d.logs, logUrnas: d.logUrnas, cargaDoBuNoLog: d.logCargas.includes(d.buCarga) });
+    let sn = certsPorNumero.get(num);
+    if (!sn) certsPorNumero.set(num, (sn = new Set()));
+    sn.add(d.certSha);
+    inc(r2.anoDaCarga, `${t}t ${d.buDataCarga ? d.buDataCarga.slice(0, 4) : 'sem data'}`);
     const k = (o, cond) => inc(o, `${t}t ${cond ? 'sim' : 'não'} | ${tipo}`);
     if (!d.logs) { inc(r2.semLog, `${t}t ${tipo}`); continue; }
     const noLog = d.logUrnas.includes(num);
@@ -286,6 +301,10 @@ for (const t of [2, 1]) {
     if (!noLog || !cargaIgual) r2.excecoes.push({ t, secao: `${d.uf}/${d.mun}/${d.zona}/${d.secao}`, tipoUrna: d.tipoUrna, origem: d.origem, cn: c.cn, idHW: d.idHW, numeroInternoUrna: d.numeroInternoUrna, logUrnas: d.logUrnas, logCargas: d.logCargas, buCarga: d.buCarga, logPrimeira: d.logPrimeira, noLog, cargaIgual, antes });
   }
 }
+r2.numerosComDoisCertificados = [...certsPorNumero.values()].filter((x) => x.size > 1).length;
+r2.certificadosNosDoisTurnos = [...certs.values()].filter((c) => c.turnos.length === 2).length;
+r2.certificadosSo2t = [...certs.values()].filter((c) => c.turnos.length === 1 && c.turnos[0] === 2).length;
+r2.certificadosSo1t = [...certs.values()].filter((c) => c.turnos.length === 1 && c.turnos[0] === 1).length;
 // exceções agrupadas por motivo
 const excPorMotivo = {};
 for (const x of r2.excecoes) inc(excPorMotivo, `${x.t}t tipoUrna ${x.tipoUrna} origem ${x.origem} | número no log ${x.noLog} | carga do log = carga do BU ${x.cargaIgual} | log sem código de carga ${x.logCargas.length === 0} | RED (nº no BU ≠ certificado) ${x.numeroInternoUrna !== x.idHW}`);
@@ -358,18 +377,34 @@ for (const [ac, e] of Object.entries(emissao)) {
 isolados.n = isolados.lista.length;
 // certificados emitidos perto da eleição (desde 01/09/2026), por AC, com seções
 const pertoDaEleicao = [];
-for (const [sha, c] of certs) if (c.nb >= '2026-09-01') pertoDaEleicao.push({ ac: c.ac, cn: c.cn, serie: c.serie, nb: c.nb, entreTurnos: c.nb > '2026-10-04T23:59:59Z', secoes: dirsPorCert.get(sha) });
+for (const [sha, c] of certs) if (c.nb >= '2026-09-01') pertoDaEleicao.push({ ac: c.ac, cn: c.cn, serie: c.serie, nb: c.nb, entreTurnos: c.nb > '2026-10-04T20:00:00Z', secoes: dirsPorCert.get(sha) });
 pertoDaEleicao.sort((a, b) => (a.nb < b.nb ? -1 : 1));
 
 // Regra da validade: 5000 dias, ou o teto 31/12/2037 23:00 quando 5000 dias passariam dele. Quando a regra mudou?
 const TETO = Date.parse('2037-12-31T23:00:00Z');
 const regraValidade = {};
 for (const [ac, lista] of Object.entries(porAc)) for (const c of lista) {
-  const k = `${ac} | 5000 dias passariam do teto: ${Date.parse(c.nb) + 5000 * 864e5 > TETO ? 'sim' : 'não'} | tem o teto: ${c.na === '2037-12-31T23:00:00Z' ? 'sim' : 'não'}`;
+  const k = `${ac} | 5000 dias passariam do teto: ${Date.parse(c.nb) + 5000 * 864e5 > TETO ? 'sim' : 'não'} | ${c.na === '2037-12-31T23:00:00Z' ? 'tem o teto' : categoriaDuracao(c.dur)}`;
   const r = (regraValidade[k] ??= { n: 0, nbMin: c.nb, nbMax: c.nb });
   r.n++;
   if (c.nb < r.nbMin) r.nbMin = c.nb;
   if (c.nb > r.nbMax) r.nbMax = c.nb;
+}
+
+// Números de série gastos perto da eleição que não estão em pacote nenhum: do último certificado visível emitido até o fim
+// do 1º turno (04/10/2026 17h Brasília = 20:00 UTC) até o maior número visível depois disso.
+const FIM_1T = '2026-10-04T20:00:00Z';
+const seriesSemPacote = {};
+for (const [ac, lista] of Object.entries(porAc)) {
+  const porSerieAc = [...lista].sort((a, b) => (serieN(a.serie) < serieN(b.serie) ? -1 : 1));
+  const antes = porSerieAc.filter((c) => c.nb <= FIM_1T).at(-1);
+  const depois = porSerieAc.filter((c) => c.nb > FIM_1T);
+  if (!antes || !depois.length) { seriesSemPacote[ac] = { ultimoAteFim1t: antes ? `${antes.serie} ${antes.nb}` : null, depois: 0 }; continue; }
+  const ate = depois.at(-1);
+  const visiveis = porSerieAc.filter((c) => serieN(c.serie) > serieN(antes.serie) && serieN(c.serie) <= serieN(ate.serie));
+  seriesSemPacote[ac] = { ultimoAteFim1t: `${antes.serie} ${antes.nb}`, primeiroNumeroDaFaixa: (serieN(antes.serie) + 1n).toString(16),
+    ate: `${ate.serie} ${ate.nb}`, numerosNaFaixa: Number(serieN(ate.serie) - serieN(antes.serie)), visiveis: visiveis.length,
+    visiveisLista: visiveis.map((c) => `${c.serie} ${c.cn} ${c.nb}`) };
 }
 
 // os primeiros números de série de cada AC presentes nas urnas (início de operação da AC: onde costuma haver teste)
@@ -387,7 +422,7 @@ const resumoGrupo = (g) => {
   for (const c of g) {
     inc(r.molde, c.molde);
     inc(r.serieBytes, String(c.serie.length / 2));
-    inc(r.duracao, c.na === '2037-12-31T23:00:00Z' ? 'teto 31/12/2037 23:00' : Math.abs(c.dur - 5000) < 0.001 ? '5000 dias' : 'outra');
+    inc(r.duracao, c.na === '2037-12-31T23:00:00Z' ? 'teto 31/12/2037 23:00' : categoriaDuracao(c.dur));
     inc(r.ecdsaRS, c.ecdsaRS);
     const l = local(c.nb);
     inc(r.horaLocal, String(l.getUTCHours()).padStart(2, '0'));
@@ -418,7 +453,7 @@ const moldesSaida = Object.fromEntries(Object.entries(moldes).map(([ac, ms]) => 
 const varSaida = Object.fromEntries(Object.entries(variacoes).map(([ac, campos]) => [ac, Object.fromEntries(Object.entries(campos).map(([k, vals]) => [k, Object.fromEntries(Object.entries(vals).sort((a, b) => b[1].n - a[1].n).map(([v, x]) => [v, x.n]))]))]));
 await writeFile(path.join(DIR_H25, 'padrao-resumo.json'), JSON.stringify({
   certificadosDistintos: certs.size, porAc: Object.fromEntries(Object.entries(porAc).map(([k, v]) => [k, v.length])),
-  variacoes: varSaida, moldes: moldesSaida, raros, emissao, item2: { ...r2, excecoes: r2.excecoes.slice(0, 200), faixas, sobreposicao }, primeiros, isolados, pertoDaEleicao, regraValidade, item4,
+  variacoes: varSaida, moldes: moldesSaida, raros, emissao, item2: { ...r2, excecoes: r2.excecoes.slice(0, 200), faixas, sobreposicao }, primeiros, isolados, pertoDaEleicao, regraValidade, seriesSemPacote, item4,
 }, null, 1));
 await writeFile(path.join(DIR_H25, 'padrao-candidatos.json'), JSON.stringify({ n: candidatosSaida.length, candidatos: candidatosSaida }, null, 1));
 const linhas = ['ac,periodo,anos,hora_brasilia,certificados'];

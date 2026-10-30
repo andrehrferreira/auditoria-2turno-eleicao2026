@@ -36,7 +36,7 @@ p.push('<text class="t2" x="24" y="56">Certificados distintos das urnas do 1º e
 p.push('<rect class="s0" x="24" y="72" width="12" height="12" rx="2"/><text class="t2" x="42" y="82">anos de fabricação em massa (10 mil certificados ou mais no ano)</text>');
 p.push('<rect class="s1" x="470" y="72" width="12" height="12" rx="2"/><text class="t2" x="488" y="82">recertificação (todos os outros anos)</text>');
 p.push('<text class="t2" x="24" y="106">Como ler: a faixa cinza é a madrugada (0h a 5h59). Na fabricação as emissões correm dia e noite; na recertificação, sobretudo à tarde.</text>');
-p.push('<text class="t2" x="24" y="122">As laranjas à noite na AC URNA são sessões inteiras (111 certificados às 22h em 2014), não emissões soltas; na madrugada, 30 certificados de 2014 e 2015.</text>');
+p.push('<text class="t2" x="24" y="122">As laranjas à noite na AC URNA são sessões inteiras (111 certificados às 22h em 2014), não emissões soltas; na madrugada, 31 certificados de 2014 e 2015.</text>');
 
 let y = topo;
 for (const ac of ACS) {
@@ -67,7 +67,7 @@ for (const ac of ACS) {
   for (let h = 0; h < 24; h += 2) p.push(`<text class="t2" x="${(esq + h * horaLarg + horaLarg / 2).toFixed(1)}" y="${base + 14}" text-anchor="middle" font-size="10">${h}h</text>`);
   y = base + gap;
 }
-p.push(`<text class="t2" x="${esq}" y="${y - 40}" font-size="11">Eixo horizontal: hora do dia em que o certificado foi emitido (Brasília, UTC−3). Eixo vertical: % dos certificados do grupo emitidos naquela hora.</text>`);
+p.push(`<text class="t2" x="${esq}" y="${y - 40}" font-size="11">Eixo horizontal: hora do dia em que o certificado foi emitido (Brasília: UTC−3, ou UTC−2 no horário de verão até 2019). Eixo vertical: % dos certificados do grupo emitidos naquela hora.</text>`);
 const H = y + 6;
 p.push(`<text class="t2" x="24" y="${H - 20}" font-size="10">Fonte: certificado de cada urna dentro do .vsc publicado pelo TSE (1º e 2º turno de 2026). Dados: h25-padrao-hora-emissao.csv (mesma pasta).</text>`);
 p.push(`<text class="t2" x="24" y="${H - 6}" font-size="10">Scripts: seguranca-h25-padrao-extrair.mjs, seguranca-h25-padrao-analise.mjs, seguranca-h25-padrao-grafico.mjs (scripts/auditoria/).</text>`);

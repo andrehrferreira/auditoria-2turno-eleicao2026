@@ -95,11 +95,11 @@ AC UE2022,recertificacao,demais,20,0
 AC UE2022,recertificacao,demais,21,0
 AC UE2022,recertificacao,demais,22,0
 AC UE2022,recertificacao,demais,23,0
-AC URNA,fabricacao,2013 2016,0,6807
-AC URNA,fabricacao,2013 2016,1,5801
-AC URNA,fabricacao,2013 2016,2,6527
+AC URNA,fabricacao,2013 2016,0,6818
+AC URNA,fabricacao,2013 2016,1,5859
+AC URNA,fabricacao,2013 2016,2,6528
 AC URNA,fabricacao,2013 2016,3,6271
-AC URNA,fabricacao,2013 2016,4,7403
+AC URNA,fabricacao,2013 2016,4,7404
 AC URNA,fabricacao,2013 2016,5,7422
 AC URNA,fabricacao,2013 2016,6,7518
 AC URNA,fabricacao,2013 2016,7,5244
@@ -118,10 +118,10 @@ AC URNA,fabricacao,2013 2016,19,1107
 AC URNA,fabricacao,2013 2016,20,4304
 AC URNA,fabricacao,2013 2016,21,6277
 AC URNA,fabricacao,2013 2016,22,8171
-AC URNA,fabricacao,2013 2016,23,6373
-AC URNA,recertificacao,demais,0,0
-AC URNA,recertificacao,demais,1,9
-AC URNA,recertificacao,demais,2,0
+AC URNA,fabricacao,2013 2016,23,6302
+AC URNA,recertificacao,demais,0,1
+AC URNA,recertificacao,demais,1,6
+AC URNA,recertificacao,demais,2,3
 AC URNA,recertificacao,demais,3,8
 AC URNA,recertificacao,demais,4,13
 AC URNA,recertificacao,demais,5,0
@@ -131,15 +131,15 @@ AC URNA,recertificacao,demais,8,0
 AC URNA,recertificacao,demais,9,7
 AC URNA,recertificacao,demais,10,29
 AC URNA,recertificacao,demais,11,33
-AC URNA,recertificacao,demais,12,68
-AC URNA,recertificacao,demais,13,64
-AC URNA,recertificacao,demais,14,163
-AC URNA,recertificacao,demais,15,195
+AC URNA,recertificacao,demais,12,56
+AC URNA,recertificacao,demais,13,69
+AC URNA,recertificacao,demais,14,161
+AC URNA,recertificacao,demais,15,198
 AC URNA,recertificacao,demais,16,174
-AC URNA,recertificacao,demais,17,118
+AC URNA,recertificacao,demais,17,124
 AC URNA,recertificacao,demais,18,26
 AC URNA,recertificacao,demais,19,54
 AC URNA,recertificacao,demais,20,7
 AC URNA,recertificacao,demais,21,0
-AC URNA,recertificacao,demais,22,130
-AC URNA,recertificacao,demais,23,2
+AC URNA,recertificacao,demais,22,118
+AC URNA,recertificacao,demais,23,13

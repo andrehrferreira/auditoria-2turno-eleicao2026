@@ -2,7 +2,7 @@
 
 Perfil `engenheiro-seguranca-urna`, hipótese H25 ([hipoteses.md](../../hipoteses.md)). Teste pedido pelo André em 30/10/2026: "emitir um certificado com a AC não seria complicado; até os desenvolvedores devem ter um para testes; se a totalização libera qualquer certificado assinado pela AC, certificados de desenvolvimento também poderiam assinar".
 
-Continua o [doc 07](07-h25-certificados.md) e o [parecer 33 do cético](../cetico-revisor/33-h25-certificado-ac-urna.md). Universo completo: 998.414 diretórios oficiais (499.207 por turno), 0 erro de leitura, 503.525 certificados de urna distintos. **Ainda não revisado pelo cético.**
+Continua o [doc 07](07-h25-certificados.md) e o [parecer 33 do cético](../cetico-revisor/33-h25-certificado-ac-urna.md). Universo completo: 998.414 diretórios oficiais (499.207 por turno), 0 erro de leitura, 503.525 certificados de urna distintos. Revisado no [parecer 35](../cetico-revisor/35-h25-certificados-fora-do-padrao.md) ("sustentado com ressalvas"). As 8 correções pedidas estão aplicadas neste texto e nos scripts.
 
 > **Termos.** O *certificado* é o "RG" da urna: diz "esta chave pública é da urna X" e leva o carimbo (assinatura) de uma *autoridade certificadora* (AC). Um certificado de produção sai de uma linha de montagem: todos têm os mesmos campos, na mesma ordem, com os mesmos textos. Só mudam o número da urna, o número de série, as datas, a chave e o carimbo. Um certificado de teste, feito à mão por um desenvolvedor, costuma ter alguma diferença: um nome como "teste", um campo a mais, uma validade redonda, uma extensão que a linha de montagem não põe. É esse rastro que este documento procura.
 
@@ -12,29 +12,46 @@ Continua o [doc 07](07-h25-certificados.md) e o [parecer 33 do cético](../cetic
    - Em cada AC, depois de mascarar só o que muda de urna para urna, **todos os certificados têm exatamente o mesmo "molde"**: 1 molde na AC URNA (101.756), 1 na AC UE2020 (202.025), 1 na AC UE2022 (199.744).
    - O molde inclui todos os campos: versão, algoritmos, emissor e sujeito atributo por atributo (com o tipo de texto), tipo de data, tamanho da chave, as 6 extensões (ordem, criticidade e valor), o método do identificador da chave.
    - Nenhum nome com "teste", "homolog", "dev", "lab", "demo", "treina", "simul" ou "piloto". Nenhuma extensão a mais ou a menos. Nenhum OU, O, C ou e-mail diferente.
-2. **Fato: o número da urna é sempre de urna de verdade, preparada para a eleição.**
+   - **O que isso exclui e o que não exclui.**
+     - O molde exclui só o certificado feito **sem copiar o modelo**.
+     - O modelo é público: qualquer `.vsc` publicado mostra um certificado inteiro. Quem tem a chave da AC pode copiar um deles e trocar só número, datas, série e chave, e o resultado passa no molde.
+     - O que exclui um certificado de uma **AC de teste separada**, com chave própria, é outra conferência: a assinatura da AC sobre cada certificado, feita no doc 07 e na integridade, em 100% dos certificados das três ACs. Uma AC de teste não passaria nela. Esse é o argumento forte; o molde é o complemento.
+2. **Fato: o número da urna é o mesmo em todas as partes do pacote e cai nas faixas de cada modelo.** É coerência **interna**: o `.vsc`, o BU, o log e o certificado vêm todos do mesmo pacote, assinado pela chave que está sendo examinada.
    - 100% dos nomes são `UEAO`/`ueao` + 8 dígitos, iguais ao número da urna no `.vsc`.
+   - O número do certificado é o número da urna no BU em 998.397 diretórios. Os outros 17 são RED (3 no 2º turno, 14 no 1º): o pacote é assinado pela urna recuperadora, e o log aninhado é o da urna original.
    - Faixas por modelo sem nenhuma sobreposição, e sem número isolado: o maior vão até o vizinho mais próximo é 31 (UE2013).
    - Em 998.414 de 998.414 diretórios, o número do certificado está no log da própria seção e o log tem a carga com o **mesmo código de carga do BU**.
-   - 0 certificado com data de início depois da carga da urna. A menor folga é de 6,6 horas (MG 53716/0269/0215, item 3.4).
+   - 0 certificado com data de início depois da carga da urna. A menor folga é de 6,6 horas (MG 53716/0269/0215, item 3.4). A data de carga vem do relógio da urna (ressalva no item 2).
+   - O que **não** depende do mesmo pacote:
+     - 0 número de urna com dois certificados diferentes nos 998.414 pacotes;
+     - 494.833 certificados já estavam num pacote publicado no 1º turno, três semanas antes. Só 4.346 aparecem apenas no 2º turno.
 3. **Fato: série e datas seguem o processo de emissão, sem certificado "enfiado".**
    - A AC URNA e a AC UE2022 têm um só contador, crescente com a data.
    - A AC UE2020 teve 3 linhas de emissão em paralelo em maio e junho de 2022, a fabricação. Cada linha tem seu bloco de números e cresce com a data.
    - 0 certificado cuja data contradiz a dos vizinhos de série.
-   - A validade segue duas regras só: 5.000 dias, ou o teto 31/12/2037 23:00. A regra mudou nas três ACs ao mesmo tempo, entre 08/05 e 03/06/2024. Nenhum certificado foge disso.
-4. **Fato: 6 emissões isoladas em horário incomum. Nenhuma difere em campo algum.**
+   - A validade segue duas regras: 5.000 dias, ou o teto 31/12/2037 23:00. A regra mudou nas três ACs ao mesmo tempo, entre 08/05 e 03/06/2024.
+   - Há 6 certificados com 5.000 dias **e 1 segundo** (3 AC URNA, 1 AC UE2020, 2 AC UE2022), listados no item 3.5.
+   - **Números de série gastos perto da eleição sem pacote:**
+     - AC UE2020: entre `15108F` (02/10) e `151107` (22/10) cabem 120 números, e 4 estão em pacote.
+     - AC URNA: de `34B234` a `34B256` (01/10 a 19/10) cabem 35 números, e 2 estão em pacote.
+     - É ali que um certificado de teste emitido pelo sistema de produção ficaria (item 3.5 e Limites).
+4. **Fato: 7 emissões isoladas em horário incomum. Nenhuma difere em campo algum.**
    - "Isolada" quer dizer que nenhum outro certificado de nenhuma AC, entre as urnas que votaram, foi emitido 60 minutos antes ou depois.
-   - Quatro são de 2014 a 2016, época da fabricação, quando a emissão rodava dia e noite.
+   - Cinco são de 2014 a 2016, época da fabricação, quando a emissão rodava dia e noite.
    - Duas são do fim de semana entre os turnos: sábado 17/10/2026 (AC UE2020) e domingo 18/10/2026 (AC URNA).
-   - Os 6 pacotes foram contados: o BU de presidente é igual ao resultado oficial por seção, 0 divergência.
-5. **Fato novo: 6 urnas foram certificadas entre os turnos, não 2.** O doc 07 listou as 2 da AC URNA. Há também 4 da AC UE2020, todas em MG, de 08/10 a 22/10/2026.
+   - Os 7 pacotes foram contados: o BU de presidente é igual ao resultado oficial por seção, 0 divergência.
+   - **"BU = oficial" mostra que o pacote foi contado, não que é legítimo.** O resultado oficial por seção sai do próprio BU. Ele bateria tanto com um pacote legítimo quanto com um assinado por certificado de teste que tivesse sido aceito. Vale para todo "BU = oficial" deste documento.
+5. **Fato novo: 6 urnas foram certificadas entre os turnos.** O doc 07 tratou só da AC URNA, que tem 2. Nas três ACs são 6: há também 4 da AC UE2020, todas em MG, de 08/10 a 22/10/2026.
    - Cada uma substituiu, no 2º turno, a urna que a seção usou no 1º.
-   - Têm o mesmo molde e os 6 BUs batem com o resultado oficial.
+   - Têm o mesmo molde, e os 6 BUs batem com o resultado oficial.
 6. **Fato: os 54 emitidos pela AC URNA depois do vencimento não diferem dos anteriores em nada além da data.**
    - Mesmo molde dos 101.702 anteriores.
    - Mesma regra de validade dos emitidos de junho de 2024 em diante.
    - Mesmo horário de expediente.
-7. **Limite (vale para tudo acima):** um certificado de teste emitido pela AC de produção, pelo mesmo sistema e com os mesmos campos, é **indistinguível** de um de produção. O teste exclui o certificado "feito à mão" ou por outro sistema. Não exclui o uso indevido do próprio sistema emissor. Isso só o registro do TSE responde (perguntas no fim).
+7. **Limite (vale para tudo acima).** Qualquer certificado assinado com a chave verdadeira da AC e montado igual ao modelo é indistinguível de um de produção. Isso vale tanto para o feito pelo sistema emissor do TSE quanto para o feito com outra ferramenta a partir de um certificado publicado.
+   - O teste exclui o certificado feito com outra chave (a assinatura não conferiria) e o feito sem copiar o modelo.
+   - A coerência entre certificado, boletim e diário mostra que o pacote é consistente, não que a urna é a esperada para a seção.
+   - Isso só a lista de urnas por seção e o registro da AC mostram (perguntas no fim).
 
 Gráfico: [hora de emissão por AC](graficos/h25-padrao-hora-emissao.svg). Dados: [h25-padrao-hora-emissao.csv](graficos/h25-padrao-hora-emissao.csv).
 
@@ -42,10 +59,11 @@ Gráfico: [hora de emissão por AC](graficos/h25-padrao-hora-emissao.svg). Dados
 
 | Variante | O que o atacante precisa ter | Rastro esperado | Procurado? | Resultado |
 |---|---|---|---|---|
-| A. Certificado de desenvolvimento, feito com ferramenta comum (OpenSSL etc.) e a chave da AC | Chave privada da AC (cópia, ou acesso ao equipamento que a guarda) | Campos fora do molde: ordem dos atributos, tipo de texto (UTF8 × Printable), extensões padrão da ferramenta, validade redonda, SKI calculado de outro jeito, série aleatória longa | Sim, campo a campo (item 1) | 0. Um molde por AC |
-| B. Certificado de teste com nome de teste ou de urna fictícia | Idem | CN fora do padrão, número fora da faixa do modelo, urna que nunca aparece numa carga | Sim (item 2) | 0 |
-| C. Certificado de teste emitido pelo sistema de produção, com nome de urna real | Operar o sistema emissor do TSE | Série fora da sequência, emissão isolada ou fora de hora, urna que só aparece numa seção sem carga, certificado mais novo que a carga | Sim (item 3) | Série 0 fora de sequência. 0 certificado mais novo que a carga. 6 emissões isoladas em horário incomum, todas de urnas reais, com carga no log e voto contado (item 3.3) |
-| D. Igual a C, mas copiando tudo do processo | Operar o sistema emissor e escolher uma urna real | Nenhum nos certificados | Não se aplica | **Limite.** Indistinguível. Só o registro da AC (log do equipamento da chave) e a lista de urnas esperadas por seção mostram isso |
+| A. Certificado de desenvolvimento, feito com ferramenta comum (OpenSSL etc.) e a chave da AC | Chave privada da AC (cópia, ou acesso ao equipamento que a guarda) | Campos fora do molde: ordem dos atributos, tipo de texto (UTF8 × Printable), extensões padrão da ferramenta, validade redonda, SKI calculado de outro jeito, série aleatória longa | Sim, campo a campo (item 1) | 0. Um molde por AC. **Exclui só o certificado feito sem copiar o molde.** Quem copia um certificado publicado e troca número, datas, série e chave passa (linha D) |
+| A'. Certificado de uma AC de teste separada, com chave própria | Uma AC de teste | Assinatura da AC que não confere com a chave da AC publicada | Sim (doc 07 e integridade: 100% das três ACs) | 0 |
+| B. Certificado de teste com nome de teste ou de urna fictícia | Idem A | CN fora do padrão, número fora da faixa do modelo, urna que nunca aparece numa carga, número com dois certificados | Sim (item 2) | 0. Mas um nome `ueao` + 8 dígitos dentro da faixa, escrito igual no BU e no diário, passa: o item 2 só pega incoerência |
+| C. Certificado de teste emitido pelo sistema de produção, com nome de urna real | Operar o sistema emissor do TSE | Série fora da sequência, emissão isolada ou fora de hora, urna que só aparece numa seção sem carga, certificado mais novo que a carga | Sim (item 3) | Série 0 fora de sequência. 0 certificado mais novo que a carga. 7 emissões isoladas em horário incomum, todas de urnas que votaram, com carga no log e pacote contado (item 3.3) |
+| D. Igual a C, ou feito com outra ferramenta copiando um certificado publicado | A chave da AC (no sistema emissor ou fora dele) e uma urna real | Nenhum nos certificados; no máximo, um número de série gasto sem pacote | Parcial (item 3.5: números sem pacote perto da eleição) | **Limite.** Indistinguível. Só o registro da AC (log do equipamento da chave) e a lista de urnas esperadas por seção mostram isso |
 | E. Totalização que aceita qualquer certificado da AC, sem lista de urnas esperadas | Nenhum: é falha de processo | Não fica nos arquivos públicos | Não testável | Pergunta LAI (c) |
 
 ## Método
@@ -53,7 +71,7 @@ Gráfico: [hora de emissão por AC](graficos/h25-padrao-hora-emissao.svg). Dados
 | Script | O que faz | Saída (`data/parsed/auditoria/seguranca-h25/`) |
 |---|---|---|
 | `seguranca-h25-padrao-extrair.mjs --turno N` | Relê o certificado de cada diretório oficial (caminho montado pela linha da integridade; `data/raw` não é varrido) e descreve o certificado **inteiro**: todos os atributos de emissor e sujeito (OID, tipo, valor, ordem), todas as extensões (OID, crítica, valor em ASN.1), versão, algoritmos com parâmetros, tipo de data, chave, SKI (como foi calculado), tamanho da assinatura. Gera o **molde**: o certificado com a série, as datas, os dígitos do nome, a chave, o SKI e a assinatura mascarados. Junta, da linha da integridade, a carga do BU e **todos** os logs do pacote (inclusive o aninhado) | `<t>t-padrao-certs.jsonl` (um por certificado), `<t>t-padrao-dirs.jsonl` (um por diretório) |
-| `seguranca-h25-padrao-analise.mjs` | Itens 1 a 4 sobre a união dos dois turnos | `padrao-resumo.json`, `padrao-candidatos.json`, `graficos/h25-padrao-hora-emissao.csv` |
+| `seguranca-h25-padrao-analise.mjs` | Itens 1 a 4 sobre a união dos dois turnos. Hora de Brasília: UTC−3, e UTC−2 nos períodos oficiais de horário de verão até fevereiro de 2019. Validade comparada em segundos, sem arredondar | `padrao-resumo.json`, `padrao-candidatos.json`, `graficos/h25-padrao-hora-emissao.csv` |
 | `seguranca-h25-padrao-votos.mjs` | Para cada candidato e cada urna certificada entre os turnos: BU × resultado oficial por seção (presidente), número a número, na cópia de leitura `eleicao2026-20261029T105000` | `padrao-votos.json` |
 | `seguranca-h25-padrao-grafico.mjs` | Gráfico da hora de emissão | `graficos/h25-padrao-hora-emissao.svg` |
 
@@ -104,14 +122,19 @@ Campos que variam por natureza (não entram no molde) e estão dentro do esperad
 Duas observações sobre o padrão, que valem para **todos** os certificados (não são achado de anomalia):
 
 - **Fato.** O OID da política de certificação é `0.0.0.0` nas três ACs. É um valor de preenchimento, não uma política registrada. Não distingue produção de teste.
-- **Fato.** O keyUsage inclui "cifra de chave" e "cifra de dados" numa chave que só assina. Mostra que o molde vem de uma configuração única do TSE, e não de uma ferramenta padrão.
+- **Fato.** O keyUsage inclui "cifra de chave" e "cifra de dados" numa chave que só assina. Mostra que o molde vem de uma configuração única do TSE, e não da configuração padrão de uma ferramenta.
+
+**Alcance do molde.** Ele exclui só o certificado feito sem copiar o modelo. O modelo é público, e um certificado copiado de um `.vsc` publicado, com outro número de 8 dígitos ou outras datas, passa no molde. A AC de teste separada é excluída por outra conferência: a assinatura da AC sobre cada certificado confere com a chave publicada em 100% dos certificados das três ACs (doc 07, item 1; integridade, doc 02).
 
 ## 2. Número da urna
+
+**O que este item mede: coerência interna do pacote.** O número no `.vsc`, o BU, o diário (log) e o certificado vêm do mesmo pacote, assinado pela chave examinada. Quem monta um pacote com um certificado de teste escreve o mesmo número nas três partes, e todos os testes de coerência passam. As faixas por modelo saem dos próprios dados: não há lista externa de urnas fabricadas. As três últimas linhas da tabela não dependem do mesmo pacote.
 
 | Teste (998.414 diretórios, 503.525 certificados) | Resultado |
 |---|---|
 | CN no padrão `UEAO`/`ueao` + 8 dígitos | 503.525 de 503.525 |
 | Número do certificado = número da urna no `.vsc` | 998.414 de 998.414 |
+| Número do certificado = número da urna no BU | 998.397 de 998.414. Os 17 restantes (3 no 2º turno, 14 no 1º) são RED: 2 ou 3 diários no pacote, os dois números no diário, e a carga do BU no diário aninhado da urna original |
 | AC × modelo do `.vsc` × modelo do log | AC URNA ↔ UE2013/UE2015, AC UE2020 ↔ UE2020, AC UE2022 ↔ UE2022: 100%; modelo do `.vsc` = modelo do log: 100% |
 | Faixas observadas por modelo | UE2013 1.650.102 a 1.699.999 (12.965 urnas); UE2015 1.750.202 a 1.850.053 (88.791); UE2020 2.000.009 a 2.248.576 (202.025); UE2022 2.250.001 a 2.474.677 (199.744) |
 | Número de um modelo dentro da faixa de outro | 0 (6 pares de modelos) |
@@ -119,8 +142,13 @@ Duas observações sobre o padrão, que valem para **todos** os certificados (n�
 | Número da urna presente no log da própria seção (todos os logs do pacote) | 998.414 de 998.414, inclusive 60 do Sistema de Apuração, 8.745 reservas e 2 de tipo 6 |
 | Log da seção com a carga, com o mesmo código de carga do BU | 998.414 de 998.414 |
 | Número que não aparece em nenhum log com carga, nos dois turnos | 0 |
-| Início da validade do certificado antes da carga do BU | 998.414 de 998.414; menor folga: 6,6 h (item 3.4) |
+| Início da validade do certificado antes da carga do BU | 998.414 de 998.414; menor folga: 6,6 h (item 3.4). Ressalva abaixo |
+| *Não depende do mesmo pacote:* número de urna com dois certificados diferentes, nos 998.414 pacotes dos dois turnos | 0 |
+| *Não depende do mesmo pacote:* certificados que já estavam num pacote publicado no 1º turno | 494.833 (só 4.346 aparecem apenas no 2º turno, e 4.346 apenas no 1º) |
+| *Não depende do mesmo pacote:* certificado que assina mais de um pacote no mesmo turno | 3, todos explicados (doc 07, item 2): 2 computadores do Sistema de Apuração no exterior e 1 RED |
 
+- **Fato.** Um certificado de teste com o número de uma urna que votou em outra seção, ou no outro turno, apareceria como número com dois certificados. São 0.
+- **Ressalva do relógio.** A data de carga do BU vem do relógio da urna, o mesmo relógio cuja primeira data no diário recuso abaixo. O teste "certificado antes da carga" herda essa fraqueza. Todas as 998.414 datas de carga são de 2026, então não há relógio grosseiramente errado nesse campo.
 - **Fato (método).** Na primeira versão, o teste olhava só o log principal e acusou 23 diretórios sem a carga.
   - 6 eram RED: o pacote é assinado pela urna recuperadora.
   - 3 eram logs girados: o principal começa no dia da eleição, e a carga está no log aninhado.
@@ -151,14 +179,17 @@ Duas observações sobre o padrão, que valem para **todos** os certificados (n�
 | | AC URNA | AC UE2020 | AC UE2022 |
 |---|---|---|---|
 | Anos de fabricação (10 mil ou mais no ano) | 2013, 2016 (100.656) | 2022 (198.866) | 2023, 2024 (198.642) |
-| Na fabricação: madrugada (0h a 5h59, Brasília) | 40.231 (40%) | 50.391 (25%) | 51.391 (26%) |
+| Emitidos em horário de verão (UTC−2) | 191 | 0 | 0 |
+| Na fabricação: madrugada (0h a 5h59, Brasília) | 40.302 (40%) | 50.391 (25%) | 51.391 (26%) |
 | Recertificação (outros anos) | 1.100 | 3.159 | 1.102 |
-| Na recertificação: madrugada | 30 (21 de 2014 e 9 de 2015) | 0 | 0 |
+| Na recertificação: madrugada | 31 (21 de 2014 e 10 de 2015) | 0 | 0 |
 | Na recertificação: sábado ou domingo | 42 | 103 | 0 |
 | Sessões (intervalo de até 60 min na mesma AC) | 278 | 174 | 181 |
 | Sozinho no dia na própria AC | 50 | 21 | 11 |
 | Isolado (nenhum certificado de **nenhuma** AC a 60 min ou menos) | 33 | 8 | 4 |
-| Isolado **e** em madrugada, fim de semana ou feriado | 5 | 1 | 0 |
+| Isolado **e** em madrugada, fim de semana ou feriado | 6 | 1 | 0 |
+
+- **Fuso.** Hora de Brasília: UTC−3, e UTC−2 no horário de verão, nos períodos oficiais de cada ano até fevereiro de 2019. A primeira versão usava UTC−3 fixo. A correção desloca em 1 hora os 191 certificados da AC URNA emitidos nesses períodos. Muda a madrugada da fabricação (40.231 → 40.302) e a da recertificação (30 → 31). A forma do gráfico não muda.
 
 ![Hora do dia em que os certificados de urna foram emitidos, por AC](graficos/h25-padrao-hora-emissao.svg)
 
@@ -166,28 +197,31 @@ Duas observações sobre o padrão, que valem para **todos** os certificados (n�
 
 - Muitas emissões "sozinhas no dia" numa AC estão na sessão de outra AC. Exemplo: o tardio `ueao01682105` (sábado, 12/09/2026, 14:59:14) e `UEAO02013546` da AC UE2020 (14:59:35) saíram a 21 segundos um do outro. Por isso o critério "isolado" olha as três ACs juntas.
 
-### 3.3 Os 6 candidatos (isolados em horário incomum)
+### 3.3 Os 7 candidatos (isolados em horário incomum)
 
-Nenhum difere em campo algum (molde da AC, 100%). Todos são de urna real, com carga no log e voto contado.
+Nenhum difere em campo algum (molde da AC, 100%). Todos são urnas que votaram, com carga no log e pacote contado. "BU = oficial" mostra que o pacote foi contado, não que é legítimo (Resposta curta, item 4).
 
 | Certificado (série) | AC | Emitido (Brasília) | Por que entrou | Seção e turno | Tipo | Votos de presidente (BU = oficial) |
 |---|---|---|---|---|---|---|
 | `ueao01671155` (`2a6e34`) | AC URNA | sáb 04/10/2014 23:36 | isolado, fim de semana; vizinho mais próximo a 7,8 dias | PR 74411/0071/0003, 1º e 2º | seção | 254 / 265; 0 divergência |
+| `ueao01669613` (`2b1ecf`) | AC URNA | sex 06/11/2015 00:47 (horário de verão) | isolado, madrugada; vizinho a 28 dias | ZZ 29360/0001/1056 (exterior), 1º e 2º | seção | 256 / 266; 0 |
 | `ueao01781129` (`2ebe8b`) | AC URNA | ter 19/07/2016 02:19 | isolado, madrugada; vizinho a 106 min | SP 68772/0094/0098, 1º e 2º | seção | 178 / 188; 0 |
-| `ueao01848268` (`344c4d`) | AC URNA | sex 21/10/2016 03:12 | isolado, madrugada | MS 91073/0016/0088, 1º e 2º | seção | 162 / 172; 0 |
-| `ueao01847973` (`345411`) | AC URNA | sáb 05/11/2016 02:32 | isolado, madrugada e fim de semana | SP 67075/0072/0016, 1º e 2º | seção | 187 / 194; 0 |
+| `ueao01848268` (`344c4d`) | AC URNA | sex 21/10/2016 04:12 (horário de verão) | isolado, madrugada | MS 91073/0016/0088, 1º e 2º | seção | 162 / 172; 0 |
+| `ueao01847973` (`345411`) | AC URNA | sáb 05/11/2016 03:32 (horário de verão) | isolado, madrugada e fim de semana | SP 67075/0072/0016, 1º e 2º | seção | 187 / 194; 0 |
 | `UEAO02015548` (`1510d1`) | AC UE2020 | sáb 17/10/2026 17:53 | isolado, fim de semana, entre os turnos | MG 45551/0120/0100, 2º | seção | 284; 0 |
 | `ueao01847509` (`34b24a`) | AC URNA | dom 18/10/2026 14:55 | isolado, fim de semana, entre os turnos, depois do vencimento da AC | SP 71072/0004/0114, 2º | seção | 268; 0 |
 
-- **Fato.** Os quatro de 2014 a 2016 são do tempo da fabricação, quando a AC URNA emitia 40% de madrugada.
+- **Fato.** Os cinco de 2014 a 2016 são do tempo da fabricação, quando a AC URNA emitia 40% de madrugada.
   - "Isolado" aqui quer dizer só que nenhuma outra urna **que votou em 2026** foi certificada perto. Urnas daquela sessão que saíram de uso não estão nos arquivos.
   - Votaram nos dois turnos, na mesma seção.
+  - O 7º, `ueao01669613`, entrou com a correção do fuso. No UTC−3 fixo ele caía às 23:47 de quinta. No horário de verão em vigor, é 00:47 de sexta, madrugada.
+  - A lista é uma triagem com muitas comparações. Nada nela é anomalia.
 - **Fato.** SP 67075/0072/0016 tem 1 "falha" de lacre no 2º turno. É o `DER: comprimento ausente` de `src/lacres.js` diante de 1 byte zero de preenchimento (sobra 1, doc 07, item 4). Não é defeito do certificado.
 - **Fato.** Os dois de 17/10 e 18/10/2026 saíram com 21 horas de diferença, num fim de semana a uma semana do 2º turno.
   - Os dois substituíram a urna do 1º turno na seção.
   - MG 45551/0120/0100: no 1º turno, urna 2067377; no 2º, 2015548, carga em 21/10 11:35.
   - SP 71072/0004/0114: no 1º turno, 1807314; no 2º, 1847509, carga em 24/10 14:20.
-- **Hipótese (a mais simples):** mutirão de manutenção para repor urnas antes do 2º turno. O padrão é o mesmo dos outros 52 tardios e dos 4 da UE2020 entre os turnos (item 3.4). Só o registro da AC prova.
+- **Hipótese (a mais simples, só suposta):** mutirão de manutenção para repor urnas antes do 2º turno. O padrão é o mesmo dos outros 52 tardios e dos 4 da UE2020 entre os turnos (item 3.4). Nada nos arquivos testa isso. Fica Hipótese até a resposta LAI.
 
 ### 3.4 Urnas certificadas entre os turnos (05/10 a 24/10/2026)
 
@@ -201,6 +235,8 @@ Nenhum difere em campo algum (molde da AC, 100%). Todos são de urna real, com c
 | `UEAO02015461` | AC UE2020 | qui 22/10 09:55 | MG 53716/0269/0215 | 2079190 | 22/10 16:34 | 158; 0 |
 
 - **Fato.** As 6 aparecem em `integridade/entre-turnos-casos.jsonl` como troca de urna entre os turnos.
+- **Fato.** 0 certificado com início depois da abertura de um turno foi usado nesse turno.
+- "BU = oficial" na tabela mostra que o pacote foi contado, não que é legítimo.
 - **Fato.** MG 53716/0269/0215 tem a menor folga entre o certificado e a carga: 6,6 horas.
   - O pacote do 2º turno traz, aninhado, o log da urna do 1º turno (02079190), até 21/10 16:48, com outro código de carga. Depois vem o log da 2015461, a partir de 22/10 16:33, com a carga do BU.
   - A leitura é: a 2079190 foi carregada para o 2º turno em 21/10, saiu de uso, e a 2015461 foi recertificada na manhã seguinte e carregada à tarde.
@@ -209,14 +245,40 @@ Nenhum difere em campo algum (molde da AC, 100%). Todos são de urna real, com c
 
 ### 3.5 Validade e primeiros números
 
-- **Fato. Duas regras de validade, 0 exceção, mudança simultânea nas três ACs:**
+- **Fato. Duas regras de validade, mudança simultânea nas três ACs.** A duração é comparada em segundos (a primeira versão arredondava a 0,001 dia, 86 segundos, e escondia os casos de 1 segundo).
 
 | Regra | AC URNA | AC UE2020 | AC UE2022 |
 |---|---|---|---|
-| 5.000 dias exatos, até 08/05/2024 | 101.576 | 200.944 | 196.876 |
+| 5.000 dias, até 08/05/2024 | 101.573 | 200.943 | 196.874 |
 | (destes, 5.000 dias passariam de 31/12/2037: 23/04 a 08/05/2024) | 6 | 140 | 341 |
+| 5.000 dias e 1 segundo | 3 | 1 | 2 |
 | Teto 31/12/2037 23:00, de 03/06/2024 em diante | 180 | 1.081 | 2.868 |
 | Outra validade | 0 | 0 | 0 |
+
+- **Fato. Os 6 certificados com 5.000 dias e 1 segundo:**
+
+| AC | Certificado | Série | Início (UTC) | Fim (UTC) |
+|---|---|---|---|---|
+| AC URNA | `ueao01759734` | `2BFF22` | 16/06/2016 00:59:08 | 23/02/2030 00:59:09 |
+| AC URNA | `ueao01776001` | `2D4EA3` | 30/06/2016 04:10:00 | 09/03/2030 04:10:01 |
+| AC URNA | `ueao01785179` | `2DAC10` | 02/07/2016 03:56:07 | 11/03/2030 03:56:08 |
+| AC UE2020 | `UEAO02228200` | `11CA86` | 18/06/2022 22:41:40 | 25/02/2036 22:41:41 |
+| AC UE2022 | `UEAO02420399` | `0FEAF1` | 01/01/2024 15:09:50 | 09/09/2037 15:09:51 |
+| AC UE2022 | `UEAO02447073` | `11F64C` | 26/01/2024 14:47:39 | 04/10/2037 14:47:40 |
+
+  - **Hipótese (a mais simples):** o sistema emissor lê o relógio duas vezes, uma para o início e outra para o fim, e às vezes a virada de um segundo cai entre as duas leituras. A favor: os 6 estão nas três ACs e em três épocas, com o mesmo molde, no meio de sessões normais. Isso aponta para o mesmo programa nas três ACs. Não é anomalia.
+- **Fato. Números de série gastos perto da eleição que não estão em pacote nenhum** (`padrao-resumo.json` → `seriesSemPacote`):
+
+| AC | Último visível até o fim do 1º turno | Último visível entre os turnos | Números na faixa | Em pacote |
+|---|---|---|---|---|
+| AC UE2020 | `15108F` (02/10/2026) | `151107` (22/10/2026) | 120 (`151090` a `151107`) | 4 |
+| AC URNA | `34B233` (01/10/2026) | `34B256` (19/10/2026) | 35 (`34B234` a `34B256`) | 2 |
+| AC UE2022 | `14D499` (02/10/2026) | nenhum | — | — |
+
+  - Na AC UE2020, com o passo de 6 por emissão (Hipótese do item 3.1), são 20 emissões, das quais 16 não estão nos arquivos.
+  - Na AC URNA o passo comum é 1, então são até 33 certificados sem pacote, emitidos em data desconhecida entre 01/10 e 19/10.
+  - Um certificado emitido e nunca usado num pacote publicado não mexe em voto contado. A exceção é um pacote depois substituído e não publicado.
+  - Mas é exatamente nessas faixas que um certificado de teste emitido pelo sistema de produção ficaria. Por isso as duas faixas estão na pergunta LAI (a).
 
 - **Fato. Os primeiros números de cada AC são de urnas reais.**
   - AC UE2020: séries `51` a `5c` (7 certificados), emitidas em 01/04/2022 entre 22:12 e 22:13 UTC, 1 a cada 4 a 12 segundos. São as urnas 2031178 a 2033976, que votaram em RS, RO e ES nos dois turnos.
@@ -230,7 +292,7 @@ Nenhum difere em campo algum (molde da AC, 100%). Todos são de urna real, com c
 |---|---|---|---|
 | Molde | o mesmo (`c21c5a2fa09c`): 54 | o mesmo: 151 | o mesmo: 101.756 |
 | Série | 3 bytes, na sequência única da AC | idem | idem |
-| Validade | teto 31/12/2037 23:00: 54 | teto: 126; 5.000 dias: 25 (antes de 08/05/2024) | regra do item 3.5 |
+| Validade | teto 31/12/2037 23:00: 54 | teto: 126; 5.000 dias: 25 (até 08/05/2024) | regra do item 3.5 |
 | Assinatura r/s | 66/66: 30; 65/66: 11; 66/65: 10; 65/65: 2; 66/64: 1 | 66/66: 77; 65/66: 36; 66/65: 26; 65/65: 12 | item 1 |
 | Hora (Brasília) | 10h a 18h | 9h a 20h | dia e noite (fabricação) |
 | Dia | seg 28, qui 10, qua 6, sex 5, ter 3, sáb 1, dom 1 | seg 43, qua 58, sex 27, ter 10, qui 7, dom 6 | — |
@@ -243,12 +305,17 @@ Nenhum difere em campo algum (molde da AC, 100%). Todos são de urna real, com c
 
 ## Limites
 
-- **Certificado de teste emitido pela AC de produção, pelo mesmo sistema e com os mesmos campos, é indistinguível de um de produção.** Se tiver o nome de uma urna real e entrar no lugar dela, só a lista de urnas esperadas por seção e o registro da AC mostram a troca.
+- **Qualquer certificado assinado com a chave verdadeira da AC e montado igual ao modelo é indistinguível de um de produção.** Vale tanto para o feito pelo sistema emissor do TSE quanto para o feito com outra ferramenta a partir de um certificado publicado.
+  - O teste exclui o certificado feito com outra chave (a assinatura não conferiria) e o feito sem copiar o modelo.
+  - A coerência entre certificado, boletim e diário mostra que o pacote é consistente, não que a urna é a esperada para a seção.
+  - Isso só a lista de urnas por seção e o registro da AC mostram.
 - Só aparece aqui o certificado "UEAO" das urnas cujo pacote foi publicado. Não aparecem:
   - os outros números de série de cada emissão (passo 6 nas ACs UE2020 e UE2022);
   - os certificados de urnas que não votaram;
   - os números antes do primeiro observado;
+  - os números gastos perto da eleição sem pacote: 116 de 120 na AC UE2020 (`151090`–`151107`) e 33 de 35 na AC URNA (`34B234`–`34B256`);
   - qualquer certificado que tenha assinado um pacote depois substituído e não publicado.
+- "BU = oficial" mostra que o pacote foi contado, não que é legítimo: o resultado oficial por seção sai do próprio BU.
 - A data de início da validade é a do relógio do sistema emissor. Não há marca de tempo independente.
 - A conferência da cadeia na totalização e a existência de uma lista de urnas esperadas por seção não estão nos arquivos públicos.
 - Um software alterado dentro de uma urna legítima assina com o certificado verdadeiro (doc 07, item 5b). Nada neste teste vê isso.
@@ -260,7 +327,7 @@ Nenhum difere em campo algum (molde da AC, 100%). Todos são de urna real, com c
 2. os perfis e o número de pessoas com acesso para ativar a chave, e o esquema de controle (por exemplo, m de n cartões);
 3. as atas da cerimônia de geração da chave e de toda cerimônia ou ativação entre 18/07/2026 e 25/10/2026;
 4. o registro de auditoria do equipamento ou do sistema de emissão com cada uso da chave entre 18/07/2026 e 25/10/2026 (data, hora, operador, número de série emitido e urna), incluindo as séries `34aea5` a `34b256`;
-5. as mesmas informações (itens 1 a 4) para as chaves da AC UE2020 e da AC UE2022 no período de 05/10/2026 a 25/10/2026."
+5. as mesmas informações (itens 1 a 4) para as chaves da AC UE2020 e da AC UE2022 no período de 01/10/2026 a 25/10/2026, incluindo a relação de todos os certificados da AC UE2020 com séries `151090` a `151107` (120 números; só 4 aparecem em boletins publicados) e da AC URNA com séries `34B234` a `34B256` (35 números; só 2 aparecem), com urna, data e finalidade de cada um."
 
 **(b) AC de teste e certificados de teste.** "Solicito informar:
 1. se o TSE mantém autoridades certificadoras de teste, desenvolvimento ou homologação separadas das AC de produção (AC RAIZ UE, AC RAIZ UE v2, AC URNA, AC URNA v2, AC UE2020, AC UE2022), com chaves distintas; em caso positivo, solicito os certificados dessas AC de teste;
@@ -276,17 +343,20 @@ Nenhum difere em campo algum (molde da AC, 100%). Todos são de urna real, com c
 ## Fato, Hipótese, Recomendação, Pendente
 
 - **Fato:**
-  - nenhum certificado fora do padrão de produção nos 503.525: 1 molde por AC;
-  - número de urna real em 100%, presente no log com a carga do BU em 998.414 de 998.414 diretórios;
-  - 0 certificado mais novo que a carga;
+  - nenhum certificado fora do padrão de produção nos 503.525: 1 molde por AC (exclui o certificado feito sem copiar o modelo; a AC de teste separada é excluída pela conferência da assinatura, doc 07);
+  - número do certificado coerente com o pacote: igual ao `.vsc` em 998.414, ao BU em 998.397 (17 RED), presente no diário com a carga do BU em 998.414 de 998.414 diretórios;
+  - 0 número de urna com dois certificados; 494.833 certificados já publicados no 1º turno;
+  - 0 certificado mais novo que a carga (com a ressalva do relógio da urna);
   - 0 série fora de sequência;
-  - duas regras de validade, mudança simultânea nas três ACs em maio e junho de 2024;
-  - 6 emissões isoladas em horário incomum, de urnas reais, sem diferença de campo, voto contado;
-  - 6 urnas certificadas entre os turnos (4 AC UE2020 em MG, 2 AC URNA em SP), todas substituindo a urna do 1º turno, voto contado;
+  - duas regras de validade, mudança simultânea nas três ACs em maio e junho de 2024; 6 certificados com 5.000 dias e 1 segundo;
+  - números de série sem pacote perto da eleição: 116 de 120 na AC UE2020 e 33 de 35 na AC URNA;
+  - 7 emissões isoladas em horário incomum, de urnas que votaram, sem diferença de campo, pacote contado;
+  - 6 urnas certificadas entre os turnos (4 AC UE2020 em MG, 2 AC URNA em SP), todas substituindo a urna do 1º turno, pacote contado;
   - os 54 tardios iguais aos anteriores em tudo, menos a data.
 - **Hipótese:**
-  - as emissões entre os turnos, inclusive as do fim de semana de 17 e 18/10, são manutenção para repor urnas;
-  - o passo 6 da série nas ACs UE2020/UE2022 é de 6 certificados por urna.
+  - as emissões entre os turnos, inclusive as do fim de semana de 17 e 18/10, são manutenção para repor urnas (só suposta);
+  - o passo 6 da série nas ACs UE2020/UE2022 é de 6 certificados por urna;
+  - os 6 certificados de 5.000 dias e 1 segundo vêm de duas leituras do relógio pelo mesmo programa emissor.
 - **Recomendação:**
   - (1) enviar as perguntas LAI (a), (b) e (c);
   - (2) baixar o arquivo de correspondências efetivadas dos dados abertos do TSE (doc 02 de fontes) e cruzar urna × seção × carga com os certificados. É a única lista externa ao pacote assinado;
@@ -309,7 +379,7 @@ node scripts/auditoria/seguranca-h25-padrao-grafico.mjs
 Saídas em `data/parsed/auditoria/seguranca-h25/`:
 - `{1t,2t}-padrao-certs.jsonl`
 - `{1t,2t}-padrao-dirs.jsonl`
-- `padrao-resumo.json`, com as chaves `variacoes`, `moldes`, `emissao`, `item2`, `isolados`, `pertoDaEleicao`, `regraValidade`, `primeiros` e `item4`
+- `padrao-resumo.json`, com as chaves `variacoes`, `moldes`, `emissao`, `item2`, `isolados`, `pertoDaEleicao`, `regraValidade`, `seriesSemPacote`, `primeiros` e `item4`
 - `padrao-candidatos.json`
 - `padrao-votos.json`
 
