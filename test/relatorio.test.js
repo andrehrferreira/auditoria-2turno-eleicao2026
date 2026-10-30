@@ -2,11 +2,16 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
+import { spawnSync } from 'node:child_process';
+import { mkdir, writeFile } from 'node:fs/promises';
 import {
   baseGithub,
   embutirSvg,
   escoparCss,
+  filtrarGlossario,
   gerar,
+  gerarTema,
+  gerarTemas,
   localizarNavegador,
 } from '../scripts/relatorio/gerar.mjs';
 import {
@@ -188,4 +193,128 @@ test('gera o relatório HTML completo e autocontido a partir de docs/pericia', a
   // links entre tópicos viram âncoras internas
   assert.match(doc, /href="#t01"/);
   assert.equal(r.total.imagens, (doc.match(/<figure class="grafico"/g) ?? []).length);
+});
+
+// ------------------------------------------------------------------ relatórios temáticos
+
+const GLOSSARIO = [
+  '## Glossário',
+  '',
+  '| Termo | Em palavras simples |',
+  '|---|---|',
+  '| **BU** (Boletim de Urna) | O placar da urna |',
+  '| **Hash** | A impressão digital de um arquivo |',
+  '| **Cartão de votação (mídia de votação, MV)** | O cartão de memória |',
+  '| **Comparecimento / abstenção** | Quantos votaram / não votaram |',
+  '| **Coorte** | Um grupo de pessoas |',
+].join('\n');
+
+test('glossário do tema: só os termos usados; sigla exige maiúsculas; nada usado devolve tudo', () => {
+  const g = filtrarGlossario(GLOSSARIO, 'O hash do BU confere. A abstenção caiu e a MV foi trocada. bu minúsculo não conta.');
+  assert.match(g, /\*\*BU\*\*/);
+  assert.match(g, /\*\*Hash\*\*/);
+  assert.match(g, /\*\*Cartão de votação/);
+  assert.match(g, /\*\*Comparecimento \/ abstenção\*\*/);
+  assert.doesNotMatch(g, /Coorte/);
+  assert.match(g, /^## Glossário\n\n\| Termo \| Em palavras simples \|\n\|---\|---\|\n/);
+  // siglas em minúsculas não contam: nenhum termo usado, volta o glossário inteiro
+  assert.equal(filtrarGlossario(GLOSSARIO, 'o bu e a mv'), GLOSSARIO);
+  assert.equal(filtrarGlossario(GLOSSARIO, 'texto sem termo nenhum'), GLOSSARIO);
+  const comTexto = `${GLOSSARIO}\n\nUm parágrafo fora da tabela.`;
+  assert.equal(filtrarGlossario(comTexto, 'hash'), comTexto);
+});
+
+async function montarTema(base, md) {
+  const temas = path.join(base, 'pericia', 'temas');
+  await mkdir(temas, { recursive: true });
+  await mkdir(path.join(base, 'pericia', 'graficos'), { recursive: true });
+  await writeFile(
+    path.join(base, 'pericia', 'graficos', 'g.svg'),
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" width="100" height="50"><style>.b{fill:#2a78d6}</style><rect class="b" width="40" height="20"/></svg>',
+  );
+  const arquivo = path.join(temas, 'certificado-exemplo.md');
+  await writeFile(arquivo, md);
+  return arquivo;
+}
+
+const TEMA = `# Certificado vencido da autoridade
+
+> **Situação:** exemplo de teste.
+
+## A pergunta
+
+O certificado da **AC** venceu? Ver o [tópico 1](../01-integridade-e-estrutura-dos-arquivos.md#limites) e os [limites](../07-limites-da-pericia.md).
+
+## Resposta curta
+
+- **Fato:** o **hash** e a assinatura digital conferem.
+- **Pendente:** pedido ao TSE.
+
+| Item | Valor |
+|---|---:|
+| Pacotes | 499.207 |
+
+![Gráfico de exemplo](../graficos/g.svg)
+
+## Como repetir
+
+\`\`\`
+node src/lacres.js <pasta da seção>
+\`\`\`
+`;
+
+test('relatório temático: capa com o H1, frente, numeração 1/1.1, links ao completo, glossário filtrado e anexos', async (t) => {
+  const dir = await diretorioTemporario(t);
+  const arquivo = await montarTema(dir, TEMA);
+  const saida = path.join(dir, 'saida');
+  const r = await gerarTema({ arquivo, saida, registrar: () => {} });
+  assert.equal(r.htmlAbs, path.join(saida, 'certificado-exemplo.html'));
+  const doc = await readFile(r.htmlAbs, 'utf8');
+  assert.match(doc, /<title>Relatório de perícia — Certificado vencido da autoridade<\/title>/);
+  assert.match(doc, /<h1 class="capa-titulo">Certificado vencido da autoridade<\/h1>/);
+  assert.match(doc, /<p class="capa-subtitulo">Arquivos das urnas das eleições de 2026 — 1º e 2º turno<\/p>/);
+  assert.match(doc, /<section class="frente" id="como-ler">[\s\S]*<span class="rotulo">Fato<\/span>/);
+  assert.match(doc, /<nav class="sumario"[\s\S]*<span class="num">1\.1<\/span><span class="texto">A pergunta/);
+  assert.match(doc, /<h1 id="tema-certificado-vencido-da-autoridade" class="titulo-topico"><span class="num" data-ger>1<\/span>/);
+  assert.match(doc, /<h2 id="tema-resposta-curta"><span class="num" data-ger>1\.2<\/span>/);
+  assert.match(doc, /Figura 1\.1<\/figcaption><svg/);
+  // tópicos do relatório completo: link ao arquivo (ou texto) e nota
+  assert.match(doc, />tópico 1<\/(a|span)><span class="ref-completo" data-ger> \(no relatório completo\)<\/span>/);
+  assert.match(doc, />limites<\/(a|span)><span class="ref-completo" data-ger> \(ver tópico 7 do relatório completo\)<\/span>/);
+  assert.doesNotMatch(doc, /href="#t0\d/);
+  // o tema não traz o quadro de tópicos nem os tópicos do completo
+  assert.doesNotMatch(doc, /id="topicos"|class="topico" id="t0/);
+  // glossário com os termos do tema (hash, AC, seção), sem os outros
+  const glossario = doc.slice(doc.indexOf('id="anexo-a"'), doc.indexOf('id="anexo-b"'));
+  assert.match(glossario, /<strong>Hash<\/strong>/);
+  assert.match(glossario, /Autoridade certificadora \(AC\)/);
+  assert.doesNotMatch(glossario, /Coorte/);
+  assert.match(doc, /<section class="anexo" id="anexo-b">[\s\S]*Como conferir/);
+  assert.equal(r.total.imagens, 1);
+});
+
+test('relatório temático: exige exatamente um título "# "', async (t) => {
+  const dir = await diretorioTemporario(t);
+  const sem = await montarTema(dir, '## Só subtítulo\n\ntexto');
+  await assert.rejects(gerarTema({ arquivo: sem, saida: dir, registrar: () => {} }), /exatamente um título/);
+  const dois = await montarTema(dir, '# Um\n\n# Dois\n');
+  await assert.rejects(gerarTema({ arquivo: dois, saida: dir, registrar: () => {} }), /tem 2/);
+});
+
+test('gerar todos os temas: pasta vazia ou ausente só avisa; com temas gera cada um', async (t) => {
+  const dir = await diretorioTemporario(t);
+  const msgs = [];
+  assert.deepEqual(await gerarTemas({ dir: path.join(dir, 'nao-existe'), saida: dir, registrar: (m) => msgs.push(m) }), []);
+  assert.match(msgs[0], /Nenhum tema em .*: nada a gerar\./);
+  const arquivo = await montarTema(dir, TEMA);
+  const r = await gerarTemas({ dir: path.dirname(arquivo), saida: path.join(dir, 'saida'), registrar: () => {} });
+  assert.equal(r.length, 1);
+  assert.match(await readFile(r[0].htmlAbs, 'utf8'), /Certificado vencido da autoridade/);
+});
+
+test('linha de comando: --tema sem arquivo sai com erro de uso', () => {
+  const script = path.join(import.meta.dirname, '..', 'scripts', 'relatorio', 'gerar.mjs');
+  const r = spawnSync(process.execPath, [script, '--tema'], { encoding: 'utf8' });
+  assert.equal(r.status, 1);
+  assert.match(r.stderr, /Uso: .*--tema docs\/pericia\/temas\/<slug>\.md/);
 });

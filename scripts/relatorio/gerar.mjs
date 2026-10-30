@@ -27,6 +27,7 @@ const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '.
 const PERICIA = path.join(RAIZ, 'docs', 'pericia');
 const EVIDENCIAS = path.join(PERICIA, 'evidencias');
 const SAIDA = path.join(RAIZ, 'docs', 'relatorio');
+const TEMAS = path.join(PERICIA, 'temas');
 const TITULO_CURTO = 'Relatório de perícia · Urnas 2026';
 const AVISO_CAPA = 'Documento em elaboração — conteúdo atualizado conforme os testes e a revisão cética';
 
@@ -177,6 +178,12 @@ async function gerarPdf(htmlAbs, pdfAbs) {
 
 // ------------------------------------------------------------------ montagem
 
+const CAPA_COMPLETO = {
+  sobre: 'Auditoria independente dos arquivos de urna',
+  titulo: 'Relatório de perícia',
+  tituloPagina: 'Relatório de perícia — Arquivos das urnas das eleições de 2026',
+};
+
 const ROTULO_HTML = (palavra) => `<span class="rotulo">${escaparHtml(palavra)}</span>`;
 
 /**
@@ -266,7 +273,7 @@ function idDoArquivo(rel) {
 
 function montarConversor({ peca, estado, ancoras, avisos, contexto }) {
   const dir = path.dirname(peca.fonte);
-  const link = (destino) => {
+  const link = (destino, textoDoLink = '') => {
     if (/^[a-z][a-z0-9+.-]*:/i.test(destino)) return destino;
     const [caminho, fragmento] = destino.split('#');
     const frag = fragmento ? decodeURIComponent(fragmento) : null;
@@ -275,6 +282,18 @@ function montarConversor({ peca, estado, ancoras, avisos, contexto }) {
       return ancoras.has(id) ? `#${id}` : `#${peca.chave}`;
     }
     const abs = path.resolve(dir, decodeURIComponent(caminho));
+    if (contexto.tema) {
+      // relatório temático: os tópicos do relatório completo não estão no documento
+      const nome = path.relative(contexto.tema.raiz, abs).split(path.sep).join('/');
+      const m = /^(\d{2})-[^/]+\.md$/.exec(nome);
+      if (m) {
+        const url = contexto.github ? `${contexto.github}/blob/${contexto.commit || 'main'}/docs/pericia/${encodeURI(nome)}` : null;
+        const n = Number(m[1]);
+        const jaDiz = new RegExp(`t[óo]pico\\s+${n}(?!\\d)`, 'i').test(textoDoLink);
+        const nota = `<span class="ref-completo" data-ger> (${jaDiz ? 'no' : `ver tópico ${n} do`} relatório completo)</span>`;
+        return { href: url && frag ? `${url}#${encodeURIComponent(frag)}` : url, depois: nota };
+      }
+    }
     const rel = relRepo(abs);
     const alvo = idDoArquivo(rel);
     if (alvo) {
@@ -307,7 +326,9 @@ function montarConversor({ peca, estado, ancoras, avisos, contexto }) {
         const texto = m && Number(m[1]) === peca.numero ? html.slice(m[0].length) : html;
         estado.tituloTopico = m ? plano.replace(/^\d+\.\s+/, '') : plano;
         estado.sumario.push({ nivel: 1, id: peca.chave, num: String(peca.numero), html: texto });
-        return `<h1 id="${id}" class="titulo-topico"><span class="num">${peca.numero}</span> <span class="texto">${texto}</span></h1>`;
+        // o número vem do texto ("5. Título") ou é acrescentado pelo gerador (tema sem número)
+        const doTexto = texto !== html;
+        return `<h1 id="${id}" class="titulo-topico"><span class="num"${doTexto ? '' : ' data-ger'}>${peca.numero}</span> <span class="texto">${texto}</span></h1>`;
       }
       if (nivel === 2) {
         const num = `${peca.numero}.${++estado.h2}`;
@@ -421,7 +442,7 @@ function htmlSumario(sumario) {
   return `${html}</ol>\n</nav>\n`;
 }
 
-function montarHtml({ saidas, sumario, meta, temAviso }) {
+function montarHtml({ saidas, sumario, meta, temAviso, capa = CAPA_COMPLETO }) {
   const grupos = [];
   for (const s of saidas) {
     const g = grupos.at(-1);
@@ -436,8 +457,8 @@ function montarHtml({ saidas, sumario, meta, temAviso }) {
   const corpo = [];
   corpo.push(`<section class="capa" id="capa">
 <div class="capa-topo">
-<p class="capa-sobre">Auditoria independente dos arquivos de urna</p>
-<h1 class="capa-titulo">Relatório de perícia</h1>
+<p class="capa-sobre">${escaparHtml(capa.sobre)}</p>
+<h1 class="capa-titulo">${escaparHtml(capa.titulo)}</h1>
 <p class="capa-subtitulo">Arquivos das urnas das eleições de 2026 — 1º e 2º turno</p>
 <p class="capa-resumo">Exame dos arquivos públicos do TSE: boletins de urna, registros digitais do voto, diários das urnas e assinaturas digitais, em todas as seções.</p>
 </div>
@@ -475,7 +496,7 @@ ${temAviso ? `<div><dt>Situação</dt><dd>${escaparHtml(AVISO_CAPA)}</dd></div>`
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <meta name="generator" content="scripts/relatorio/gerar.mjs">
-<title>Relatório de perícia — Arquivos das urnas das eleições de 2026</title>
+<title>${escaparHtml(capa.tituloPagina)}</title>
 <style>
 ${CSS}
 @page{@bottom-left{content:${cssString(rodape)}}}
@@ -638,36 +659,83 @@ li figure.grafico{margin-top:.6em}
 }
 `;
 
+// ------------------------------------------------------------------ glossário do tema
+
+const RE_LINHA_GLOSSARIO = /^\|\s*\*\*(.+?)\*\*(.*?)\|/;
+
+/** Chaves de busca de um termo do glossário: "**Cartão de votação (mídia de votação, MV)**" → 3 chaves. */
+function chavesDoTermo(negrito, resto) {
+  const texto = `${negrito} ${resto}`;
+  const chaves = [];
+  const fora = texto.replace(/\(([^)]*)\)/g, (_, dentro) => {
+    chaves.push(...dentro.split(/[,/]/));
+    return ' ';
+  });
+  chaves.push(...fora.split('/'));
+  return chaves.map((c) => c.trim()).filter((c) => c.length >= 2);
+}
+
+function termoUsado(chave, texto) {
+  const esc = chave.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const sensivel = chave === chave.toUpperCase();
+  return new RegExp(`(?<![\\p{L}\\p{N}])${esc}(?![\\p{L}\\p{N}])`, sensivel ? 'u' : 'iu').test(texto);
+}
+
+/**
+ * Glossário só com os termos que aparecem no texto do tema. Se o glossário não for
+ * uma tabela simples, ou se nenhum termo aparecer, devolve o glossário inteiro.
+ */
+export function filtrarGlossario(mdGlossario, textoTema) {
+  const linhas = mdGlossario.split('\n');
+  const iCab = linhas.findIndex((l) => l.trim().startsWith('|'));
+  if (iCab < 0 || !/^\s*\|?\s*:?-+/.test(linhas[iCab + 1] ?? '')) return mdGlossario;
+  let fim = iCab + 2;
+  while (fim < linhas.length && linhas[fim].trim().startsWith('|')) fim++;
+  const fora = [...linhas.slice(0, iCab), ...linhas.slice(fim)];
+  if (fora.some((l) => l.trim() && !/^## /.test(l))) return mdGlossario;
+  const corpo = linhas.slice(iCab + 2, fim);
+  if (corpo.some((l) => !RE_LINHA_GLOSSARIO.test(l))) return mdGlossario;
+  const usados = corpo.filter((l) => {
+    const [, negrito, resto] = RE_LINHA_GLOSSARIO.exec(l);
+    return chavesDoTermo(negrito, resto).some((c) => termoUsado(c, textoTema));
+  });
+  if (!usados.length) return mdGlossario;
+  return [...linhas.slice(0, iCab + 2), ...usados, ...linhas.slice(fim)].join('\n');
+}
+
 // ------------------------------------------------------------------ principal
 
-export async function gerar({ pdf = false, saida = SAIDA, registrar = console.log } = {}) {
-  const fontes = await lerFontes();
+function contextoGit() {
   const commit = git(['rev-parse', '--short', 'HEAD']);
   const alterado = git(['status', '--porcelain', '--', 'docs/pericia']) !== '';
-  const contexto = {
-    github: baseGithub(git(['remote', 'get-url', 'origin'])),
-    commit: git(['rev-parse', 'HEAD']),
-    lerArquivo: (abs) => readFileSync(abs),
+  const versaoCurta = commit || 'sem git';
+  return {
+    contexto: {
+      github: baseGithub(git(['remote', 'get-url', 'origin'])),
+      commit: git(['rev-parse', 'HEAD']),
+      lerArquivo: (abs) => readFileSync(abs),
+    },
+    meta: {
+      data: dataPtBr(new Date()),
+      versaoCurta,
+      versao: `${versaoCurta}${alterado ? ' (com alterações ainda não registradas em docs/pericia)' : ''}`,
+    },
   };
-  const lista = pecas(fontes);
+}
+
+/** Converte, confere, monta e grava um documento (e o PDF, se pedido). */
+async function produzir({ lista, contexto, meta, temAviso, capa, saida, nome, pdf, registrar }) {
   const { saidas, sumario, avisos } = converterTudo(lista, contexto);
   const { problemas, total } = conferir(saidas);
   if (problemas.length) {
     throw new Error(`a conferência markdown × HTML falhou:\n- ${problemas.join('\n- ')}`);
   }
-  const data = dataPtBr(new Date());
-  const versaoCurta = commit || 'sem git';
-  const meta = {
-    data,
-    versaoCurta,
-    versao: `${versaoCurta}${alterado ? ' (com alterações ainda não registradas em docs/pericia)' : ''}`,
-  };
-  const html = montarHtml({ saidas, sumario, meta, temAviso: fontes.readme.temAviso });
+  const html = montarHtml({ saidas, sumario, meta, temAviso, capa });
   for (const s of saidas) {
     if (!html.includes(s.html)) throw new Error(`peça ${s.chave} (${relRepo(s.fonte)}) não entrou no documento`);
   }
   await mkdir(saida, { recursive: true });
-  const htmlAbs = path.join(saida, 'relatorio.html');
+  const htmlAbs = path.join(saida, `${nome}.html`);
   await writeFile(htmlAbs, html);
   registrar(`HTML: ${relRepo(htmlAbs)} (${(Buffer.byteLength(html) / 1024).toFixed(0)} KB)`);
   registrar(
@@ -677,16 +745,111 @@ export async function gerar({ pdf = false, saida = SAIDA, registrar = console.lo
   for (const a of avisos) registrar(`Aviso: ${a}`);
   let resultadoPdf = null;
   if (pdf) {
-    const pdfAbs = path.join(saida, 'relatorio.pdf');
-    await rm(pdfAbs, { force: true });
+    const pdfAbs = path.join(saida, `${nome}.pdf`);
+    await rm(pdfAbs, { force: true }).catch((e) => {
+      if (e.code === 'EBUSY' || e.code === 'EPERM') {
+        throw new Error(`${relRepo(pdfAbs)} está aberto em outro programa (leitor de PDF?); feche-o e gere de novo`);
+      }
+      throw e;
+    });
     resultadoPdf = await gerarPdf(htmlAbs, pdfAbs);
     registrar(`PDF: ${relRepo(pdfAbs)} (${resultadoPdf.paginas} páginas, ${path.basename(resultadoPdf.navegador)})`);
   }
   return { htmlAbs, total, avisos, pdf: resultadoPdf };
 }
 
+/** Relatório completo: docs/pericia/NN-*.md. */
+export async function gerar({ pdf = false, saida = SAIDA, registrar = console.log } = {}) {
+  const fontes = await lerFontes();
+  const { contexto, meta } = contextoGit();
+  return produzir({
+    lista: pecas(fontes),
+    contexto,
+    meta,
+    temAviso: fontes.readme.temAviso,
+    capa: CAPA_COMPLETO,
+    saida,
+    nome: 'relatorio',
+    pdf,
+    registrar,
+  });
+}
+
+/** Relatório temático: um arquivo de docs/pericia/temas/, com a mesma frente e os mesmos anexos. */
+export async function gerarTema({ arquivo, pdf = false, saida = path.join(SAIDA, 'temas'), registrar = console.log }) {
+  const abs = path.resolve(arquivo);
+  const md = (await readFile(abs, 'utf8')).replace(/\r\n?/g, '\n');
+  const { titulos } = converter(md, { link: () => '#', imagem: () => '', figura: () => '' });
+  const h1 = titulos.filter((t) => t.nivel === 1);
+  if (h1.length !== 1) throw new Error(`${arquivo}: o tema precisa de exatamente um título "# " (tem ${h1.length})`);
+  const fontes = await lerFontes();
+  const { contexto, meta } = contextoGit();
+  // links ../NN-*.md apontam para o relatório completo, que fica na pasta acima de temas/
+  contexto.tema = { raiz: path.dirname(path.dirname(abs)) };
+  const { readme, evidencias } = fontes;
+  const lista = [
+    { chave: 'como-ler', fonte: readme.arquivo, md: readme.partes.comoLer, prefixo: 'leia-', papel: 'frente' },
+    { chave: 'tema', fonte: abs, md, prefixo: 'tema-', papel: 'topico', numero: 1 },
+    {
+      chave: 'anexo-a',
+      fonte: readme.arquivo,
+      md: filtrarGlossario(readme.partes.glossario, md),
+      prefixo: 'leia-',
+      papel: 'anexo',
+      letra: 'A',
+    },
+    { chave: 'anexo-b', fonte: evidencias.arquivo, md: evidencias.titulo, prefixo: 'ev-', papel: 'anexo', letra: 'B' },
+  ];
+  if (readme.partes.registro.trim()) {
+    lista.push({ chave: 'anexo-b', fonte: readme.arquivo, md: readme.partes.registro, prefixo: 'leia-', papel: 'anexo-texto', letra: 'B' });
+  }
+  lista.push({ chave: 'anexo-b', fonte: evidencias.arquivo, md: evidencias.resto, prefixo: 'ev-', papel: 'anexo-texto', letra: 'B' });
+  const titulo = h1[0].plano.replace(/^\d+\.\s+/, '');
+  return produzir({
+    lista,
+    contexto,
+    meta,
+    temAviso: readme.temAviso,
+    capa: { sobre: 'Relatório de perícia · relatório temático', titulo, tituloPagina: `Relatório de perícia — ${titulo}` },
+    saida,
+    nome: path.basename(abs, '.md'),
+    pdf,
+    registrar,
+  });
+}
+
+/** Todos os temas de docs/pericia/temas/ (sem nenhum, só avisa). */
+export async function gerarTemas({ pdf = false, dir = TEMAS, saida = path.join(SAIDA, 'temas'), registrar = console.log } = {}) {
+  const nomes = existsSync(dir) ? (await readdir(dir)).filter((n) => n.endsWith('.md')).sort() : [];
+  if (!nomes.length) {
+    registrar(`Nenhum tema em ${relRepo(dir)}/: nada a gerar.`);
+    return [];
+  }
+  const resultados = [];
+  for (const n of nomes) {
+    registrar(`Tema: ${n}`);
+    resultados.push(await gerarTema({ arquivo: path.join(dir, n), pdf, saida, registrar }));
+  }
+  return resultados;
+}
+
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
-  gerar({ pdf: process.argv.includes('--pdf') }).catch((e) => {
+  const args = process.argv.slice(2);
+  const pdf = args.includes('--pdf');
+  const iTema = args.indexOf('--tema');
+  let tarefa;
+  if (iTema >= 0) {
+    if (!args[iTema + 1] || args[iTema + 1].startsWith('--')) {
+      console.error('Uso: node scripts/relatorio/gerar.mjs --tema docs/pericia/temas/<slug>.md [--pdf]');
+      process.exit(1);
+    }
+    tarefa = gerarTema({ arquivo: args[iTema + 1], pdf });
+  } else if (args.includes('--temas')) {
+    tarefa = gerarTemas({ pdf });
+  } else {
+    tarefa = gerar({ pdf });
+  }
+  tarefa.catch((e) => {
     console.error(`Erro: ${e.message}`);
     process.exitCode = 1;
   });

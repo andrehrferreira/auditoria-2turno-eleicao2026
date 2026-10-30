@@ -451,11 +451,14 @@ function lerInline(fonte, ctx) {
           nos.push({ t: 'html', v: ctx.imagem({ src: r.destino, alt: r.texto, titulo: r.titulo, bloco: false }), plano: '', imagem: true });
         } else {
           const interior = lerInline(r.texto, ctx);
-          const destino = ctx.link(r.destino);
+          // o gancho devolve o destino (texto ou null) ou { href, depois }, com HTML gerado para depois do link
+          const resolvido = ctx.link(r.destino, interior.plano);
+          const destino = resolvido !== null && typeof resolvido === 'object' ? resolvido.href : resolvido;
+          const depois = resolvido !== null && typeof resolvido === 'object' ? resolvido.depois ?? '' : '';
           const v =
-            destino == null
+            (destino == null
               ? `<span class="link-sem-destino">${interior.html}</span>`
-              : `<a href="${escaparHtml(destino)}"${r.titulo ? ` title="${escaparHtml(r.titulo)}"` : ''}>${interior.html}</a>`;
+              : `<a href="${escaparHtml(destino)}"${r.titulo ? ` title="${escaparHtml(r.titulo)}"` : ''}>${interior.html}</a>`) + depois;
           nos.push({ t: 'html', v, plano: interior.plano });
         }
         i = r.fim;

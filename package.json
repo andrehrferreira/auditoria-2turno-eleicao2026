@@ -11,6 +11,7 @@
     "coleta": "node src/coleta.js",
     "test": "node --test \"test/**/*.test.js\"",
     "relatorio": "node scripts/relatorio/gerar.mjs",
-    "relatorio:pdf": "node scripts/relatorio/gerar.mjs --pdf"
+    "relatorio:pdf": "node scripts/relatorio/gerar.mjs --pdf",
+    "relatorio:temas": "node scripts/relatorio/gerar.mjs --temas --pdf"
   }
 }
