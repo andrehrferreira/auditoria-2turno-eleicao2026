@@ -1,8 +1,8 @@
 # Resumo: os principais achados
 
-> Situação em 30/10/2026; o relatório está em elaboração. Este resumo não traz número novo: cada número está escrito igual no tópico indicado (→), com a explicação, as tabelas, os gráficos e o caminho para refazer a conta.
+> Situação em 30/10/2026; o relatório está em elaboração. Este resumo não traz número novo: cada número está escrito igual no tópico indicado (→), com a explicação, as tabelas, os gráficos e a forma como a conta foi feita.
 
-Rótulos: **Fato** é conferido nos arquivos oficiais de todas as seções, com script que refaz a conta. **Hipótese** é possível, mas não comprovado. **Pendente** ainda não foi conferido e fica sem número.
+Rótulos: **Fato** é conferido nos arquivos oficiais de todas as seções, com um programa que refaz a conta. **Hipótese** é possível, mas não comprovado. **Pendente** ainda não foi conferido e fica sem número.
 
 ## Em poucas palavras
 
@@ -34,7 +34,7 @@ De cada urna saem o **boletim de urna** (o placar da seção), o **registro digi
 
 **7. A liberação do eleitor sem digital depende só de pessoas.** **Fato.** No 2º turno, 15.884.298 votantes do Brasil (12,4%, sem o exterior) votaram sem a própria digital: ou a urna não tinha a digital deles e o mesário digitou título e ano de nascimento, ou a digital falhou e a mesa liberou à mão. 2.791.394 dessas liberações à mão ficaram no diário sem nenhum mesário ligado a elas. No exterior, todos os 380.612 votantes foram liberados sem digital. Nenhum arquivo registra quem estava na cabine. No pior caso aritmético, essa porta basta para inverter o resultado (margem de −11.119.111): isso mede o tamanho da porta, não é sinal de fraude. O teste estatístico que procurou uso dela a favor de um lado **não decide**. → [tópico 4](04-liberacao-dos-eleitores.md)
 
-**8. O certificado que confere as urnas antigas venceu antes da eleição.** **Fato.** O certificado é a "carteira de identidade" digital da urna. O certificado público da AC URNA, o "cartório digital" do TSE que confere as urnas de 2013 e 2015 (99.957 pacotes do 2º turno), venceu em 18/07/2026. **Fato** ([parecer 33](../analysis/cetico-revisor/33-h25-certificado-ac-urna.md)): a chave desse cartório continuou carimbando carteiras de urna depois do vencimento: 54 com início de validade entre 20/07 e 19/10/2026, usadas em 53 seções no 2º turno, cujos votos variaram como os das vizinhas. O TSE não publicou certificado renovado, e os arquivos não mostram se a totalização confere a validade: é um risco ([relatório temático](temas/certificado-ac-urna.md)). Além disso, um dos dois lacres da urna usa um método secreto do governo, que ninguém de fora confere. → [tópico 1](01-integridade-e-estrutura-dos-arquivos.md)
+**8. O certificado que confere as urnas antigas venceu antes da eleição.** **Fato.** O certificado é a "carteira de identidade" digital da urna. O certificado público da AC URNA, o "cartório digital" do TSE que confere as urnas de 2013 e 2015 (99.957 pacotes do 2º turno), venceu em 18/07/2026. **Fato:** a chave desse cartório continuou carimbando carteiras de urna depois do vencimento: 54 com início de validade entre 20/07 e 19/10/2026, usadas em 53 seções no 2º turno, cujos votos variaram como os das vizinhas. O TSE não publicou certificado renovado, e os arquivos não mostram se a totalização confere a validade: é um risco ([relatório temático](temas/certificado-ac-urna.md)). Além disso, um dos dois lacres da urna usa um método secreto do governo, que ninguém de fora confere. → [tópico 1](01-integridade-e-estrutura-dos-arquivos.md)
 
 **9. O diário público das urnas traz números de título de eleitor.** **Fato.** Quando o mesário interrompe a votação de um eleitor que demora na cabine, a urna grava no diário o número digitado. No dia do 1º turno, 55.483 linhas trazem 31.764 números com formato de título que não são de nenhum mesário, presidente de mesa ou servidor; no dia do 2º turno, 5.564 linhas e 3.801 números. **Hipótese:** é o título do próprio eleitor interrompido; confirmação **Pendente** (pergunta ao TSE). Não revela voto em candidato: a lista de votos não guarda a ordem em que as pessoas votaram (**Fato**, nos dois turnos). → [tópico 12](12-sigilo-do-voto.md)
 
@@ -54,7 +54,7 @@ De cada urna saem o **boletim de urna** (o placar da seção), o **registro digi
 
 ## Pendências e perguntas ao TSE
 
-**Pendente:** demais campos do 2º turno contra o resultado oficial ([tópico 5](05-soma-dos-boletins.md)); se a ordem de registro dos boletins dependeu do voto ([tópico 3](03-linha-do-tempo.md)); as hipóteses H15 a H24, registradas depois, cujos testes ainda não passaram pela revisão ([registro](../hipoteses.md)).
+**Pendente:** demais campos do 2º turno contra o resultado oficial ([tópico 5](05-soma-dos-boletins.md)); se a ordem de registro dos boletins dependeu do voto ([tópico 3](03-linha-do-tempo.md)); as hipóteses H15 a H24, registradas depois, cujos testes ainda não passaram pela revisão independente ([tópico 10](10-quadro-das-hipoteses.md)).
 
 **Perguntas ao TSE e aos TREs:** o certificado em vigor da AC URNA e os das autoridades raiz; de quem são os números de título gravados na interrupção do eleitor; quantos eleitores tinham digital carregada na urna, por seção; quantos eleitores de 100+ votaram no 2º turno; onde os boletins esperaram entre 17:10 e 19:03 do 2º turno; o motivo da troca de urnas entre as zonas 1 e 2 de Aracaju.
 
@@ -79,4 +79,4 @@ De cada urna saem o **boletim de urna** (o placar da seção), o **registro digi
 | H13 | Liberação sem digital ligada a voto no 13 no Nordeste | em teste | [tópico 4](04-liberacao-dos-eleitores.md) |
 | H14 | Urnas trocadas por reserva manipuladas | em teste | [tópico 11](11-urnas-reserva.md) |
 | H25 | Certificado vencido do cartório das urnas antigas | em teste | [relatório temático](temas/certificado-ac-urna.md) |
-| H15 a H24 | Registradas depois | **Pendente** | [registro](../hipoteses.md) |
+| H15 a H24 | Registradas depois | **Pendente** | [tópico 10](10-quadro-das-hipoteses.md) |

@@ -15,14 +15,14 @@ A perícia examinou os arquivos de **todas** as urnas do país, nos dois turnos,
 | **Total da lista oficial** | **499.248 de 499.248** | **499.248 de 499.248** |
 | Seções "agregadas" (votam na urna de outra seção) cobertas | 17.931 de 17.931 | 17.931 de 17.931 |
 
-Fonte: a lista oficial de seções do TSE (`data/raw/<turno>/config/*-cs.json`) cruzada, seção por seção, com a conferência de cada seção (`data/manifest/<turno>/cobertura/`). Nenhuma seção da lista ficou sem conferência e nenhuma apareceu em dobro. Detalhes técnicos no [doc 03](../03-coleta-bus-logs.md).
+Fonte: a lista oficial de seções do TSE, cruzada, seção por seção, com a conferência de cada seção. Nenhuma seção da lista ficou sem conferência e nenhuma apareceu em dobro. Cada número desta página foi recontado por uma segunda verificação independente, feita com programa próprio sobre todas as seções dos dois turnos.
 
 ## De onde vieram os arquivos
 
 O TSE publica os arquivos de duas formas:
 
 1. **Pacotes por estado.** Um arquivo compactado por UF e um para o exterior, com os arquivos de todas as urnas daquele lugar (28 pacotes por turno, com 124.135.876.999 bytes no 2º turno e 95.066.353.561 bytes no 1º).
-2. **Endereço de cada seção.** Uma pasta pública por seção, com a lista oficial do que deveria existir lá (o `aux.json`).
+2. **Endereço de cada seção.** Uma pasta pública por seção, com a lista oficial do que deveria existir lá (aqui chamada de **lista oficial da seção**).
 
 Os pacotes por estado foram usados por inteiro. O endereço de cada seção foi usado para buscar arquivos que faltavam nos pacotes e para baixar a lista oficial, que ainda não terminou (ver **Limites**).
 
@@ -48,14 +48,6 @@ Isso prova que cada arquivo é exatamente o que a nota fiscal da urna lista. Se 
 
 ## Limites
 
-- **Parcial:** a lista oficial de cada seção (`aux.json`), que diz qual pacote o TSE considerou, ainda está sendo baixada devagar, porque o site do TSE bloqueia acessos rápidos. No 2º turno ela ainda não chegou para todas as seções com urna (faltam seções de SP e de TO): **Pendente**, sem número até o download terminar. No 1º turno, a lista oficial foi baixada só para 1 seção com urna (a do MA citada acima) e para as 41 não instaladas. Onde ela ainda falta, a conferência usou a nota fiscal da própria urna, o que garante que os arquivos estão íntegros, mas ainda não confirma, pela palavra do TSE, que **o pacote publicado é o que o TSE totalizou**.
+- **Parcial:** a lista oficial de cada seção, que diz qual pacote o TSE considerou, ainda está sendo baixada devagar, porque o site do TSE bloqueia acessos rápidos. No 2º turno ela ainda não chegou para todas as seções com urna (faltam seções de SP e de TO): **Pendente**, sem número até o download terminar. No 1º turno, a lista oficial foi baixada só para 1 seção com urna (a do MA citada acima) e para as 41 não instaladas. Onde ela ainda falta, a conferência usou a nota fiscal da própria urna, o que garante que os arquivos estão íntegros, mas ainda não confirma, pela palavra do TSE, que **o pacote publicado é o que o TSE totalizou**.
 - Esta etapa diz que os arquivos estão completos e íntegros. **Não** diz se os votos dentro deles são legítimos. Isso é o assunto dos tópicos seguintes.
 
-## Como repetir
-
-```
-node src/coleta.js --turno 2          # baixa, extrai e confere (doc 03)
-node src/coleta.js --turno 1
-node scripts/auditoria/verifica-pericia-coleta.mjs --turno 2 --rehash   # recontagem independente deste tópico
-node scripts/auditoria/verifica-pericia-coleta.mjs --turno 1 --rehash
-```

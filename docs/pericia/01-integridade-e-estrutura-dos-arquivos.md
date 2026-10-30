@@ -6,11 +6,11 @@ Os arquivos que o TSE publica na internet são exatamente os que a urna gerou no
 
 ## Resposta curta
 
-**Fato (2º turno, país inteiro e exterior, revisado pelo cético no [parecer 24](../analysis/cetico-revisor/24-integridade-h04-h11.md)): sim.** Os pacotes das 499.207 seções com urna foram conferidos um a um. Em nenhum o arquivo mudou depois de assinado, e todos foram assinados por uma urna com "carteira de identidade" digital (certificado) emitida por uma das três autoridades do TSE para urnas. Resultado: **499.207 pacotes, 0 falha**. Mudar um único voto, ou um único sinal de um lacre, é detectado (seção "Prova de que o teste funciona").
+**Fato (2º turno, país inteiro e exterior, com revisão independente): sim.** Os pacotes das 499.207 seções com urna foram conferidos um a um. Em nenhum o arquivo mudou depois de assinado, e todos foram assinados por uma urna com "carteira de identidade" digital (certificado) emitida por uma das três autoridades do TSE para urnas. Resultado: **499.207 pacotes, 0 falha**. Mudar um único voto, ou um único sinal de um lacre, é detectado (seção "Prova de que o teste funciona").
 
 **1º turno (Fato, 30/10/2026):** 499.207 pacotes com as assinaturas conferidas, 0 falha de arquivo (ver "Assinaturas do 1º turno", abaixo). As impressões digitais dos arquivos do 1º turno já foram refeitas em todas as seções ([tópico 0](00-coleta-completa.md)).
 
-**Fato (2º turno, parecer 24):** ao ligar, a urna confere as assinaturas do próprio programa e anota o resultado no diário. Em 162 seções a urna anotou que uma dessas conferências falhou. Em nenhum desses casos a urna recebeu voto sem antes ser desligada e ligada de novo (seção "O que a urna anota sobre o próprio programa").
+**Fato (2º turno):** ao ligar, a urna confere as assinaturas do próprio programa e anota o resultado no diário. Em 162 seções a urna anotou que uma dessas conferências falhou. Em nenhum desses casos a urna recebeu voto sem antes ser desligada e ligada de novo (seção "O que a urna anota sobre o próprio programa").
 
 A explicação passo a passo usa uma seção de Vila Velha (ES), zona 55, seção 372, 2º turno de 25/10/2026, examinada em detalhe.
 
@@ -40,7 +40,7 @@ O pacote de lacres tem **duas listas** com os mesmos arquivos:
 1. Uma lista lacrada pelo **software de votação do TSE**, com um método de cálculo do governo (chamado CEPESC) que não é público.
 2. Outra lista lacrada pela **própria urna**, com um método público, acompanhada da "carteira de identidade" digital da urna (o certificado).
 
-A urna gerou **11 arquivos**, e o pacote lista os 11. O portal publica 4 deles: o boletim, o registro dos votos, o diário e o boletim impresso (`-imgbu.dat`, que vem no arquivo compactado por estado). Os outros 7 aparecem no pacote apenas com nome, tamanho, impressão digital e lacre. Entre eles estão as imagens das digitais dos eleitores e mesários, que são dados pessoais e por isso não são divulgadas.
+A urna gerou **11 arquivos**, e o pacote lista os 11. O portal publica 4 deles: o boletim, o registro dos votos, o diário e o boletim impresso (que vem no arquivo compactado por estado). Os outros 7 aparecem no pacote apenas com nome, tamanho, impressão digital e lacre. Entre eles estão as imagens das digitais dos eleitores e mesários, que são dados pessoais e por isso não são divulgadas.
 
 ## Como funciona a conferência
 
@@ -60,7 +60,7 @@ Os degraus 1 e 2 mostram que **nada mudou entre a nota fiscal e o arquivo baixad
 | Degrau | Conferência | Resultado | Rótulo |
 |---|---|---|---|
 | 1 | Impressão digital do pacote de lacres = código informado pelo portal | Igual | **Fato** |
-| 2 | Tamanho e impressão digital do Boletim de Urna, do Registro Digital do Voto, do boletim impresso (`-imgbu.dat`) e do diário = valores na nota fiscal | Iguais nas duas listas | **Fato** |
+| 2 | Tamanho e impressão digital do Boletim de Urna, do Registro Digital do Voto, do boletim impresso e do diário = valores na nota fiscal | Iguais nas duas listas | **Fato** |
 | 2 | Impressão digital de cada lista = valor anotado no cabeçalho dela | Igual nas duas listas | **Fato** |
 | 3 | Lacre da urna em cada um dos 11 arquivos da lista (inclusive os 7 não publicados) | 11 de 11 válidos | **Fato** |
 | 3 | Lacre da urna na lista inteira | Válido | **Fato** |
@@ -71,11 +71,11 @@ Os degraus 1 e 2 mostram que **nada mudou entre a nota fiscal e o arquivo baixad
 | 4 | A carteira estava dentro da validade no dia da eleição | Válida de 2022 a 2036 | **Fato** |
 | — | Lacre do software do TSE (método CEPESC) | Não verificável | **Limite** |
 
-O programa `src/lacres.js` faz 25 dessas conferências nesta seção (2 da carteira de identidade, 2 da lista da urna, 4 impressões digitais de arquivo, 11 lacres de arquivo e 6 da corrente do boletim), todas com resultado positivo, refeitas em 29/10/2026 nos dois turnos; a mesma contagem, 25 de 25, vale para a seção 364 da mesma zona, citada no tópico 4. As outras linhas da tabela (código do portal, tamanhos, lista do software e número da urna no boletim e no diário) são conferidas à parte, por `src/conferencia.js` e `scripts/auditoria/t15-integridade.mjs`, também com resultado positivo.
+O programa de conferência de lacres desta perícia faz 25 dessas conferências nesta seção (2 da carteira de identidade, 2 da lista da urna, 4 impressões digitais de arquivo, 11 lacres de arquivo e 6 da corrente do boletim), todas com resultado positivo, refeitas em 29/10/2026 nos dois turnos; a mesma contagem, 25 de 25, vale para a seção 364 da mesma zona, citada no tópico 4. As outras linhas da tabela (código do portal, tamanhos, lista do software e número da urna no boletim e no diário) são conferidas à parte, por programas separados, também com resultado positivo.
 
 ## O que foi conferido no país inteiro (2º turno)
 
-**Fato (revisado no [parecer 24](../analysis/cetico-revisor/24-integridade-h04-h11.md), item 1, "sustentada").** As mesmas conferências da seção de exemplo foram feitas em todos os pacotes do 2º turno, do Brasil e do exterior, por `scripts/auditoria/integridade-lacres.mjs`, que usa o mesmo verificador de `src/lacres.js`. O revisor cético recontou o resultado com um programa próprio, a partir das linhas de saída de cada pacote.
+**Fato (com revisão independente).** As mesmas conferências da seção de exemplo foram feitas em todos os pacotes do 2º turno, do Brasil e do exterior, com o mesmo verificador. A revisão independente recontou o resultado com um programa próprio, a partir do resultado de cada pacote.
 
 | O que foi conferido | Resultado |
 |---|---|
@@ -138,29 +138,29 @@ Por UF, 2º turno (o exterior aparece numa linha própria; os 29 pacotes do Sist
 | exterior | 1.310 | 0 | 1.310 | 0 |
 | **Total** | **499.207** | **399.250** | **99.957** | **0** |
 
-A tabela por UF vem da varredura (`integridade-resumo.mjs`, `resumo.json` → `teste1.porUf`); o total e a separação por modelo foram recontados pelo revisor. Dados: [graficos/dados/lacres-por-uf-2t.csv](graficos/dados/lacres-por-uf-2t.csv) e [lacres-por-modelo-2t.csv](graficos/dados/lacres-por-modelo-2t.csv).
+A tabela por UF vem da conferência de todos os pacotes; o total e a separação por modelo foram recontados pela revisão independente.
 
 ### Urnas antigas: carteira gravada com zeros a mais
 
-**Fato (parecer 24, itens 2 e 3).** Em 37.457 pacotes de urnas antigas (modelos 2013 e 2015), o programa da auditoria parava antes de conferir: a carteira da urna vem gravada num espaço de tamanho fixo, completado com zeros no fim, e o leitor não esperava esses zeros. Em palavras simples: em parte das urnas antigas, o certificado vem gravado num espaço fixo completado com zeros. O programa da auditoria precisou ignorar esses zeros para ler o certificado. Depois disso, todas passaram na conferência.
+**Fato.** Em 37.457 pacotes de urnas antigas (modelos 2013 e 2015), o programa da auditoria parava antes de conferir: a carteira da urna vem gravada num espaço de tamanho fixo, completado com zeros no fim, e o leitor não esperava esses zeros. Em palavras simples: em parte das urnas antigas, o certificado vem gravado num espaço fixo completado com zeros. O programa da auditoria precisou ignorar esses zeros para ler o certificado. Depois disso, todas passaram na conferência.
 
 - O que sobra depois da carteira é só zero, nos 37.457.
 - O corte muda só a forma de ler. A lista assinada e as assinaturas foram usadas byte a byte, sem alteração, e os 37.457 passaram por todas as conferências da tabela acima. Nenhum pacote oficial ficou sem conferência.
-- A sobra acompanha a carteira da urna, não o pacote: a mesma urna mostra a mesma sobra nos dois turnos (parecer 24, item 2).
+- A sobra acompanha a carteira da urna, não o pacote: a mesma urna mostra a mesma sobra nos dois turnos.
 - A seção do CE (zona 55, seção 160), deixada pendente no [tópico 9](09-padroes-estatisticos.md), é um desses pacotes, e passa depois do corte.
 - **Hipótese:** a urna grava a carteira num espaço de tamanho fixo. O tamanho da assinatura da carteira varia um pouco de urna para urna, e o que falta é completado com zeros.
-- Há também carteiras com **2** zeros a mais, que o leitor aceita sem avisar. A assinatura delas é conferida normalmente, e o teste de adulteração abaixo passou numa delas. Não é falha de segurança. Mas o programa deveria registrar essa sobra, e a correção está recomendada no parecer 24. A quantidade desses casos não entra aqui, porque o programa não a registra hoje.
+- Há também carteiras com **2** zeros a mais, que o leitor aceita sem avisar. A assinatura delas é conferida normalmente, e o teste de adulteração abaixo passou numa delas. Não é falha de segurança. Mas o programa deveria registrar essa sobra, e a correção foi recomendada na revisão independente. A quantidade desses casos não entra aqui, porque o programa não a registra hoje.
 
 ## Prova de que o teste funciona (contraprova)
 
-- **Fato (seção de exemplo).** Foi feita uma cópia do boletim com **um único voto a mais** (candidato 13 a Presidente passou de 96 para 97). O teste acusou três problemas: a impressão digital do arquivo deixou de bater com a nota fiscal, os elos da corrente de Presidente deixaram de bater e o último elo deixou de bater com o lacre. Também foi testado um lacre com um único sinal trocado: foi rejeitado. Esses testes ficam gravados junto com o programa e rodam sempre que ele é alterado (`node --test test/lacres.test.js test/ed521.test.js`: 14 de 14 passam, refeito pelo revisor no parecer 24).
-- **Fato (parecer 24, item 1).** O revisor alterou de propósito **um único bit** (a menor unidade de informação de um arquivo) em pacotes de cada tipo: urna 2020 e urna 2022 (método Ed521), urna 2015 e urna 2013 (método ECDSA) e um dos pacotes com zeros a mais na carteira. Em todos os cinco, o programa rejeitou a adulteração:
+- **Fato (seção de exemplo).** Foi feita uma cópia do boletim com **um único voto a mais** (candidato 13 a Presidente passou de 96 para 97). O teste acusou três problemas: a impressão digital do arquivo deixou de bater com a nota fiscal, os elos da corrente de Presidente deixaram de bater e o último elo deixou de bater com o lacre. Também foi testado um lacre com um único sinal trocado: foi rejeitado. Esses testes ficam gravados junto com o programa e rodam sempre que ele é alterado: 14 de 14 passam, também quando refeitos na revisão independente.
+- **Fato.** Na revisão independente, foi alterado de propósito **um único bit** (a menor unidade de informação de um arquivo) em pacotes de cada tipo: urna 2020 e urna 2022 (método Ed521), urna 2015 e urna 2013 (método ECDSA) e um dos pacotes com zeros a mais na carteira. Em todos os cinco, o programa rejeitou a adulteração:
   - lacre da lista alterado: 1 falha acusada;
   - carteira de identidade alterada: 1 falha acusada (a assinatura da autoridade deixa de conferir);
   - lacre do boletim alterado: 2 falhas acusadas.
 
   Portanto o "0 falha" do país não vem de um verificador que aprova qualquer coisa, em nenhum dos dois métodos de lacre.
-- **Conferência de confirmação.** O revisor sorteou pacotes do país e os conferiu de novo, um a um, com o programa público `node src/lacres.js`. O resultado foi o mesmo da varredura em todos eles.
+- **Conferência de confirmação.** Na revisão independente, foram sorteados pacotes do país e conferidos de novo, um a um, com o programa de conferência de uma seção, que é público. O resultado foi o mesmo da varredura em todos eles.
 
 ## O que a urna anota sobre o próprio programa (autoverificação)
 
@@ -168,17 +168,17 @@ Cada vez que é ligada (cada **inicialização**), a urna confere as assinaturas
 
 **Limite:** quem anota é o próprio programa que está sendo conferido. O diário, por sua vez, é um dos arquivos lacrados pela urna, e esse lacre foi conferido no país inteiro (seção acima).
 
-Fonte: [integridade-nacional/07](../analysis/integridade-nacional/07-autoverificacao-no-log.md), revisado no [parecer 24](../analysis/cetico-revisor/24-integridade-h04-h11.md), itens 10 a 13. Foram lidos os diários de todas as 499.207 seções do 2º turno, inclusive os diários guardados dentro do pacote (de uma urna substituída ou de uma preparação anterior da mesma urna): 512.173 diários, nenhum ilegível. O diário acumula tudo desde a preparação. Por isso, o diário do 2º turno também mostra o que aconteceu antes do 1º turno, se a urna não foi preparada de novo.
+Foram lidos os diários de todas as 499.207 seções do 2º turno (leitura conferida por revisão independente), inclusive os diários guardados dentro do pacote (de uma urna substituída ou de uma preparação anterior da mesma urna): 512.173 diários, nenhum ilegível. O diário acumula tudo desde a preparação. Por isso, o diário do 2º turno também mostra o que aconteceu antes do 1º turno, se a urna não foi preparada de novo.
 
 **Fato (2º turno):**
 
 - As 499.207 urnas do 2º turno registram a mesma versão de programa, 10.23.0.0, no boletim e em todo o diário.
 - Em **162 seções**, a urna anotou "ERRO" em alguma etapa dessa conferência: 181 anotações, entre 18/09 e 25/10/2026. 41 dessas anotações são da véspera ou do dia de uma das votações.
-- **Em nenhum desses casos a urna recebeu voto na mesma inicialização.** O revisor abriu o diário original de cada uma das 181 anotações e contou, entre o erro e o desligamento seguinte: 0 "urna pronta para receber votos" e 0 "voto computado".
+- **Em nenhum desses casos a urna recebeu voto na mesma inicialização.** Na revisão independente, o diário original de cada uma das 181 anotações foi aberto e, entre o erro e o desligamento seguinte, havia: 0 "urna pronta para receber votos" e 0 "voto computado".
 - Em 134 dessas seções, a mesma urna recebeu votos depois, numa nova inicialização, sem que o programa tivesse sido instalado de novo. Contando cada seção, urna e dia uma só vez: **31.892 votos em 127 seções no dia do 2º turno** e **24.422 votos em 103 seções no dia do 1º turno**. Esses votos estão nos boletins dessas seções, que passaram na conferência de assinaturas acima.
 - Quando o erro é num programa interno da urna, a mensagem anotada manda desligar a urna e instalar o programa de novo. O diário mostra que, nesses casos, a urna foi desligada, ligada de novo, passou na mesma etapa e votou normalmente, sem nova instalação.
-- **842 seções** do 2º turno têm no diário ao menos uma mensagem de erro sobre assinatura ou integridade. Dessas, 162 são as que têm a falha registrada numa etapa da conferência do programa (acima). As demais são mensagens de outros tipos, por exemplo falha de leitura de um cartão de memória, ou cartão de resultado com assinatura que não confere, quando a urna pede outro cartão. Os dois números saem de `scripts/auditoria/cetico-integridade-casos.mjs`.
-- Em 26 urnas que trocaram o cartão de votação (o cartão de memória onde a urna grava os votos) no próprio dia, a conferência daquela inicialização não incluiu o arquivo da seção no cartão novo (parecer 24, item 13).
+- **842 seções** do 2º turno têm no diário ao menos uma mensagem de erro sobre assinatura ou integridade. Dessas, 162 são as que têm a falha registrada numa etapa da conferência do programa (acima). As demais são mensagens de outros tipos, por exemplo falha de leitura de um cartão de memória, ou cartão de resultado com assinatura que não confere, quando a urna pede outro cartão. Os dois números foram contados na revisão independente.
+- Em 26 urnas que trocaram o cartão de votação (o cartão de memória onde a urna grava os votos) no próprio dia, a conferência daquela inicialização não incluiu o arquivo da seção no cartão novo.
 
 **Fato (1º turno, varredura própria dos pacotes do 1º turno):** 146 anotações de "ERRO" em 128 seções, 22 delas na véspera ou no dia (03 e 04/10). Em nenhuma a urna recebeu voto na mesma inicialização. Depois do erro, 103 seções votaram em nova inicialização: 24.422 votos em 04/10, o mesmo número medido pelos pacotes do 2º turno. As duas varreduras conferem entre si.
 
@@ -189,7 +189,7 @@ Fonte: [integridade-nacional/07](../analysis/integridade-nacional/07-autoverific
 - Depois do erro, o único controle é a conferência seguinte, feita pelo mesmo programa.
 - Isso não é prova de fraude: os boletins dessas seções estão assinados e conferidos.
 
-**O que aconteceu depois de cada erro (Fato, [integridade-nacional/07](../analysis/integridade-nacional/07-autoverificacao-no-log.md), sustentado no parecer 24, item 10):**
+**O que aconteceu depois de cada erro (Fato, com revisão independente):**
 
 ![O que aconteceu depois de cada erro anotado na autoverificação](graficos/autoverificacao-depois-do-erro.svg)
 
@@ -233,69 +233,41 @@ Anotações de erro por UF (nenhuma no AC, no TO e no exterior):
 | SP | 24 | 20 |
 | **Total** | **181** | **146** |
 
-Casos concretos, com o diário original (`integridade-nacional/07`): SP 71072/0353/0853, erro num programa interno às 07:35:08 de 04/10, mesma etapa com SUCESSO às 07:39:15 e urna pronta às 08:00:02; SP 71072/0246/0151, erro às 10:25:46 de 24/10 e SUCESSO às 10:29:21. A lista completa, um evento por linha, está em `data/parsed/auditoria/integridade/2t/autoverificacao-depois.json` → `casos`. Dados dos gráficos: [graficos/dados/autoverificacao-destino.csv](graficos/dados/autoverificacao-destino.csv) e [autoverificacao-por-uf.csv](graficos/dados/autoverificacao-por-uf.csv).
+Casos concretos, conferidos no diário original: SP 71072/0353/0853, erro num programa interno às 07:35:08 de 04/10, mesma etapa com SUCESSO às 07:39:15 e urna pronta às 08:00:02; SP 71072/0246/0151, erro às 10:25:46 de 24/10 e SUCESSO às 10:29:21. A lista completa, um evento por linha, e os dados dos gráficos estão no índice técnico.
 
 **Pendente:**
 
 - O significado dos códigos de erro anotados (a pedir ao TSE).
-- A contagem de todas as inicializações de votação e das etapas de cada uma. Ela depende de uma varredura feita por um só programa e fica sem número até ser refeita por um segundo (parecer 24, item 13).
+- A contagem de todas as inicializações de votação e das etapas de cada uma. Ela depende de uma varredura feita por um só programa e fica sem número até ser refeita por um segundo.
 
 **Prova de que o teste funciona.** A leitura acha as falhas quando elas existem: são as 181 anotações acima. O teste "nenhum voto na mesma inicialização" também é capaz de acusar: na primeira versão, ele apontou 2 casos (BA 33138/0163/0417 e SP 63096/0038/0169). No diário original, havia um religamento entre o erro e a "urna pronta", que a primeira versão não reconhecia. Corrigido o programa, o resultado foi 0.
 
 ## 1º turno
 
-**Fato (30/10/2026).** No 1º turno, as assinaturas dos 499.207 pacotes também foram conferidas, sem nenhuma falha de arquivo. Em 37.440 deles (urnas de 2013 e 2015) o certificado tem bytes zero a mais no fim; conferidos com o certificado cortado no lugar certo, os 37.440 passam. Uma recontagem independente, com código do revisor cético, chegou aos mesmos números ([parecer 24](../analysis/cetico-revisor/24-integridade-h04-h11.md), item 4, previu os 37.440). O único caso fora do padrão é o já conhecido boletim impresso de MG 50075/0047/0041, publicado fora da lista lacrada. Comandos: `node scripts/auditoria/integridade-lacres.mjs --turno 1`, `node scripts/auditoria/integridade-reverificar.mjs --turno 1` e `node scripts/auditoria/cetico-integridade-recontagem.mjs --turno 1 --dir data/parsed/auditoria/integridade/1t`.
+**Fato (30/10/2026).** No 1º turno, as assinaturas dos 499.207 pacotes também foram conferidas, sem nenhuma falha de arquivo. Em 37.440 deles (urnas de 2013 e 2015) o certificado tem bytes zero a mais no fim; conferidos com o certificado cortado no lugar certo, os 37.440 passam. Uma recontagem independente, com programa próprio, chegou aos mesmos números, e a revisão independente do 2º turno tinha previsto os 37.440. O único caso fora do padrão é o já conhecido boletim impresso de MG 50075/0047/0041, publicado fora da lista lacrada.
 
-- **Fato (parecer 24, item 4).** No pacote do 1º turno da seção MG 50075/0047/0041 (apuração mista, com o Sistema de Apuração), o boletim impresso (`imgbu.dat`) foi publicado sem estar na lista lacrada. **Pendente:** conferir se o conteúdo dele bate com o boletim assinado.
+- **Fato.** No pacote do 1º turno da seção MG 50075/0047/0041 (apuração mista, com o Sistema de Apuração), o boletim impresso foi publicado sem estar na lista lacrada. **Pendente:** conferir se o conteúdo dele bate com o boletim assinado.
 - **Limite do 1º turno:** o TSE não publica, para o 1º turno, o arquivo que indica qual pacote foi totalizado em cada seção. O pacote é identificado pela etiqueta (impressão digital do pacote de lacres), e isso não prova, sozinho, que o pacote no disco é o que o TSE totalizou.
 
-## Como a conferência foi feita, e como repetir
+## Como a conferência foi feita
 
 - O método é o mesmo dos programas de exemplo que o próprio TSE publica junto com a especificação dos arquivos (pacote "Formato dos arquivos de BU, RDV e assinatura digital").
 - As impressões digitais usam os cálculos padrão chamados SHA-256 e SHA-512, usados no mundo todo.
 - Os lacres das urnas novas (2020 e 2022) usam um método chamado **Ed521**, uma variante de um padrão internacional de assinatura digital, adotada também pela ICP-Brasil (a infraestrutura oficial de certificados digitais do país). As ferramentas mais comuns (como o OpenSSL) ainda não trazem esse método, então ele foi programado para esta perícia e testado com exemplos de resultado conhecido, publicados pelos autores da biblioteca que o próprio TSE usa. Um desses exemplos é o certificado raiz da ICP-Brasil. Os lacres das urnas antigas (2013 e 2015) usam o método ECDSA, que é padrão e está nas ferramentas comuns.
-- Qualquer pessoa pode repetir numa seção: `node src/lacres.js <pasta da seção>`. O programa e os testes estão no repositório.
-- Cada verificação feita para este relatório está registrada no [livro de evidências](evidencias/README.md): o comando, o programa exato usado e a impressão digital do resultado. A lista de todos os arquivos analisados, com a impressão digital de cada um, está em `evidencias/indice/`.
+- O programa de conferência e os seus testes estão no índice técnico separado; com eles, qualquer pessoa pode repetir a conferência numa seção.
+- Cada verificação feita para este relatório está registrada num livro de evidências técnico, separado deste relatório, com o programa usado e a impressão digital de cada arquivo analisado e de cada resultado.
 
-País inteiro, 2º turno (a primeira linha leva horas):
-
-```
-node scripts/auditoria/integridade-lacres.mjs --turno 2 --procs 10 --refazer     # confere todos os pacotes
-node scripts/auditoria/integridade-reverificar.mjs --turno 2 --cli 20            # os 37.457 com zeros a mais na carteira
-node scripts/auditoria/integridade-resumo.mjs --turno 2                          # totais
-
-# revisão cética (parecer 24)
-node scripts/auditoria/cetico-integridade-recontagem.mjs --turno 2               # recontagem independente
-node scripts/auditoria/cetico-integridade-controle.mjs                           # 1 bit alterado em cada tipo de pacote
-node --test test/lacres.test.js test/ed521.test.js                               # testes do verificador
-
-# autoverificação do programa
-node scripts/auditoria/integridade-autoverificacao.mjs --turno 2 --procs 8
-node scripts/auditoria/integridade-autoverificacao-depois.mjs --turno 2
-node scripts/auditoria/integridade-autoverificacao.mjs --turno 1 --procs 8
-node scripts/auditoria/integridade-autoverificacao-depois.mjs --turno 1 --dir data/parsed/auditoria/integridade/1t-identificadores
-node scripts/auditoria/cetico-integridade-boot-do-erro.mjs --turno 2             # nenhum voto na inicialização do erro
-node scripts/auditoria/cetico-integridade-boot-do-erro.mjs --turno 1
-node scripts/auditoria/cetico-integridade-casos.mjs                              # 162 e 842 seções
-
-# tabelas e gráficos deste tópico (só leem as saídas acima e conferem as somas)
-node scripts/auditoria/grafico-integridade-dados.mjs                             # CSVs em docs/pericia/graficos/dados/
-node scripts/auditoria/grafico-integridade.mjs                                   # SVGs em docs/pericia/graficos/
-```
-
-Saídas em `data/parsed/auditoria/integridade/2t/` e `data/parsed/auditoria/cetico/`. Método detalhado em [integridade-nacional/01](../analysis/integridade-nacional/01-metodo.md) e [02](../analysis/integridade-nacional/02-lacres-h04-2turno.md).
-
-Fonte dos arquivos: `resultados.tse.jus.br`, baixados em 29/10/2026, com registro de cada download (endereço, data, tamanho e impressão digital). Detalhes técnicos em [../06-leitura-bu-rdv-log.md](../06-leitura-bu-rdv-log.md).
+Fonte dos arquivos: `resultados.tse.jus.br`, baixados em 29/10/2026, com registro de cada download (endereço, data, tamanho e impressão digital).
 
 ## Limites desta conferência
 
 1. **O lacre do software do TSE não pode ser conferido por terceiros.** Ele usa um método de cálculo do governo (CEPESC) que não é publicado. O próprio TSE informa isso na especificação. A impressão digital dessa lista confere; o lacre em si, não há como checar de fora. O lacre da urna, que é público, foi conferido.
 2. **A carteira de identidade foi conferida até a autoridade intermediária.** As carteiras das urnas são assinadas pela "AC UE2020", pela "AC UE2022" ou pela "AC URNA", e essas assinaturas foram conferidas. Essas autoridades, por sua vez, são assinadas por outras autoridades do TSE, até uma autoridade raiz. Os certificados de cima não estão disponíveis para download automático no site do TSE. Os certificados usados (das autoridades intermediárias) vieram do pacote oficial de exemplos do TSE.
-3. **O certificado público da AC URNA venceu antes da eleição, e a chave dele continuou em uso.** Ele é o que confere as carteiras das urnas 2013 e 2015 (99.957 pacotes do 2º turno) e vale até 18/07/2026 ([integridade-nacional/02](../analysis/integridade-nacional/02-lacres-h04-2turno.md)).
-   - **Fato ([parecer 33](../analysis/cetico-revisor/33-h25-certificado-ac-urna.md), todos os pacotes dos dois turnos):** 54 carteiras de urnas 2013 e 2015 têm início de validade entre 20/07 e 19/10/2026 e foram carimbadas pela chave desse certificado. Todas apontam para o certificado vencido. As urnas com essas carteiras votaram em 53 seções no 2º turno e em 45 no 1º; duas foram carimbadas entre os turnos, em 18 e 19/10.
-   - **Fato (parecer 33):** os números de série dessas carteiras seguem a mesma sequência crescente das emitidas antes, no mesmo ritmo, e nos mesmos dias as autoridades das urnas novas também emitiram. Isso indica o mesmo sistema emissor e que as datas são as reais. Só o registro da autoridade, que está com o TSE, prova.
-   - **Fato (parecer 33):** os votos das 53 seções do 2º turno com essas carteiras mudaram entre os turnos como os das vizinhas do mesmo local: +0,13 ponto na parcela do 13, 13 votos ao todo, dentro do acaso.
-   - **Fato (parecer 33):** com o certificado publicado, o verificador usual recusa as 99.957 seções do 2º turno com urna antiga, e os votos delas estão no resultado oficial. Os arquivos públicos não mostram se a totalização confere esses certificados, nem com qual certificado da AC URNA.
+3. **O certificado público da AC URNA venceu antes da eleição, e a chave dele continuou em uso.** Ele é o que confere as carteiras das urnas 2013 e 2015 (99.957 pacotes do 2º turno) e vale até 18/07/2026.
+   - **Fato (todos os pacotes dos dois turnos):** 54 carteiras de urnas 2013 e 2015 têm início de validade entre 20/07 e 19/10/2026 e foram carimbadas pela chave desse certificado. Todas apontam para o certificado vencido. As urnas com essas carteiras votaram em 53 seções no 2º turno e em 45 no 1º; duas foram carimbadas entre os turnos, em 18 e 19/10.
+   - **Fato:** os números de série dessas carteiras seguem a mesma sequência crescente das emitidas antes, no mesmo ritmo, e nos mesmos dias as autoridades das urnas novas também emitiram. Isso indica o mesmo sistema emissor e que as datas são as reais. Só o registro da autoridade, que está com o TSE, prova.
+   - **Fato:** os votos das 53 seções do 2º turno com essas carteiras mudaram entre os turnos como os das vizinhas do mesmo local: +0,13 ponto na parcela do 13, 13 votos ao todo, dentro do acaso.
+   - **Fato:** com o certificado publicado, o verificador usual recusa as 99.957 seções do 2º turno com urna antiga, e os votos delas estão no resultado oficial. Os arquivos públicos não mostram se a totalização confere esses certificados, nem com qual certificado da AC URNA.
    - **Risco:** o TSE não publicou um certificado renovado da AC URNA, e as carteiras de julho a outubro ainda apontam para o vencido. Detalhes, gráficos e as perguntas ao TSE estão no relatório temático [O certificado vencido da AC URNA](temas/certificado-ac-urna.md).
 4. **O pacote oficial foi obtido de uma cópia pública**, porque o site do TSE bloqueia download automático. A cópia tem a mesma impressão digital registrada de forma independente por outro projeto de auditoria. Falta baixar o pacote direto do site do TSE, pelo navegador, e comparar.
 5. **O lacre prova quem assinou, não quem a autoridade certificou.** A conferência prova que o arquivo foi assinado por quem tem uma chave certificada por essas três autoridades. Não prova que elas só certificaram urnas verdadeiras.
@@ -308,12 +280,12 @@ Fonte dos arquivos: `resultados.tse.jus.br`, baixados em 29/10/2026, com registr
 |---|---|---|
 | ES · Vila Velha · zona 55 · seções 364 e 372, nos dois turnos | 2 | 25 de 25 conferências positivas em cada seção e turno |
 | AC · todas as seções com urna | 2.270 (3.310 cópias de pacotes, porque 1.040 seções foram baixadas por dois caminhos) | Todas as conferências positivas, em todas as cópias |
-| **Brasil e exterior · 2º turno · todas as seções com urna** | **499.207** | **0 falha** (revisado no parecer 24) |
+| **Brasil e exterior · 2º turno · todas as seções com urna** | **499.207** | **0 falha** (com revisão independente) |
 | Brasil e exterior · 1º turno | 499.207 | 0 falha de arquivo |
 
 ## Próximos passos
 
-- [x] Rodar a conferência dos lacres em todas as seções do país, 2º turno (parecer 24).
+- [x] Rodar a conferência dos lacres em todas as seções do país, 2º turno.
 - [x] Conferir urnas de modelo antigo (2013/2015), que usam o método ECDSA: 99.957 pacotes do 2º turno, 0 falha.
 - [x] Conferência dos lacres do 1º turno no país inteiro: 499.207 pacotes, 0 falha de arquivo (30/10/2026).
 - [ ] **Pendente.** Conferir se o boletim impresso de MG 50075/0047/0041 (1º turno), publicado fora da lista lacrada, bate com o boletim assinado.
