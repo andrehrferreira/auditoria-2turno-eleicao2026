@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 284" width="760" height="284" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Para onde a reserva foi carregada: troca nova × reserva herdada</title><desc id="desc">Parte das reservas cuja carga gravou município ou zona diferentes dos da seção onde votaram. Carga gravada para outro município: Troca nova por reserva 18,59% (524 de 2.818); Reserva herdada do 1º turno 18,01% (521 de 2.893). Carga gravada para outra zona eleitoral: Troca nova por reserva 4,44% (125 de 2.818); Reserva herdada do 1º turno 1,56% (45 de 2.893)</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}.s2{fill:#9a9993}.liga{stroke:#9a9993}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.s0{fill:#3987e5}.s1{fill:#d95926}.s2{fill:#8a8984}.liga{stroke:#6d6c66}}
+</style>
+<rect class="fundo" width="760" height="284" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Para onde a reserva foi carregada: troca nova × reserva herdada</text>
+<text class="t2" x="20" y="52" font-size="13">Parte das reservas cuja carga gravou município ou zona diferentes dos da seção onde votaram.</text>
+<rect class="s0" x="20" y="70" width="12" height="12" rx="2"/><text class="t1" x="38" y="81" font-size="13">Troca nova por reserva</text>
+<rect class="s1" x="208.4" y="70" width="12" height="12" rx="2"/><text class="t1" x="226.4" y="81" font-size="13">Reserva herdada do 1º turno</text>
+<line class="grade" x1="300" x2="300" y1="94" y2="196" stroke-width="1"/>
+<text class="t2" x="300" y="212" font-size="12" text-anchor="middle">0%</text>
+<line class="grade" x1="372.5" x2="372.5" y1="94" y2="196" stroke-width="1"/>
+<text class="t2" x="372.5" y="212" font-size="12" text-anchor="middle">5%</text>
+<line class="grade" x1="445" x2="445" y1="94" y2="196" stroke-width="1"/>
+<text class="t2" x="445" y="212" font-size="12" text-anchor="middle">10%</text>
+<line class="grade" x1="517.5" x2="517.5" y1="94" y2="196" stroke-width="1"/>
+<text class="t2" x="517.5" y="212" font-size="12" text-anchor="middle">15%</text>
+<line class="grade" x1="590" x2="590" y1="94" y2="196" stroke-width="1"/>
+<text class="t2" x="590" y="212" font-size="12" text-anchor="middle">20%</text>
+<line class="eixo" x1="300" x2="300" y1="94" y2="196" stroke-width="1"/>
+<text class="t1" x="290" y="115.5" font-size="13" text-anchor="end">Carga gravada para</text>
+<text class="t1" x="290" y="130.5" font-size="13" text-anchor="end">outro município</text>
+<path class="s0" d="M300,100h265.55500000000006a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-265.55500000000006z"/>
+<text class="t1" x="575.5550000000001" y="112.5" font-size="12">18,59% (524 de 2.818)</text>
+<path class="s1" d="M300,120h257.145a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-257.145z"/>
+<text class="t1" x="567.145" y="132.5" font-size="12">18,01% (521 de 2.893)</text>
+<text class="t1" x="290" y="171.5" font-size="13" text-anchor="end">Carga gravada para</text>
+<text class="t1" x="290" y="186.5" font-size="13" text-anchor="end">outra zona eleitoral</text>
+<path class="s0" d="M300,156h60.379999999999995a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-60.379999999999995z"/>
+<text class="t1" x="370.38" y="168.5" font-size="12">4,44% (125 de 2.818)</text>
+<path class="s1" d="M300,176h18.620000000000005a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-18.620000000000005z"/>
+<text class="t1" x="328.62" y="188.5" font-size="12">1,56% (45 de 2.893)</text>
+<text class="t2" x="445" y="232" font-size="12.5" text-anchor="middle">Reservas do grupo (%)</text>
+<text class="t2" x="20" y="254" font-size="12">Nas 491.489 seções sem troca, as duas contas dão 0. Todas as reservas com carga de outra zona são do mesmo estado da seção.</text>
+<text class="t2" x="20" y="272" font-size="11">Fonte: boletins e diários de todas as urnas, dois turnos; parecer cético 30 (docs/analysis/cetico-revisor/30-h14-urnas-reserva.md).</text>
+</svg>

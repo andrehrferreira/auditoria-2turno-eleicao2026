@@ -1,0 +1,5 @@
+sinal,troca_nova_secoes,troca_nova_total,troca_nova_pct,controle_secoes,controle_total,controle_pct,herdada_secoes,herdada_total,herdada_pct
+Pacote com lacre quebrado,0,2818,0,0,491489,0,0,2893,0
+Inicialização de votação com etapa de verificação sem SUCESSO,0,2818,0,0,491489,0,0,2893,0
+Mensagem de erro de assinatura no diário da urna que votou,6,2818,0.21,767,491489,0.16,4,2893,0.14
+Relógio que voltou sem ajuste registrado (diário da urna que votou),114,2818,4.05,21634,491489,4.4,151,2893,5.22
