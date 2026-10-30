@@ -17,7 +17,7 @@ Cada urna grava três registros da mesma votação: o boletim (o placar), o regi
 
 **Fato (1º turno, país inteiro):** o boletim e o registro dos votos são iguais em todas as seções e em todos os cargos (2.490.805 comparações, 0 diferença), conferido por uma segunda verificação independente ([tópico 13](13-mesa-e-sessao-do-eleitor.md)).
 
-**Pendente (1º turno):** as demais contas internas do boletim (C3 a C6) ainda não foram refeitas no país inteiro; por ser parcial, o resultado não entra neste relatório. A comparação do diário com o boletim (C2) foi feita no país inteiro (acima), e a do boletim com o resultado oficial, em todos os cargos, está no [tópico 5](05-soma-dos-boletins.md).
+**Fato (1º turno, país inteiro, conferido por uma segunda verificação independente):** as contas internas do boletim (C3 a C6) fecham em todos os 499.207 boletins: 0 falha em 2.490.805 combinações de seção e cargo. 1.312 seções ficam fora da conta das formas de liberação porque o boletim delas não traz essa informação (1.281 urnas do exterior e 31 seções apuradas em cédula). **Risco registrado:** 789 votos de cédula no exterior e 40 em MG não têm nenhum registro eletrônico de quem foi liberado para votar, e no exterior 340.977 eleitores foram liberados só pelo número do título e o ano de nascimento (seção "O que foi encontrado: 1º turno"). A comparação do boletim com o resultado oficial, em todos os cargos, está no [tópico 5](05-soma-dos-boletins.md).
 
 O que este resultado **não** prova: que quem votou era de fato o eleitor. Um voto dado por outra pessoa no lugar de um eleitor ausente gera boletim, registro e diário coerentes entre si. Esse ponto fica no tópico 4.
 
@@ -41,6 +41,8 @@ Termos usados abaixo:
 - **Mídia de votação (MV):** o cartão de memória onde a urna grava os votos. Na troca por urna reserva, ela passa da urna com defeito para a reserva.
 - **Mídia externa (ME):** o cartão onde a urna também grava o próprio diário.
 - **Sistema de Apuração (SA):** usado quando não há urna funcionando; a junta eleitoral digita o resultado de cédulas de papel.
+- **Junta eleitoral:** o grupo de pessoas nomeado pela Justiça Eleitoral para apurar os votos que não saem direto da urna, como os de cédula de papel.
+- **Boletim impresso:** o texto do boletim que a urna imprime no fim do dia e que fica afixado na porta da seção. O TSE o publica junto com o arquivo digital do boletim. Os dois saem da mesma urna, com os mesmos totais, como a via impressa e o arquivo de um mesmo extrato bancário.
 - **Recuperador de Dados (RED):** programa que um técnico usa para gerar o boletim a partir da mídia de votação de uma urna que não conseguiu gerá-lo.
 - **Número de série:** o número de fábrica que identifica cada urna e cada cartão de memória. No boletim, o número do cartão de votação aparece com o nome "FV".
 - **Mídia de resultado (MR):** o cartão de memória em que a urna grava o resultado no fim do dia, para levá-lo ao cartório.
@@ -190,9 +192,73 @@ Duas leituras do risco:
 
 **Fato.** No 2º turno, 5.714 seções usaram urna reserva. As 2 seções com votos sem nenhuma linha no diário (MA e BA) e a RS 89060/0017/0191 estão entre elas.
 
-## O que foi encontrado: 1º turno (parcial)
+## O que foi encontrado: 1º turno
 
-**Pendente.** O 1º turno ainda não foi conferido no país inteiro, salvo o C2. As comparações C1 e C3 a C6 foram feitas só em parte das UFs, e os números parciais ficam fora deste relatório. Desde 29/10/2026 (10h50 UTC), a base de dados desta perícia já tem os boletins, os registros dos votos e os diários do 1º turno nas 28 UFs; a conta ainda não foi refeita.
+O boletim × registro dos votos (C1) e o diário × boletim (C2) do 1º turno estão na resposta curta e na seção "Votos do boletim sem rastro completo no diário". Abaixo, as contas internas do boletim (C3 a C6).
+
+### Contas internas do boletim, país inteiro
+
+**Fato (1º turno, 28 unidades: 26 estados, DF e exterior; 499.207 seções com boletim, todos os cargos; conferido por uma segunda verificação independente).** Conferimos as contas internas de todos os boletins, em todos os cargos (2.490.805 combinações de seção e cargo). Nenhuma falhou:
+
+- em cada cargo, a soma dos votos é igual ao número de eleitores que votaram (no Senador, o dobro, porque eram duas vagas);
+- os eleitores aptos de cada seção são os do cadastro da seção mais os eleitores em trânsito;
+- quem votou foi liberado de um só jeito (digital, dados pessoais, ou sem digital cadastrada), e a soma das três formas é igual ao comparecimento, nas 497.895 seções cujo boletim traz essa informação;
+- o número de quem votou é o mesmo em todo o boletim: para Presidente, Governador, Senador e Deputados. Onde há diferença, ela é só de eleitores em trânsito vindos de outro estado, que votam só para Presidente (165.584 pessoas em 17.233 seções).
+
+| Conta | Comparações feitas | Com diferença |
+|---|---:|---:|
+| C3 soma dos votos × quantos votaram | 2.490.805 (seção × cargo) | **0** |
+| C4 aptos = seção + trânsito | 997.114 (seção × eleição: federal, estadual e a consulta popular de PE) | **0** |
+| C5 formas de liberação × quantos votaram | 497.895 seções | **0** |
+| C6 quantos votaram na seção × na eleição federal | 499.176 seções | **0** |
+| C6 eleição estadual: o mesmo número de votantes para Governador, Senador e Deputados | 497.897 seções | **0** |
+| Eleitores em trânsito: os que votaram só para Presidente não passam dos aptos só para Presidente | 497.897 seções | **0** |
+
+**C3, cargo a cargo (Fato).** "Votos somados" é a soma de votos em candidato, votos de legenda, brancos e nulos do cargo.
+
+| Cargo | Seções | Quantos votaram | Votos somados | Diferença |
+|---|---:|---:|---:|---:|
+| Presidente | 499.207 | 125.275.835 | 125.275.835 | 0 |
+| Governador | 497.897 | 124.768.485 | 124.768.485 | 0 |
+| Senador (2 vagas) | 497.897 | 124.768.485 | 249.536.970 (o dobro) | 0 |
+| Dep. federal | 497.897 | 124.768.485 | 124.768.485 | 0 |
+| Dep. estadual | 490.928 | 122.950.564 | 122.950.564 | 0 |
+| Dep. distrital (DF) | 6.969 | 1.817.921 | 1.817.921 | 0 |
+| Consulta popular (PE) | 10 | 2.445 | 2.445 | 0 |
+| **Total** | **2.490.805** | | | **0** |
+
+Presidente tem mais votantes que Governador porque todas as 1.310 seções do exterior com boletim votam só para Presidente, e porque o eleitor em trânsito vindo de outro estado vota só para Presidente.
+
+### O que ficou de fora de alguma conta, e por quê
+
+**Fato.** Ficam fora da conta das formas de liberação (C5) 1.312 seções:
+
+| Onde | Seções | Por quê |
+|---|---:|---|
+| Exterior, urna eletrônica | 1.281 | No exterior a urna não usa digital, e o boletim não traz as três formas de liberação. O diário dessas seções registra 340.977 votos, todos com o eleitor liberado pelo número do título e o ano de nascimento digitados pelo mesário, e nenhum por digital; 340.977 é exatamente a soma de quantos votaram nos boletins delas |
+| Exterior, cédula de papel apurada pela junta eleitoral | 29 | Não há liberação de eleitor na urna |
+| MG, apuração em parte por urna e em parte por cédula | 2 | O boletim refeito pela junta não traz as formas de liberação (detalhe abaixo) |
+
+**Fato.** As 31 seções apuradas pela junta (29 do exterior e 2 de MG) ficam fora do C6 "seção × eleição federal": o boletim delas grava 0 votantes na seção e traz o número só por eleição. Por isso, no país, a soma dos votantes das seções (125.274.487) é 1.348 menor que a soma dos votantes da eleição federal (125.275.835). Os 1.348 são exatamente os votantes dessas 31 seções: 789 no exterior e 559 nas 2 de MG. Nas 2 de MG, o número de votantes é o mesmo para todos os cargos da eleição estadual (281 numa, 278 na outra).
+
+**As 2 seções de MG (Fato).**
+
+- **MG 50075/0047/0041:** o pacote publicado tem dois boletins impressos. O da urna registra 258 votantes, e as três formas de liberação fecham: 171 por digital, 22 por dados pessoais e 65 sem digital cadastrada, 258 ao todo. O da junta registra 278 votantes. A diferença, 20 votos, são as cédulas de papel digitadas pela junta. O diário da urna dessa seção não está no pacote (só o da junta), e por isso os 258 votos da urna também não puderam ser conferidos contra o diário. O boletim impresso da urna dessa seção é o que foi publicado fora da lista lacrada ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)).
+- **MG 41238/0039/0168:** só foi publicado o boletim da junta (281 votantes, dos quais 20 de cédula), sem as formas de liberação.
+
+**Risco registrado, não é falha de conta.** Nas seções apuradas em cédula, os votos de papel não têm nenhum registro eletrônico de quem foi liberado para votar: **789 votos em 29 seções do exterior e 40 votos em 2 seções de Minas Gerais**. No exterior, a liberação por título e ano de nascimento (**340.977 eleitores** no 1º turno) depende só do mesário. Por princípio, esta perícia não aceita conferência feita por pessoa como garantia (princípio 8).
+
+### Como sabemos que a conferência funciona (1º turno)
+
+- **Fato.** As contas foram feitas duas vezes, por caminhos diferentes: a partir do arquivo digital do boletim e a partir do texto do boletim impresso pela urna, publicado no mesmo pacote. Os dois deram os mesmos números em todas as 499.207 seções, e a leitura que a auditoria fez dos boletins é igual ao texto impresso em todos os campos usados nessas contas.
+- **Fato.** Alteramos de propósito, na memória do computador e sem mudar nenhum arquivo, um número em quatro boletins de seções do AC: um voto a mais, um eleitor apto a mais, uma liberação a mais e um votante a mais. Cada uma das contas C3, C4, C5 e C6 (seção × eleição federal) acusou exatamente o boletim alterado.
+- **Pendente.** A conta da eleição estadual (o mesmo número de votantes em todos os cargos) e a dos eleitores em trânsito ainda não têm uma contraprova própria, com alteração feita de propósito. Elas foram refeitas a partir do boletim impresso, com os mesmos resultados.
+
+### O que isto não prova
+
+- São contas do boletim sobre si mesmo. Um voto inventado e registrado de forma completa (eleitor liberado, voto em todos os cargos) passa em todas. A defesa contra isso é o diário da urna e a digital (seção "Votos do boletim sem rastro completo no diário" e tópico 4).
+- No boletim da urna, o número de votantes da eleição estadual não é impresso à parte: a conta de Governador fecha por definição. O que a conta de fato testa é que Senador (o dobro), Deputados e Presidente batem com Governador, e que cada bloco do boletim soma certo.
+- O boletim impresso e o arquivo digital saem da mesma urna, com os mesmos totais. Conferir um com o outro mostra que a leitura feita pela auditoria é fiel; não é uma fonte independente da urna.
 
 ### Números de candidato que faltam no resultado por município
 
@@ -336,7 +402,8 @@ O pacote de uma seção pode trazer, além do diário da urna que votou, o diár
 
 - **Fato.** A comparação diário × boletim (C2) apontou 10 seções. A recontagem achou em cada uma a causa: erros do próprio programa de leitura (diário não aberto, diário contado duas vezes, diário de outra seção) e votos de fato sem rastro. Ou seja, o teste é capaz de acusar diferença, inclusive diferenças que vinham de erro nosso.
 - **Fato.** A recontagem da revisão independente procurou o erro nos dois sentidos. Ela achou 1 voto sem rastro que o método anterior escondia (RS 89036/0083/0044, 1º turno: cópias do mesmo diário somadas davam mais votos no diário que no boletim) e corrigiu a BA 39934/0183/0175 de 36 para 136 votos (o diário de outra seção, que veio no pacote, era somado ao da própria). Depois de tirar cópias e diários de outra seção, nenhuma seção do país tem mais votos no diário que no boletim.
-- **Pendente.** Não há ainda um teste automático que altere de propósito um boletim ou um registro de votos e mostre que C1 a C6 acusam a alteração, como existe para os lacres (tópico 1) e para a soma dos boletins (tópico 5).
+- **Fato (1º turno).** Para C3, C4, C5 e C6 (seção × eleição federal), um número alterado de propósito em quatro boletins, na memória do computador, foi acusado exatamente no boletim alterado (seção "Como sabemos que a conferência funciona (1º turno)").
+- **Pendente.** Ainda não há teste que altere de propósito um boletim ou um registro de votos e mostre que C1 e C2 (nos dois turnos), C3 a C6 no 2º turno, e a conta da eleição estadual e a dos eleitores em trânsito no 1º turno acusam a alteração.
 - **Fato.** Os testes de identificação também acusam quando há diferença: o número da urna diferiu em 3 seções do 2º turno e 14 do 1º, e a comparação de períodos apontou 92 urnas. Cada caso foi aberto no arquivo original e explicado (Recuperador de Dados, diário copiado, relógio, diário de outra urna, linha corrompida). Na primeira versão, 4 desses casos estavam rotulados como "relógio"; no diário original, 2 eram relógio e 2 eram urna que só escreveu no fim do diário de outra. O texto acima já traz a forma corrigida.
 
 ## Limites
@@ -344,7 +411,7 @@ O pacote de uma seção pode trazer, além do diário da urna que votou, o diár
 1. **Coerência não é legitimidade.** Os três registros saem do mesmo programa. Um voto dado por outra pessoa no lugar do eleitor fica coerente nos três. A única defesa técnica com rastro é a digital do eleitor (tópico 4).
 2. **Lacres.** No 2º turno, os lacres conferem em todas as 499.207 seções com urna; no 1º turno, também nas 499.207, com um boletim impresso de MG publicado fora da lista lacrada ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)). Nas 5 seções com votos sem nenhuma linha no diário (2 do 2º turno e 3 do 1º), as assinaturas foram conferidas na revisão independente (0 falha). Além disso, o diário não traz a corrente de elos lacrada que o boletim tem: ele é protegido só pelo lacre do arquivo inteiro.
 3. **Os votos sem nenhuma linha no diário (49 no 2º turno e 152 no 1º) só se esclarecem com dados que não são públicos:** o diário interno das urnas que gravaram esses votos, os arquivos de digitais capturadas dessas seções e a ata da mesa.
-4. **1º turno:** o diário × boletim (C2) foi conferido no país inteiro; C1 e C3 a C6 continuam Pendentes.
+4. **1º turno:** C1, C2 e C3 a C6 foram conferidos no país inteiro. Ficam sem registro eletrônico de liberação os 789 votos de cédula do exterior e os 40 de MG, e o diário da urna de MG 50075/0047/0041 (258 votos) não está no pacote.
 5. **Pendente.** Uma segunda conferência independente da corrente de elos do boletim e do ciclo de cada eleitor no diário ainda não tem resultado escrito.
 6. **Números de série são gravados pelo próprio programa da urna.** A coerência entre eles mostra que o boletim, a lista lacrada e a carteira de identidade digital apontam para a mesma urna; os diários de outras urnas guardados em alguns pacotes têm explicação no próprio arquivo. Que nada mudou depois da assinatura é o que as assinaturas mostram (tópico 1). Não mostra que o programa não poderia gravar outro número. O caminho da urna até a totalização é coberto pelas assinaturas (tópico 1); os registros de transmissão só são entregues a entidades fiscalizadoras.
 
@@ -358,9 +425,10 @@ O pacote de uma seção pode trazer, além do diário da urna que votou, o diár
 - [ ] **Pendente.** Conferir na documentação do TSE se a urna deve gravar o próprio diário na mídia externa antes de conferir o cartão de votos (erros 72 e 17).
 - [ ] **Pendente.** Comparar a votação dessas 3 seções com a do 1º turno.
 - [ ] **Pendente.** Confirmar a situação dos números ausentes (o cadastro oficial de candidaturas traz "#NE" na situação).
-- [ ] **Pendente.** Refazer o 1º turno (C1 e C3 a C6) com as 14 UFs restantes e o exterior (os dados das 28 UFs já estão na base desta perícia desde 29/10/2026). O C2 do 1º turno já foi feito no país inteiro.
+- [x] 1º turno, país inteiro: C1, C2 e C3 a C6, com segunda verificação independente.
 - [ ] **Pendente.** Medir no país inteiro quantos votos confirmados antes de reinício da urna entraram ou não no boletim (inclusive nas seções com um só diário).
-- [ ] **Pendente.** Teste automático com boletim e registro alterados de propósito (contraprova de C1 a C6).
+- [x] Contraprova de C3 a C6 no 1º turno (boletim alterado de propósito na memória).
+- [ ] **Pendente.** Contraprova de C1 e C2 nos dois turnos, de C3 a C6 no 2º turno, e da conta da eleição estadual e dos eleitores em trânsito no 1º turno.
 - [x] Identificação da urna e dos cartões nos dois turnos, com revisão independente.
 - [ ] **Pendente.** Recontar com programa próprio as demais conferências de identificação (cartão de votação, modelo, mídia e código de carga).
 - [x] Carga no dia da votação no 1º turno (7 boletins, mais 3 reservas carregadas em 04/10 e usadas só no 2º turno), com segunda verificação independente.
