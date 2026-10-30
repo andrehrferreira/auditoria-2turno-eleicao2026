@@ -1,5 +1,7 @@
 # 05. Poder do desenho: que inserção ele pegaria? (pergunta 5)
 
+> **Atualização (29/10/2026):** o limite de detecção do teste E2 (H05) com as 28 UFs e o modelo de efeito fixo de município está em [06](06-h05-28ufs.md). O `poder-banco.json` foi refeito com 28 UFs e com o exterior fora do E2; a versão anterior ficou em `poder-banco-antes-correcao-exterior.json`.
+
 Estatístico eleitoral, 29/10/2026. Comando: `node --max-old-space-size=10240 scripts/auditoria/estatistico-dc-poder.mjs banco 5` → `poder-banco.json`, cerca de 13 minutos. A linha de base lida a favor do 22: `... estatistico-dc-poder.mjs banco 1 13` → `poder-banco-13.json`.
 
 Base: as 22 UFs com o 1º turno no banco, 338.884 seções. O ganho real do 13 nessas UFs foi de 6.724.774 votos. Na diferença final do país, o 13 ficou 4,43 milhões à frente.

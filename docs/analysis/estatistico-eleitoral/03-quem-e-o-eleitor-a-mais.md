@@ -1,5 +1,7 @@
 # 03. Quem é o eleitor a mais: categoria de habilitação e teste E2 por UF (pergunta 2)
 
+> **Atualização (29/10/2026):** os números de 22 UFs abaixo foram refeitos com as 28 UFs em [06](06-h05-28ufs.md). O `biometria.json` atual já tem 28 UFs e a correção do exterior (null − null). Com efeito fixo de zona e 28 UFs, 2 de 56 testes E2 passam em Bonferroni, os dois de SP e a favor do 22, e não 0 de 42.
+
 Estatístico eleitoral, 29/10/2026. Comando: `node --max-old-space-size=8192 scripts/auditoria/estatistico-dc-biometria.mjs` → `biometria.json`, `biometria-extremas.csv`. Base: cópia de leitura do banco, **22 UFs** com o 1º turno: AC, AL, AM, AP, BA, CE, DF, ES, GO, MA, MG, MS, MT, PA, PB, PE, PI, PR, RJ, RN, RO e RR. São 338.884 seções. Faltam RS, SC, SE, SP, TO e o exterior. Para refazer com elas: `node scripts/auditoria/estatistico-dc-refazer.mjs --sem-abertos`.
 
 As três categorias vêm do `detalhamentoComparecimento` do BU (doc 06): **sem biometria cadastrada**, **por biometria** e **por ano de nascimento** (o eleitor tem biometria, a digital falhou e ele foi liberado pelo ano de nascimento). Pelo princípio 8, só "por biometria" é controle técnico. As outras duas dependem do mesário.

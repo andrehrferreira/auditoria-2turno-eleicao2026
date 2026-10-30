@@ -66,12 +66,13 @@ function aplicar(idx, cen) {
     votos += k;
     s.c2 += k;
     if (cen.favorece === 13) s.v13_2 += k; else s.v22_2 += k;
-    if (temBio) s[cen.categoria] += k;
+    if (temBio && s[cen.categoria] != null) s[cen.categoria] += k;
   }
   for (const s of P) {
     s.dpp = 100 * (s.c2 / s.a2 - s.c1 / s.a1); s.dc = s.c2 - s.c1;
     s.f2 = s.v13_2 + s.v22_2; s.s2 = s.f2 > 0 ? s.v13_2 / s.f2 : null;
-    if (temBio) { s.dsb = s.sb2 - s.sb1; s.dpb = s.pb2 - s.pb1; s.dpg = s.pg2 - s.pg1; }
+    // exterior: BU sem detalhamento (sb nulo); antes null − null virava 0 e entrava no E2 e no R5 (cético 22, problema 2)
+    if (temBio) { const ok = s.sb1 != null && s.sb2 != null; s.dsb = ok ? s.sb2 - s.sb1 : null; s.dpb = ok ? s.pb2 - s.pb1 : null; s.dpg = ok ? s.pg2 - s.pg1 : null; }
   }
   return votos;
 }
@@ -100,7 +101,7 @@ function testes(cen) {
   out.R3 = { d: r3(d3.d), t: r1(d3.t) }; out.R3.dispara = out.R3.t >= 3.3;
   if (temBio) {
     // R4: E2 com efeito fixo de zona
-    const e2 = (lista) => mqEfeitoFixo(lista.filter((s) => s.c1 >= 20), { y: (s) => yv(s) / s.c1, x: (s) => [s.dpb / s.c1, (s.dsb + s.dpg) / s.c1, s.out1 / s.c1, s.bn1 / s.c1], w: (s) => s.c1, grupo: (s) => s.zon, cluster: (s) => s.mun });
+    const e2 = (lista) => mqEfeitoFixo(lista.filter((s) => s.c1 >= 20 && s.dsb != null), { y: (s) => yv(s) / s.c1, x: (s) => [s.dpb / s.c1, (s.dsb + s.dpg) / s.c1, s.out1 / s.c1, s.bn1 / s.c1], w: (s) => s.c1, grupo: (s) => s.zon, cluster: (s) => s.mun });
     const a4 = e2(P); const d4 = diferenca(a4, 1, 0);
     out.R4 = { d: r3(d4.d), t: r1(d4.t) }; out.R4.dispara = out.R4.t >= 3.3;
     const porUf = [];

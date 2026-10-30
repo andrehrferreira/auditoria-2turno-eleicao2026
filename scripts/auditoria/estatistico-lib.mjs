@@ -83,7 +83,7 @@ function inverter(M) {
  * (CR1, ajuste G/(G−1)·(n−1)/(n−k)). `x(s)` devolve o vetor de preditores (sem constante quando há efeito fixo).
  * Grupos com uma única seção saem (não informam a inclinação).
  */
-export function mqEfeitoFixo(lista, { y, x, w = () => 1, grupo = null, cluster }) {
+export function mqEfeitoFixo(lista, { y, x, w = () => 1, grupo = null, cluster, scores = false }) {
   let linhas = lista.map((s) => ({ s, y: y(s), x: x(s), w: w(s), g: grupo ? grupo(s) : 0 }))
     .filter((l) => Number.isFinite(l.y) && l.x.every(Number.isFinite) && l.w > 0);
   const k = linhas[0]?.x.length ?? 0;
@@ -126,7 +126,8 @@ export function mqEfeitoFixo(lista, { y, x, w = () => 1, grupo = null, cluster }
   const fator = G > 1 ? (G / (G - 1)) * ((n - 1) / (n - k)) : NaN;
   const V = inv.map((r, a) => inv.map((_, c) => fator * r.reduce((acc, v, j) => acc + v * meat[j].reduce((s2, m, l2) => s2 + m * inv[l2][c], 0), 0)));
   const ep = V.map((r, i) => Math.sqrt(r[i]));
-  return { b, ep, V, n, G, k, rmse: Math.sqrt(ssr / sw) };
+  // scores = true: devolve também inv(X'WX) e Σ w·x·e por conglomerado (influência de um conglomerado: Δb ≈ −inv · score_g)
+  return { b, ep, V, n, G, k, rmse: Math.sqrt(ssr / sw), ...(scores ? { inv, scoresPorCluster: cl } : {}) };
 }
 
 /** Diferença b[i] − b[j] com EP pelo V do ajuste. */
@@ -134,6 +135,67 @@ export function diferenca(aj, i, j) {
   const d = aj.b[i] - aj.b[j];
   const ep = Math.sqrt(aj.V[i][i] + aj.V[j][j] - 2 * aj.V[i][j]);
   return { d, ep, t: d / ep };
+}
+
+/** |z| tal que P(|Z| ≥ |z|) = p (bissecção sobre pNormal2). Ex.: limiar de Bonferroni para m testes = zBilateral(0,05/m). */
+export function zBilateral(p) {
+  let lo = 0, hi = 40;
+  for (let i = 0; i < 200; i++) { const m = (lo + hi) / 2; if (pNormal2(m) > p) lo = m; else hi = m; }
+  return (lo + hi) / 2;
+}
+
+// ---------- categorias de habilitação (BU) e teste E2 ----------
+
+/**
+ * Δ das categorias de habilitação do BU entre os turnos: s.dsb (sem biometria cadastrada), s.dpb (por biometria),
+ * s.dpg (liberado por ano de nascimento). s.temBio = 0 quando o BU de um dos turnos não traz o detalhamento
+ * (exterior: urna sem detalhamento); nessas seções os Δ ficam null (antes, null − null virava 0 e o exterior
+ * entrava nas regressões com Δcategoria = 0; parecer cético 22, problema 2).
+ */
+export function prepararBiometria(P) {
+  for (const s of P) {
+    s.temBio = s.sb1 != null && s.pb1 != null && s.pg1 != null && s.sb2 != null && s.pb2 != null && s.pg2 != null ? 1 : 0;
+    s.dsb = s.temBio ? s.sb2 - s.sb1 : null;
+    s.dpb = s.temBio ? s.pb2 - s.pb1 : null;
+    s.dpg = s.temBio ? s.pg2 - s.pg1 : null;
+  }
+}
+
+export const GANHOS = [['ganho13', (s) => (s.v13_2 - s.v13_1) / s.c1], ['ganho22', (s) => (s.v22_2 - s.v22_1) / s.c1]];
+
+/**
+ * Teste E2 (cientista político, cético 06): o eleitor a mais habilitado sem biometria divide o voto entre 13 e 22
+ * como o eleitor a mais habilitado por biometria?
+ *   ganho do finalista / c1 ~ Δpor biometria / c1 + Δsem biometria (cadastro + ano de nascimento) / c1
+ *                             + eliminados do 1º / c1 + brancos e nulos do 1º / c1  [+ controles]
+ * com efeito fixo `grupo` (UF, município ou zona), peso c1, EP agrupado por `cluster`, só seções com temBio e c1 ≥ minC1.
+ * separar = true: "sem biometria cadastrada" e "ano de nascimento" em colunas próprias.
+ * Devolve valores sem arredondar: d = coeficiente sem biometria − por biometria (H0: d = 0).
+ */
+export function testeE2(lista, { separar = false, grupo = (s) => s.zon, cluster = (s) => s.mun, minC1 = 20, controles = null } = {}) {
+  const base = separar
+    ? (s) => [s.dpb / s.c1, s.dsb / s.c1, s.dpg / s.c1, s.out1 / s.c1, s.bn1 / s.c1]
+    : (s) => [s.dpb / s.c1, (s.dsb + s.dpg) / s.c1, s.out1 / s.c1, s.bn1 / s.c1];
+  const x = controles ? (s) => [...base(s), ...controles(s)] : base;
+  const l = lista.filter((s) => s.temBio && s.c1 >= minC1);
+  const out = { secoes: 0, municipios: 0, totais: { dSemBiometria: 0, dAnoNascimento: 0, dPorBiometria: 0, dSemBioPositivo: 0, semBiometria2t: 0 } };
+  for (const s of l) {
+    out.totais.dSemBiometria += s.dsb; out.totais.dAnoNascimento += s.dpg; out.totais.dPorBiometria += s.dpb;
+    out.totais.dSemBioPositivo += Math.max(s.dsb + s.dpg, 0); out.totais.semBiometria2t += s.sb2;
+  }
+  for (const [nome, y] of GANHOS) {
+    const a = mqEfeitoFixo(l, { y, x, w: (s) => s.c1, grupo, cluster });
+    if (!a) continue;
+    out.secoes = a.n; out.municipios = a.G;
+    if (separar) {
+      const d1 = diferenca(a, 1, 0), d2 = diferenca(a, 2, 0);
+      out[nome] = { porBiometria: a.b[0], semBiometriaCadastrada: a.b[1], anoNascimento: a.b[2], cadastroMenosBio: d1, anoMenosBio: d2 };
+    } else {
+      const d = diferenca(a, 1, 0);
+      out[nome] = { porBiometria: a.b[0], semBiometria: a.b[1], d: d.d, ep: d.ep, t: d.t };
+    }
+  }
+  return out;
 }
 
 // ---------- modelo de referência do Δcomparecimento ----------
@@ -287,7 +349,8 @@ export function filtrar(todos) {
 
 /**
  * Parcela 60+ do eleitorado de cada seção (perfil_eleitor_secao lido por forense-eleitorado.mjs), com as seções agregadas
- * somadas à principal pelo locais.csv do 2º turno. Grava s.p60 e s.pInd (parcela indígena). Devolve as linhas de perfil usadas (0 se faltar o arquivo).
+ * somadas à principal pelo locais.csv do 2º turno. Grava s.p60, s.pInd (parcela indígena), s.p1624 (16 a 24 anos),
+ * s.pEscB (escolaridade baixa) e s.pBioCad (biometria cadastrada). Devolve as linhas de perfil usadas (0 se faltar o arquivo).
  */
 export async function carregarIdade(P) {
   const { createReadStream, existsSync } = await import('node:fs');
@@ -313,12 +376,19 @@ export async function carregarIdade(P) {
       const s = porChave.get(principal.get(k) ?? k);
       if (!s) continue;
       s.eleit = (s.eleit ?? 0) + Number(c[4]);
+      s.bioCad = (s.bioCad ?? 0) + Number(c[5]);
       s.i60 = (s.i60 ?? 0) + Number(c[6]);
+      s.i1624 = (s.i1624 ?? 0) + Number(c[7]);
+      s.escB = (s.escB ?? 0) + Number(c[8]);
       s.ind = (s.ind ?? 0) + Number(c[10]);
       n++;
     }
   }
-  for (const s of P) { s.p60 = s.eleit > 0 ? s.i60 / s.eleit : null; s.pInd = s.eleit > 0 ? s.ind / s.eleit : null; }
+  for (const s of P) {
+    const ok = s.eleit > 0;
+    s.p60 = ok ? s.i60 / s.eleit : null; s.pInd = ok ? s.ind / s.eleit : null;
+    s.p1624 = ok ? s.i1624 / s.eleit : null; s.pEscB = ok ? s.escB / s.eleit : null; s.pBioCad = ok ? Math.min(s.bioCad / s.eleit, 1) : null;
+  }
   return n;
 }
 

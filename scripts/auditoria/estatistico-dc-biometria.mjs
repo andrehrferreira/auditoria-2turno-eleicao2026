@@ -10,7 +10,7 @@
 // 4. Teste E2 do cientista político, por UF, com efeito fixo de zona e EP agrupado por município; BH nos 2 × UFs testes.
 // 5. Mesários e urna: excesso × mesa trocada, presidente trocado, mesário em mais de uma seção, Δ liberações manuais, urna trocada.
 import { paraCsv, quantil } from './forense-lib.mjs';
-import { bh, carregarIdade, diferenca, filtrar, lerPares, modelar, mqEfeitoFixo, pNormal2, salvar } from './estatistico-lib.mjs';
+import { bh, carregarIdade, diferenca, filtrar, lerPares, modelar, mqEfeitoFixo, pNormal2, prepararBiometria, salvar, testeE2 } from './estatistico-lib.mjs';
 
 const t0 = Date.now();
 const log = (m) => console.error(`[${((Date.now() - t0) / 1000).toFixed(0)} s] ${m}`);
@@ -44,11 +44,14 @@ res.filtro = filtro;
 await carregarIdade(P);
 const { disp } = modelar(P);
 res.modelo = { zonasComPhiProprio: disp.zonasProprias, secoesNormal: disp.secoesNormal, secoesBetaBinomial: disp.secoesBetaBinomial };
-for (const s of P) {
-  s.dsb = s.sb2 - s.sb1; s.dpb = s.pb2 - s.pb1; s.dpg = s.pg2 - s.pg1;
-  s.esp = s.c2 - s.resAj - s.c1; // aumento esperado pelo modelo
-}
-log(`modelo: ${P.length} seções`);
+for (const s of P) s.esp = s.c2 - s.resAj - s.c1; // aumento esperado pelo modelo
+// categorias de habilitação: o modelo do comparecimento usa todas as seções; as partes 2 a 5 só as que têm o
+// detalhamento do BU nos dois turnos (sai o exterior, urna sem detalhamento; antes null − null virava 0)
+prepararBiometria(P);
+const PB = P.filter((s) => s.temBio);
+res.semDetalhamentoBiometria = { secoes: P.length - PB.length, porUf: {} };
+for (const s of P) if (!s.temBio) res.semDetalhamentoBiometria.porUf[s.uf] = (res.semDetalhamentoBiometria.porUf[s.uf] ?? 0) + 1;
+log(`modelo: ${P.length} seções; com detalhamento de biometria: ${PB.length}`);
 
 // ---------- 2. composição do acréscimo por faixa de z ----------
 const faixas = [['z <= -4', (z) => z <= -4], ['-4 < z <= -2', (z) => z > -4 && z <= -2], ['-2 < z < 2', (z) => z > -2 && z < 2],
@@ -60,11 +63,11 @@ const comp = (l) => {
     parcela1t: { semBiometria: r3(t((s) => s.sb1) / c1), porBiometria: r3(t((s) => s.pb1) / c1), anoNascimento: r3(t((s) => s.pg1) / c1) },
     parcela2t: { semBiometria: r3(t((s) => s.sb2) / t((s) => s.c2)), porBiometria: r3(t((s) => s.pb2) / t((s) => s.c2)), anoNascimento: r3(t((s) => s.pg2) / t((s) => s.c2)) } };
 };
-res.composicaoPorFaixaZ = faixas.map(([nome, f]) => ({ faixa: nome, ...comp(P.filter((s) => f(s.z))) }));
+res.composicaoPorFaixaZ = faixas.map(([nome, f]) => ({ faixa: nome, ...comp(PB.filter((s) => f(s.z))) }));
 // as seções com maior aumento absoluto (Δ em eleitores), sem modelo
-const ordDc = [...P].sort((a, b) => b.dc - a.dc);
-res.composicaoMaioresAumentos = [['1% maiores Δ', 0.01], ['5% maiores Δ', 0.05], ['10% maiores Δ', 0.1]].map(([nome, f]) => ({ grupo: nome, ...comp(ordDc.slice(0, Math.ceil(P.length * f))) }));
-res.composicaoTodas = comp(P);
+const ordDc = [...PB].sort((a, b) => b.dc - a.dc);
+res.composicaoMaioresAumentos = [['1% maiores Δ', 0.01], ['5% maiores Δ', 0.05], ['10% maiores Δ', 0.1]].map(([nome, f]) => ({ grupo: nome, ...comp(ordDc.slice(0, Math.ceil(PB.length * f))) }));
+res.composicaoTodas = comp(PB);
 
 // ---------- 3. em que categoria entra o excesso e o aumento esperado ----------
 const categorias = [['semBiometria', (s) => s.dsb], ['porBiometria', (s) => s.dpb], ['anoNascimento', (s) => s.dpg]];
@@ -78,9 +81,9 @@ function partes(lista) {
   }
   return out;
 }
-res.partesNacional = partes(P);
+res.partesNacional = partes(PB);
 const ufs = res.ufs;
-res.partesPorUf = ufs.map((uf) => ({ uf, ...partes(P.filter((s) => s.uf === uf)) }));
+res.partesPorUf = ufs.filter((uf) => PB.some((s) => s.uf === uf)).map((uf) => ({ uf, ...partes(PB.filter((s) => s.uf === uf)) }));
 {
   const ps = []; const refs = [];
   for (const l of res.partesPorUf) for (const [nome] of categorias) if (l[nome] && Number.isFinite(l[nome].t)) { ps.push(pNormal2(l[nome].t)); refs.push(l[nome]); }
@@ -93,38 +96,31 @@ log('partes do excesso');
 // y = ganho do finalista / c1; x = Δ por biometria / c1, Δ sem biometria (cadastro + ano de nascimento) / c1,
 // eliminados do 1º / c1, brancos e nulos do 1º / c1 (a especificação do autor e do cético, mais efeito fixo de zona).
 function e2(lista, separar = false) {
-  const x = separar
-    ? (s) => [s.dpb / s.c1, s.dsb / s.c1, s.dpg / s.c1, s.out1 / s.c1, s.bn1 / s.c1]
-    : (s) => [s.dpb / s.c1, (s.dsb + s.dpg) / s.c1, s.out1 / s.c1, s.bn1 / s.c1];
-  const out = { secoes: 0, totais: { dSemBiometria: lista.reduce((a, s) => a + s.dsb, 0), dAnoNascimento: lista.reduce((a, s) => a + s.dpg, 0), dPorBiometria: lista.reduce((a, s) => a + s.dpb, 0), semBiometria2t: lista.reduce((a, s) => a + s.sb2, 0) } };
-  for (const [nome, y] of [['ganho13', (s) => (s.v13_2 - s.v13_1) / s.c1], ['ganho22', (s) => (s.v22_2 - s.v22_1) / s.c1]]) {
-    const a = mqEfeitoFixo(lista.filter((s) => s.c1 >= 20), { y, x, w: (s) => s.c1, grupo: (s) => s.zon, cluster: (s) => s.mun });
-    if (!a) continue;
-    out.secoes = a.n; out.municipios = a.G;
-    if (separar) {
-      const d1 = diferenca(a, 1, 0), d2 = diferenca(a, 2, 0);
-      out[nome] = { porBiometria: r3(a.b[0]), semBiometriaCadastrada: r3(a.b[1]), anoNascimento: r3(a.b[2]),
-        cadastroMenosBio: { d: r3(d1.d), ep: r3(d1.ep), t: r1(d1.t) }, anoMenosBio: { d: r3(d2.d), ep: r3(d2.ep), t: r1(d2.t) } };
-    } else {
-      const d = diferenca(a, 1, 0);
-      out[nome] = { porBiometria: r3(a.b[0]), semBiometria: r3(a.b[1]), d: r3(d.d), ep: r3(d.ep), t: r1(d.t) };
-    }
+  const a = testeE2(lista, { separar, grupo: (s) => s.zon, cluster: (s) => s.mun });
+  const dd = (d) => ({ d: r3(d.d), ep: r3(d.ep), t: r1(d.t) });
+  for (const [nome] of [['ganho13'], ['ganho22']]) {
+    const g = a[nome];
+    if (!g) continue;
+    a[nome] = separar
+      ? { porBiometria: r3(g.porBiometria), semBiometriaCadastrada: r3(g.semBiometriaCadastrada), anoNascimento: r3(g.anoNascimento), cadastroMenosBio: dd(g.cadastroMenosBio), anoMenosBio: dd(g.anoMenosBio) }
+      : { porBiometria: r3(g.porBiometria), semBiometria: r3(g.semBiometria), ...dd(g) };
   }
-  return out;
+  return a;
 }
-res.e2Nacional = e2(P);
-res.e2NacionalSeparado = e2(P, true);
-res.e2PorUf = ufs.map((uf) => ({ uf, ...e2(P.filter((s) => s.uf === uf)) }));
+const ufsBio = ufs.filter((uf) => PB.some((s) => s.uf === uf));
+res.e2Nacional = e2(PB);
+res.e2NacionalSeparado = e2(PB, true);
+res.e2PorUf = ufsBio.map((uf) => ({ uf, ...e2(PB.filter((s) => s.uf === uf)) }));
 {
   const ps = []; const refs = [];
   for (const l of res.e2PorUf) for (const k of ['ganho13', 'ganho22']) if (l[k] && Number.isFinite(l[k].t)) { ps.push(pNormal2(l[k].t)); refs.push(l[k]); }
   bh(ps).forEach((q, i) => { refs[i].q = +q.toPrecision(3); });
   res.e2Testes = ps.length;
 }
-res.e2PorUfSeparado = ufs.map((uf) => ({ uf, ...e2(P.filter((s) => s.uf === uf), true) }));
+res.e2PorUfSeparado = ufsBio.map((uf) => ({ uf, ...e2(PB.filter((s) => s.uf === uf), true) }));
 // robustez: sem as seções com 5% ou mais de eleitores indígenas no perfil do eleitorado
-res.e2PorUfSeparadoSemIndigenas = ufs.map((uf) => ({ uf, ...e2(P.filter((s) => s.uf === uf && (s.pInd ?? 0) < 0.05), true) }));
-res.secoesIndigenas5pct = P.filter((s) => (s.pInd ?? 0) >= 0.05).length;
+res.e2PorUfSeparadoSemIndigenas = ufsBio.map((uf) => ({ uf, ...e2(PB.filter((s) => s.uf === uf && (s.pInd ?? 0) < 0.05), true) }));
+res.secoesIndigenas5pct = PB.filter((s) => (s.pInd ?? 0) >= 0.05).length;
 {
   const ps = []; const refs = [];
   for (const l of res.e2PorUfSeparado) for (const k of ['ganho13', 'ganho22']) for (const d of ['cadastroMenosBio', 'anoMenosBio'])
@@ -135,7 +131,7 @@ res.secoesIndigenas5pct = P.filter((s) => (s.pInd ?? 0) >= 0.05).length;
 log('E2 por UF');
 
 // ---------- 5. mesários e urna ----------
-const M = P.filter((s) => s.perfil1 === 1 && s.perfil2 === 1);
+const M = PB.filter((s) => s.perfil1 === 1 && s.perfil2 === 1);
 for (const s of M) {
   s.mesaTrocada = s.mesa_comum === 0 ? 1 : 0;
   s.mesaIgual = s.mesa_comum != null && s.mesa_comum === s.nmes1 && s.nmes1 === s.nmes2 ? 1 : 0;
@@ -187,7 +183,7 @@ res.mesarios = {
 log('mesários');
 
 // lista para conferência no bruto: maiores z com biometria
-const extremas = [...P].sort((a, b) => b.z - a.z).slice(0, 40).map((s) => ({
+const extremas = [...PB].sort((a, b) => b.z - a.z).slice(0, 40).map((s) => ({
   uf: s.uf, municipio: s.municipio, zona: s.zona, secao: s.secao, z: r1(s.z), excesso: Math.round(s.resAj), c1: s.c1, c2: s.c2,
   sb1: s.sb1, pb1: s.pb1, pg1: s.pg1, sb2: s.sb2, pb2: s.pb2, pg2: s.pg2, v13_1: s.v13_1, v13_2: s.v13_2, v22_1: s.v22_1, v22_2: s.v22_2,
   hpm1: s.hpm1, hpm2: s.hpm2, anb1: s.anb1, anb2: s.anb2, mesa_comum: s.mesa_comum, nmes1: s.nmes1, nmes2: s.nmes2, urna_trocada: s.urna1 !== s.urna2 ? 1 : 0 }));
