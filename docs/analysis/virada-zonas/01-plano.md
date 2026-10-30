@@ -2,6 +2,8 @@
 
 Pedido do André (30/10/2026): triagem de **todas as zonas eleitorais** em que a virada para o 13 (Lula) do 1º para o 2º turno foi grande, separada por região, modelo da urna e horário dos picos de votação. O resultado vira um relatório temático à parte, depois da revisão cética.
 
+Revisão: [parecer cético 34](../cetico-revisor/34-h26-virada-zonas.md); o resultado revisado está em [02](02-resultado.md).
+
 Rótulos: **Fato** (sai de script do repo sobre arquivo público), **Hipótese**, **Pendente**. A triagem aponta zonas para olhar de perto. **Não é prova nem teste calibrado de fraude.**
 
 ## Pergunta
