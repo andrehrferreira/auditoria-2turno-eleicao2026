@@ -1,0 +1,7 @@
+```json
+{
+  "opcao": "c",
+  "justificativa": "Regra literal proíbe conta sobre suposição; 148.553 e 94.985 dependem de supor zero mortes, cobertura completa do Censo e data de referência desconhecida. Subtração simples não salva: rótulo \"Fato (piso)\" esconde condição que leitor leigo não vai ler. Tirar saldos não esconde dado: contagens oficiais ficam, comparação em palavras fica, e Pendente aponta o que falta (data do TSE, cobertura do Censo). Opção corte dos dois lados: não acusa cadastro sem base, não omite número oficial.",
+  "texto_sugerido": "O cadastro eleitoral do TSE registra 297.977 eleitores aptos com 100 anos ou mais domiciliados no Brasil, enquanto o Censo 2022 do IBGE contou 149.424 pessoas com 96 anos ou mais (e 53.568 com 95 anos), que são todas as pessoas que poderiam completar 100 anos até 2026; ou seja, o cadastro tem mais eleitores de 100+ do que o total de pessoas vivas que o Censo encontrou com idade para chegar a 100 anos em 2026. O tamanho exato desse excedente é Pendente: depende de o TSE informar a data em que calcula a idade e de conferência da cobertura do Censo, e qualquer cálculo nesse ponto exigiria suposições (como supor que ninguém faleceu), o que a regra deste relatório não permite."
+}
+```
