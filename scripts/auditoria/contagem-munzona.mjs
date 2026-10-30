@@ -5,13 +5,14 @@
 // Uso: node scripts/auditoria/contagem-munzona.mjs --turno 2 [--uf ac,df]
 // Saída: resumo no terminal e divergências em data/parsed/auditoria/contagem/munzona-<t>t-divergencias.csv
 import { mkdirSync, writeFileSync } from 'node:fs';
-import { DatabaseSync } from 'node:sqlite';
+import { abrirLeitura } from '../../src/banco-leitura.js';
 import { parseArgs } from 'node:util';
 import { ZIPS, entradasZip, linhasCsv } from './contagem-zip.mjs';
 
 const { values: args } = parseArgs({ options: { turno: { type: 'string', default: '2' }, uf: { type: 'string' } } });
 const turno = Number(args.turno);
-const db = new DatabaseSync('data/db/eleicao2026.sqlite', { readOnly: true });
+const { db, fonte } = await abrirLeitura();
+console.error(`banco: ${fonte}`);
 const carregadas = db.prepare('SELECT uf FROM carga WHERE turno = ? ORDER BY uf').all(turno).map((r) => r.uf);
 const ufs = args.uf ? args.uf.split(',').filter((u) => carregadas.includes(u)) : carregadas;
 const CARGOS = [1, 3, 5, 6, 7, 8];

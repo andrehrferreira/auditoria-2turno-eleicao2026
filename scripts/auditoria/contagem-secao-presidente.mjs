@@ -4,13 +4,14 @@
 // Uso: node scripts/auditoria/contagem-secao-presidente.mjs --turno 1 [--uf ac,df]
 // Saída: resumo no terminal e divergências em data/parsed/auditoria/contagem/secao-presidente-<t>t-divergencias.csv
 import { mkdirSync, writeFileSync } from 'node:fs';
-import { DatabaseSync } from 'node:sqlite';
+import { abrirLeitura } from '../../src/banco-leitura.js';
 import { parseArgs } from 'node:util';
 import { ZIPS, entradasZip, linhasCsv } from './contagem-zip.mjs';
 
 const { values: args } = parseArgs({ options: { turno: { type: 'string', default: '1' }, uf: { type: 'string' } } });
 const turno = Number(args.turno);
-const db = new DatabaseSync('data/db/eleicao2026.sqlite', { readOnly: true });
+const { db, fonte } = await abrirLeitura();
+console.error(`banco: ${fonte}`);
 const carregadas = db.prepare('SELECT uf FROM carga WHERE turno = ? ORDER BY uf').all(turno).map((r) => r.uf);
 const ufs = new Set(args.uf ? args.uf.split(',').filter((u) => carregadas.includes(u)) : carregadas);
 const pad = (v, n) => String(Number(v)).padStart(n, '0');
