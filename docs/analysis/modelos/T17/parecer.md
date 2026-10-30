@@ -7,7 +7,7 @@ Respostas: [a/kimi.md](a/kimi.md). Lida em 29/10/2026.
 
 | Item | Decisão | Por quê / o que mudou |
 |---|---|---|
-| A1. Retomada perde zona em queda: `feitos.json` gravado antes de as linhas saírem do buffer do stream | **Aceito, corrigido** | Conferido no código (`integridade-lacres.mjs`): a gravação periódica de `feitos.json` não esperava o buffer, e no fim `feitos.json` era gravado antes de fechar os streams. Agora a gravação periódica espera as escritas anteriores (`write('', cb)`) e o fim fecha os streams antes. Não afetou números publicados: o 1º turno fechou com 499.248 linhas = universo, e o 2º turno com 0 duplicata e 499.207 seções oficiais |
+| A0 (resposta cortada). Retomada perde zona em queda: `feitos.json` gravado antes de as linhas saírem do buffer do stream | **Aceito, corrigido** | Conferido no código (`integridade-lacres.mjs`): a gravação periódica de `feitos.json` não esperava o buffer, e no fim `feitos.json` era gravado antes de fechar os streams. Agora a gravação periódica espera as escritas anteriores (`write('', cb)`) e o fim fecha os streams antes. Não afetou números publicados: o 1º turno fechou com 499.248 linhas = universo, e o 2º turno com 0 duplicata e 499.207 seções oficiais |
 
 ## Parte A completa (nova tentativa, 30/10/2026)
 
