@@ -98,7 +98,7 @@ export async function lerPacotes(t) {
     m.set(k, {
       k, cert: o.certSha, assinante: o.idHW, urnaBU: o.numeroInternoUrna, tipoUrna: o.tipoUrna, origem: o.origem,
       cargaBU: o.buCarga, dataCargaBU: o.buDataCarga, comparecimento: o.comparecimento, modelo: o.modelo,
-      logUrnas: (o.logUrnas ?? []).map(Number), logCargas: o.logCargas ?? [], logs: o.logs, pacoteSt: o.pacoteSt,
+      logUrnas: (o.logUrnas ?? []).map(Number), logCargas: o.logCargas ?? [], logs: o.logs, pacoteSt: o.pacoteSt, logPrimeira: o.logPrimeira,
     });
   });
   return m;

@@ -1,7 +1,8 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
-import { carregarCorrespondencias as carregar, DIR_H27, lerPacotes, nc, somar, ufZona } from './seguranca-h27-lib.mjs';
+import { DIR_DADOS } from '../../src/config.js';
+import { carregarCorrespondencias as carregar, chave, DIR_H27, lerPacotes, linhasZip, nc, somar, ufZona } from './seguranca-h27-lib.mjs';
 
 // H27, teste 1 (engenheiro de segurança, doc 09): a LISTA DE FORA DO PACOTE.
 // O pacote de cada seção (assinado) diz: a urna que assinou (número do certificado = idHW do .vsc), a urna do BU e o
@@ -21,7 +22,11 @@ import { carregarCorrespondencias as carregar, DIR_H27, lerPacotes, nc, somar, u
 //   5. o par urna × carga do BU estava registrado na CESP da véspera? na CESP do dia? quando o TSE recebeu a
 //      correspondência da urna efetivada (antes do dia da votação, no dia, depois)?
 //   6. urnas esperadas sem pacote; contingências listadas e usadas;
-//   7. urna que assinou × faixas públicas de número interno por modelo (modelourna_numerointerno, de 2022).
+//   7. urna que assinou × faixas públicas de número interno por modelo (modelourna_numerointerno, de 2022);
+//   8. ordem no tempo: o TSE recebeu o BU (detalhe_votacao_secao, DT_RECEBIMENTO_BU_HOR_TSE, hora de Brasília) antes ou
+//      depois de receber a correspondência da urna efetivada (CEFT, DT_RECBTO_URNA_EFETIVADA)? O CEFT grava esse campo
+//      na hora LOCAL da UF (diferença medida contra DT_RECBTO_URNA_ESPERADA, que vem na hora de Brasília, nas seções sem
+//      troca: AC 2 h; AM, MS, MT, RO, RR 1 h; demais 0). O exterior, com fusos variados, fica fora deste item.
 // O código de carga do BU tem 24 dígitos; o CSV do TSE tira os zeros à esquerda. A comparação ignora esses zeros.
 // Saída: data/parsed/auditoria/seguranca-h27/correspondencias-<t>t.json
 // Uso: node scripts/auditoria/seguranca-h27-correspondencias.mjs --turno 2
@@ -42,7 +47,11 @@ if (L.versoes.length !== 2) throw new Error(`esperava 2 versões da CESP, achei 
 const [VESPERA, DODIA] = L.versoes;
 const { ceft } = L;
 const papeisEm = (V, u) => [...(V.papelDaUrna.get(u) ?? [])];
+const assinanteOutro = new Map();
+for (const [k, p] of pacotesOutro) assinanteOutro.set(p.assinante, k);
 const contexto = (k, urna) => ({
+  logTemCargaDoBU: pacotes.get(k)?.logCargas.some((x) => nc(x) === nc(pacotes.get(k).cargaBU)) ?? null,
+  logPrimeira: pacotes.get(k)?.logPrimeira ?? null, urnaAssinouNoOutroTurno: assinanteOutro.get(urna) ?? null,
   dataCargaBU: pacotes.get(k)?.dataCargaBU ?? null, dataCargaEf: ceft.get(k)?.dataCargaEf ?? null,
   recbtoEsp: ceft.get(k)?.recbtoEsp ?? null, recbtoEf: ceft.get(k)?.recbtoEf ?? null,
   papeisVespera: papeisEm(VESPERA, urna), papeisDoDia: papeisEm(DODIA, urna),
@@ -125,6 +134,54 @@ for (const [k, p] of pacotes) {
   }
 }
 R.contagens = c;
+
+// 8. BU recebido × correspondência efetivada recebida (hora de Brasília)
+// Diferença entre a hora de Brasília e a hora local, medida por MUNICÍPIO: nas seções sem troca, a correspondência
+// esperada e a efetivada são o mesmo registro; a esperada vem na hora de Brasília e a efetivada na local. Vale a
+// diferença mais comum do município (em horas inteiras); município sem seção sem troca usa a da UF.
+const FUSO_UF = { ac: 2, am: 1, ms: 1, mt: 1, ro: 1, rr: 1 };
+const contagemFuso = new Map();
+for (const [k, f] of ceft) {
+  if (f.urnaEsp !== f.urnaEf || f.cargaEsp !== f.cargaEf || !f.recbtoEsp || !f.recbtoEf) continue;
+  const mun = k.split('/').slice(0, 2).join('/');
+  const h = Math.round((Date.parse(`${f.recbtoEsp.replace(' ', 'T')}Z`) - Date.parse(`${f.recbtoEf.replace(' ', 'T')}Z`)) / 36e5);
+  const m = contagemFuso.get(mun) ?? contagemFuso.set(mun, {}).get(mun);
+  m[h] = (m[h] ?? 0) + 1;
+}
+const FUSO_MUN = new Map([...contagemFuso].map(([mun, m]) => [mun, Number(Object.entries(m).sort((a, b) => b[1] - a[1])[0][0])]));
+const fusoDe = (k) => FUSO_MUN.get(k.split('/').slice(0, 2).join('/')) ?? FUSO_UF[k.split('/')[0]] ?? 0;
+R.fusoPorMunicipio = { municipios: FUSO_MUN.size, diferencas: [...FUSO_MUN.values()].reduce((o, h) => somar(o, `${h} h`), {}),
+  divergeDaUf: [...FUSO_MUN].filter(([mun, h]) => !mun.startsWith('zz/') && h !== (FUSO_UF[mun.split('/')[0]] ?? 0)).map(([mun, h]) => `${mun}: ${h} h`) };
+const paraMs = (s) => Date.parse(`${s.replace(' ', 'T')}Z`);
+const brMs = (s) => { const m = /^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}:\d{2}:\d{2})$/.exec(s ?? ''); return m ? paraMs(`${m[3]}-${m[2]}-${m[1]} ${m[4]}`) : null; };
+const ordem = { buDepoisDaCorrespondencia: 0, buAntesDaCorrespondencia: 0, semHora: 0, foraDoTeste: 0 };
+const casosOrdem = [];
+for await (const r of linhasZip(path.join(DIR_DADOS, 'raw', 'dadosabertos', 'detalhe_votacao_secao', 'detalhe_votacao_secao_2026.zip'), /_BR\.csv$/)) {
+  if (r.DS_CARGO !== 'Presidente' || Number(r.NR_TURNO) !== T) continue;
+  const k = chave(r.SG_UF, r.CD_MUNICIPIO, r.NR_ZONA, r.NR_SECAO);
+  const p = pacotes.get(k);
+  const f = ceft.get(k);
+  if (!p || !f || p.origem === 'sa' || k.startsWith('zz/')) { ordem.foraDoTeste++; continue; }
+  const bu = brMs(r.DT_RECEBIMENTO_BU_HOR_TSE);
+  const tot = brMs(r.DT_PRIM_TOT_PARCIAL_HOR_TSE);
+  const corr = f.recbtoEf ? paraMs(f.recbtoEf) + fusoDe(k) * 36e5 : null;
+  if (bu === null || corr === null) { ordem.semHora++; continue; }
+  const gap = Math.round((bu - corr) / 6e4);
+  somar(ordem.intervaloCorrespAteBU ??= {}, gap < 0 ? 'negativo' : gap < 60 ? 'menos de 1 h' : gap < 24 * 60 ? '1 h a 1 dia' : 'mais de 1 dia');
+  const caso8 = (casos.parForaDaCespVespera ?? []).find((x) => x.k === k);
+  if (caso8) Object.assign(caso8, { buRecebidoTSE: r.DT_RECEBIMENTO_BU_HOR_TSE, primeiraTotalizacao: r.DT_PRIM_TOT_PARCIAL_HOR_TSE, minutosCorrespAteBU: gap });
+  if (bu >= corr) ordem.buDepoisDaCorrespondencia++;
+  if (gap >= 0) ordem.menorIntervaloMin = Math.min(ordem.menorIntervaloMin ?? Infinity, gap);
+  else {
+    ordem.buAntesDaCorrespondencia++;
+    casosOrdem.push({ k, buRecebido: r.DT_RECEBIMENTO_BU_HOR_TSE, primeiraTotalizacao: r.DT_PRIM_TOT_PARCIAL_HOR_TSE,
+      correspEfetivadaBrasilia: new Date(corr).toISOString().slice(0, 19).replace('T', ' '), minutosBuAntes: Math.round((corr - bu) / 6e4),
+      totalizadaAntesDaCorrespondencia: tot !== null ? tot < corr : null, tipoUrna: p.tipoUrna, div: f.div, urnaEsp: f.urnaEsp, urnaEf: f.urnaEf });
+  }
+}
+ordem.totalizadaAntesDaCorrespondencia = casosOrdem.filter((x) => x.totalizadaAntesDaCorrespondencia).length;
+R.ordemBuCorrespondencia = ordem;
+casos.buAntesDaCorrespondencia = casosOrdem.sort((a, b) => b.minutosBuAntes - a.minutosBuAntes);
 
 // 6. urnas esperadas sem pacote e contingências usadas
 const urnasComPacote = new Set();

@@ -71,5 +71,12 @@ for (const pac of PACOTES) {
     }
   }
 }
-console.log(`[h27] fim; falhas: ${falhas}; manifesto: ${MANIFESTO}`);
+// Lista versionada (data/ fica fora do git): URL, tamanho, SHA-256 e conferência do SHA-512 publicado, um arquivo por linha.
+const CSV = path.join(import.meta.dirname, '..', '..', 'docs', 'analysis', 'engenheiro-seguranca-urna', '09-h27-arquivos-baixados.csv');
+const linhas = ['arquivo;url;bytes;sha256;sha512_publicado_confere'];
+for (const [k, v] of Object.entries(manifesto).sort(([a], [b]) => a.localeCompare(b))) {
+  linhas.push(k.startsWith('FALHA:') ? `${k};${v.url};;;falha: ${v.erro}` : `${k};${v.url};${v.bytes};${v.sha256};${v.sha512Confere === null ? 'sem .sha512 publicado' : 'sim'}`);
+}
+await writeFile(CSV, `${linhas.join('\n')}\n`);
+console.log(`[h27] fim; falhas: ${falhas}; manifesto: ${MANIFESTO}; lista: ${CSV}`);
 process.exitCode = falhas ? 1 : 0;

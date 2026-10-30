@@ -62,7 +62,17 @@ for (const [cert, ks2] of secoesDaCarteira[2]) {
   else if (comuns) parciais.push({ cert: cert.slice(0, 16), assinante: P[2].get(ks2[0]).assinante, secoes1t: ks1.length, secoes2t: ks2.length, comuns, tipos: [P[1].get(ks1[0]).tipoUrna, P[2].get(ks2[0]).tipoUrna] });
   else { outraSecao++; carteirasOutraSecao.push({ cert, ks1, ks2 }); }
 }
+// O código de carga vale para os dois turnos quando a urna não é recarregada: o do 2º turno fica público com o BU do 1º.
+let mesmaCarga = 0;
+let secoesComUrnaNosDois = 0;
+for (const [k, p2] of P[2]) {
+  const p1 = P[1].get(k);
+  if (!p1 || p1.origem === 'sa' || p2.origem === 'sa') continue;
+  secoesComUrnaNosDois++;
+  if (nc(p1.cargaBU) === nc(p2.cargaBU)) mesmaCarga++;
+}
 R.medida1.doisTurnos = {
+  secoesComUrnaNosDoisTurnos: secoesComUrnaNosDois, mesmaCargaNoBUDosDoisTurnos: mesmaCarga,
   soNo1t: [...secoesDaCarteira[1].keys()].filter((c) => !secoesDaCarteira[2].has(c)).length,
   soNo2t: [...secoesDaCarteira[2].keys()].filter((c) => !secoesDaCarteira[1].has(c)).length,
   nosDoisNaMesmaSecao: mesmaSecao, nosDoisEmParteNasMesmasSecoes: parciais.length, parciais, nosDoisEmSecaoDiferente: outraSecao,
@@ -97,6 +107,8 @@ for (const t of [1, 2]) {
     secoes: lista.length,
     assinadasPelaPropriaUrna: lista.filter((x) => x.assinanteEhUrnaDaSecao).length,
     assinadasPorOutraUrna: lista.filter((x) => !x.assinanteEhUrnaDaSecao).length,
+    comparecimentoAssinadasPorOutraUrna: lista.filter((x) => !x.assinanteEhUrnaDaSecao).reduce((n, x) => n + x.comparecimentoBU, 0),
+    comparecimentoTodasRed: lista.reduce((n, x) => n + x.comparecimentoBU, 0),
     origemCeft: lista.reduce((o, x) => somar(o, `${x.origemCeft}|${x.dsOrigem}`), {}),
     logComUrnaECargaDoBU: lista.filter((x) => x.logTemUrnaDoBU && x.logTemCargaDoBU).length,
     votosConferem: lista.filter((x) => x.votosConferem === true).length,
