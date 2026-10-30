@@ -12,7 +12,8 @@ import { lerEntrada, listarEntradas } from '../../src/zip.js';
 // Auditor E (integridade nacional). Casos que o resumo separa e que pedem leitura do log:
 //   1. Pacotes do Recuperador de Dados (tipo_arquivo 'votacaoRED' no banco): BU de uma urna, .vsc/certificado/log de
 //      outra. Confere se a urna do BU é a do log aninhado, se o log da urna original tem o mesmo número de votos do BU
-//      e quando a recuperação aconteceu ("Iniciando aplicação RECUPERADOR DE DADOS").
+//      e quando a recuperação aconteceu ("Iniciando aplicação RECUPERADOR DE DADOS"). Compara a FV do BU com os cartões de
+//      votação lidos nos logs ("Serial da MV:") e registra se o RED informou "Detectado Urna de Votação sem MV".
 //   2. Grupos de MR repetida no turno (casos.jsonl, repeticao_mr): para cada seção do grupo, computador, usuário e
 //      data/hora de geração da MR lidos no log. Mesma geração em todas = cópia de uma MR só.
 // Saída: data/parsed/auditoria/integridade/<t>t/casos-especiais.json
@@ -81,13 +82,16 @@ async function principal() {
       const votosNoDia = cs.filter((x) => x[0].startsWith(DIA[turno]) && x[4] === 'O voto do eleitor foi computado').length;
       const red1 = cs.find((x) => x[4].startsWith('Iniciando aplicação RECUPERADOR DE DADOS'));
       const contingencia = cs.find((x) => x[4].startsWith('Modo de carga da UE - Urna de contingência'));
-      return { profundidade: l.profundidade, urnas, votosNoDia, recuperacao: red1?.[0] ?? null, cargaContingencia: contingencia?.[0] ?? null,
+      const mvs = [...new Set(cs.filter((x) => x[4].startsWith('Serial da MV: ')).map((x) => x[4].slice(14).trim()))];
+      const semMv = cs.some((x) => x[3] === 'RED' && x[4] === 'Detectado Urna de Votação sem MV');
+      return { profundidade: l.profundidade, urnas, votosNoDia, recuperacao: red1?.[0] ?? null, cargaContingencia: contingencia?.[0] ?? null, mvs, semMv,
         mensagensRed: [...new Set(cs.filter((x) => x[3] === 'RED').map((x) => x[4].replace(/\d+/g, '#')))].slice(0, 40) };
     });
     const votosLogs = porLog.reduce((a, l) => a + l.votosNoDia, 0);
     saida.red.push({ onde: k, tipoUrna: s.tipo_urna, comparecimentoBU: s.comparecimento, urnaBU: c?.urnaBU ?? null, urnaVsc: c?.urnaVsc ?? null, certificado: c?.certNome ?? null,
       emissor: c?.emissor ?? null, modelo: c?.modeloVsc ?? null, buUrnaNoLogAninhado: c ? porLog.some((l) => l.profundidade > 0 && l.urnas.includes(c.urnaBU)) : null,
-      buUrnaIgualVsc: c ? c.urnaBU === c.urnaVsc : null, votosNosLogs: votosLogs, votosConferem: votosLogs === s.comparecimento, logs: porLog });
+      buUrnaIgualVsc: c ? c.urnaBU === c.urnaVsc : null, votosNosLogs: votosLogs, votosConferem: votosLogs === s.comparecimento,
+      fvBU: c?.fv ?? null, fvBuEntreMvsLidas: c ? porLog.some((l) => l.mvs.includes(c.fv)) : null, redSemMv: porLog.some((l) => l.semMv), logs: porLog });
   }
   // Grupos de MR repetida
   const casos = createInterface({ input: createReadStream(path.join(dir, 'casos.jsonl')), crlfDelay: Infinity });

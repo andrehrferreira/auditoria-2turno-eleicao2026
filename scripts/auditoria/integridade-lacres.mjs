@@ -339,6 +339,19 @@ async function principal() {
   const total = fila.length;
   console.log(`turno ${turno}: ${total} zonas na fila (${Object.keys(feitos).length} já feitos), ${procs} processos`);
   if (values.refazer) for (const uf of ufs) await writeFile(path.join(dirSaida, `${uf}.jsonl`), '');
+  else {
+    // Retomada: feitos.json só é gravado a cada 200 zonas, então zonas já escritas no .jsonl podem voltar à fila.
+    // As linhas delas saem antes, para não ficarem duplicadas.
+    for (const uf of ufs) {
+      const arq = path.join(dirSaida, `${uf}.jsonl`);
+      const linhas = ((await lerOuNulo(arq))?.toString() ?? '').split('\n').filter(Boolean);
+      const ficam = linhas.filter((l) => {
+        const r = JSON.parse(l);
+        return feitos[`${r.uf}/${r.municipio}/${r.zona}`];
+      });
+      if (ficam.length < linhas.length) await writeFile(arq, ficam.map((l) => `${l}\n`).join(''));
+    }
+  }
 
   const streams = new Map();
   const stream = (uf) => {

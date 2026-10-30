@@ -119,10 +119,17 @@ async function filho() {
     const erros = {}; // mensagem → { linhas, secoes, secoesVesperaOuDia, exemplos }
     let logs = 0;
     let falhasLeitura = 0;
+    let secoesLidas = 0;
+    let secoesSemPacote = 0;
+    let pacotes = 0;
     for (const secao of await subdirs(path.join(base, uf, municipio, zona))) {
       const dir = path.join(base, uf, municipio, zona, secao);
+      secoesLidas++;
       try {
-        for (const h of await pacotesDaSecao(dir)) {
+        const hs = await pacotesDaSecao(dir);
+        if (!hs.length) secoesSemPacote++;
+        pacotes += hs.length;
+        for (const h of hs) {
           const nomes = await readdir(path.join(dir, h));
           const nomeLog = acharArquivo(nomes, 'log');
           if (!nomeLog) continue;
@@ -150,7 +157,7 @@ async function filho() {
       }
     }
     for (const e of Object.values(erros)) delete e._vistas;
-    process.send({ uf, municipio, zona, eventos, erros, logs, falhasLeitura });
+    process.send({ uf, municipio, zona, eventos, erros, logs, falhasLeitura, secoesLidas, secoesSemPacote, pacotes });
   });
   process.send({ pronto: true });
 }
@@ -166,7 +173,7 @@ async function principal() {
   const fila = [];
   for (const uf of ufs) for (const municipio of await subdirs(path.join(base, uf))) for (const zona of await subdirs(path.join(base, uf, municipio))) fila.push({ uf, municipio, zona });
   const saida = createWriteStream(path.join(dirSaida, 'autoverificacao.jsonl'));
-  const resumo = { turno, logs: 0, falhasLeitura: 0, eventos: 0, secoes: new Set(), porPacote: {}, porSavd: {}, porResultado: {}, novaCarga: { sim: 0, nao: 0 },
+  const resumo = { turno, secoesLidas: 0, secoesSemPacote: 0, pacotes: 0, logs: 0, falhasLeitura: 0, eventos: 0, secoes: new Set(), porPacote: {}, porSavd: {}, porResultado: {}, novaCarga: { sim: 0, nao: 0 },
     mesmaEtapaDepois: {}, comVotosSemNovaCarga: 0, votosSemNovaCarga: 0, votosDepoisNoDia: { '04/10/2026': 0, '25/10/2026': 0 }, eventosVesperaOuDia: 0, porUf: {}, porData: {}, errosPorMensagem: {} };
   const inc = (o, k, n = 1) => {
     o[k] = (o[k] ?? 0) + n;
@@ -185,6 +192,9 @@ async function principal() {
       f.on('message', (m) => {
         if (m.pronto) return proximo();
         resumo.logs += m.logs;
+        resumo.secoesLidas += m.secoesLidas;
+        resumo.secoesSemPacote += m.secoesSemPacote;
+        resumo.pacotes += m.pacotes;
         resumo.falhasLeitura += m.falhasLeitura;
         for (const [k, e] of Object.entries(m.erros)) {
           const a = (resumo.errosPorMensagem[k] ??= { linhas: 0, secoes: 0, secoesVesperaOuDia: 0, exemplos: [] });
