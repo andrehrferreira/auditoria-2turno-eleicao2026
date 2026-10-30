@@ -8,7 +8,7 @@ Os arquivos que o TSE publica na internet são exatamente os que a urna gerou no
 
 **Fato (2º turno, país inteiro e exterior, revisado pelo cético no [parecer 24](../analysis/cetico-revisor/24-integridade-h04-h11.md)): sim.** Os pacotes das 499.207 seções com urna foram conferidos um a um. Em nenhum o arquivo mudou depois de assinado, e todos foram assinados por uma urna com "carteira de identidade" digital (certificado) emitida por uma das três autoridades do TSE para urnas. Resultado: **499.207 pacotes, 0 falha**. Mudar um único voto, ou um único sinal de um lacre, é detectado (seção "Prova de que o teste funciona").
 
-**Pendente (1º turno):** a conferência dos lacres (assinaturas digitais) do 1º turno ainda não foi feita. Por isso não há número aqui. As impressões digitais dos arquivos do 1º turno já foram refeitas em todas as seções ([tópico 0](00-coleta-completa.md)).
+**1º turno (Fato, 30/10/2026):** 499.207 pacotes com as assinaturas conferidas, 0 falha de arquivo (ver "Assinaturas do 1º turno", abaixo). As impressões digitais dos arquivos do 1º turno já foram refeitas em todas as seções ([tópico 0](00-coleta-completa.md)).
 
 **Fato (2º turno, parecer 24):** ao ligar, a urna confere as assinaturas do próprio programa e anota o resultado no diário. Em 162 seções a urna anotou que uma dessas conferências falhou. Em nenhum desses casos a urna recebeu voto sem antes ser desligada e ligada de novo (seção "O que a urna anota sobre o próprio programa").
 
@@ -244,7 +244,7 @@ Casos concretos, com o diário original (`integridade-nacional/07`): SP 71072/03
 
 ## 1º turno
 
-**Pendente.** A conferência das assinaturas do 1º turno não foi feita: a leitura dos pacotes do 1º turno foi feita sem os lacres, e a conferência completa está em andamento. Nenhum número entra aqui até ela terminar e passar pela revisão cética.
+**Fato (30/10/2026).** No 1º turno, as assinaturas dos 499.207 pacotes também foram conferidas, sem nenhuma falha de arquivo. Em 37.440 deles (urnas de 2013 e 2015) o certificado tem bytes zero a mais no fim; conferidos com o certificado cortado no lugar certo, os 37.440 passam. Uma recontagem independente, com código do revisor cético, chegou aos mesmos números ([parecer 24](../analysis/cetico-revisor/24-integridade-h04-h11.md), item 4, previu os 37.440). O único caso fora do padrão é o já conhecido boletim impresso de MG 50075/0047/0041, publicado fora da lista lacrada. Comandos: `node scripts/auditoria/integridade-lacres.mjs --turno 1`, `node scripts/auditoria/integridade-reverificar.mjs --turno 1` e `node scripts/auditoria/cetico-integridade-recontagem.mjs --turno 1 --dir data/parsed/auditoria/integridade/1t`.
 
 - **Fato (parecer 24, item 4).** No pacote do 1º turno da seção MG 50075/0047/0041 (apuração mista, com o Sistema de Apuração), o boletim impresso (`imgbu.dat`) foi publicado sem estar na lista lacrada. **Pendente:** conferir se o conteúdo dele bate com o boletim assinado.
 - **Limite do 1º turno:** o TSE não publica, para o 1º turno, o arquivo que indica qual pacote foi totalizado em cada seção. O pacote é identificado pela etiqueta (impressão digital do pacote de lacres), e isso não prova, sozinho, que o pacote no disco é o que o TSE totalizou.
@@ -304,13 +304,13 @@ Fonte dos arquivos: `resultados.tse.jus.br`, baixados em 29/10/2026, com registr
 | ES · Vila Velha · zona 55 · seções 364 e 372, nos dois turnos | 2 | 25 de 25 conferências positivas em cada seção e turno |
 | AC · todas as seções com urna | 2.270 (3.310 cópias de pacotes, porque 1.040 seções foram baixadas por dois caminhos) | Todas as conferências positivas, em todas as cópias |
 | **Brasil e exterior · 2º turno · todas as seções com urna** | **499.207** | **0 falha** (revisado no parecer 24) |
-| Brasil e exterior · 1º turno | — | **Pendente** |
+| Brasil e exterior · 1º turno | 499.207 | 0 falha de arquivo |
 
 ## Próximos passos
 
 - [x] Rodar a conferência dos lacres em todas as seções do país, 2º turno (parecer 24).
 - [x] Conferir urnas de modelo antigo (2013/2015), que usam o método ECDSA: 99.957 pacotes do 2º turno, 0 falha.
-- [ ] **Pendente.** Conferência dos lacres do 1º turno no país inteiro (em andamento), com revisão cética.
+- [x] Conferência dos lacres do 1º turno no país inteiro: 499.207 pacotes, 0 falha de arquivo (30/10/2026).
 - [ ] **Pendente.** Conferir se o boletim impresso de MG 50075/0047/0041 (1º turno), publicado fora da lista lacrada, bate com o boletim assinado.
 - [ ] **Pendente.** Corrigir o leitor para registrar a sobra de zeros de todas as carteiras.
 - [ ] **Pendente.** Refazer a contagem de inicializações de votação e de etapas com um segundo programa.

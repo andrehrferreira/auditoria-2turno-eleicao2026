@@ -6,7 +6,7 @@ Rótulos: **Fato** é conferido nos arquivos oficiais de todas as seções, com 
 
 ## Em poucas palavras
 
-Nos arquivos públicos das urnas do 1º turno (04/10/2026) e do 2º turno (25/10/2026), nenhum teste encontrou sinal de fraude no resultado: a soma das urnas é igual ao resultado oficial, e nenhum arquivo do 2º turno foi alterado depois de a urna o assinar. Os testes também acharam pontos fracos: a liberação de eleitores sem digital depende só de pessoas, um certificado de segurança venceu antes da eleição, e o diário público das urnas traz números de título de eleitor. E há perguntas que esses arquivos não respondem, como quem estava na cabine e se o programa da urna era o auditado. Por isso, esta perícia não afirma que houve fraude, nem que não houve.
+Nos arquivos públicos das urnas do 1º turno (04/10/2026) e do 2º turno (25/10/2026), nenhum teste encontrou sinal de fraude no resultado: a soma das urnas é igual ao resultado oficial, e nenhum arquivo dos dois turnos foi alterado depois de a urna o assinar. Os testes também acharam pontos fracos: a liberação de eleitores sem digital depende só de pessoas, um certificado de segurança venceu antes da eleição, e o diário público das urnas traz números de título de eleitor. E há perguntas que esses arquivos não respondem, como quem estava na cabine e se o programa da urna era o auditado. Por isso, esta perícia não afirma que houve fraude, nem que não houve.
 
 ## O que foi examinado
 
@@ -20,7 +20,7 @@ De cada urna saem o **boletim de urna** (o placar da seção), o **registro digi
 
 **1. A soma das urnas é igual ao resultado oficial.** **Fato.** 2º turno, Presidente: 0 diferença em 499.205 seções, conferidas uma a uma. 1º turno, todos os cargos: 0 divergência nas 499.207 seções com boletim. Nenhuma seção do 2º turno teve mais votantes que eleitores aptos. → [tópico 5](05-soma-dos-boletins.md), [tópico 2](02-coerencia-entre-arquivos.md)
 
-**2. Os arquivos do 2º turno não foram alterados depois de assinados.** **Fato.** A urna assina seus arquivos com uma assinatura digital, um lacre eletrônico que denuncia qualquer mudança posterior. 499.207 pacotes conferidos, 0 falha; arquivos adulterados de propósito foram rejeitados, o que mostra que a conferência funciona. Todas as urnas rodaram a mesma versão de programa (10.23.0.0). 1º turno: **Pendente**, em andamento. → [tópico 1](01-integridade-e-estrutura-dos-arquivos.md)
+**2. Os arquivos dos dois turnos não foram alterados depois de assinados.** **Fato.** A urna assina seus arquivos com uma assinatura digital, um lacre eletrônico que denuncia qualquer mudança posterior. 499.207 pacotes conferidos, 0 falha; arquivos adulterados de propósito foram rejeitados, o que mostra que a conferência funciona. Todas as urnas rodaram a mesma versão de programa (10.23.0.0). No 1º turno, os mesmos 499.207 pacotes também passaram, com 0 falha de arquivo. → [tópico 1](01-integridade-e-estrutura-dos-arquivos.md)
 
 **3. Boletim, lista de votos e diário contam a mesma história.** **Fato.** No 2º turno, boletim e lista de votos são iguais em todas as seções e cargos (539.815 comparações, 0 diferença). Há votos do boletim sem a linha "voto computado" no diário: 54 em 6 seções no 2º turno e 159 em 9 no 1º. Os próprios arquivos mostram a causa: a urna caiu antes de gravar a última linha, ou outra urna, ligada com o cartão de votos da seção, gravou o próprio diário por cima. **Pendente:** qual urna gravou 15 desses votos, numa seção de SP. → [tópico 2](02-coerencia-entre-arquivos.md)
 
@@ -54,7 +54,7 @@ De cada urna saem o **boletim de urna** (o placar da seção), o **registro digi
 
 ## Pendências e perguntas ao TSE
 
-**Pendente:** assinaturas do 1º turno ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)); demais campos do 2º turno contra o resultado oficial ([tópico 5](05-soma-dos-boletins.md)); se a ordem de registro dos boletins dependeu do voto ([tópico 3](03-linha-do-tempo.md)); as hipóteses H15 a H25, registradas depois, cujos testes ainda não passaram pela revisão ([registro](../hipoteses.md)).
+**Pendente:** demais campos do 2º turno contra o resultado oficial ([tópico 5](05-soma-dos-boletins.md)); se a ordem de registro dos boletins dependeu do voto ([tópico 3](03-linha-do-tempo.md)); as hipóteses H15 a H25, registradas depois, cujos testes ainda não passaram pela revisão ([registro](../hipoteses.md)).
 
 **Perguntas ao TSE e aos TREs:** o certificado em vigor da AC URNA e os das autoridades raiz; de quem são os números de título gravados na interrupção do eleitor; quantos eleitores tinham digital carregada na urna, por seção; quantos eleitores de 100+ votaram no 2º turno; onde os boletins esperaram entre 17:10 e 19:03 do 2º turno; o motivo da troca de urnas entre as zonas 1 e 2 de Aracaju.
 
