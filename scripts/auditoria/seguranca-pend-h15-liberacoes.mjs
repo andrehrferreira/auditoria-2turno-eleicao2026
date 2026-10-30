@@ -25,7 +25,7 @@ const norm = (m) => m.replace(/\d{10,}/g, '#').replace(/\(\d+\)/g, '(n)').replac
 /** Ciclos do dia de um diário. `apelido(titulo)` devolve o apelido do mesário (o título fica só em memória). */
 function analisar(texto, dia, apelido) {
   const r = { urna: null, linhasDia: 0, votos: 0, bio: 0, manual: 0, manualSemMesario: 0, jaVotou: 0, naoEncontrado: 0, suspensos: 0,
-    tentativasManual: {}, capturasManual: 0, naoReconhecidoManual: 0, timeoutManual: 0, naoCorresponde: 0, tentativasBio: {},
+    tentativasManual: {}, leiturasManual: {}, capturasManual: 0, naoReconhecidoManual: 0, timeoutManual: 0, naoCorresponde: 0, tentativasBio: {},
     mesariosRegistrados: 0, mesarioEleitorDaSecao: 0, mesarioEleitorDigitalNaoConfere: 0, porMesario: {}, metodoMesario: {}, scoresMesario: [], errosAlertas: {}, leitorForaVota: {}, contingencias: [], ligada: [],
     pronta: null, encerramento: null, primeiroVoto: null, ultimoVoto: null, porHora: {}, ciclos: [] };
   const urnas = {};
@@ -86,6 +86,8 @@ function analisar(texto, dia, apelido) {
         r.manual++;
         ph.manual++;
         r.tentativasManual[c.pedidas] = (r.tentativasManual[c.pedidas] ?? 0) + 1;
+        // Pedir a digital não é ler um dedo: "Capturada a digital" é a leitura real.
+        r.leiturasManual[c.capturas] = (r.leiturasManual[c.capturas] ?? 0) + 1;
         r.capturasManual += c.capturas; r.naoReconhecidoManual += c.naoRec; r.timeoutManual += c.timeout;
         const qm = c.mesario ?? `(${c.metodo ?? 'sem registro de mesário'})`;
         r.porMesario[qm] = (r.porMesario[qm] ?? 0) + 1;
@@ -198,7 +200,7 @@ for (const [alvo, o] of Object.entries(saida.alvos)) {
       for (const u of s.urnas) {
         if (!u.votos && k !== alvo) continue;
         console.log(`${k === alvo ? '*' : ' '} ${k} urna ${u.urna} ${s.bu.modelo} ${s.bu.tipo} | aptos ${s.bu.aptos} comp ${s.bu.comparecimento} | votos ${u.votos} bio ${u.bio} manual ${u.manual} (${pct(u.manual, u.votos)})` +
-          ` | tentativas manual ${JSON.stringify(u.tentativasManual)} naoRec ${u.naoReconhecidoManual} | mesarios registrados ${u.mesariosRegistrados}, mesarios eleitores da secao ${u.mesarioEleitorDaSecao}, com digital que nao confere com o cadastro ${u.mesarioEleitorDigitalNaoConfere} timeout ${u.timeoutManual} | jaVotou ${u.jaVotou} | mesario ${JSON.stringify(u.porMesario)}` +
+          ` | pedidos de digital ${JSON.stringify(u.tentativasManual)} leituras reais ${JSON.stringify(u.leiturasManual)} naoRec ${u.naoReconhecidoManual} | mesarios registrados ${u.mesariosRegistrados}, mesarios eleitores da secao ${u.mesarioEleitorDaSecao}, com digital que nao confere com o cadastro ${u.mesarioEleitorDigitalNaoConfere} timeout ${u.timeoutManual} | jaVotou ${u.jaVotou} | mesario ${JSON.stringify(u.porMesario)}` +
           ` | rajada10 ${u.ritmo.rajadaManual10min} seq ${u.ritmo.maiorSequenciaManual} (${u.ritmo.sequenciaDe}-${u.ritmo.sequenciaAte}) | ultimaHora ${JSON.stringify(u.ritmo.ultimaHora)}` +
           ` | scoresMesario ${JSON.stringify(u.scoresMesario)} | 13: ${pct(s.bu.presidente?.v13 ?? 0, (s.bu.presidente?.v13 ?? 0) + (s.bu.presidente?.v22 ?? 0))}` +
           ` | conting ${u.contingencias.join(',')} ligada ${u.ligada.join(',')} | ERRO/ALERTA ${JSON.stringify(u.errosAlertas)}`);

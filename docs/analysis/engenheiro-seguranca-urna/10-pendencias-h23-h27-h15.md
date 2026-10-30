@@ -2,6 +2,16 @@
 
 Perfil `engenheiro-seguranca-urna`, 30/10/2026. Cópia de leitura do banco de 29/10 10:50 UTC (os dois turnos, 28 UFs). Continua o [doc 08 do matemático](../matematico-forense/08-h23-recarga-e-carga-fora-da-cerimonia.md) (pendência "64 diários sem a linha final"), o [doc 09](09-h27-pacote-substituido-e-secoes-fantasmas.md) e o [parecer 38](../cetico-revisor/38-h27-pacote-substituido.md) (grupo D), o [doc 09 do matemático](../matematico-forense/09-h24-transito-e-atributos.md) e o [parecer 39](../cetico-revisor/39-h23-h24-t11.md) (fila H15/H07).
 
+Revisado no [parecer cético 41](../cetico-revisor/41-pendencias-engenheiro-demografo.md), itens 1(a) a 1(c). As correções estão aplicadas no texto:
+- sai o "excesso de modelos antigos", que era geografia;
+- a mídia de votação também foi trocada nas 2 urnas da BA;
+- entram o contexto nacional das trocas e a coincidência com o certificado tardio;
+- "4 pedidos de digital" não é o mesmo que "4 leituras de dedo";
+- o comparecimento das 2 seções da fila fica acima do local;
+- o 1º turno do PR é inconclusivo.
+
+Os números que vêm só dos scripts do parecer estão marcados "(parecer 41)".
+
 Nenhum CPF nem número de título aparece aqui nem nas saídas. Os mesários são chamados de M1, M2… dentro de cada seção.
 
 ## Resposta curta
@@ -13,33 +23,44 @@ Nenhum CPF nem número de título aparece aqui nem nas saídas. Os mesários sã
      - **5 (5)**: o diário termina no meio das linhas finais da carga, sem a linha do desligamento e sem "Fechando o arquivo de Log". A próxima linha é a urna ligando de novo, 1 a 7 min depois. As 5 são UE2015.
      - **0**: diário cortado, carga refeita com o mesmo código ou versão de programa diferente. As 64 rodam a mesma versão 10.23.0.0 de todo o país.
    - Em todas, a urna ligou depois e verificou as assinaturas com sucesso. Há **0** "verificação de assinatura" sem sucesso nos diários desses pacotes, nos dois turnos.
-   - **Fato (padrão de modelo):** os modelos antigos aparecem mais do que a frota explica. São 24 de 64 UE2013 + UE2015, contra 12,8 esperados (20,0% da frota que gerou BU), com cauda binomial p = 0,0009. No 1º turno são 23 de 63, p = 0,0018. A versão do programa é uma só.
+   - **Fato (modelo; corrigido pelo parecer 41):** não há excesso de urnas antigas. São 24 de 64 UE2013 + UE2015. Contra a frota da própria zona de cada caso, o esperado é 21,2, com chance de 0,11 de dar 24 ou mais (1º turno: 23 contra 20,2, chance de 0,11). Os casos ficam em zonas de frota antiga: é geografia. A primeira versão comparava com a frota nacional (12,8 esperados) e via um excesso que não existe. A versão do programa é uma só.
    - **Fato (votos):** não destoam. São 18 testes: comparecimento, parcela do 13 e brancos + nulos; variação entre os turnos × zona e nível de cada turno × local de votação; os dois turnos. O menor p é 0,045, e o limiar corrigido é 0,0028.
 2. **Fato: as urnas 01843885 (BA 33774/0071/0150) e 01844077 (BA 39144/0071/0170) só aparecem no CEFT do 2º turno.** Foram lidas 222 listas e 4.142.470 linhas: CEFT de 2022 e 2024 (1º turno) e CESP da véspera, CESP do dia e CEFT dos dois turnos de 2026, todas as UFs.
    - Não estão em nenhum BU nem pacote do 1º turno. Os diários delas começam em 21/10, na carga.
    - São UE2015, dentro da faixa pública do modelo. O certificado da AC URNA de cada uma confere com a chave da AC:
      - 01843885: série `34b024`, emitido em **31/08/2026**, vence em 31/12/2037. É um dos 54 "tardios" do doc 07/08;
      - 01844077: série `3454d5`, emitido em 18/05/2017, vence em 25/01/2031.
-   - As duas foram carregadas em 21/10 com a **mesma mídia de carga do 1º turno**: o mesmo identificador, gerado em 17/09 no computador do cartório da zona 71. Foram ligadas para conferência em 21/10 e 22/10 e votaram em 25/10, das 08:00 às 17:0x.
+   - As duas foram carregadas em 21/10 com a **mesma mídia de carga do 1º turno**: o mesmo identificador, gerado em 17/09 no computador do cartório da zona 71.
+   - A **mídia de votação foi trocada** junto com a urna:
+     - no 1º turno, FCDAEB3C (0150) e 86D601EA (0170);
+     - nas urnas novas, CBCFFFFB e A1CFD703, geradas em 18/09 às 08:45:26 e 08:45:49 na mesma máquina do cartório e usadas pela primeira vez em 21/10.
+   - As duas novas passaram ao 2º turno no mesmo dia que a zona: 282 das 288 seções da zona 71 registram a passagem ao 2º turno em 21/10 (parecer 41). Foram ligadas para conferência em 21/10 e 22/10 e votaram em 25/10, das 08:00 às 17:0x.
    - As urnas do 1º turno (01780000 e 01771106) estão nos CEFT de 2022 e 2024 em outras seções da BA e em todas as listas de 2026 até o CEFT do 2º turno, como "esperada". Não aparecem em nenhum dado do 2º turno.
+   - **Contexto (parecer 41):** 2.191 urnas foram carregadas entre os turnos com a mídia de carga do 1º turno. Delas, 40 estavam fora da lista prévia do 2º turno, e só 5 fora de todas as listas de 2026; as duas da BA estão entre essas 5.
+   - **Certificado tardio:** a coincidência com a troca é incomum, mas não extraordinária. Os 53 certificados tardios do 2º turno são mais frequentes entre as urnas que entram como substitutas (chance de 1,5% a 4% dentro desse grupo).
+   - **Hipótese:** urna recertificada depois de reparo, que volta ao estoque de reserva.
    - Os arquivos não explicam por que as urnas foram trocadas, por que a correspondência da carga de 21/10 não chegou ao TSE antes do dia e de onde vieram as urnas. Isso vai para o pedido ao TSE.
-3. **Fato: nas duas seções da fila, o diário mostra o leitor de digitais falhando para quase todos os eleitores, com 4 capturas reais por eleitor, e não o mesário pulando a digital.**
+3. **Fato: nas duas seções da fila, o diário mostra o leitor de digitais falhando para quase todos os eleitores. Em quase todas as liberações houve leitura real de dedo, e não o mesário pulando a digital.** O defeito do leitor (H07) está sustentado em AL e no 2º turno do PR. O 1º turno do PR é **inconclusivo**.
    - **PR 79294/0019/0055**, mesma urna UE2013 (01660647) e mesma carga nos dois turnos:
      - liberação manual em 223 de 227 votos no 1º turno e em 225 de 227 no 2º;
-     - **todas** as liberações manuais vêm depois de 4 capturas de digital sem reconhecimento;
+     - a urna pediu a digital 4 vezes em todas as liberações manuais. Leituras reais do dedo (4 de 4) houve em 221 de 223 no 1º turno e em 224 de 225 no 2º. Numa liberação do 1º turno, nenhum dedo foi lido;
      - no 1º turno, a digital do mesário confere nessa mesma urna (204 de 763 comparações acima de 50; M1 liberou 195);
      - no 2º turno, nem a digital do mesário confere (2 de 2.183 acima de 50), e 216 liberações ficam sem mesário identificado;
      - as vizinhas do mesmo local, com a mesma carga de software e o mesmo modelo, liberaram 7,5% a 18,2%.
    - **AL 28819/0045/0174, 1º turno:**
      - a urna da seção (01670138) teve 99 de 117 votos por digital;
      - ela travou às 11:24 no pedido de digital e, depois, gravou 2 ERRO do leitor: 12:27, "Falha na captura da digital… Desligue e ligue a urna. Se o erro persistir, substitua a urna", e 13:00, "Error ao encerrar captura";
-     - às 13:28 foi trocada pela reserva 01675293, que liberou **99 de 106** votos sem digital, todos depois de 4 capturas.
-     - No 2º turno, com outra reserva (01669231, posta no lugar em 18/10), foram 6,7%.
+     - às 13:28 foi trocada pela reserva 01675293, que liberou **99 de 106** votos sem digital. Houve 4 leituras reais em 95 delas, 3 em 3 e nenhuma em 1;
+     - no 2º turno, com outra reserva (01669231, posta no lugar em 18/10), foram 6,7%, com os mesmos 223 votantes.
    - Nas duas seções:
      - 0 "já votou";
      - nenhum intervalo de 30 s ou menos entre votos;
      - a liberação sem digital fica espalhada por todas as horas da falha, sem se concentrar no fim do dia;
-     - comparecimento e parcela do 13 dentro da faixa das vizinhas e iguais nos dois turnos.
+     - parcela do 13 na faixa das vizinhas e igual nos dois turnos.
+   - **Comparecimento (corrigido pelo parecer 41): não está na faixa das vizinhas.**
+     - PR: 85,7% nos dois turnos, **8,1 pontos** acima da média das 2 outras seções do local no 1º turno e 6,1 no 2º;
+     - AL: 91,0%, 10,2 e 8,3 pontos acima.
+     - Em AL, o 2º turno, com leitor bom, teve os mesmos 223 votantes, o que explica o nível. No PR, não há esse controle.
 
 ## 1. Carga sem a linha final "Urna carregada com sucesso" (H23)
 
@@ -162,20 +183,20 @@ Modelo e data vêm do próprio trecho de carga (data digitada pelo operador). Ca
 
 Por UF (2º turno): SP 19, RJ 8, PR 6, MG 5, PA 4, SC 4, CE 3, PE 3, AM 2, GO 2, MS 2, BA 1, DF 1, MA 1, PI 1, RS 1, TO 1. Todas as cargas são de 19/09 a 30/09, antes do 1º turno. A lista do 1º turno (63) está no CSV de saída.
 
-### Modelo (Fato) e o que ele sugere (Hipótese)
+### Modelo (Fato, corrigido pelo parecer 41): não há excesso de urnas antigas
 
-| Modelo (BU) | 2º turno: casos | Esperado pela frota | 1º turno: casos | Esperado |
+| Base da frota para o esperado | 2º turno: UE2013 + UE2015 esperadas (casos: 24) | Chance de 24 ou mais | 1º turno: esperadas (casos: 23) | Chance de 23 ou mais |
 |---|---:|---:|---:|---:|
-| UE2022 | 20 | 25,5 | 20 | 25,1 |
-| UE2020 | 20 | 25,7 | 20 | 25,3 |
-| UE2015 | 19 | 11,2 | 19 | 11,1 |
-| UE2013 | 5 | 1,6 | 4 | 1,5 |
-| UE2013 + UE2015 | **24** (p = 0,0009) | 12,8 | **23** (p = 0,0018) | 12,6 |
+| País (primeira versão deste documento, enganosa) | 12,8 | 0,0009 | 12,6 | 0,0018 |
+| **Zona eleitoral de cada caso** | **21,2** | **0,11** | **20,2** | **0,11** |
+
+Por modelo, nos casos do 2º turno: UE2022 20, UE2020 20, UE2015 19, UE2013 5.
 
 - **Hipótese nula:** o desligamento pela chave no fim da carga acontece com a mesma chance em qualquer modelo.
-- **Linha de base:** a parte de cada modelo nas urnas que geraram BU no turno.
-- **Tamanho do efeito:** os modelos antigos aparecem 1,9 vez mais que o esperado.
-- **Hipótese benigna (não testada):** nos modelos antigos, a impressão do extrato e o fim da carga demoram mais. Assim, o operador que gira a chave logo depois de a impressora parar pega a urna antes da linha final mais vezes. Os 5 casos D, todos UE2015, apontam na mesma direção.
+- **Linha de base:** para cada caso, a parte de UE2013 + UE2015 entre as urnas que geraram BU na sua zona. A soma dessas chances é o esperado, e a cauda vem da distribuição exata (Poisson-binomial).
+- **Resultado:** dentro do acaso. Os casos se concentram em zonas de frota antiga (19 em SP, 11 só na capital). A comparação com a frota nacional confundia geografia com modelo.
+- Com isso, a hipótese do tempo de impressão por modelo deixa de ser necessária e sai do documento.
+- Os 5 casos D, todos UE2015, continuam sem explicação própria. É pouco caso para tirar conclusão.
 - **Sem mudança de programa:** a versão é uma só, 10.23.0.0, nos 127 casos.
 
 ### Votos (Fato)
@@ -240,16 +261,50 @@ Busca nas 222 listas baixadas (4.142.470 linhas), coluna "urna esperada" ou "urn
 | Data | BA 33774/0071/0150 | BA 39144/0071/0170 |
 |---|---|---|
 | 17/09 | Mídia de carga `02109BD0` gerada no computador `ZBA071WKS03` às 14:44:38 | Mídia de carga `8DF14556` gerada no mesmo computador às 13:49:24 |
-| 18/09 | Mídia de votação gerada às 08:45:26 | Mídia de votação gerada às 08:45:49 |
-| 21/09 | Urna do 1º turno 01780000: uma carga às 11:57 sem código gravado (arquivada às 12:11); carga às 12:13 com a mídia `02109BD0`, "carregada com sucesso" às 12:15:50 | Urna do 1º turno 01771106: carga às 16:44 com a mídia `8DF14556`, sucesso às 16:46:36 |
+| 18/09 | Mídias de votação geradas no cartório: `FCDAEB3C` às 08:06:58, a usada no 1º turno, e `CBCFFFFB` às 08:45:26, a que só seria usada em 21/10 | Mídias de votação: `86D601EA` às 06:32:14, a usada no 1º turno, e `A1CFD703` às 08:45:49, a que só seria usada em 21/10 |
+| 21/09 | Urna do 1º turno 01780000: uma carga às 11:57 sem código gravado (arquivada às 12:11); carga às 12:13 com a mídia `02109BD0`, "carregada com sucesso" às 12:15:50; mídia de votação `FCDAEB3C` "utilizada pela primeira vez" às 12:23 | Urna do 1º turno 01771106: carga às 16:44 com a mídia `8DF14556`, sucesso às 16:46:36; mídia de votação `86D601EA` usada pela primeira vez às 16:52 |
 | 04/10 | 01780000 abre às 08:00:01. Às 08:10, "Carga da bateria interna: CRÍTICA". 279 votos, o último às **21:13:16**; encerramento às 21:14:37 | 01771106 abre às 08:00:01. 295 votos, o último às **20:41:45**; encerramento às 20:52:16 |
-| 21/10 | **01843885** liga às 10:45 (primeira linha do diário). Carga digitada às 10:50 com a **mesma mídia `02109BD0`** e o mesmo computador; código gravado às 10:52:58; sucesso às 10:53:01. Liga às 10:55, "Urna não testada", e é desligada às 11:07 | **01844077** liga às 11:05. Carga digitada às 11:12 com a **mesma mídia `8DF14556`**; sucesso às 11:15:20. Liga às 11:16, "Urna não testada", e é desligada às 11:29 |
+| 21/10 | **01843885** liga às 10:45 (primeira linha do diário). Às 10:47, "arquivo temporário … encontrado e removido": em todo o país, essa linha aparece na preparação de 57 seções (parecer 41). Ela também aparece na urna do 1º turno, em 21/09, depois da carga interrompida. Carga digitada às 10:50 com a **mesma mídia de carga `02109BD0`** e o mesmo computador; código gravado às 10:52:58; sucesso às 10:53:01. Liga às 10:55. "Urna transitada para 2º Turno" às 10:58:39. Mídia de votação **nova, `CBCFFFFB`**, "utilizada pela primeira vez" às 10:58:57. "Urna não testada"; desligada às 11:07 | **01844077** liga às 11:05. Carga digitada às 11:12 com a **mesma mídia de carga `8DF14556`**; sucesso às 11:15:20. Liga às 11:16. "Urna transitada para 2º Turno" às 11:21:03. Mídia de votação **nova, `A1CFD703`**, usada pela primeira vez às 11:21:21. "Urna não testada"; desligada às 11:29 |
 | 22/10 | Ligada das 09:28 às 09:47 (conferência) | Ligada das 08:57 às 09:04 e das 09:11 às 09:18 |
 | 25/10 | Liga às 07:16; abre às 08:00:02; 288 votos, das 08:01:36 às 16:56:33; encerramento às 17:05:00 | Liga às 07:04; abre às 08:00:01; 300 votos, das 08:02:07 às 16:26:06 |
 | 25/10 (TSE, hora de Brasília) | Correspondência recebida às 20:42:34, pacote às 20:42:36 | Correspondência às 20:55:43, pacote às 20:55:45 |
 
 - **Fato:** ERRO nos diários de 2º turno das duas urnas: só "GAP Problema ao desmontar a MR", a linha de rotina que aparece em 498.698 seções (doc 08 do matemático).
 - **Fato:** no 1º turno, 21 das 288 seções da zona 71 encerraram depois das 20h: 16 às 20h e 5 às 21h. O fim tardio das duas urnas do 1º turno não é exclusivo delas.
+- **Fato (parecer 41):**
+  - 282 das 288 seções da zona 71 registram "Urna transitada para 2º Turno" em 21/10, com a mídia de resultado do 2º turno gerada em 13/10. As duas urnas novas foram preparadas no mesmo dia e com o mesmo material da zona inteira;
+  - na zona, só essas duas seções estrearam mídia de votação em outubro. Isso é coerente com mídias de votação de reserva geradas em setembro.
+
+### Contexto nacional da troca (Fato, parecer 41)
+
+| Urnas que geraram BU no 2º turno e foram carregadas entre os turnos com a mídia de carga do 1º turno | Quantas |
+|---|---:|
+| Total (trocas e recargas) | 2.191 (BA: 202) |
+| com o par urna + carga já na lista prévia (CESP) do 2º turno | 2.151 (98,2%) |
+| sem o par na lista prévia do 2º turno | 40 |
+| dessas, urna fora de **todas** as listas de 2026 | **5**: BA 0150, BA 0170, MG 41238/0331/0001 e /0197, SE 31054/0002/0524 |
+
+- **Coberto pela rotina:** carregar uma urna substituta entre os turnos com a mídia de carga do 1º turno é comum. Usar mídia de votação de reserva e fazer a carga no dia da passagem da zona para o 2º turno também se encaixa.
+- **Não coberto:** a correspondência que só chegou depois da votação, com a urna fora de qualquer lista. Isso aconteceu em 5 das 2.191 trocas, e duas delas são estas, na mesma zona e no mesmo dia.
+
+### A coincidência com o certificado tardio (Fato e Hipótese, parecer 41)
+
+Das 11 urnas de BU do 2º turno fora de todas as listas de 2026, 1 (BA 0150) tem certificado tardio, um dos 53 do 2º turno com certificado da AC URNA emitido depois de 18/07/2026.
+
+| Universo do sorteio | Chance de 1 ou mais em comum |
+|---|---:|
+| Todas as urnas do 2º turno (499.178) | 0,12% |
+| Urnas da AC URNA (99.928) | 0,16% |
+| Urnas da AC URNA ausentes das listas de 2022 e 2024 (2.484) | 4,2% |
+| Urnas da AC URNA carregadas entre os turnos com a mídia do 1º turno (763) | 2,7% |
+| Urnas da AC URNA trocadas entre os turnos (1.836) | 1,5% |
+
+- **Fato:**
+  - os 53 certificados tardios estão todos em urnas ausentes das listas de 2022 e 2024: 53 de 2.484, contra 0 de 97.444;
+  - o certificado tardio é 11 vezes mais frequente entre as urnas trocadas entre os turnos e 20 vezes mais entre as carregadas entre os turnos.
+- **Leitura:** sorteada no país inteiro, a coincidência seria rara. Dentro do grupo das urnas que entram como substitutas, ela é **incomum, não extraordinária** (1,5% a 4%).
+- **Hipótese (não testada, sem registro de manutenção):** a causa comum é a urna recertificada depois de reparo, que volta ao estoque de reserva e é usada nas trocas.
+- **Limite:** os recortes foram escolhidos depois de ver os dados, e por isso as chances são indicativas.
 
 ### O que os arquivos explicam e o que não explicam
 
@@ -260,13 +315,15 @@ Busca nas 222 listas baixadas (4.142.470 linhas), coluna "urna esperada" ou "urn
   - os votos não destoam (parecer 38: 0150 é reduto do 13, com 95,0% no 2º turno e 95,2% no 1º com outra urna; 0170, 82,5% e 85,4%).
 - **Não explicam:**
   1. por que as urnas do 1º turno foram trocadas. A única pista técnica é a bateria crítica de 01780000 em 04/10, e nada há para 01771106;
-  2. onde estavam 01843885 e 01844077 antes de 21/10. Não aparecem em nenhuma lista baixada (2022 e 2024 só têm CEFT do 1º turno, que lista só as urnas das seções). O certificado de 01843885 foi emitido em 31/08/2026, sinal de urna recertificada perto da eleição;
-  3. por que o código de carga de 21/10 não chegou ao TSE antes da CESP de 24/10 12:31 nem da de 25/10 13:45, e só chegou junto com o pacote, na noite de 25/10.
+  2. onde estavam 01843885 e 01844077 antes de 21/10. Não aparecem em nenhuma lista baixada (2022 e 2024 só têm CEFT do 1º turno, que lista só as urnas das seções). O certificado de 01843885 foi emitido em 31/08/2026, sinal de urna recertificada perto da eleição (ver a coincidência acima);
+  3. por que o código de carga de 21/10 não chegou ao TSE antes da CESP de 24/10 12:31 nem da de 25/10 13:45, e só chegou junto com o pacote, na noite de 25/10;
+  4. se `CBCFFFFB` e `A1CFD703` eram mídias de votação de reserva da zona.
 - **Pedido ao TSE/TRE-BA:**
   - ata da carga de 21/10 da zona 71 e o motivo da troca;
   - registro de entrada e saída de 01843885, 01844077, 01780000 e 01771106 no depósito;
   - registro da recertificação de 01843885 (emissão de 31/08/2026);
   - registro de envio da correspondência das cargas de 21/10 (hora em que o cartório transmitiu);
+  - registro das mídias de votação de reserva da zona 71 (se `CBCFFFFB` e `A1CFD703` eram reservas);
   - CESP e CEFT de 2022 e 2024 completos, com as listas de contingência.
 
 ### Visto pelo atacante
@@ -285,7 +342,7 @@ Busca nas 222 listas baixadas (4.142.470 linhas), coluna "urna esperada" ou "urn
 - **O que apareceu:**
   - molde e assinatura conferem;
   - número dentro da faixa do UE2015;
-  - mesma mídia e mesma máquina do cartório;
+  - mesma mídia de carga e mesma máquina do cartório; mídia de votação nova, gerada na mesma máquina em 18/09;
   - mesma versão;
   - carga, teste e conferência no diário.
 - **Limite:** uma urna real recertificada com a chave do TSE e carregada com a mídia oficial é indistinguível de uma de reposição legítima. O que fecha isso é o registro de patrimônio e a ata, fora dos arquivos públicos.
@@ -302,19 +359,30 @@ Busca nas 222 listas baixadas (4.142.470 linhas), coluna "urna esperada" ou "urn
 
 ### Resultado, alvo × vizinhas do mesmo local (Fato)
 
-| Seção, turno | Urna (modelo) | Votos | Sem digital | Tentativas antes da liberação manual | Digital do mesário conferiu (score > 50) | "Já votou" | ERRO do leitor | Comparecimento | Parcela do 13 |
+| Seção, turno | Urna (modelo) | Votos | Sem digital | Liberações manuais: pedidos de digital / leituras reais do dedo | Digital do mesário conferiu (score > 50) | "Já votou" | ERRO do leitor | Comparecimento | Parcela do 13 |
 |---|---|---:|---:|---|---|---:|---|---:|---:|
-| **PR 0055, 1º** | 01660647 (UE2013) | 227 | **223 (98,2%)** | 4 em 223 de 223 | 204 de 763; M1 liberou 195 | 0 | 0 | 85,7% | 32,4% |
-| PR 0056, 1º | 01653533 (UE2013) | 213 | 16 (7,5%) | 4 em 16 | 8 de 58 | 0 | 0 | 80,1% | 32,8% |
-| PR 0067, 1º | 01661829 (UE2013) | 159 | 29 (18,2%) | 4 em 28; 0 em 1 | 18 de 138 | 0 | 0 | 75,0% | 43,4% |
-| **PR 0055, 2º** | 01660647 (UE2013) | 227 | **225 (99,1%)** | 4 em 225 de 225 | **2 de 2.183**; 216 liberações sem mesário identificado | 0 | 0 | 85,7% | 36,9% |
-| PR 0056, 2º | 01653533 | 224 | 35 (15,6%) | 4 em 35 | 29 de 177 | 3 | 0 | 84,2% | 37,8% |
-| PR 0067, 2º | 01661829 | 159 | 22 (13,8%) | 4 em 20; 0 em 2 | 19 de 35 | 0 | 0 | 75,0% | 48,4% |
-| **AL 0174, 1º, urna da seção** | 01670138 (UE2013) | 117 | 18 (15,4%) | 4 em 18 | 0 de 150 | 0 | **2** (12:27 e 13:00) | 91,0% | 72,3% |
-| **AL 0174, 1º, reserva** | 01675293 (UE2013) | 106 | **99 (93,4%)** | 4 em 99 de 99 | 42 de 657 | 0 | 0 | (seção) | (seção) |
-| **AL 0174, 2º, reserva** | 01669231 (UE2013) | 223 | 15 (6,7%) | 4 em 14; 0 em 1 | 1 de 112 | 0 | 0 | 91,0% | 73,5% |
-| AL, 11 vizinhas, 1º | UE2013 (5) e UE2015 (6) | 210 a 257 | 7,4% a 32,9% | quase todas com 4 | — | 0 a 1 | 0 | 73,3% a 92,3% | 70,2% a 79,5% |
+| **PR 0055, 1º** | 01660647 (UE2013) | 227 | **223 (98,2%)** | 4 pedidos em 223; 4 leituras em 221, 3 em 1, **0 em 1** | 204 de 763; M1 liberou 195 | 0 | 0 | 85,7% | 32,4% |
+| PR 0056, 1º | 01653533 (UE2013) | 213 | 16 (7,5%) | 4 pedidos em 16 | 8 de 58 | 0 | 0 | 80,1% | 32,8% |
+| PR 0067, 1º | 01661829 (UE2013) | 159 | 29 (18,2%) | 4 pedidos em 28; nenhum em 1 | 18 de 138 | 0 | 0 | 75,0% | 43,4% |
+| **PR 0055, 2º** | 01660647 (UE2013) | 227 | **225 (99,1%)** | 4 pedidos em 225; 4 leituras em 224, 3 em 1 | **2 de 2.183**; 216 liberações sem mesário identificado | 0 | 0 | 85,7% | 36,9% |
+| PR 0056, 2º | 01653533 | 224 | 35 (15,6%) | 4 pedidos em 35 | 29 de 177 | 3 | 0 | 84,2% | 37,8% |
+| PR 0067, 2º | 01661829 | 159 | 22 (13,8%) | 4 pedidos em 20; nenhum em 2 | 19 de 35 | 0 | 0 | 75,0% | 48,4% |
+| **AL 0174, 1º, urna da seção** | 01670138 (UE2013) | 117 | 18 (15,4%) | 4 pedidos em 18; 4 leituras em 16, 3 em 1, 2 em 1 | 0 de 150 | 0 | **2** (12:27 e 13:00) | 91,0% | 72,3% |
+| **AL 0174, 1º, reserva** | 01675293 (UE2013) | 106 | **99 (93,4%)** | 4 pedidos em 99; 4 leituras em 95, 3 em 3, **0 em 1** | 42 de 657 | 0 | 0 | (seção) | (seção) |
+| **AL 0174, 2º, reserva** | 01669231 (UE2013) | 223 | 15 (6,7%) | 4 pedidos em 14, nenhum em 1; 4 leituras em 13, 3 em 1, 0 em 1 | 1 de 112 | 0 | 0 | 91,0% | 73,5% |
+| AL, 11 vizinhas, 1º | UE2013 (5) e UE2015 (6) | 210 a 257 | 7,4% a 32,9% | quase todas com 4 pedidos | — | 0 a 1 | 0 | 73,3% a 92,3% | 70,2% a 79,5% |
 | AL, 11 vizinhas, 2º | idem | 202 a 264 | 5,9% a 22,3% | idem | — | 0 a 1 | 0 | 76,3% a 91,1% | 74,5% a 81,3% |
+
+**Comparecimento × as outras seções do local (Fato, parecer 41):**
+
+| | Comparecimento | Média das outras seções do local | Diferença | Seções do país com diferença igual ou maior |
+|---|---:|---:|---:|---:|
+| PR 0055, 1º turno | 85,7% | 77,5% (2 vizinhas) | **+8,1 pontos** | 1,7% |
+| PR 0055, 2º turno | 85,7% | 79,6% | +6,1 | 3,8% |
+| AL 0174, 1º turno | 91,0% | 80,8% (11 vizinhas) | +10,2 | 0,7% |
+| AL 0174, 2º turno | 91,0% | 82,8% | +8,3 | 1,3% |
+
+A última coluna conta, entre as 451.883 seções de locais com 3 ou mais seções, quantas têm diferença igual ou maior em relação à média das outras do seu local. Nas duas seções-alvo, o comparecimento fica **acima** do local, não dentro da faixa das vizinhas.
 
 ### Sequência e horários (Fato)
 
@@ -344,7 +412,7 @@ Busca nas 222 listas baixadas (4.142.470 linhas), coluna "urna esperada" ou "urn
 | 13:00:40 | ERRO VOTA "Não é possível continuar a execução, Erro inesperado (5314), Error ao encerrar captura" |
 | 13:19:03 | Desligada pela chave |
 | 13:28:31 | Reserva 01675293 (carregada como contingência em 22/09): "Início do procedimento de contingência" |
-| 13:35:31 | Reserva pronta. 106 votos das 13:39 às 18:18, 99 sem digital, todos com 4 capturas recusadas; digital só em 7 (13:47, 13:48, 15:05, 16:06, 16:32, 16:58, 17:16) |
+| 13:35:31 | Reserva pronta. 106 votos das 13:39 às 18:18, 99 sem digital, todos com 4 pedidos de digital (4 leituras reais em 95, 3 em 3, nenhuma em 1); digital só em 7 (13:47, 13:48, 15:05, 16:06, 16:32, 16:58, 17:16) |
 | 18:24:49 | "Inicio do Encerramento" no diário (o BU marca encerramento às 18:22:10; houve fila depois das 17h) |
 
 - A liberação sem digital na reserva é igual em todas as horas: 22/22 às 14h, 17/18 às 15h, 23/26 às 16h, 23/24 às 17h e 9/9 às 18h.
@@ -353,13 +421,22 @@ Busca nas 222 listas baixadas (4.142.470 linhas), coluna "urna esperada" ou "urn
 
 ### Leitura (Hipótese, com o que testa cada lado)
 
-- **H07, defeito do leitor ou da conferência da digital na urna (sustentada pelo diário):**
-  - AL: o ERRO do leitor que manda substituir a urna, a troca pela reserva e a reserva também falhando;
-  - PR: a mesma urna falha nos dois turnos, as vizinhas do mesmo local e do mesmo modelo não falham, e no 2º turno nem a digital do mesário confere mais com a lida um minuto antes, sinal de leitor piorando.
-- **H15, mesário votando por ausentes (não sustentada):**
-  - todas as 547 liberações manuais das três situações de falha (PR 223 no 1º turno e 225 no 2º, AL 99 na reserva) vêm depois de 4 leituras de dedo no leitor;
+- **AL (H07 forte):**
+  - o diário tem o ERRO do leitor que manda substituir a urna, e a troca aconteceu;
+  - a reserva do 1º turno também falhou e foi trocada antes do 2º turno (18/10);
+  - no 2º turno, com leitor bom (208 de 223 por digital), a seção teve **os mesmos 223 votantes**. É o melhor controle técnico disponível: o comparecimento alto do 1º turno se repete quando quase todos se identificam pela digital.
+- **PR, 2º turno (H07 forte):** a digital do mesário não confere nem com a lida um minuto antes (2 de 2.183 acima de 50). Uma pessoa usando o próprio dedo por outros eleitores conferiria consigo mesma. É o sinal de leitor degradado.
+- **PR, 1º turno (inconclusivo):**
+  - o leitor conferia o mesário consigo mesmo (204 notas acima de 50) e falhava contra o cadastro em 223 de 227 eleitores;
+  - isso é compatível com leitor descalibrado, cuja imagem não casa com a digital colhida por outro aparelho no alistamento;
+  - mas é igualmente compatível com H15;
+  - o comparecimento está 8,1 pontos acima do local, cerca de 21 votos a mais que a média das duas vizinhas. É raro (1,7% das seções), sem ser extremo.
+- **O que pesa contra a H15 nas três situações:**
+  - em 545 das 547 liberações manuais houve leitura real de dedo: 4 leituras em 540 (221 + 224 no PR, 95 na reserva de AL) e 3 leituras em 5;
+  - em 2 (uma no PR, 1º turno, e uma na reserva de AL), nenhum dedo foi lido;
   - não há "já votou", nem intervalo de 30 s ou menos, nem concentração no fim do dia;
-  - comparecimento e parcela do 13 iguais nos dois turnos e dentro da faixa das vizinhas.
+  - a parcela do 13 é igual nos dois turnos e fica na faixa das vizinhas.
+- **Escala:** pelo princípio 8, H15 em **pequena escala** (algumas dezenas de votos no PR, 1º turno) não é excluída por nenhum controle técnico. H15 em **massa** (os 223) é excluída pela aritmética: o comparecimento teria de passar de 100%.
 - **O que não se exclui (princípio 8):** o diário registra que **um** dedo foi lido, não **de quem** era. Quem quisesse votar por ausentes numa urna com leitor falhando poderia pôr o próprio dedo 4 vezes e digitar o dado pessoal. As imagens das digitais (`wsqman.jez`, `wsqmes.jez`, gravadas pela urna e citadas no diário) mostrariam se as capturas são de pessoas diferentes; elas não estão nos arquivos públicos.
 
 ## Limites
@@ -372,8 +449,7 @@ Busca nas 222 listas baixadas (4.142.470 linhas), coluna "urna esperada" ou "urn
 ## Pendente
 
 - Item 1:
-  - confirmar a hipótese do tempo de impressão por modelo, medindo, no universo, o intervalo entre "Fim de impressão" e "Urna carregada com sucesso" por modelo. Exige uma nova varredura de todos os diários;
-  - linha de base do desligamento pela chave durante a carga com a linha final presente.
+  - linha de base do desligamento pela chave durante a carga nas cargas que **têm** a linha final. Sem ela, não se sabe se 59 em 499 mil é muito ou pouco. Exige uma nova varredura de todos os diários.
 - Item 2: resposta do TSE/TRE-BA aos 5 pedidos acima.
 - Item 3: imagens das digitais (`wsqbio`, `wsqman`, `wsqmes`) das duas seções e o registro de manutenção das urnas 01660647, 01670138 e 01675293.
 
@@ -386,6 +462,13 @@ node scripts/auditoria/seguranca-pend-h15-liberacoes.mjs    # item 3: 2 seções
 ```
 
 Funções comuns em `scripts/auditoria/seguranca-pend-lib.mjs`.
+
+Os números marcados "(parecer 41)" saem destes comandos:
+
+```
+node --max-old-space-size=6000 scripts/auditoria/cetico-41-ba71.mjs   # zona 71 (passagem ao 2º turno), 2.191 trocas, coincidência com o certificado tardio
+node --max-old-space-size=4000 scripts/auditoria/cetico-41-h15.mjs    # comparecimento × local e linha de base nacional
+```
 
 O item 1 depende de `data/parsed/auditoria/matematico-forense/h23-sessoes-2t.jsonl` (`matematico-h23-cargas.mjs`). O item 2 depende de `seguranca-h25/<t>t-padrao-dirs.jsonl`, `<t>t-certs.jsonl` e `matematico-forense/h23-sessoes-<t>t.jsonl`.
 

@@ -105,12 +105,16 @@ if (import.meta.filename === path.resolve(process.argv[1] ?? '')) {
   const { db, fonte } = await abrirLeitura();
   const bu = { 1: new Map(), 2: new Map() };
   const modelosBu = { 1: {}, 2: {} };
+  const frotaZona = { 1: {}, 2: {} }; // frota que gerou BU por UF + zona
   for (const r of db.prepare(`SELECT turno, uf, municipio, zona, secao, hash, tipo_urna, modelo_urna, numero_interno_urna, versao_software, data_hora_carga,
     codigo_carga, comparecimento FROM secao WHERE situacao = 'completa'`).iterate()) {
     if (!r.codigo_carga || r.numero_interno_urna === null) continue;
     bu[r.turno].set(`${r.uf}/${r.municipio}/${r.zona}/${r.secao}`, { hash: r.hash, tipo: r.tipo_urna, modelo: r.modelo_urna, versao: r.versao_software,
       urna: String(r.numero_interno_urna).padStart(8, '0'), codigo: r.codigo_carga, carga: r.data_hora_carga, comp: r.comparecimento });
     modelosBu[r.turno][r.modelo_urna] = (modelosBu[r.turno][r.modelo_urna] ?? 0) + 1;
+    const fz = (frotaZona[r.turno][`${r.uf}/${r.zona}`] ??= { total: 0, antigos: 0 });
+    fz.total++;
+    if (r.modelo_urna === 'ue2013' || r.modelo_urna === 'ue2015') fz.antigos++;
   }
   const S = carregarSecoes(db);
   db.close();
@@ -197,7 +201,12 @@ if (import.meta.filename === path.resolve(process.argv[1] ?? '')) {
     for (const c of cs) porModelo[c.modeloBu] = (porModelo[c.modeloBu] ?? 0) + 1;
     const pAntigos = ((frota.ue2013 ?? 0) + (frota.ue2015 ?? 0)) / totFrota;
     const kAntigos = (porModelo.ue2013 ?? 0) + (porModelo.ue2015 ?? 0);
-    res.modeloTeste[`${turno}t`] = { casos: cs.length, porModeloBu: porModelo,
+    // Contra a frota da própria zona (parecer 41): cada caso tem chance = parte de UE2013 + UE2015 na sua zona.
+    const ps = cs.map((c) => { const z = frotaZona[turno][`${c.k.slice(0, 2)}/${c.k.split('/')[2]}`]; return z.antigos / z.total; });
+    let dist = [1];
+    for (const q of ps) { const n = new Array(dist.length + 1).fill(0); dist.forEach((v, i) => { n[i] += v * (1 - q); n[i + 1] += v * q; }); dist = n; }
+    const zona = { esperado: +ps.reduce((a, b) => a + b, 0).toFixed(1), pCauda: +dist.slice(kAntigos).reduce((a, b) => a + b, 0).toFixed(4) };
+    res.modeloTeste[`${turno}t`] = { casos: cs.length, porModeloBu: porModelo, contraAFrotaDaZona: zona,
       esperadoPelaFrota: Object.fromEntries(Object.entries(frota).map(([m, n]) => [m, +((cs.length * n) / totFrota).toFixed(1)])),
       antigos: kAntigos, parcelaAntigosNaFrota: +pAntigos.toFixed(4), pCaudaBinomial: binomCauda(cs.length, kAntigos, pAntigos),
       causaDPorModelo: cs.filter((c) => c.causa.startsWith('D')).reduce((o, c) => ({ ...o, [c.modeloBu]: (o[c.modeloBu] ?? 0) + 1 }), {}) };
