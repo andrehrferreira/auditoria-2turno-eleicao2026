@@ -175,3 +175,48 @@ console.log('gravado docs/pericia/graficos/ac-urna-linha-do-tempo.svg');
   writeFileSync(path.join(DIR, 'ac-urna-emissoes-2026.svg'), q.join('\n') + '\n');
   console.log('gravado docs/pericia/graficos/ac-urna-emissoes-2026.svg');
 }
+
+// ---------- 3. Tamanho do risco: votos nas urnas da AC URNA × margem nacional × mínimo para virar ----------
+{
+  const itens = lerCsv('h25-risco-brasil.csv');
+  const val = (prefixo) => Number(itens.find((r) => r.item.startsWith(prefixo)).votos);
+  const barrasRisco = [
+    { rotulo: 'Votos do 13 nas urnas\nda AC URNA', v: val('Votos do 13'), cls: 's0' },
+    { rotulo: 'Votos do 22 nas urnas\nda AC URNA', v: val('Votos do 22'), cls: 's0' },
+    { rotulo: 'Margem nacional\ndo 13 sobre o 22', v: val('Margem nacional'), cls: 's2' },
+    { rotulo: 'Mínimo de votos trocados\nnessas urnas para virar', v: val('Mínimo'), cls: 's1' },
+  ];
+  const fmt = (n) => n.toLocaleString('pt-BR');
+  const L3 = 760; const mE = 210; const mD = 110; const lg = L3 - mE - mD;
+  const topo = 84; const alt = 26; const gap = 20;
+  const altP = barrasRisco.length * alt + (barrasRisco.length - 1) * gap;
+  const max = 14e6; const passo = 2e6;
+  const x = (v) => mE + (lg * v) / max;
+  const H3 = topo + altP + 100;
+  const tit = 'O tamanho do risco nas urnas da AC URNA (Presidente, 2º turno)';
+  const sub = 'Votos nas seções com urna 2013 ou 2015 (Brasil e exterior) comparados com a margem nacional.';
+  const r = [];
+  r.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${L3} ${H3}" width="${L3}" height="${H3}" role="img" aria-labelledby="titulo desc">`);
+  r.push(`<title id="titulo">${xml(tit)}</title><desc id="desc">${xml(sub)} ${xml(barrasRisco.map((b) => `${b.rotulo.replace('\n', ' ')}: ${fmt(b.v)}`).join('; '))}.</desc>`);
+  r.push(ESTILO, `<rect class="fundo" width="${L3}" height="${H3}" rx="6"/>`);
+  r.push(`<text class="t1" x="20" y="30" font-size="17" font-weight="600">${xml(tit)}</text>`);
+  r.push(`<text class="t2" x="20" y="52" font-size="13">${xml(sub)}</text>`);
+  for (let v = 0; v <= max; v += passo) {
+    r.push(`<line class="grade" x1="${x(v)}" x2="${x(v)}" y1="${topo - 6}" y2="${topo + altP + 4}" stroke-width="1"/>`);
+    r.push(`<text class="t2" x="${x(v)}" y="${topo + altP + 20}" font-size="12" text-anchor="middle">${v === 0 ? '0' : `${v / 1e6} mi`}</text>`);
+  }
+  r.push(`<line class="eixo" x1="${mE}" x2="${mE}" y1="${topo - 6}" y2="${topo + altP + 4}" stroke-width="1"/>`);
+  barrasRisco.forEach((b, i) => {
+    const y0 = topo + i * (alt + gap);
+    b.rotulo.split('\n').forEach((t, li, arr) => r.push(`<text class="t1" x="${mE - 10}" y="${y0 + alt / 2 + 5 + (li - (arr.length - 1) / 2) * 15}" font-size="13" text-anchor="end">${xml(t)}</text>`));
+    const w = x(b.v) - mE;
+    r.push(`<path class="${b.cls}" d="M${mE},${y0}h${w - 4}a4,4 0 0 1 4,4v${alt - 8}a4,4 0 0 1 -4,4h${-(w - 4)}z"/>`);
+    r.push(`<text class="t1" x="${mE + w + 6}" y="${y0 + alt / 2 + 4.5}" font-size="12.5">${fmt(b.v)}</text>`);
+  });
+  r.push(`<text class="t2" x="${mE + lg / 2}" y="${topo + altP + 40}" font-size="12.5" text-anchor="middle">${xml('Votos (mi = milhões)')}</text>`);
+  r.push(`<text class="t2" x="20" y="${H3 - 28}" font-size="12">${xml('Mede o tamanho do que estaria em jogo, não é sinal de fraude. Trocar 1 voto do 13 para o 22 diminui a margem em 2.')}</text>`);
+  r.push(`<text class="t2" x="20" y="${H3 - 12}" font-size="11">${xml('Fonte: arquivos oficiais do TSE, todas as seções.')}</text>`);
+  r.push('</svg>');
+  writeFileSync(path.join(DIR, 'ac-urna-tamanho-do-risco.svg'), r.join('\n') + '\n');
+  console.log('gravado docs/pericia/graficos/ac-urna-tamanho-do-risco.svg');
+}

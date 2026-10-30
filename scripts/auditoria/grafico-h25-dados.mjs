@@ -20,6 +20,7 @@ import { createReadStream, mkdirSync, readFileSync, readdirSync, writeFileSync }
 import path from 'node:path';
 import readline from 'node:readline';
 import { fileURLToPath } from 'node:url';
+import { abrirLeitura } from '../../src/banco-leitura.js';
 
 const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const INT = path.join(RAIZ, 'data', 'parsed', 'auditoria', 'integridade');
@@ -83,6 +84,8 @@ function guardarCert(nome, de) {
   if (certsAcUrna.has(k) && certsAcUrna.get(k) !== de) confere(false, `${k}: duas datas de início (${certsAcUrna.get(k)} e ${de})`);
   certsAcUrna.set(k, de);
 }
+const secoesAcUrna = { '2t': new Set(), '1t': new Set() }; // uf/municipio/zona/secao
+const listaSecoes = { '2t': new Map(), '1t': new Map() }; // seção AC URNA → modelo e carteira da urna
 async function contarTurno(t, dirLacres) {
   const reverif = new Map();
   for await (const o of linhas(path.join(INT, t, 'reverificacao.jsonl'))) reverif.set(o.onde, o);
@@ -101,6 +104,9 @@ async function contarTurno(t, dirLacres) {
         continue;
       }
       c.acUrna++; c[modelo]++;
+      secoesAcUrna[t].add(k);
+      const cart = rv ? { nome: rv.cert.nome, de: rv.cert.validoDe, ate: rv.cert.validoAte } : { nome: o.urna?.nome, de: o.validadeCert?.slice(0, 10), ate: o.validadeCert?.slice(13, 23) };
+      listaSecoes[t].set(k, { modelo, ...cart });
       if (rv) guardarCert(rv.cert.nome, rv.cert.validoDe);
       else if (o.urna?.emissor === 'AC URNA' && o.validadeCert) guardarCert(o.urna.nome, o.validadeCert.slice(0, 10));
       else confere(false, `${k}: pacote AC URNA sem carteira lida`);
@@ -185,3 +191,147 @@ const antes = dias.filter((d) => d <= VENCE).reduce((s, d) => s + porDia[d], 0);
 confere(antes === 38, '2026 até o vencimento: 38 carteiras');
 confere(certsAcUrna.size === c33.uniao.porEmissor['AC URNA'], `${certsAcUrna.size} carteiras AC URNA distintas nos dois turnos = parecer 33`);
 csv('h25-acurna-2026-por-dia.csv', ['dia', 'carteiras', 'depois_do_vencimento_da_ac'], dias.map((d) => [d, porDia[d], d > VENCE ? 1 : 0]));
+
+// ---------- 5. Tamanho do risco: votos de Presidente nas seções AC URNA × margem (2º turno) ----------
+// Recalcula a escala do estatístico (doc 10, teste 4) por outro caminho: seções AC URNA da verificação de lacres ×
+// resultado oficial por seção (tabela voto_oficial da cópia de leitura), e confere número a número.
+{
+  const { db } = await abrirLeitura();
+  const votos = (turno) => {
+    const m = new Map();
+    for (const r of db.prepare('select uf, municipio, zona, secao, numero, sum(quantidade) q from voto_oficial where turno = ? and cargo = 1 and numero in (13, 22) group by 1, 2, 3, 4, 5').all(turno)) {
+      const k = `${r.uf}/${r.municipio}/${r.zona}/${r.secao}`;
+      const v = m.get(k) ?? { v13: 0, v22: 0 };
+      v[r.numero === 13 ? 'v13' : 'v22'] += Number(r.q);
+      m.set(k, v);
+    }
+    return m;
+  };
+  const vot2 = votos(2);
+  const vot1 = votos(1);
+  db.close();
+
+  // por UF: total e nas seções AC URNA
+  const uf2 = {};
+  for (const [k, v] of vot2) {
+    const uf = k.slice(0, 2);
+    const u = (uf2[uf] ??= { v13: 0, v22: 0, a13: 0, a22: 0 });
+    u.v13 += v.v13; u.v22 += v.v22;
+    if (secoesAcUrna['2t'].has(k)) { u.a13 += v.v13; u.a22 += v.v22; }
+  }
+  const semVoto = [...secoesAcUrna['2t']].filter((k) => !vot2.has(k));
+  confere(semVoto.length === 2 && semVoto.every((k) => k.startsWith('zz/')), `2t: seções AC URNA sem voto para Presidente no resultado oficial: ${semVoto.length}, ambas no exterior`);
+  const tot = Object.values(uf2).reduce((s, u) => ({ v13: s.v13 + u.v13, v22: s.v22 + u.v22, a13: s.a13 + u.a13, a22: s.a22 + u.a22 }), { v13: 0, v22: 0, a13: 0, a22: 0 });
+  const margem = tot.v13 - tot.v22;
+  const minimo = Math.floor(margem / 2) + 1; // trocar x votos do 13 para o 22 muda a margem em 2x; vira com 2x > margem
+  confere(tot.v13 === 64256232 && tot.v22 === 59826041 && margem === 4430191, 'Brasil, 2º turno: 13 = 64.256.232, 22 = 59.826.041, margem 4.430.191 (resultado oficial)');
+  confere(tot.a13 === 13140473 && tot.a22 === 12026599, 'seções AC URNA (com exterior): 13 = 13.140.473, 22 = 12.026.599');
+  confere(minimo === 2215096 && margem - 2 * (minimo - 1) > 0 && margem - 2 * minimo < 0, 'mínimo para virar = 2.215.096 (com 2.215.095 o 13 ainda vence por 1; com 2.215.096 o 22 vence por 1)');
+  const pctValidos = (tot.a13 + tot.a22) / (tot.v13 + tot.v22);
+  const pctTroca = minimo / (tot.a13 + tot.a22);
+  const pctDo13 = minimo / tot.a13;
+  const s13A = tot.a13 / (tot.a13 + tot.a22);
+  confere(pctValidos.toFixed(3) === '0.203' && pctTroca.toFixed(3) === '0.088' && pctDo13.toFixed(3) === '0.169', `parcela dos válidos ${(100 * pctValidos).toFixed(2)}%; troca = ${(100 * pctTroca).toFixed(2)}% dos votos 13+22 das seções; ${(100 * pctDo13).toFixed(2)}% dos votos do 13 nelas`);
+
+  // conferência contra o estatístico (doc 10, resultado.json → teste4 e escala-uf.csv)
+  const t4 = lerJson(path.join(RAIZ, 'data', 'parsed', 'auditoria', 'h25', 'resultado.json')).teste4;
+  confere(t4.A2t.v13 === tot.a13 && t4.A2t.v22 === tot.a22 && t4.margem13menos22 === margem && t4.trocaMinimaParaVirar === minimo,
+    'igual à escala do estatístico (votos nas seções AC URNA, margem e troca mínima)');
+  const escUf = Object.fromEntries(readFileSync(path.join(RAIZ, 'data', 'parsed', 'auditoria', 'h25', 'escala-uf.csv'), 'utf8')
+    .trim().split(/\r?\n/).slice(1).map((l) => l.split(';')).map((c) => [c[0], { v13: +c[3], v22: +c[4], a13: +c[6], a22: +c[7], vira: c[11] === '1' }]));
+  const linhasRisco = [];
+  for (const uf of Object.keys(uf2).sort()) {
+    const u = uf2[uf]; const e = escUf[uf];
+    const m = u.v13 - u.v22;
+    const venc = m > 0 ? '13' : '22';
+    const votosVencA = m > 0 ? u.a13 : u.a22;
+    const minUf = Math.floor(Math.abs(m) / 2) + 1;
+    const vira = votosVencA >= minUf;
+    confere(e && e.v13 === u.v13 && e.v22 === u.v22 && e.a13 === u.a13 && e.a22 === u.a22 && e.vira === vira,
+      `${uf}: votos e "vira no pior caso" iguais aos do estatístico (${vira ? 'vira' : 'não vira'})`);
+    linhasRisco.push([uf === 'zz' ? 'exterior' : uf.toUpperCase(), u.v13, u.v22, venc, Math.abs(m), u.a13, u.a22, votosVencA, minUf, vira ? 'sim' : 'não']);
+  }
+  confere(linhasRisco.filter((l) => l[9] === 'sim').map((l) => l[0]).join(',') === 'AL,AM,DF,ES,MG,PA,PR,RJ,RS,SP,exterior', 'viram no pior caso: AL, AM, DF, ES, MG, PA, PR, RJ, RS, SP e exterior (11)');
+  // sem o exterior
+  const ex = uf2.zz;
+  confere(tot.a13 - ex.a13 === 12940319 && tot.a22 - ex.a22 === 11855102, 'seções AC URNA sem o exterior: 13 = 12.940.319, 22 = 11.855.102');
+  csv('h25-risco-por-uf.csv', ['uf', 'votos_13', 'votos_22', 'vencedor', 'margem', 'ac_urna_votos_13', 'ac_urna_votos_22', 'ac_urna_votos_do_vencedor', 'minimo_para_virar', 'da_para_virar'], linhasRisco);
+  csv('h25-risco-brasil.csv', ['item', 'votos'], [
+    ['Votos do 13 nas urnas AC URNA', tot.a13],
+    ['Votos do 22 nas urnas AC URNA', tot.a22],
+    ['Margem nacional do 13 sobre o 22', margem],
+    ['Mínimo de votos trocados do 13 para o 22, só nessas urnas, para virar', minimo],
+  ]);
+
+  // as seções das 54 carteiras emitidas depois do vencimento
+  const tardiasDe = (t) => new Set(c33.uniao.tardios.flatMap((x) => x.usos.filter((u) => u.t === t).map((u) => u.secao)));
+  const linhasTardias = [];
+  for (const [t, vot, nSec, turnoTxt] of [[2, vot2, 53, '2º turno'], [1, vot1, 45, '1º turno']]) {
+    const secs = tardiasDe(t);
+    confere(secs.size === nSec, `${turnoTxt}: ${nSec} seções com carteira emitida depois do vencimento`);
+    let v13 = 0; let v22 = 0; const porUf = {};
+    for (const k of secs) {
+      const v = vot.get(k);
+      if (!v) confere(false, `${k}: seção tardia sem voto no resultado oficial`);
+      v13 += v.v13; v22 += v.v22;
+      const uf = k.slice(0, 2); (porUf[uf] ??= { v13: 0, v22: 0 }); porUf[uf].v13 += v.v13; porUf[uf].v22 += v.v22;
+    }
+    linhasTardias.push([turnoTxt, nSec, v13, v22]);
+    if (t === 2) {
+      confere(v13 + v22 === 13458, '2º turno: 13.458 votos no 13 e no 22 nas 53 seções (igual ao da segunda verificação)');
+      confere(v13 + v22 < minimo, '2º turno: mesmo trocando todos os votos dessas seções, a margem nacional não vira');
+      for (const [uf, v] of Object.entries(porUf)) {
+        const u = uf2[uf]; const m = Math.abs(u.v13 - u.v22);
+        confere(v.v13 + v.v22 < Math.floor(m / 2) + 1, `2º turno, ${uf}: votos das seções tardias (${v.v13 + v.v22}) abaixo do mínimo para virar a UF (${Math.floor(m / 2) + 1})`);
+      }
+    }
+  }
+  csv('h25-risco-carteiras-tardias.csv', ['turno', 'secoes', 'votos_13', 'votos_22'], linhasTardias);
+}
+
+// ---------- 6. Anexo: as 54 carteiras emitidas depois do vencimento ----------
+// (a lista completa das seções AC URNA, uma planilha por turno, é gerada por anexo-h25-urnas.mjs)
+// A lista dos 54 sai da recontagem do parecer 33 e é conferida, carteira a carteira, com a do engenheiro (doc 07,
+// seguranca-h25/casos.json) e com as carteiras lidas pela verificação de lacres. Nome do município pela cópia de leitura.
+{
+  const { db } = await abrirLeitura();
+  const nomeMun = new Map(db.prepare('select uf, codigo, nome from municipio').all().map((r) => [`${r.uf}/${r.codigo}`, r.nome]));
+  db.close();
+  const casos = lerJson(path.join(RAIZ, 'data', 'parsed', 'auditoria', 'seguranca-h25', 'casos.json')).acUrnaEmitidosAposVencimento;
+  const doEng = new Map(casos.map((c) => [c.serie.toLowerCase(), c]));
+  confere(casos.length === 54 && c33.uniao.tardios.length === 54, '54 carteiras nas duas listas (engenheiro e segunda verificação)');
+  const PAPEL = { 1: 'urna da seção', 3: 'Sistema de Apuração', 4: 'urna reserva', 6: 'urna reserva recarregada' };
+  const linhas54 = [];
+  const n = { 2: 0, 1: 0, ue2013: 0, ue2015: 0 };
+  for (const x of c33.uniao.tardios) {
+    const serie = x.serie.toLowerCase();
+    const e = doEng.get(serie);
+    if (!e) confere(false, `${serie}: fora da lista do engenheiro`);
+    const secoes = [...new Set(x.usos.map((u) => u.secao))];
+    const turnos = x.usos.map((u) => u.t).sort((a, b) => b - a);
+    const turnosEng = [...e.turnos].sort((a, b) => b - a);
+    const papeis = [...new Set(x.usos.map((u) => PAPEL[u.tipoUrna] ?? `tipo ${u.tipoUrna}`))];
+    if (secoes.length !== 1 || e.sujeito !== x.sujeito || e.nb.slice(0, 19) !== x.nb.slice(0, 19) || turnos.join() !== turnosEng.join()
+      || !e.secoes.every((s) => s.includes(secoes[0]))) confere(false, `${serie}: diverge entre as duas listas`);
+    const [uf, mun, zona, secao] = secoes[0].split('/');
+    const modelo = e.modelo[0];
+    for (const t of turnos) {
+      n[t]++;
+      const l = listaSecoes[`${t}t`].get(secoes[0]);
+      if (!l || l.nome.toLowerCase() !== x.sujeito || l.de !== x.nb.slice(0, 10) || l.modelo !== modelo) confere(false, `${serie}: diverge da carteira lida na verificação de lacres (${t}º turno)`);
+    }
+    n[modelo]++;
+    const numUrna = Number(x.sujeito.replace(/^ueao/i, ''));
+    if (x.usos.some((u) => u.numeroInternoUrna !== numUrna)) confere(false, `${serie}: número da urna no boletim ≠ carteira`);
+    const nome = nomeMun.get(`${uf}/${mun}`);
+    if (!nome) confere(false, `${uf}/${mun}: município sem nome`);
+    // horário de Brasília (UTC−3; sem horário de verão em 2026)
+    const [d, h] = new Date(Date.parse(x.nb) - 3 * 3600e3).toISOString().slice(0, 16).split('T');
+    linhas54.push([uf === 'zz' ? 'exterior' : uf.toUpperCase(), nome, zona, secao, turnos.map((t) => `${t}º`).join(' e '), papeis.join(' / '),
+      modelo === 'ue2013' ? '2013' : '2015', numUrna, `${d.split('-').reverse().join('/')} ${h}`, serie]);
+  }
+  confere(n[2] === 53 && n[1] === 45 && n.ue2013 === 23 && n.ue2015 === 31, '53 seções no 2º turno, 45 no 1º; 23 urnas 2013 e 31 urnas 2015');
+  linhas54.sort((a, b) => a[9].localeCompare(b[9]));
+  csv('h25-anexo-54-carteiras.csv', ['uf', 'municipio', 'zona', 'secao', 'turnos', 'papel_da_urna', 'modelo', 'numero_da_urna', 'inicio_da_validade_brasilia', 'numero_de_serie'], linhas54);
+
+}

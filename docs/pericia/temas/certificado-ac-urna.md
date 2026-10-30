@@ -8,6 +8,7 @@
 - **Fato.** Essas urnas assinaram 99.957 pacotes no 2º turno e 99.985 no 1º. Todas as assinaturas conferem com a chave dessa autoridade, e uma carteira alterada em um único bit é recusada.
 - **Fato.** A chave da AC URNA continuou carimbando carteiras depois do vencimento: 54 carteiras de urna têm início de validade entre 20/07 e 19/10/2026, e todas apontam para o certificado vencido. Essas urnas votaram em 53 seções no 2º turno e em 45 no 1º; duas foram carimbadas entre os turnos. A ordem dos números de série indica que as datas são as reais (inferência forte, não prova).
 - **Fato.** Os votos dessas seções estão no resultado oficial e variaram entre os turnos como os das seções vizinhas. Pela regra usual, um verificador com o certificado publicado recusaria as 99.957 seções do 2º turno; pelo "modelo de cadeia", recusaria as 53. Se e como o TSE confere, só ele pode dizer (**Hipótese** até a resposta).
+- **Fato (tamanho do risco, não sinal de fraude).** No 2º turno, 20,28% dos votos válidos passaram por essas urnas: 13.140.473 do 13 e 12.026.599 do 22. A margem do 13 no país foi de 4.430.191; trocar 2.215.096 votos só nessas urnas mudaria o vencedor.
 - O vencimento, sozinho, não permite forjar uma carteira. O que permitiria fraude: a chave secreta do cartório fora de controle, ou um programa alterado dentro de uma urna verdadeira. Os testes não acharam rastro de nenhum dos dois, e também não teriam como excluí-los.
 
 ## A pergunta
@@ -381,6 +382,98 @@ Nenhum desses testes mostra uma chave copiada ou um programa trocado. Mas nenhum
 
 **Fato**, como medido acima: 18/07/2026, antes de 04/10 e de 25/10/2026. A carteira de cada urna estava dentro da validade nos dois turnos. O vencido era o certificado público do cartório, e a chave dele continuou carimbando carteiras depois do vencimento (as 54).
 
+## O tamanho do risco: o que estaria em jogo se essas urnas tivessem sido fraudadas
+
+Esta seção não diz que houve fraude. Ela mede **o tamanho da porta**: quantos votos passaram pelas urnas que dependem do certificado vencido, e quanto deles teria de estar errado para mudar o resultado. As contas usam o resultado oficial de Presidente, seção por seção, em todas as seções. As seções do exterior estão incluídas (1.310 seções, todas com urna da AC URNA).
+
+### O país, 2º turno
+
+**Fato.**
+
+| | Votos |
+|---|---:|
+| Votos do 13 no país | 64.256.232 |
+| Votos do 22 no país | 59.826.041 |
+| **Margem do 13 sobre o 22** | **4.430.191** |
+| Votos do 13 nas seções com urna da AC URNA | 13.140.473 |
+| Votos do 22 nas seções com urna da AC URNA | 12.026.599 |
+| Votos no 13 e no 22 nessas seções | 25.167.072 |
+| Parte dos votos válidos do país que passou por essas urnas | 20,28% |
+| **Mínimo de votos trocados do 13 para o 22, só nessas urnas, para virar a eleição** | **2.215.096** |
+| Esse mínimo, como parte dos votos no 13 e no 22 dessas urnas | 8,80% |
+| Esse mínimo, como parte dos votos do 13 nessas urnas | 16,86% |
+
+- **Como sai o mínimo.** Cada voto que sai do 13 e vai para o 22 diminui a margem em 2: um a menos de um lado, um a mais do outro. Com 2.215.095 votos trocados, o 13 ainda venceria por 1 voto. Com 2.215.096, o 22 venceria por 1 voto. Por isso o mínimo é a metade da margem, arredondada para cima.
+- No 2º turno de Presidente só há dois candidatos, então os votos válidos são os votos no 13 e no 22 (brancos e nulos não entram).
+- **Sem o exterior**, as seções com urna da AC URNA somam 12.940.319 votos no 13 e 11.855.102 no 22.
+- **Em números redondos:** a cada 100 votos no 13 e no 22 nessas urnas, 52 foram para o 13 e 48 para o 22. Para virar a eleição só com essas urnas, seria preciso que 9 desses 100 tivessem mudado de lado, em média, em todas as urnas antigas do país. Seria como mudar o placar de 52 a 48 para 43 a 57.
+
+![O tamanho do risco nas urnas da AC URNA (Presidente, 2º turno)](../graficos/ac-urna-tamanho-do-risco.svg)
+
+**Como ler:** as duas barras azuis são os votos que passaram pelas urnas da AC URNA no 2º turno. A barra cinza é a diferença entre o 13 e o 22 no país. A barra laranja é o menor número de votos que, trocados do 13 para o 22 só nessas urnas, mudaria o vencedor. A laranja cabe muitas vezes nas azuis: o volume de votos nessas urnas é grande o bastante para decidir a eleição. É o tamanho do risco, não um sinal de que algo foi trocado.
+
+### Por estado, 2º turno
+
+**Fato.** Em cada UF, o "pior caso" é este: todos os votos do candidato que venceu na UF, dentro das urnas da AC URNA daquela UF, teriam sido, na verdade, do outro. "Dá para virar" quer dizer que, nesse pior caso, o vencedor de Presidente **naquela UF** mudaria. O "mínimo para virar" é a metade da margem da UF, arredondada para cima, pela mesma conta do país.
+
+| UF | Votos do 13 | Votos do 22 | Vencedor na UF | Margem | Votos do 13 nas urnas AC URNA | Votos do 22 nas urnas AC URNA | Mínimo para virar | Dá para virar só com essas urnas? |
+|---|---:|---:|---|---:|---:|---:|---:|---|
+| AC | 144.513 | 287.715 | 22 | 143.202 | 0 | 0 | 71.602 | não |
+| AL | 1.152.621 | 744.140 | 13 | 408.481 | 274.171 | 82.668 | 204.241 | **sim** |
+| AM | 1.145.783 | 975.245 | 13 | 170.538 | 281.994 | 358.709 | 85.270 | **sim** |
+| AP | 222.968 | 198.674 | 13 | 24.294 | 0 | 0 | 12.148 | não |
+| BA | 6.485.258 | 2.608.761 | 13 | 3.876.497 | 1.550.423 | 560.039 | 1.938.249 | não |
+| CE | 4.036.124 | 1.819.478 | 13 | 2.216.646 | 717.627 | 266.319 | 1.108.324 | não |
+| DF | 825.224 | 979.542 | 22 | 154.318 | 164.304 | 207.552 | 77.160 | **sim** |
+| ES | 1.001.965 | 1.294.504 | 22 | 292.539 | 278.560 | 335.494 | 146.270 | **sim** |
+| GO | 1.585.555 | 2.345.334 | 22 | 759.779 | 274.992 | 356.466 | 379.890 | não |
+| MA | 2.808.231 | 1.229.971 | 13 | 1.578.260 | 610.369 | 332.284 | 789.131 | não |
+| MG | 6.351.099 | 6.241.786 | 13 | 109.313 | 1.076.549 | 1.039.869 | 54.657 | **sim** |
+| MS | 628.973 | 927.892 | 22 | 298.919 | 97.535 | 136.292 | 149.460 | não |
+| MT | 694.167 | 1.351.099 | 22 | 656.932 | 158.411 | 230.093 | 328.467 | não |
+| PA | 2.690.449 | 2.199.940 | 13 | 490.509 | 524.406 | 459.233 | 245.255 | **sim** |
+| PB | 1.794.059 | 865.210 | 13 | 928.849 | 398.157 | 310.830 | 464.425 | não |
+| PE | 4.117.513 | 1.832.554 | 13 | 2.284.959 | 872.029 | 333.179 | 1.142.480 | não |
+| PI | 1.653.989 | 525.859 | 13 | 1.128.130 | 340.048 | 89.537 | 564.066 | não |
+| PR | 2.566.504 | 4.291.444 | 22 | 1.724.940 | 505.522 | 903.962 | 862.471 | **sim** |
+| RJ | 4.565.393 | 5.169.033 | 22 | 603.640 | 1.243.390 | 1.136.953 | 301.821 | **sim** |
+| RN | 1.413.596 | 737.409 | 13 | 676.187 | 258.155 | 202.844 | 338.094 | não |
+| RO | 294.446 | 674.382 | 22 | 379.936 | 0 | 0 | 189.969 | não |
+| RR | 83.505 | 219.675 | 22 | 136.170 | 0 | 0 | 68.086 | não |
+| RS | 2.824.552 | 3.874.378 | 22 | 1.049.826 | 406.558 | 716.500 | 524.914 | **sim** |
+| SC | 1.418.314 | 3.220.071 | 22 | 1.801.757 | 289.690 | 764.852 | 900.879 | não |
+| SE | 989.041 | 433.354 | 13 | 555.687 | 143.851 | 89.836 | 277.844 | não |
+| SP | 12.119.274 | 14.139.178 | 22 | 2.019.904 | 2.472.700 | 2.940.517 | 1.009.953 | **sim** |
+| TO | 442.962 | 467.916 | 22 | 24.954 | 878 | 1.074 | 12.478 | não |
+| exterior | 200.154 | 171.497 | 13 | 28.657 | 200.154 | 171.497 | 14.329 | **sim** |
+| **Brasil e exterior** | **64.256.232** | **59.826.041** | 13 | **4.430.191** | **13.140.473** | **12.026.599** | **2.215.096** | **sim** |
+
+- No pior caso, o vencedor de Presidente mudaria em **10 UFs e no exterior**: AL, AM, DF, ES, MG, PA, PR, RJ, RS e SP.
+- Em AC, AP, RO e RR não há urna da AC URNA. No TO há 9 seções, com 1.952 votos.
+- A virada de uma UF não decide a eleição de Presidente, que é contada no país inteiro. A tabela mostra onde essas urnas pesam mais.
+
+### As seções das 54 carteiras emitidas depois do vencimento
+
+**Fato.**
+
+| Turno | Seções | Votos do 13 | Votos do 22 | Votos no 13 e no 22 |
+|---|---:|---:|---:|---:|
+| 2º turno | 53 | 7.878 | 5.580 | 13.458 |
+| 1º turno | 45 | 5.800 | 4.179 | 9.979 |
+
+- **2º turno:** mesmo que todos os 13.458 votos dessas seções tivessem sido trocados, o resultado do país não mudaria: o mínimo para virar é 2.215.096. Em nenhuma das 11 UFs com essas seções o total delas chega ao mínimo para virar a UF. O maior peso é em SP: 2.706 votos, para um mínimo de 1.009.953.
+- **1º turno:** os 9.979 votos dessas seções também não mudam a ordem dos dois primeiros no país, separados por 2.224.965 votos (22: 56.104.503; 13: 53.879.538).
+
+### O 1º turno
+
+**Pendente.** A mesma conta para o conjunto das urnas da AC URNA no 1º turno (99.985 seções) ainda não foi conferida em separado. No 1º turno há mais candidatos, e "virar" pode querer dizer mudar quem vai ao 2º turno ou se alguém vence logo no 1º. A conta só entra quando for conferida.
+
+### O que os testes de votos mostraram
+
+As urnas da AC URNA votaram como as urnas novas do mesmo lugar, e as seções com carteira emitida depois do vencimento votaram como as suas vizinhas (seção "Os votos das urnas antigas comparados com os das urnas novas"). Uma troca do tamanho necessário para virar a eleição apareceria como uma diferença de 8,8 pontos entre urnas antigas e novas; nenhuma das comparações mostra diferença desse tamanho.
+
+**Limite:** os testes comparam urnas antigas com urnas novas e cada seção com as vizinhas. Eles não enxergam uma adulteração igual em todas as urnas, antigas e novas, nem uma que imite o padrão de votos de cada lugar.
+
 ## O que não dá para afirmar
 
 - **Que a totalização confere, ou não, a validade.** Os arquivos públicos não mostram o programa de totalização nem o certificado que ele usa (possibilidades acima, **Hipótese**). Também não dá para afirmar que ela "aceitou certificado vencido".
@@ -421,3 +514,93 @@ Para enviar pela Lei de Acesso à Informação (LAI) ou por entidade fiscalizado
 - [ ] **Pendente.** Baixar pelo navegador a lista de revogação e a política da AC URNA e da AC RAIZ UE, e procurar um certificado renovado da AC URNA.
 - [ ] **Pendente.** Segunda conferência, independente, do carimbo das carteiras das urnas novas (2020 e 2022) do 2º turno. Hoje ela vem só da verificação de lacres.
 - [ ] **Pendente.** Registrar no leitor a quantidade de carteiras com 2 zeros a mais.
+- [ ] **Pendente.** Conferir o tamanho do risco no 1º turno (urnas da AC URNA do 1º turno × resultado de Presidente do 1º turno).
+
+## Conclusão
+
+**O que está provado.** O certificado público do cartório digital das urnas antigas (AC URNA) venceu em 18/07/2026, antes dos dois turnos. Mesmo assim, a chave desse cartório continuou carimbando carteiras de urna: 54 carteiras têm início de validade entre 20/07 e 19/10/2026, e as urnas com elas votaram em 53 seções no 2º turno e em 45 no 1º. Todas as assinaturas das urnas antigas conferem com a chave verdadeira do cartório, nos dois turnos, e uma carteira alterada é recusada.
+
+**O que isso significa como controle.** A data de validade, que deveria limitar o tempo de uso da chave do cartório, não limitou: a chave seguiu em uso depois do vencimento. E quem está de fora não consegue refazer a conferência que o TSE faz. Não se sabe se o sistema que soma os votos confere a validade, nem com qual certificado. O único certificado publicado está vencido. É uma lacuna de controle e de transparência.
+
+**O tamanho do que estaria em jogo.** No 2º turno, 20,28% dos votos válidos do país passaram por essas urnas: 13.140.473 votos do 13 e 12.026.599 do 22. A margem do 13 foi de 4.430.191. Trocar 2.215.096 votos só nessas urnas, 9 em cada 100, mudaria o vencedor. É uma porta grande o bastante para decidir a eleição, e por isso a lacuna importa.
+
+**O que os dados não mostram.** Nenhum sinal de que alguém tenha passado por essa porta. Nenhuma assinatura falhou e nenhuma carteira inventada passou. As carteiras emitidas depois do vencimento têm o carimbo da chave verdadeira e seguem a mesma ordem e o mesmo ritmo das outras. Essas urnas votaram como as urnas novas do mesmo lugar, e as seções com carteira tardia votaram como as vizinhas. O que os testes não alcançam: uma cópia da chave do cartório, ou um programa alterado que aja igual em todas as urnas.
+
+**O que precisa acontecer.** O TSE precisa responder às cinco perguntas deste relatório: qual conferência o sistema de totalização faz e com qual certificado; se há certificado renovado da AC URNA; a lista de todas as carteiras que o cartório emitiu em 2026; a lista de revogados; e quem guarda e usou a chave do cartório depois do vencimento. Sem essas respostas, a garantia de que essas carteiras vêm de um uso autorizado da chave depende só da palavra de quem a controla.
+
+## Anexo — As urnas com certificado da AC URNA
+
+### As 54 carteiras emitidas depois do vencimento
+
+**Fato.** Uma linha por carteira. Cada carteira foi usada por uma só urna, numa só seção. A mesma urna pode ter votado nos dois turnos, na mesma seção.
+
+- "Papel da urna": urna da seção ou urna reserva, que substitui a da seção.
+- O início da validade está no horário de Brasília.
+- O número de série está escrito como o cartório o escreve, em base 16 (algarismos de 0 a 9 e letras de a até f).
+
+Totais: 54 carteiras; 53 seções no 2º turno e 45 no 1º; 44 urnas votaram nos dois turnos, 9 só no 2º e 1 só no 1º; 23 urnas 2013 e 31 urnas 2015; 8 carteiras de urna reserva.
+
+| # | UF | Município | Zona | Seção | Turno em que a urna votou | Papel da urna | Modelo | Número da urna | Início da validade (Brasília) | Número de série |
+|---:|---|---|---|---|---|---|---|---:|---|---|
+| 1 | SP | SÃO PAULO | 0254 | 0024 | 1º e 2º | urna da seção | 2013 | 1682534 | 20/07/2026 15:25 | `34aea5` |
+| 2 | ES | SERRA | 0026 | 0355 | 1º e 2º | urna da seção | 2013 | 1682925 | 20/07/2026 15:26 | `34aeb4` |
+| 3 | SP | BATATAIS | 0022 | 0119 | 1º e 2º | urna da seção | 2013 | 1682927 | 20/07/2026 15:26 | `34aeb5` |
+| 4 | ES | SERRA | 0026 | 0040 | 1º e 2º | urna da seção | 2013 | 1682953 | 20/07/2026 15:26 | `34aeb6` |
+| 5 | ES | SERRA | 0026 | 0005 | 1º e 2º | urna da seção | 2013 | 1682957 | 20/07/2026 15:26 | `34aeb7` |
+| 6 | ES | SERRA | 0026 | 0318 | 1º e 2º | urna da seção | 2013 | 1682962 | 20/07/2026 15:26 | `34aeb8` |
+| 7 | BA | VERA CRUZ | 0141 | 0103 | 1º e 2º | urna da seção | 2015 | 1844118 | 20/07/2026 15:32 | `34af3d` |
+| 8 | GO | SÃO MIGUEL DO ARAGUAIA | 0094 | 0109 | 1º e 2º | urna da seção | 2015 | 1847655 | 20/07/2026 15:32 | `34af3f` |
+| 9 | BA | NILO PEÇANHA | 0032 | 0150 | 1º e 2º | urna da seção | 2015 | 1847990 | 20/07/2026 15:32 | `34af40` |
+| 10 | GO | CAMPINAÇU | 0125 | 0088 | 1º e 2º | urna da seção | 2015 | 1848317 | 20/07/2026 15:32 | `34af42` |
+| 11 | MA | SÃO LUÍS | 0089 | 0282 | 1º e 2º | urna da seção | 2015 | 1844126 | 27/07/2026 12:33 | `34af60` |
+| 12 | SP | MARÍLIA | 0400 | 0141 | 1º e 2º | urna da seção | 2013 | 1682645 | 03/08/2026 15:10 | `34af68` |
+| 13 | MA | SÃO JOSÉ DE RIBAMAR | 0047 | 0460 | 1º e 2º | urna da seção | 2013 | 1682741 | 03/08/2026 15:10 | `34af69` |
+| 14 | PA | MEDICILÂNDIA | 0085 | 0040 | 2º | urna reserva | 2015 | 1847529 | 03/08/2026 15:12 | `34af87` |
+| 15 | PA | MEDICILÂNDIA | 0085 | 0055 | 1º e 2º | urna reserva | 2015 | 1847646 | 03/08/2026 15:12 | `34af8a` |
+| 16 | PA | MEDICILÂNDIA | 0085 | 0076 | 1º e 2º | urna da seção | 2015 | 1847690 | 03/08/2026 15:12 | `34af8e` |
+| 17 | PA | CASTANHAL | 0050 | 0193 | 1º e 2º | urna da seção | 2015 | 1847746 | 03/08/2026 15:12 | `34af91` |
+| 18 | SP | SANTOS | 0273 | 0082 | 1º e 2º | urna da seção | 2015 | 1848224 | 03/08/2026 15:12 | `34af94` |
+| 19 | MT | CUIABÁ | 0039 | 0531 | 1º e 2º | urna da seção | 2013 | 1681706 | 31/08/2026 12:56 | `34afdd` |
+| 20 | PE | BREJO DA MADRE DE DEUS | 0054 | 0192 | 2º | urna da seção | 2013 | 1682260 | 31/08/2026 12:56 | `34afe1` |
+| 21 | SP | GUARULHOS | 0394 | 0197 | 1º e 2º | urna da seção | 2013 | 1682724 | 31/08/2026 12:56 | `34afe3` |
+| 22 | SP | MOGI DAS CRUZES | 0074 | 0076 | 1º e 2º | urna da seção | 2015 | 1842388 | 31/08/2026 12:59 | `34b022` |
+| 23 | BA | BOM JESUS DA LAPA | 0071 | 0150 | 2º | urna da seção | 2015 | 1843885 | 31/08/2026 12:59 | `34b024` |
+| 24 | MT | VÁRZEA GRANDE | 0020 | 0485 | 1º e 2º | urna da seção | 2015 | 1847378 | 31/08/2026 12:59 | `34b026` |
+| 25 | PE | GARANHUNS | 0056 | 0102 | 1º | urna da seção | 2015 | 1848058 | 31/08/2026 12:59 | `34b029` |
+| 26 | PE | SÃO JOÃO | 0116 | 0020 | 1º e 2º | urna da seção | 2015 | 1848139 | 31/08/2026 12:59 | `34b02a` |
+| 27 | SP | SÃO PAULO | 0280 | 0564 | 1º e 2º | urna da seção | 2013 | 1682525 | 03/09/2026 14:43 | `34b055` |
+| 28 | ES | SERRA | 0053 | 0384 | 1º e 2º | urna da seção | 2013 | 1682614 | 03/09/2026 14:43 | `34b056` |
+| 29 | PE | RIACHO DAS ALMAS | 0041 | 0173 | 2º | urna reserva | 2013 | 1682785 | 03/09/2026 14:43 | `34b057` |
+| 30 | AL | CRAÍBAS | 0031 | 0159 | 1º e 2º | urna da seção | 2013 | 1679245 | 09/09/2026 11:02 | `34b079` |
+| 31 | AL | INHAPI | 0039 | 0092 | 1º e 2º | urna da seção | 2015 | 1844078 | 09/09/2026 11:04 | `34b098` |
+| 32 | AL | DELMIRO GOUVEIA | 0040 | 0031 | 1º e 2º | urna da seção | 2015 | 1847874 | 09/09/2026 11:04 | `34b09c` |
+| 33 | AL | SÃO JOSÉ DA TAPERA | 0051 | 0121 | 1º e 2º | urna da seção | 2013 | 1682873 | 09/09/2026 14:29 | `34b0c1` |
+| 34 | AL | PARICONHA | 0039 | 0128 | 1º e 2º | urna da seção | 2013 | 1682879 | 09/09/2026 14:29 | `34b0c2` |
+| 35 | SP | CUBATÃO | 0119 | 0173 | 1º e 2º | urna reserva | 2013 | 1682105 | 12/09/2026 14:59 | `34b0ec` |
+| 36 | PB | JOÃO PESSOA | 0064 | 0355 | 1º e 2º | urna da seção | 2013 | 1682134 | 14/09/2026 17:27 | `34b0f6` |
+| 37 | BA | CAMAÇARI | 0171 | 0171 | 1º e 2º | urna da seção | 2015 | 1844121 | 15/09/2026 14:46 | `34b105` |
+| 38 | MA | PAÇO DO LUMIAR | 0093 | 0405 | 1º e 2º | urna da seção | 2015 | 1844130 | 17/09/2026 10:04 | `34b11a` |
+| 39 | MA | ITAPECURU MIRIM | 0016 | 0032 | 1º e 2º | urna da seção | 2015 | 1844165 | 17/09/2026 10:04 | `34b11b` |
+| 40 | MA | SÃO JOSÉ DE RIBAMAR | 0047 | 0458 | 1º e 2º | urna da seção | 2015 | 1844173 | 17/09/2026 10:04 | `34b11c` |
+| 41 | MT | CUIABÁ | 0001 | 1108 | 1º e 2º | urna da seção | 2015 | 1847523 | 17/09/2026 10:04 | `34b11d` |
+| 42 | SP | ITAPETININGA | 0052 | 0047 | 1º e 2º | urna da seção | 2015 | 1843888 | 17/09/2026 16:40 | `34b135` |
+| 43 | PE | GARANHUNS | 0056 | 0386 | 1º e 2º | urna da seção | 2015 | 1844163 | 18/09/2026 16:25 | `34b13f` |
+| 44 | PE | BOM CONSELHO | 0061 | 0105 | 1º e 2º | urna da seção | 2015 | 1847549 | 18/09/2026 16:25 | `34b141` |
+| 45 | PE | GARANHUNS | 0056 | 0422 | 1º e 2º | urna da seção | 2015 | 1847748 | 18/09/2026 16:25 | `34b142` |
+| 46 | PE | CAMOCIM DE SÃO FÉLIX | 0132 | 0024 | 1º e 2º | urna da seção | 2015 | 1848222 | 18/09/2026 16:25 | `34b143` |
+| 47 | PR | ÂNGULO | 0150 | 0144 | 2º | urna reserva | 2013 | 1681993 | 22/09/2026 18:14 | `34b159` |
+| 48 | AL | PALMEIRA DOS ÍNDIOS | 0010 | 0271 | 1º e 2º | urna da seção | 2015 | 1848297 | 23/09/2026 13:14 | `34b191` |
+| 49 | PB | CABEDELO | 0057 | 0157 | 1º e 2º | urna da seção | 2013 | 1682759 | 25/09/2026 10:02 | `34b19e` |
+| 50 | PA | CASTANHAL | 0004 | 0378 | 2º | urna da seção | 2013 | 1682885 | 29/09/2026 14:33 | `34b1c9` |
+| 51 | MA | SÃO LUÍS | 0076 | 0643 | 2º | urna reserva | 2015 | 1844177 | 01/10/2026 15:57 | `34b231` |
+| 52 | MA | SÃO LUÍS | 0076 | 0636 | 1º e 2º | urna reserva | 2015 | 1848205 | 01/10/2026 15:57 | `34b233` |
+| 53 | SP | SÃO PAULO | 0004 | 0114 | 2º | urna da seção | 2015 | 1847509 | 18/10/2026 14:55 | `34b24a` |
+| 54 | SP | BURITAMA | 0214 | 0003 | 2º | urna reserva | 2013 | 1682541 | 19/10/2026 15:04 | `34b256` |
+
+### Quadro por UF
+
+O número de seções com urna da AC URNA em cada UF, nos dois turnos, está na tabela da seção "Por UF", no começo deste relatório. Ela é a mesma que entraria aqui.
+
+### A lista completa
+
+A lista completa das seções com urna da AC URNA vai anexada ao próprio PDF deste relatório, como planilha: 99.957 seções no 2º turno e 99.985 no 1º, uma linha por seção. Cada linha traz UF, município, zona, seção, modelo e número da urna, a validade da carteira e se ela foi emitida depois do vencimento do cartório. As planilhas aparecem no painel de anexos do leitor de PDF (o ícone de clipe) e abrem no Excel ou em qualquer programa de planilha. Elas ficam dentro do arquivo protegido pela assinatura digital do relatório: qualquer alteração nelas invalida a assinatura.

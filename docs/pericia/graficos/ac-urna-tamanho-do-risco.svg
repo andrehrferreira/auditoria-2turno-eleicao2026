@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 348" width="760" height="348" role="img" aria-labelledby="titulo desc">
+<title id="titulo">O tamanho do risco nas urnas da AC URNA (Presidente, 2º turno)</title><desc id="desc">Votos nas seções com urna 2013 ou 2015 (Brasil e exterior) comparados com a margem nacional. Votos do 13 nas urnas da AC URNA: 13.140.473; Votos do 22 nas urnas da AC URNA: 12.026.599; Margem nacional do 13 sobre o 22: 4.430.191; Mínimo de votos trocados nessas urnas para virar: 2.215.096.</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.tb{fill:#ffffff}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}.s2{fill:#d6d5d0}.marco{stroke:#0b0b0b}.vence{stroke:#eb6834}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.s0{fill:#3987e5}.s1{fill:#d95926}.s2{fill:#4a4a46}.marco{stroke:#f0efec}.vence{stroke:#d95926}}
+</style>
+<rect class="fundo" width="760" height="348" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">O tamanho do risco nas urnas da AC URNA (Presidente, 2º turno)</text>
+<text class="t2" x="20" y="52" font-size="13">Votos nas seções com urna 2013 ou 2015 (Brasil e exterior) comparados com a margem nacional.</text>
+<line class="grade" x1="210" x2="210" y1="78" y2="252" stroke-width="1"/>
+<text class="t2" x="210" y="268" font-size="12" text-anchor="middle">0</text>
+<line class="grade" x1="272.85714285714283" x2="272.85714285714283" y1="78" y2="252" stroke-width="1"/>
+<text class="t2" x="272.85714285714283" y="268" font-size="12" text-anchor="middle">2 mi</text>
+<line class="grade" x1="335.7142857142857" x2="335.7142857142857" y1="78" y2="252" stroke-width="1"/>
+<text class="t2" x="335.7142857142857" y="268" font-size="12" text-anchor="middle">4 mi</text>
+<line class="grade" x1="398.57142857142856" x2="398.57142857142856" y1="78" y2="252" stroke-width="1"/>
+<text class="t2" x="398.57142857142856" y="268" font-size="12" text-anchor="middle">6 mi</text>
+<line class="grade" x1="461.42857142857144" x2="461.42857142857144" y1="78" y2="252" stroke-width="1"/>
+<text class="t2" x="461.42857142857144" y="268" font-size="12" text-anchor="middle">8 mi</text>
+<line class="grade" x1="524.2857142857142" x2="524.2857142857142" y1="78" y2="252" stroke-width="1"/>
+<text class="t2" x="524.2857142857142" y="268" font-size="12" text-anchor="middle">10 mi</text>
+<line class="grade" x1="587.1428571428571" x2="587.1428571428571" y1="78" y2="252" stroke-width="1"/>
+<text class="t2" x="587.1428571428571" y="268" font-size="12" text-anchor="middle">12 mi</text>
+<line class="grade" x1="650" x2="650" y1="78" y2="252" stroke-width="1"/>
+<text class="t2" x="650" y="268" font-size="12" text-anchor="middle">14 mi</text>
+<line class="eixo" x1="210" x2="210" y1="78" y2="252" stroke-width="1"/>
+<text class="t1" x="200" y="94.5" font-size="13" text-anchor="end">Votos do 13 nas urnas</text>
+<text class="t1" x="200" y="109.5" font-size="13" text-anchor="end">da AC URNA</text>
+<path class="s0" d="M210,84h408.9862942857143a4,4 0 0 1 4,4v18a4,4 0 0 1 -4,4h-408.9862942857143z"/>
+<text class="t1" x="628.9862942857143" y="101.5" font-size="12.5">13.140.473</text>
+<text class="t1" x="200" y="140.5" font-size="13" text-anchor="end">Votos do 22 nas urnas</text>
+<text class="t1" x="200" y="155.5" font-size="13" text-anchor="end">da AC URNA</text>
+<path class="s0" d="M210,130h373.9788257142857a4,4 0 0 1 4,4v18a4,4 0 0 1 -4,4h-373.9788257142857z"/>
+<text class="t1" x="593.9788257142857" y="147.5" font-size="12.5">12.026.599</text>
+<text class="t1" x="200" y="186.5" font-size="13" text-anchor="end">Margem nacional</text>
+<text class="t1" x="200" y="201.5" font-size="13" text-anchor="end">do 13 sobre o 22</text>
+<path class="s2" d="M210,176h135.2345742857143a4,4 0 0 1 4,4v18a4,4 0 0 1 -4,4h-135.2345742857143z"/>
+<text class="t1" x="355.2345742857143" y="193.5" font-size="12.5">4.430.191</text>
+<text class="t1" x="200" y="232.5" font-size="13" text-anchor="end">Mínimo de votos trocados</text>
+<text class="t1" x="200" y="247.5" font-size="13" text-anchor="end">nessas urnas para virar</text>
+<path class="s1" d="M210,222h65.61730285714287a4,4 0 0 1 4,4v18a4,4 0 0 1 -4,4h-65.61730285714287z"/>
+<text class="t1" x="285.6173028571429" y="239.5" font-size="12.5">2.215.096</text>
+<text class="t2" x="430" y="288" font-size="12.5" text-anchor="middle">Votos (mi = milhões)</text>
+<text class="t2" x="20" y="320" font-size="12">Mede o tamanho do que estaria em jogo, não é sinal de fraude. Trocar 1 voto do 13 para o 22 diminui a margem em 2.</text>
+<text class="t2" x="20" y="336" font-size="11">Fonte: arquivos oficiais do TSE, todas as seções.</text>
+</svg>
