@@ -27,7 +27,7 @@ Toda afirmação traz um destes rótulos:
 - **Gráficos:** cada gráfico tem um título que diz o que ele mostra, eixos com unidade, legenda e uma frase "como ler". Os dados de cada gráfico, e o programa que o desenha, ficam guardados no índice técnico.
 - **Linguagem:** frases curtas, sem jargão. Todo termo técnico é explicado na primeira vez, com uma comparação do dia a dia.
 
-**Comece pelo resumo:** [os principais achados](resumo.md), em poucas páginas: o que foi conferido e bate, as brechas encontradas, o que não dá para afirmar e o que está pendente. Ele não traz número novo; cada número remete ao tópico onde está.
+**Comece pelo resumo:** os principais achados (o resumo executivo, no início do relatório completo), em poucas páginas: o que foi conferido e bate, as brechas encontradas, o que não dá para afirmar e o que está pendente. Ele não traz número novo; cada número remete ao tópico onde está.
 
 ## Tópicos
 

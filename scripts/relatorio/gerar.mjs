@@ -32,7 +32,7 @@ const TEMAS = path.join(PERICIA, 'temas');
 const PASTA_CHAVE = path.join(os.homedir(), '.auditoria-eleicoes-2026', 'assinatura');
 const CERTIFICADO_PUBLICO = path.join(SAIDA, 'certificado-assinatura.pem');
 const TITULO_CURTO = 'Relatório de perícia · Urnas 2026';
-const AVISO_CAPA = 'Documento em elaboração — conteúdo atualizado conforme os testes e a revisão cética';
+const AVISO_CAPA = 'Documento em elaboração — conteúdo atualizado conforme os testes e as verificações independentes';
 
 // ------------------------------------------------------------------ utilidades
 
@@ -55,7 +55,7 @@ function git(args) {
 
 /** Referências de processo proibidas no texto renderizado (inclusive no texto dos gráficos). */
 export const RE_PROCESSO =
-  /[Pp]arecer(?:es)? c[eé]ticos?|[Rr]evisor c[eé]tico|\b[Rr]edator\b|\bAuditor [A-E]\b|\bAstra\b|\bGrok\b|\bKimi\b|\.mjs\b|\.jsonl?\b|\bdocs\/|\bscripts\/|\bdata\/|\bsrc\/|npm run|node scripts/g;
+  /[Pp]arecer(?:es)? c[eé]ticos?|[Rr]evis(?:or|ão) c[eé]tic[oa]|\b[Cc][eé]tic[oa]s?\b|\b[Rr]edator\b|\bAuditor [A-E]\b|\bAstra\b|\bGrok\b|\bKimi\b|\.mjs\b|\.jsonl?\b|\bdocs\/|\bscripts\/|\bdata\/|\bsrc\/|npm run|node scripts/g;
 
 /** Exceções legítimas, retiradas da linha antes da busca. */
 export const EXCECOES_PROCESSO = [
