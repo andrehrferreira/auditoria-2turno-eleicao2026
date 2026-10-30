@@ -112,7 +112,7 @@ Arquivo: `tabela-grupos.csv`.
 | Reserva herdada | 77,37 → 80,22 | 49,02 → 51,85 | 4,63 → 3,15 |
 | Mesma urna, tipo mudou | 72,20 → 79,35 | 60,40 → 63,16 | 5,48 → 3,86 |
 
-**Leitura:** a parcela do 13 sobe 2,77 pontos nas trocas novas e 2,79 no controle. Os níveis já eram diferentes no 1º turno: as seções trocadas são de outros lugares. Por isso o teste compara a **variação**, dentro da mesma zona.
+**Leitura:** a parcela do 13 sobe 2,77 pontos nas trocas novas e 2,80 no controle (51,782294 − 48,985894; uma versão anterior dizia 2,79, por subtrair valores já arredondados). Os níveis já eram diferentes no 1º turno: as seções trocadas são de outros lugares. Por isso o teste compara a **variação**, dentro da mesma zona.
 
 - **Sobre o −0,12 p.p. do engenheiro (doc 03 dele, não revisado):** ele comparou o **nível** do 2º turno, todas as 5.714 reservas contra a zona.
   - Na variação 1º → 2º turno, as trocas novas ficam em −0,047 p.p. (IC95 −0,121 a +0,027).
