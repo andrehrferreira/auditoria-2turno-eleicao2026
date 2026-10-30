@@ -2,22 +2,41 @@
 
 Estatístico eleitoral, **30/10/2026**. Plano registrado antes de rodar: [20](20-h19-plano.md), 10:10. O plano não mudou depois de ver os dados. O que não estava nele está marcado **exploratório**.
 
+**Revisado em 30/10/2026 depois da revisão cética** ([parecer 45](../cetico-revisor/45-h19-falha-induzida.md)). O que mudou:
+- a leitura "compatível com H19" do Sudeste saiu;
+- o argumento "some sem as 10 maiores" saiu;
+- "falha do mesário" passou a se chamar **autorização sem mesário identificado**;
+- a leitura de PR 74993/0159/0009 e BA 36854/0180/0149 foi corrigida;
+- entraram dois limites: as seções que ficam fora dos testes e a liberação sem nenhuma digital lida.
+
+Os números dos testes não mudaram: o parecer os reproduziu até a unidade.
+
 ## Resposta curta
 
 - **Fato (contagem, universo completo).** Nas 497.897 seções do Brasil, nos dois turnos, a taxa de falha da digital ficou praticamente igual entre os turnos:
   - falha (4 tentativas sem reconhecimento): 7,07% dos eleitores a quem a urna pediu a digital no 1º turno e 7,16% no 2º;
   - tentativas por eleitor reconhecido: 1,369 e 1,378.
-  - A falha do mesário caiu: a liberação manual sem mesário identificado foi de 38,6% das liberações manuais para 32,3%.
+  - A autorização sem mesário identificado caiu de 38,6% das liberações manuais para 32,3%. Isso é a liberação autorizada por um dedo que não é de mesário registrado. A queda vem junto com **+720.682 liberações autorizadas por mesário identificado** (5.120.426 → 5.841.108). Não é menos liberação: é a mesma liberação, mais vezes com o mesário registrado.
+- **Fato (parecer 45, varredura de todos os diários).** "Tentativa" não é "captura". Uma tentativa pode terminar sem dedo nenhum, por tempo esgotado.
+  - Foram **172.318** liberações manuais no 1º turno e **212.171** no 2º sem nenhuma digital lida nas 4 tentativas (2,07% e 2,46% das falhas).
+  - E qualquer dedo autoriza a liberação: a urna não exige mesário registrado.
+  - O desenho deste teste conta essas liberações como falha comum.
 - **Fato (Parte 1).** Saltos locais fortes da falha existem e não são acaso. 112 seções passam por Bonferroni (o esperado por acaso é 0,05), mas o desenho delas não é o que a H19 prevê:
   - há **mais quedas que subidas**: 73 contra 39. A H19 prevê excesso de subidas no 2º turno;
   - 39 das 112 tiveram a **urna trocada** entre os turnos (35%, contra 0,9% de todas as seções). É a explicação benigna da H14: o leitor muda com a urna.
-- **Teste confirmatório (105 testes, Bonferroni |z| ≥ 3,49).** A variação contínua da falha (Δf), do leitor (Δa) e da falha do mesário (Δh) **não prevê** a variação do voto dentro do local, em nenhuma das 33 unidades (Brasil, 5 regiões, 27 UFs). O mais perto do corte: Brasil Δf, z = 3,00.
+- **Teste confirmatório (105 testes, Bonferroni |z| ≥ 3,49).** A variação contínua da falha (Δf), do leitor (Δa) e da autorização sem mesário identificado (Δh) **não prevê** a variação do voto dentro do local, em nenhuma das 33 unidades (Brasil, 5 regiões, 27 UFs). O mais perto do corte: Brasil Δf, z = 3,00.
+  - **Ficam fora dos testes 26.933 seções (5,4% das 497.897)**, porque estão sozinhas no prédio com aquele modelo de urna. O desenho não diz nada sobre elas.
 - **Um teste passa: Sudeste, seções com salto para cima (M2).**
   - São 75 seções. Nelas, a parcela do 13 cresceu **0,90 ponto a mais** que nas vizinhas do mesmo prédio e do mesmo modelo de urna (z = 3,57).
-  - Pelo critério conjunto do plano, a leitura é **"compatível com H19"**: o placebo do 1º turno dá z = −0,50 e o resultado se mantém sem as urnas trocadas (z = 3,68).
-  - **Exploratório:** o sinal é **frágil**. Sem as 5 seções que mais contribuem, z cai para 2,67. Sem as 10, cai para 1,86. Não passa em nenhuma UF sozinha.
-  - **Tamanho:** equivale a cerca de 180 votos trocados de lado nas 75 seções (19.877 votos em 13 + 22), contra uma margem nacional de 4.430.191.
-- **Leitura.** Não há sinal nacional de falha de digital induzida que mova voto. O único teste que passa é pequeno, depende de poucas seções e fica no Sudeste. No Nordeste, as seções com salto vão no sentido oposto (−0,30, z = −1,67). Fica como **Hipótese aberta de baixo peso**, com lista de seções para conferir no campo. Não é prova de fraude nem absolvição.
+  - O placebo do 1º turno dá z = −0,50, e o resultado se mantém sem as urnas trocadas (z = 3,68). O critério conjunto do plano é atendido, mas **não sustenta a leitura "compatível com H19"** (parecer 45):
+    - medida a falha contra a **própria** seção, e não contra as vizinhas, o sinal some (z = 0,46);
+    - o comparecimento dessas 75 seções **não subiu** em relação às vizinhas (z = 0,02). Voto posto no lugar de ausente deixaria esse rastro.
+  - Fica abaixo do corte também sem controles (z 3,20), sem peso (3,35) e sem as 14 seções cujo salto vem do vizinho (2,87).
+  - Não passa em nenhuma UF sozinha.
+- **Leitura.** Não há sinal de falha de digital induzida que mova voto.
+  - O único teste que passa depende de medir o salto contra as vizinhas e não vem com o comparecimento a mais que o mecanismo exige.
+  - No Nordeste, as seções com salto vão no sentido oposto (−0,30, z = −1,67).
+  - Fica como **Hipótese de baixo peso, sem leitura de fraude**, com lista de seções para conferir no campo. Não é prova de fraude nem absolvição.
 
 ## Comandos
 
@@ -37,7 +56,7 @@ node --max-old-space-size=8192 scripts/auditoria/estatistico-h19-exploratorio.mj
 - o perfil do eleitorado.
 
 **Saídas** em `data/parsed/auditoria/estatistico/h19/`:
-- `medidas.csv.gz`: por seção e turno, tentativas, falhas, falha do mesário, votos, urna e modelo;
+- `medidas.csv.gz`: por seção e turno, tentativas, falhas, autorização sem mesário identificado, votos, urna e modelo;
 - `resultado.json`, `testes.csv` (os 105 testes, com β, erro, z, Bonferroni, BH e efeito mínimo detectável);
 - `saltos.csv`: 727 seções com salto, as de Bonferroni mais S↑ e S↓;
 - `exploratorio.json`, `sudeste-sup.csv`.
@@ -50,11 +69,13 @@ node --max-old-space-size=8192 scripts/auditoria/estatistico-h19-exploratorio.mj
 | Reconhecidos (R) | 109.650.790 | 111.970.297 |
 | Falhas: 4 tentativas sem reconhecimento (F) | 8.342.240 | 8.632.471 |
 | Taxa de falha f = F ÷ B | 7,07% | 7,16% |
-| Tentativas de captura (todas) | 183.529.819 | 188.776.340 |
+| Tentativas de captura (todas; tentativa inclui tempo esgotado sem dedo) | 183.529.819 | 188.776.340 |
 | Tentativas por eleitor reconhecido (a) | 1,369 | 1,378 |
 | Reconhecidos na 1ª tentativa | 75,1% | 74,5% |
-| Falha do mesário: liberação manual sem `Mesário … habilitou` (H) | 3.221.798 | 2.791.363 |
+| Autorização sem mesário identificado: liberação manual sem `Mesário … habilitou` (H) | 3.221.798 | 2.791.363 |
 | H ÷ F | 38,6% | 32,3% |
+| Autorização por mesário identificado (V3m) | 5.120.426 | 5.841.108 |
+| Liberação manual sem nenhuma digital lida (4 tempos esgotados; parecer 45) | 172.318 | 212.171 |
 
 **Por modelo de urna** (todas as seções; `resultado.json`, `descritivo.porModelo`):
 
@@ -66,7 +87,16 @@ node --max-old-space-size=8192 scripts/auditoria/estatistico-h19-exploratorio.mj
 | UE2013 | 11,77% → 11,66% | 1,443 → 1,444 | 40,8% → 32,8% |
 
 - **Fato:** as urnas antigas (UE2013 e UE2015) falham mais, nos dois turnos e no mesmo nível. Por isso a comparação é feita dentro do mesmo modelo.
-- **Fato:** a queda da falha do mesário aparece em todos os modelos. Ela vai contra a ideia de mais liberação "sem dono" no 2º turno.
+- **Fato:** a queda da autorização sem mesário identificado aparece em todos os modelos e vem junto com +720.682 autorizações por mesário identificado. Ela vai contra a ideia de mais liberação "sem dono" no 2º turno.
+- **O que H é (parecer 45, diário bruto).** No caminho manual, a urna pede "a digital do mesário". Qualquer dedo serve. H junta dois casos:
+  - **"dedo novo":** a digital não bate com nenhuma gravada e é salva pela primeira vez;
+  - **"dedo já visto":** a digital bate com uma gravada antes naquele dia.
+
+  Nos dois casos o leitor **leu** o dedo; no segundo, até o **reconheceu**. H não mede defeito do leitor. Mede que quem autorizou não é mesário registrado. Pelo princípio 8, é a forma mais fraca de controle.
+- **Fato (parecer 45):** "tentativa" não é "captura". Quatro tempos esgotados seguidos abrem o caminho manual sem nenhuma digital lida.
+  - Isso aconteceu em 172.318 liberações no 1º turno e 212.171 no 2º.
+  - O tempo esgotado também subiu entre os eleitores reconhecidos (de 0,61% para 0,73%).
+  - Este desenho as conta como falha comum, sem separar.
 
 ## Amostra dos testes (Fato)
 
@@ -80,6 +110,8 @@ Elegíveis: **470.478 seções** em 75.811 grupos (local × modelo da urna do 2�
 | Menos de 20 votos em 13 + 22 em algum turno | 8 |
 | Sem perfil do eleitorado | 320 |
 | Sozinha no grupo local × modelo | 26.933 |
+
+**Limite (Fato):** as 26.933 seções sozinhas no prédio com aquele modelo de urna são 5,4% das 497.897. Elas **não entram em teste nenhum**, nem na Parte 1 nem na Parte 2. São sobretudo locais pequenos, de uma seção só. **Pendente:** um teste para elas contra a própria seção e contra a UF × modelo.
 
 Na amostra: f = 6,97% → 7,06%; a = 1,367 → 1,375; H ÷ F = 38,3% → 32,0%.
 
@@ -123,7 +155,7 @@ Na amostra: f = 6,97% → 7,06%; a = 1,367 → 1,375; H ÷ F = 38,3% → 32,0%.
 
 ### As 5 maiores subidas (conferidas no BU bruto dos dois turnos)
 
-| Seção | Urna 1º → 2º | Reconhecidos / falhas 1º → 2º | Falha do mesário (H) 1º → 2º | Tentativas por reconhecido 1º → 2º | Parcela do 13, 1º → 2º |
+| Seção | Urna 1º → 2º | Reconhecidos / falhas 1º → 2º | Autorização sem mesário identificado (H) 1º → 2º | Tentativas por reconhecido 1º → 2º | Parcela do 13, 1º → 2º |
 |---|---|---|---|---|---|
 | BA 36854/0180/0175 | mesma (1670693) | 223 / 51 → 42 / 260 | 51 → 77 | 1,47 → 1,55 | 74,3% → 74,2% |
 | PR 74993/0159/0009 | mesma (1661675) | 137 / 54 → 13 / 196 | 43 → 194 | 1,43 → 2,00 | 44,4% → 49,3% |
@@ -133,8 +165,12 @@ Na amostra: f = 6,97% → 7,06%; a = 1,367 → 1,375; H ÷ F = 38,3% → 32,0%.
 
 - **Conferência:** reconhecidos = "habilitação biométrica" e falhas = "habilitação biográfica" do BU. Os votos 13 e 22 de presidente batem com o banco nos dois turnos, com `node src/exportar.js --turno <1|2> --uf .. --municipio .. --zona .. --secao .. --log nao --stdout`.
 - **Leitura (Hipótese):** os dois desenhos do plano aparecem.
-  - **PR 0009, BA 0149 e SP 0114:** a digital do **mesário** também passou a falhar (H sobe quase até F). Quando o próprio mesário não é reconhecido, o mais simples é o leitor ruim (mecanismo A, ou sensor gasto). Duas dessas três tiveram a urna trocada.
-  - **BA 0175:** só os eleitores falham. A digital do mesário segue reconhecida (183 liberações com mesário identificado) e o leitor não piorou. É o desenho da **falha escolhida** (mecanismo B) e também de mesário que desiste rápido da digital. A contagem não separa os dois (princípio 8). A parcela do 13 não mudou (74,3% → 74,2%).
+  - **PR 0009 e BA 0149 (corrigido pelo parecer 45):** H sobe quase até F, mas **não é leitor ruim**. O dedo que autorizou foi lido e **reconhecido em série**: um dedo sem registro de mesário, reconhecido 190 vezes (PR) e 203 vezes (BA).
+    - **PR 0009:** desde 08:00, com a mesma urna. Os eleitores quase não passam (13 reconhecidos). No 1º turno, o mesmo desenho em escala menor: 40 de 54 por dedo já visto.
+    - **BA 0149:** houve **troca de urna no meio do dia**. A primeira urna votou 83 com leitor normal até ~09:45. A reserva entrou às ~10:00, quase não reconhece eleitores, e as liberações passam a ser autorizadas por dedos sem registro. **Hipótese benigna:** os mesários não foram registrados na urna reserva.
+    - Pelo princípio 8, autorização em série sem identificação nominal é o desenho de maior risco, não um defeito técnico.
+  - **SP 0114:** aqui sim o leitor não reconhece nem o dedo que autoriza. Foram 163 "dedos novos", com a urna trocada. Leitor ou casamento de digitais quebrado.
+  - **BA 0175:** só os eleitores falham. O mesário segue identificado (183 liberações autorizadas por mesário registrado) e o leitor não piorou. É o desenho da **falha escolhida** (mecanismo B) e também de mesário que desiste rápido da digital. A contagem não separa os dois (princípio 8). A parcela do 13 não mudou (74,3% → 74,2%).
   - **BA 0086:** é um salto "emprestado" do vizinho (ver o limite acima).
 
 ## Parte 2. O salto prevê o voto dentro do local? (confirmatória)
@@ -159,11 +195,11 @@ Na amostra: f = 6,97% → 7,06%; a = 1,367 → 1,375; H ÷ F = 38,3% → 32,0%.
 
 **UFs:** nenhum dos 81 testes de UF passa. Os maiores |z| são RJ Δh +3,07, RR Δh −2,73, PE Δh −2,66, MG Δf +2,19, DF Δf −2,18, GO Δf +2,14 e RN Δa +2,07. A tabela completa está em `testes.csv`.
 
-**Leitura (Fato, teste declarado antes):** pela variação contínua, nem a falha da digital, nem o leitor, nem a falha do mesário preveem a mudança do voto entre seções do mesmo prédio e do mesmo modelo de urna, em nenhuma unidade.
+**Leitura (Fato, teste declarado antes):** pela variação contínua, nem a falha da digital, nem o leitor, nem a autorização sem mesário identificado preveem a mudança do voto entre seções do mesmo prédio e do mesmo modelo de urna, em nenhuma unidade.
 
 **Exploratório:** o Brasil Δf (z = 3,00), abaixo do corte, vem com placebo de sinal oposto (−2,79).
 - As seções cuja falha subiu já votavam **menos** no 13 no 1º turno.
-- Como ΔY = Y₂ − Y₁, parte da associação positiva pode ser volta à média do voto do 1º turno, não efeito do 2º.
+- Como ΔY = Y₂ − Y₁, parte da associação positiva pode ser volta à média do voto do 1º turno, não efeito do 2º. É suposição: não foi testada (parecer 45).
 
 ### M2 (salto local S↑), Brasil e regiões
 
@@ -181,7 +217,25 @@ Na amostra: f = 6,97% → 7,06%; a = 1,367 → 1,375; H ÷ F = 38,3% → 32,0%.
 2. placebo do 1º turno com |z| < 2: o plano definiu o placebo só para o M1. Rodado depois para o M2 (**exploratório**), dá z = −0,50;
 3. sobrevive sem as urnas trocadas: sim (z = 3,68).
 
-**Leitura declarada:** "compatível com H19".
+**Leitura pelo critério do plano:** atendido. **Leitura retirada** depois da revisão cética (parecer 45): "compatível com H19" **não se sustenta**.
+
+As versões que caem abaixo do corte de 3,49 (parecer 45, exploratório; estimativas de modelo):
+
+| Variação (Sudeste, S↑) | β | z |
+|---|---|---|
+| Plano | +0,90 | 3,57 |
+| **S↑ medido contra a própria seção** (salto contra a UF × modelo, sem olhar os pares; 68 seções, 32 em comum) | +0,13 | **0,46** |
+| Sem as 14 seções cujo salto vem do vizinho | +0,77 | 2,87 |
+| As 14 tratadas como não S↑ | +0,75 | 2,79 |
+| Sem controles | +0,83 | 3,20 |
+| Sem peso | +0,85 | 3,35 |
+| Aleatorização (75 seções sorteadas, 20.000 vezes) | — | p ≈ 0,5% bicaudal; o corte para 105 testes é 0,05% |
+
+Ficam acima do corte só duas versões: com erro agrupado por município (z 4,41) e sem urnas trocadas (z 3,68).
+
+- **O rastro do mecanismo não aparece.** Voto posto no lugar de ausente aumenta o comparecimento. Nas 75 seções, o comparecimento ÷ eleitores variou como nas vizinhas: β = +0,007 ponto, z = 0,02. O sinal é uma troca: o 13 sobe e o 22 desce, com o mesmo número de votantes.
+- O que sobra compatível é troca de **quem** foi votar (o confundidor declarado no plano) ou troca do voto de quem veio. Nenhuma das duas passa pela falha da digital.
+- Medida contra a própria seção, nenhuma região passa de |z| = 1,4 (Brasil: z = 0,11).
 
 ### Sensibilidades (exploratórias, z)
 
@@ -197,11 +251,10 @@ Na amostra: f = 6,97% → 7,06%; a = 1,367 → 1,375; H ÷ F = 38,3% → 32,0%.
 | Pergunta | Resultado |
 |---|---|
 | Está em alguma UF? | Não passa em nenhuma: SP +1,00 (z 2,44; 29 seções), RJ +1,17 (2,05; 17), MG +0,66 (1,67; 24), ES +0,53 (0,66; 5) |
-| Depende de poucas seções? | **Sim.** Sem a maior contribuição, z = 3,37; sem 3, 3,06; sem 5, **2,67**; sem 10, **1,86**. Sem o município SP 71579 (5 seções S↑), 3,06 |
-| Que desenho de falha? | Padrão B (leitor igual e mesário reconhecido): 56 seções, +1,01 (z 3,32). Padrão A (leitor pior ou mesário também falhando): 19 seções, +0,59 (z 1,53). No Nordeste, o padrão B vai ao contrário: −0,44 (z −2,14) |
-| Salto próprio ou do vizinho? | 14 das 75 têm a falha própria subindo menos de 2 pontos: o salto vem da queda de um vizinho |
+| Que desenho de falha? | Padrão B (leitor igual e mesário identificado): 56 seções, +1,01 (z 3,32). Padrão A (leitor pior ou H subindo): 19 seções, +0,59 (z 1,53). No Nordeste, o padrão B vai ao contrário: −0,44 (z −2,14). **Ressalva (parecer 45):** o padrão A mistura dois mecanismos diferentes, "dedo novo" (leitor que não lê nem quem autoriza) e "dedo já visto" (pessoa sem registro autorizando em série) |
+| Salto próprio ou do vizinho? | 14 das 75 têm a falha própria subindo menos de 2 pontos: o salto vem da queda de um vizinho. Todas as 14 têm uma vizinha com queda forte (S↓). Um prédio de MG (41238/0334) dá 5 das 75 por causa de uma única vizinha (parecer 45) |
 | Quantas mudaram mais que os pares? | 46 com ΔY acima dos pares e 29 abaixo; média de +0,76 ponto |
-| Tamanho | β × (13 + 22) ÷ 100 = **178 votos** trocados de lado nas 75 seções, ou cerca de 360 votos a mais no 13 (parcela do 13 de 50,2% no 2º turno; média de 265 votos por seção). A margem nacional é 4.430.191 |
+| Tamanho (**Estimativa** de modelo, fora do resumo) | β × (13 + 22) ÷ 100 = 178 votos trocados de lado nas 75 seções, ou cerca de 360 votos a mais no 13 (parcela do 13 de 50,2% no 2º turno; média de 265 votos por seção). A margem nacional é 4.430.191 |
 
 **As 3 seções que mais pesam no Sudeste** (conferidas no BU bruto dos dois turnos):
 
@@ -213,9 +266,15 @@ Na amostra: f = 6,97% → 7,06%; a = 1,367 → 1,375; H ÷ F = 38,3% → 32,0%.
 
 **Leitura (Hipótese):**
 - O sinal do Sudeste é uma média de seções com saltos moderados (de +7 a +77 pontos de falha contra os pares), espalhadas em 44 municípios.
-- Ele não se sustenta sem as 5 a 10 seções de maior peso.
-- Com 105 testes, um acerto isolado no corte, frágil e sem par em nenhuma UF ou em outra região é o perfil que mais se espera de um falso positivo raro. Ele também pode ser um efeito real e pequeno.
-- Os dados não decidem entre as duas leituras. Só a conferência de campo decide.
+- **Argumento retirado:** a versão anterior dizia que o sinal "some sem as 5 a 10 seções de maior peso" e por isso seria frágil. Isso **não separa** acerto falso de efeito real.
+  - O parecer 45 simulou um efeito real e igual nas 75 seções. Tirando as 10 de maior peso, o t mediano cai para 0,79.
+  - Tirar as maiores contribuições derruba qualquer média de 75 casos com cauda pesada, seja o efeito falso ou verdadeiro.
+  - Os números dessa conta seguem em `exploratorio.json`, mas não sustentam conclusão.
+- O que pesa contra a leitura de fraude são três fatos (parecer 45):
+  - medido contra a própria seção, o sinal some;
+  - o comparecimento não subiu;
+  - nas 10 seções de maior peso, lidas no diário, nenhuma tem o desenho de falha escolhida.
+- As regiões não são iguais entre si: Sudeste +0,90 contra o resto −0,20. Isso impede ler o Brasil (z 0,64) como absolvição, mas não é sinal de fraude.
 
 ## Efeito mínimo detectável (o que o teste veria)
 
@@ -243,7 +302,7 @@ O MDE é o menor efeito que o teste pegaria com 80% de poder no corte de Bonferr
 | Norte | 69.019 | 9,4% / 6.486 | 9,6% / 6.613 | 82% / 325 | 66% / 258 |
 | Centro-Oeste | 66.556 | 9,0% / 5.974 | 13% / 8.692 | 36% / 233 | 50% / 320 |
 
-- Para Δh, a injeção em votos **não informa**: φ passa de 100%. O voto injetado como liberação sem mesário move Δf junto, e o β_f absorve quase tudo. Vale só o β_MDE.
+- Para Δh, a injeção em votos **não informa**: φ passa de 100%. O voto injetado como liberação sem mesário identificado move Δf junto, e o β_f absorve quase tudo. Vale só o β_MDE.
 - Para Δa não há injeção, como declarado.
 - **Por UF** (`testes.csv`): nas UFs pequenas, φ passa de 20% e o teste é cego.
 
@@ -255,17 +314,22 @@ O MDE é o menor efeito que o teste pegaria com 80% de poder no corte de Bonferr
 ## O que isto permite e o que não permite afirmar
 
 **Permite:**
-- **Fato:** entre os turnos, a falha da digital, as tentativas por eleitor e o desempenho por modelo de urna ficaram estáveis no país. A falha do mesário caiu (de 38,6% para 32,3% das liberações manuais).
-- **Fato:** 112 seções têm salto local da falha que o acaso não explica. As quedas são quase o dobro das subidas, e um terço delas teve a urna trocada. Em 3 das 5 maiores subidas, a digital do mesário também passou a falhar, o desenho de leitor ruim.
-- **Fato (teste declarado antes):** a variação contínua da falha, do leitor e da falha do mesário não prevê a mudança do voto dentro do prédio, em nenhuma das 33 unidades, com o poder da tabela acima.
-- **Hipótese (teste declarado antes, sinal frágil):** no Sudeste, as 75 seções com salto para cima da falha deram ao 13 +0,9 ponto a mais que as vizinhas. São cerca de 180 votos trocados de lado. O sinal some sem as 5 a 10 seções de maior peso.
+- **Fato:** entre os turnos, a falha da digital, as tentativas por eleitor e o desempenho por modelo de urna ficaram estáveis no país. A autorização sem mesário identificado caiu (de 38,6% para 32,3% das liberações manuais), junto com +720.682 autorizações por mesário identificado.
+- **Fato:** 112 seções têm salto local da falha que o acaso não explica. As quedas são quase o dobro das subidas, e um terço delas teve a urna trocada. Entre as 5 maiores subidas, SP 71218/0340/0114 mostra leitor que não reconhece nem quem autoriza. Em PR 74993/0159/0009 e BA 36854/0180/0149, um dedo sem registro de mesário, lido e reconhecido, autorizou em série; na BA, depois de uma troca de urna no meio do dia.
+- **Fato (teste declarado antes):** a variação contínua da falha, do leitor e da autorização sem mesário identificado não prevê a mudança do voto dentro do prédio, em nenhuma das 33 unidades, com o poder da tabela acima.
+- **Hipótese de baixo peso, sem leitura de fraude:** no Sudeste, as 75 seções com salto para cima da falha, medido contra as vizinhas, deram ao 13 +0,9 ponto a mais (z 3,57, passa no corte do plano).
+  - Medido contra a própria seção, o sinal some (z 0,46).
+  - O comparecimento não subiu (z 0,02).
+- **Fato (parecer 45):** 172.318 e 212.171 liberações manuais, no 1º e no 2º turno, sem nenhuma digital lida. A liberação manual pode ser autorizada por qualquer dedo.
 
 **Não permite:**
 - dizer que houve falha induzida em alguma seção. A contagem não separa sabotagem de sensor gasto, nem falha escolhida de mesário que desiste rápido (princípio 8). Isso pede conferência física;
 - dizer em quem votaram os liberados (voto secreto; associação ecológica);
 - excluir fraude abaixo do efeito mínimo detectável, fraude igual em todas as seções de um prédio e modelo, ou fraude igual nos dois turnos;
+- dizer algo sobre as 26.933 seções (5,4%) sozinhas no prédio com aquele modelo: elas ficam fora dos testes;
+- separar a liberação sem nenhuma digital lida da falha comum: o desenho conta as duas juntas;
 - excluir a mudança de **quem** foi votar (idade, digital gasta) como causa do salto. Ela não é observável por seção e turno;
-- usar o resultado do Sudeste como número de fraude. É um sinal estatístico pequeno a conferir.
+- usar o resultado do Sudeste como número de fraude ou como sinal compatível com H19.
 
 ## Testes feitos
 
@@ -293,13 +357,20 @@ Os títulos de mesário e de eleitor não foram lidos nem gravados.
 
 ## Pendências e recomendações
 
-1. **Revisão cética** deste resultado antes de qualquer uso na perícia. Nada daqui entra na perícia como número de fraude.
+1. **Revisão cética:** feita (parecer 45). Nada daqui entra na perícia como número de fraude. O tamanho em votos do Sudeste e a classificação A × B ficam fora da perícia.
 2. **Recomendação (campo, TRE):** registro de manutenção do leitor e ata da mesa para:
    - as 39 subidas de Bonferroni;
    - as 75 S↑ do Sudeste, priorizando as 10 de maior peso (`sudeste-sup.csv`).
-   O padrão B (só eleitor falha, mesário reconhecido), como BA 36854/0180/0175, é o que a contagem não consegue separar de falha escolhida.
+   O padrão B (só eleitor falha, mesário identificado), como BA 36854/0180/0175, é o que a contagem não consegue separar de falha escolhida.
+
+   A ordem do parecer 45 para o campo:
+   - SP 71072/0006/0427 (urna reserva com leitor intermitente);
+   - RJ 60011/0009/0456;
+   - PR 74993/0159/0009 e as seções com "dedo já visto" em série (quem autorizou);
+   - as seções com muitas liberações sem nenhuma digital lida.
 3. **Recomendação (biometria):** para as 39 subidas, o horário das falhas no diário:
    - leitor ruim falha o dia todo;
    - falha escolhida tende a se concentrar em blocos;
-   - checar se as liberações do padrão B vêm do mesmo mesário (sem gravar o título).
-4. **Limite a corrigir num próximo desenho:** medir o salto contra a **própria** seção e contra o modelo da UF, não só contra os pares do prédio. Em grupo pequeno, a queda de um vizinho vira subida aparente.
+   - checar se as liberações do padrão B vêm do mesmo mesário (sem gravar o título);
+   - separar "dedo novo" de "dedo já visto" e a liberação sem captura como medidas próprias (parecer 45, seção 2).
+4. **Limite do desenho:** o salto medido só contra os pares do prédio mistura a seção com as vizinhas. O parecer 45 refez o salto contra a própria seção e a UF × modelo, e o sinal sumiu. Um próximo desenho deve usar essa definição e incluir as 26.933 seções sozinhas no prédio.
