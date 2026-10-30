@@ -10,8 +10,8 @@
 //   - Horas: votosPorHoraLocal do log, levadas a Brasília pelo fuso do município (moda da hora de abertura do BU − 8) e
 //     pelas exceções de relógio (relogio-fora-do-fuso.csv). Exterior fica sem hora.
 // Só leitura. Uso: node --max-old-space-size=8192 scripts/auditoria/virada-zonas.mjs
-// Saídas em data/parsed/auditoria/virada-zonas/: zonas.csv, triagem.csv, por-regiao.csv, por-modelo.csv, por-hora.csv,
-// resumo.json.
+// Saídas em data/parsed/auditoria/virada-zonas/: zonas.csv, triagem.csv, secoes-caudas.csv, por-regiao.csv, por-modelo.csv,
+// por-hora.csv, resumo.json.
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { abrirLeitura } from '../../src/banco-leitura.js';
@@ -195,6 +195,12 @@ const COLUNAS_ZONA = ['uf', 'regiao', 'zona', 'municipioPrincipal', 'municipios'
 const arred = (z) => Object.fromEntries(COLUNAS_ZONA.map((c) => [c, typeof z[c] === 'number' && !Number.isInteger(z[c]) ? (c === 'q' ? Number(z[c].toPrecision(3)) : r2(z[c])) : z[c]]));
 await writeFile(path.join(SAIDA, 'zonas.csv'), paraCsv(zonas.map(arred), COLUNAS_ZONA));
 await writeFile(path.join(SAIDA, 'triagem.csv'), paraCsv(zonas.filter((z) => z.fora).map(arred), COLUNAS_ZONA));
+// seções das zonas das duas caudas (|z| ≥ 3 ou fora da curva), para olhar caso a caso (virada-zonas-casos.mjs)
+const COLUNAS_SECAO = ['uf', 'zona', 'municipio', 'secao', 'local2', 'modelo1', 'modelo2', 'a2', 'c1', 'c2', 'v13_1', 'v22_1',
+  'e14', 'e30', 'e55', 'e70', 'dem', 'bn1', 'v13_2', 'v22_2', 'bn2', 'p13', 'p22', 'rl', 'alem'];
+const secoesCauda = zonas.filter((z) => z.fora || Math.abs(z.z) >= 3).flatMap((z) => z.secoesLista)
+  .map((s) => ({ ...s, p13: r2(s.p13), p22: r2(s.p22), rl: r2(s.rl), alem: r2(pp(s.rl, s.nom2)) }));
+await writeFile(path.join(SAIDA, 'secoes-caudas.csv'), paraCsv(secoesCauda, COLUNAS_SECAO));
 log(`${zonas.length} zonas; fora da curva: ${zonas.filter((z) => z.fora === 13).length} para o 13, ${zonas.filter((z) => z.fora === 22).length} para o 22`);
 
 // ---------- 4. Região e UF ----------
