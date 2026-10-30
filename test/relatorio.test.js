@@ -30,6 +30,14 @@ import {
   palavrasMarkdown,
   slug,
 } from '../scripts/relatorio/markdown.mjs';
+import {
+  CABECALHO,
+  RE_DOCUMENTO,
+  conferirPlanilha,
+  dataBr,
+  linhaCsv,
+  serieHex,
+} from '../scripts/auditoria/anexo-h25-urnas.mjs';
 import { diretorioTemporario } from './auxiliares.js';
 
 const html = (md, op) => converter(md, op).html;
@@ -623,4 +631,102 @@ test('README sem o parágrafo "Registro de evidências" também é aceito', asyn
   const pericia = await montarPericia(dir, { readme });
   const r = await gerar({ pericia, saida: path.join(dir, 'saida'), registrar: semRegistro });
   assert.match(await readFile(r.htmlAbs, 'utf8'), /<section class="anexo" id="anexo-a">/);
+});
+
+// ------------------------------------------------------------------ anexos do tema (planilhas embutidas no PDF)
+
+const TEM_FITZ = spawnSync(PYTHON, ['-c', 'import fitz'], { encoding: 'utf8' }).status === 0;
+
+/** Anexos embutidos num PDF: { nome: conteúdo } (via PyMuPDF). */
+function lerAnexosPdf(pdf) {
+  const r = spawnSync(
+    PYTHON,
+    ['-c', 'import sys, json, fitz\nd = fitz.open(sys.argv[1])\nprint(json.dumps({n: d.embfile_get(n).decode("utf-8") for n in d.embfile_names()} | {"__toc": len(d.get_toc())}))', pdf],
+    { encoding: 'utf8' },
+  );
+  assert.equal(r.status, 0, r.stderr);
+  return JSON.parse(r.stdout);
+}
+
+test(
+  'tema com pasta de anexos: planilha embutida no PDF antes da assinatura, que cobre o arquivo inteiro',
+  {
+    skip:
+      (!NAVEGADOR && 'sem Chrome/Edge') ||
+      (!TEM_PYHANKO && 'sem python -m pyhanko') ||
+      (!TEM_FITZ && 'sem PyMuPDF') ||
+      (!OPENSSL && 'sem OpenSSL'),
+  },
+  async (t) => {
+    const dir = await diretorioTemporario(t);
+    const pasta = await chaveTemporaria(dir);
+    const arquivo = await montarTema(dir, TEMA);
+    const anexos = path.join(path.dirname(arquivo), 'certificado-exemplo', 'anexos');
+    await mkdir(anexos, { recursive: true });
+    const csv = '﻿UF;Município;Seção\r\nSP;SÃO PAULO;0024\r\n';
+    await writeFile(path.join(anexos, 'urnas-exemplo.csv'), csv);
+    const certificadoPublico = path.join(dir, 'publico.pem');
+    const msgs = [];
+    const r = await gerarTema({
+      arquivo,
+      pdf: true,
+      saida: path.join(dir, 'saida'),
+      assinatura: { pasta, certificadoPublico },
+      registrar: (m) => msgs.push(m),
+    });
+    const pdf = path.join(dir, 'saida', 'certificado-exemplo.pdf');
+    assert.deepEqual(r.pdf.anexos, ['urnas-exemplo.csv']);
+    assert.equal(r.pdf.assinado, true);
+    assert.ok(msgs.includes('Anexos embutidos no PDF: urnas-exemplo.csv'));
+    // o anexo está no PDF, igual ao arquivo, e o PDF continua com marcadores
+    const lidos = lerAnexosPdf(pdf);
+    assert.equal(lidos['urnas-exemplo.csv'], csv);
+    assert.ok(lidos.__toc > 0);
+    // assinatura depois dos anexos: cobre o arquivo inteiro
+    const v = validarAssinatura(pdf, certificadoPublico, PYTHON);
+    assert.equal(v.ok, true, v.saida);
+    assert.match(v.saida, /The signature covers the entire file/);
+    // capa: nome do anexo e onde abrir, sem caminho
+    const doc = await readFile(r.htmlAbs, 'utf8');
+    assert.match(doc, /<dt>Anexos<\/dt><dd><span class="digital">urnas-exemplo\.csv<\/span>\.<span class="capa-nota">[^<]*painel de anexos/);
+    assert.doesNotMatch(doc, /certificado-exemplo\/anexos|temas\//);
+  },
+);
+
+test('tema sem pasta de anexos: nada muda', async (t) => {
+  const dir = await diretorioTemporario(t);
+  const arquivo = await montarTema(dir, TEMA);
+  const r = await gerarTema({ arquivo, saida: path.join(dir, 'saida'), registrar: semRegistro });
+  assert.doesNotMatch(await readFile(r.htmlAbs, 'utf8'), /<dt>Anexos<\/dt>/);
+});
+
+test('planilha das urnas da AC URNA: formato das células e conferências', () => {
+  assert.equal(serieHex('2cfa0b'), '2C FA 0B');
+  assert.equal(serieHex('12e345'), '12 E3 45'); // o Excel leria "12e345" como número
+  assert.equal(serieHex('34aea'), '03 4A EA');
+  assert.equal(dataBr('2026-07-18T21:59:57Z'), '18/07/2026');
+  assert.equal(dataBr('2026-07-19T01:00:00Z'), '18/07/2026'); // horário de Brasília
+  const fim = Date.parse('2026-07-18T21:59:57Z');
+  const o = {
+    uf: 'sp', mun: '71072', zona: '0254', secao: '0024', modelo: 'ue2013', numeroInternoUrna: 1682534,
+    serie: '34aea5', nb: { iso: '2026-07-20T18:25:51Z' }, na: { iso: '2037-12-31T23:00:00Z' },
+  };
+  assert.equal(linhaCsv(o, 'SÃO PAULO', fim), 'SP;71072;SÃO PAULO;0254;0024;2013;1682534;34 AE A5;20/07/2026;31/12/2037;sim');
+  assert.match(linhaCsv({ ...o, nb: { iso: '2016-06-28T11:05:47Z' } }, 'A;B', fim), /^SP;71072;"A;B";.*;não$/);
+  assert.equal(CABECALHO.length, 11);
+  const linhas = [linhaCsv(o, 'SÃO PAULO', fim), linhaCsv({ ...o, secao: '0025', nb: { iso: '2016-01-01T00:00:00Z' } }, 'SÃO PAULO', fim)];
+  const tardias = new Set(['sp/71072/0254/0024']);
+  assert.deepEqual(conferirPlanilha({ linhas, esperado: { secoes: 2, tardias: 1 }, tardiasRevisao: tardias, chavesTardias: tardias }), []);
+  const falhas = conferirPlanilha({
+    linhas: [...linhas, 'SP;71072;X;0001;0001;2015;12345678901;AA;01/01/2016;01/01/2030;não'],
+    esperado: { secoes: 2, tardias: 1 },
+    tardiasRevisao: tardias,
+    chavesTardias: new Set(['sp/71072/0254/0099']),
+  });
+  assert.equal(falhas.length, 3);
+  assert.match(falhas.join('\n'), /3 seções na planilha; o esperado é 2/);
+  assert.match(falhas.join('\n'), /faltam \[sp\/71072\/0254\/0024\] sobram \[sp\/71072\/0254\/0099\]/);
+  assert.match(falhas.join('\n'), /formato de título de eleitor ou CPF/);
+  assert.equal(RE_DOCUMENTO.test('1682534'), false);
+  assert.equal(RE_DOCUMENTO.test('123.456.789-00'), true); // só o formato (dígito verificador inválido)
 });

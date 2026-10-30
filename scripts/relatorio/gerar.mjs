@@ -563,7 +563,15 @@ function htmlAssinatura({ nome, impressao }) {
   );
 }
 
-function montarHtml({ saidas, sumario, meta, temAviso, capa = CAPA_COMPLETO, assinatura = null }) {
+/** Linha da capa com os anexos embutidos (só nomes de arquivo). */
+function htmlAnexos(nomes) {
+  return (
+    `<div class="capa-anexos"><dt>Anexos</dt><dd>${nomes.map((n) => `<span class="digital">${escaparHtml(n)}</span>`).join(', ')}.` +
+    '<span class="capa-nota">Arquivos embutidos neste PDF: abra pelo painel de anexos do leitor de PDF (ícone de clipe).</span></dd></div>'
+  );
+}
+
+function montarHtml({ saidas, sumario, meta, temAviso, capa = CAPA_COMPLETO, assinatura = null, anexos = [] }) {
   const grupos = [];
   for (const s of saidas) {
     const g = grupos.at(-1);
@@ -586,6 +594,7 @@ function montarHtml({ saidas, sumario, meta, temAviso, capa = CAPA_COMPLETO, ass
 <dl class="capa-meta">
 <div><dt>Data de geração</dt><dd>${escaparHtml(meta.data.longa)}, ${escaparHtml(meta.data.hora)}</dd></div>
 <div><dt>Versão</dt><dd>${escaparHtml(meta.versao)}</dd></div>
+${anexos.length ? htmlAnexos(anexos) : ''}
 ${assinatura ? htmlAssinatura(assinatura) : ''}
 ${temAviso ? `<div><dt>Situação</dt><dd>${escaparHtml(AVISO_CAPA)}</dd></div>` : ''}
 </dl>
@@ -923,6 +932,42 @@ export function validarAssinatura(pdfAbs, certificado, python = pythonPadrao()) 
   return { ok, saida: saida.trim() };
 }
 
+// Anexos embutidos no PDF (painel de anexos do leitor), com PyMuPDF. Vêm antes da assinatura,
+// que assim cobre também os anexos.
+const PY_ANEXAR = [
+  'import os, sys, fitz',
+  'entrada, saida, *arquivos = sys.argv[1:]',
+  'doc = fitz.open(entrada)',
+  'for a in arquivos:',
+  '    nome = os.path.basename(a)',
+  '    with open(a, "rb") as f:',
+  '        doc.embfile_add(nome, f.read(), filename=nome, ufilename=nome, desc="Anexo do relatório: " + nome)',
+  'doc.save(saida, garbage=1, deflate=True)',
+  'print(doc.embfile_count())',
+].join('\n');
+
+/** Embute os arquivos no PDF, no lugar; falha se o PyMuPDF não estiver disponível ou se faltar anexo. */
+export async function anexarArquivos(pdfAbs, arquivos, python = pythonPadrao()) {
+  const temporario = `${pdfAbs}.anexando.pdf`;
+  await rm(temporario, { force: true });
+  const r = spawnSync(python, ['-c', PY_ANEXAR, pdfAbs, temporario, ...arquivos], { encoding: 'utf8', timeout: 300_000 });
+  if (r.status !== 0 || Number(r.stdout.trim()) !== arquivos.length || !existsSync(temporario)) {
+    await rm(temporario, { force: true });
+    throw new Error(
+      `não foi possível embutir os anexos no PDF (PyMuPDF via "${python}"; saída ${r.status}): ` +
+        (r.stderr || r.stdout || '').trim().split('\n').slice(-2).join(' '),
+    );
+  }
+  await rename(temporario, pdfAbs);
+}
+
+/** Arquivos da pasta de anexos de um tema (`temas/<slug>/anexos/`), em ordem; pasta ausente → nenhum. */
+async function listarAnexos(dir) {
+  if (!existsSync(dir)) return [];
+  const nomes = (await readdir(dir, { withFileTypes: true })).filter((e) => e.isFile()).map((e) => e.name).sort();
+  return nomes.map((n) => path.join(dir, n));
+}
+
 /** Arquivo `<nome>.pdf.sha256`, no formato do sha256sum (confere com `sha256sum -c`). */
 async function gravarSha256(pdfAbs) {
   const hash = createHash('sha256').update(await readFile(pdfAbs)).digest('hex');
@@ -941,7 +986,7 @@ function contextoGit(pericia) {
 }
 
 /** Converte, confere, monta e grava um documento (e o PDF, se pedido). */
-async function produzir({ lista, contexto, meta, temAviso, capa, saida, nome, pdf, registrar, assinatura: opcoesAssinatura }) {
+async function produzir({ lista, contexto, meta, temAviso, capa, saida, nome, pdf, registrar, assinatura: opcoesAssinatura, anexos = [] }) {
   // a linha da assinatura vai na capa: decide antes de montar o HTML
   const assinatura = pdf ? prepararAssinatura(opcoesAssinatura) : null;
   const { saidas, sumario, svgs, avisos } = converterTudo(lista, contexto);
@@ -956,7 +1001,15 @@ async function produzir({ lista, contexto, meta, temAviso, capa, saida, nome, pd
         `o relatório é um documento independente:\n- ${processo.join('\n- ')}`,
     );
   }
-  const html = montarHtml({ saidas, sumario, meta, temAviso, capa, assinatura: assinatura?.ok ? assinatura : null });
+  const html = montarHtml({
+    saidas,
+    sumario,
+    meta,
+    temAviso,
+    capa,
+    assinatura: assinatura?.ok ? assinatura : null,
+    anexos: pdf ? anexos.map((a) => path.basename(a)) : [],
+  });
   for (const s of saidas) {
     if (!html.includes(s.html)) throw new Error(`peça ${s.chave} (${relRepo(s.fonte)}) não entrou no documento`);
   }
@@ -980,6 +1033,11 @@ async function produzir({ lista, contexto, meta, temAviso, capa, saida, nome, pd
     });
     resultadoPdf = await gerarPdf(htmlAbs, pdfAbs);
     registrar(`PDF: ${relRepo(pdfAbs)} (${resultadoPdf.paginas} páginas, ${path.basename(resultadoPdf.navegador)})`);
+    if (anexos.length) {
+      await anexarArquivos(pdfAbs, anexos, assinatura.ok ? assinatura.python : pythonPadrao());
+      registrar(`Anexos embutidos no PDF: ${anexos.map((a) => path.basename(a)).join(', ')}`);
+    }
+    resultadoPdf.anexos = anexos.map((a) => path.basename(a));
     resultadoPdf.assinado = assinatura.ok;
     if (assinatura.ok) {
       await assinarPdf(pdfAbs, assinatura);
@@ -1040,6 +1098,8 @@ export async function gerarTema({ arquivo, pdf = false, saida = path.join(SAIDA,
     pdf,
     registrar,
     assinatura,
+    // temas/<slug>/anexos/: planilhas e outros arquivos embutidos no PDF do tema
+    anexos: await listarAnexos(path.join(path.dirname(abs), path.basename(abs, '.md'), 'anexos')),
   });
 }
 
