@@ -245,11 +245,18 @@ Essa conta não diz que houve fraude. Ela diz só que a aritmética sozinha não
 - **Limite:** esse tipo de comparação não enxerga tudo. Uma fraude a favor do 13 que atingisse só uma pequena parte desses eleitores passaria despercebida. Também passaria uma fraude igual em todas as seções de um prédio, ou igual nos dois turnos. O tamanho do que escaparia é estimativa de simulação e fica fora deste relatório.
 - **Fato (revisado):** no Centro-Oeste, as seções com mais eleitores liberados pelo ano de nascimento votam mais no 13 que as do mesmo prédio, mas isso já acontecia no 1º turno: é uma característica dessas seções, e não algo que surgiu no 2º turno.
 
-**Um sinal fora do Nordeste, ainda em aberto (Hipótese, em análise).**
+**Um sinal fora do Nordeste, ainda sem explicação (Hipótese, em análise).**
 
-- No Sul, em Minas Gerais e no Rio Grande do Sul, as seções que tiveram mais eleitores **liberados pelo ano de nascimento** no 2º turno do que no 1º tiveram um crescimento um pouco maior do 13. O sinal aparece espalhado por milhares de seções, não em poucas, e não se concentra no fim do dia.
-- Duas explicações cabem nos dados. Pode ser só o perfil de quem voltou a votar no 2º turno. Ou pode ser voto no lugar de eleitor ausente. Os dados por seção não separam uma da outra. A explicação de que seriam jovens votando foi testada e não tem apoio.
-- Essa análise foi feita depois de olhar os dados. Por isso o caso continua em análise, e nenhum número dela entra aqui. **Pendente:** um teste com plano registrado antes de rodar, para o Sul, MG e o RS.
+- **Fato.** No 2º turno, 452.147 eleitores a mais do que no 1º turno votaram liberados pelo ano de nascimento, sem digital na urna. A conta soma só as seções em que esse número subiu.
+- No Sul e em Minas Gerais, as seções em que esse grupo cresceu tiveram um crescimento um pouco maior do 13 do que as vizinhas do mesmo prédio de votação. No Nordeste, isso não aconteceu.
+- **Procuramos as marcas que uma mesa deixaria ao pôr votos no lugar de eleitores ausentes, e não as encontramos** (conferido por uma segunda verificação independente):
+  - esses eleitores a mais não se acumularam no fim do dia: votaram mais de manhã, como todo mundo no 2º turno;
+  - não vieram em sequência, um atrás do outro, mais do que no 1º turno;
+  - as poucas seções em que muitos votaram em poucos minutos são seções em que metade do eleitorado não tem digital, e nelas o 13 não cresceu mais que nas vizinhas;
+  - nas seções que mais pesam no resultado, lidas uma a uma no diário da urna, os horários são de gente chegando para votar.
+- **Também não achamos uma explicação comum.** O sinal não vem de eleitores que mudaram de cidade, nem de títulos novos, nem só das cidades grandes, e a idade dos eleitores, a escolaridade e o estado civil não o explicam.
+- **Por que isso não muda o resultado da eleição (Fato, conta direta).** Mesmo que todos os 452.147 votos a mais desse grupo fossem falsos e todos para o 13, o 13 continuaria vencendo, por 3.978.044 votos em vez de 4.430.191.
+- **O que continua em aberto.** O voto é secreto. Por isso, os dados não dizem se esse grupo apenas votou mais no 13 por ser quem é, ou se houve votos no lugar de ausentes, feitos devagar e espalhados por muitas seções, sem deixar marca no horário. **Pendente:** a comparação com o 1º e o 2º turno de 2022, que mostra se o padrão já existia antes.
 
 ### 7. "O eleitor identificado já votou"
 

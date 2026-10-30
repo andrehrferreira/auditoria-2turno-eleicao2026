@@ -33,7 +33,7 @@ Tudo depois da reprodução é **exploratório**: foi decidido depois de ver os 
 | (c) As 20 seções no bruto | **Sustentado com ressalvas** | Conferi 3 seções no bruto: os números batem. Mas o critério de escolha (contribuição ao β) pega seções de grande oscilação do 13, não de V2 a mais. Esse teste tem pouco poder para achar inserção. |
 | (d) Concentração | **Sustentado** | Reproduz: sem os 10 maiores municípios, β 5,67 (z 8,0); sem cada UF, entre 6,14 e 6,67. |
 | Explicações políticas no Sul, MG e RS | **Nenhuma explica** | Mobilização por perfil, foto, perfil dos sem biometria, seção nova, transferência temporária e tamanho do município: o coeficiente fica no lugar. Migração e título recente vão no sentido **contrário** ao do sinal. |
-| Magnitude | **Pequena diante da margem (Fato aritmético)** | Mesmo que todo V2 a mais do 2º turno (452.032, contado nas seções onde subiu) fosse voto falso no 13, o 13 manteria 3.978.159 votos de vantagem. |
+| Magnitude | **Pequena diante da margem (Fato aritmético)** | Mesmo que todo V2 a mais do 2º turno (452.147, contado nas 198.718 seções onde subiu) fosse voto falso no 13, o 13 manteria 3.978.044 votos de vantagem. |
 | O sinal, no todo | **Sustentado com ressalvas** | Existe, é pequeno e difuso, e não tem as marcas de inserção pela mesa. Continua sem causa identificada. O nacional depende da medida (parecer 42); o que resiste é Sul, MG e RS. |
 
 ---
@@ -193,17 +193,38 @@ Nenhuma variável pública por seção explica o sinal no Sul, em MG e no RS. As
 
 | | V2 no 1º turno | V2 no 2º turno | Soma do V2 a mais, nas seções onde subiu |
 |---|---|---|---|
-| Brasil sem exterior | — | — | **452.032** (variação líquida +311.361) |
-| Fora do Nordeste | 5.337.730 | 5.593.391 | 355.877 |
+| Brasil sem exterior (497.897 seções) | 6.940.334 | 7.251.810 | **452.147** em 198.718 seções (variação líquida +311.476) |
+| Fora do Nordeste | 5.337.730 | 5.593.506 | 355.992 |
 | Sul | 815.665 | 861.228 | 56.845 |
-| MG | 1.415.926 | 1.501.960 | 98.707 |
+| MG | 1.415.926 | 1.502.075 | 98.822 |
 | RS | 530.597 | 559.431 | 34.831 |
 | SP | 1.149.154 | 1.229.906 | 100.080 |
 
 Margem nacional do 13 no 2º turno: **4.430.191**.
 
-- **Limite superior aritmético.** Suponha que **todo** V2 a mais do 2º turno, em todas as seções onde ele subiu, fosse voto falso no 13. A margem cairia para **3.978.159**, e o 13 continuaria à frente.
-  - Só Sul + MG (o RS está no Sul) somam 155.552, ou 3,5% da margem.
+**Qual número vale e por quê (correção de 30/10, depois da conferência do coordenador).** A primeira versão deste parecer dava 452.032. Esse número saiu de uma consulta avulsa, que exigia BU eletrônico nos dois turnos. A consulta deixava de fora duas seções de MG que votaram em cédula no 1º turno (Sistema de Apuração, BU sem detalhe de biometria, com 281 e 278 votos):
+
+- MG 41238/0039/0168;
+- MG 50075/0047/0041.
+
+Num limite de pior caso, nenhuma seção pode ficar de fora. Como o V2 do 1º turno dessas duas seções é desconhecido, ele conta como 0, e todo o V2 do 2º turno delas (43 + 72 = 115) entra no limite.
+
+**Número que vale: 452.147**, em 198.718 seções, coluna `sem_biometria` do BU, Brasil sem exterior, 497.897 seções. Margem no pior caso: **3.978.044**. Script: `cetico-46-pior-caso.mjs`, saída `pior-caso.json`.
+
+Outras contas, só para conferência:
+
+| Conta | Total |
+|---|---|
+| Recorte antigo (BU eletrônico nos dois turnos) | 452.032 |
+| Vias do diário (h08 ou leitura do parecer 42), dois turnos | 452.056 |
+| Vias do diário, todas as seções | 452.171 |
+
+As vias do diário diferem do BU em 5 seções em que o diário do 1º turno está incompleto (BA 34711/0021/0178, BA 39934/0183/0175, MG 47830/0165/0031, RJ 58041/0155/0190, RJ 58971/0087/0184; ver parecer 42, H08-4). O BU é a contagem oficial, por isso o limite usa o BU.
+
+Os modelos (R, A, B, D, Q) não mudam: as duas seções já ficavam fora deles, entre as 2 "sem a seção nos dois turnos" (comparecimento 0 no 1º turno). A parte M de `modelos.json` ainda traz o recorte antigo; para o limite vale `pior-caso.json`.
+
+- **Limite superior aritmético.** Suponha que **todo** V2 a mais do 2º turno, em todas as seções onde ele subiu, fosse voto falso no 13. A margem cairia para **3.978.044**, e o 13 continuaria à frente.
+  - Só Sul + MG (o RS está no Sul) somam 155.667, ou 3,5% da margem (margem no pior caso: 4.274.524).
   - Este limite vale para o canal que o sinal mede, o V2 **a mais** entre turnos. Uma inserção igual nos dois turnos não aparece aqui; para ela vale o cerco do doc 18 e do parecer 42, em que o pior caso da V2 inteira inverte o resultado.
 - **Equivalente do modelo (estimativa; não vai à perícia).** Pergunta: quantos votos no 13 teriam de ser **somados**, nas seções onde o V2 subiu, para produzir a inclinação observada?
   - Fora do Nordeste: cerca de 28 mil pela medida em parcela e cerca de 17 mil pela medida por eleitor (β × variação positiva × votos, dividido por 1 − parcela do 13).
@@ -241,7 +262,7 @@ O sinal é uma associação estatística sem causa conhecida. Pela regra do rela
 
 ### Tópico 4 (liberação sem digital): pode entrar, com este texto
 
-> **Um sinal fora do Nordeste, ainda sem explicação.** No 2º turno, 452.032 eleitores a mais do que no 1º turno votaram liberados pelo ano de nascimento, sem digital na urna. A conta soma só as seções em que esse número subiu.
+> **Um sinal fora do Nordeste, ainda sem explicação.** No 2º turno, 452.147 eleitores a mais do que no 1º turno votaram liberados pelo ano de nascimento, sem digital na urna. A conta soma só as seções em que esse número subiu.
 >
 > No Sul e em Minas Gerais, as seções em que esse grupo cresceu tiveram um crescimento um pouco maior do 13 do que as vizinhas do mesmo prédio de votação. No Nordeste, isso não aconteceu.
 >
@@ -254,7 +275,7 @@ O sinal é uma associação estatística sem causa conhecida. Pela regra do rela
 >
 > **Também não achamos uma explicação comum.** O sinal não vem de eleitores que mudaram de cidade, nem de títulos novos, nem só das cidades grandes.
 >
-> **Por que isso não muda o resultado da eleição.** Mesmo que todos os 452.032 votos a mais desse grupo fossem falsos e todos para o 13, o 13 continuaria vencendo, por 3.978.159 votos em vez de 4.430.191.
+> **Por que isso não muda o resultado da eleição.** Mesmo que todos os 452.147 votos a mais desse grupo fossem falsos e todos para o 13, o 13 continuaria vencendo, por 3.978.044 votos em vez de 4.430.191.
 >
 > **O que continua em aberto.** O voto é secreto. Por isso, os dados não dizem se esse grupo apenas votou mais no 13 por ser quem é, ou se houve votos no lugar de ausentes, feitos devagar e espalhados por muitas seções, sem deixar marca no horário. O caso segue em análise.
 
@@ -286,6 +307,7 @@ O RS está no Sul. Citar "Sul e Minas Gerais" basta e evita listar UFs com pouca
 ```bash
 node --max-old-space-size=8000 scripts/auditoria/cetico-46-dados.mjs      # 8 min; BU, diários (h08, leitura do parecer 42, horário do doc 19), perfil dos zips
 node --max-old-space-size=8000 scripts/auditoria/cetico-46-modelos.mjs    # 2 min; R, A, B, B1 placebo, D, Q, M
+node scripts/auditoria/cetico-46-pior-caso.mjs                            # limite aritmético (452.147; margem 3.978.044) → pior-caso.json
 node scripts/auditoria/cetico-46-rajada.mjs                               # as 627 seções com rajada × vizinhas do local
 node src/exportar.js --turno 2 --uf rj --municipio 58041 --zona 0152 --secao 0084 --saida <dir2>   # idem --turno 1
 node scripts/auditoria/cetico-46-caso.mjs <dir1>/rj/58041/0152-0084.json <dir2>/rj/58041/0152-0084.json
@@ -296,4 +318,5 @@ Saídas em `data/parsed/auditoria/cetico-revisor/46/`:
 - `secoes.csv` (uma linha por seção, sem título);
 - `modelos.json` e `modelos.log`;
 - `rajada.json`;
+- `pior-caso.json`;
 - `dados.log`.
