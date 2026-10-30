@@ -161,7 +161,7 @@ li figure.grafico{margin-top:.6em}
   .capa{height:247mm;min-height:0}
 }
 
-@page{@bottom-left{content:"Versão 308797b · gerado em 30/10/2026"}}
+@page{@bottom-left{content:"Versão 5d9d355 · gerado em 30/10/2026"}}
 #como-ler{page:p-como-ler}
 @page p-como-ler{@top-right{content:"Como ler este relatório"}}
 #sumario{page:p-sumario}
@@ -183,8 +183,8 @@ li figure.grafico{margin-top:.6em}
 <p class="capa-resumo">Exame dos arquivos públicos do TSE: boletins de urna, registros digitais do voto, diários das urnas e assinaturas digitais, em todas as seções.</p>
 </div>
 <dl class="capa-meta">
-<div><dt>Data de geração</dt><dd>30 de outubro de 2026, 03:51</dd></div>
-<div><dt>Versão</dt><dd>308797b (com alterações ainda não registradas em docs/pericia)</dd></div>
+<div><dt>Data de geração</dt><dd>30 de outubro de 2026, 04:05</dd></div>
+<div><dt>Versão</dt><dd>5d9d355 (com alterações ainda não registradas em docs/pericia)</dd></div>
 <div><dt>Situação</dt><dd>Documento em elaboração — conteúdo atualizado conforme os testes e a revisão cética</dd></div>
 </dl>
 </section>
@@ -214,7 +214,7 @@ li figure.grafico{margin-top:.6em}
 <li><strong>Linguagem:</strong> frases curtas, sem jargão. Todo termo técnico é explicado na primeira vez, com uma comparação do dia a dia.</li>
 </ul>
 <p><strong>Versão para impressão:</strong> <code>npm run relatorio:pdf</code> gera, a partir destes arquivos, o relatório completo em <code>docs/<wbr>relatorio/<wbr>relatorio.<wbr>pdf</code> (e <code>npm run relatorio</code>, só o HTML); o texto continua sendo editado aqui.</p>
-<p><strong>Comece pelo resumo:</strong> <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/308797be048aa41846d80c7ef42fbfe03fa35fc9/docs/pericia/resumo.md">os principais achados</a>, em poucas páginas: o que foi conferido e bate, as brechas encontradas, o que não dá para afirmar e o que está pendente. Ele não traz número novo; cada número remete ao tópico onde está.</p>
+<p><strong>Comece pelo resumo:</strong> <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/pericia/resumo.md">os principais achados</a>, em poucas páginas: o que foi conferido e bate, as brechas encontradas, o que não dá para afirmar e o que está pendente. Ele não traz número novo; cada número remete ao tópico onde está.</p>
 </section>
 <nav class="sumario" id="sumario" aria-labelledby="sumario-titulo">
 <h1 id="sumario-titulo" class="titulo-secao">Sumário</h1>
@@ -226,8 +226,8 @@ li figure.grafico{margin-top:.6em}
 <li class="sum-2"><a href="#tema-o-que-é-um-certificado-e-uma-autoridade-certificadora"><span class="num">1.3</span><span class="texto">O que é um certificado e uma autoridade certificadora</span></a></li>
 <li class="sum-2"><a href="#tema-o-que-está-medido"><span class="num">1.4</span><span class="texto">O que está medido</span></a></li>
 <li class="sum-2"><a href="#tema-prova-de-que-o-teste-funciona-contraprova"><span class="num">1.5</span><span class="texto">Prova de que o teste funciona (contraprova)</span></a></li>
-<li class="sum-2"><a href="#tema-o-raciocínio-do-auditor-ponto-por-ponto"><span class="num">1.6</span><span class="texto">O raciocínio do auditor, ponto por ponto</span></a></li>
-<li class="sum-2"><a href="#tema-achados-novos-em-revisão"><span class="num">1.7</span><span class="texto">Achados novos (em revisão)</span></a></li>
+<li class="sum-2"><a href="#tema-as-carteiras-de-cada-urna-e-os-votos-parecer-33"><span class="num">1.6</span><span class="texto">As carteiras de cada urna e os votos (parecer 33)</span></a></li>
+<li class="sum-2"><a href="#tema-o-raciocínio-do-auditor-ponto-por-ponto"><span class="num">1.7</span><span class="texto">O raciocínio do auditor, ponto por ponto</span></a></li>
 <li class="sum-2"><a href="#tema-o-que-não-dá-para-afirmar"><span class="num">1.8</span><span class="texto">O que não dá para afirmar</span></a></li>
 <li class="sum-2"><a href="#tema-perguntas-ao-tse"><span class="num">1.9</span><span class="texto">Perguntas ao TSE</span></a></li>
 <li class="sum-2"><a href="#tema-limites"><span class="num">1.10</span><span class="texto">Limites</span></a></li>
@@ -248,14 +248,15 @@ li figure.grafico{margin-top:.6em}
 <section class="topico" id="tema">
 <h1 id="tema-o-certificado-vencido-da-ac-urna" class="titulo-topico"><span class="num" data-ger>1</span> <span class="texto">O certificado vencido da AC URNA</span></h1>
 <blockquote>
-<p><strong>Situação (30/10/2026): 1ª versão.</strong> Este relatório traz só o que já passou pela revisão cética (<a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/308797be048aa41846d80c7ef42fbfe03fa35fc9/docs/analysis/cetico-revisor/24-integridade-h04-h11.md">parecer 24</a>) ou foi refeito por duas contas independentes. Os testes novos da hipótese H25 (certificados de cada urna e votos dessas urnas) estão em revisão no parecer cético 33 e aparecem abaixo só com o título, sem número.</p>
+<p><strong>Base (30/10/2026).</strong> Os números deste relatório foram revisados pelo revisor cético: as assinaturas no <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/analysis/cetico-revisor/24-integridade-h04-h11.md">parecer 24</a>; as carteiras de cada urna e os votos dessas urnas no <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/analysis/cetico-revisor/33-h25-certificado-ac-urna.md">parecer 33</a> (hipótese H25). Os poucos números que não estão num parecer foram refeitos por duas contas independentes, e o texto diz onde. Hipóteses e pendências vêm rotuladas.</p>
 </blockquote>
 <h2 id="tema-em-poucas-palavras"><span class="num" data-ger>1.1</span> Em poucas palavras</h2>
 <ul>
 <li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>.</strong> O certificado público da AC URNA, o “cartório digital” do TSE que emitiu as carteiras de identidade das urnas antigas (modelos 2013 e 2015), valeu de 22/07/2011 a 18/07/2026. Venceu antes dos dois turnos (04/10 e 25/10/2026).</li>
 <li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>.</strong> Essas urnas assinaram 99.957 pacotes no 2º turno e 99.985 no 1º. Todas as assinaturas conferem com a chave dessa autoridade, e uma carteira alterada em um único bit é recusada.</li>
-<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>.</strong> Os votos dessas seções estão no resultado oficial. Pela regra mais usada, um verificador com o certificado publicado recusaria todos na data da eleição. Então o TSE não confere a data dessa forma, ou usa um certificado que não publicou. Qual é o caso, só o TSE pode dizer (<strong class="com-rotulo"><span class="rotulo">Hipótese</span></strong> até a resposta).</li>
-<li>O vencimento, sozinho, não permite forjar uma urna. O que permitiria: a chave secreta da autoridade fora de controle, ou um programa alterado dentro de uma urna verdadeira. Os arquivos públicos não têm como mostrar nenhum dos dois.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>.</strong> A chave da AC URNA continuou carimbando carteiras depois do vencimento: 54 carteiras de urna têm início de validade entre 20/07 e 19/10/2026, e todas apontam para o certificado vencido. Essas urnas votaram em 53 seções no 2º turno e em 45 no 1º; duas foram carimbadas entre os turnos. A ordem dos números de série indica que as datas são as reais (inferência forte, não prova).</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>.</strong> Os votos dessas seções estão no resultado oficial e variaram entre os turnos como os das seções vizinhas. Pela regra usual, um verificador com o certificado publicado recusaria as 99.957 seções do 2º turno; pelo “modelo de cadeia”, recusaria as 53. Se e como o TSE confere, só ele pode dizer (<strong class="com-rotulo"><span class="rotulo">Hipótese</span></strong> até a resposta).</li>
+<li>O vencimento, sozinho, não permite forjar uma carteira. O que permitiria fraude: a chave secreta do cartório fora de controle, ou um programa alterado dentro de uma urna verdadeira. Os testes não acharam rastro de nenhum dos dois, e também não teriam como excluí-los.</li>
 </ul>
 <h2 id="tema-a-pergunta"><span class="num" data-ger>1.2</span> A pergunta</h2>
 <p>O auditor levantou quatro pontos:</p>
@@ -293,12 +294,12 @@ li figure.grafico{margin-top:.6em}
 <ul>
 <li>que a chave privada do cartório ficou só com o TSE. Quem tiver uma cópia dela carimba carteiras que passam em todas as conferências;</li>
 <li>que o programa da urna fez a coisa certa antes de assinar. A urna assina o que o programa dela produziu;</li>
-<li>a data. A conta da assinatura usa só o arquivo, a assinatura e a chave pública. A validade é uma regra à parte, que quem confere decide aplicar. Um carimbo feito com a chave verdadeira continua conferindo depois do vencimento; um carimbo falso continua não conferindo antes ou depois.</li>
+<li>a data. A conta da assinatura usa só o arquivo, a assinatura e a chave pública. A validade é uma regra à parte, que quem confere decide aplicar. Um carimbo feito com a chave verdadeira continua conferindo depois do vencimento; um carimbo feito sem essa chave continua não conferindo, antes ou depois.</li>
 </ul>
 <p><strong>Para que serve a validade.</strong> Ela limita o tempo em que se confia numa chave. Quanto mais tempo uma chave fica em uso, maior a chance de ela ter sido copiada ou de o equipamento que a guarda ter mudado de mãos. Por isso a regra mais usada para conferir certificados (a norma internacional RFC 5280) exige que <strong>toda</strong> a cadeia esteja dentro da validade na data da conferência. Existe uma segunda regra, usada em alguns sistemas de assinatura, o “modelo de cadeia”: cada carteira é conferida na data em que foi emitida. Por ela, uma carteira emitida enquanto o cartório valia continua aceita depois que o cartório vence.</p>
 <h2 id="tema-o-que-está-medido"><span class="num" data-ger>1.4</span> O que está medido</h2>
 <h3 id="tema-a-validade-dos-três-cartórios">A validade dos três cartórios</h3>
-<p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>.</strong> Datas lidas nos arquivos dos certificados (<code>data/<wbr>certificados/<wbr>ac/<wbr>*.<wbr>der</code>, extraídos do pacote oficial de exemplos do TSE) por <code>scripts/<wbr>auditoria/<wbr>grafico-<wbr>h25-<wbr>dados.<wbr>mjs</code>, iguais às de <code>data/<wbr>certificados/<wbr>README.<wbr>md</code>. A data da AC URNA está também na verificação de lacres revisada no parecer 24 (<a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/308797be048aa41846d80c7ef42fbfe03fa35fc9/docs/analysis/integridade-nacional/02-lacres-h04-2turno.md">integridade-nacional/02</a>).</p>
+<p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>.</strong> Datas lidas nos arquivos dos certificados (<code>data/<wbr>certificados/<wbr>ac/<wbr>*.<wbr>der</code>, extraídos do pacote oficial de exemplos do TSE) por <code>scripts/<wbr>auditoria/<wbr>grafico-<wbr>h25-<wbr>dados.<wbr>mjs</code>, iguais às de <code>data/<wbr>certificados/<wbr>README.<wbr>md</code>. A data da AC URNA está também na verificação de lacres revisada no parecer 24 (<a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/analysis/integridade-nacional/02-lacres-h04-2turno.md">integridade-nacional/02</a>).</p>
 <table class="tabela cols-6 texto">
 <thead><tr><th>Cartório (AC)</th><th>Urnas</th><th>Válido de</th><th>Válido até</th><th class="d">Pacotes no 2º turno</th><th class="d">Pacotes no 1º turno</th></tr></thead>
 <tbody>
@@ -398,12 +399,12 @@ li figure.grafico{margin-top:.6em}
 <text class="g1-t2" x="20" y="464" font-size="12">Eixo: tempo (anos no painel 1; meses de 2026 no painel 2). Laranja: a autoridade das urnas 2013 e 2015.</text>
 <text class="g1-t2" x="20" y="480" font-size="11">Fonte: data/certificados/ac/*.der (pacote oficial do TSE); carteiras das urnas: parecer cético 24. Dados: graficos/dados/h25-*.csv.</text>
 </svg></figure>
-<p><strong>Como ler:</strong> cada barra é o período em que o certificado público de um cartório vale. A barra laranja é a AC URNA. No painel de cima, a linha tracejada marca a eleição de 2026; a barra cinza mostra a faixa em que vencem as carteiras das urnas em uso. No painel de baixo, o ano de 2026 aparece mês a mês: a barra laranja termina em 18/07, antes das linhas dos dois turnos. As barras azuis cobrem a eleição inteira. Dados: <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/308797be048aa41846d80c7ef42fbfe03fa35fc9/docs/pericia/graficos/dados/h25-ac-validade.csv">h25-ac-validade.csv</a> e <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/308797be048aa41846d80c7ef42fbfe03fa35fc9/docs/pericia/graficos/dados/h25-marcos.csv">h25-marcos.csv</a>.</p>
+<p><strong>Como ler:</strong> cada barra é o período em que o certificado público de um cartório vale. A barra laranja é a AC URNA. No painel de cima, a linha tracejada marca a eleição de 2026; a barra cinza mostra a faixa em que vencem as carteiras das urnas em uso. No painel de baixo, o ano de 2026 aparece mês a mês: a barra laranja termina em 18/07, antes das linhas dos dois turnos. As barras azuis cobrem a eleição inteira. Dados: <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/pericia/graficos/dados/h25-ac-validade.csv">h25-ac-validade.csv</a> e <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/pericia/graficos/dados/h25-marcos.csv">h25-marcos.csv</a>.</p>
 <h3 id="tema-as-carteiras-das-urnas-estavam-dentro-da-validade">As carteiras das urnas estavam dentro da validade</h3>
 <p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (parecer 24, item 1; recontagem do 1º turno).</strong> Nas 499.207 seções de cada turno, a carteira da urna que assinou estava dentro da validade na data da votação: 0 vencida, 0 ainda não válida. A mais antiga começa em 30/07/2013. Os vencimentos vão de 08/04/2027 a 15/01/2038.</p>
 <p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (consequência das duas datas acima).</strong> Toda carteira de urna em uso vence depois de 18/07/2026. Ou seja, as carteiras das urnas 2013 e 2015 valem por mais tempo que o certificado público do cartório que as carimbou. O que estava fora da validade na eleição não era a carteira da urna: era o certificado do cartório.</p>
 <h3 id="tema-todas-as-assinaturas-das-urnas-antigas-conferem">Todas as assinaturas das urnas antigas conferem</h3>
-<p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (2º turno: parecer 24, itens 1 a 3; 1º turno: verificação de 30/10/2026 com recontagem pelo código do revisor; <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/308797be048aa41846d80c7ef42fbfe03fa35fc9/docs/pericia/01-integridade-e-estrutura-dos-arquivos.md">tópico 1</a><span class="ref-completo" data-ger> (no relatório completo)</span>).</strong> Os pacotes das urnas 2013 e 2015 foram conferidos um a um, nos dois turnos, com a chave pública do certificado publicado da AC URNA:</p>
+<p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (2º turno: parecer 24, itens 1 a 3; 1º turno: verificação de 30/10/2026 com recontagem pelo código do revisor; <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/pericia/01-integridade-e-estrutura-dos-arquivos.md">tópico 1</a><span class="ref-completo" data-ger> (no relatório completo)</span>).</strong> Os pacotes das urnas 2013 e 2015 foram conferidos um a um, nos dois turnos, com a chave pública do certificado publicado da AC URNA:</p>
 <table class="tabela cols-3 texto">
 <thead><tr><th></th><th class="d">2º turno</th><th class="d">1º turno</th></tr></thead>
 <tbody>
@@ -471,7 +472,7 @@ li figure.grafico{margin-top:.6em}
 <ul>
 <li>O corte muda só a forma de ler. A lista assinada e as assinaturas foram usadas sem alteração.</li>
 <li>A mesma urna mostra a mesma sobra nos dois turnos: a sobra é da carteira, não do pacote (parecer 24, item 2).</li>
-<li>Há também carteiras com 2 zeros a mais, que o leitor aceita sem avisar. A assinatura delas é conferida normalmente. A quantidade não entra aqui, porque o programa ainda não a registra (<strong class="com-rotulo"><span class="rotulo">Pendente</span></strong>, como no tópico 1).</li>
+<li>Há também carteiras com 2 zeros a mais, que o leitor aceita sem avisar. A assinatura delas é conferida normalmente. O programa da verificação ainda não registra quantas são (<strong class="com-rotulo"><span class="rotulo">Pendente</span></strong>, como no tópico 1); a proporção de cada tamanho de sobra está na seção “Por que algumas carteiras têm zeros a mais”, adiante.</li>
 </ul>
 <h3 id="tema-por-uf">Por UF</h3>
 <p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>.</strong> Pacotes de urnas da AC URNA (modelos 2013 e 2015) e, entre eles, os com zeros a mais na carteira. Nas quatro UFs com 0 (AC, AP, RO, RR) não há urna antiga.</p>
@@ -516,9 +517,9 @@ li figure.grafico{margin-top:.6em}
 <li><strong>Pacotes do 1º turno:</strong> contados em duas extrações independentes do 1º turno, que dão o mesmo número em cada UF.</li>
 <li><strong>Totais:</strong> são os da recontagem cética.</li>
 </ul>
-<p>Dados: <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/308797be048aa41846d80c7ef42fbfe03fa35fc9/docs/pericia/graficos/dados/h25-ac-urna-por-uf.csv">h25-ac-urna-por-uf.csv</a>.</p>
+<p>Dados: <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/pericia/graficos/dados/h25-ac-urna-por-uf.csv">h25-ac-urna-por-uf.csv</a>.</p>
 <h3 id="tema-os-votos-dessas-seções-estão-no-resultado-oficial">Os votos dessas seções estão no resultado oficial</h3>
-<p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (<a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/308797be048aa41846d80c7ef42fbfe03fa35fc9/docs/pericia/05-soma-dos-boletins.md">tópico 5</a><span class="ref-completo" data-ger> (no relatório completo)</span>, parecer 26).</strong> A soma dos boletins é igual ao resultado oficial, seção por seção, nos dois turnos (no 2º turno, 0 divergência em 499.205 seções com voto para Presidente). As seções das urnas 2013 e 2015 estão entre elas: os votos que essas urnas assinaram foram contados.</p>
+<p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (<a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/analysis/cetico-revisor/33-h25-certificado-ac-urna.md">parecer 33</a>, item d; <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/pericia/05-soma-dos-boletins.md">tópico 5</a><span class="ref-completo" data-ger> (no relatório completo)</span>).</strong> No 2º turno, das 99.957 seções com urna 2013 ou 2015, 99.955 têm voto para Presidente. Em todas as 99.955, o boletim é igual ao resultado oficial por seção publicado pelo TSE, candidato a candidato: 0 divergência. As 2 restantes são do exterior, com 0 eleitor votando. Os votos que essas urnas assinaram foram contados.</p>
 <h2 id="tema-prova-de-que-o-teste-funciona-contraprova"><span class="num" data-ger>1.5</span> Prova de que o teste funciona (contraprova)</h2>
 <p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (parecer 24, item 1).</strong> O revisor cético alterou de propósito <strong>um único bit</strong> em pacotes de cinco tipos, entre eles uma urna 2015 e uma urna 2013 da AC URNA e um pacote com zeros a mais na carteira. Em todos, o programa recusou a alteração:</p>
 <table class="tabela cols-2 texto">
@@ -530,103 +531,333 @@ li figure.grafico{margin-top:.6em}
 </tbody>
 </table>
 <p>Uma carteira diferente da que o cartório carimbou não passa, mesmo com o certificado do cartório vencido. Portanto o “0 falha” não vem de um programa que aprova qualquer coisa. Comando: <code>node scripts/<wbr>auditoria/<wbr>cetico-<wbr>integridade-<wbr>controle.<wbr>mjs</code>.</p>
-<h2 id="tema-o-raciocínio-do-auditor-ponto-por-ponto"><span class="num" data-ger>1.6</span> O raciocínio do auditor, ponto por ponto</h2>
+<p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (parecer 33, tabela C2).</strong> A conferência de “para qual certificado de cartório a carteira aponta” também foi testada ao contrário: com um certificado de cartório de laboratório de outra série, ela recusa a carteira.</p>
+<h2 id="tema-as-carteiras-de-cada-urna-e-os-votos-parecer-33"><span class="num" data-ger>1.6</span> As carteiras de cada urna e os votos (parecer 33)</h2>
+<p>Os testes da hipótese H25 foram feitos em 30/10/2026 pelo <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/analysis/engenheiro-seguranca-urna/07-h25-certificados.md">engenheiro de segurança (doc 07)</a> e pelo <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/analysis/estatistico-eleitoral/10-h25-urnas-ac-vencida.md">estatístico (doc 10)</a>. O revisor cético refez a conta das carteiras por outro caminho: outro programa de leitura, nos 998.414 pacotes dos dois turnos, com 0 erro de leitura e 0 pacote sem carteira. Também conferiu 5 carteiras direto no arquivo original, com o programa padrão OpenSSL. Os votos foram refeitos com os mesmos resultados. O texto abaixo segue as afirmações revisadas do <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/analysis/cetico-revisor/33-h25-certificado-ac-urna.md">parecer 33</a>.</p>
+<h3 id="tema-carteiras-de-urna-emitidas-pela-ac-urna-depois-do-vencimento">Carteiras de urna emitidas pela AC URNA depois do vencimento</h3>
+<p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (parecer 33, C1 e C5).</strong> A chave da AC URNA carimbou <strong>54 carteiras de urna com início de validade entre 20/07 e 19/10/2026</strong>, depois de o certificado publicado do cartório vencer (18/07/2026, às 18h59min57s de Brasília).</p>
+<ul>
+<li>As 54 são de 23 urnas 2013 e 31 urnas 2015.</li>
+<li>As urnas com essas carteiras votaram em <strong>53 seções no 2º turno e em 45 no 1º</strong>. 44 votaram nos dois turnos, 9 só no 2º e 1 só no 1º.</li>
+<li><strong>Duas foram carimbadas entre os turnos.</strong> A de 18/10 foi a urna da seção SP 71072/0004/0114 no 2º turno; no 1º turno essa seção votou com outra urna. A de 19/10 foi a urna reserva da seção SP 62634/0214/0003 no 2º turno.</li>
+<li>A primeira carteira depois do vencimento começa a valer em 20/07, 44 horas e 26 minutos depois dele. Não há caso na fronteira.</li>
+<li>Todas as 54 passam na conferência de assinatura com a chave do certificado publicado da AC URNA.</li>
+</ul>
+<p><strong>Os números de série crescem com saltos.</strong> Cada carteira tem um número de série, como uma nota fiscal.</p>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (C4):</strong> os números crescem com a data, sem nenhuma inversão nas 92 carteiras de 2026. Mas há saltos: entre o primeiro (<code>34aea5</code>, 20/07) e o último (<code>34b256</code>, 19/10) depois do vencimento cabem 946 números, e só 54 deles estão em urnas que votaram. Antes do vencimento, em 2026, a proporção é parecida: 38 de 371 números.</li>
+<li class="com-rotulo rotulo-hipótese"><strong class="com-rotulo"><span class="rotulo">Hipótese</span> (parecer 33):</strong> a AC URNA emitiu mais carteiras depois de vencer do que as 54 que aparecem nas urnas que votaram. Só a lista de emissões do TSE responde (pergunta 3).</li>
+</ul>
+<p><strong>A data de início é a data em que a carteira foi carimbada?</strong> A data de início é escrita pelo relógio do sistema que emite. Por isso a afirmação “emitidas depois do vencimento” é <strong>inferência forte, não prova</strong> (parecer 33, C3 e item a). O que a apoia (<strong class="com-rotulo"><span class="rotulo">Fato</span></strong>, universo completo):</p>
+<table class="tabela cols-2 texto">
+<thead><tr><th>Teste</th><th>Resultado</th></tr></thead>
+<tbody>
+<tr><td>Ordem dos números de série × data, nas três autoridades em 2026</td><td>0 inversões (AC URNA 92 carteiras, AC UE2020 112, AC UE2022 319)</td></tr>
+<tr><td>Ritmo dentro de cada sessão de emissão</td><td>2 a 3 segundos por número de série, igual antes e depois do vencimento</td></tr>
+<tr><td>Sessões junto com as outras autoridades</td><td>Em 13 dos 18 dias com emissão depois do vencimento, a AC UE2020 ou a AC UE2022 emitem na mesma sessão, minutos depois, como em 17/07</td></tr>
+<tr><td>Carteira usada numa votação antes da própria data de início</td><td>0, nos dois turnos</td></tr>
+<tr><td>Preparação da urna (carga, pelo relógio da própria urna, gravado no boletim) depois da data de início da carteira</td><td>98 de 98 seções × turno. A menor folga é de 42 horas</td></tr>
+</tbody>
+</table>
+<p>Em palavras simples: uma carteira com data “adiantada” teria de receber o número de série na ordem da data escrita, e não na ordem do carimbo, no mesmo ritmo das outras duas autoridades na mesma sessão. Isso só aconteceria com o relógio de todo o sistema emissor adiantado. E a preparação das urnas, feita com outro relógio, veio depois em todos os casos. Só o registro do cartório, que está com o TSE, prova a hora do carimbo.</p>
+<figure class="grafico" data-imagem><figcaption data-ger>Figura 1.3</figcaption><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 424" role="img" aria-labelledby="g3-titulo g3-desc" id="g3" class="grafico-svg" style="max-width:760px">
+<title id="g3-titulo">Carteiras de urna da AC URNA com início de validade em 2026, por dia</title><desc id="g3-desc">Carteiras de urnas que votaram em 2026, pela data de início da validade, dia a dia (as 92 com início em 2026). 14/01/2026: 4; 10/06/2026: 20; 17/07/2026: 14; 20/07/2026: 10; 27/07/2026: 1; 03/08/2026: 7; 31/08/2026: 8; 03/09/2026: 3; 09/09/2026: 5; 12/09/2026: 1; 14/09/2026: 1; 15/09/2026: 1; 17/09/2026: 5; 18/09/2026: 4; 22/09/2026: 1; 23/09/2026: 1; 25/09/2026: 1; 29/09/2026: 1; 01/10/2026: 2; 18/10/2026: 1; 19/10/2026: 1. Antes do vencimento: 38; depois: 54.</desc>
+<style>#g3 .g3-fundo{fill:#fcfcfb}#g3 .g3-t1{fill:#0b0b0b}#g3 .g3-t2{fill:#52514e}#g3 .g3-tb{fill:#ffffff}#g3 .g3-grade{stroke:#e4e3df}#g3 .g3-eixo{stroke:#9a9993}#g3 .g3-s0{fill:#2a78d6}#g3 .g3-s1{fill:#eb6834}#g3 .g3-s2{fill:#d6d5d0}#g3 .g3-marco{stroke:#0b0b0b}#g3 .g3-vence{stroke:#eb6834}#g3 text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}</style>
+<rect class="g3-fundo" width="760" height="424" rx="6"/>
+<text class="g3-t1" x="20" y="30" font-size="17" font-weight="600">Carteiras de urna da AC URNA com início de validade em 2026, por dia</text>
+<text class="g3-t2" x="20" y="52" font-size="13">Carteiras de urnas que votaram em 2026, pela data de início da validade, dia a dia (as 92 com início em 2026).</text>
+<rect class="g3-s0" x="20" y="66" width="12" height="12" rx="2"/><text class="g3-t1" x="38" y="77" font-size="13">início até 18/07, com o certificado da AC válido (38)</text>
+<rect class="g3-s1" x="350" y="66" width="12" height="12" rx="2"/><text class="g3-t1" x="368" y="77" font-size="13">início depois de 18/07, com ele vencido (54)</text>
+<line class="g3-grade" x1="60" x2="730" y1="332" y2="332" stroke-width="1"/>
+<text class="g3-t2" x="52" y="336" font-size="12" text-anchor="end">0</text>
+<line class="g3-grade" x1="60" x2="730" y1="288" y2="288" stroke-width="1"/>
+<text class="g3-t2" x="52" y="292" font-size="12" text-anchor="end">5</text>
+<line class="g3-grade" x1="60" x2="730" y1="244" y2="244" stroke-width="1"/>
+<text class="g3-t2" x="52" y="248" font-size="12" text-anchor="end">10</text>
+<line class="g3-grade" x1="60" x2="730" y1="200" y2="200" stroke-width="1"/>
+<text class="g3-t2" x="52" y="204" font-size="12" text-anchor="end">15</text>
+<line class="g3-grade" x1="60" x2="730" y1="156" y2="156" stroke-width="1"/>
+<text class="g3-t2" x="52" y="160" font-size="12" text-anchor="end">20</text>
+<line class="g3-grade" x1="60" x2="730" y1="112" y2="112" stroke-width="1"/>
+<text class="g3-t2" x="52" y="116" font-size="12" text-anchor="end">25</text>
+<line class="g3-eixo" x1="60" x2="60" y1="332" y2="337" stroke-width="1"/>
+<text class="g3-t2" x="90.45454545454545" y="352" font-size="12" text-anchor="middle">jan</text>
+<line class="g3-eixo" x1="120.9090909090909" x2="120.9090909090909" y1="332" y2="337" stroke-width="1"/>
+<text class="g3-t2" x="151.36363636363637" y="352" font-size="12" text-anchor="middle">fev</text>
+<line class="g3-eixo" x1="181.8181818181818" x2="181.8181818181818" y1="332" y2="337" stroke-width="1"/>
+<text class="g3-t2" x="212.27272727272725" y="352" font-size="12" text-anchor="middle">mar</text>
+<line class="g3-eixo" x1="242.72727272727272" x2="242.72727272727272" y1="332" y2="337" stroke-width="1"/>
+<text class="g3-t2" x="273.1818181818182" y="352" font-size="12" text-anchor="middle">abr</text>
+<line class="g3-eixo" x1="303.6363636363636" x2="303.6363636363636" y1="332" y2="337" stroke-width="1"/>
+<text class="g3-t2" x="334.09090909090907" y="352" font-size="12" text-anchor="middle">mai</text>
+<line class="g3-eixo" x1="364.54545454545456" x2="364.54545454545456" y1="332" y2="337" stroke-width="1"/>
+<text class="g3-t2" x="395" y="352" font-size="12" text-anchor="middle">jun</text>
+<line class="g3-eixo" x1="425.45454545454544" x2="425.45454545454544" y1="332" y2="337" stroke-width="1"/>
+<text class="g3-t2" x="455.9090909090909" y="352" font-size="12" text-anchor="middle">jul</text>
+<line class="g3-eixo" x1="486.3636363636364" x2="486.3636363636364" y1="332" y2="337" stroke-width="1"/>
+<text class="g3-t2" x="516.8181818181819" y="352" font-size="12" text-anchor="middle">ago</text>
+<line class="g3-eixo" x1="547.2727272727273" x2="547.2727272727273" y1="332" y2="337" stroke-width="1"/>
+<text class="g3-t2" x="577.7272727272727" y="352" font-size="12" text-anchor="middle">set</text>
+<line class="g3-eixo" x1="608.1818181818181" x2="608.1818181818181" y1="332" y2="337" stroke-width="1"/>
+<text class="g3-t2" x="638.6363636363636" y="352" font-size="12" text-anchor="middle">out</text>
+<line class="g3-eixo" x1="669.0909090909091" x2="669.0909090909091" y1="332" y2="337" stroke-width="1"/>
+<text class="g3-t2" x="699.5454545454546" y="352" font-size="12" text-anchor="middle">nov</text>
+<line class="g3-eixo" x1="60" x2="730" y1="332" y2="332" stroke-width="1"/>
+<rect class="g3-s0" x="83.53237858027519" y="296.8" width="5" height="35.19999999999999"/>
+<text class="g3-t1" x="86.03237858027519" y="291.8" font-size="11" text-anchor="middle">4</text>
+<rect class="g3-s0" x="377.89850560394945" y="156" width="5" height="176"/>
+<text class="g3-t1" x="380.39850560394945" y="151" font-size="11" text-anchor="middle">20</text>
+<rect class="g3-s0" x="451.99066002495005" y="208.8" width="5" height="123.19999999999999"/>
+<text class="g3-t1" x="454.49066002495005" y="203.8" font-size="11" text-anchor="middle">14</text>
+<rect class="g3-s1" x="457.99813200493685" y="244" width="5" height="88"/>
+<text class="g3-t1" x="460.49813200493685" y="227" font-size="11" text-anchor="middle">10</text>
+<rect class="g3-s1" x="472.0155666250722" y="323.2" width="5" height="8.800000000000011"/>
+<text class="g3-t1" x="474.5155666250722" y="318.2" font-size="11" text-anchor="middle">1</text>
+<rect class="g3-s1" x="486.0330012453738" y="270.4" width="5" height="61.60000000000002"/>
+<text class="g3-t1" x="488.5330012453738" y="265.4" font-size="11" text-anchor="middle">7</text>
+<rect class="g3-s1" x="542.1027397259154" y="261.6" width="5" height="70.39999999999998"/>
+<text class="g3-t1" x="544.6027397259154" y="256.6" font-size="11" text-anchor="middle">8</text>
+<rect class="g3-s1" x="548.1102117060684" y="305.6" width="5" height="26.399999999999977"/>
+<text class="g3-t1" x="550.6102117060684" y="288.6" font-size="11" text-anchor="middle">3</text>
+<rect class="g3-s1" x="560.1251556662082" y="288" width="5" height="44"/>
+<text class="g3-t1" x="562.6251556662082" y="283" font-size="11" text-anchor="middle">5</text>
+<rect class="g3-s1" x="566.1326276463612" y="323.2" width="5" height="8.800000000000011"/>
+<text class="g3-t1" x="568.6326276463612" y="306.2" font-size="11" text-anchor="middle">1</text>
+<rect class="g3-s1" x="570.1376089663523" y="323.2" width="5" height="8.800000000000011"/>
+<text class="g3-t1" x="572.6376089663523" y="294.2" font-size="11" text-anchor="middle">1</text>
+<rect class="g3-s1" x="572.1400996263479" y="323.2" width="5" height="8.800000000000011"/>
+<text class="g3-t1" x="574.6400996263479" y="318.2" font-size="11" text-anchor="middle">1</text>
+<rect class="g3-s1" x="576.1450809463391" y="288" width="5" height="44"/>
+<rect class="g3-s1" x="578.147571606501" y="296.8" width="5" height="35.19999999999999"/>
+<text class="g3-t1" x="580.647571606501" y="279.8" font-size="11" text-anchor="middle">4</text>
+<rect class="g3-s1" x="586.1575342464834" y="323.2" width="5" height="8.800000000000011"/>
+<text class="g3-t1" x="588.6575342464834" y="318.2" font-size="11" text-anchor="middle">1</text>
+<rect class="g3-s1" x="588.160024906479" y="323.2" width="5" height="8.800000000000011"/>
+<text class="g3-t1" x="590.660024906479" y="294.2" font-size="11" text-anchor="middle">1</text>
+<rect class="g3-s1" x="592.1650062266364" y="323.2" width="5" height="8.800000000000011"/>
+<text class="g3-t1" x="594.6650062266364" y="306.2" font-size="11" text-anchor="middle">1</text>
+<rect class="g3-s1" x="600.174968866785" y="323.2" width="5" height="8.800000000000011"/>
+<text class="g3-t1" x="602.674968866785" y="318.2" font-size="11" text-anchor="middle">1</text>
+<rect class="g3-s1" x="604.1799501867762" y="314.4" width="5" height="17.600000000000023"/>
+<text class="g3-t1" x="606.6799501867762" y="297.4" font-size="11" text-anchor="middle">2</text>
+<rect class="g3-s1" x="638.2222914071999" y="323.2" width="5" height="8.800000000000011"/>
+<text class="g3-t1" x="640.7222914071999" y="318.2" font-size="11" text-anchor="middle">1</text>
+<rect class="g3-s1" x="640.2247820671955" y="323.2" width="5" height="8.800000000000011"/>
+<text class="g3-t1" x="642.7247820671955" y="306.2" font-size="11" text-anchor="middle">1</text>
+<line class="g3-vence" x1="456.49315068494565" x2="456.49315068494565" y1="98" y2="332" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text class="g3-t1" x="451.49315068494565" y="108" font-size="12" text-anchor="end">18/07: AC URNA vence</text>
+<line class="g3-marco" x1="612.687422166763" x2="612.687422166763" y1="98" y2="332" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text class="g3-t1" x="607.687422166763" y="108" font-size="12" text-anchor="end">1º turno</text>
+<line class="g3-marco" x1="654.7397260273353" x2="654.7397260273353" y1="98" y2="332" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text class="g3-t1" x="659.7397260273353" y="108" font-size="12" text-anchor="start">2º turno</text>
+<text class="g3-t2" x="395" y="372" font-size="12.5" text-anchor="middle">Dia de início da validade da carteira, 2026 (eixo vertical: carteiras emitidas no dia)</text>
+<text class="g3-t2" x="20" y="396" font-size="12">Só aparecem carteiras de urnas que votaram no 1º ou no 2º turno. Números de cada dia: tabela do texto.</text>
+<text class="g3-t2" x="20" y="412" font-size="11">Fonte: carteiras de todos os pacotes dos dois turnos; parecer cético 33. Dados: graficos/dados/h25-acurna-2026-por-dia.csv.</text>
+</svg></figure>
+<p><strong>Como ler:</strong> cada barra é um dia de 2026, e a altura é o número de carteiras de urna com início de validade naquele dia. Só entram carteiras de urnas que votaram no 1º ou no 2º turno. Azul: carteiras com início até 18/07, quando o certificado do cartório valia (38). Laranja: carteiras com início depois de 18/07, com o certificado vencido (54). A linha laranja tracejada marca o vencimento; as pretas, os dois turnos. As duas barras entre as linhas pretas são as carteiras carimbadas entre os turnos.</p>
+<p>Carteiras com início de validade depois do vencimento, por dia (<strong class="com-rotulo"><span class="rotulo">Fato</span></strong>, parecer 33):</p>
+<table class="tabela cols-4">
+<thead><tr><th>Dia (2026)</th><th class="d">Carteiras</th><th>Dia (2026)</th><th class="d">Carteiras</th></tr></thead>
+<tbody>
+<tr><td>20/07</td><td class="d">10</td><td>17/09</td><td class="d">5</td></tr>
+<tr><td>27/07</td><td class="d">1</td><td>18/09</td><td class="d">4</td></tr>
+<tr><td>03/08</td><td class="d">7</td><td>22/09</td><td class="d">1</td></tr>
+<tr><td>31/08</td><td class="d">8</td><td>23/09</td><td class="d">1</td></tr>
+<tr><td>03/09</td><td class="d">3</td><td>25/09</td><td class="d">1</td></tr>
+<tr><td>09/09</td><td class="d">5</td><td>29/09</td><td class="d">1</td></tr>
+<tr><td>12/09</td><td class="d">1</td><td>01/10</td><td class="d">2</td></tr>
+<tr><td>14/09</td><td class="d">1</td><td>18/10</td><td class="d">1</td></tr>
+<tr><td>15/09</td><td class="d">1</td><td>19/10</td><td class="d">1</td></tr>
+<tr><td></td><td class="d"></td><td><strong>Total (18 dias)</strong></td><td class="d"><strong>54</strong></td></tr>
+</tbody>
+</table>
+<p>Antes do vencimento, em 2026: 4 em 14/01, 20 em 10/06 e 14 em 17/07. A contagem por dia foi refeita por <code>grafico-<wbr>h25-<wbr>dados.<wbr>mjs</code> nas carteiras lidas pela verificação de lacres. Ela é igual, dia a dia, à do engenheiro e, depois do vencimento, à lista do parecer 33. Dados: <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/pericia/graficos/dados/h25-acurna-2026-por-dia.csv">h25-acurna-2026-por-dia.csv</a>.</p>
+<p class="com-rotulo rotulo-hipótese"><strong class="com-rotulo"><span class="rotulo">Hipótese</span> (parecer 33, C15, a mais simples):</strong> é a recertificação de rotina de urnas antigas, feita pelo mesmo sistema emissor das outras duas autoridades: mesmas sessões, mesmo ritmo. Não está provada. Só o registro do cartório prova quem emitiu e por quê.</p>
+<h3 id="tema-para-qual-certificado-de-cartório-as-carteiras-apontam">Para qual certificado de cartório as carteiras apontam</h3>
+<p>Cada carteira de urna traz um campo que diz qual chave e qual certificado de cartório a carimbaram. Ele é como o carimbo que diz “lavrado no cartório tal, livro tal”.</p>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (parecer 33, C2):</strong> as carteiras de todos os pacotes da AC URNA, 99.957 no 2º turno e 99.985 no 1º, apontam para o certificado da AC URNA de número de série 03, emitido pela AC RAIZ UE. É o certificado publicado, o que venceu. As 54 carteiras de julho a outubro também apontam para ele.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> nenhuma carteira aponta para outro certificado da AC URNA.</li>
+<li><strong>O que isso diz sobre “o cartório foi renovado com a mesma chave”.</strong> Um certificado renovado teria outro número de série. O programa OpenSSL recusa um certificado renovado de série nova como emissor dessas carteiras (teste de laboratório). Mas a regra da norma RFC 5280 não usa esse campo, e há programas que não conferem a série. Então um certificado renovado ainda poderia ser aceito por alguns verificadores (parecer 33, C10).</li>
+<li class="com-rotulo rotulo-hipótese"><strong class="com-rotulo"><span class="rotulo">Hipótese</span> forte (parecer 33):</strong> as carteiras emitidas de julho a outubro ainda apontam para a série 03. Isso indica que o sistema emissor do TSE continuava configurado com o certificado vencido até 19/10.</li>
+</ul>
+<h3 id="tema-repetições-e-coerência-das-carteiras">Repetições e coerência das carteiras</h3>
+<p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (parecer 33, C6 e C7; universo completo dos dois turnos).</strong></p>
+<table class="tabela cols-2">
+<thead><tr><th>Teste</th><th>Resultado</th></tr></thead>
+<tbody>
+<tr><td>Carteiras de urna distintas nos dois turnos</td><td>503.525, das quais 101.756 da AC URNA</td></tr>
+<tr><td>Mesma chave pública em carteiras diferentes</td><td>0</td></tr>
+<tr><td>Mesmo número de série no mesmo cartório</td><td>0</td></tr>
+<tr><td>Urna com duas carteiras</td><td>0</td></tr>
+<tr><td>Carteira vencida ou ainda não válida na data do turno</td><td>0</td></tr>
+<tr><td>Carteiras da AC URNA que vencem depois do próprio cartório</td><td>todas (o vencimento mais cedo é 08/04/2027)</td></tr>
+</tbody>
+</table>
+<p>O número de carteiras da AC URNA (101.756) também foi contado por <code>grafico-<wbr>h25-<wbr>dados.<wbr>mjs</code> nas linhas da verificação de lacres e bate com o do parecer.</p>
+<p>Nada aqui mostra uma carteira fora do padrão das outras. Isso não exclui uma carteira emitida com a chave verdadeira para uma urna que não existe: ela seria igual às outras.</p>
+<h3 id="tema-a-data-vencida-permite-forjar-uma-carteira-teste-de-laboratório">A data vencida permite forjar uma carteira? (teste de laboratório)</h3>
+<p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (parecer 33, C9):</strong> não. Sem a chave privada do cartório, mudar um byte da data de uma carteira real, ou carimbá-la com outra chave, faz a conferência falhar. A data não entra na conta da assinatura. O parecer registra que isso é uma propriedade da assinatura digital: serve para explicar, não é um achado sobre a eleição.</p>
+<p><strong>O que um verificador padrão faz com essas carteiras (Fato, parecer 33, item b).</strong> O revisor conferiu 5 das 54 carteiras no arquivo original com o OpenSSL de linha de comando. Entre elas estão as duas carimbadas entre os turnos.</p>
+<table class="tabela cols-2 texto">
+<thead><tr><th>Como o verificador confere</th><th>Resultado nas 5</th></tr></thead>
+<tbody>
+<tr><td>Sem conferir data</td><td>aceita: a assinatura do cartório confere</td></tr>
+<tr><td>Na data do turno</td><td>recusa: o certificado do cartório está vencido</td></tr>
+<tr><td>Em 17/07/2026, véspera do vencimento</td><td>recusa: a carteira ainda não era válida, porque ainda não existia</td></tr>
+</tbody>
+</table>
+<p><strong>As duas regras de data, aplicadas ao 2º turno (Fato, parecer 33, C11, C12 e item d):</strong></p>
+<table class="tabela cols-3 texto">
+<thead><tr><th>Regra</th><th class="d">Pacotes da AC URNA aceitos no 2º turno</th><th class="d">Recusados</th></tr></thead>
+<tbody>
+<tr><td>Regra usual (norma RFC 5280, OpenSSL, navegadores): toda a cadeia válida na data da eleição</td><td class="d">0</td><td class="d">99.957</td></tr>
+<tr><td>“Modelo de cadeia”: o cartório conferido na data em que carimbou a carteira</td><td class="d">99.904</td><td class="d">53 (as carteiras emitidas depois do vencimento)</td></tr>
+<tr><td>Sem conferir data</td><td class="d">99.957</td><td class="d">0</td></tr>
+</tbody>
+</table>
+<p>Só um verificador que não confere data, ou que confia em outro certificado da AC URNA, aceita todos.</p>
+<h3 id="tema-por-que-algumas-carteiras-têm-zeros-a-mais">Por que algumas carteiras têm zeros a mais</h3>
+<p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (parecer 33, C8).</strong> A carteira é gravada num espaço de 946 bytes. A assinatura do cartório dentro dela muda de tamanho de uma carteira para outra, e o que falta é completado com zeros. A matemática dessa assinatura prevê com que frequência cada tamanho aparece, e o observado bate:</p>
+<table class="tabela cols-3">
+<thead><tr><th>Zeros a mais</th><th class="d">Observado no 2º turno</th><th class="d">Previsto pela matemática</th></tr></thead>
+<tbody>
+<tr><td>0</td><td class="d">56,27%</td><td class="d">56,25%</td></tr>
+<tr><td>1</td><td class="d">37,42%</td><td class="d">37,35%</td></tr>
+<tr><td>2</td><td class="d">6,26%</td><td class="d">6,35%</td></tr>
+<tr><td>3</td><td class="d">0,051%</td><td class="d">0,049%</td></tr>
+</tbody>
+</table>
+<p>A diferença fica dentro do que o acaso produz (teste qui-quadrado). É formato, não adulteração. Ressalva do parecer: 98% das carteiras são as mesmas nos dois turnos, então o 1º turno não é uma segunda confirmação independente.</p>
+<h3 id="tema-os-votos-das-urnas-antigas-comparados-com-os-das-urnas-novas">Os votos das urnas antigas comparados com os das urnas novas</h3>
+<p><strong>Os votos das seções com carteira emitida depois do vencimento</strong> (parecer 33, item c). Cada seção foi comparada com ela mesma no outro turno e com as outras seções do mesmo local de votação. A referência é a mesma conta em todas as seções do país com pelo menos 2 vizinhas no local.</p>
+<table class="tabela cols-5 texto">
+<thead><tr><th>Grupo</th><th class="d">Seções</th><th class="d">Mudança na parcela do 13 entre os turnos, contra as vizinhas (ponto percentual)</th><th class="d">p</th><th class="d">O teste enxerga a partir de</th></tr></thead>
+<tbody>
+<tr><td>Carteira tardia, 2º turno</td><td class="d">53</td><td class="d">+0,13</td><td class="d">0,65</td><td class="d">0,82</td></tr>
+<tr><td>Carteira tardia, 1º turno</td><td class="d">45</td><td class="d">+0,06</td><td class="d">0,84</td><td class="d">0,87</td></tr>
+<tr><td>Controle: urnas recertificadas em 2026 antes do vencimento</td><td class="d">37</td><td class="d">−0,05</td><td class="d">0,89</td><td class="d">1,03</td></tr>
+</tbody>
+</table>
+<p>O <strong>p</strong> é a chance de o acaso, sozinho, produzir uma diferença daquele tamanho. Valores altos, como estes, querem dizer que a diferença não se separa do acaso.</p>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> nenhum grupo se afasta das vizinhas. Em votos, a diferença das 53 seções do 2º turno soma <strong>13 votos a mais para o 13</strong>, num total de 13.458 votos no 13 e no 22. As seções dos dois lados da data de vencimento votam igual.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> no 2º turno, a parcela do 13 nessas seções fica 0,57 ponto acima da do local (p = 0,31, dentro do acaso), e já ficava 0,44 acima no 1º turno. É o perfil do lugar das urnas antigas.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> 3 das 53 seções ficam a 3 desvios ou mais das vizinhas em alguma das medidas, contra 1,0 esperada (p = 0,08, sem correção para muitos testes). Uma vai a favor do 13 e duas contra. Em duas, o desvio já existia no 1º turno.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> na seção SP 71072/0004/0114 (urna carimbada em 18/10), a parcela do 13 subiu 4,7 pontos a mais que a das 16 vizinhas do local (z = 2,4), depois de um 1º turno 7,4 pontos abaixo delas, com outra urna. Não passa o limite de 3 desvios. <strong class="com-rotulo"><span class="rotulo">Hipótese</span>:</strong> volta à média depois de um 1º turno fora do padrão. Na seção SP 62634/0214/0003 (urna reserva carimbada em 19/10): −1,6 ponto (z = −0,8).</li>
+<li><strong>Limite:</strong> com 53 seções, o teste não vê um desvio médio menor que 0,82 ponto. Também não vê nada que aja igual nas urnas vizinhas.</li>
+</ul>
+<p><strong>Os votos de todas as urnas antigas contra os das urnas novas</strong> (estatístico, doc 10; parecer 33, metade 2).</p>
+<ul>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (V1):</strong> o estatístico registrou 12 testes antes de olhar os votos (3 medidas × 4 comparações). Nenhum passa a correção para muitos testes. O maior valor é z = +2,55, abaixo do limite de 2,87. O revisor rodou de novo o programa e obteve o mesmo resultado.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (V4):</strong> as urnas antigas e as novas ficam, em geral, em zonas e municípios diferentes. Só 516 das 99.957 seções com urna antiga (0,5%) dividem o local de votação com urna nova, em 123 locais de 47 municípios. <strong>Os 12 testes combinados antes cobrem só essas seções</strong> (483 no teste de mudança entre turnos).</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>, exploratório (V3):</strong> para cobrir as outras seções, o estatístico acrescentou depois comparações mais largas. Na mudança do 1º para o 2º turno, comparando dentro da UF, a parcela do 13 nas urnas antigas mudou −0,03 ponto em relação às novas (intervalo de 95% de −0,09 a +0,02). “Exploratório” quer dizer que a comparação foi escolhida depois de ver o primeiro resultado. Ela aponta no mesmo sentido, mas não é o teste combinado antes. O teste combinado antes dá −0,11 ponto (intervalo de −0,40 a +0,18).</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (V5, aritmética):</strong> para virar o resultado do 2º turno só com essas urnas, seria preciso trocar 2.215.096 votos de um candidato para o outro, 8,8% dos votos no 13 e no 22 dessas urnas. As comparações exploratórias excluem uma diferença de nível maior que 1,5 ponto. Essa comparação de 8,8 com 1,5 depende das camadas exploratórias.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (V6):</strong> as seções com zeros a mais na carteira votam como as outras seções de urna antiga do mesmo local: −0,02 ponto na parcela do 13 (intervalo de −0,07 a +0,03). A sobra de zeros depende só do sorteio da assinatura, então essa comparação funciona como um sorteio natural.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (V2, na frase revisada):</strong> o nível de votos das urnas antigas não mudou entre os turnos. Um desvio igual nos dois turnos, abaixo de 1 a 2 pontos, não se separa do perfil do lugar.</li>
+<li><strong>Não verificável (V7):</strong> o registro dos testes e os resultados entraram juntos no repositório (mesmo commit). Não há rastro técnico de que o registro veio antes. O parecer não acusa nada; recomenda registrar os testes separadamente nas próximas hipóteses.</li>
+</ul>
+<h2 id="tema-o-raciocínio-do-auditor-ponto-por-ponto"><span class="num" data-ger>1.7</span> O raciocínio do auditor, ponto por ponto</h2>
 <h3 id="tema-a-totalização-não-confere-a-validade-senão-não-teria-contado-esses-votos">“A totalização não confere a validade, senão não teria contado esses votos”</h3>
-<p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> os votos das 99.957 seções da AC URNA estão no resultado oficial do 2º turno (tópico 5). <strong class="com-rotulo"><span class="rotulo">Fato</span>:</strong> o certificado da AC URNA que está no pacote oficial de exemplos do TSE venceu em 18/07/2026, antes dos dois turnos.</p>
-<p>Pela regra mais usada (toda a cadeia válida na data da conferência), um verificador com esse certificado recusaria todos esses pacotes na data da eleição. O próprio programa da auditoria marca os 99.957 como “fora da validade”. Como os votos foram contados, sobra uma destas possibilidades (<strong class="com-rotulo"><span class="rotulo">Hipótese</span></strong>, os arquivos públicos não permitem escolher):</p>
+<p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (parecer 33, item d):</strong></p>
+<ol>
+<li>a chave privada da AC URNA, a mesma do certificado publicado, carimbou as carteiras das 99.957 urnas antigas do 2º turno, inclusive as 54 de julho a outubro;</li>
+<li>cada uma dessas urnas assinou o próprio pacote, e a assinatura confere;</li>
+<li>os votos dessas seções estão no resultado oficial (99.955 com voto para Presidente, 0 divergência);</li>
+<li>com o certificado publicado, um verificador que confere datas recusaria esses pacotes: todos pela regra usual, e os 53 de carteira tardia mesmo pelo “modelo de cadeia”.</li>
+</ol>
+<p>Daí sobra uma destas possibilidades (<strong class="com-rotulo"><span class="rotulo">Hipótese</span></strong>, os arquivos públicos não permitem escolher):</p>
 <ol>
 <li>o sistema do TSE não confere a data de validade do cartório, ou não confere a cadeia;</li>
-<li>o sistema confere pelo “modelo de cadeia”, que aceita uma carteira emitida enquanto o cartório valia. Quantas carteiras foram emitidas depois do vencimento é um dos achados em revisão (seção “Achados novos”);</li>
-<li>o sistema usa outro certificado da AC URNA, renovado, que não foi publicado;</li>
+<li>o sistema confere pelo “modelo de cadeia”. Nesse caso, ainda recusaria os 53 pacotes com carteira emitida depois do vencimento, que foram contados;</li>
+<li>o sistema confia em outro certificado da AC URNA, renovado, que não foi publicado. O dado limita essa explicação: as carteiras de julho a outubro ainda apontam para o certificado vencido (seção “Para qual certificado de cartório as carteiras apontam”);</li>
 <li>a conferência é feita em outro ponto do caminho, ou não é feita, e a totalização confia no canal de transmissão.</li>
 </ol>
-<p>O auditor tem razão num ponto que não depende de qual seja o caso: em todas as possibilidades falta informação pública. <strong>Quem está de fora não sabe qual conferência o TSE faz e não consegue reproduzi-la com o que foi publicado.</strong> Nas possibilidades 1 e 4, o vencimento do cartório não funciona como barreira. Na 2, ele só barra carteiras emitidas depois do vencimento. Na 3, falta publicar o certificado usado. A explicação “o cartório foi renovado com a mesma chave” é uma afirmação sobre o que o TSE fez, sem documento público. Pela regra desta auditoria (procedimento de pessoas não é controle), ela fica como <strong>risco</strong> até o TSE publicar o certificado e a data de emissão. As perguntas exatas estão no fim.</p>
+<p>O auditor tem razão num ponto que não depende de qual seja o caso: em todas as possibilidades falta informação pública. <strong>Quem está de fora não sabe qual conferência o TSE faz e não consegue reproduzi-la com o que foi publicado.</strong></p>
+<ul>
+<li>Nas possibilidades 1 e 4, o vencimento do cartório não funciona como barreira.</li>
+<li>A possibilidade 2 não explica, sozinha, os 53 pacotes contados.</li>
+<li>Na 3, falta publicar o certificado usado.</li>
+</ul>
+<p>A explicação “o cartório foi renovado com a mesma chave” é uma afirmação sobre o que o TSE fez, sem documento público. Pela regra desta auditoria (procedimento de pessoas não é controle), ela fica como <strong>risco</strong> até o TSE publicar o certificado e a data de emissão.</p>
+<p>Não se pode escrever que “a totalização aceitou certificado vencido”. Não se sabe se ela confere certificados, nem com qual certificado de cartório, nem em que ponto do caminho (parecer 33). As perguntas exatas estão no fim.</p>
 <h3 id="tema-não-há-como-comprovar-quem-emitiu">“Não há como comprovar quem emitiu”</h3>
 <p>Isso vale pela metade.</p>
 <ul>
-<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (parecer 24 e tópico 1):</strong> cada uma das carteiras das urnas 2013 e 2015 tem o carimbo conferido com a chave pública do certificado publicado da AC URNA: 0 sem carimbo, nos dois turnos. Uma carteira alterada é recusada (contraprova acima). Então quem emitiu essas carteiras tinha a chave privada da AC URNA. Uma carteira inventada por quem não tem essa chave não passa. “Pode ser qualquer certificado” não se sustenta.</li>
-<li><strong>Limite:</strong> os arquivos provam que quem carimbou tinha a chave. Não provam que essa pessoa ou esse sistema era o TSE, nem em que data a chave foi usada, nem que a chave ficou só com o TSE.</li>
-<li><strong>Limite (<a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/308797be048aa41846d80c7ef42fbfe03fa35fc9/docs/pericia/01-integridade-e-estrutura-dos-arquivos.md">tópico 1</a><span class="ref-completo" data-ger> (no relatório completo)</span>, limite 2):</strong> o certificado da AC URNA não pôde ser conferido até o cartório raiz. O certificado da AC RAIZ UE não está disponível para download automático no site do TSE.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (parecer 24, tópico 1 e parecer 33):</strong> cada carteira das urnas 2013 e 2015 tem o carimbo conferido com a chave pública do certificado publicado da AC URNA: 0 sem carimbo, nos dois turnos. Uma carteira alterada é recusada (contraprova acima). Então quem emitiu essas carteiras, inclusive as 54 de julho a outubro, tinha a chave privada da AC URNA. Uma carteira inventada por quem não tem essa chave não passa. “Pode ser qualquer certificado” não se sustenta.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (parecer 33):</strong> nenhuma carteira aponta para outro cartório ou para outro certificado de cartório. Não há sinal de um emissor diferente.</li>
+<li><strong>Limite:</strong> os arquivos provam que quem carimbou tinha a chave. Não provam quem, dentro do TSE, operou a chave, nem se a emissão foi autorizada, nem que a chave ficou só com o TSE.</li>
+<li><strong>Limite (<a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/pericia/01-integridade-e-estrutura-dos-arquivos.md">tópico 1</a><span class="ref-completo" data-ger> (no relatório completo)</span>, limite 2):</strong> o certificado da AC URNA não pôde ser conferido até o cartório raiz. O certificado da AC RAIZ UE não está disponível para download automático no site do TSE.</li>
 </ul>
 <h3 id="tema-um-sistema-alterado-poderia-assinar-dados-com-chave-aceita">“Um sistema alterado poderia assinar dados com chave aceita”</h3>
 <p>Isso é verdade, mas não depende do vencimento. Há dois caminhos, e os dois valeriam também com um certificado dentro da validade.</p>
 <table class="tabela cols-3 texto">
 <thead><tr><th>O que permitiria a fraude</th><th>O que o atacante precisa</th><th>O que apareceria nos arquivos públicos</th></tr></thead>
 <tbody>
-<tr><td>Chave privada da AC URNA fora do controle do TSE</td><td>Uma cópia da chave do cartório</td><td>Uma carteira para uma “urna” que não existe passaria em todas as conferências. O rastro possível seria uma carteira fora do padrão das outras. Esse é um dos testes em revisão (seção “Achados novos”)</td></tr>
+<tr><td>Chave privada da AC URNA fora do controle do TSE</td><td>Uma cópia da chave do cartório</td><td>Uma carteira para uma “urna” que não existe passaria em todas as conferências. O rastro possível seria uma carteira fora do padrão das outras</td></tr>
 <tr><td>Programa alterado dentro de uma urna verdadeira</td><td>Acesso à instalação do programa na urna</td><td>Nada nas assinaturas: a urna assina com a chave verdadeira o que o programa produziu. O rastro possível estaria no diário da urna, na versão do programa e nos votos</td></tr>
 </tbody>
 </table>
-<p>O que já foi procurado e revisado:</p>
+<p>O que foi procurado e revisado:</p>
 <ul>
-<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (parecer 24):</strong> o número da urna é o mesmo na carteira, no pacote e no boletim em 499.204 de 499.207 seções do 2º turno. As 3 diferenças são boletins regravados no cartório por outra urna, o Recuperador de Dados (<a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/308797be048aa41846d80c7ef42fbfe03fa35fc9/docs/pericia/02-coerencia-entre-arquivos.md">tópico 2</a><span class="ref-completo" data-ger> (no relatório completo)</span>).</li>
-<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (parecer 24):</strong> todas as urnas do 2º turno registram a mesma versão de programa, 10.23.0.0 (<a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/308797be048aa41846d80c7ef42fbfe03fa35fc9/docs/pericia/01-integridade-e-estrutura-dos-arquivos.md">tópico 1</a><span class="ref-completo" data-ger> (no relatório completo)</span>).</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (parecer 33):</strong> nenhuma chave, número de série ou urna repetida entre as 503.525 carteiras; todas as carteiras da AC URNA apontam para o mesmo certificado de cartório; as 54 carteiras de julho a outubro seguem a mesma ordem, o mesmo ritmo e as mesmas sessões das outras autoridades.</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (parecer 24):</strong> o número da urna é o mesmo na carteira, no pacote e no boletim em 499.204 de 499.207 seções do 2º turno. As 3 diferenças são boletins regravados no cartório por outra urna, o Recuperador de Dados (<a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/pericia/02-coerencia-entre-arquivos.md">tópico 2</a><span class="ref-completo" data-ger> (no relatório completo)</span>).</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (parecer 24):</strong> todas as urnas do 2º turno registram a mesma versão de programa, 10.23.0.0 (<a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/pericia/01-integridade-e-estrutura-dos-arquivos.md">tópico 1</a><span class="ref-completo" data-ger> (no relatório completo)</span>).</li>
+<li class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span> (parecer 33):</strong> os votos das seções com carteira tardia variaram como os das vizinhas, e nenhum dos 12 testes combinados antes acha diferença entre urnas antigas e novas.</li>
 </ul>
-<p>Nenhum desses testes mostra uma chave copiada ou um programa trocado. Mas nenhum deles prova que isso não aconteceu: uma cópia da chave, ou um programa alterado que registre a versão certa, produz arquivos iguais aos legítimos. O teste dos votos das urnas antigas contra os das urnas novas está em revisão (seção “Achados novos”).</p>
+<p>Nenhum desses testes mostra uma chave copiada ou um programa trocado. Mas nenhum deles prova que isso não aconteceu: uma cópia da chave, ou um programa alterado que registre a versão certa e aja igual em urnas antigas e novas, produz arquivos iguais aos legítimos.</p>
 <h3 id="tema-o-certificado-venceu-antes-da-eleição">“O certificado venceu antes da eleição”</h3>
-<p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span></strong>, como medido acima: 18/07/2026, antes de 04/10 e de 25/10/2026. A carteira de cada urna estava dentro da validade nos dois turnos. O vencido era o certificado público do cartório.</p>
-<h2 id="tema-achados-novos-em-revisão"><span class="num" data-ger>1.7</span> Achados novos (em revisão)</h2>
-<p>Os testes da hipótese H25 feitos em 30/10/2026 (<a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/308797be048aa41846d80c7ef42fbfe03fa35fc9/docs/analysis/engenheiro-seguranca-urna/07-h25-certificados.md">engenheiro de segurança, doc 07</a>; <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/308797be048aa41846d80c7ef42fbfe03fa35fc9/docs/analysis/estatistico-eleitoral/10-h25-urnas-ac-vencida.md">estatístico, doc 10</a>) ainda não têm parecer do revisor cético. Cada seção abaixo diz o que o teste pergunta; o resultado entra depois da revisão.</p>
-<h3 id="tema-carteiras-de-urna-emitidas-pela-ac-urna-depois-do-vencimento">Carteiras de urna emitidas pela AC URNA depois do vencimento</h3>
-<p>O que o teste pergunta: o cartório carimbou carteiras de urna depois de 18/07/2026? Quantas, quando, para quais urnas, e essas urnas votaram em quais seções e turnos?</p>
-<p><strong>Em revisão</strong> (parecer cético 33): o resultado entra aqui depois da revisão.</p>
-<h3 id="tema-para-qual-certificado-de-cartório-as-carteiras-apontam">Para qual certificado de cartório as carteiras apontam</h3>
-<p>O que o teste pergunta: cada carteira de urna diz qual certificado de cartório a carimbou. Elas apontam para o certificado publicado, para outro certificado da AC URNA ou para outro cartório? Isso limita a explicação “renovado com a mesma chave”?</p>
-<p><strong>Em revisão</strong> (parecer cético 33): o resultado entra aqui depois da revisão.</p>
-<h3 id="tema-repetições-e-coerência-das-carteiras">Repetições e coerência das carteiras</h3>
-<p>O que o teste pergunta: há chave pública repetida entre carteiras, número de série repetido no mesmo cartório, urna com duas carteiras ou carteira com número de urna fora da faixa do modelo, nos dois turnos?</p>
-<p><strong>Em revisão</strong> (parecer cético 33): o resultado entra aqui depois da revisão.</p>
-<h3 id="tema-a-data-vencida-permite-forjar-uma-carteira-teste-de-laboratório">A data vencida permite forjar uma carteira? (teste de laboratório)</h3>
-<p>O que o teste pergunta: com uma carteira real, mudar a data ou carimbar com outra chave faz a conferência passar? Um verificador padrão aceita as carteiras da AC URNA na data da eleição, antes do vencimento e com a conferência de data desligada?</p>
-<p><strong>Em revisão</strong> (parecer cético 33): o resultado entra aqui depois da revisão.</p>
-<h3 id="tema-por-que-algumas-carteiras-têm-zeros-a-mais">Por que algumas carteiras têm zeros a mais</h3>
-<p>O que o teste pergunta: a quantidade de carteiras com 0, 1, 2 e 3 zeros a mais é a que a matemática da assinatura prevê?</p>
-<p><strong>Em revisão</strong> (parecer cético 33): o resultado entra aqui depois da revisão.</p>
-<h3 id="tema-os-votos-das-urnas-antigas-comparados-com-os-das-urnas-novas">Os votos das urnas antigas comparados com os das urnas novas</h3>
-<p>O que o teste pergunta: nas seções das urnas 2013 e 2015, a parcela de votos de cada candidato a Presidente, o comparecimento e os brancos e nulos diferem dos das urnas 2020 e 2022 do mesmo lugar, no 2º turno e na mudança do 1º para o 2º turno? E as carteiras com zeros a mais? Qual seria o tamanho de uma diferença capaz de mudar o resultado?</p>
-<p><strong>Em revisão</strong> (parecer cético 33): o resultado entra aqui depois da revisão.</p>
+<p class="com-rotulo rotulo-fato"><strong class="com-rotulo"><span class="rotulo">Fato</span></strong>, como medido acima: 18/07/2026, antes de 04/10 e de 25/10/2026. A carteira de cada urna estava dentro da validade nos dois turnos. O vencido era o certificado público do cartório, e a chave dele continuou carimbando carteiras depois do vencimento (as 54).</p>
 <h2 id="tema-o-que-não-dá-para-afirmar"><span class="num" data-ger>1.8</span> O que não dá para afirmar</h2>
 <ul>
-<li><strong>Que a totalização confere, ou não, a validade.</strong> Os arquivos públicos não mostram o programa de totalização nem o certificado que ele usa (possibilidades acima, <strong class="com-rotulo"><span class="rotulo">Hipótese</span></strong>).</li>
-<li><strong>Que o cartório foi renovado com a mesma chave.</strong> Não há certificado renovado nos arquivos usados. Até o TSE publicá-lo, é <strong class="com-rotulo"><span class="rotulo">Hipótese</span></strong> e <strong>risco</strong>.</li>
+<li><strong>Que a totalização confere, ou não, a validade.</strong> Os arquivos públicos não mostram o programa de totalização nem o certificado que ele usa (possibilidades acima, <strong class="com-rotulo"><span class="rotulo">Hipótese</span></strong>). Também não dá para afirmar que ela “aceitou certificado vencido”.</li>
+<li><strong>Que o cartório foi renovado com a mesma chave.</strong> Não há certificado renovado nos arquivos usados, e as carteiras de julho a outubro ainda apontam para o vencido. Até o TSE publicar um certificado renovado, é <strong>risco</strong>.</li>
+<li><strong>Quantas carteiras a AC URNA emitiu depois de vencer.</strong> As 54 são as das urnas que votaram; a faixa de números de série comporta 946 (<strong class="com-rotulo"><span class="rotulo">Hipótese</span></strong>: foram mais).</li>
+<li><strong>Quem operou a chave do cartório e se as emissões foram autorizadas.</strong> Só o registro do cartório, com o TSE, responde.</li>
 <li><strong>Que a chave privada da AC URNA ficou só com o TSE</strong>, antes ou depois do vencimento. Uma cópia dela produz carteiras indistinguíveis das legítimas.</li>
 <li><strong>Que o programa dentro das urnas era o lacrado.</strong> A assinatura prova que o arquivo não mudou depois de assinado, não o que o programa fez antes.</li>
-<li><strong>Que houve fraude.</strong> O certificado vencido, sem um certificado renovado publicado, é uma lacuna de controle e de transparência (ver a resposta sobre a totalização, acima), não um rastro de adulteração. Nenhuma assinatura falhou e nenhuma carteira alterada passou.</li>
-<li><strong>Que não houve fraude.</strong> Os testes acima não enxergam uma chave copiada nem um programa alterado que registre a versão certa.</li>
+<li><strong>Que houve fraude.</strong> Uma carteira emitida depois do vencimento não é carteira falsa: ela tem o carimbo da chave verdadeira do cartório. O certificado vencido, sem um certificado renovado publicado, e o uso da chave depois do vencimento são uma lacuna de controle e de transparência, não um rastro de adulteração. Nenhuma assinatura falhou, nenhuma carteira alterada passou e os votos dessas seções não se afastam dos das vizinhas.</li>
+<li><strong>Que não houve fraude.</strong> Os testes acima não enxergam uma chave copiada, nem um programa alterado que registre a versão certa, nem um desvio menor que o tamanho que cada teste enxerga.</li>
 </ul>
 <h2 id="tema-perguntas-ao-tse"><span class="num" data-ger>1.9</span> Perguntas ao TSE</h2>
 <p>Para enviar pela Lei de Acesso à Informação (LAI) ou por entidade fiscalizadora. Texto pronto:</p>
 <ol>
-<li>“Ao receber cada boletim de urna das eleições de 2026 (pleitos 3220 e 3221), o sistema de totalização, ou o receptor que o precede, verifica a assinatura digital do boletim e a cadeia de certificação do certificado da urna até a AC RAIZ UE ou a AC RAIZ UE v2? Em caso positivo, qual programa e qual biblioteca fazem essa verificação, e ela confere a data de validade do certificado da urna e de cada AC da cadeia? Em que data de referência: a data da verificação, a da emissão do boletim ou nenhuma?”</li>
-<li>“Qual certificado da AC URNA estava cadastrado como confiável nesse sistema em 04/10/2026 e em 25/10/2026? Solicito o arquivo do certificado (DER), o número de série, o período de validade e o SHA-256. Se houve renovação do certificado da AC URNA depois de 22/07/2011, solicito o certificado renovado, a data e a ata da cerimônia de emissão.”</li>
-<li>“A AC URNA emitiu certificados de urna depois de 18/07/2026? Solicito a relação de todos os certificados emitidos pela AC URNA em 2026 (número de série, urna, data e motivo), com o registro de cada emissão.”</li>
+<li>“Ao receber cada boletim de urna das eleições de 2026 (pleitos 3220 e 3221), o sistema de totalização, ou o receptor que o precede, verifica a assinatura digital do boletim e a cadeia de certificação do certificado da urna até a AC RAIZ UE ou a AC RAIZ UE v2? Em caso positivo, qual programa e qual biblioteca fazem essa verificação, e ela confere a data de validade do certificado da urna e de cada AC da cadeia? Em que data de referência: a data da verificação, a da emissão do boletim, a da emissão do certificado ou nenhuma?”</li>
+<li>“Qual certificado da AC URNA estava cadastrado como confiável nesse sistema em 04/10/2026 e em 25/10/2026? Solicito o arquivo do certificado (DER), o número de série, o período de validade e o SHA-256. O certificado da AC URNA publicado no pacote ‘formato-arquivos-bu-rdv-ass-digital-v2’ tem número de série 03 e validade até 18/07/2026. Se houve renovação desse certificado, solicito o certificado renovado, a data e a ata da cerimônia de emissão.”</li>
+<li>“A AC URNA emitiu certificados de urna depois de 18/07/2026? Nos arquivos públicos das eleições de 2026 há 54 certificados de urna emitidos pela AC URNA com início de validade entre 20/07/2026 e 19/10/2026, com números de série de 34aea5 a 34b256, faixa que comporta 946 números. Solicito a relação de todos os certificados emitidos pela AC URNA em 2026 (número de série, urna, data e motivo), com o registro de cada emissão, e a informação de quais foram revogados.”</li>
 <li>“Solicito a lista de certificados revogados (LCR) vigente da AC URNA e da AC RAIZ UE, a Declaração de Práticas de Certificação da AC URNA e os certificados da AC RAIZ UE, da AC RAIZ UE v2 e da AC URNA v2.”</li>
 <li>“Onde fica guardada a chave privada da AC URNA, quem tem acesso a ela, e há registro de uso dessa chave entre 18/07/2026 e 25/10/2026?”</li>
 </ol>
 <h2 id="tema-limites"><span class="num" data-ger>1.10</span> Limites</h2>
 <ol>
-<li><strong>A cadeia foi conferida até o cartório intermediário.</strong> Os certificados das raízes (AC RAIZ UE, AC RAIZ UE v2) e da AC URNA v2 não estão nos arquivos usados (<a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/308797be048aa41846d80c7ef42fbfe03fa35fc9/docs/pericia/01-integridade-e-estrutura-dos-arquivos.md">tópico 1</a><span class="ref-completo" data-ger> (no relatório completo)</span>, limite 2).</li>
-<li><strong>Os certificados dos cartórios vieram de uma cópia pública</strong> do pacote oficial de exemplos do TSE. A impressão digital é igual à registrada por outro projeto de auditoria. Falta baixar o pacote direto do site do TSE, pelo navegador, e comparar (<a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/308797be048aa41846d80c7ef42fbfe03fa35fc9/docs/pericia/01-integridade-e-estrutura-dos-arquivos.md">tópico 1</a><span class="ref-completo" data-ger> (no relatório completo)</span>, limite 4).</li>
-<li><strong>O que acontece dentro da urna antes da assinatura</strong> não aparece nas assinaturas (<a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/308797be048aa41846d80c7ef42fbfe03fa35fc9/docs/pericia/01-integridade-e-estrutura-dos-arquivos.md">tópico 1</a><span class="ref-completo" data-ger> (no relatório completo)</span>, limite 6).</li>
-<li><strong>O caminho do boletim até a totalização</strong> não é público. Os arquivos mostram o que a urna assinou e que a soma bate com o resultado oficial, não o que o sistema de totalização conferiu.</li>
+<li><strong>A cadeia foi conferida até o cartório intermediário.</strong> Os certificados das raízes (AC RAIZ UE, AC RAIZ UE v2) e da AC URNA v2 não estão nos arquivos usados (<a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/pericia/01-integridade-e-estrutura-dos-arquivos.md">tópico 1</a><span class="ref-completo" data-ger> (no relatório completo)</span>, limite 2).</li>
+<li><strong>A lista de revogados e a política da AC URNA não foram vistas.</strong> O engenheiro tentou baixá-las em 30/10/2026; o site do TSE respondeu com recusa de acesso (HTTP 403) e nada foi usado (parecer 33, item e). Sem elas, não se sabe se alguma carteira foi revogada nem o que a política diz sobre emitir perto do vencimento.</li>
+<li><strong>A hora da emissão vem do relógio do sistema emissor.</strong> A ordem dos números de série e a preparação das urnas indicam que as datas são as reais, mas só o registro do cartório prova.</li>
+<li><strong>Os certificados dos cartórios vieram de uma cópia pública</strong> do pacote oficial de exemplos do TSE. A impressão digital é igual à registrada por outro projeto de auditoria. Falta baixar o pacote direto do site do TSE, pelo navegador, e comparar (<a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/pericia/01-integridade-e-estrutura-dos-arquivos.md">tópico 1</a><span class="ref-completo" data-ger> (no relatório completo)</span>, limite 4).</li>
+<li><strong>O que acontece dentro da urna antes da assinatura</strong> não aparece nas assinaturas (<a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/pericia/01-integridade-e-estrutura-dos-arquivos.md">tópico 1</a><span class="ref-completo" data-ger> (no relatório completo)</span>, limite 6).</li>
+<li><strong>O caminho do boletim até a totalização</strong> não é público. Os arquivos mostram o que a urna assinou e que o boletim é igual ao resultado oficial, não o que o sistema de totalização conferiu.</li>
+<li><strong>Os testes de votos têm tamanho mínimo.</strong> Cada um diz a partir de que desvio enxerga. Um desvio menor, ou igual nas urnas antigas e novas, não aparece.</li>
 </ol>
 <h2 id="tema-próximos-passos"><span class="num" data-ger>1.11</span> Próximos passos</h2>
 <ul class="tarefas">
 <li><span class="caixa feita" role="img" aria-label="feito"></span>Conferir as assinaturas das urnas 2013 e 2015 nos dois turnos: 99.957 e 99.985 pacotes, 0 falha.</li>
-<li><span class="caixa feita" role="img" aria-label="feito"></span>Explicar as carteiras com zeros a mais: 37.457 e 37.440 pacotes, todos aprovados.</li>
-<li class="com-rotulo rotulo-pendente"><span class="caixa" role="img" aria-label="a fazer"></span><strong class="com-rotulo"><span class="rotulo">Pendente</span>.</strong> Parecer cético 33 sobre os achados novos da H25. Os resultados entram na seção “Achados novos”.</li>
+<li><span class="caixa feita" role="img" aria-label="feito"></span>Explicar as carteiras com zeros a mais: 37.457 e 37.440 pacotes, todos aprovados; proporção igual à prevista.</li>
+<li><span class="caixa feita" role="img" aria-label="feito"></span>Revisão cética das carteiras de cada urna e dos votos (parecer 33).</li>
 <li class="com-rotulo rotulo-pendente"><span class="caixa" role="img" aria-label="a fazer"></span><strong class="com-rotulo"><span class="rotulo">Pendente</span>.</strong> Enviar as cinco perguntas ao TSE.</li>
 <li class="com-rotulo rotulo-pendente"><span class="caixa" role="img" aria-label="a fazer"></span><strong class="com-rotulo"><span class="rotulo">Pendente</span>.</strong> Baixar pelo navegador a lista de revogação e a política da AC URNA e da AC RAIZ UE, e procurar um certificado renovado da AC URNA.</li>
+<li class="com-rotulo rotulo-pendente"><span class="caixa" role="img" aria-label="a fazer"></span><strong class="com-rotulo"><span class="rotulo">Pendente</span>.</strong> Segunda conferência, independente, do carimbo das carteiras das urnas novas (2020 e 2022) do 2º turno. Hoje ela vem só da verificação de lacres (parecer 33).</li>
 <li class="com-rotulo rotulo-pendente"><span class="caixa" role="img" aria-label="a fazer"></span><strong class="com-rotulo"><span class="rotulo">Pendente</span>.</strong> Registrar no leitor a quantidade de carteiras com 2 zeros a mais.</li>
 </ul>
 <h2 id="tema-como-reproduzir"><span class="num" data-ger>1.12</span> Como reproduzir</h2>
 <p>Uma seção: <code>node src/<wbr>lacres.<wbr>js &lt;pasta da seção&gt;</code>. A validade do certificado público da AC URNA:</p>
-<pre><code><span class="linha">openssl x509 -inform der -in data/certificados/ac/acurna.der -noout -dates</span></code></pre>
-<p>Todas as seções (parecer 24 e tópico 1):</p>
-<pre><code><span class="linha">node scripts/auditoria/integridade-lacres.mjs --turno 2 --procs 10 --refazer     # confere todos os pacotes (horas)</span><span class="linha">node scripts/auditoria/integridade-reverificar.mjs --turno 2 --cli 20            # carteiras com zeros a mais</span><span class="linha">node scripts/auditoria/integridade-resumo.mjs --turno 2                          # totais</span><span class="linha">node scripts/auditoria/integridade-lacres.mjs --turno 1</span><span class="linha">node scripts/auditoria/integridade-reverificar.mjs --turno 1</span><span class="linha"> </span><span class="linha"># revisão cética</span><span class="linha">node scripts/auditoria/cetico-integridade-recontagem.mjs --turno 2</span><span class="linha">node scripts/auditoria/cetico-integridade-recontagem.mjs --turno 1 --dir data/parsed/auditoria/integridade/1t</span><span class="linha">node scripts/auditoria/cetico-integridade-controle.mjs                           # 1 bit alterado em cada tipo de pacote</span><span class="linha"> </span><span class="linha"># tabelas e gráfico deste relatório (só leem as saídas acima e conferem as somas)</span><span class="linha">node scripts/auditoria/grafico-h25-dados.mjs                                     # CSVs h25-* em docs/pericia/graficos/dados/</span><span class="linha">node scripts/auditoria/grafico-h25.mjs                                           # ac-urna-linha-do-tempo.svg</span></code></pre>
-<p>Achados em revisão (parecer cético 33). Os comandos estão nos documentos de análise:</p>
-<pre><code><span class="linha">node scripts/auditoria/seguranca-h25-certificados.mjs --turno 2</span><span class="linha">node scripts/auditoria/seguranca-h25-certificados.mjs --turno 1 --ed521-exceto 2</span><span class="linha">node scripts/auditoria/seguranca-h25-analise.mjs</span><span class="linha">node scripts/auditoria/seguranca-h25-acs.mjs</span><span class="linha">node scripts/auditoria/seguranca-h25-demonstracao.mjs</span><span class="linha">node scripts/auditoria/estatistico-h25-dados.mjs</span><span class="linha">node --max-old-space-size=8192 scripts/auditoria/estatistico-h25.mjs</span></code></pre>
-<p>Registro da hipótese: <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/308797be048aa41846d80c7ef42fbfe03fa35fc9/docs/hipoteses.md">H25 em hipoteses.md</a>. Riscos que a criptografia pública não cobre: <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/308797be048aa41846d80c7ef42fbfe03fa35fc9/docs/analysis/integridade-nacional/06-riscos-fora-da-criptografia.md">integridade-nacional/06</a>.</p>
+<pre><code><span class="linha">openssl x509 -inform der -in data/certificados/ac/acurna.der -noout -dates -serial</span></code></pre>
+<p>Assinaturas de todas as seções (parecer 24 e tópico 1):</p>
+<pre><code><span class="linha">node scripts/auditoria/integridade-lacres.mjs --turno 2 --procs 10 --refazer     # confere todos os pacotes (horas)</span><span class="linha">node scripts/auditoria/integridade-reverificar.mjs --turno 2 --cli 20            # carteiras com zeros a mais</span><span class="linha">node scripts/auditoria/integridade-resumo.mjs --turno 2                          # totais</span><span class="linha">node scripts/auditoria/integridade-lacres.mjs --turno 1</span><span class="linha">node scripts/auditoria/integridade-reverificar.mjs --turno 1</span><span class="linha">node scripts/auditoria/cetico-integridade-recontagem.mjs --turno 2</span><span class="linha">node scripts/auditoria/cetico-integridade-recontagem.mjs --turno 1 --dir data/parsed/auditoria/integridade/1t</span><span class="linha">node scripts/auditoria/cetico-integridade-controle.mjs                           # 1 bit alterado em cada tipo de pacote</span></code></pre>
+<p>Carteiras de cada urna e votos (doc 07, doc 10 e parecer 33):</p>
+<pre><code><span class="linha">node scripts/auditoria/seguranca-h25-certificados.mjs --turno 2</span><span class="linha">node scripts/auditoria/seguranca-h25-certificados.mjs --turno 1 --ed521-exceto 2</span><span class="linha">node scripts/auditoria/seguranca-h25-analise.mjs</span><span class="linha">node scripts/auditoria/seguranca-h25-demonstracao.mjs</span><span class="linha">node --max-old-space-size=8192 scripts/auditoria/estatistico-h25.mjs</span><span class="linha"> </span><span class="linha"># revisão cética</span><span class="linha">node scripts/auditoria/cetico-33-h25-certificados.mjs                            # segunda leitura das carteiras, dois turnos (30 a 40 min)</span><span class="linha">node scripts/auditoria/cetico-33-h25-repeticoes.mjs                              # repetições e validades</span><span class="linha">node scripts/auditoria/cetico-33-h25-bruto.mjs                                   # 5 carteiras no arquivo original, com o OpenSSL</span><span class="linha">node --max-old-space-size=6144 scripts/auditoria/cetico-33-h25-votos.mjs         # votos das seções com carteira tardia</span></code></pre>
+<p>Tabelas e gráficos deste relatório (só leem as saídas acima e conferem as somas):</p>
+<pre><code><span class="linha">node scripts/auditoria/grafico-h25-dados.mjs                                     # CSVs h25-* em docs/pericia/graficos/dados/</span><span class="linha">node scripts/auditoria/grafico-h25.mjs                                           # ac-urna-linha-do-tempo.svg e ac-urna-emissoes-2026.svg</span></code></pre>
+<p>Registro da hipótese: <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/hipoteses.md">H25 em hipoteses.md</a>. Riscos que a criptografia pública não cobre: <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/analysis/integridade-nacional/06-riscos-fora-da-criptografia.md">integridade-nacional/06</a>.</p>
 </section>
 <section class="anexo" id="anexo-a">
 <p class="sobretitulo" data-ger>Anexo A</p><h1 id="leia-glossário" class="titulo-secao">Glossário</h1>
@@ -641,10 +872,13 @@ li figure.grafico{margin-top:.6em}
 <tr><td><strong>Cadeia de certificados</strong></td><td>A fila de quem confia em quem: a carteira da urna é carimbada por um cartório digital (AC URNA, AC UE2020 ou AC UE2022), e o certificado desse cartório é carimbado por um cartório raiz do TSE</td></tr>
 <tr><td><strong>Validade do certificado</strong></td><td>O período impresso no certificado (“válido de ... até ...”), como o prazo de uma carteira de identidade. É uma regra que quem confere decide aplicar; não entra na conta da assinatura</td></tr>
 <tr><td><strong>Ed521</strong></td><td>O método de cálculo usado pelas urnas novas (modelos 2020 e 2022) para produzir e conferir lacres. É público e também adotado pela ICP-Brasil</td></tr>
+<tr><td><strong>Carga</strong></td><td>A instalação, antes da eleição, do programa e dos dados da seção na urna, feita por técnicos da Justiça Eleitoral com um cartão próprio (mídia de carga). Cada instalação recebe um código de carga</td></tr>
 <tr><td><strong>Número de série</strong></td><td>O número que identifica cada urna e cada cartão de memória</td></tr>
 <tr><td><strong>Recuperador de Dados (RED)</strong></td><td>Programa usado no cartório para gerar o boletim a partir do cartão de votação de uma urna que não conseguiu gerá-lo. Às vezes roda em outra urna</td></tr>
 <tr><td><strong>Seção</strong></td><td>O grupo de eleitores que vota numa mesma urna</td></tr>
-<tr><td><strong>Comparecimento / abstenção</strong></td><td>Quantos eleitores aptos votaram / quantos não votaram</td></tr>
+<tr><td><strong>Ponto percentual</strong></td><td>A diferença entre duas porcentagens. De 48% para 51% são 3 pontos percentuais</td></tr>
+<tr><td><strong>Intervalo de 95%</strong></td><td>A faixa de valores compatível com os dados. Se a faixa contém o zero, os dados não distinguem a diferença medida de diferença nenhuma</td></tr>
+<tr><td><strong>Correção para muitos testes</strong></td><td>Quem faz muitos testes ao mesmo tempo acha alguns resultados “raros” só por acaso. A correção exige mais de cada teste, na proporção de quantos foram feitos</td></tr>
 <tr><td><strong>LAI</strong> (Lei de Acesso à Informação)</td><td>A lei que permite a qualquer pessoa pedir informações a órgãos públicos</td></tr>
 </tbody>
 </table>
@@ -676,7 +910,7 @@ li figure.grafico{margin-top:.6em}
 <p>Para conferir uma seção à mão, sem nenhum programa deste projeto:</p>
 <ol>
 <li>Achar a seção no índice (<code>indice/<wbr>2t/<wbr>{uf}.<wbr>tsv.<wbr>gz</code>): colunas município, zona, seção e impressões digitais.</li>
-<li>Baixar os arquivos da seção no portal do TSE (endereços no doc <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/308797be048aa41846d80c7ef42fbfe03fa35fc9/docs/02-fontes-tse.md">02</a>).</li>
+<li>Baixar os arquivos da seção no portal do TSE (endereços no doc <a href="https://github.com/andrehrferreira/auditoria-2turno-eleicao2026/blob/5d9d3559c26fed87916b717a851f76093bb07418/docs/02-fontes-tse.md">02</a>).</li>
 <li>Calcular a impressão digital de cada arquivo (<code>sha256sum</code> no Linux/Mac, <code>certutil -<wbr>hashfile &lt;arquivo&gt; SHA256</code> no Windows) e comparar com a linha.</li>
 </ol>
 <h2 id="ev-como-registrar-novos-passos"><span class="num" data-ger>B.4</span> Como registrar novos passos</h2>
