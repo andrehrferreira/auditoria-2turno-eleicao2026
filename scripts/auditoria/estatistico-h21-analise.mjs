@@ -7,7 +7,8 @@
 //      q < 0,01, lift ≥ 10 e ≥ 10 ocorrências na zona.
 //   R  as 3 zonas de maior contagem somam ≥ 50% das ocorrências do âmbito.
 //   G  2º turno, presidente (país) e governador (AC, AM, DF, ES, RN, TO): na zona do C, x2 | x1 + x2 ~ Bin(x1 + x2, e2/(e1 + e2));
-//      p < 0,01 e x2 ≥ 2 × esperado.
+//      p < 0,01 e taxa do 2º turno (x2/e2) ≥ 2 × taxa do 1º (x1/e1) (correção do parecer cético 37). O corte original do plano,
+//      x2 ≥ 2 × (x1 + x2)·π, pedia ~8 vezes de crescimento com π típico e era impossível com π ≥ 0,5; fica em gPlano, só para registro.
 //   Famílias benignas F1–F6 (ver plano) saem da lista de candidatos a "senha", mas são relatadas.
 // Só leitura. Uso: node --max-old-space-size=8192 scripts/auditoria/estatistico-h21-analise.mjs
 // Saídas em data/parsed/auditoria/estatistico-eleitoral/h21/: testes.csv (todos os testes), sinalizados.csv (C ∧ R, com
@@ -189,7 +190,9 @@ for await (const linha of rl) {
       r.x1Zona = melhor.x1;
       r.esperado2 = m * pi;
       r.pG = Math.exp(lnBinomSup(m, pi, melhor.x2));
-      r.G = r.pG < PG_MAX && melhor.x2 >= G_FATOR * r.esperado2;
+      r.gPlano = r.pG < PG_MAX && melhor.x2 >= G_FATOR * r.esperado2;
+      r.razaoTaxa = melhor.x1 > 0 ? (melhor.x2 / melhor.e2) / (melhor.x1 / melhor.e1) : Infinity;
+      r.G = r.pG < PG_MAX && r.razaoTaxa >= G_FATOR;
     }
     testes.push(r);
   }
@@ -222,7 +225,8 @@ for (const t of [1, 2]) for (const cargo of CARGOS) {
   const porFam = {};
   for (const r of sinal) for (const f of (r.familias || 'nenhuma').split(',')) porFam[f] = (porFam[f] ?? 0) + 1;
   resumo.porCargoTurno[`${t}|${NOME_CARGO[cargo]}`] = { testes: l.length, C: l.filter((r) => r.C).length, R: l.filter((r) => r.R).length,
-    CeR: l.filter((r) => r.C && r.R).length, gTestavel: l.filter((r) => r.gTestavel).length, G: l.filter((r) => r.G).length,
+    CeR: l.filter((r) => r.C && r.R).length, gTestavel: l.filter((r) => r.gTestavel).length, G: l.filter((r) => r.G).length, gPlano: l.filter((r) => r.gPlano).length,
+    CeG: l.filter((r) => r.C && r.G).length, CeReG: l.filter((r) => r.C && r.R && r.G).length,
     sinal: sinal.length, sinalPorFamilia: porFam, candidatos: l.filter((r) => r.candidato).length,
     ocorrenciasCandidatos: l.filter((r) => r.candidato).reduce((a, r) => a + r.N, 0), ocorrenciasCandidatosZonaTop: l.filter((r) => r.candidato).reduce((a, r) => a + r.xTop, 0) };
 }
@@ -274,9 +278,10 @@ resumo.nulosPresidente = { 1: E1, 2: E2 };
 
 const fmtLinha = (r) => ({ ...r, nomeZona: munPrincipal[r.zonaTop]?.nome, lnP: Math.round(r.lnP * 100) / 100, p: Number(r.p.toPrecision(3)), q: Number(r.q.toPrecision(3)),
   lift: Number.isFinite(r.lift) ? Math.round(r.lift * 10) / 10 : 'inf', top3: Math.round(r.top3 * 1000) / 1000, parcelaExpoTop: Number(r.parcelaExpoTop.toPrecision(3)),
-  esperado2: r.esperado2 != null ? Math.round(r.esperado2 * 10) / 10 : null, pG: r.pG != null ? Number(r.pG.toPrecision(3)) : null });
+  esperado2: r.esperado2 != null ? Math.round(r.esperado2 * 10) / 10 : null,
+  razaoTaxa: r.razaoTaxa == null ? null : Number.isFinite(r.razaoTaxa) ? Math.round(r.razaoTaxa * 100) / 100 : 'inf', pG: r.pG != null ? Number(r.pG.toPrecision(3)) : null });
 const COLS = ['turno', 'cargo', 'ambito', 'd', 'familias', 'N', 'n1', 'n2', 'secoes', 'zonas', 'zonasAmbito', 'zonaTop', 'nomeZona', 'xTop', 'expoTop', 'parcelaExpoTop',
-  'lift', 'top3', 'lnP', 'p', 'q', 'C', 'R', 'gTestavel', 'x1Zona', 'esperado2', 'pG', 'G', 'sinal', 'candidato', 'maxSecao', 'maxSecaoQ'];
+  'lift', 'top3', 'lnP', 'p', 'q', 'C', 'R', 'gTestavel', 'x1Zona', 'esperado2', 'razaoTaxa', 'pG', 'gPlano', 'G', 'sinal', 'candidato', 'maxSecao', 'maxSecaoQ'];
 await writeFile(path.join(DIR, 'testes.csv'), paraCsv(testes.map(fmtLinha), COLS));
 const sinalizados = testes.filter((r) => r.C && r.R).sort((a, b) => a.lnP - b.lnP);
 await writeFile(path.join(DIR, 'sinalizados.csv'), paraCsv(sinalizados.map(fmtLinha), COLS));

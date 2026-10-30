@@ -29,6 +29,7 @@ Para cada turno, cargo e número digitado d: ocorrências no âmbito, seções, 
 
 **G. Crescimento no 2º turno** (só onde o cargo existe nos dois turnos: presidente em todo o país; governador em AC, AM, DF, ES, RN e TO). Na zona de maior contagem do 2º turno, x2 | (x1 + x2) ~ Binomial(x1 + x2, e2/(e1 + e2)).
 - **Corte:** p < 0,01 **e** x2 ≥ 2 × o esperado pela exposição.
+- **Correção depois do resultado (30/10/2026, [parecer 37](../cetico-revisor/37-h18-h21-h22.md)):** este corte tem um defeito de construção. Condicionado a x1 + x2, "x2 ≥ 2 × esperado" pede que a taxa do número cresça 2(1 − π)/(1 − 2π) vezes, com π = e2/(e1 + e2): ~8 vezes com π = 0,43 (o típico do presidente) e é impossível com π ≥ 0,5 (273 das 2.641 zonas no presidente; 34 das 231 de governador). O corte aplicado na nova rodada é o que o texto pretendia: **p < 0,01 e taxa do 2º turno (x2/e2) ≥ 2 × taxa do 1º turno (x1/e1)**. O resultado com os dois cortes está no [doc 14](14-h21-resultado.md).
 
 **Candidato a "senha":** C ∧ R ∧ (G, quando testável) ∧ fora de todas as famílias benignas abaixo. Nos cargos só do 1º turno (senador, deputados e governador fora das 6 UFs), G não é testável: o candidato sai rotulado "sem teste de crescimento".
 
@@ -52,7 +53,8 @@ Para cada turno, cargo e número digitado d: ocorrências no âmbito, seções, 
 
 - Número nunca usado fora do esquema: 10 nulos numa zona (piso do corte); o binomial passa bem antes.
 - Número com uso de fundo no país: o script calcula, para a zona de exposição mediana, quantas ocorrências a mais seriam necessárias para q < 0,01 com fundo de 0, 10, 100 e 1.000 ocorrências.
-- **Ponto cego declarado:** um esquema que use número de uma família benigna (00, número de partido, vizinho de 13 ou 22) ou que espalhe o mesmo número por muitas zonas não é visto. Esquema de 2 dígitos no presidente tem pouco espaço: a maior parte dos 100 números cai em F1 a F3.
+- **Ponto cego declarado:** um esquema que use número de uma família benigna (00, número de partido, vizinho de 13 ou 22) ou que espalhe o mesmo número por muitas zonas não é visto. Esquema de 2 dígitos no presidente e no governador não tem espaço: todos os 100 números caem em F1 a F3 (corrigido em 30/10/2026; o texto original dizia "a maior parte", parecer 37).
+- **Ponto cego não declarado no texto original (acrescentado em 30/10/2026, parecer 37):** número com menos de 10 ocorrências no âmbito nunca é testado. Um esquema com número exclusivo por seção ou por cabo eleitoral fica de fora.
 
 ## Teto em votos
 
