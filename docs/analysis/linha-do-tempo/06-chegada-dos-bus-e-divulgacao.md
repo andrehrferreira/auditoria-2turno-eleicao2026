@@ -6,7 +6,15 @@ Perfil: estatístico eleitoral. Pedido do coordenador em 29/10/2026. Hipótese t
 
 **Universo: completo.** As 499.248 seções do 2º turno (as mesmas 499.248 do 1º), todas com hora de recebimento e de totalização no arquivo oficial. Nenhuma ficou de fora dos itens a e b. Exclusões, com contagem e motivo, estão no fim.
 
-## Resposta curta
+> **Revisão cética ([parecer 28](../cetico-revisor/28-chegada-dos-bus.md), 30/10/2026): números reproduzem bit a bit; sustentado com ressalvas.** Correções que valem sobre o texto abaixo:
+> - "Recebimento" é a hora em que o TSE **registrou** o BU, em lotes, não a hora de chegada: o primeiro registro cai no mesmo segundo (17:05:10) em 15 UFs de fusos diferentes; de 19:30 a 19:40, 292 dos 600 segundos sem registro (dispersão 68); teto de vazão de 19:03 a 21:09. Havia BUs prontos à espera (5.651 em 19 s); onde esperaram não é público.
+> - Há uma segunda parada, de 19:48 a 19:50 (0 registros e 0 totalizações), omitida abaixo.
+> - "Os mesmos degraus do 1º turno" é exagero: o que se repete é a cadência de cerca de 6 minutos e o registro em lotes.
+> - O efeito por zona (z = −5,5) some com a hora de fim da votação e a ordem do 1º turno (z = +1,17). O teste **não** enxerga reordenar lugares inteiros nem UFs: entre UFs, a correlação entre hora de recebimento e parcela do 22 é −0,28 (p = 0,16) no 2º turno e −0,49 (p = 0,010) no 1º.
+> - Trocando os horários de **locais inteiros** dentro da zona, a curva ainda sai do leque (p = 0,005): pesa a ordem geográfica dos locais, não só os blocos. O maior salto e a maior queda do 2º turno são comuns em todas essas trocas (p de 0,25 a 1): "quedas impossíveis" fica refutada com mais força.
+> - O lote das 19:03 com UFs mais 22 primeiro (Hipótese) também aparece no primeiro lote do 1º turno (−0,43, p = 0,045): não é próprio do 2º turno.
+> - MT no 1º turno: 35 casos em 90069, 13 em 90905, 5 em 90921; o relógio dessas urnas está em hora de Brasília (lido como local, 55 de 78 seções teriam BU recebido antes de gerado). Nessas 78 seções, 842 votos depois das 17h de Brasília no 1º turno, que a linha do tempo converte com −1 h (Hipótese para a H06).
+> - 10.774 seções têm no aux um registro "Recebido" posterior à totalização, 3.109 dias depois: Pendente.
 
 A hipótese tem três partes, e o resultado de cada uma é diferente.
 
