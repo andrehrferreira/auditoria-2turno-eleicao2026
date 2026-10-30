@@ -2,13 +2,17 @@
 // Não faz conta nova: lê as saídas da verificação de lacres (integridade-nacional/02) e da recontagem do revisor
 // cético (parecer 24), recontando por UF a partir das linhas por pacote, e confere que tudo bate com os totais
 // sustentados. Lê também a validade dos três certificados públicos de AC em data/certificados/ac/.
-// Os achados novos da H25 (engenheiro 07, estatístico 10) NÃO entram aqui: aguardam o parecer cético 33.
+// Emissões da AC URNA em 2026 por dia: contadas nas linhas da verificação de lacres (nome e início de validade da
+// carteira de cada urna, união dos dois turnos) e conferidas contra a tabela do engenheiro (doc 07) e contra a lista
+// dos 54 certificados com início depois do vencimento da recontagem do parecer cético 33.
 // Entradas:
 //   data/parsed/auditoria/integridade/{2t,1t,1t-identificadores}/<uf>.jsonl   (uma linha por pacote)
 //   data/parsed/auditoria/integridade/{2t,1t}/reverificacao.jsonl            (os pacotes com zeros a mais)
 //   data/parsed/auditoria/integridade/2t/resumo.json, 1t/reverificacao-resumo.json
 //   data/parsed/auditoria/cetico/integridade-recontagem-{2t,1t}.json         (parecer 24)
 //   data/certificados/ac/{acurna,acue2020,acue2022}.der
+//   docs/analysis/engenheiro-seguranca-urna/graficos/h25-acurna-2026-por-dia.csv           (doc 07)
+//   data/parsed/auditoria/cetico-revisor/33-h25-certificados.json                          (parecer 33)
 // Saídas: docs/pericia/graficos/dados/h25-*.csv
 // Uso: node scripts/auditoria/grafico-h25-dados.mjs   (depois: node scripts/auditoria/grafico-h25.mjs)
 import { X509Certificate } from 'node:crypto';
@@ -73,6 +77,12 @@ for (const t of ['2t', '1t']) {
 }
 
 // ---------- 3. Por UF, recontado das linhas por pacote ----------
+const certsAcUrna = new Map(); // nome da urna → início de validade (AAAA-MM-DD), dois turnos
+function guardarCert(nome, de) {
+  const k = nome.toLowerCase();
+  if (certsAcUrna.has(k) && certsAcUrna.get(k) !== de) confere(false, `${k}: duas datas de início (${certsAcUrna.get(k)} e ${de})`);
+  certsAcUrna.set(k, de);
+}
 async function contarTurno(t, dirLacres) {
   const reverif = new Map();
   for await (const o of linhas(path.join(INT, t, 'reverificacao.jsonl'))) reverif.set(o.onde, o);
@@ -91,6 +101,9 @@ async function contarTurno(t, dirLacres) {
         continue;
       }
       c.acUrna++; c[modelo]++;
+      if (rv) guardarCert(rv.cert.nome, rv.cert.validoDe);
+      else if (o.urna?.emissor === 'AC URNA' && o.validadeCert) guardarCert(o.urna.nome, o.validadeCert.slice(0, 10));
+      else confere(false, `${k}: pacote AC URNA sem carteira lida`);
       if (rv) { c.zeros++; if (!/^(00)+$/.test(rv.sobra)) c.falhaFinal++; }
       if (falhas.length) c.falhaFinal++;
       if (obs.some((s) => /AC URNA fora da validade/.test(s))) c.foraValidadeAc++;
@@ -151,3 +164,24 @@ csv('h25-marcos.csv', ['marco', 'data'], [
   ['Primeiro vencimento de carteira de urna em uso', rec['2t'].faixaFim[0]],
   ['Último vencimento de carteira de urna em uso', rec['2t'].faixaFim[1]],
 ]);
+
+// ---------- 4. Emissões da AC URNA em 2026, por dia (parecer 33) ----------
+const porDia = {};
+for (const de of certsAcUrna.values()) if (de.startsWith('2026-')) porDia[de] = (porDia[de] ?? 0) + 1;
+const VENCE = '2026-07-18';
+const eng = Object.fromEntries(readFileSync(path.join(RAIZ, 'docs', 'analysis', 'engenheiro-seguranca-urna', 'graficos', 'h25-acurna-2026-por-dia.csv'), 'utf8')
+  .trim().split(/\r?\n/).slice(1).map((l) => l.split(',')).map(([d, n]) => [d, Number(n)]));
+const c33 = lerJson(path.join(RAIZ, 'data', 'parsed', 'auditoria', 'cetico-revisor', '33-h25-certificados.json'));
+const tardios33 = {};
+for (const t of c33.uniao.tardios) { const d = t.nb.slice(0, 10); tardios33[d] = (tardios33[d] ?? 0) + 1; }
+const dias = Object.keys(porDia).sort();
+confere(JSON.stringify(dias) === JSON.stringify(Object.keys(eng).sort()) && dias.every((d) => porDia[d] === eng[d]),
+  `2026: ${dias.length} dias com emissão, contagem por dia igual à do engenheiro (doc 07)`);
+const depois = dias.filter((d) => d > VENCE);
+confere(c33.uniao.acUrnaEmitidosAposVencimento === 54 && depois.reduce((s, d) => s + porDia[d], 0) === 54
+  && JSON.stringify(depois) === JSON.stringify(Object.keys(tardios33).sort()) && depois.every((d) => porDia[d] === tardios33[d]),
+  `depois de ${VENCE}: 54 carteiras em ${depois.length} dias, iguais dia a dia às da recontagem do parecer 33`);
+const antes = dias.filter((d) => d <= VENCE).reduce((s, d) => s + porDia[d], 0);
+confere(antes === 38, '2026 até o vencimento: 38 carteiras');
+confere(certsAcUrna.size === c33.uniao.porEmissor['AC URNA'], `${certsAcUrna.size} carteiras AC URNA distintas nos dois turnos = parecer 33`);
+csv('h25-acurna-2026-por-dia.csv', ['dia', 'carteiras', 'depois_do_vencimento_da_ac'], dias.map((d) => [d, porDia[d], d > VENCE ? 1 : 0]));

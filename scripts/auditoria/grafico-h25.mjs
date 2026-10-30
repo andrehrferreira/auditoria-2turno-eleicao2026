@@ -1,7 +1,9 @@
-// Gráfico do relatório temático da AC URNA (docs/pericia/temas/certificado-ac-urna.md; H25, parte já revisada).
-// Lê só os CSVs gravados por grafico-h25-dados.mjs e grava docs/pericia/graficos/ac-urna-linha-do-tempo.svg:
-// linha do tempo da validade dos certificados públicos das três AC, com as datas da eleição, em dois painéis
-// (a vida inteira dos certificados e o ano de 2026 ampliado). Mesmo estilo de grafico-integridade.mjs.
+// Gráficos do relatório temático da AC URNA (docs/pericia/temas/certificado-ac-urna.md; H25, pareceres 24 e 33).
+// Lê só os CSVs gravados por grafico-h25-dados.mjs e grava em docs/pericia/graficos/:
+// - ac-urna-linha-do-tempo.svg: validade dos certificados públicos das três AC, com as datas da eleição, em dois
+//   painéis (a vida inteira dos certificados e o ano de 2026 ampliado);
+// - ac-urna-emissoes-2026.svg: carteiras de urna com início de validade em 2026, por dia, antes e depois do
+//   vencimento da AC URNA. Mesmo estilo de grafico-integridade.mjs.
 // Uso: node scripts/auditoria/grafico-h25.mjs
 import { readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
@@ -112,3 +114,64 @@ corpo.push(`<text class="t2" x="20" y="${H - 12}" font-size="11">${xml('Fonte: d
 corpo.push('</svg>');
 writeFileSync(path.join(DIR, 'ac-urna-linha-do-tempo.svg'), corpo.join('\n') + '\n');
 console.log('gravado docs/pericia/graficos/ac-urna-linha-do-tempo.svg');
+
+// ---------- 2. Carteiras da AC URNA com início de validade em 2026, por dia ----------
+{
+  const dias = lerCsv('h25-acurna-2026-por-dia.csv').map((r) => ({ dia: r.dia, n: Number(r.carteiras), depois: r.depois_do_vencimento_da_ac === '1' }));
+  const nAntes = dias.filter((d) => !d.depois).reduce((s, d) => s + d.n, 0);
+  const nDepois = dias.filter((d) => d.depois).reduce((s, d) => s + d.n, 0);
+  const L2 = 760; const mE = 60; const mD = 30; const lg = L2 - mE - mD;
+  const topo = 112; const altP = 220; const max = 25; const passo = 5;
+  const de = 2026; const ate = 2026 + 11 / 12; // 1º/jan a 1º/dez
+  const x = (d) => mE + (lg * (ano(d) - de)) / (ate - de);
+  const y = (v) => topo + altP - (altP * v) / max;
+  const q = [];
+  const H2 = topo + altP + 92;
+  const tit = 'Carteiras de urna da AC URNA com início de validade em 2026, por dia';
+  const sub = 'Carteiras de urnas que votaram em 2026, pela data de início da validade, dia a dia (as 92 com início em 2026).';
+  q.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${L2} ${H2}" width="${L2}" height="${H2}" role="img" aria-labelledby="titulo desc">`);
+  q.push(`<title id="titulo">${xml(tit)}</title><desc id="desc">${xml(sub)} ${xml(dias.map((d) => `${br(d.dia)}: ${d.n}`).join('; '))}. Antes do vencimento: ${nAntes}; depois: ${nDepois}.</desc>`);
+  q.push(ESTILO, `<rect class="fundo" width="${L2}" height="${H2}" rx="6"/>`);
+  q.push(`<text class="t1" x="20" y="30" font-size="17" font-weight="600">${xml(tit)}</text>`);
+  q.push(`<text class="t2" x="20" y="52" font-size="13">${xml(sub)}</text>`);
+  // legenda
+  q.push(`<rect class="s0" x="20" y="66" width="12" height="12" rx="2"/><text class="t1" x="38" y="77" font-size="13">${xml(`início até 18/07, com o certificado da AC válido (${nAntes})`)}</text>`);
+  q.push(`<rect class="s1" x="350" y="66" width="12" height="12" rx="2"/><text class="t1" x="368" y="77" font-size="13">${xml(`início depois de 18/07, com ele vencido (${nDepois})`)}</text>`);
+  for (let v = 0; v <= max; v += passo) {
+    q.push(`<line class="grade" x1="${mE}" x2="${mE + lg}" y1="${y(v)}" y2="${y(v)}" stroke-width="1"/>`);
+    q.push(`<text class="t2" x="${mE - 8}" y="${y(v) + 4}" font-size="12" text-anchor="end">${v}</text>`);
+  }
+  const MESES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov'];
+  MESES.forEach((m, i) => {
+    const xm = mE + (lg * i) / 11;
+    q.push(`<line class="eixo" x1="${xm}" x2="${xm}" y1="${topo + altP}" y2="${topo + altP + 5}" stroke-width="1"/>`);
+    q.push(`<text class="t2" x="${xm + lg / 22}" y="${topo + altP + 20}" font-size="12" text-anchor="middle">${m}</text>`);
+  });
+  q.push(`<line class="eixo" x1="${mE}" x2="${mE + lg}" y1="${topo + altP}" y2="${topo + altP}" stroke-width="1"/>`);
+  // rótulo de valor em cima da barra; quando a barra vizinha está perto, sobe um degrau para não sobrepor
+  const ultimoX = [-99, -99, -99];
+  for (const d of dias) {
+    const xb = x(d.dia); const w = 5;
+    q.push(`<rect class="${d.depois ? 's1' : 's0'}" x="${xb - w / 2}" y="${y(d.n)}" width="${w}" height="${topo + altP - y(d.n)}"/>`);
+    const nivel = ultimoX.findIndex((u) => xb - u >= 12);
+    if (nivel >= 0) {
+      q.push(`<text class="t1" x="${xb}" y="${y(d.n) - 5 - nivel * 12}" font-size="11" text-anchor="middle">${d.n}</text>`);
+      ultimoX[nivel] = xb;
+    }
+  }
+  for (const ev of [
+    { data: VENCE, texto: '18/07: AC URNA vence', cls: 'vence', lado: 'esq', alto: 0 },
+    { data: T1, texto: '1º turno', cls: 'marco', lado: 'esq', alto: 0 },
+    { data: T2, texto: '2º turno', cls: 'marco', lado: 'dir', alto: 0 },
+  ]) {
+    const xe = x(ev.data);
+    q.push(`<line class="${ev.cls}" x1="${xe}" x2="${xe}" y1="${topo - 14}" y2="${topo + altP}" stroke-width="1.5" stroke-dasharray="4 3"/>`);
+    q.push(`<text class="t1" x="${xe + (ev.lado === 'esq' ? -5 : 5)}" y="${topo - 4}" font-size="12" text-anchor="${ev.lado === 'esq' ? 'end' : 'start'}">${xml(ev.texto)}</text>`);
+  }
+  q.push(`<text class="t2" x="${mE + lg / 2}" y="${topo + altP + 40}" font-size="12.5" text-anchor="middle">${xml('Dia de início da validade da carteira, 2026 (eixo vertical: carteiras emitidas no dia)')}</text>`);
+  q.push(`<text class="t2" x="20" y="${H2 - 28}" font-size="12">${xml('Só aparecem carteiras de urnas que votaram no 1º ou no 2º turno. Números de cada dia: tabela do texto.')}</text>`);
+  q.push(`<text class="t2" x="20" y="${H2 - 12}" font-size="11">${xml('Fonte: carteiras de todos os pacotes dos dois turnos; parecer cético 33. Dados: graficos/dados/h25-acurna-2026-por-dia.csv.')}</text>`);
+  q.push('</svg>');
+  writeFileSync(path.join(DIR, 'ac-urna-emissoes-2026.svg'), q.join('\n') + '\n');
+  console.log('gravado docs/pericia/graficos/ac-urna-emissoes-2026.svg');
+}
