@@ -1,0 +1,1 @@
+ok   cx/gpt-6-astra: docs\analysis\modelos\T20\05-soma-dos-boletins-parte1\astra\astra.md

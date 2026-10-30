@@ -12,7 +12,7 @@ Os itens 1 a 11 deste tópico ainda não passaram pela revisão independente, aq
 
 ## Resposta curta
 
-Tudo abaixo vale para o **2º turno (25/10/2026)**, salvo quando o texto diz "1º turno". Os testes de horário (abertura, encerramento e votos depois das 17h) cobrem as 497.896 seções do Brasil. As 1.310 seções do exterior ficam fora, porque falta o fuso de cada país (ver "Limites").
+Tudo abaixo vale para o **2º turno (25/10/2026)**, salvo quando o texto diz "1º turno". Os testes de horário (abertura, encerramento e votos depois das 17h) cobrem 497.896 das 497.897 seções do Brasil com boletim: em 1 seção de SP o diário não foi lido (item 1). As 1.310 seções do exterior ficam fora, porque falta o fuso de cada país (ver "Limites").
 
 | Pergunta | O que se encontrou | Rótulo |
 |---|---|---|
@@ -20,10 +20,10 @@ Tudo abaixo vale para o **2º turno (25/10/2026)**, salvo quando o texto diz "1�
 | Alguma urna encerrou antes das 17h de Brasília? | Nenhuma. A urna tem uma trava que impede o encerramento antes das 17h | **Fato** |
 | Houve voto depois das 17h de Brasília? | Sim: 34.330 votos (0,027% do total) em 29.854 seções. A urna **não tem trava** para isso: quem decide até quando entra eleitor é o mesário | **Fato** |
 | Houve seções que ficaram abertas até 19h? | Sim: 6.352 seções encerraram às 19h ou depois. A própria urna não exigia isso | **Fato** |
-| Os votos depois das 17h mudaram o resultado? | Não. Mesmo se fossem todos de um lado só, seriam 0,8% da diferença entre os dois candidatos | **Fato** |
+| Os votos depois das 17h mudaram o resultado? | Não. Mesmo se fossem todos de um lado só, seriam 0,77% da diferença entre os dois candidatos (34.330 de 4.430.191) | **Fato** |
 | Houve voto em ritmo impossível para uma pessoa? | Não. Fora 3 seções com erro de leitura desta auditoria, o menor intervalo entre dois votos seguidos é de 16 segundos | **Fato** |
 | O mesário seguiu as regras de horário? | Não se pode afirmar. Há seções em que o mesário declarou à urna que "todas as pessoas presentes já votaram" e depois disso ainda houve voto. Quantas são: **Pendente: em verificação** | **Fato** (o registro existe); a contagem e o motivo são **Pendentes** |
-| Às 19h os boletins já existiam, mas o TSE os liberou aos poucos? (item 12) | Às 19h, 98,64% dos boletins do Brasil já tinham sido emitidos pelas urnas, e o TSE tinha registrado como recebidos 1.909 (0,38% das seções). De 17:10 a 19:03:37 o TSE não registrou nenhum boletim com voto; depois, registrou em lotes e com vazão limitada até 21:09. Onde os boletins esperaram, e se a ordem de liberação dependeu do voto das seções: **Pendente** | **Fato** (horários e contagens); **Pendente** (onde esperaram e a ordem) |
+| Às 19h os boletins já existiam, mas o TSE os liberou aos poucos? (item 12) | Às 19h, 98,64% dos boletins do Brasil já tinham sido emitidos pelas urnas, e o TSE tinha registrado como recebidos 1.909 (0,38% das 499.248 seções). De 17:10 a 19:03:37 o TSE não registrou nenhum boletim com voto; depois, registrou em lotes e com vazão limitada até 21:09. Onde os boletins esperaram, e se a ordem de liberação dependeu do voto das seções: **Pendente** | **Fato** (horários e contagens); **Pendente** (onde esperaram e a ordem) |
 
 O resultado mostra **o que a urna registrou e quando**. Não mostra **quem** estava diante da urna, nem se a entrada de eleitores depois das 17h foi autorizada (ver "O que este resultado prova e o que não prova").
 
@@ -69,7 +69,7 @@ Princípio usado (princípio 8 das premissas desta auditoria): uma regra cumprid
 ### 1. Fuso horário
 
 - **Fato.** Fuso de −2 h: todo o Acre (22 municípios, 2.270 seções) e 11 municípios do Amazonas (556 seções): Guajará, Atalaia do Norte, Benjamin Constant, Eirunepé, Envira, Ipixuna, Jutaí, São Paulo de Olivença, Amaturá, Itamarati e Tabatinga. Fuso de −1 h: os demais municípios do AM e todos os de MS, MT, RO e RR. Fuso de +1 h: Fernando de Noronha (10 seções). Fuso 0: todos os municípios das demais UFs.
-- **Hipótese.** A lista dos 11 municípios do AM com −2 h confere com a lei federal dos fusos (Lei 12.876/2013). A lista acima saiu do relógio das urnas, e a conferência com a lei não foi feita.
+- **Pendente.** Comparar a lista dos 11 municípios do AM com −2 h com a lei federal dos fusos (Lei 12.876/2013). A lista acima saiu do relógio das urnas; a comparação com a lei ainda não foi feita.
 - Consequência prática: quem converter o horário pela UF inteira erra em 1 hora as 556 seções desses municípios do AM e as 10 de Noronha.
 
 ### 2. Preparação (carga)
@@ -81,7 +81,7 @@ Princípio usado (princípio 8 das premissas desta auditoria): uma regra cumprid
 
 ### 3. Abertura
 
-- **Fato.** Nenhuma urna ficou pronta antes das 8h de Brasília e nenhuma recebeu voto antes das 8h. Metade das urnas ficou pronta até 08:00:01, e 99% até 08:05:46.
+- **Fato.** Nenhuma urna do Brasil ficou pronta antes das 8h de Brasília e nenhuma recebeu voto antes das 8h (o exterior fica fora, item 1). Metade das urnas ficou pronta até 08:00:01, e 99% até 08:05:46.
 - **Fato.** 927 seções ficaram prontas às 8h15 ou depois; 88 às 9h ou depois; 18 às 10h ou depois. A que abriu mais tarde, MG 46477/0134/0295, só foi ligada às 13h00 e ficou pronta às 13h08, com 9 votos de 25 eleitores aptos (conferido no diário original).
 - **Fato.** Em 5 seções o boletim diz que a votação abriu às 08:00:01, mas o diário só mostra a urna pronta de 14 a 42 minutos depois: CE 15296/0011/0258, PE 23370/0035/0045, PE 23515/0054/0003, RJ 60011/0191/0045 e SP 71072/0420/0322. Em PE 23370/0035/0045, o diário original registra bateria crítica às 7h17; a linha seguinte só aparece às 8h06, dizendo que a urna foi ligada às 8h04, e a urna fica pronta às 8h42.
 - **Hipótese.** A urna entrou em votação às 08:00:01, perdeu energia e o fim do diário daquele trecho se perdeu; ou o boletim tira o horário de abertura de outra fonte. **Pendente.**
@@ -98,7 +98,7 @@ Princípio usado (princípio 8 das premissas desta auditoria): uma regra cumprid
 
 Para votar, cada eleitor passa por um ciclo: o mesário digita o título, a urna habilita o eleitor e o eleitor confirma cada cargo. Isso leva um tempo mínimo físico. Um voto sem esse ciclo, ou rápido demais, indicaria voto inserido sem eleitor.
 
-- **Fato.** Em 499.177 seções com voto no diário, foram encontrados 339 intervalos menores que 15 segundos entre dois votos. **Todos estão em 3 seções**, todas com três diários no mesmo pacote: BA 39870/0133/0184, ES 57932/0009/0085 e MG 40690/0016/0264. Nessas 3 seções o diário lido conta **mais** votos que o boletim (+185, +304 e +46). O boletim não é afetado.
+- **Fato.** Em 499.177 seções com voto no diário (as 497.896 do Brasil e 1.281 do exterior: o intervalo entre dois votos não depende do fuso, então o exterior entra neste teste), foram encontrados 339 intervalos menores que 15 segundos entre dois votos. **Todos estão em 3 seções**, todas com três diários no mesmo pacote: BA 39870/0133/0184, ES 57932/0009/0085 e MG 40690/0016/0264. Nessas 3 seções o diário lido conta **mais** votos que o boletim (+185, +304 e +46). O boletim não é afetado.
 - **Fato (conferido no diário original).** A causa é o programa que esta auditoria usa para ler os diários, não a urna:
   - em BA 39870/0133/0184 e MG 40690/0016/0264, o diário da urna original aparece inteiro em dois arquivos do pacote, linha por linha idêntica (185 e 46 votos), e a leitura somou as duas cópias;
   - em ES 57932/0009/0085, o pacote traz também o diário de outra seção, a 0112 da mesma zona (304 votos, o mesmo número do boletim da 0112). Ele veio junto porque a mesma urna de contingência foi usada nas duas seções. A leitura misturou os votos das duas urnas.
@@ -162,7 +162,7 @@ Não é possível saber em quem cada eleitor tardio votou: o registro dos votos 
 - **Fato.** Correlação, dentro da zona, entre a parcela de votos tardios da seção e o percentual do 13: +0,013, em 497.830 seções. Isto é, praticamente nenhuma relação.
 - **Fato.** Locais que foram até 19h, comparados com locais que encerraram às 17h na mesma zona: −0,47 ponto percentual para o 13, em 83 zonas. Por UF: RJ −0,03; SP −0,39; BA −1,25; PE −0,32; PB −2,97.
 - **Fato.** Descontando o que cada seção já mostrava no 1º turno (com o 1º turno completo, todas as UFs), a diferença entre os locais que foram até 19h e os vizinhos fica em 0,00 ponto percentual, nas mesmas 83 zonas.
-- **Fato.** Escala: a diferença nacional para presidente é de 4.430.191 votos (13: 64.256.232; 22: 59.826.041, soma dos boletins, tópico 5). Todos os votos depois das 17h somam 34.330. Mesmo que fossem todos de um lado, seriam 0,8% dessa diferença.
+- **Fato.** Escala: a diferença nacional para presidente é de 4.430.191 votos (13: 64.256.232; 22: 59.826.041, soma dos boletins, tópico 5). Todos os votos depois das 17h somam 34.330. Mesmo que fossem todos de um lado, seriam 0,77% dessa diferença.
 - Conclusão do item: **Fato.** A hipótese H06, de que a extensão do horário favoreceu um lado a ponto de mudar o resultado, não se sustenta: as diferenças entre seções são pequenas e mudam de sinal conforme a comparação, a dos locais que foram até 19h desaparece quando se desconta o 1º turno, e o volume é pequeno demais para mudar o resultado nacional.
 
 ### 10. Encerramento e emissão do boletim
@@ -171,7 +171,7 @@ Não é possível saber em quem cada eleitor tardio votou: o registro dos votos 
 - **Fato.** Tempo entre o encerramento e a emissão do boletim, pelos horários do próprio boletim: menos de 5 minutos em 493.502 seções; de 5 a menos de 15 minutos em 4.434; de 15 a menos de 60 minutos em 874; de 1 hora a menos de 2 horas em 358; 2 horas ou mais em 10 (e 29 sem horário de encerramento, as do exterior citadas acima). O maior foi 2h44min45s (RJ 59250/0090/0232, Volta Redonda). Exemplo conferido no diário original, AC 01082/0004/0440: o encerramento foi confirmado às 17h02 de Brasília, os mesários foram registrados logo depois, e a finalização só começou às 19h00, sem nenhum voto no intervalo.
 - **Fato.** 5 seções do Brasil têm boletim, mas o diário lido não tem o início do encerramento no dia: ES 57932/0009/0112, MG 46256/0131/0046, RS 89630/0072/0054, SC 83593/0008/0143 e SP 61654/0014/0250. A ES 57932/0009/0112 é a seção cujo diário apareceu também no pacote da 0085 (item 5); o boletim dela saiu de uma urna de contingência usada só para encerrar.
 - **Hipótese.** Nessas 5, o boletim foi gerado depois de religar a urna ou trocar por outra, e o diário dessa parte ficou em outra mídia. **Pendente.**
-- **Fato.** Em 5.712 seções o boletim saiu de urna de reserva que substituiu a da seção (e em mais 2, de urna de reserva usada só para encerrar), e 11.748 pacotes têm mais de um diário. Em 9 de 499.206 seções com diário lido, a contagem de votos do diário difere da do boletim: as 3 do erro de leitura (item 5) e 6 com menos votos no diário que no boletim (BA 34711/0021/0178: −1; BA 35653/0173/0235: −13; MA 08893/0047/0609: −36; PB 21750/0002/0254: −1; PI 11533/0003/0216: −1; RS 89060/0017/0191: −2). As 6 estão explicadas no [tópico 2](02-coerencia-entre-arquivos.md) ("As 10 seções em que o diário não bateu de primeira"). Em BA 34711/0021/0178, PB 21750/0002/0254 e PI 11533/0003/0216, o voto que falta foi confirmado e a urna reiniciou antes de registrar "computado". Em RS 89060/0017/0191, um dos 2 é desse tipo e o outro tem o atendimento só pela metade no diário: a urna caiu no meio do voto ([tópico 2](02-coerencia-entre-arquivos.md), conferido por uma segunda verificação independente). Em BA 35653/0173/0235 e MA 08893/0047/0609, os 13 e os 36 votos não têm rastro porque o diário da urna que os recebeu não está no pacote. Somados ao do RS, são os 50 votos sem rastro no diário que a revisão independente conferiu ([tópico 2](02-coerencia-entre-arquivos.md)).
+- **Fato.** Em 5.712 seções o boletim saiu de urna de reserva que substituiu a da seção (e em mais 2, de urna de reserva usada só para encerrar), e 11.748 pacotes têm mais de um diário. Em 9 de 499.206 seções com diário lido, a contagem de votos do diário difere da do boletim: as 3 do erro de leitura (item 5) e 6 com menos votos no diário que no boletim (BA 34711/0021/0178: −1; BA 35653/0173/0235: −13; MA 08893/0047/0609: −36; PB 21750/0002/0254: −1; PI 11533/0003/0216: −1; RS 89060/0017/0191: −2). As 6 estão explicadas no [tópico 2](02-coerencia-entre-arquivos.md) ("As 10 seções em que o diário não bateu de primeira"; a 10ª seção de lá é a de SP cujo diário não foi lido, item 1). Em BA 34711/0021/0178, PB 21750/0002/0254 e PI 11533/0003/0216, o voto que falta foi confirmado e a urna reiniciou antes de registrar "computado". Em RS 89060/0017/0191, um dos 2 é desse tipo e o outro tem o atendimento só pela metade no diário: a urna caiu no meio do voto ([tópico 2](02-coerencia-entre-arquivos.md), conferido por uma segunda verificação independente). Em BA 35653/0173/0235 e MA 08893/0047/0609, os 13 e os 36 votos não têm rastro porque o diário da urna que os recebeu não está no pacote. Somados ao voto do RS com o atendimento pela metade (49 + 1), são os 50 votos sem rastro no diário que a revisão independente conferiu ([tópico 2](02-coerencia-entre-arquivos.md)).
 
 ### 11. Um caso examinado nos dois turnos: AM, Ipixuna, zona 0045, seção 0063
 
@@ -182,7 +182,7 @@ A seção, numa aldeia indígena, foi examinada porque o boletim mostra o 22 cai
 - **Fato.** **2º turno:** a urna da seção foi a mesma que serviu de reserva no 1º turno, e não houve troca. Abriu às 6h00 locais (8h de Brasília), foi desligada pela chave às 12h51, religada às 13h23, e encerrou às 15h02 locais (17h02 de Brasília). Nenhum voto depois das 17h de Brasília; 193 dos 197 votos vieram antes das 11h locais.
 - **Fato.** Sem digital (boletim): 55 dos 227 eleitores do 1º turno (24,2%). **Pendente: em verificação** a parcela sem digital entre os votos tardios do 1º turno, a distribuição por hora no 2º turno e de quem é a digital nas liberações manuais.
 - **Fato.** Nenhum intervalo impossível nos dois turnos (mínimo de 73 segundos no 1º e de 40 segundos no 2º).
-- **Hipótese.** O atraso na abertura e a troca da urna (29 minutos e 54 segundos sem voto, das 16h26min22s às 16h56min16s locais) não explicam 3h54 de votação depois das 17h de Brasília no 1º turno. **Pendente:** a autorização do juiz eleitoral, se houver, na ata da seção ou da zona.
+- **Hipótese.** O atraso na abertura e a troca da urna (29 minutos e 54 segundos sem voto, das 16h26min22s às 16h56min16s locais) não explicam 3 horas, 53 minutos e 58 segundos de votação depois das 17h de Brasília no 1º turno (das 15h00 às 18h53min58s locais). **Pendente:** a autorização do juiz eleitoral, se houver, na ata da seção ou da zona.
 - **O que o caso não mostra:** a queda do 22 não pode ser ligada ao horário, porque o registro dos votos não diz em quem cada eleitor votou. O diário mostra só que, no 1º turno, 81 dos 227 votos (35,7%) vieram depois das 17h de Brasília e, no 2º, a votação praticamente terminou às 11h locais.
 
 ### 12. A apuração na noite do 2º turno: os boletins chegaram ao TSE e foram liberados aos poucos? (hipótese H06)
@@ -201,7 +201,7 @@ A seção, numa aldeia indígena, foi examinada porque o boletim mostra o 22 cai
 
 Nenhum arquivo público tem a hora em que o boletim saiu da seção ou do ponto de transmissão. Por isso este item compara a emissão com o registro, e não com o envio.
 
-**Universo (Fato).** As 499.248 seções do 2º turno, todas com hora de registro e de totalização. A hora de emissão existe nas 497.897 seções do Brasil. As 1.351 do exterior ficam fora só das contas de emissão, porque falta o fuso de cada país (como nos itens 1 a 11).
+**Universo (Fato).** As 499.248 seções do 2º turno, todas com hora de registro e de totalização. A hora de emissão existe nas 497.897 seções do Brasil. (Nos itens 1 a 11 são 497.896, porque lá a conta usa o diário, e o diário de 1 seção de SP não foi lido; aqui a hora de emissão vem do boletim.) As 1.351 do exterior ficam fora só das contas de emissão, porque falta o fuso de cada país (como nos itens 1 a 11).
 
 **Resposta, parte por parte:**
 
@@ -239,7 +239,7 @@ Nenhum arquivo público tem a hora em que o boletim saiu da seção ou do ponto 
 | 22:00 | 497.896 | 100,00 | 499.131 | 99,98 | 498.027 | 99,76 |
 | 23:00 | 497.896 | 100,00 | 499.246 | 100,00 | 499.107 | 99,97 |
 
-"100,00" é arredondamento: a contagem exata está na coluna ao lado.
+"100,00" é arredondamento: a contagem exata está na coluna ao lado. A coluna de emitidos para em 497.896 às 23:00 porque o último boletim do Brasil foi emitido às 23:04:51 (MG 41882/0320/0185, urna de reserva); com ele, chega às 497.897.
 
 ![2º turno: boletins já emitidos pelas urnas × boletins já registrados pelo TSE](graficos/chegada-bu-emitidos-x-registrados.svg)
 
@@ -288,10 +288,10 @@ Nenhum arquivo público tem a hora em que o boletim saiu da seção ou do ponto 
 - **Exterior fora dos testes de horário.** As 1.310 seções do exterior não entram porque falta a tabela de fuso por país. No relógio local, o exterior teve 417 votos depois das 17h, em 252 seções. **Fato.**
 - **Erro de leitura em 3 seções.** O programa desta auditoria junta no mesmo diário cópias repetidas da urna original (2 seções) e o diário de outra seção que veio no mesmo pacote (1 seção). Afeta 3 seções no 2º turno e não afeta o boletim. **Pendente:** correção do programa de leitura e nova leitura de todos os diários.
 - **Ciclos com 2 cargos.** Não medidos no universo completo (item 5).
-- **Contagens de votos tardios.** Uma contagem anterior desta auditoria, feita por outro caminho, dá 34.066 votos depois das 17h e 1.960 depois das 18h no 2º turno. A diferença para 34.330 está explicada: aquela conta usa só seções cujo boletim saiu da urna da própria seção e inclui o exterior pelo relógio local. Sem o exterior, ela dá 33.668; os 662 votos que faltam para 34.330 estão em seções cujo boletim saiu de urna de reserva. **Fato.**
+- **Contagens de votos tardios.** Uma contagem anterior desta auditoria, feita por outro caminho, dá 34.066 votos depois das 17h e 1.960 depois das 18h no 2º turno. A diferença para 34.330 está explicada: aquela conta usa só seções cujo boletim saiu da urna da própria seção e inclui o exterior pelo relógio local (398 votos). Sem o exterior, ela dá 33.668; os 662 votos que faltam para 34.330 estão em seções cujo boletim saiu de urna de reserva. Dos 417 votos tardios do exterior, os 398 estão em 239 seções com a urna da própria seção, e os outros 19, em 13 seções atendidas por urna de reserva. **Fato.**
 - **Sigilo do voto.** Não dá para saber em quem votou o eleitor tardio, só comparar seções.
 - **Hora de envio do boletim (item 12).** Os arquivos públicos têm a hora de emissão, de registro e de totalização, mas não a hora em que o boletim saiu da seção ou do ponto de transmissão. **Fato.**
-- **Relógio de urnas de MT no 1º turno.** A revisão independente do item 12 achou sinais de que, no 1º turno, o relógio das urnas de três municípios de MT (90069, 90905 e 90921) estava na hora de Brasília, e não na local. **Fato (corrigido em 30/10/2026):** em 81 seções do 1º turno o operador digitou a hora de Brasília ao preparar a urna, e o relógio dela ficou 1 hora adiantado (MT 90069, 90905 e 90921, zona 0053; AM 02615/0005, seções 0119 e 0120; RS 88994/0131/0008). As contas dos itens 6 e 7 já usam a hora certa dessas seções. Nelas, a trava de abertura da urna usou o relógio adiantado, e 3 votos foram dados antes das 8h de Brasília. A trava é um controle técnico, mas a hora que ela usa é digitada por uma pessoa.
+- **Relógio de urnas de MT no 1º turno.** A revisão independente do item 12 achou sinais de que, no 1º turno, o relógio das urnas de três municípios de MT (90069, 90905 e 90921) estava na hora de Brasília, e não na local. **Fato (corrigido em 30/10/2026):** em 81 seções do 1º turno, o relógio da urna estava 1 hora adiantado em relação à hora do município. Em 80 delas, o operador digitou a hora de Brasília ao preparar a urna, num lugar 1 hora atrás de Brasília: as 78 seções da zona 0053 de MT (municípios 90069, 90905 e 90921) e 2 de AM 02615/0005 (seções 0119 e 0120). Na outra, RS 88994/0131/0008, o relógio interno da urna já estava 1 hora à frente e ninguém o acertou na preparação. As contas dos itens 6 e 7 já usam a hora certa dessas seções. A trava de abertura conta no relógio da própria urna: em MT, ela libera a votação às 7h do relógio, que são 8h de Brasília quando o relógio está na hora local. Com o relógio na hora de Brasília, ela liberou a votação às 7h de Brasília, e 3 votos foram dados antes das 8h de Brasília, todos na zona 0053 de MT. A trava é um controle técnico, mas a hora que ela usa é digitada por uma pessoa.
 
 ## Próximos passos
 

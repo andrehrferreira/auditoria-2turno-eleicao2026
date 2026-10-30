@@ -1,6 +1,6 @@
 # 4. Como os eleitores foram liberados para votar
 
-> **Como os números foram conferidos:** revisto em 29/10/2026 pela regra "só entra número reproduzido". Cada número deste tópico vem de uma de duas fontes, indicadas ao lado do rótulo:
+> **Como os números foram conferidos:** revisto em 29 e 30/10/2026 pela regra "só entra número reproduzido". Cada número deste tópico vem de uma de duas fontes, indicadas ao lado do rótulo:
 >
 > - **(revisado):** o número passou por uma revisão independente, que tentou derrubar a conclusão, refez as contas e a confirmou;
 > - **(recalculado):** o número foi recalculado de forma independente, por programas próprios desta auditoria, sobre todas as seções; os casos do item 7 foram conferidos também no diário original da urna.
@@ -13,14 +13,14 @@ Quantos eleitores votaram depois de pôr o dedo no leitor da urna, e quantos vot
 
 ## Resposta curta
 
-- **Fato (recalculado):** no 2º turno, 87,3% dos eleitores foram liberados pela própria digital. 5,7% votaram sem digital porque a urna não tinha a digital deles, e 6,7% porque tinham digital, ela não foi reconhecida e a mesa os liberou à mão. Os 0,3% restantes são do exterior, onde ninguém votou com digital. **Fato (revisado e recalculado):** sem o exterior, o total sem digital no Brasil é 12,4%.
-- **Fato (recalculado):** das 8,6 milhões de liberações à mão, 2,8 milhões ficaram no log da urna sem nenhum mesário ligado a elas.
-- **Fato (revisado):** em 16.011 seções, a urna liberou mais eleitores "sem biometria" do que o cadastro público diz existir. Nas 378 seções de maior excesso, onde a causa foi medida, ela é uma diferença de definição entre dois arquivos do TSE; nas 16.011 inteiras essa medida está pendente (item 3). Em nenhuma seção o comparecimento passa do número de aptos. Mas esses eleitores votaram sem nenhum controle técnico.
-- **Fato (revisado):** o teste que compara os eleitores que foram votar só no 2º turno, com e sem digital, **não decide**. No modelo escolhido antes de rodar, o Brasil não passa do limite e só SP passa, a favor do 22. Mas, quando se leva em conta uma característica do eleitorado da seção (idade ou escolaridade), o resultado do Brasil muda de lado. A diferença entre os dois grupos, se existe, não se separa do perfil das seções (item 6.1).
+- **Fato (recalculado):** no 2º turno, 87,3% dos eleitores foram liberados pela própria digital. 5,7% votaram sem digital porque a urna não tinha a digital deles, e 6,7% porque tinham digital, ela não foi reconhecida e a mesa os liberou à mão. Os 0,3% restantes são das 1.281 seções do exterior com log de urna, onde nenhum voto foi liberado pela digital (item 4). **Fato (revisado e recalculado):** sem o exterior, o total sem digital no Brasil é 12,4%.
+- **Fato (recalculado):** das 8.632.431 liberações à mão, 2.791.394 ficaram no log da urna sem nenhum mesário ligado a elas.
+- **Fato (revisado):** em 16.011 seções, a urna liberou mais eleitores "sem biometria" do que o cadastro público diz existir. Nas 378 seções de maior excesso, onde a causa foi medida, quase todo o excesso (5.506 dos 5.560 eleitores) vem de atendimentos em que, segundo o log, a urna mostrou a foto do eleitor e não pediu digital: o "com biometria" do cadastro público não é o mesmo "com digital" da urna. Nas 16.011 inteiras essa medida está pendente (item 3). Em nenhuma seção o comparecimento passa do número de aptos. Mas esses eleitores votaram sem que a urna conferisse a digital deles.
+- **Fato (revisado):** o teste que compara os eleitores que foram votar só no 2º turno, com e sem digital, **não decide**. No modelo escolhido antes de rodar, o Brasil não passa do limite e só SP passa, a favor do 22. Mas, quando se leva em conta uma característica do eleitorado da seção, o Brasil passa do limite: a favor do 13, se a característica é a idade; a favor do 22, se é a escolaridade. A diferença entre os dois grupos, se existe, não se separa do perfil das seções (item 6.1).
 - **Fato (recalculado com duas contas):** no Brasil, só 1 seção do 2º turno votou inteira sem digital, e ela não virou. Separando as seções pela parcela de votantes sem digital, o 13 ganhou entre 1,9 e 2,9 pontos do 1º para o 2º turno em todas as faixas, com o mesmo tamanho nas seções quase sem liberação sem digital (2,78). A virada não cresce com a falta de digital (item 9).
 - **Fato (recalculado):** 97 seções liberaram à mão metade ou mais dos votantes, todas com urnas de 2013 ou 2015 (item 8).
 - **Pendente: em verificação.** Se as seções que liberam mais gente sem digital votam mais num dos candidatos, comparando seções parecidas (item 6.2).
-- **Fato (recalculado com duas contas):** no Nordeste, de 3,41% a 99,93% dos liberados sem digital podem ter votado no 13. Mesmo no pior caso para o 13, anulando esses votos, ele ainda venceria por 166.144 votos. No Brasil inteiro, porém, o pior caso aritmético dos 15,9 milhões de liberados sem digital inverteria o resultado: a aritmética, sozinha, não fecha essa porta (item 6.4). Em quem os liberados de fato votaram é estimativa e fica fora deste relatório.
+- **Fato (recalculado com duas contas):** no Nordeste, de 3,41% a 99,93% dos liberados sem digital podem ter votado no 13. Mesmo no pior caso para o 13, anulando esses votos, ele ainda venceria por 166.144 votos. No Brasil inteiro, porém, o pior caso aritmético dos 15.884.298 liberados sem digital inverteria o resultado: a aritmética, sozinha, não fecha essa porta (item 6.4). Em quem os liberados de fato votaram é estimativa e fica fora deste relatório.
 - **Limite que não muda:** o voto é secreto. Nenhum arquivo diz em quem votou o eleitor liberado sem digital. Esse voto só pode ser cercado por cima e por baixo, ou estimado pela comparação entre seções, mas nunca observado.
 
 ## Antes de começar: como uma pessoa é liberada para votar
@@ -33,7 +33,7 @@ Na seção, o mesário digita o número do título (ou o CPF) do eleitor no term
 | **2. Pelo ano de nascimento** | A urna **não tem** a digital desse eleitor no arquivo dela. Ela não pede o dedo: pede só o ano de nascimento, que o mesário digita | "sem biometria cadastrada" | **Não.** Basta saber o título e o ano de nascimento |
 | **3. Liberação manual** | O eleitor tem digital no arquivo, mas ela não é reconhecida (o log registra até 4 tentativas, com a mensagem "Solicita digital. Tentativa [n] de [4]"). A mesa digita um dado pessoal do eleitor e a urna aceita uma digital de quem estiver na mesa. Às vezes a urna liga essa digital a um mesário registrado, às vezes grava que não é possível associar a habilitação a um mesário | "habilitados por biografia" | **Não.** O dado pessoal é digitado por uma pessoa, e a digital gravada não é a do eleitor |
 
-**Regra desta auditoria (princípio 8 das premissas):** só conta como controle o que é técnico e deixa rastro nos arquivos. Aqui, isso é só o caminho 1. Conferir o documento com foto, olhar a foto do eleitor que aparece na tela do mesário ou ter fiscal na seção são procedimentos feitos por pessoas. Eles podem ser ignorados ou combinados, então não contam como controle nem como explicação que reduza o risco. Os caminhos 2 e 3 são **brechas humanas**: a urna não confere a digital do próprio eleitor, e a liberação depende do que a mesa digita (e, no caminho 3, de um dedo qualquer posto no leitor).
+**Regra desta auditoria (princípio 8 das premissas):** só conta como controle o que é técnico e deixa rastro nos arquivos. Aqui, isso é só o caminho 1. Conferir o documento com foto, olhar a foto do eleitor que aparece na tela do mesário ou ter fiscal na seção são procedimentos feitos por pessoas. Eles podem ser ignorados ou combinados, então não contam como controle nem como explicação que reduza o risco. Os caminhos 2 e 3 são **brechas humanas**: a urna confere que o título existe na seção e ainda não votou, mas não confere a digital do próprio eleitor, e a liberação depende do que a mesa digita (e, no caminho 3, de um dedo posto no leitor que a urna não precisa ligar a ninguém).
 
 Brecha aberta não é prova de fraude. Este tópico mede se o uso dessas brechas deixou nos dados o padrão que uma fraude deixaria.
 
@@ -51,7 +51,7 @@ Por isso, nenhum resultado deste tópico diz em quem um eleitor liberado votou. 
 
 ### 1. Quantos votaram com e sem digital
 
-**Fato (recalculado).** O país tem 499.248 seções. Dessas, 41, todas no exterior, não foram instaladas e não têm arquivo. Das 499.207 restantes, a tabela usa 499.176: ficaram de fora 31 seções (29 do exterior e 2 de MG) em que o boletim de um dos turnos veio do Sistema de Apuração, e não da urna, porque esse boletim não divide os eleitores por forma de liberação. Essas 31 somam 1.348 votantes no 1º turno e 1.491 no 2º (831 no exterior e 660 nas 2 de MG). Entram as 28 unidades (26 estados, DF e exterior):
+**Fato (recalculado).** O país tem 499.248 seções. Dessas, 41, todas no exterior, não foram instaladas e não têm arquivo. Das 499.207 restantes, a tabela usa 499.176: ficaram de fora 31 seções (29 do exterior e 2 de MG) em que o boletim de um dos turnos veio do Sistema de Apuração, e não da urna, porque esse boletim não divide os eleitores por forma de liberação. Essas 31 somam 1.348 votantes no 1º turno e 1.491 no 2º (831 no exterior e 660 nas 2 de MG). Nas 2 de MG (41238/0039/0168 e 50075/0047/0041), o boletim do Sistema de Apuração é o do 1º turno; o do 2º turno saiu da urna e traz a divisão, com 172 liberados sem digital (115 pelo ano de nascimento e 57 à mão). Por isso o item 6.4, que usa só o 2º turno, conta 15.884.298 liberados sem digital no Brasil, 172 a mais que a soma desta tabela (7.251.695 + 8.632.431 = 15.884.126). Entram as 28 unidades (26 estados, DF e exterior):
 
 | | 1º turno | 2º turno |
 |---|---|---|
@@ -79,26 +79,26 @@ O log grava o título do mesário quando a urna consegue ligar a digital usada n
 
 O TSE publica o **perfil do eleitorado**: quantos eleitores cada seção tem e quantos deles têm biometria cadastrada (arquivo de 14/07/2026). O teste comparou esse número com o boletim: a urna não deveria liberar pelo ano de nascimento mais gente do que a seção tem sem biometria, mais uma folga para os eleitores em trânsito. O teste cobre o Brasil, sem o exterior.
 
-- **Fato:** em 16.011 das 497.508 seções do 2º turno que puderam ser comparadas (3,2%; das 497.897 seções do Brasil com voto, 389 não aparecem no perfil de 14/07/2026 e ficaram fora), o boletim registra mais votantes "sem biometria cadastrada" do que o perfil permite. O excesso soma 36.340 eleitores, 0,03% dos votos. Em 7.922 dessas seções, o perfil diz que 100% dos eleitores têm biometria.
+- **Fato:** em 16.011 das 497.508 seções do 2º turno que puderam ser comparadas (3,2%; das 497.897 seções do Brasil com voto, 389 não aparecem no perfil de 14/07/2026 e ficaram fora), o boletim registra mais votantes "sem biometria cadastrada" do que o perfil permite. O excesso soma 36.340 eleitores, 0,03% dos votantes do Brasil no 2º turno. Em 7.922 dessas seções, o perfil diz que 100% dos eleitores têm biometria.
 - **Fato:** o excesso se concentra em algumas zonas. As maiores: ES, Vitória, zona 52 (126 seções, 680 eleitores); SP, Indaiatuba, zona 211 (84 seções, 600); PA, Ulianópolis, zona 84 (52 seções, 561).
 - **Pendente: em verificação.** O tamanho do excesso no 1º turno e quantas seções o repetem nos dois turnos. A conta que existe deixou SP de fora e tem um pequeno defeito nas seções agregadas, apontado na revisão independente, que a faz contar um pouco a menos. Por isso, nenhum número do 1º turno entra aqui.
-- **Fato:** há também o efeito contrário, maior e em outras zonas: 17.621 seções com 229.717 votantes **pela digital** acima do que o perfil diz ter biometria (sobretudo MG, ES, MS e RJ).
+- **Fato:** há também o efeito contrário, maior e em outras zonas: nas mesmas 497.508 seções, 17.621 seções com 229.717 votantes **pela digital** acima do que o perfil diz ter biometria (sobretudo MG, ES, MS e RJ).
 - **Fato:** o caso SP, Indaiatuba, zona 211, seção 438, foi conferido no arquivo bruto. O perfil diz que os 337 eleitores têm biometria. O boletim e o log registram 65 liberados pelo ano de nascimento, e em nenhum desses atendimentos a urna pediu digital.
-- **Fato:** o rastro que explica o excesso é a mensagem "Foto do eleitor apresentada". Nas 378 seções com excesso de 10 ou mais (todas elas), 84,8% dos atendimentos sem biometria mostraram a foto do eleitor na tela do mesário. Nessas 378 seções, contando como "sem biometria" só quem também não tinha foto, o excesso cai de 5.560 para 54.
+- **Fato:** o rastro que explica o excesso é a mensagem "Foto do eleitor apresentada". Nas 378 seções com excesso de 10 ou mais (todas elas), 84,8% dos atendimentos sem biometria (6.761 de 7.970) mostraram a foto do eleitor na tela do mesário. Nessas 378 seções, contando como "sem biometria" só quem também não tinha foto, o excesso cai de 5.560 para 54.
 - **Pendente:** quanto a foto aparece nas seções sem excesso. A comparação existente foi feita só numa amostra de seções, e por isso não tem número aqui. Também está pendente a medição do marcador da foto nas 16.011 seções inteiras.
-- **Fato:** a mesa não escolheu o caminho. Não houve pedido de digital nesses atendimentos. Quem levou a urna ao ano de nascimento foi o arquivo de eleitores carregado nela, que tinha a foto e não tinha a digital.
+- **Fato:** a mesa não escolheu o caminho. Não houve pedido de digital nesses atendimentos, e a urna mostrou a foto do eleitor. **Hipótese:** pelo funcionamento da urna descrito acima (caminho 2), isso acontece quando o arquivo de eleitores carregado nela tem a foto e não tem a digital do eleitor. O conteúdo desse arquivo não é público.
 
-**O que isso quer dizer.** O excesso não mostra eleitores a mais nem contagem impossível: em nenhuma seção o comparecimento passa do número de aptos. Mostra que o "com biometria" do cadastro público não é o mesmo "com digital" que a urna usa.
+**O que isso quer dizer.** O excesso não mostra eleitores a mais nem contagem impossível: em nenhuma seção o comparecimento passa do número de aptos. Isso não exclui voto no lugar de um eleitor ausente, que fica dentro desse limite (ver as Hipóteses abaixo). Mostra que o "com biometria" do cadastro público não é o mesmo "com digital" que a urna usa.
 
 - **Hipótese (a mais provável, a confirmar com o TSE):** eleitores com foto coletada e digital pendente, rejeitada ou de má qualidade. Os dados públicos não separam isso de outras duas causas que deixam o mesmo rastro: biometria importada de outro órgão sem a digital no formato da urna, ou digitais retiradas do arquivo na preparação das urnas.
 - **Hipótese (risco, princípio 8):** esses eleitores votaram só com título e ano de nascimento, e a conferência da foto foi feita por uma pessoa. O excesso é só a parte visível desse grupo. O tamanho real no país não foi medido, e só sai com o número oficial de eleitores com digital carregada na urna, por seção (pedido pela LAI, ver Próximos passos).
 - **Fato:** os testes de uso não acharam sinal de que essa porta tenha sido usada em larga escala. O comparecimento não sobe com o tamanho do grupo. As comparações com as seções vizinhas e por horário são estimativas de modelo, e os números delas ficam fora deste relatório.
 - **Não sustentado:** ler este achado como voto a mais, contagem impossível ou uso de título de outra pessoa.
 
-### 4. No exterior, ninguém votou com digital
+### 4. No exterior, nenhum voto registrado no log foi liberado pela digital
 
-- **Fato (recalculado):** nas 1.281 seções do exterior com log de urna, os 380.612 votos do 2º turno foram todos liberados pelo título (ou CPF) e ano de nascimento, segundo o log. Nenhum foi liberado pela digital, nem à mão. No 1º turno, 340.977 votos nas 1.281 seções com log, também todos assim. Outras 27 seções do exterior no 2º turno (831 votos) e 28 no 1º (789 votos) foram apuradas pelo Sistema de Apuração e não têm log de urna, então a forma de liberação delas não aparece em nenhum arquivo. O perfil do eleitorado (14/07/2026) registra 222.584 eleitores do exterior com biometria (24% de 918.876), e nem esses votaram com digital.
-- **Hipótese (risco):** no exterior, quem souber o título e o ano de nascimento de um eleitor da seção pode votar no lugar dele sem barreira técnica nenhuma. Não dá para medir quantos fizeram isso. São 0,3% do comparecimento nacional.
+- **Fato (recalculado):** nas 1.281 seções do exterior com log de urna, os 380.612 votos do 2º turno foram todos liberados pelo título (ou CPF) e ano de nascimento, segundo o log. Nenhum foi liberado pela digital, nem à mão. No 1º turno, 340.977 votos nas 1.281 seções com log, também todos assim. Outras 27 seções do exterior no 2º turno (831 votos) e 28 no 1º (789 votos) foram apuradas pelo Sistema de Apuração e não têm log de urna, então a forma de liberação delas não aparece em nenhum arquivo. O perfil do eleitorado (14/07/2026) registra 222.584 eleitores do exterior com biometria (24,2% de 918.876), e mesmo assim nenhum voto dessas 1.281 seções foi liberado pela digital.
+- **Hipótese (risco):** no exterior, quem souber o título e o ano de nascimento de um eleitor da seção pode votar no lugar dele sem que a urna confira a digital. Não dá para medir quantos fizeram isso. Os 380.612 votos das seções do exterior com log são 0,3% do comparecimento nacional do 2º turno.
 - **Pendente:** perguntar ao TSE se a urna do exterior é preparada sem digitais ou se o programa desliga a biometria, e qual norma prevê isso.
 
 Fonte: diário da urna de cada seção do exterior; a contagem original foi refeita por um segundo programa, independente, com o mesmo resultado.
@@ -116,9 +116,9 @@ A hipótese era que urnas de modelo antigo teriam sido mandadas para certas regi
 | UE2020 | 200.504 | 88,4% | 5,5% | 6,0% |
 | UE2022 | 198.746 | 88,6% | 5,4% | 6,0% |
 
-2º turno, sem o exterior, com o modelo lido no log de cada urna. Numa seção de SP (município 64777, zona 395, seção 298), o programa de leitura desta auditoria não leu o log; o log original diz UE2015, e com ela a linha UE2015 teria 87.214 seções, com as mesmas porcentagens. Numa urna de contingência da PB (município 19658, zona 57, seção 66), o log diz UE2015 e a base de dados da auditoria diz UE2013. Por isso a base de dados conta 11.434 seções de 2013; as porcentagens não mudam.
+2º turno, sem o exterior, com o modelo lido no log de cada urna. As porcentagens são arredondadas; por isso, numa linha, a soma pode dar 99,9%. Numa seção de SP (município 64777, zona 395, seção 298), o programa de leitura desta auditoria não leu o log; o log original diz UE2015, e com ela a linha UE2015 teria 87.214 seções, com as mesmas porcentagens. Numa urna de contingência da PB (município 19658, zona 57, seção 66), o log diz UE2015 e a base de dados da auditoria diz UE2013. Por isso a base de dados conta 11.434 seções de 2013; as porcentagens não mudam.
 
-- **Fato (recalculado):** comparando cada seção só com as outras da mesma zona eleitoral, sem outros controles, o modelo quase não muda a liberação pelo ano de nascimento: as urnas de 2013 liberam por esse caminho 0,21 ponto a menos que as de 2022 no 2º turno, e 0,24 a menos no 1º. Muda a liberação manual: +4,3 pontos nas urnas de 2013 e +3,2 nas de 2015, no 2º turno (+4,5 e +3,3 no 1º). Ou seja, nas urnas antigas a digital falha mais e a mesa libera mais à mão. Isso alarga a brecha humana.
+- **Fato (recalculado):** comparando cada seção só com as outras da mesma zona eleitoral, sem outros controles, o modelo quase não muda a liberação pelo ano de nascimento: as urnas de 2013 liberam por esse caminho 0,21 ponto a menos que as de 2022 no 2º turno, e 0,24 a menos no 1º. Muda a liberação manual: +4,3 pontos nas urnas de 2013 e +3,2 nas de 2015, no 2º turno (+4,5 e +3,3 no 1º). Ou seja, nas seções com urna antiga, a digital do eleitor deixa de ser reconhecida mais vezes e a mesa libera mais à mão. Isso alarga a brecha humana. Se a causa é o leitor da urna ou o eleitorado dessas seções é a Hipótese abaixo.
 - **Fato (recalculado):** com a mesma comparação, as urnas antigas estão em seções que votam **menos** no 13, entre os votos de 13 e 22: −1,4 ponto (2013) e −1,0 (2015) no 2º turno; −1,4 e −0,9 no 1º.
 - **Pendente:** a mesma comparação descontando também o perfil do eleitorado da seção (idade e cadastro sem biometria). A análise original a fez, mas ela ainda não foi reproduzida.
 - **Hipótese (técnica):** leitor de digital mais antigo, que falha mais. Teste possível: contar no log as tentativas de digital por modelo.
@@ -144,13 +144,13 @@ Fonte: estudo com as 28 UFs, conferido por uma revisão independente, que o conf
 
 Dois números resumem o resultado:
 
-- **d:** a diferença, entre o eleitor a mais sem digital e o eleitor a mais pela digital, na parcela que foi para o 13. d = −0,0039 quer dizer 0,39 ponto percentual a menos para o 13 no grupo sem digital. O "±" ao lado é a margem de erro da conta.
-- **t:** o tamanho de d em relação à margem de erro. Como foram feitos 56 testes ao mesmo tempo (Brasil e cada UF, para o 13 e para o 22), o limite sobe para 3,32 (para mais ou para menos), para que um resultado não passe só por sorte. Esse limite foi escolhido antes de rodar.
+- **d:** a diferença, entre o eleitor a mais sem digital e o eleitor a mais pela digital, na parcela que foi para o 13. d = −0,0039 quer dizer 0,39 ponto percentual a menos para o 13 no grupo sem digital. O "±" ao lado é o erro-padrão: o tamanho típico da variação que o acaso produz nessa conta. Não é a "margem de erro" das pesquisas eleitorais, que usa uma faixa mais larga.
+- **t:** o tamanho de d em relação ao erro-padrão. Como foram feitos 56 testes ao mesmo tempo (Brasil e cada UF, para o 13 e para o 22), o limite sobe para 3,32 (para mais ou para menos), para que um resultado não passe só por sorte: com esse limite, a chance de pelo menos um dos 56 testes passar por acaso fica em 5% (a chance de 5% é dividida pelos 56 testes). Esse limite foi escolhido antes de rodar.
 
 **O que foi encontrado:**
 
-- **Fato (revisado):** em todas as seções das 27 UFs com o detalhamento de habilitação nos dois turnos (497.622 seções), no Brasil, a diferença para o 13 é d = −0,0039 ± 0,0015 (t = −2,60), abaixo do limite de 3,32. Só SP passa do limite, a favor do 22 (t = −5,59 para o 13; +5,16 para o 22).
-- **Fato (revisado): o resultado depende do modelo.** Acrescentar à conta uma única característica do eleitorado da seção muda o Brasil de lado:
+- **Fato (revisado):** nas 497.622 seções das 27 UFs que entram no teste, no Brasil, a diferença para o 13 é d = −0,0039 ± 0,0015 (t = −2,60), abaixo do limite de 3,32. Só SP passa do limite, a favor do 22 (t = −5,59 para o 13; +5,16 para o 22). Das 497.895 seções do Brasil com o detalhamento nos dois turnos (item 1), o teste deixa fora 273: 237 em que o número de aptos mudou mais de 10 entre os turnos e 36 com menos de 20 votantes no 1º turno. Com as 237 de volta, o Brasil fica em t = −2,58, e a decisão não muda.
+- **Fato (revisado): o resultado depende do modelo.** Acrescentar à conta uma única característica do eleitorado da seção faz o Brasil passar do limite, para um lado ou para o outro:
 
   | O que se leva em conta além do modelo escolhido antes | d no Brasil (13) | t | Leitura |
   |---|---:|---:|---|
@@ -160,8 +160,8 @@ Dois números resumem o resultado:
 
   Por isso, este teste **não** mostra que o eleitor a mais sem digital votou igual ao com digital. Mostra que a diferença entre eles, se existe, não se separa do perfil das seções.
 - **Por que o perfil da seção muda o sinal (Hipótese).** O eleitor que vota sem digital não é um eleitor qualquer: em boa parte é mais velho (a digital se gasta com a idade) ou de outro perfil. Dentro do mesmo município, as seções com mais idosos ganham mais eleitores sem digital e também votam diferente das outras, por serem seções de idosos. Assim, o teste acaba comparando grupos de perfil diferente, e o resultado depende de quanto do perfil se desconta. É como comparar duas filas de um posto de saúde: se numa delas há mais idosos, a diferença entre as filas pode vir da idade, e não do atendimento. Nenhum dos modelos é "o certo": o perfil público da seção é só um retrato grosseiro de quem de fato voltou a votar.
-- **Fato (revisado):** no exterior (1.281 seções com voto), 100% dos 380.612 eleitores do 2º turno foram liberados pelo ano de nascimento, segundo o diário da urna. Lá não há grupo com digital para comparar, e o teste não se aplica.
-- **Fato (revisado):** a maior parte da variação entre os turnos nas formas de liberação é o mesmo eleitor mudando de forma (por exemplo, liberado pela digital num turno e sem digital no outro): pelo menos 1.047.522 casos no país. O teste trata essa mudança como se fosse eleitor a mais, e isso é parte do porquê ele é frágil.
+- **Fato (revisado):** no exterior (nas 1.281 seções com log de urna), todos os 380.612 eleitores do 2º turno foram liberados pelo ano de nascimento, segundo o diário da urna. Lá não há grupo com digital para comparar, e o teste não se aplica.
+- **Fato (revisado):** em muitas seções, a liberação pela digital e a liberação sem digital andam em sentidos opostos entre os turnos (uma sobe e a outra desce). Somando, seção a seção, a menor das duas variações nessas seções, dá 1.047.522 eleitores no país. **Hipótese:** a maior parte disso é o mesmo eleitor mudando de forma (liberado pela digital num turno e sem digital no outro, porque o leitor falhou num deles), e não eleitor a mais. Os totais por seção não mostram quem é cada eleitor: a troca de um eleitor que faltou por outro que veio deixa o mesmo rastro. O teste trata essa mudança como se fosse eleitor a mais, e isso é parte do porquê ele é frágil.
 - **Pendente (sem número):** que inserção pela liberação sem digital o teste detectaria; quantos votos cabem na faixa entre os modelos; a explicação do sinal do PR (a favor do 13) e do de SP (a favor do 22). Os números de simulação e as contas em "votos" do estudo ficam fora deste relatório, porque são estimativas.
 - **Risco (princípio 8):** a liberação sem digital continua sendo brecha humana. Este teste mede um rastro possível dela e não a fecha.
 
@@ -205,7 +205,7 @@ Em cada seção se sabe quantos foram liberados sem digital e quantos votos teve
 
 - **Fato (recalculado com duas contas):** no Nordeste, a parte dos liberados sem digital que votou no 13 está em algum ponto entre **3,41% e 99,93%**. A aritmética sozinha não diz onde.
 - **Fato (recalculado com duas contas):** suponha o pior caso para o 13 no Nordeste: em cada seção, os liberados deram ao 13 o máximo possível e ao 22 o mínimo, e esses votos são anulados. Mesmo assim, a margem nacional do 13 cai de 4.430.191 para **166.144**, e o 13 continua vencendo.
-- **Fato (recalculado com duas contas):** feito o mesmo para **todo o Brasil**, sem o exterior, com os 15.884.298 liberados sem digital, o pior caso aritmético **inverteria** o resultado: a margem iria a −11.119.111. Só o Sudeste já bastaria (−2.692.865). Isso não é sinal de fraude: é o tamanho da porta. Quer dizer que a aritmética, sozinha, não descarta que a liberação sem digital tenha decidido a eleição. Só os testes estatísticos limitam quanto dela pode ter sido usado.
+- **Fato (recalculado com duas contas):** feito o mesmo para **todo o Brasil**, sem o exterior, com os 15.884.298 liberados sem digital, o pior caso aritmético **inverteria** o resultado: a margem iria a −11.119.111. Só o Sudeste já bastaria (−2.692.865). Isso não é sinal de fraude: é o tamanho da porta. Quer dizer que a aritmética, sozinha, não descarta que a liberação sem digital tenha decidido a eleição. Para limitar quanto dela pode ter sido usado, seriam precisos testes estatísticos, que ficam fora deste relatório; e o teste do item 6.1 não decide.
 
 | Região | Liberados sem digital | Parte que pode ter votado no 13 | Margem nacional no pior caso para o 13 |
 |---|---|---|---|
@@ -218,7 +218,7 @@ Em cada seção se sabe quantos foram liberados sem digital e quantos votos teve
 
 Na última coluna, cada linha anula só os liberados daquela região. Liberados sem digital = sem digital na urna (ano de nascimento) + digital não reconhecida (liberação manual), pelo boletim. O exterior fica de fora porque o boletim de lá não traz a divisão, e lá todos votaram sem digital (item 4).
 
-Fonte: boletins de todas as seções, pela base de dados da auditoria; a tabela por UF fica nos documentos de análise. A mesma conta foi feita por outro caminho, a partir dos resumos de cada boletim, e as duas dão o mesmo resultado no Nordeste: 3,4% a 99,9% (a outra conta publica uma casa decimal) e a mesma margem de 166.144. Exclusões: as 1.310 seções do exterior. Nenhuma seção do Brasil ficou sem o detalhamento no boletim.
+Fonte: boletins de todas as seções, pela base de dados da auditoria; a tabela por UF fica nos documentos de análise. A mesma conta foi feita por outro caminho, a partir dos resumos de cada boletim, e as duas dão o mesmo resultado no Nordeste: 3,4% a 99,9% (a outra conta publica uma casa decimal) e a mesma margem de 166.144. Exclusões: as 1.310 seções do exterior. Nenhuma seção do Brasil ficou sem o detalhamento no boletim do 2º turno: as 2 de MG que saem do item 1 têm o detalhamento no 2º turno e entram aqui.
 
 **O que fica fora deste relatório:** cinco métodos estatísticos estimaram em quem os liberados votaram e se votaram diferente de quem usou a digital na mesma zona. Também mediram que tamanho de fraude cada teste seria capaz de ver. Essas medidas são estimativas de modelo, e por isso nenhum número delas entra aqui. Elas ficam nos documentos de análise da auditoria, junto com as revisões independentes que as examinaram.
 
@@ -237,7 +237,7 @@ Quando alguém digita o título de quem já votou, a urna avisa "O eleitor ident
 Uma seção em que a mesa libera à mão quase todo mundo é o lugar onde a brecha humana fica maior. A conta usa o boletim de todas as seções do 2º turno, sem o exterior, e o 1º turno da mesma seção.
 
 - **Fato (recalculado):** 97 seções, em 69 zonas, liberaram à mão (digital do eleitor não reconhecida, liberação por dado pessoal) 50% ou mais dos votantes no 2º turno. Somam 23.050 votantes, dos quais 18.452 liberados à mão. Nenhuma chegou a 100%.
-- **Fato (recalculado):** as 97 usam urnas de 2013 ou de 2015 (modelo lido no log). Em 65 delas a liberação à mão também passou de 50% no 1º turno. Nas outras 32, só no 2º.
+- **Fato (recalculado):** as 97 usam urnas de 2013 ou de 2015 (modelo lido no log). Em 65 delas a liberação à mão também foi de 50% ou mais no 1º turno. Nas outras 32, só no 2º.
 - **Fato (recalculado):** voto para Presidente, parcela do 13 entre 13 e 22:
 
 | | Seções | 1º turno | 2º turno | Variação |
@@ -249,7 +249,7 @@ Uma seção em que a mesa libera à mão quase todo mundo é o lugar onde a brec
 - **Hipótese (técnica):** leitor de digital gasto ou com defeito. A urna antiga falha mais (item 5), e a falha se repete na mesma seção nos dois turnos em 65 dos 97 casos.
 - **Pendente:** inspeção física das urnas dessas seções, começando pelas 32 em que a falha apareceu só no 2º turno.
 
-Fonte: boletins de todas as seções dos dois turnos; a lista das 97 seções fica nos documentos de análise. A análise original contou 96 seções pelo log, mas deixou de fora 178 seções atendidas por urna reserva. Por isso, aqui vale a conta pelo boletim.
+Fonte: boletins de todas as seções dos dois turnos; a lista das 97 seções fica nos documentos de análise. A análise original contou pelo log e deixou de fora seções atendidas por urna reserva. Por isso, aqui vale a conta pelo boletim, que cobre todas.
 
 ### 9. As seções sem digital viraram para o 13?
 
@@ -261,16 +261,16 @@ A pergunta: nas seções em que todos, ou quase todos, votaram sem digital, o 13
 | Votantes sem digital no 2º turno | Seções | Viraram para o 13 | Viraram para o 22 | Parcela do 13 (1º → 2º turno) | Ganho do 13 |
 |---|---|---|---|---|---|
 | 100% | 1 | 0 | 0 | 33,54% → 35,48% | +1,94 pontos |
-| 80% a 99,9% | 74 | 7 | 1 | 59,03% → 61,67% | +2,64 pontos |
-| 50% a 79,9% | 2.922 | 218 | 3 | 42,73% → 45,67% | +2,94 pontos |
-| 20% a 49,9% | 61.027 | 4.584 | 101 | 48,85% → 51,75% | +2,90 pontos |
+| 80% a menos de 100% | 74 | 7 | 1 | 59,03% → 61,67% | +2,64 pontos |
+| 50% a menos de 80% | 2.922 | 218 | 3 | 42,73% → 45,67% | +2,94 pontos |
+| 20% a menos de 50% | 61.027 | 4.584 | 101 | 48,85% → 51,75% | +2,90 pontos |
 | menos de 20% | 433.873 | 26.532 | 450 | 49,04% → 51,82% | +2,78 pontos |
 
-- **O que a tabela mostra:** o ganho do 13 entre os turnos tem praticamente o mesmo tamanho em todas as faixas, de 2,6 a 2,9 pontos (a faixa de 100% é uma seção só). Se a liberação sem digital tivesse sido usada para virar votos, o ganho seria maior nas faixas de cima, e não é. A parte de seções que viraram muda pouco de uma faixa para outra (de 6,1% a 9,5%). Ela depende sobretudo de quantas seções o 22 venceu por pouco no 1º turno, e por isso compara menos do que a coluna do ganho.
+- **O que a tabela mostra:** o ganho do 13 entre os turnos tem praticamente o mesmo tamanho em todas as faixas, de 2,6 a 2,9 pontos (a faixa de 100% é uma seção só). Se a liberação sem digital tivesse sido usada para virar votos em muitas seções, o esperado seria um ganho maior nas faixas de cima, e não é. A parte de seções que viraram para o 13 muda pouco de uma faixa para outra (de 6,1% a 9,5%, nas faixas com mais de uma seção). Ela depende sobretudo de quantas seções o 22 venceu por pouco no 1º turno, e por isso compara menos do que a coluna do ganho.
 - **Fato (recalculado):** no exterior, onde todos os 380.612 votos do 2º turno foram liberados sem digital (item 4), 53 das 1.281 seções com voto viraram para o 13 e 10 viraram para o 22. A parcela do 13 foi de 52,23% para 53,85% (+1,62 ponto), menos que no Brasil.
 - **O que não exclui:** a tabela junta seções de lugares diferentes. Ela não exclui uma fraude do mesmo tamanho nos dois turnos, que some na diferença entre eles, nem uma inserção pequena, espalhada em poucas seções de cada faixa.
 
-Fonte: boletins dos dois turnos. A conta foi feita duas vezes, por caminhos independentes: (a) pelos resumos de cada boletim dos dois turnos, com 499.207 seções pareadas; (b) pela base de dados da auditoria. As duas dão o mesmo resultado em todas as faixas e todos os campos. Exclusões: 29 seções sem comparecimento no boletim do 2º turno.
+Fonte: boletins dos dois turnos. A conta foi feita duas vezes, por caminhos independentes: (a) pelos resumos de cada boletim dos dois turnos, com 499.207 seções pareadas; (b) pela base de dados da auditoria. As duas dão o mesmo resultado em todas as faixas e todos os campos. Exclusões: as 29 seções do exterior apuradas pelo Sistema de Apuração, cujo boletim do 2º turno traz comparecimento 0 na seção (os votos delas estão no boletim, mas não o número de votantes; item 4).
 
 ## Prova de que os testes funcionam (contraprova)
 
@@ -286,8 +286,8 @@ Fonte: boletins dos dois turnos. A conta foi feita duas vezes, por caminhos inde
 **Prova:**
 
 - quantos eleitores votaram com e sem a própria digital, seção por seção, em todas as seções cujo boletim de urna traz essa divisão (o item 1 diz quais ficam fora);
-- que existem duas brechas humanas, usadas por 12,4% dos eleitores no Brasil e por 100% no exterior;
-- que o excesso de "sem biometria" sobre o cadastro não é de eleitores a mais (em nenhuma seção o comparecimento passa dos aptos) e, nas 378 seções de maior excesso, vem de uma diferença entre arquivos do TSE;
+- que existem duas brechas humanas, usadas por 12,4% dos eleitores no Brasil e por todos os votantes das 1.281 seções do exterior com log;
+- que o excesso de "sem biometria" sobre o cadastro não é de eleitores a mais (em nenhuma seção o comparecimento passa dos aptos) e, nas 378 seções de maior excesso, vem quase todo (5.506 de 5.560) de uma diferença entre arquivos do TSE. Isso não exclui voto no lugar de um eleitor ausente, que fica dentro do número de aptos;
 - **Pendente:** se houve uso da brecha em larga escala a favor de um lado. O teste do item 6.1, com as 27 UFs, não decide: o resultado muda de lado conforme o perfil da seção que se leva em conta. (Este item sai da lista "Prova".)
 
 **Não prova:**
@@ -301,7 +301,7 @@ Fonte: boletins dos dois turnos. A conta foi feita duas vezes, por caminhos inde
 
 1. **O voto é secreto.** A ligação entre a forma de liberação e o voto não existe nos arquivos. Todo resultado sobre "em quem votou o liberado" é estimativa ou cerco.
 2. **A pessoa diante da urna não é identificada nos caminhos 2 e 3.** Pelo princípio 8, a conferência de documento e de foto não conta como controle, e ela não deixa rastro.
-3. **O log não separa digital que falhou de dedo trocado.** E, em 2,8 milhões de liberações manuais, nem diz de quem era o dedo.
+3. **O log não separa digital que falhou de dedo trocado.** E, em 2.791.394 liberações manuais do 2º turno, nem diz de quem era o dedo.
 4. **Cadastro desatualizado.** O perfil público é de 14/07/2026, e as urnas do 2º turno foram carregadas entre 15/09 e 25/10/2026: 496.962 até 04/10 e 2.245 entre 09/10 e 25/10 ([tópico 3](03-linha-do-tempo.md), item 2). Em algumas zonas, eleitores mudaram de seção nesse intervalo (como no caso do RN, item 6.3), e a comparação seção a seção perde valor ali.
 5. **Sem renda e sem urbano/rural por seção.** Os dados abertos não trazem esses dados, então explicações sociais para diferenças entre seções não podem ser testadas com eles.
 6. **O teste do item 6.1 não separa o perfil da seção** de uma diferença real entre os eleitores com e sem digital. O 1º turno do item 3 está pendente.
@@ -314,7 +314,7 @@ Fonte: boletins dos dois turnos. A conta foi feita duas vezes, por caminhos inde
 - **Pendente:** revisão independente das contagens dos itens 1, 2, 4, 5 e 7.
 - **Pendente:** medir o marcador da foto nas 16.011 seções do item 3, nas seções sem excesso e no país inteiro, para saber o tamanho real do grupo "tem foto, não tem digital na urna".
 - **Pendente:** refazer o 1º turno do item 3 com todas as UFs e com as seções agregadas corrigidas. (O teste do item 6.1 já foi refeito com todas as UFs, na revisão independente.)
-- **Pendente:** medir, no país inteiro, a maior rajada de "já votou" sem voto entre eles por seção, e ver como foram liberados os eleitores logo depois das rajadas da seção 364 de Vila Velha. A varredura que existe leu 499.000 logs, mas deixou de fora 178 seções atendidas por urna reserva. Por isso nenhum número dela entra aqui, nem o das seções em que a urna parece ter sido usada para consultar quem ainda não tinha votado.
+- **Pendente:** medir, no país inteiro, a maior rajada de "já votou" sem voto entre eles por seção, e ver como foram liberados os eleitores logo depois das rajadas da seção 364 de Vila Velha. A varredura que existe deixou de fora seções atendidas por urna reserva. Por isso nenhum número dela entra aqui, nem o das seções em que a urna parece ter sido usada para consultar quem ainda não tinha votado.
 - **Pendente:** inspeção das urnas das 97 seções do item 8.
 - **Pendente:** olhar no log as seções do Paraná que puxam o sinal do item 6.1, e medir, por urna e por turno, quantos eleitores mudaram de forma de liberação porque o leitor falhou (recomendação da revisão independente).
 - **Pendente (pedidos pela LAI ao TSE):** o critério de "biometria cadastrada" no perfil público e no arquivo da urna; o número de eleitores com digital carregada na urna, por seção; a lista de zonas em revisão biométrica em 2026; a regra que desliga a digital no exterior; o critério de distribuição dos modelos de urna; o caderno de votação das seções destacadas.

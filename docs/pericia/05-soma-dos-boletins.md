@@ -18,16 +18,16 @@ Se somarmos o "placar" de cada urna (o Boletim de Urna), chegamos ao resultado q
 
 **Fato (2º turno, Governador):** os votos nominais de Governador no boletim são iguais ao resultado oficial por município e zona (o arquivo oficial de votação por candidato, município e zona): 1.026 pares, 0 diferença, e nenhum número com voto no boletim falta no oficial ([tópico 2](02-coerencia-entre-arquivos.md)).
 
-**Fato (1º turno, todos os cargos, 28 UFs, 499.207 seções com boletim; conferido por uma segunda verificação independente, que refez as contas com outro programa e confirmou o resultado com ressalvas):**
+**Fato (1º turno, todos os cargos, 28 unidades: 26 estados, DF e exterior; 499.207 seções com boletim; conferido por uma segunda verificação independente, que refez as contas com outro programa e confirmou o resultado com ressalvas):**
 
 - **Seção a seção:** a soma dos boletins de urna é igual ao resultado oficial em aptos, comparecimento, votos nominais, brancos, nulos e votos de legenda, em todos os cargos (presidente, governador, senador, deputado federal, estadual e distrital): 0 divergência. Para presidente, também candidato a candidato: 0 divergência em 499.206 seções com voto.
 - **Zona a zona, candidato a candidato:** o resultado oficial por município e zona é igual ao boletim em todos os candidatos que ele publica. Ele deixa de fora 250 números de candidato, que somam 628.629 votos no boletim.
 - **Por estado e cargo (109 totais):** o resultado divulgado fecha com os boletins em todos os campos. Os 628.629 votos desses 250 números, mais 1.912 votos de legenda de 4 partidos ausentes, somam 630.541 e são exatamente o **"nulo técnico"** publicado (explicado abaixo).
 - **Onde essa classificação pesa:** no governo do RJ, o eleito no 1º turno (nº 22) teve 4.271.199 de 8.394.627 votos válidos (50,880%). Os 274.411 votos do nº 10, classificados como nulo técnico, são mais que os 147.771 votos válidos a mais que tirariam essa maioria. Com eles, o nº 22 teria 49,270%.
 
-**Limite:** isso mostra que os arquivos publicados pelo TSE concordam entre si. A conferência das assinaturas digitais dos boletins do 1º turno ainda não foi feita (**Pendente**, em andamento), e sem ela o teste não alcança alteração feita no próprio boletim. No 2º turno, essa conferência foi feita nas 499.207 seções, com 0 falha ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)).
+**Limite:** isso mostra que os arquivos publicados pelo TSE concordam entre si. A conferência das assinaturas digitais foi feita nos dois turnos, nos 499.207 pacotes de cada um, com 0 falha de arquivo ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)): os pacotes publicados não mudaram depois de assinados. No 1º turno, o TSE não publica o arquivo que indica qual pacote foi totalizado em cada seção; por isso, ali, a assinatura não prova sozinha que o pacote conferido é o que o TSE somou (tópico 1).
 
-**Pendente (sem número):** assinatura dos boletins do 1º turno; situação e data da decisão sobre o registro do candidato nº 10 ao governo do RJ e dos demais números excluídos; auditoria da consulta popular de PE; voto por candidato e por seção nos cargos que não são presidente. Ver "Próximos passos".
+**Pendente (sem número):** situação e data da decisão sobre o registro do candidato nº 10 ao governo do RJ e dos demais números excluídos; auditoria da consulta popular de PE; voto por candidato e por seção nos cargos que não são presidente. Ver "Próximos passos".
 
 ## Termos usados neste tópico
 
@@ -44,12 +44,12 @@ Se somarmos o "placar" de cada urna (o Boletim de Urna), chegamos ao resultado q
 
 ## O que foi comparado
 
-- **De um lado:** o boletim de cada urna, lido diretamente do arquivo que o TSE publica (o arquivo que a urna grava e assina). As impressões digitais desses arquivos foram refeitas em todas as seções, nos dois turnos ([tópico 0](00-coleta-completa.md)). A conferência dos lacres (assinaturas digitais) foi feita em todas as 499.207 seções do 2º turno, com 0 falha; a do 1º turno está **Pendente**, em andamento ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)).
+- **De um lado:** o boletim de cada urna, lido diretamente do arquivo que o TSE publica (o arquivo que a urna grava e assina). As impressões digitais desses arquivos foram refeitas em todas as seções, nos dois turnos ([tópico 0](00-coleta-completa.md)). A conferência dos lacres (assinaturas digitais) foi feita nos 499.207 pacotes de cada turno, com 0 falha de arquivo ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)).
 - **Do outro, quatro produtos oficiais do TSE:**
   1. **votação por seção** (arquivo nacional de 2026, gerado em 26/10/2026 às 12:07): voto de cada candidato a presidente em cada seção. O arquivo só traz presidente;
   2. **detalhe por seção** (detalhamento da votação por seção de 2026): seis totais de cada seção e cargo (aptos, comparecimento, nominais, brancos, nulos, legenda), todos os cargos;
   3. **votação por município e zona** (votação por candidato, município e zona de 2026): voto de cada candidato em cada zona, todos os cargos;
-  4. **divulgação**: os 109 arquivos de resultado por estado e cargo do 1º turno (27 estados × cargos estaduais, mais presidente no país).
+  4. **divulgação**: os 109 arquivos de resultado por estado e cargo do 1º turno (27 UFs, isto é, 26 estados e DF, × cargos estaduais, mais presidente no país).
 
 Para cada seção, zona ou estado, cada número foi comparado com o do outro lado. Somar só o total do país poderia esconder erros que se compensam (um a mais aqui, um a menos ali). A comparação em cada nível não deixa isso passar.
 
@@ -61,7 +61,7 @@ Ver a resposta curta acima. Caso conferido: AC, Bujari, zona 9, seção 3, com L
 
 ### 2. 1º turno: quais seções entraram
 
-**Fato.** O 1º turno tem 499.248 seções: 499.207 com boletim e 41 sem arquivo, todas do exterior, que não foram instaladas (comparecimento 0 no resultado oficial). Em cada um dos 27 estados, o número de seções com boletim é igual ao de seções totalizadas na divulgação; no país, a divulgação de presidente traz 499.248 seções, 499.207 totalizadas e 41 não instaladas.
+**Fato.** O 1º turno tem 499.248 seções: 499.207 com boletim e 41 sem arquivo, todas do exterior, que não foram instaladas (comparecimento 0 no resultado oficial). Em cada uma das 27 UFs (26 estados e DF), o número de seções com boletim é igual ao de seções totalizadas na divulgação; no país, a divulgação de presidente traz 499.248 seções, 499.207 totalizadas e 41 não instaladas.
 
 Ficaram fora da comparação, com motivo:
 
@@ -69,7 +69,7 @@ Ficaram fora da comparação, com motivo:
 |---|---:|---|
 | Seções do exterior sem arquivo | 41 | Não instaladas: não têm boletim; o resultado oficial também mostra comparecimento 0 |
 | Seção sem nenhum voto | 1 (exterior, município 29564, zona 0001, seção 0091) | Urna de contingência com comparecimento 0, nos dois lados. Por isso são 499.206 seções com voto para presidente, e não 499.207 |
-| Consulta popular em PE (eleição 6261) | 10 seções, 2.445 votantes | Não é cargo: é uma consulta à população, publicada fora da divulgação de cargos. Fica sem auditoria contra referência oficial (**Pendente**) |
+| Consulta popular em PE (eleição 6261 do TSE, só no município de código 30015, zona 0004) | 10 seções, 2.445 votantes | Não é cargo: é uma consulta à população, publicada fora da divulgação de cargos. Fica sem auditoria contra referência oficial (**Pendente**) |
 
 ### 3. 1º turno: seção a seção, os seis totais de cada cargo
 
@@ -109,7 +109,7 @@ Ficaram fora da comparação, com motivo:
 
 ### 5. 1º turno: o total de cada estado e cargo, e o "nulo técnico"
 
-**Fato.** Os 109 arquivos da divulgação (27 estados × cargos estaduais, mais presidente no país) foram comparados com a soma dos boletins. Cada voto do boletim foi posto no destino que a própria divulgação dá ao candidato ou ao partido (válido, válido de legenda, anulado, anulado sub judice). O voto de número ou partido que não está na divulgação foi posto em "nulo técnico". Resultado: **109 de 109 totais iguais nos 11 campos**, sem nenhum voto sem destino.
+**Fato.** Os 109 arquivos da divulgação (27 UFs × cargos estaduais, mais presidente no país) foram comparados com a soma dos boletins. Cada voto do boletim foi posto no destino que a própria divulgação dá ao candidato ou ao partido (válido, válido de legenda, anulado, anulado sub judice). O voto de número ou partido que não está na divulgação foi posto em "nulo técnico". Resultado: **109 de 109 totais iguais nos 11 campos**, sem nenhum voto sem destino.
 
 | Campo da divulgação | Totais iguais | Soma dos 109 totais (boletim = oficial) |
 |---|---:|---:|
@@ -123,7 +123,9 @@ Ficaram fora da comparação, com motivo:
 | Válidos | 109/109 | 664.510.876 |
 | Total de votos | 109/109 | 749.118.260 |
 
-Aptos e comparecimento também fecham nos 109. A soma dos totais junta todos os cargos, então cada eleitor aparece uma vez por cargo em que votou.
+Aptos e comparecimento também fecham nos 109. A soma dos totais junta todos os cargos, então ela conta votos, e não eleitores: cada eleitor entra uma vez em cada cargo, e duas no senador, que tinha duas vagas.
+
+A legenda válida da divulgação (10.719.351) não é igual à soma dos votos de legenda digitados no boletim (10.714.283, última coluna da tabela do item 3). A diferença vem do destino que a divulgação dá a cada candidato e partido: os votos nominais de alguns candidatos vão para a legenda do partido, e os votos de legenda de alguns partidos vão para anulado ou anulado sub judice. Classificando cada voto do boletim pelo destino dado na divulgação, os 109 totais fecham, como mostra a tabela acima.
 
 **De onde vem o nulo técnico (Fato).** Em cada um dos 109 totais, o nulo técnico publicado é exatamente a soma, no boletim, dos votos dos números de candidato que faltam na divulgação mais os votos de legenda dos partidos que faltam. A conta fecha sem sobra. Há nulo técnico em 63 dos 109 totais.
 
@@ -199,7 +201,7 @@ Aptos e comparecimento também fecham nos 109. A soma dos totais junta todos os 
 | TO | 4.384 | 1.027 | 0 | 23 | 94 |
 | **Total** | | **342.427** | **221.990** | **50.153** | **10.725** |
 
-O total da última coluna soma os 10.238 votos de deputado estadual com os 487 de deputado distrital (DF). Em todas as 108 células acima e no total de presidente, o nulo técnico oficial é igual à soma dos números ausentes no boletim.
+O total da última coluna soma os 10.238 votos de deputado estadual com os 487 de deputado distrital (DF). Em todas as 108 células acima e no total de presidente, o nulo técnico oficial é igual à soma dos votos que o boletim dá aos números (e legendas) ausentes da divulgação.
 
 ![Nulo técnico nos cargos de deputado, por estado, 1º turno](graficos/h03-nulo-tecnico-deputados-por-uf.svg)
 
@@ -225,9 +227,9 @@ A lista completa dos 254 itens (250 números de candidato e 4 legendas), com est
 
 **Como ler:** a parte A mostra a fatia do nº 22 nos votos válidos, com a linha tracejada na metade (50%). No ponto de cima, a conta oficial (50,880%, acima da metade). No de baixo, a mesma conta com os votos do nº 10 somados aos válidos (49,270%, abaixo da metade). A escala vai de 48% a 52% para a diferença ficar visível; por isso o gráfico usa pontos, não barras. A parte B compara, a partir do zero, quantos votos válidos a mais bastariam para tirar a maioria (147.771) com os votos do nº 10 (274.411). **É só aritmética com números oficiais.** Não diz qual deveria ter sido o resultado: isso depende de os votos do nº 10 deverem ou não valer, isto é, de o registro dele estar em ordem no dia da eleição, o que está **Pendente**.
 
-**Fato, DF, governador.** O líder (nº 11) teve 825.530 de 1.651.394 votos válidos (49,990%): faltaram 168 votos para a maioria absoluta, e houve 2º turno. O DF também tem nulo técnico de governador: o nº 55, com 8.456 votos. Somar esses votos aos válidos só aumenta o total de válidos, e com isso o líder ficaria mais longe da maioria, não mais perto.
+**Fato, DF, governador.** O líder (nº 11) teve 825.530 de 1.651.394 votos válidos (49,990%), e houve 2º turno. Com o mesmo total de válidos, faltaram 168 votos para a maioria absoluta: se 168 votos válidos de outros candidatos tivessem ido para ele, teria 825.698, mais da metade. O DF também tem nulo técnico de governador: o nº 55, com 8.456 votos. Somar esses votos aos válidos só aumenta o total de válidos, e com isso o líder ficaria mais longe da maioria, não mais perto.
 
-**Fato, o que o teste não decide.** Anulados (71.059), anulados sub judice (1.393.984) e nulo técnico (630.541) somam 2.095.584 votos que saem dos válidos por uma decisão tomada por pessoas sobre o registro de um candidato ou partido. O teste mostra que essa decisão foi aplicada da mesma forma em todos os arquivos do TSE. Não mostra que ela estava certa, nem quando foi tomada.
+**Fato, o que o teste não decide.** Anulados (71.059), anulados sub judice (1.393.984) e nulo técnico (630.541) somam 2.095.584 votos que saem dos válidos pela classificação que a totalização dá ao candidato ou ao partido, e não por algo registrado na urna. Pela definição de cada campo, essa classificação depende da situação do registro da candidatura, decidida por pessoas; no nulo técnico, isso é a Hipótese do item 5, e o motivo de cada caso é **Pendente**. O teste mostra que essa classificação foi aplicada da mesma forma em todos os arquivos do TSE. Não mostra que ela estava certa, nem quando foi tomada.
 
 ## Prova de que o teste funciona (contraprova)
 
@@ -242,12 +244,13 @@ A lista completa dos 254 itens (250 números de candidato e 4 legendas), com est
 
 **Fato:** como a comparação de presidente do 2º turno cobre **todas** as seções que votaram para Presidente, essas seções "Recebida" estão incluídas nela: estão no resultado oficial e os votos de Presidente são **iguais** aos do boletim da urna.
 
-**Hipótese:** a situação "Recebida" se refere ao pacote completo de arquivos da urna (diário, registro dos votos), e não ao boletim, que já estava totalizado. Seja qual for o motivo, não há diferença de votos.
+**Hipótese:** a situação "Recebida" se refere ao pacote completo de arquivos da urna (diário, registro dos votos), e não ao boletim, que já estava totalizado. Seja qual for o motivo, não há diferença nos votos de Presidente.
 
 ## O que este resultado prova e o que não prova
 
-- **Prova:** nos dois turnos, o resultado oficial é exatamente a soma dos boletins de urna publicados, nos níveis comparados (2º turno: presidente por seção e governador por zona; 1º turno: todos os cargos por seção nos seis totais, por zona e candidato, e por estado e cargo). Nenhum voto foi somado, tirado ou trocado **entre o boletim de cada seção e o resultado oficial**. A única diferença do 1º turno é de classificação (o nulo técnico), e ela fecha voto a voto.
-- **Que cada boletim publicado é o que a urna gravou** depende da conferência das assinaturas digitais. No 2º turno ela foi feita nas 499.207 seções, com 0 falha ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)). No 1º turno está **Pendente**: até lá, o resultado do 1º turno prova coerência entre arquivos publicados pelo TSE (boletim, detalhe por seção, votação por seção, votação por zona e divulgação), e não prova que os boletins publicados são os que as urnas assinaram.
+- **Prova:** nos dois turnos, o resultado oficial é exatamente a soma dos boletins de urna publicados, nos níveis comparados (2º turno: presidente por seção e governador por zona; 1º turno: todos os cargos por seção nos seis totais, por zona e candidato, e por estado e cargo). Nesses níveis, nenhum voto foi somado, tirado ou trocado **entre o boletim e o resultado oficial**. A única diferença do 1º turno é de classificação (o nulo técnico), e ela fecha sem sobra em cada um dos 109 totais.
+- **Não alcança** uma troca de votos entre candidatos de seções diferentes da mesma zona nos cargos que não são presidente (e, no 2º turno, no governador), se ela mantivesse os seis totais de cada seção e o total de cada candidato na zona. Para isso falta o voto por candidato e por seção desses cargos (**Pendente**, ver "Próximos passos").
+- **Que cada boletim publicado é o que a urna gravou** depende da conferência das assinaturas digitais. Ela foi feita nos dois turnos, nos 499.207 pacotes de cada um, com 0 falha de arquivo ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)). No 1º turno, o TSE não publica qual pacote foi totalizado em cada seção; por isso, ali, a assinatura mostra que o pacote publicado não mudou depois de assinado, mas não prova sozinha que foi esse o pacote somado pelo TSE.
 - **Os campos não são testes independentes.** Na divulgação, total = válidos + brancos + nulos + nulo técnico + anulados + anulados sub judice. Se os outros campos fecham, o nulo técnico fecha por conta. O que a identidade do nulo técnico acrescenta é mostrar de onde ele vem (números e legendas ausentes, sem sobra).
 - **Não prova** que a decisão de excluir cada candidato estava certa, nem quando foi tomada (ver item 6).
 - **Não prova** que os votos registrados pelas urnas são todos legítimos. Se alguém votou no lugar de outra pessoa (por exemplo, com liberação sem biometria), esse voto está no boletim **e** no resultado oficial, e os dois batem. Essa possibilidade é examinada no tópico 4, "Como os eleitores foram liberados para votar".
@@ -255,7 +258,7 @@ A lista completa dos 254 itens (250 números de candidato e 4 legendas), com est
 
 ## Próximos passos
 
-- **Pendente:** conferência das assinaturas digitais dos boletins do 1º turno (em andamento; [tópico 1](01-integridade-e-estrutura-dos-arquivos.md)). Sem ela, o resultado do 1º turno não alcança alteração feita no próprio boletim.
+- **Feito:** conferência das assinaturas digitais dos boletins do 1º turno: 499.207 pacotes, 0 falha de arquivo ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)).
 - **Pendente:** situação e data da decisão sobre o registro do candidato nº 10 ao governo do RJ, e dos demais números excluídos (em especial governador de SE nº 22 e de SP nº 29, senadores de SP nº 300 e nº 290, e o partido 29 sem lista de deputado federal em SP). Exige consulta pública aos processos de registro.
 - **Pendente:** auditoria da consulta popular de PE (eleição 6261, 10 seções): não há arquivo de divulgação dela no repositório, e o detalhe por seção não a traz.
 - **Pendente:** voto por candidato e por seção nos cargos que não são presidente. O arquivo de dados abertos lido só traz presidente; para os outros cargos, o candidato é conferido por zona.
