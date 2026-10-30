@@ -2,22 +2,60 @@
 
 Engenheiro de segurança, 30/10/2026. Hipótese H20 de [hipoteses.md](../../hipoteses.md), plano da discussão T19 ([sintese](../modelos/T19/sintese.md)). Universo completo dos dois turnos: 499.248 seções por turno, todos os diários lidos do `.jez` bruto. Sem amostra.
 
+**Revisão (30/10/2026), depois do [parecer cético 47](../cetico-revisor/47-h20-relogio.md):**
+
+- alcance do "0 violação de ordem" registrado;
+- descrição da BA 39934/0183/0175 corrigida;
+- trava de ajuste de hora depois da zerésima;
+- relógio atrasado (3 seções novas) e ponto cego do 2º turno;
+- GO 92274/0119/0049 no 2º turno passou a Fato;
+- Lisboa (3 seções) e RJ 60011/0214/0023 acrescentadas;
+- texto do hash de linha corrigido;
+- limite do recebimento no TSE;
+- total da H06 refeito com todas as correções de relógio que são Fato (`seguranca-h20-h06-corrigido.mjs`).
+
 ## Resposta curta
 
-- **Fato.** Nos dois turnos, em todas as urnas, a ordem zerésima → "Urna pronta" → votos → confirmação do encerramento → BU **não tem nenhuma violação**, nem pela ordem física das linhas, nem pelo relógio: 0 voto antes da zerésima, 0 antes de "Urna pronta", 0 depois do encerramento, 0 BU gerado antes do último voto, 0 zerésima depois da abertura, 0 par de urnas da mesma seção votando ao mesmo tempo no 2º turno.
+- **Fato.** Nos dois turnos, em todas as urnas, a ordem zerésima → "Urna pronta" → votos → confirmação do encerramento → BU **não tem nenhuma violação**, nem pela ordem física das linhas, nem pelo relógio. Isso inclui os votos que estão só numa segunda cópia do diário (267 votos em 5 seções do 1º turno, testados no parecer 47). As contagens:
+  - voto antes da zerésima: 0;
+  - voto antes de "Urna pronta": 0;
+  - voto depois do encerramento: 0;
+  - BU gerado antes do último voto: 0;
+  - zerésima depois da abertura: 0;
+  - par de urnas da mesma seção votando ao mesmo tempo no 2º turno: 0.
+- **Alcance do zero.** O teste vale para os votos que têm linha no diário. Ficam fora:
+  - os **159 votos (1º turno) e 54 (2º turno)** do BU sem linha no diário;
+  - as manhãs das **3 seções sem zerésima no diário publicado**: BA 39934/0183/0175 e SP 71072/0002/0035 (1º turno) e MA 08893/0047/0609 (2º turno).
 - **Fato.** O relógio nunca volta entre dois votos seguidos da mesma urna (0 em 252,5 milhões de pares, H08). Todo retrocesso de relógio do diário tem causa no próprio diário: acerto digitado, religamento com relógio zerado ou horário de verão do exterior. Sem causa visível sobraram 7 nos dois turnos, todos explicados no bruto (relógio zerado em 1970/2026, horário de verão em Los Angeles e no exterior).
-- **Fato.** Nenhum acerto de relógio no dia da votação depois da zerésima (109 urnas acertaram o relógio no dia no 1º turno e 61 no 2º, todas antes da zerésima).
-- **Fato.** Limite externo do TSE: com a correção das 81 seções do doc [linha-do-tempo/07](../linha-do-tempo/07-fuso-mt-1turno.md), só **4 BUs (1º turno) e 8 (2º turno)** aparecem "recebidos antes de emitidos", todos por diferença de **no máximo 2,5 min** entre o relógio da urna e o do TSE. Sem a correção, eram 60 no 1º turno. No exterior, o fuso mínimo exigido pela física (até 1,36 h à frente de Brasília) é compatível com o fuso real de todas as cidades.
-- **Fato (novo).** Além das 81 seções já corrigidas, achei **mais 6 seções com urna 1 h adiantada**, todas sem voto antes das 8h de Brasília:
+- **Fato.** Nenhum acerto de relógio foi feito depois da zerésima. A urna **recusa** o aplicativo de ajuste depois da zerésima e grava a recusa ("GAP erro 20 … não pode ser executado após a impressão da zerésima"): **33 recusas em 20 urnas** nos dois turnos (23 em 14 urnas no 1º e 10 em 6 no 2º; parecer 47). É controle técnico com rastro.
+- **Fato.** Limite externo do TSE: com a correção das 81 seções do doc [linha-do-tempo/07](../linha-do-tempo/07-fuso-mt-1turno.md), só **4 BUs (1º turno) e 8 (2º turno)** aparecem "recebidos antes de emitidos", todos por diferença de **no máximo 2,5 min** entre o relógio da urna e o do TSE. Sem a correção, eram 60 no 1º turno.
+  - **Limite:** o teste só exclui relógio 1 h atrasado onde a folga é menor que 60 min: 23% das seções no 1º turno e 0,2% no 2º.
+  - No exterior, o fuso mínimo exigido pela física (até 1,36 h à frente de Brasília) é compatível com o fuso real de todas as cidades.
+- **Fato.** Além das 81 seções já corrigidas, há **mais 10 seções com relógio 1 h adiantado**. Nenhuma recebeu voto antes das 8h reais:
   - **RJ 60011/0214/0279** (1º turno): hora digitada +59 min na carga, corrigida −60 min pelo aplicativo de ajuste na manhã do 2º turno;
-  - **RJ 60011/0214/0022** e **RJ 60011/0214/0024** (1º turno, urna original que quebrou): a mesma equipe de carga digitou +60 min em 22/09;
+  - **RJ 60011/0214/0022, 0023 e 0024** (1º turno, urnas originais trocadas): a mesma equipe de carga digitou +59/+60 min em 22/09;
   - **PR 74713/0078/0261** (1º turno, urna original): carga com +58 min;
-  - **GO 92274/0119/0049** (candidato do doc 07): carga com +59 min, nunca corrigida. No 1º turno é Fato; no 2º turno é Hipótese forte (mesmo perfil, sem acerto posterior).
-- **Hipótese (nova).** **SP 71072/0280/0913** tem o perfil de relógio 1 h adiantado nos dois turnos, sem nenhum acerto digitado de hora cheia.
-- **Fato.** Pela régua do município, nenhuma seção abriu antes das 8h de Brasília no 2º turno; se GO e SP estiverem mesmo adiantadas, ficaram prontas às 07:50 e 07:44 reais.
-- **Fato.** No 1º turno, além das 62 já conhecidas (zona 0053 de MT e outras), as urnas adiantadas acima ficaram prontas entre 07:31 e 07:51 reais. Nenhuma recebeu voto antes das 08:00.
-- **Fato.** O voto dessas seções não destoa do resto do mesmo local de votação: até 2,9 pontos percentuais no % do 13, na faixa comum entre seções vizinhas.
-- **Limite.** O "hash de encadeamento" de cada linha do diário **não é reproduzível** com algoritmos padrão: 8.786 combinações testadas, 0 acerto. A ordem física do arquivo é a única ordem que dá para conferir.
+  - **GO 92274/0119/0049** (os dois turnos): carga com +59 min, sem nenhum outro acerto nem retrocesso no diário até o fim do 2º turno;
+  - **ZZ 29955/0001/3649, 3705 e 3785 (Lisboa, 2º turno):** a urna ficou ligada desde 24/10 e não desfez o horário de verão europeu, que acabou na madrugada de 25/10.
+- **Fato.** **Relógio 1 h atrasado** é detectável pelo começo do dia: o mesário liga a urna pela hora da parede, e ela o faz esperar a trava da zerésima.
+  - **PR 74357/0050/0033** (1º turno, Fato): carga −59 min, corrigida +59 min em 15/10. Em hora real, abriu às 09:00 e teve 16 votos depois das 17h, contados antes como se fossem das 16h;
+  - **GO 93734/0133/0062** (1º turno, Fato): 30 min atrasado, sem efeito depois das 17h;
+  - **BA 34134/0171/0166** (2º turno, Hipótese forte): carga −61 min e tentativa de ajuste recusada às 11:05.
+- **Hipótese.** **SP 71072/0280/0913** tem o perfil de relógio 1 h adiantado nos dois turnos, sem nenhum acerto digitado de hora cheia.
+- **Fato.** **H06 refeita com todas as correções que são Fato** (Brasil sem exterior, todas as urnas, mesma régua do tópico 3):
+
+  | Turno | Votos depois das 17h (relatório → corrigido) | Votos depois das 18h |
+  |---|---|---|
+  | 1º | 3.723.360 → **3.723.325** (−35) | 778.979 → **778.954** (−25) |
+  | 2º | 34.330 → **34.315** (−15) | 1.993 → **1.993** (0) |
+
+  Com as Hipóteses, só como sensibilidade: 1º turno −92 e −26; 2º turno −38 e 0. O exterior pela hora local, no 2º turno, cai de 417 para 330 (Lisboa, −87). Nenhuma conclusão da H06 muda.
+- **Fato.** O voto das seções com relógio errado não destoa do resto do mesmo local de votação: no máximo 2,9 pontos percentuais no % do 13, a variação comum entre seções vizinhas.
+- **Limite.** O "hash de encadeamento" de cada linha do diário **não é reproduzível**. Foram 0 acertos em:
+  - 8.786 tentativas com resumos criptográficos, sobre as 6 primeiras linhas de **uma** seção (o mesmo teste repetido numa segunda seção);
+  - 1.692 tentativas por seção com somas de 64 bits não criptográficas (CRC-64 em várias formas, FNV-1/FNV-1a de 64 bits), no parecer 47.
+
+  A integridade do diário inteiro é conferida pela assinatura da urna (tópico 1), mas não a ordem linha a linha.
 
 ## O ataque e o rastro esperado
 
@@ -73,9 +111,16 @@ Os 51 votos "fora do trecho" são de PR 74357/0050/0254. A urna original votou d
 | Urnas que geraram BU sem confirmar encerramento | 34 (29 no exterior, Sistema de Apuração) | 30 (29 no exterior, Sistema de Apuração) |
 
 - **Urna de contingência sem zerésima:** é o esperado. A reserva herda o estado da urna original e não imprime nova zerésima.
-- **Os 2 casos sem marca de contingência:** a cópia do diário da reserva publicada é a da mídia externa, que começa depois da sincronização ("Iniciando registro do log na MI e na ME"). As linhas da contingência ficaram só na memória interna. Os intervalos das urnas da seção não se sobrepõem:
-  - BA 39934/0183/0175 (1º turno): 08:06–12:23, 13:29–14:19 e 14:30–18:30. Já é conhecida pela divergência log × BU;
-  - MG 40690/0016/0264 (2º turno): parecer cético 39.
+- **Os 2 casos sem marca de contingência:** a cópia do diário publicada é a da mídia externa, que começa depois da sincronização ("Iniciando registro do log na MI e na ME"). As linhas da contingência ficaram só na memória interna.
+  - **BA 39934/0183/0175 (1º turno), descrição corrigida:**
+    - os votos de 08:06 a 12:23 (100) são da urna 02423907, que declara a seção **0181**, a vizinha; eles já foram descontados no parecer 25;
+    - a 0175 tem a urna 02424441 (cópia que começa às 13:23, pronta às 13:26, 24 votos de 13:29 a 14:19) e a contingência 02429118 (112 votos de 14:30 a 18:30);
+    - **de 08:00 a 13:23 a seção não tem diário**: são os 136 votos sem rastro. A manhã dela não está coberta pelo teste de ordem.
+  - **MG 40690/0016/0264 (2º turno):** 46 votos de 08:01 a 10:41 na urna 02129190 (com zerésima), mais 68 de 12:15 a 16:30 na 02080602, que é o BU (114). Sem sobreposição (parecer cético 39).
+- **Alcance do teste (parecer 47).** O teste só vê voto que tem linha no diário:
+  - **votos do BU sem linha no diário:** 159 em 9 seções no 1º turno e 54 em 6 seções no 2º (iguais ao parecer 25). Não têm hora nenhuma;
+  - **seções sem nenhuma zerésima no diário publicado:** BA 39934/0183/0175 (136 votos com linha), SP 71072/0002/0035 (232) e MA 08893/0047/0609 (2º turno, 188). Nelas, a ordem dos votos com linha foi conferida contra "Urna pronta", não contra a zerésima. "0 voto antes da zerésima" não vale para essas manhãs;
+  - **votos só numa segunda cópia do diário:** 267 votos em 5 seções do 1º turno (MG 44458/0103/0221, MG 47830/0165/0031, PR 75353/0002/0574, PR 76570/0010/0273, RJ 58041/0155/0190). Exemplo: o arquivo da urna que gerou o pacote guarda a tarde, e a cópia aninhada guarda a manhã. A minha leitura ficava com a cópia de mais linhas e não os via. O parecer 47 testou cada uma dessas cópias na própria ordem física, e os votos contra a zerésima da cópia principal: **0 violação**.
 - **BU sem confirmação de encerramento no Brasil:** 5 no 1º turno e 1 no 2º. Todos são urnas postas só para gerar o BU, sem nenhum voto:
   - MG 41238/0039/0168 e MG 50075/0047/0041: contingência de mídia de votação e Sistema de Apuração, às 22h;
   - RJ 60011/0007/0460: a original encerrou e gerou o BU às 17:54, depois falhou, e a reserva gerou o BU de novo às 20:17;
@@ -100,6 +145,12 @@ Voto depois do encerramento do BU: 0. Emissão antes do encerramento: 0.
 | … no dia da votação: acerto / religar / sem | 117 / 101 / 2 | 26 / 35 / 2 |
 | Entre dois votos seguidos da mesma urna (H08, D negativo) | 0 em 124.772.753 | 0 em 127.734.569 |
 | Acerto de relógio no dia **depois** da zerésima | 0 (de 178 acertos em 109 urnas) | 0 (de 106 em 61 urnas) |
+| Tentativa de ajuste **recusada** pela urna depois da zerésima ("GAP erro 20", parecer 47) | 23 em 14 urnas | 10 em 6 urnas |
+
+- **Trava do ajuste de hora (Fato, controle técnico com rastro).** Depois de imprimir a zerésima, a urna não aceita o aplicativo de ajuste de data e hora. Ela grava "Iniciando aplicação AJUSTE DE DATA E HORA" seguido de "GAP erro 20 | Validação do ADH | … não pode ser executado após a impressão da zerésima".
+  - O "0 acerto depois da zerésima" não quer dizer que ninguém tentou: quer dizer que a urna não deixa.
+  - Foram **33 recusas em 20 urnas** nos dois turnos. A tentativa mostra onde a mesa viu a hora errada: RJ 60011/0214/0022, 0023 e 0024 (+60 na carga), BA 34134/0171/0166 (−61, item 3c) e urnas originais com relógio atrasado trocadas antes de qualquer voto (BA 35971/0028/0394, MA 09210/0001/0677, BA 34037/0063/0078).
+  - A única mudança de hora depois da zerésima é a reaplicação automática do horário de verão ao religar, no exterior.
 
 - **Religar no Brasil:** 36 retrocessos no 1º turno (29 urnas) e 12 no 2º. Em todos menos 1, o relógio da placa voltou a uma data-padrão ao religar: 01/01/2026, 01/01/2009, 01/01/1970 ou o ano 2000. É falha de bateria do relógio.
   - Exemplos: BA 39136/0033/0257 (2009), RO 00035/0021/0257 (1970), PR 74357/0050/0254 (2000, no dia, visto acima). No 2º turno, todos os 12 voltaram a 01/01/2026, na preparação.
@@ -110,7 +161,7 @@ Voto depois do encerramento do BU: 0. Emissão antes do encerramento: 0.
 - **Os 7 "sem causa":**
   - ZZ, 5 casos (4 no 1º turno e Los Angeles no 2º): o mesmo mecanismo do horário de verão, com o "Urna ligada" 1 linha depois da janela da regra;
   - RO 00035/0021/0257 (1º turno): relógio em 1970;
-  - CE 14117/0013/0206 (2º turno): a original teve erro de impressora às 07:39 e voltou em `2026-01-01 00:07`, com o diário da mídia externa corrompido ("Identificado arquivo de log corrompido na ME"). Nunca recebeu voto. A reserva imprimiu zerésima às 08:39, abriu às 08:41 e votou até 17:00.
+  - CE 14117/0013/0206 (2º turno): a original teve erro de impressora às 07:39 e voltou em `2026-01-01 00:07`, com o diário da mídia externa corrompido ("Identificado arquivo de log corrompido na ME"). Nunca recebeu voto. A reserva imprimiu zerésima às 08:39, abriu às 08:41 e votou de 08:43 a 16:32 (encerramento às 17:00).
 - **Lacunas de 60 min ou mais sem religamento, entre a abertura e o encerramento:** 41 no 1º turno (6 no Brasil) e 14 no 2º turno (2 no Brasil). São seções paradas ou urnas originais sem voto. Não há voto na lacuna, por definição.
 
 **Encadeamento de hash (limite).** A última coluna de cada linha (16 hexadecimais) não foi reproduzida (`seguranca-h20-hash-linha.mjs`):
@@ -119,9 +170,12 @@ Voto depois do encerramento do BU: 0. Emissão antes do encerramento: 0.
 - latin1 e utf8;
 - 20 combinações de linha anterior e linha atual;
 - resumo direto e invertido;
-- 8.786 tentativas por seção, em AC 01007/0009/0001 (2º turno) e SP 71072/0001/0001 (1º turno), com 0 acerto.
+- **8.786 tentativas no total, sobre as 6 primeiras linhas de uma seção** (cerca de 1.464 por linha), repetidas em AC 01007/0009/0001 (2º turno) e SP 71072/0001/0001 (1º turno): 0 acerto.
+- O valor tem 64 bits, tamanho de soma não criptográfica. O parecer 47 testou **CRC-64** (ECMA-182, XZ, ISO, WE, Redis), **FNV-1 e FNV-1a de 64 bits** e CRC-32 duplo, inclusive como continuação do valor anterior: 1.692 tentativas por seção, nas mesmas duas seções, com 0 acerto.
 
 O algoritmo usa segredo ou estado não publicado. Por isso a "sequência do hash contra a ordem das horas" **não é testável** com os arquivos públicos. A ordem física é o que há, e nela não existe nenhuma inversão sem causa entre eventos de votação.
+
+Isso é limite, não indício. O diário inteiro é um dos arquivos lacrados pela urna, e a assinatura foi conferida em todos os pacotes com 0 falha (tópico 1 da perícia). Ela prova que o arquivo publicado é o que a urna fechou, mas não prova que a hora escrita estava certa.
 
 ### 3. Janela deslocada
 
@@ -133,7 +187,8 @@ Relógio do município: hora modal de "Urna pronta" no 2º turno (`fuso-municipi
 | 1º voto antes das 08:00 de Brasília | 3 (MT 90069/0053/0171, 0128 e 0120; doc 07) | 0 |
 | Encerramento confirmado antes das 17:00 de Brasília | 0 | 0 |
 | Abertura às 09:00 ou depois / às 10:00 ou depois | 196 / 25 | 88 / 18 |
-| Exterior: pronta antes das 08:00 locais / encerramento antes das 17:00 locais | 0 / 0 | 0 / 0 |
+| Exterior: pronta antes das 08:00 locais / encerramento antes das 17:00 locais (relógio da urna) | 0 / 0 | 0 / 0 |
+| Exterior: pronta antes das 08:00 locais **reais** | 0 | 2 (Lisboa 3649 e 3705, às 07:46 e 07:50) |
 
 #### 3b. Relógio 1 h adiantado: quatro testes, universo completo
 
@@ -168,6 +223,36 @@ Recusas da trava de encerramento ("Encerramento só pode ser solicitado após as
 - a 1ª recusa veio mais de 75 min antes da trava em 13.738 e 12.062 delas;
 - a mesa aperta "encerrar" o dia todo, então o teste do relógio atrasado por esse caminho **não tem poder**.
 
+**Lisboa, 2º turno (Fato, parecer 47; conferido no bruto em ZZ 29955/0001/3649).** A urna foi ligada em 24/10 às 13:41, aplicou o horário de verão ("Horário da urna alterado devido a horário de verão" às 13:43) e **ficou ligada a noite inteira**: não há "Urna ligada" em 25/10. O horário de verão de Portugal acabou às 02:00 de 25/10, então o relógio ficou 1 h à frente.
+
+- As 3 urnas (ZZ 29955/0001/3649, 3705 e 3785) ficaram prontas às 07:46, 07:50 e 08:00 reais. O 1º voto foi às 08:04, 08:00 e 08:04 reais.
+- Os 87 votos da "hora das 17h" (26 + 28 + 33) foram dados às 16h reais.
+- Nenhum voto fora de 08:00–17:00 reais. Nenhuma outra cidade do exterior aparece deslocada.
+
+#### 3c. Relógio atrasado: detectável pelo começo do dia (parecer 47)
+
+O meu limite "relógio atrasado não é detectado" estava errado como limite total.
+
+- **O fim do dia não serve.** A urna tem três travas no próprio relógio: zerésima só a partir das 07:00, "Urna pronta" a partir das 08:00, encerramento a partir das 17:00. Com o relógio 1 h atrasado, a trava segura o encerramento até as 17:00 do relógio, que são 18:00 reais, e no relógio da urna o fim parece normal. O teste "encerramento contra a mediana do local" tem poder de 7,1% (1º turno) e 1,5% (2º turno).
+- **O começo do dia serve.** O mesário chega pela hora da parede, liga a urna, e ela o faz esperar a trava da zerésima ("Aguardando data e hora para emissão da zerésima"): urna ligada cedo, zerésima e abertura exatamente na trava.
+  - Poder dos sinais de início e fim juntos: 70,5% e 86,8%; de algum deles: 97,6% e 99,6%.
+  - Sem rastro, só a seção em que a mesa também chegou deslocada e seguiu o relógio da urna o dia todo.
+- Os casos, conferidos no bruto (`seguranca-h20-casos.mjs`):
+  - **PR 74357/0050/0033, 1º turno: Fato.**
+    - Carga em 24/09 com hora digitada 12:08 e relógio em 13:07 (−59), num estado com a hora de Brasília.
+    - No dia: zerésima às 07:01:02 (trava), pronta às 08:00:02 (trava), 267 votos de 08:01 a 16:21 no relógio, encerramento às 17:01:17 (trava).
+    - Em 15/10, ajuste de +59 min pelo aplicativo ("Ajuste de Data e Hora 15/10/2026 - 14:55:00", relógio em 13:55). No 2º turno, normal.
+    - Em hora real, abriu às 09:00, o último voto foi às 17:21, e houve **16 votos depois das 17h**.
+  - **BA 34134/0171/0166, 2º turno: Hipótese forte.**
+    - Urna 01658717, que votou pela primeira vez na seção no 2º turno. Carga em 24/09 com −61 min.
+    - No dia: duas zerésimas (07:02 e 07:18, trava das 07:00), pronta às 08:00:01 (trava), tentativa de ajuste de hora **recusada** às 11:05, três tentativas de encerrar recusadas às 16:20–16:39 e encerramento às 17:00.
+    - Em hora real, votou de 09:00 a 16:59. Não houve voto depois das 17h reais. Não é Fato porque não há correção posterior nem prova externa.
+  - **GO 93734/0133/0062, 1º turno: Fato** (parecer 47). 30 min atrasado: carga com −30 min, zerésima às 07:01, pronta às 08:00 e último voto às 16:15 no relógio (16:45 reais). Sem efeito depois das 17h.
+- **Ponto cego do meu teste de acertos (`seguranca-h20-ajustes.mjs`).** No 2º turno, o período começa depois da última linha de 04/10. Numa urna que votou pela primeira vez na seção no 2º turno, essa linha não existe, então **a carga de setembro dela não foi lida**.
+  - O parecer 47 leu essa carga nas **4.513 urnas** nessa situação: 18 têm acerto de hora cheia;
+  - 12 são do exterior e do AM (placa em hora de Brasília, operador põe a hora local);
+  - das 6 do resto do Brasil, uma é a BA 0166. As outras 5 têm zerésima no horário das vizinhas ou acerto líquido de cerca de 0 (DF 97012/0015/0318, RS 86592/0165/0105, CE 13250/0068/0091, PB 19399/0014/0221, RJ 60011/0192/0136).
+
 ### 4. Limite externo: recebimento no TSE × emissão do BU
 
 `seguranca-h20-recebimento.mjs`: `DT_RECEBIMENTO_BU_HOR_TSE` (arquivo `_BR.csv` de `detalhe_votacao_secao_2026.zip`) − emissão do BU (banco) convertida para hora de Brasília.
@@ -184,6 +269,9 @@ Recusas da trava de encerramento ("Encerramento só pode ser solicitado após as
 - 2º turno: PA 04057/0016/0019, 0023, 0077 e 0080 (−0,70 a −0,87), PA 04200/0102/0054, PA 04391/0002/0006, PA 05657/0014/0215 e PR 78778/0052/0054 (−0,08 a −0,32).
 - A zona 0016 de Ananindeua (PA 04057) aparece nos dois turnos com cerca de −0,7 min. São urnas da mesma carga com o relógio ~1 min à frente do TSE: deriva, não hora cheia.
 - Exterior: o fuso mínimo exigido (emissão local − recebimento) chega a 1,36 h (Nagóia, 1º turno) e 1,19 h (Lisboa, 2º turno). Nagóia fica 12 h à frente de Brasília e Lisboa 3 h em 25/10. Nenhuma cidade exige um fuso impossível.
+- **Limite (parecer 47).** A folga positiva não diz nada sobre relógio adiantado menos de 1 h, nem sobre relógio atrasado. Uma folga **abaixo de 60 min** exclui relógio 1 h atrasado.
+  - Isso vale para **114.503 seções no 1º turno (23%)** e só **1.095 no 2º (0,2%)**, porque no 2º turno o TSE registrou quase tudo depois das 19h.
+  - No 2º turno, esse limite externo praticamente não existe.
 
 ## Casos explicados no diário bruto
 
@@ -193,7 +281,12 @@ Recusas da trava de encerramento ("Encerramento só pode ser solicitado após as
 | RJ 60011/0214/0024 | 1º | Original 01769516: carga +60 em 22/09; pronta 08:35/08:52; 5 votos 09:04–09:12. Reserva (relógio certo): contingência 08:41, votos 08:54–18:09 | **Fato:** original 1 h adiantada. A ordem real é original até ~08:12 e depois a reserva | 0 |
 | RJ 60011/0214/0022 | 1º | Original 01844086: carga +60 em 22/09; pronta 08:44:58, sem voto. Reserva: contingência 08:28, 300 votos de 08:42. O BU diz abertura 08:44:58 | **Fato:** original 1 h adiantada. O BU herdou a abertura da original (07:44 reais) | 0 |
 | PR 74713/0078/0261 | 1º | Original 01653959: carga +58 em 26/09; pronta 08:41; 166 votos 09:02–15:59. Reserva: contingência 15:07, votos 15:18–18:04 | **Fato:** original 1 h adiantada (votos reais 08:02–14:59) | 0 |
-| GO 92274/0119/0049 | 1º e 2º | Carga +59 em 21/09, nunca corrigida. Os dois turnos: pronta 08:51/08:50, 1º voto 09:02/09:01, 0 voto na hora das 08h, BU emitido às 18:39/18:04 contra 17:03–17:13 nas seções vizinhas 0048, 0050 e 0051 | **Fato** (acerto digitado) **+ Hipótese forte** (perfil e vizinhas): relógio 1 h adiantado nos dois turnos | 0 antes das 8h. "Depois das 17h": 61 (1º) e 15 (2º), todos antes das 17h reais |
+| RJ 60011/0214/0023 | 1º | Original 01760689: carga +59 em 22/09 (`digitada 10:39` com relógio `09:39`), sem voto; trocada. Reserva 01668226 (carga +0): 298 votos de 08:29 a 17:35 | **Fato:** 4ª urna da zona 0214 com +59/+60 na carga de 22/09 | 0 |
+| GO 92274/0119/0049 | 1º e 2º | Carga +59 em 21/09. O diário inteiro, da carga ao fim do 2º turno, não tem outro acerto nem retrocesso. Os dois turnos: pronta 08:51/08:50, 1º voto 09:02/09:01, 0 voto na hora das 08h, BU emitido às 18:39/18:04 contra 17:03–17:13 nas seções vizinhas 0048, 0050 e 0051 | **Fato nos dois turnos:** o relógio correu contínuo desde a carga com +59 | 0 antes das 8h. "Depois das 17h": 1º turno 61 → 25 reais (e 25 → 0 depois das 18h); 2º turno 15 → 0 |
+| PR 74357/0050/0033 | 1º | Carga −59 em 24/09; zerésima 07:01:02, pronta 08:00:02, encerramento 17:01:17 (as três na trava); ADH +59 em 15/10 | **Fato:** relógio 1 h **atrasado** no 1º turno | 0 antes das 8h; **+16** depois das 17h reais (17:00–17:21) |
+| BA 34134/0171/0166 | 2º | Carga −61; zerésimas 07:02 e 07:18, pronta 08:00:01, ajuste recusado 11:05, encerramento 17:00 | **Hipótese forte:** relógio 1 h atrasado | 0 (último voto às 16:59 reais) |
+| GO 93734/0133/0062 | 1º | Carga −30; zerésima 07:01, pronta 08:00, último voto 16:15 (parecer 47) | **Fato:** relógio 30 min atrasado | 0 |
+| ZZ 29955/0001/3649, 3705, 3785 (Lisboa) | 2º | Ligada em 24/10 13:41 com horário de verão; nenhum religamento em 25/10; pronta 08:46 no relógio (07:46 reais) na 3649 | **Fato:** fim do horário de verão europeu na madrugada, com a urna ligada | 0; os 87 votos da "hora das 17h" foram às 16h reais |
 | SP 71072/0280/0913 | 1º e 2º | Carga −1 min (sem hora cheia). Os dois turnos: pronta 08:31/08:44, 1º voto 09:02/09:03, último 17:57, encerramento 18:12/18:05, BU emitido às 18:14/18:08 contra 17:03–17:17 nas seções 0900 a 0919 da zona (exceto a 0912 no 2º turno, 19:05) | **Hipótese:** relógio 1 h adiantado que o operador só confirmou na carga | "Depois das 17h": 27 (1º) e 23 (2º) |
 | PR 74357/0050/0254 | 1º | Original votou 08:05–10:09; volta em `04/10/2000`; reserva às 11:51 | Relógio zerado no religamento (bateria) | 0 |
 | CE 14117/0013/0206 | 2º | Original: erro de impressora 07:39, volta em `2026-01-01`, diário corrompido; reserva com zerésima própria às 08:39 | Falha de equipamento antes de abrir | 0 |
@@ -220,31 +313,60 @@ Nenhum caso envolve o Recuperador de Dados (RED).
 ## Hipóteses
 
 - **SP 71072/0280/0913 com relógio 1 h adiantado nos dois turnos.** O perfil inteiro (sem voto até 09:02, votos até 17:57, BU cerca de 1 h depois das seções vizinhas da zona) bate com +1 h. A carga não registra acerto de hora cheia: o operador confirmou a hora que a própria urna mostrava. Não há prova externa: a folga do recebimento no 1º turno é de 73 min, e um relógio +1 h só daria folga negativa com menos de 60.
-- **GO 92274/0119/0049 no 2º turno.** O acerto +59 é Fato. Que o relógio continuava errado no 2º turno é inferência do perfil (sem acerto posterior, sem prova externa, porque o TSE só registrou o 2º turno depois das 19h).
-- **Impacto nos números da H06** (só se as duas forem aceitas):
-  - 1º turno: −15 votos "depois das 17h" (RJ 0279, Fato), −61 (GO) e −27 (SP), e −25 "depois das 18h" (GO);
-  - 2º turno: −15 (GO) e −23 (SP) depois das 17h.
-  - Não muda nenhuma conclusão; é para a tabela de correção do doc 07.
+- **BA 34134/0171/0166 com relógio 1 h atrasado no 2º turno** (Hipótese forte, item 3c). Sem efeito nos votos depois das 17h.
+- **RS 88994/0131/0007** (candidata do doc 07 da linha do tempo, 1º turno): tudo 1 h depois das vizinhas, mesma leva de carga da 0008 (Fato no doc 07), sem acerto. Continua Hipótese.
+
+## Efeito na H06: votos depois das 17h e das 18h, refeitos (Fato)
+
+`seguranca-h20-h06-corrigido.mjs` usa a mesma régua do tópico 3 da perícia: Brasil sem o exterior, todas as urnas, votos por hora cheia no relógio da urna, fuso do município pela abertura mais comum do BU no turno, e as 81 seções do doc 07 com a diferença da própria seção.
+
+- **Conferência:** a régua sem as correções novas reproduz exatamente os números do relatório: 3.723.360 / 778.979 no 1º turno e 34.330 / 1.993 no 2º.
+- **Correções aplicadas (Fato):** RJ 60011/0214/0279 (+1 h, 1º turno), GO 92274/0119/0049 (+1 h, nos dois turnos), PR 74357/0050/0033 (−1 h, 1º turno).
+- As urnas originais trocadas de RJ 0022, RJ 0024 e PR 0261 entram com efeito 0. O script confere na varredura que o último voto de cada uma ficou antes das 17h locais no relógio dela: 15:59 na PR, 09:12 na RJ 0024, e a RJ 0022 não teve voto. Com a correção de +1 h esse último voto só fica mais cedo, e o perfil da seção mistura a hora delas com a da reserva.
+- Lisboa fica fora do total do Brasil e entra no total do exterior.
+
+| | 1º turno, depois das 17h | 1º turno, depois das 18h | 2º turno, depois das 17h | 2º turno, depois das 18h |
+|---|---|---|---|---|
+| Número usado hoje no relatório | 3.723.360 | 778.979 | 34.330 | 1.993 |
+| RJ 60011/0214/0279 (+1 h) | −15 | 0 | — | — |
+| GO 92274/0119/0049 (+1 h) | −36 | −25 | −15 | 0 |
+| PR 74357/0050/0033 (−1 h) | +16 | 0 | — | — |
+| **Corrigido, só com Fatos** | **3.723.325** | **778.954** | **34.315** | **1.993** |
+| Diferença | **−35** | **−25** | **−15** | **0** |
+| Sensibilidade: SP 71072/0280/0913 (+1 h) | −27 | 0 | −23 | 0 |
+| Sensibilidade: RS 88994/0131/0007 (+1 h) | −30 | −1 | — | — |
+| Sensibilidade: BA 34134/0171/0166 (−1 h) | — | — | 0 | 0 |
+| Com Fatos e Hipóteses | 3.723.268 (−92) | 778.953 (−26) | 34.292 (−38) | 1.993 (0) |
+
+- **Correção de conta:** na versão anterior deste doc, e no parecer 47, o efeito da GO no 1º turno aparece como −61 depois das 17h. Está errado.
+  - A seção tinha 61 votos depois das 17h do relógio: 36 na hora das 17h e 25 na das 18h.
+  - Com +1 h, os 25 da hora das 18h do relógio caem na hora das 17h real e continuam "depois das 17h".
+  - O efeito certo é −36 depois das 17h e −25 depois das 18h, o mesmo do doc 07 ("61 → 25 depois das 17h, 25 → 0 depois das 18h").
+  - Por isso o total só com Fatos no 1º turno é −35, e não −60.
+- **Exterior, 2º turno, pela hora local** (o relatório cita 417): com Lisboa +1 h, fica **330** (−87).
+- Nenhuma conclusão da H06 muda.
 
 ## Pendente e limites
 
-- **Encadeamento de hash do diário:** o algoritmo não é público. Sem ele, não dá para provar que a ordem física é a original. Uma reescrita completa do diário com a chave da urna não deixaria rastro conferível. Pedir ao TSE a especificação do "hash de encadeamento" do `logd.dat`.
-- **Relógio atrasado 1 h:** os testes 1 a 4 só pegam relógio adiantado.
-  - O atrasado faria a urna abrir às 09:00 reais (trava em 08:00 no relógio) e recusar o encerramento até as 18:00 reais.
-  - O rastro de "abertura às 09h" se confunde com abertura atrasada (88 seções no 2º turno), e as recusas da trava não discriminam.
-  - No 2º turno, nenhuma seção tem as duas coisas ao mesmo tempo: abertura na trava (até 5 min depois da hora cheia) e encerramento 1 h antes das vizinhas. Esse cruzamento não foi feito de forma sistemática.
-  - **Pendente:** comparar, por local de votação, a hora do encerramento de cada seção com a mediana do local, nos dois turnos.
-- **Relógio constante errado nos dois turnos, sem acerto e sem perfil deslocado** (mesa que segue o relógio da urna): não deixa rastro nos arquivos públicos. Só a ata da seção ou a hora do recebimento abaixo de 60 min resolvem.
-- **Zona 0214 do RJ (Rio de Janeiro):** 3 urnas com +60 digitado no mesmo dia (22/09) e uma com −60 (0280, em 29/09). Pedir ao TRE-RJ a ata da carga de 22/09.
+- **Encadeamento de hash do diário:** o algoritmo não é público. Sem ele, não dá para conferir a ordem linha a linha por quem está de fora. A integridade do arquivo inteiro é Fato pela assinatura da urna, mas ela não protege contra uma urna com programa adulterado que escrevesse e assinasse um diário falso. Pedir ao TSE a especificação do "hash de encadeamento" do `logd.dat`.
+- **O que continua sem rastro nos arquivos públicos:**
+  - os 159 + 54 votos sem linha no diário, e as manhãs das 3 seções sem zerésima no diário publicado;
+  - relógio errado que não mudou entre os turnos, numa seção em que a mesa também chegou deslocada e seguiu o relógio da urna o dia todo. Só a ata da seção ou um carimbo de hora externo resolvem;
+  - relógio atrasado no 2º turno pelo limite externo, porque a folga abaixo de 60 min existe em só 0,2% das seções.
+- **Sem decisão nos arquivos públicos** (parecer 47):
+  - 20 seções com o sinal de início nos dois turnos e sem exclusão pelo recebimento;
+  - AM 02550/0068/0657 e 0789 (Manaus, 1º turno).
+- **Zona 0214 do RJ (Rio de Janeiro):** 4 urnas com +59/+60 digitado no mesmo dia (22/09: 0022, 0023, 0024 e 0279) e uma com −60 (0280, em 29/09). Pedir ao TRE-RJ a ata da carga de 22/09.
 - A abertura gravada no BU de uma seção com contingência pode vir do relógio da urna original. O campo `dataHoraAbertura` do BU não é carimbo de tempo confiável.
 
 ## Recomendações
 
-1. **Coordenador:**
-   - acrescentar RJ 60011/0214/0279 à tabela de relógio fora do fuso do doc 07 (Fato), e avaliar GO 92274/0119/0049 e SP 71072/0280/0913;
-   - as urnas originais de RJ 0022, RJ 0024 e PR 0261 não mudam os números de horário por seção, porque os votos delas ficam antes das 17h nas duas réguas.
-2. Pedir ao TSE a especificação do hash de encadeamento do `logd.dat` e do relógio da urna (fonte da hora, bateria, horário de verão no exterior).
-3. Pedir aos TREs do RJ, PR e GO as atas das cargas de 22/09 (RJ 0214), 26/09 (PR 0078) e 21/09 (GO 0119).
+1. **Coordenador**, na tabela de relógio fora do fuso do doc 07 e nos números da H06:
+   - acrescentar RJ 60011/0214/0279 (+1 h, 1º turno), GO 92274/0119/0049 (+1 h, dois turnos) e PR 74357/0050/0033 (−1 h, 1º turno), com os totais da tabela acima (1º turno 3.723.325 / 778.954; 2º turno 34.315 / 1.993);
+   - Lisboa (2º turno) no total do exterior pela hora local (330);
+   - manter SP 71072/0280/0913, RS 88994/0131/0007 e BA 34134/0171/0166 como Hipótese.
+2. Pedir ao TSE a especificação do hash de encadeamento do `logd.dat`, das travas de horário (zerésima, abertura, encerramento) e do relógio da urna (fonte da hora, bateria, horário de verão no exterior).
+3. Pedir aos TREs as atas: cargas de 22/09 (RJ zona 0214), 26/09 (PR zona 0078) e 21/09 (GO zona 0119); seções PR 74357/0050/0033 (1º turno), BA 34134/0171/0166 (2º turno) e SP 71072/0280/0913 (dois turnos).
 
 ## Comandos
 
@@ -269,6 +391,11 @@ node scripts/auditoria/seguranca-h20-hash-linha.mjs --turno 1 --secao sp/71072/0
 node scripts/auditoria/seguranca-h20-casos.mjs --turno 2 --secoes rj/60011/0214/0279,go/92274/0119/0049,sp/71072/0280/0913
 node scripts/auditoria/seguranca-h20-casos.mjs --turno 1 --secoes pr/74713/0078/0261,rj/60011/0214/0024,rj/60011/0214/0022,pr/74357/0050/0254 --dias 04/10/2026,04/10/2000
 node scripts/auditoria/seguranca-h20-casos.mjs --turno 2 --secoes ce/14117/0013/0206,zz/29980/0001/3651,pa/04278/0098/0294 --dias 25/10/2026
+node scripts/auditoria/seguranca-h20-casos.mjs --turno 2 --secoes pr/74357/0050/0033,ba/34134/0171/0166
+node scripts/auditoria/seguranca-h20-casos.mjs --turno 2 --secoes zz/29955/0001/3649 --dias 24/10/2026,25/10/2026
+node scripts/auditoria/seguranca-h20-casos.mjs --turno 1 --secoes rj/60011/0214/0023 --dias 04/10/2026
+# H06 refeita com todas as correções de relógio que são Fato (≈ 1 min)
+node --max-old-space-size=8192 scripts/auditoria/seguranca-h20-h06-corrigido.mjs
 # Voto da seção × resto do local
 node scripts/auditoria/seguranca-h20-votos-local.mjs go/92274/0119/0049,sp/71072/0280/0913,pr/74713/0078/0261,rj/60011/0214/0024
 # BU × diário (abertura e encerramento)
@@ -281,6 +408,9 @@ Saídas em `data/parsed/auditoria/engenheiro-seguranca-urna/h20/`:
 - `resultado.json` e `casos.csv`: itens 1–3, casos e voto;
 - `recebimento.json` e `recebimento-negativos.csv`;
 - `ajustes-1t/`, `ajustes-2t/`, `ajustes-resultado.json` e `ajustes-hora-cheia.csv`;
-- `perfil-hora.json`.
+- `perfil-hora.json`;
+- `h06-corrigido.json`: total da H06 corrigido, por turno e por seção.
+
+As afirmações marcadas "parecer 47" vêm da leitura própria do revisor (`cetico-47-*.mjs`, saídas em `data/parsed/auditoria/cetico-revisor/47/`). Conferi no bruto, com `seguranca-h20-casos.mjs`: PR 74357/0050/0033, BA 34134/0171/0166, ZZ 29955/0001/3649 e RJ 60011/0214/0023.
 
 Nenhum título de eleitor ou de mesário é gravado: sequências de 8 ou mais dígitos viram `#`.
