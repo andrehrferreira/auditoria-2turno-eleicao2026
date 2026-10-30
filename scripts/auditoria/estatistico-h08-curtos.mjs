@@ -10,7 +10,7 @@ import { readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { DIR_DADOS } from '../../src/config.js';
 import { acharArquivo } from '../../src/lacres.js';
-import { fluxosDoTexto, textos } from './estatistico-h08-varredura.mjs';
+import { fluxosDoTexto, juntarCopias, textos } from './estatistico-h08-varredura.mjs';
 
 const BASE = path.join(DIR_DADOS, 'parsed', 'auditoria', 'estatistico', 'h08');
 const DIAS = { 1: '04/10/2026', 2: '25/10/2026' };
@@ -46,10 +46,10 @@ for (const turno of [1, 2]) {
     }
     let curtosSec = 0, curtosSemDig = 0;
     for (const lista of copias.values()) {
-      lista.sort((x, y) => y.length - x.length);
+      const unidas = juntarCopias(lista).linhas;
       const vistas = new Set();
       let H = null, k = 0, bio = false, prevV = null;
-      for (const l of lista[0]) {
+      for (const l of unidas) {
         if (vistas.has(l)) continue;
         vistas.add(l);
         const msg = l.split('\t')[4] ?? '';

@@ -10,7 +10,7 @@ import { readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { DIR_DADOS } from '../../src/config.js';
 import { acharArquivo } from '../../src/lacres.js';
-import { fluxosDoTexto, textos } from './estatistico-h08-varredura.mjs';
+import { fluxosDoTexto, juntarCopias, textos } from './estatistico-h08-varredura.mjs';
 
 const SAIDA = path.join(DIR_DADOS, 'parsed', 'auditoria', 'estatistico', 'h13-v2');
 const DIAS = { 1: '04/10/2026', 2: '25/10/2026' };
@@ -40,11 +40,11 @@ for (const id of top) {
     }
     const o = { urnas: copias.size, votos: 0, v2: 0, v3: 0, v3comMesario: 0, v2PorHora: new Array(24).fill(0), v2Foto: 0, v2PedeDigital: 0, erros: 0, alertas: 0, mesariosRegistrados: 0, sequenciasV2de3ouMais: [], v2MinIntervaloSeguidos: null, primeiroVoto: null, ultimoVoto: null, inicioEncerramento: null };
     for (const lista of copias.values()) {
-      lista.sort((a, b) => b.length - a.length);
+      const unidas = juntarCopias(lista).linhas;
       const vistas = new Set();
       let m = {};
       const votos = [];
-      for (const l of lista[0]) {
+      for (const l of unidas) {
         if (vistas.has(l)) continue;
         vistas.add(l);
         const c = l.split('\t');

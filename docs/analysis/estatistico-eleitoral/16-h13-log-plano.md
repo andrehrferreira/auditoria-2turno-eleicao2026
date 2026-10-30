@@ -105,3 +105,61 @@ Depois do resultado ([18](18-h13-log-resultado.md)), sobrou um sinal fora do Nor
 **Leitura conjunta (fixada agora):** favorece composição se (a) mostra a interação esperada, (b) não concentra e (d) não depende de poucos municípios; favorece inserção se (b) concentra na última hora ou em sequência **e** (d) depende de poucos municípios **e** (c) mostra rajadas. Resultado misto fica como misto.
 
 **Recursos:** no máximo 2 processos Node ao mesmo tempo, sem linhas de execução extras; sem rede.
+
+## Adendo 2 de 30/10/2026: escolaridade, estado civil, foto, referência nula da concentração e 2022 (registrado antes de rodar)
+
+Depois do [doc 19](19-h13-v2-composicao.md) (resultado misto: sem marca de inserção pela mesa; a idade não explica o sinal V2), estes testes ficam fixados **antes** de rodar. O resultado vai no doc 22. Unidades testadas: fora do Nordeste, Sudeste e Sul. Modelo de base: o painel do adendo 1 (efeito fixo de local, controles, peso 13 + 22, erro por local).
+
+**(a) Escolaridade e estado civil** (`perfil_eleitor_secao_2026`, por seção):
+- A3: frações da seção inteira: escolaridade baixa (analfabeto, lê e escreve, fundamental incompleto), superior completo, solteiro, casado.
+- A4: as mesmas quatro frações, só entre os eleitores **sem biometria** no cadastro (seções com menos de 5 sem biometria ficam na média da unidade, com indicador, como no adendo 1).
+- Em cada família, as 4 interações com Δx_V2 entram juntas no mesmo modelo, centradas na média da unidade, com as 4 frações também como controle.
+- Composição prevê interações com o mesmo sinal da inclinação política do traço no nível do 2º turno (relatada ao lado). Inserção não prevê relação com esses traços.
+
+**(b) Foto.** f_foto = (ciclos V2 do 2º turno com `Foto do eleitor apresentada`) ÷ (V2 do 2º turno), da leitura de horário do adendo 1. Seções com menos de 5 V2 no 2º turno ficam na média, com indicador. Teste: Δx_V2 × f_foto. Inserção sem conferência da foto prevê interação **negativa** (o sinal maior onde a urna não mostrou foto). Composição não prevê relação.
+
+**(c) Referência nula da concentração por zona.** Estatística: parte do numerador do β nas 1% de zonas de maior contribuição (observado no doc 19: 33% fora do Nordeste). Nula: **efeito homogêneo** (o mesmo β em todas as seções) mais ruído com a dependência dentro do local, por bootstrap selvagem por local: y* = β̂·r_x + η_local·e, com η = ±1 sorteado por local e r_x fixo. São 1.000 repetições. p = fração das repetições com parte ≥ observada.
+- Por que não permutar ΔV2 dentro do local: isso impõe β = 0. Com β = 0 o numerador fica perto de zero, e a "parte do numerador" deixa de ter sentido. A pergunta é se o β é mais concentrado do que um efeito igual em todo lugar produziria, e por isso a nula precisa manter o β.
+
+**(d) 2022.** Não há no disco voto por candidato por seção em 2022 (só `votacao_candidato_munzona_2022`, por zona), nem biometria por seção de 2022. Substituto, por **zona**, igual para 2022 e 2026:
+- ΔY_z = parcela do 13 (13 / (13 + 22)) no 2º menos no 1º turno; Δc_z = variação do comparecimento sobre aptos, de `detalhe_votacao_secao` de cada ano (cargo presidente); sb_z = fração sem biometria no cadastro de **2026** (proxy; não há a de 2022).
+- Modelo: ΔY_z ~ Δc_z + sb_z + Δc_z × sb_z, efeito fixo de UF, peso 13 + 22 do 2º turno, erro por município.
+- Testes: a interação em 2022, a mesma em 2026 e a diferença 2026 − 2022, só fora do Nordeste (3 testes).
+- Calibração (descritiva): em 2026, por zona, o mesmo modelo com o ΔV2 real no lugar de Δc × sb.
+- Leitura: se 2022 mostra a mesma associação, o padrão é anterior a 2026 (estrutural). Se só 2026 mostra, o sinal é próprio desta eleição.
+
+**Número de testes do adendo 2:** (a) 8 × 3 = 24, (b) 3, (c) 3, (d) 3 = **33**. Bonferroni a 5%: |z| ≥ 3,17 (p ≤ 0,0015).
+
+**Leitura conjunta (fixada agora):**
+- Favorece composição se (a) mostra interações alinhadas à inclinação dos traços, ou se (d) mostra a mesma associação em 2022.
+- Favorece inserção se (b) é negativa e significativa, (c) mostra concentração além da nula e (d) não aparece em 2022.
+- O resto fica misto.
+
+## Adendo 3 de 30/10/2026: plano para o Sul, MG e RS, com a exposição por eleitor do cadastro (registrado antes de rodar; substitui o adendo 2)
+
+O adendo 2 foi registrado e **não chegou a rodar**. O [parecer cético 42](../cetico-revisor/42-h08-h13-log.md) mostrou dois problemas no sinal V2.
+- **Relação mecânica com o comparecimento.** A parcela de V2 entre os votantes sobe quando eleitores pela digital deixam de votar, mesmo sem nenhum V2 a mais.
+- **Tamanho que depende da medida.** Medida por eleitor do cadastro, com o comparecimento fixo, a parte própria da V2 fica abaixo do corte no Brasil e no Sudeste. Ela fica forte no Sul, em MG e no RS.
+
+Este adendo troca a medida e as unidades. Os testes (a) a (d) do adendo 2 ficam iguais no conteúdo, mas sobre a medida nova. O resultado vai no doc 22.
+
+**Medida principal.** Para cada via v, e_v = (votos da via no 2º turno − no 1º) ÷ eleitores da seção no perfil do eleitorado de 2026, com as vias V2, V3m e V3s, mais Δc = (votos do 2º − do 1º) ÷ eleitores como controle. Com Δc no modelo, o coeficiente de e_V2 é a **parte própria da V2**: quanto um votante V2 a mais acompanha o ganho do 13 **além** de um votante pela digital a mais.
+
+**Modelo de base:** ΔY ~ e_V2 + e_V3m + e_V3s + Δc + controles do plano, com efeito fixo de local de votação, peso 13 + 22 do 2º turno e erro CR1 por local. Vias contadas pela leitura do diário com **união** das cópias da mesma urna (correção do parecer 42; ver doc 22).
+
+**Unidades testadas:** Sul (PR, RS, SC), MG e RS. O RS está dentro do Sul: os testes não são independentes, e a correção abaixo trata os três como testes separados mesmo assim.
+
+**Sensibilidade declarada (sem teste):** base + parcela do 13 no 1º turno + x_V2 do 1º turno, para a regressão à média.
+
+**Testes:**
+- **(a) Escolaridade e estado civil.** A3 usa as frações da seção inteira: escolaridade baixa (1 a 3), superior (8), solteiro, casado. A4 usa as mesmas frações entre os sem biometria; seções com menos de 5 sem biometria ficam na média da unidade, com indicador. As 4 interações com e_V2 entram juntas, centradas, com as frações também como controle. São 8 testes por unidade. Ao lado vai a inclinação política de cada traço no nível do 2º turno.
+- **(b) Foto.** Interação de e_V2 com a fração f_foto dos V2 do 2º turno com `Foto do eleitor apresentada`; seções com menos de 5 V2 ficam na média, com indicador. Inserção sem conferência da foto prevê interação negativa.
+- **(c) Referência nula da concentração por zona.** É a parte do numerador do coeficiente de e_V2 nas 1% de zonas de maior contribuição, observada contra um bootstrap selvagem por local com efeito homogêneo (y* = β̂·r_x + η_local·e, η = ±1, 1.000 repetições). O p é unilateral. Não permuto ΔV2 dentro do local porque isso impõe β = 0 e tira o sentido da "parte do numerador".
+- **(d) 2022.** O teste é por zona, porque não há voto por seção nem biometria de 2022 no disco. Modelo: ΔY_z ~ Δc_z + sb_z + Δc_z × sb_z, onde Δc_z é a variação do comparecimento sobre os aptos do 1º turno (`detalhe_votacao_secao` do ano, presidente) e sb_z é a fração sem biometria do cadastro de **2026** (substituto). Efeito fixo de UF e erro por município. São 3 testes por unidade: a interação em 2022, em 2026 e a diferença 2026 − 2022, esta com erros tratados como independentes, o que é conservador. Calibração descritiva: em 2026, por zona, o mesmo modelo com o ΔV2 real ÷ eleitores no lugar do produto.
+
+**Número de testes:** (a) 24 + (b) 3 + (c) 3 + (d) 9 = **39**. Bonferroni a 5%: |z| ≥ 3,22 (p ≤ 0,00128).
+
+**Leitura conjunta (fixada agora):**
+- Favorece composição se (a) mostra interações alinhadas à inclinação dos traços, ou se (d) mostra a mesma associação em 2022 nas mesmas unidades.
+- Favorece inserção se (b) é negativa e significativa, (c) mostra concentração além da nula e (d) não aparece em 2022.
+- O resto fica misto.

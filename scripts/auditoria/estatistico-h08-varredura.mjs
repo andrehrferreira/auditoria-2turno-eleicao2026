@@ -3,8 +3,8 @@
 //
 // Fluxo: cada logd.dat do pacote (inclusive .jez aninhados de contingência) é lido separado; dentro dele as linhas do
 // dia são separadas pela urna (3ª coluna) e só entram as da seção declarada por último ("Seção Eleitoral: NNNN").
-// A mesma urna em mais de um texto (cópias MI/ME) vira um fluxo só: fica a cópia com mais linhas do dia, e as linhas
-// das outras cópias que não estão nela são contadas. Linha idêntica repetida no fluxo conta uma vez. Nada é
+// A mesma urna em mais de um texto (cópias MI/ME, trechos girados) vira um fluxo só: união das linhas (juntarCopias;
+// --copias maior repete a regra antiga, "fica a cópia com mais linhas", que descartava trechos; parecer cético 42). Linha idêntica repetida no fluxo conta uma vez. Nada é
 // reordenado por hora e urnas diferentes nunca se intercalam.
 //
 // Ciclo: I = "Identificador do eleitor digitado pelo mesário" (último antes da habilitação), H = "Eleitor foi
@@ -13,7 +13,7 @@
 // Via de liberação de cada voto (mesma prioridade de perfilLog): digital > ano de nascimento > dado pessoal com
 // mesário associado (V3m) > dado pessoal sem mesário (V3s) > outra.
 //
-// Uso: node scripts/auditoria/estatistico-h08-varredura.mjs --turno 2 [--uf ac,df] [--paralelo 3] [--refazer]
+// Uso: node scripts/auditoria/estatistico-h08-varredura.mjs --turno 2 [--uf ac,df] [--paralelo 3] [--refazer] [--copias uniao|maior]
 //      node scripts/auditoria/estatistico-h08-varredura.mjs --turno 2 --secoes ba/39870/0133/0184,es/... --saida <dir>
 // Saída (por parte de até 4.000 seções): data/parsed/auditoria/estatistico/h08/<t>t/
 //   <uf>-<p>.secoes.jsonl  uma linha por seção (vias, mínimos, fluxos com posição na sequência binária)
@@ -160,10 +160,35 @@ function processarFluxo(linhas, hist, sec) {
   return { f, Ds, Ks, primeiroV };
 }
 
+/**
+ * Junta os textos da mesma urna (cópias MI/ME, trechos girados do log, .jez aninhados).
+ * 'uniao' (padrão desde o parecer cético 42): todas as linhas distintas; os textos entram na ordem da primeira linha do
+ * dia (empate: o mais longo primeiro), e cada linha já vista é pulada, então trechos disjuntos ficam inteiros e cópias
+ * iguais não duplicam. 'maior' (regra do plano 15, usada na rodada de 30/10): só o texto com mais linhas, o que descarta
+ * trechos que estão só em outro texto. `foraDaMaior` = linhas dos outros textos que não estão no maior.
+ */
+export function juntarCopias(lista, modo = 'uniao') {
+  const porTamanho = [...lista].sort((a, b) => b.length - a.length);
+  const maior = porTamanho[0];
+  let foraDaMaior = 0;
+  if (lista.length > 1) {
+    const conj = new Set(maior);
+    for (const outra of porTamanho.slice(1)) for (const l of outra) if (!conj.has(l)) foraDaMaior++;
+  }
+  if (modo === 'maior' || lista.length === 1 || foraDaMaior === 0) return { linhas: maior, foraDaMaior };
+  const ordem = [...lista].sort((a, b) => (a[0]?.slice(11, 19) ?? '').localeCompare(b[0]?.slice(11, 19) ?? '') || b.length - a.length);
+  const vistas = new Set();
+  const linhas = [];
+  for (const texto of ordem) for (const l of texto) if (!vistas.has(l)) { vistas.add(l); linhas.push(l); }
+  return { linhas, foraDaMaior };
+}
+
+let modoCopias = 'uniao';
+
 async function processarSecao(dirSecao, turno, id, hist, saidaBin) {
   const [uf, municipio, zona, secao] = id.split('/');
   const sec = {
-    uf, municipio, zona, secao, pacotes: 0, textos: 0, linhasOutraSecao: 0, linhasForaDaCopia: 0, votos: 0,
+    uf, municipio, zona, secao, pacotes: 0, textos: 0, linhasOutraSecao: 0, linhasForaDaCopia: 0, votos: 0, copias: modoCopias,
     vias: { v1: 0, v2: 0, v3m: 0, v3s: 0, outra: 0 }, semIdentificador: 0, minA: null, minB: {}, minC: {}, lf1: [], fluxos: [],
   };
   // Pacotes repetidos no disco (mesmo pacote baixado em dois diretórios) e cópias MI/ME: a mesma urna vira um fluxo só.
@@ -193,12 +218,8 @@ async function processarSecao(dirSecao, turno, id, hist, saidaBin) {
   sec.logsDistintos = hashesLog.size;
   sec.linhasOutraSecao = outras.n;
   for (const [urna, lista] of copias) {
-    lista.sort((a, b) => b.length - a.length);
-    const escolhida = lista[0];
-    if (lista.length > 1) {
-      const conj = new Set(escolhida);
-      for (const outra of lista.slice(1)) for (const l of outra) if (!conj.has(l)) sec.linhasForaDaCopia++;
-    }
+    const { linhas: escolhida, foraDaMaior } = juntarCopias(lista, modoCopias);
+    sec.linhasForaDaCopia += foraDaMaior;
     const { f, Ds, Ks, primeiroV } = processarFluxo(escolhida, hist, sec);
     sec.votos += f.votos;
     const pos = saidaBin.bytes;
@@ -214,7 +235,8 @@ async function processarSecao(dirSecao, turno, id, hist, saidaBin) {
   return sec;
 }
 
-async function processarParte({ turno, ids, base, saida, nome }) {
+async function processarParte({ turno, ids, base, saida, nome, copias = 'uniao' }) {
+  modoCopias = copias;
   const hist = novoHist();
   const saidaBin = { partes: [], bytes: 0 };
   const linhas = [];
@@ -244,7 +266,7 @@ if (!isMainThread) {
   const { values } = parseArgs({
     options: {
       turno: { type: 'string', default: '2' }, uf: { type: 'string' }, secoes: { type: 'string' }, saida: { type: 'string' },
-      paralelo: { type: 'string', default: '3' }, refazer: { type: 'boolean' },
+      paralelo: { type: 'string', default: '3' }, refazer: { type: 'boolean' }, copias: { type: 'string', default: 'uniao' },
     },
   });
   const turno = values.turno;
@@ -253,7 +275,7 @@ if (!isMainThread) {
   await mkdir(saida, { recursive: true });
   const tarefas = [];
   if (values.secoes) {
-    tarefas.push({ turno, ids: values.secoes.split(','), base, saida, nome: 'selecao' });
+    tarefas.push({ turno, ids: values.secoes.split(','), base, saida, nome: 'selecao', copias: values.copias });
   } else {
     for (const uf of values.uf ? values.uf.split(',') : UFS) {
       const ids = [];
@@ -262,7 +284,7 @@ if (!isMainThread) {
       for (let i = 0, p = 0; i < ids.length; i += TAM_PARTE, p++) {
         const nome = `${uf}-${String(p).padStart(3, '0')}`;
         if (!values.refazer && existsSync(path.join(saida, `${nome}.secoes.jsonl`))) continue;
-        tarefas.push({ turno, ids: ids.slice(i, i + TAM_PARTE), base, saida, nome });
+        tarefas.push({ turno, ids: ids.slice(i, i + TAM_PARTE), base, saida, nome, copias: values.copias });
       }
     }
   }

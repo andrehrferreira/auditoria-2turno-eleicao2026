@@ -18,7 +18,7 @@ import path from 'node:path';
 import { parseArgs } from 'node:util';
 import { DIR_DADOS, UFS } from '../../src/config.js';
 import { acharArquivo } from '../../src/lacres.js';
-import { fluxosDoTexto, textos } from './estatistico-h08-varredura.mjs';
+import { fluxosDoTexto, juntarCopias, textos } from './estatistico-h08-varredura.mjs';
 
 const { values } = parseArgs({ options: { turno: { type: 'string', default: '2' }, uf: { type: 'string' }, secoes: { type: 'string' }, saida: { type: 'string' } } });
 const turno = values.turno;
@@ -99,7 +99,7 @@ async function secao(id) {
       for (const [urna, ls] of fluxosDoTexto(t, DIA, sec, { n: 0 })) { if (!copias.has(urna)) copias.set(urna, []); copias.get(urna).push(ls); }
     }
   }
-  for (const lista of copias.values()) { lista.sort((a, b) => b.length - a.length); fluxo(lista[0], s); }
+  for (const lista of copias.values()) fluxo(juntarCopias(lista).linhas, s);
   return s;
 }
 
