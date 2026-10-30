@@ -43,15 +43,16 @@ Toda afirmação traz um destes rótulos:
 | 7 | [Limites desta perícia](07-limites-da-pericia.md) | O que estes arquivos permitem afirmar e o que não permitem | Revisto e atualizado com os demais tópicos em 30/10/2026. |
 | 8 | [A virada do 2º turno](08-virada-do-2-turno.md) | O que os números oficiais mostram sobre a virada? | Escrito só com números reproduzidos de forma independente; testes ainda em revisão aparecem como Pendente, sem número. |
 | 9 | [Padrões estatísticos de fraude](09-padroes-estatisticos.md) | Os resultados de Presidente mostram as marcas estatísticas que fraudes grandes costumam deixar? | Parcial: os números exatos foram refeitos por uma segunda conta; os que dependem de simulação estão Pendentes. O tópico ainda não teve revisão independente completa. |
-| 10 | [Quadro geral das hipóteses de fraude testadas](10-quadro-das-hipoteses.md) | Quais suspeitas de fraude foram testadas, como, e o que se concluiu? | Atualizado em 30/10/2026: 15 hipóteses no quadro (H01 a H14 e H25). As registradas depois (H15 a H24) estão Pendentes. |
+| 10 | [Quadro geral das hipóteses de fraude testadas](10-quadro-das-hipoteses.md) | Quais suspeitas de fraude foram testadas, como, e o que se concluiu? | Atualizado em 30/10/2026: 18 hipóteses no quadro (H01 a H17 e H25). As registradas depois (H18 a H24) estão Pendentes. |
 | 11 | [Urnas trocadas por reserva no 2º turno](11-urnas-reserva.md) | As seções que votaram com urna reserva no 2º turno mostram votos ou rastro técnico fora do normal, comparadas com elas mesmas no 1º turno e com as vizinhas? | Concluído para o 2º turno, com revisão independente. Pendente: motivo da troca de urnas em Aracaju, causa do comparecimento menor das reservas herdadas no 1º turno e os demais pontos listados no tópico. |
 | 12 | [Sigilo do voto](12-sigilo-do-voto.md) | Os arquivos públicos permitem ligar um voto a um eleitor? | Concluído para os dois turnos, com revisão independente. Pendente: de quem são os números de título gravados no diário (pergunta ao TSE) e a busca em formas codificadas. |
+| 13 | [A mesa e o atendimento de cada eleitor](13-mesa-e-sessao-do-eleitor.md) | Todo eleitor liberado tem um fim registrado no diário? A mesa liberou votos em bloco, impediu alguém de votar ou votou no lugar de quem chegou depois? | Escrito em 30/10/2026, com revisão independente. Concluído para os dois turnos o atendimento de cada eleitor, a lista de votos × boletim do 1º turno e a causa das interrupções. Pendente: os testes de votos em bloco (H15) e do "já votou" (H17) e o pedido de ata e caderno de votação de duas seções. |
 
 **Relatórios temáticos** (cada um sai também em PDF próprio):
 
 | Tema | Pergunta que responde | Situação |
 |---|---|---|
-| [O certificado vencido da AC URNA](temas/certificado-ac-urna.md) | O certificado do "cartório digital" das urnas 2013 e 2015 venceu antes da eleição. O que isso permite e o que não permite afirmar? | Versão final (30/10/2026), com revisão independente. Pendente: resposta do TSE, lista de revogação e política da AC URNA. |
+| [O certificado vencido da AC URNA](temas/certificado-ac-urna.md) | O certificado do "cartório digital" das urnas 2013 e 2015 venceu antes da eleição. O que isso permite e o que não permite afirmar? | Versão de 30/10/2026, com revisão independente: inclui a busca por carteiras de teste ou fora do padrão nas três autoridades (nenhuma fora do molde; 6 urnas receberam a carteira entre os turnos) e as respostas, ponto por ponto, às perguntas do auditor. Pendente: resposta do TSE, lista de revogação e política da AC URNA. |
 
 **Registro de evidências:** um registro técnico separado deste relatório guarda o índice de todos os arquivos de dados usados (com a impressão digital de cada um), o livro de registro encadeado de cada verificação e as cópias dos documentos de referência.
 
@@ -98,4 +99,6 @@ Toda afirmação traz um destes rótulos:
 | **Diferença-em-diferenças** | Comparar o "antes e depois" de um grupo com o "antes e depois" de um grupo de referência. Como medir quanto uma planta adubada cresceu e comparar com o quanto cresceram as do mesmo canteiro sem adubo |
 | **Correção para muitos testes** | Quem faz muitos testes ao mesmo tempo acha alguns resultados "raros" só por acaso. A correção exige mais de cada teste, na proporção de quantos foram feitos |
 | **Urna reserva herdada** | Urna reserva que substituiu a urna da seção no 1º turno (ou antes dele) e continuou na seção no 2º turno |
+| **Atendimento do eleitor (sessão)** | O trecho do diário da urna que vai da liberação do eleitor até o fim registrado: voto gravado, desistência ou parada da urna. Como a ficha de um paciente no pronto-socorro, que abre na entrada e fecha na alta ([tópico 13](13-mesa-e-sessao-do-eleitor.md)) |
+| **Caderno de votação** | A lista de eleitores da seção, em papel, que cada eleitor assina ao votar. Não é pública. É o único registro de quem assinou e em que ordem |
 | **LAI** (Lei de Acesso à Informação) | A lei que permite a qualquer pessoa pedir informações a órgãos públicos |
