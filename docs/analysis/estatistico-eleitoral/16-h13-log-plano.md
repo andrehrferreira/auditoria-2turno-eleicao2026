@@ -163,3 +163,44 @@ Este adendo troca a medida e as unidades. Os testes (a) a (d) do adendo 2 ficam 
 - Favorece composição se (a) mostra interações alinhadas à inclinação dos traços, ou se (d) mostra a mesma associação em 2022 nas mesmas unidades.
 - Favorece inserção se (b) é negativa e significativa, (c) mostra concentração além da nula e (d) não aparece em 2022.
 - O resto fica misto.
+
+## Adendo 4 de 30/10/2026: comparação por seção com 2022 no Sul, em MG e no RS (registrado antes de rodar e antes de baixar os arquivos de 2022)
+
+O [doc 22](22-h13-v2-sul-mg-rs.md) deixou 2022 pendente porque o substituto por zona não reproduzia nem o sinal de 2026. Com a rede liberada para os arquivos públicos do TSE, o teste passa a ser **por seção**. Vale para as unidades Sul (PR, RS, SC), MG e RS. O resultado vai no doc 23.
+
+**Arquivos (cdn.tse.jus.br/estatistica/sead/odsele):**
+- `votacao_secao/votacao_secao_2022_BR.zip`: votos de presidente por seção, os dois turnos;
+- `perfil_eleitor_secao/perfil_eleitor_secao_2022_{MG,PR,RS,SC}.zip`: eleitores, biometria, idade e escolaridade por seção;
+- `detalhe_votacao_secao_2022.zip`, já no disco: aptos, comparecimento, local e modelo da urna por seção.
+- URL, ETag, Last-Modified, tamanho e SHA-256 de cada arquivo vão em `23-arquivos-baixados.csv`.
+
+**Por que um substituto, e qual.** Não há diário de urna de 2022 aqui, então não existe V2 (liberação pelo ano de nascimento) por seção. O melhor substituto por seção é **e*_V2 = Δc × sb**:
+- Δc = (comparecimento do 2º turno − do 1º) ÷ eleitores do cadastro da seção;
+- sb = fração **sem biometria** no cadastro da seção (perfil do mesmo ano).
+
+Se os eleitores que entram ou saem entre os turnos tiverem, na seção, a mesma fração sem biometria do cadastro, então ΔV2 ÷ eleitores ≈ Δc × sb. No modelo ΔY ~ Δc + sb + Δc × sb + controles, o coeficiente de Δc × sb faz o papel da parte própria da V2. Nenhum outro campo público por seção separa quem tem digital.
+
+**Modelo, igual nos dois anos:**
+- ΔY = parcela do 13 (13 / (13 + 22)) no 2º menos no 1º turno;
+- regressores: Δc, sb, Δc × sb (centrado), mais 60+, 16–24, escolaridade baixa, superior, log do eleitorado (perfil do ano) e o modelo da urna (indicadores);
+- efeito fixo de **local de votação** (UF, município, zona, número do local);
+- peso 13 + 22 do 2º turno; erro CR1 por local;
+- seções com menos de 20 votos em 13 + 22 em algum turno, sem perfil ou sem os dois turnos ficam fora, com contagem.
+- Em 2026, Δc vem do comparecimento do BU (banco), sb e controles do perfil de 2026, e local e modelo da urna do banco.
+
+**Passo 1, calibração em 2026 (critério fixado agora).** O substituto **serve** numa unidade se, em 2026:
+- (i) o coeficiente de Δc × sb for positivo com z ≥ 2;
+- (ii) o sinal real, na mesma amostra, for positivo. O sinal real é o coeficiente de e_V2 com Δc no modelo, a medida do adendo 3.
+
+Relatados ao lado: a razão entre os dois coeficientes e a correlação, dentro do local, entre Δc × sb e e_V2. Se o substituto não servir numa unidade, 2022 fica **sem teste** nela, e isso é dito.
+
+**Passo 2, 2022 (só onde o substituto serve):**
+- T1: o coeficiente de Δc × sb em 2022, bicaudal;
+- T2: a diferença 2026 − 2022, com erros tratados como independentes.
+
+**Testes:** até 3 unidades × 2 = **6**. Bonferroni: |z| ≥ 2,64.
+
+**Leitura (fixada agora):**
+- **Estrutural:** T1 positivo e significativo, e T2 não significativo.
+- **Próprio de 2026:** T1 nulo (|z| < 2) e T2 positivo e significativo.
+- **Inconclusivo:** qualquer outro caso, ou um T1 nulo com erro tão grande que caberia o valor de 2026. O poder vai relatado: o efeito que T1 veria com 80%, (2,64 + 0,84) × erro.
