@@ -62,11 +62,43 @@ const decomposicao = {
 };
 decomposicao.fecha = decomposicao.diferenca === decomposicao.anterioresH14Antes + decomposicao.anterioresH14SemRegistro + decomposicao.buMenosDiario;
 
+// Cópias do mesmo diário no pacote: na varredura (um registro por logd.dat), a mesma urna com votos em 25/10 em mais de
+// um diário. Votos distintos por urna = maior contagem entre as cópias; a soma por cópia conta o mesmo voto duas vezes.
+// (O tópico 2 recontou essas seções no bruto identificando o voto por urna + hora da linha: BA 0184 = 185 + 43, MG 0264 = 114.)
+const chaves = new Map(bpu.secoes.map((s) => [s.k, s]));
+const copias = [];
+const { readdir } = await import('node:fs/promises');
+const { createReadStream } = await import('node:fs');
+const { createInterface } = await import('node:readline');
+const dirV = path.join(A, 'reservas-rastro', 'varredura');
+for (const arq of (await readdir(dirV)).filter((n) => n.endsWith('.jsonl'))) {
+  for await (const l of createInterface({ input: createReadStream(path.join(dirV, arq)), crlfDelay: Infinity })) {
+    if (!l) continue;
+    const p = JSON.parse(l);
+    const s = chaves.get(p.k);
+    if (!s || !p.logs) continue;
+    const porUrna = new Map();
+    for (const g of p.logs) for (const [u, v] of Object.entries(g.dia?.votos ?? {})) (porUrna.get(u) ?? porUrna.set(u, []).get(u)).push(v);
+    let somaCopias = 0; let distintos = 0;
+    for (const vs of porUrna.values()) { somaCopias += vs.reduce((a, b) => a + b, 0); distintos += Math.max(...vs); }
+    if (somaCopias !== distintos) copias.push({ k: p.k, grupo: s.grupo, somaPorCopia: somaCopias, distintosPorUrna: distintos, contadosDuasVezes: somaCopias - distintos });
+  }
+}
+const duplicados = copias.reduce((a, c) => a + c.contadosDuasVezes, 0);
+decomposicao.copiasDoMesmoDiario = copias;
+decomposicao.votosContadosDuasVezes = duplicados;
+decomposicao.anterioresNoDiaDistintos = porGrupo.h14Dia.anterioresDiario - duplicados;
+const semLinha = divergentes.filter((d) => d.diarioMenosBu < 0).reduce((a, d) => a - d.diarioMenosBu, 0);
+decomposicao.votosDoBuSemLinhaNoDiario = semLinha;
+decomposicao.fechoBu = tot.reservaDiario + decomposicao.anterioresNoDiaDistintos + porGrupo.h14SemRegistro.anterioresDiario + semLinha;
+
 const confere = (ok, txt) => { console.log(`${ok ? 'ok  ' : 'FALHA'} ${txt}`); if (!ok) process.exitCode = 1; };
 confere(tot.secoes === 2818, `2.818 trocas novas (${tot.secoes})`);
 confere(tot.buComparecimento === 731639, `comparecimento do BU = 731.639 (${tot.buComparecimento})`);
 confere(tot.reservaDiario === somaReserva, `votos da reserva no diário = 575.362 (${tot.reservaDiario})`);
 confere(porGrupo.h14Dia.anterioresDiario === 155894, `anteriores no dia (h14Dia) = 155.894 (${porGrupo.h14Dia.anterioresDiario})`);
+confere(decomposicao.votosContadosDuasVezes === 231 && decomposicao.anterioresNoDiaDistintos === 155663, `votos contados duas vezes por cópia do diário = 231; anteriores distintos = 155.663 (${decomposicao.anterioresNoDiaDistintos})`);
+confere(decomposicao.fechoBu === 731639, `reserva + anteriores distintos + sem registro + BU sem linha = 731.639 (${decomposicao.fechoBu})`);
 confere(decomposicao.fecha, `383 = anteriores h14Antes (${decomposicao.anterioresH14Antes}) + anteriores sem registro (${decomposicao.anterioresH14SemRegistro}) + (BU − diário) (${decomposicao.buMenosDiario})`);
 
 await mkdir(SAIDA, { recursive: true });

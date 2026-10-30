@@ -3,8 +3,9 @@
 //
 // Definições (escritas antes de olhar os votos):
 //  - Sessão de carga: um logd.dat com uma carga SCUE (urna + código de carga).
-//  - Recarga: dentro do mesmo pacote, a mesma urna com 2+ sessões. A sessão mais funda (diário aninhado) é a mais antiga:
-//    ao ser recarregada, a urna guarda o diário anterior dentro do novo. Cada par (anterior → nova) é uma recarga.
+//  - Recarga: dentro do mesmo pacote, a mesma urna com 2+ sessões. Ao ser recarregada, a urna arquiva o diário anterior
+//    ("<urna><data><hora>-0N.jez", com a hora do arquivamento no nome) dentro do novo. Ordem: arquivados pela hora do
+//    arquivamento, o diário vivo por último. Cada par consecutivo (anterior → nova) é uma recarga.
 //    Período da recarga = data digitada da nova carga (antes do 1º turno: até 04/10; entre os turnos: 05/10 a 24/10;
 //    dia do 2º turno: 25/10). No catálogo do 2º turno só contam as recargas com nova carga a partir de 05/10 (as
 //    anteriores já estão no catálogo do 1º turno).
@@ -16,7 +17,9 @@
 //      paraReserva  a nova carga é de contingência (seção 0000);
 //      outraSecao   a carga anterior era para outra seção, zona ou município;
 //      votou        a sessão anterior registrou votos (urna do 1º turno recarregada para o 2º);
-//      semMotivo    mesma seção, sem ERRO, carga anterior bem-sucedida, sem votos: nenhum motivo no diário  ← H23
+//      novaMidia    a nova carga usou uma mídia de carga gerada DEPOIS da carga anterior (dados refeitos);
+//      semMotivo    mesma seção, sem ERRO, carga anterior bem-sucedida, sem votos, mesma mídia de carga ou mídia
+//                   gerada antes da carga anterior: nenhum motivo no diário  ← H23
 //  - Carga no dia da votação: sessão com data digitada no dia da votação (04/10 ou 25/10), em qualquer diário, e BU com
 //    data de carga no dia.
 //  - Bloco da zona (1º turno, cerimônia original): dia de cerimônia = dia com 3 ou mais cargas no BU da zona. Carga fora
@@ -46,7 +49,17 @@ const resultado = { definicoes: 'ver cabeçalho do script', recargas: {}, cargaN
 const casos = [];
 
 // ---------------------------------------------------------------- 1. Recargas
+const ordemDiario = (g) => {
+  const m = /^\d{8}(\d{2})(\d{2})(\d{4})(\d{2})(\d{2})(\d{2})-0\d\.jez$/.exec(g.nome);
+  return m ? Number(`${m[3]}${m[2]}${m[1]}${m[4]}${m[5]}${m[6]}`) : 99999999999999;
+};
 const pares = { 1: new Map(), 2: new Map() };
+const ordemConferida = { 1: {}, 2: {} };
+// Códigos de carga que já existiam no 1º turno: uma "nova" carga do catálogo do 2º turno com código do 1º turno é de
+// antes do 1º turno, ainda que a data digitada diga outra coisa (data digitada errada).
+const codigos1t = new Set();
+for await (const s of jsonl(path.join(SAIDA, 'h23-sessoes-1t.jsonl'))) codigos1t.add(`${s.urna}|${s.codigo}`);
+const dataErrada2t = [];
 const ultimaSessao = { 1: new Map(), 2: new Map() }; // urna|código → sessão (detalhe), para achar a carga do BU
 for await (const p of jsonl(path.join(SAIDA, 'h23-relidos.jsonl'))) {
   if (!p.logs) continue;
@@ -58,7 +71,10 @@ for await (const p of jsonl(path.join(SAIDA, 'h23-relidos.jsonl'))) {
   }
   for (const [u, l] of porUrna) {
     if (l.length < 2) continue;
-    l.sort((a, b) => b.prof - a.prof); // mais fundo = mais antigo
+    // Ordem: os diários arquivados pela recarga ("<urna><ddmmaaaa><hhmmss>-0N.jez") vêm antes, pela hora do arquivamento
+    // no nome; o diário vivo (logd.dat ou a cópia "...0NME.jez" feita pela reserva na contingência) vem por último. A data
+    // digitada não serve para ordenar: há trocas de dia digitadas errado nos dois sentidos.
+    l.sort((a, b) => ordemDiario(a) - ordemDiario(b));
     for (let i = 1; i < l.length; i++) {
       const a = l[i - 1]; const b = l[i];
       if (a.carga.codigo === b.carga.codigo) continue;
@@ -66,12 +82,22 @@ for await (const p of jsonl(path.join(SAIDA, 'h23-relidos.jsonl'))) {
       if (pares[p.turno].has(id)) continue;
       const quando = iso(b.carga.digitada);
       if (p.turno === 2 && quando && quando < '2026-10-05') continue;
+      if (p.turno === 2 && codigos1t.has(`${u}|${b.carga.codigo}`)) { dataErrada2t.push({ k: p.k, urna: u, digitada: quando, relogio: iso(b.carga.relogio) }); continue; }
       const votosAnt = Object.values(a.votos).reduce((x, y) => x + y, 0);
+      // Conferência da ordem: o arquivamento do diário anterior acontece quando a nova carga começa (mesmo relógio)
+      const oa = ordemDiario(a);
+      if (oa < 99999999999999 && b.carga.inicio) {
+        const ini = Number(`${b.carga.inicio.slice(6, 10)}${b.carga.inicio.slice(3, 5)}${b.carga.inicio.slice(0, 2)}${b.carga.inicio.slice(11, 13)}${b.carga.inicio.slice(14, 16)}${b.carga.inicio.slice(17, 19)}`);
+        const sec = (n) => Date.UTC(Math.floor(n / 1e10), Math.floor(n / 1e8) % 100 - 1, Math.floor(n / 1e6) % 100, Math.floor(n / 1e4) % 100, Math.floor(n / 100) % 100, n % 100) / 1000;
+        conta(ordemConferida[p.turno], Math.abs(sec(oa) - sec(ini)) <= 600 ? 'arquivamentoAte10minDaNovaCarga' : 'arquivamentoLongeDaNovaCarga');
+      } else conta(ordemConferida[p.turno], 'semHoraDeArquivamento');
       const motivo = !a.carga.ok ? 'falhou' : a.erros > 0 ? 'erro' : a.carga.secao === '0000' && b.carga.secao !== '0000' ? 'reserva'
-        : b.carga.secao === '0000' ? 'paraReserva' : !mesmaSecao(a.carga, b.carga) ? 'outraSecao' : votosAnt > 0 ? 'votou' : 'semMotivo';
+        : b.carga.secao === '0000' ? 'paraReserva' : !mesmaSecao(a.carga, b.carga) ? 'outraSecao' : votosAnt > 0 ? 'votou'
+        : b.carga.fcGeracao && iso(b.carga.fcGeracao) > (iso(a.carga.relogio) ?? '') ? 'novaMidia' : 'semMotivo';
       pares[p.turno].set(id, { turno: p.turno, k: p.k, urna: u, anterior: { codigo: a.carga.codigo, quando: iso(a.carga.digitada), secao: a.carga.secao, zona: a.carga.zona,
-        municipio: a.carga.municipio, ok: !!a.carga.ok, erros: a.erros, errosMsg: a.errosMsg, apps: a.apps, votos: votosAnt, ultimas: a.ultimas, nome: a.nome },
-        nova: { codigo: b.carga.codigo, quando, relogio: iso(b.carga.relogio), secao: b.carga.secao, zona: b.carga.zona, municipio: b.carga.municipio, ok: !!b.carga.ok },
+        municipio: a.carga.municipio, ok: !!a.carga.ok, fc: a.carga.fc, fcGeracao: iso(a.carga.fcGeracao), erros: a.erros, errosMsg: a.errosMsg, apps: a.apps, votos: votosAnt, ultimas: a.ultimas, nome: a.nome },
+        nova: { codigo: b.carga.codigo, quando, relogio: iso(b.carga.relogio), secao: b.carga.secao, zona: b.carga.zona, municipio: b.carga.municipio, ok: !!b.carga.ok,
+          fc: b.carga.fc, fcGeracao: iso(b.carga.fcGeracao), mesmaMidia: a.carga.fc === b.carga.fc },
         periodo: periodo(quando), motivo });
     }
   }
@@ -82,7 +108,7 @@ for (const t of [1, 2]) {
   const semM = [...pares[t].values()].filter((r) => r.motivo === 'semMotivo');
   const antesApps = {};
   for (const r of semM) conta(antesApps, Object.keys(r.anterior.apps).sort().join('+') || 'só carga');
-  resultado.recargas[`${t}t`] = { pares: pares[t].size, porPeriodoEMotivo: tab, semMotivo: semM.length, semMotivoAplicacoesNaSessaoAnterior: antesApps,
+  resultado.recargas[`${t}t`] = { pares: pares[t].size, ordemConferida: ordemConferida[t], porPeriodoEMotivo: tab, semMotivo: semM.length, semMotivoAplicacoesNaSessaoAnterior: antesApps,
     semMotivoMesmoDia: semM.filter((r) => r.anterior.quando?.slice(0, 10) === r.nova.quando?.slice(0, 10)).length };
 }
 
@@ -113,6 +139,26 @@ for (const t of [1, 2]) {
   }
 }
 resultado.recargas.buGeradoPorCargaRecarregada = buPorMotivo;
+resultado.recargas.catalogo2tComCodigoDo1t = dataErrada2t;
+
+// Relógio interno no momento da digitação da hora (diário), por urna|código: 2º turno (varredura) e relidos.
+const relogio = new Map();
+for await (const s of jsonl(path.join(SAIDA, 'h23-sessoes-2t.jsonl'))) if (s.relogio) relogio.set(`${s.urna}|${s.codigo}`, s.relogio);
+for (const t of [1, 2]) for (const [id, d] of ultimaSessao[t]) if (d.carga.relogio && !relogio.has(id)) relogio.set(id, iso(d.carga.relogio));
+const difDias = (a, b) => Math.abs(Date.parse(a.replace(' ', 'T')) - Date.parse(b.replace(' ', 'T'))) / 864e5;
+const conferirRelogio = (ks, t) => {
+  const o = { comRelogio: 0, semRelogio: 0, relogioAteUmaHora: 0, relogioDifereMaisDeUmDia: 0, casosDiferentes: [] };
+  for (const k of ks) {
+    const b = bu[t].get(k);
+    const r = relogio.get(`${b.urna}|${b.codigo}`);
+    if (!r) { o.semRelogio++; continue; }
+    o.comRelogio++;
+    const d = difDias(b.carga, r);
+    if (d <= 1 / 24) o.relogioAteUmaHora++;
+    if (d > 1) { o.relogioDifereMaisDeUmDia++; o.casosDiferentes.push({ k, cargaBu: b.carga, relogio: r }); }
+  }
+  return o;
+};
 
 // ---------------------------------------------------------------- 2. Carga no dia da votação
 const DIAS = { 1: '2026-10-04', 2: '2026-10-25' };
@@ -126,8 +172,21 @@ for (const t of [1, 2]) {
     return { urna: s.urna, quando: s.quando, pacotes: s.pacotes.map((p) => `${p.k} (prof ${p.prof})`), secaoGravada: d ? `${d.carga.municipio}/${d.carga.zona}/${d.carga.secao}` : null,
       relogio: d ? iso(d.carga.relogio) : null, ok: d ? !!d.carga.ok : null, votos: d ? d.votos : null, errosNaSessao: d?.erros ?? null, geraBuDe: noBu };
   });
-  resultado.cargaNoDia[`${t}t`] = { buComCargaNoDia: doBu.length, bu: doBu, sessoesNoDia: det.length, sessoes: det };
+  resultado.cargaNoDia[`${t}t`] = { buComCargaNoDia: doBu.length, relogio: conferirRelogio(doBu.map((x) => x.k), t), bu: doBu, sessoesNoDia: det.length, sessoes: det };
   for (const x of doBu) casos.push({ teste: `carga no dia ${t}t`, k: x.k, detalhe: `${x.tipo} carga ${x.carga} abertura ${x.abertura} comparecimento ${x.comp}` });
+}
+
+// Carga do BU sem a linha final "Urna carregada com sucesso" no diário (2º turno: varredura de todos os diários)
+{
+  const o = { sessoesQueGeramBu: 0, semLinhaDeSucesso: 0, porUf: {}, casos: [] };
+  const buPorCodigo = new Map([...bu[2]].map(([k, b]) => [`${b.urna}|${b.codigo}`, k]));
+  for await (const s of jsonl(path.join(SAIDA, 'h23-sessoes-2t.jsonl'))) {
+    const k = buPorCodigo.get(`${s.urna}|${s.codigo}`);
+    if (!k) continue;
+    o.sessoesQueGeramBu++;
+    if (!s.ok) { o.semLinhaDeSucesso++; conta(o.porUf, k.slice(0, 2)); if (o.casos.length < 70) o.casos.push({ k, urna: s.urna, quando: s.quando }); }
+  }
+  resultado.cargaSemLinhaDeSucesso2t = o;
 }
 
 // ---------------------------------------------------------------- 3. Fora do bloco da zona (1º turno)
@@ -156,10 +215,14 @@ for (const o of Z.values()) {
 }
 const tipoDe = (ks) => { const o = {}; for (const k of ks) conta(o, bu[1].get(k).tipo); return o; };
 resultado.foraDoBloco = {
+  porMotivoDaRecarga: (() => { const o = {}; for (const k of fora[2]) { const b = bu[1].get(k); const r = novaPorCodigo[1].get(`${b.urna}|${b.codigo}`); conta(o, r ? r.motivo : 'primeira carga da urna'); } return o; })(),
+  madrugadaPorZona: (() => { const o = {}; for (const k of madrugada) { const b = bu[1].get(k); conta(o, `${b.uf}/${b.zona} ${b.carga.slice(0, 10)}`); } return o; })(),
   zonas: Z.size, zonasSemDiaDeCerimonia: [...Z.values()].filter((o) => ![...o.dias.values()].some((n) => n >= 3)).length,
   fora1dia: fora[1].size, fora2dias: fora[2].size, fora3dias: fora[3].size, fora2diasPorTipo: tipoDe(fora[2]),
   madrugada: madrugada.size, madrugadaPorTipo: tipoDe(madrugada), foraEMadrugada: [...fora[2]].filter((k) => madrugada.has(k)).length,
   // a mesma carga do 1º turno gerou o BU do 2º turno?
+  relogioFora2dias: conferirRelogio(fora[2], 1),
+  relogioMadrugada: conferirRelogio(madrugada, 1),
   fora2diasMesmaCargaNo2t: [...fora[2]].filter((k) => bu[2].get(k)?.codigo === bu[1].get(k).codigo).length,
 };
 
@@ -172,7 +235,7 @@ const conj = {
 resultado.conjuncao = conj;
 const testes = {
   'recarga sem motivo entre os turnos (BU do 2º turno)': { set: marcadas.semMotivo2t, modos: [['variacao', 'zona'], ['t2', 'local']] },
-  'qualquer recarga entre os turnos (BU do 2º turno)': { set: marcadas.recarga2t, modos: [['variacao', 'zona']] },
+  'qualquer recarga entre os turnos (BU do 2º turno)': { set: marcadas.recarga2t, modos: [['variacao', 'zona'], ['t1', 'local'], ['t2', 'local']] },
   'recarga sem motivo antes do 1º turno (BU do 1º turno)': { set: marcadas.semMotivo1t, modos: [['t1', 'local'], ['t2', 'local']] },
   'carga fora do bloco da zona, 1º turno (≥ 2 dias)': { set: fora[2], modos: [['t1', 'local'], ['t2', 'local'], ['variacao', 'zona']] },
   'carga de madrugada, 1º turno': { set: madrugada, modos: [['t1', 'local'], ['variacao', 'zona']] },
@@ -195,6 +258,36 @@ for (const t of [1, 2]) for (const k of marcadas[`semMotivo${t}t`]) {
 }
 for (const k of fora[2]) casos.push({ teste: 'fora do bloco 1t (≥2 dias)', k, detalhe: `${bu[1].get(k).tipo} carga ${bu[1].get(k).carga}` });
 
+// Caso a caso: seções com carga no dia e seções com recarga sem motivo no 2º turno, contra a própria zona
+const zonaMedia = new Map();
+for (const s of S.values()) {
+  const z = zonaMedia.get(`${s.uf}/${s.zona}`) ?? { t1: { aptos: 0, comp: 0, v13: 0, v22: 0 }, t2: { aptos: 0, comp: 0, v13: 0, v22: 0 } };
+  for (const t of ['t1', 't2']) for (const c of ['aptos', 'comp', 'v13', 'v22']) z[t][c] += s[t][c];
+  zonaMedia.set(`${s.uf}/${s.zona}`, z);
+}
+const pct = (a, b) => (b ? +((100 * a) / b).toFixed(2) : null);
+const linhaCaso = (k) => {
+  const s = S.get(k); if (!s) return { k, semBuNosDoisTurnos: true };
+  const z = zonaMedia.get(`${s.uf}/${s.zona}`);
+  const o = { k };
+  for (const t of ['t1', 't2']) {
+    o[`comp${t}`] = pct(s[t].comp, s[t].aptos); o[`zonaComp${t}`] = pct(z[t].comp, z[t].aptos);
+    o[`p13${t}`] = pct(s[t].v13, s[t].v13 + s[t].v22); o[`zonaP13${t}`] = pct(z[t].v13, z[t].v13 + z[t].v22);
+  }
+  o.dP13MenosZona = +((o.p13t2 - o.p13t1) - (o.zonaP13t2 - o.zonaP13t1)).toFixed(2);
+  o.dCompMenosZona = +((o.compt2 - o.compt1) - (o.zonaCompt2 - o.zonaCompt1)).toFixed(2);
+  return o;
+};
+resultado.casoACaso = {
+  cargaNoDia1t: resultado.cargaNoDia['1t'].bu.map((x) => linhaCaso(x.k)),
+  cargaNoDia2t: resultado.cargaNoDia['2t'].bu.map((x) => linhaCaso(x.k)),
+  semMotivo2t: [...marcadas.semMotivo2t].map(linhaCaso),
+};
+console.log('caso a caso'); for (const [n, l] of Object.entries(resultado.casoACaso)) { console.log(n); console.table(l); }
+
+const nTestes = Object.values(resultado.votos).reduce((a, o) => a + Object.keys(o.testes).length, 0);
+resultado.correcao = { testes: nTestes, limiarBonferroni: 0.05 / nTestes, abaixoDoLimiar: Object.entries(resultado.votos).flatMap(([n, o]) => Object.entries(o.testes).filter(([, r]) => r.p < 0.05 / nTestes).map(([c, r]) => ({ conjunto: n, teste: c, ...r }))) };
+console.log('correção para', nTestes, 'testes:', resultado.correcao);
 await writeFile(path.join(SAIDA, 'h23-resultado.json'), JSON.stringify({ ...resultado, paresSemMotivo: Object.fromEntries([1, 2].map((t) => [`${t}t`, [...pares[t].values()].filter((r) => r.motivo === 'semMotivo')])) }, null, 1));
 await writeFile(path.join(SAIDA, 'h23-casos.csv'), `teste;secao;detalhe\n${casos.map((c) => `${c.teste};${c.k};${c.detalhe}`).join('\n')}\n`);
 console.log(JSON.stringify({ recargas: resultado.recargas, cargaNoDia: Object.fromEntries(Object.entries(resultado.cargaNoDia).map(([t, v]) => [t, { bu: v.bu, sessoes: v.sessoes }])), foraDoBloco: resultado.foraDoBloco, conjuncao: conj }, null, 1));

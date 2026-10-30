@@ -42,6 +42,8 @@ export function sessao(texto) {
       else if ((m = /^Município: (\d+)/.exec(msg))) r.carga.municipio = m[1];
       else if ((m = /^Zona Eleitoral: (\d+)/.exec(msg))) r.carga.zona = m[1];
       else if ((m = /^Seção Eleitoral: (\d+)/.exec(msg))) r.carga.secao ??= m[1];
+      else if ((m = /^Identificador da mídia de carga: (\S+)/.exec(msg))) r.carga.fc = m[1];
+      else if ((m = /^Data e hora da geração da mídia de carga: (.+)$/.exec(msg))) r.carga.fcGeracao = m[1].trim();
       else if ((m = /^Código de carga ([\d.]+) gravado/.exec(msg))) r.carga.codigo = m[1].replace(/\./g, '');
       else if (msg.startsWith('Urna carregada com sucesso')) r.carga.ok = dh;
     }
