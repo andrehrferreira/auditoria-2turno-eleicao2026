@@ -82,7 +82,7 @@ Para cada seção cujo local tem 100 ou mais aptos em **outras** seções antiga
 
 No 1º turno, o padrão é o mesmo: novas 463 acima e 331 abaixo; antigas 176 e 579.
 
-- **Fato:** a seção nova se afasta do próprio local **para os dois lados**. Ela fica 15 pontos acima 29 vezes mais do que a antiga e 15 pontos abaixo 16 vezes mais. Sem TTE, a nova fica mais vezes **abaixo** (248) do que acima (161).
+- **Fato:** a seção nova se afasta do próprio local **para os dois lados**, mas **a cauda de cima infla mais**. Ela fica 15 pontos acima 29 vezes mais do que a antiga e 15 pontos abaixo 16 vezes mais. Sem TTE, 24 contra 18 vezes. Em números absolutos, sem TTE, a nova fica mais vezes abaixo (248) do que acima (161). "Para os dois lados" não torna a cauda de cima inteiramente benigna (correção do parecer cético 41).
 - **Fato (sobre o método):** a binomial (o modelo em que cada eleitor decide sozinho, com a taxa do local) prevê quase zero seções a 15 pontos do local, tanto nas novas (0,29 e 1,32) quanto nas antigas (0,01 e 0,05). As seções reais variam muito mais do que esse modelo. Por isso a comparação válida é entre novas e antigas, e não contra a binomial. Os valores esperados estão em `novas-resumo.json` (`caudaPorLocal`).
 - **Hipótese (que não envolve fraude):** a seção nova junta um grupo parecido, seja um conjunto de transferências recentes, um bairro novo, uma comunidade ou uma seção com TTE. Grupos parecidos têm comparecimento extremo para os dois lados. A seção antiga, misturada ao longo de anos, fica perto da média do local.
 
@@ -111,12 +111,42 @@ Com os coeficientes das antigas (efeito fixo de local, 2º turno), somou-se só 
 | Antigas nos locais mistos | 1,73 ponto |
 | Novas nos locais mistos | 1,00 ponto |
 
-- **Estimativa:** o "peso morto" visível no perfil custa às antigas cerca de 0,5 a 0,7 ponto de comparecimento **a mais** do que às novas. Para uma seção sair de 80% e chegar a 95%, faltam 15 pontos. **O peso morto medido assim explica uma fração pequena da cauda de 95% ou mais.**
+- **Estimativa:** o "peso morto" visível no perfil custa às antigas cerca de 0,5 a 0,7 ponto de comparecimento **a mais** do que às novas. Para uma seção sair de 80% e chegar a 95%, faltam 15 pontos. **O peso morto medido pelo perfil do cadastro explica uma fração pequena da cauda de 95% ou mais.** A outra forma da mesma ideia, a "recência" (a seção nova reúne quem se alistou ou se transferiu há pouco tempo, gente viva que mora ali), não se mede pelo perfil; ver o item 5b.
 - **Limite:** é regressão ecológica, que usa a composição de cada seção e não o voto de cada eleitor. O coeficiente da faixa 16–17 muda de sinal entre o modelo das antigas (−0,36) e o modelo completo (+0,14), sinal de instabilidade quando a faixa é rara. Os coeficientes de 90–99 e 100+ são estáveis entre modelos e coerentes com o doc 03 (100+ sem biometria praticamente não vota).
+
+### 5b. Controle pelo tamanho da seção e o proxy de recência (correção do parecer cético 41)
+
+A seção nova é menor, e seção pequena oscila mais, como uma moeda jogada 50 vezes oscila mais do que uma jogada 300 vezes. Padronização indireta: para cada faixa de 25 aptos, a taxa de 95% ou mais das **antigas** daquela faixa. O "esperado" é quantas novas passariam de 95% se tivessem a taxa das antigas do mesmo tamanho.
+
+| | Observadas | Esperadas pelo tamanho | Razão com o tamanho controlado | Excesso (observadas − esperadas) | Parecer 41 (razão) |
+|---|---:|---:|---:|---:|---:|
+| 2026, 2º turno | 433 | 90,5 | **4,8** | 343 | 5,1 |
+| 2026, 2º turno, sem TTE | 194 | 46,5 | **4,2** | 148 | 4,3 |
+| 2026, 1º turno | 448 | 62,2 | **7,2** | 386 | 7,9 |
+| 2022, 2º turno | 118 | 63,7 | **1,9** | 54 | 1,8 |
+| 2022, 1º turno | 168 | 57,7 | **2,9** | 110 | 2,8 |
+
+- **Fato:** o tamanho explica boa parte da razão bruta (23,7 vezes), mas não toda. Com o tamanho controlado, a nova de 2026 ainda chega a 95% cerca de 5 vezes mais que a antiga.
+- **Fato:** o excesso de 2026 continua maior que o de 2022: cerca de 340 seções a mais do que o esperado no 2º turno de 2026, contra cerca de 50 em 2022. As pequenas diferenças para o parecer 41 vêm do corte das faixas de 25 aptos e do arquivo de 2022 (ver item 6).
+
+**Proxy de recência.** A data de alistamento ou de transferência por seção não é pública. O melhor substituto no perfil é a parcela de eleitores de 16 a 20 anos, que em geral acabaram de tirar o título.
+
+| 2º turno, parcela de 16–20 anos na seção | Novas | Novas com 95%+ | Antigas | Antigas com 95%+ |
+|---|---:|---:|---:|---:|
+| menos de 5% | 9.538 | 14 (0,15%) | 297.025 | 100 (0,034%) |
+| 5–10% | 6.868 | 70 (1,02%) | 137.497 | 82 (0,060%) |
+| 10–20% | 7.929 | 119 (1,50%) | 22.376 | 17 (0,076%) |
+| 20% ou mais | 16.109 | 205 (1,27%) | 1.447 | 3 (0,21%) |
+
+- **Fato:** **40% das seções novas** (16.109) têm 20% ou mais de eleitores de 16–20 anos; entre as antigas, 0,3%. A seção nova é, em boa parte, uma seção de eleitores recém-alistados.
+- **Fato:** com o mesmo grau de juventude, a nova ainda passa de 95% muitas vezes mais que a antiga (por exemplo, 1,50% contra 0,076% na faixa de 10–20%). Controlando tamanho **e** juventude, a razão fica em 5,3 (2º turno, 80,1 esperadas) e 4,2 sem TTE (46,3 esperadas). Somando a parcela sem biometria ao estrato, fica em 4,8 (65,1 esperadas; 6.459 novas e 120 de 95%+ caem em estratos sem nenhuma antiga).
+- **Leitura:** a juventude, como medida de recência, não explica o excesso. Isso **não** testa a recência de fato, porque o eleitor que se transfere de cidade também é "recente" e pode ter qualquer idade. **Pendente:** a data da última operação no cadastro (alistamento, transferência, revisão), agregada por seção, via LAI.
 
 ### 6. Linha de base histórica: o mesmo fenômeno em 2022 (Fato)
 
 "Nova em 2022" = chave ausente do `detalhe_votacao_secao` de 2018 ou, fora de DF e do exterior, de 2020. É a mesma regra de 2026, deslocada uma eleição para trás.
+
+**Nota de fonte (parecer 41):** este documento lê o `_BR.csv` do detalhe (votação de Presidente) de cada ano. O parecer leu o `BRASIL.csv`, que em 2022 tem 306 chaves a mais. Daí a diferença de 369 seções na classificação de 2022 (85.893 × 85.524 novas). Não muda a conclusão: a razão bruta é 4,7 aqui e 4,5 no parecer.
 
 | | Novas de 2022 | Antigas de 2022 | Razão (taxa de 95%+) |
 |---|---|---|---|
@@ -129,22 +159,23 @@ Com os coeficientes das antigas (efeito fixo de local, 2º turno), somou-se só 
 | Mesmas seções em 2026: sem biometria no cadastro | 11,42% | 11,22% | |
 
 - **Fato:** o excesso de seções novas com 95% ou mais **já existia em 2022** (de 4,7 a 8 vezes) e **sumiu em 4 anos**: em 2026, essas mesmas seções têm a taxa das antigas (0,050% × 0,045%) e o mesmo perfil de cadastro (11,4% × 11,2% sem biometria).
-- **Fato:** o fenômeno de 2026 é maior. Em 2026, 1,06% das novas passam de 95% no 2º turno; em 2022, 0,137%. A razão contra as antigas é 23,7 vezes em 2026, contra 4,7 em 2022.
-- **Hipótese:** a seção nova "envelhece". Com o tempo entram nela transferências, mudanças, idosos e títulos de quem morreu, e ela converge para o padrão das antigas. Isso é coerente com a ideia de peso morto como processo lento, mas o peso morto medido no item 5 é pequeno demais para explicar a cauda sozinho.
+- **Fato:** o fenômeno de 2026 é maior. Em 2026, 1,06% das novas passam de 95% no 2º turno; em 2022, 0,137%. Com o tamanho controlado (item 5b), a razão contra as antigas é 4,8 em 2026 e 1,9 em 2022, com excesso de cerca de 340 seções em 2026 e cerca de 50 em 2022. A comparação das razões brutas (23,7 × 4,7) exagera a diferença e não deve ser usada.
+- **Hipótese:** a seção nova "envelhece". Com o tempo entram nela transferências, mudanças, idosos e títulos de quem morreu, e ela converge para o padrão das antigas. Isso é coerente tanto com o peso morto como processo lento quanto com a recência. O peso morto medido pelo perfil (item 5) é pequeno demais para explicar a cauda sozinho, e a recência está pendente (item 5b).
 
 ### O que a frente 1 permite e não permite afirmar
 
 **Permite (Fato):**
 - O comparecimento de 2022 das seções antigas, inclusive nos 19.375 locais que receberam seções novas, não mostra mudança de padrão: no 2º turno, foi de 79,05% para 80,06% nesses locais, e as seções com 95% ou mais foram de 25 para 24.
-- A seção nova, no mesmo local, vota em média **menos** do que a antiga e se espalha para os dois lados: tanto para cima quanto para baixo, muito mais do que a antiga.
-- Seção nova com excesso de 95% ou mais aconteceu também em 2022 e se desfez até 2026.
+- A seção nova, no mesmo local, vota em média **menos** do que a antiga e se afasta do local para os dois lados, muito mais do que a antiga. A cauda de cima infla mais (29 contra 16 vezes).
+- O tamanho explica boa parte do excesso, mas não todo: com o tamanho controlado, a nova de 2026 passa de 95% cerca de 5 vezes mais que a antiga (4,8; sem TTE, 4,2).
+- Seção nova com excesso de 95% ou mais aconteceu também em 2022, em escala menor (1,9 vez com o tamanho controlado), e se desfez até 2026.
 
 **Permite (Estimativa):**
-- O perfil do cadastro (sem biometria, 90+, 100+) explica pouco: cerca de 0,2 a 0,7 ponto de diferença a favor da nova, contra os 15 pontos que separam uma seção média dos 95%.
+- O peso morto **medido pelo perfil do cadastro** (sem biometria, 90+, 100+) explica pouco: cerca de 0,2 a 0,7 ponto de diferença a favor da nova, contra os 15 pontos que separam uma seção média dos 95%.
 
 **Não permite:**
-- Confirmar a hipótese do parecer como mecanismo principal. A "seção sem peso morto" deveria votar mais em média, e vota menos. Ela vale, no máximo, para uma parte da cauda de cima (as 385 sem nenhum eleitor sem biometria).
-- Dizer por que o excesso de 2026 (1,06%) é quase 8 vezes o de 2022 (0,137%). **Pendente.**
+- Descartar o peso morto como um todo. O que os dados derrubam é: (i) a previsão de que a nova vota mais em média; (ii) o peso morto medido pelo perfil. A forma "recência" (a seção nova reúne quem se alistou ou se transferiu há pouco tempo) não foi testada. A juventude, usada como proxy, não explica o excesso, mas não substitui a data das operações no cadastro. **Pendente.**
+- Dizer por que o excesso de 2026 (cerca de 340 seções acima do esperado pelo tamanho) é maior que o de 2022 (cerca de 50). **Pendente.**
 - Dizer se algum voto dessas seções foi irregular. O teste é de cadastro e comparecimento, não de quem votou.
 
 **Ligação com a H07, que fica com quem cuida dela:** nas novas com 95% ou mais, 7,17% dos votantes foram liberados sem digital, contra 0,27% do cadastro delas sem biometria (no 1º turno, 7,46% × 0,33%). É a mesma ressalva do parecer 38: a liberação sem digital nessas seções é de eleitor **com** biometria cadastrada.
@@ -177,7 +208,8 @@ Arquivo oficial de 2022 (gerado em 29/04/2025, os dois turnos). O zip de 2022 **
 - **Fato:** em 2022, o comparecimento dos idosos **subiu** do 1º para o 2º turno, tanto mais quanto mais velha a faixa (de 8% a 34% a mais). Entre 18 e 69 anos, não mudou. No grupo 100+, foram 417 votantes a mais no país (de 1.675 para 2.092).
 - **Fato (zona a zona, 100+, 2022):** de 4.901 zonas com eleitor 100+, o número de votantes 100+ subiu em 495, caiu em 194 e ficou igual em 4.212. As maiores subidas foram de +13 (PA, município 04898, zona 99) e +11 (PA 04219, zona 15). Em Belo Horizonte (41238), as zonas 26 a 38 subiram de 3 a 9 cada.
 - **Fato (estoque):** os aptos 100+ com domicílio no Brasil passaram de **184.330** (2022) para **297.977** (2026), 61,7% a mais. No mesmo período, 90–94 caiu de 738.244 para 664.482 e 95–99 de 466.703 para 337.136. É o que se espera quando os títulos de quem passou dos 95 anos sem baixa "envelhecem" para a faixa de 100+ (doc 03). A taxa de comparecimento 100+ caiu de 0,909% (1º turno de 2022) para 0,719% (1º turno de 2026), coerente com mais título sem pessoa nesse grupo.
-- **Recomendação (critério fixado antes de o dado sair):** quando o TSE publicar o 2º turno de 2026, comparar com o padrão de 2022. Uma subida dos 100+ entre turnos da ordem da de 2022 (cerca de 1,25 vez, ou seja, perto de 2.700 votantes, cerca de 0,9%) tem precedente e não é sinal por si. O que pediria exame é uma subida concentrada nas zonas ou municípios com sobra de títulos de 100+ (os 1.068 do doc 03), onde a taxa do 1º turno foi de 0,26%, ou nas 133 zonas do doc 07 com voto 100+ obrigatoriamente sem biometria. **A cifra de 2.700 é uma referência de comparação, não uma previsão: Estimativa.**
+- **Recomendação:** quando o TSE publicar o 2º turno de 2026, comparar a subida entre turnos com a de 2022, como contexto e não como limiar: é uma eleição só, com as circunstâncias dela. O que pediria exame é uma subida concentrada nas zonas ou municípios com sobra de títulos de 100+ (os 1.068 do doc 03), onde a taxa do 1º turno foi de 0,26%, ou nas 133 zonas do doc 07 com voto 100+ obrigatoriamente sem biometria.
+- **Atenção (parecer cético 41):** a mesma série mostra que os **votantes** de 85 a 99 anos quase dobraram do 1º turno de 2022 para o de 2026. 2022 não serve como prova de normalidade de 2026 antes de esse salto ser explicado. O exame está no [doc 09](09-salto-votantes-85-99.md).
 
 ### UFs: 100+ em 2022 (1º e 2º turno) e em 2026 (1º turno) (Fato)
 
@@ -260,8 +292,8 @@ Votantes / aptos. "2022" usa a mesma divisão municipal do TSE.
 ## Pendente
 
 1. Comparecimento oficial por idade do 2º turno de 2026 (TSE ainda não publicou; ETag conferido em 30/10/2026).
-2. Por que o excesso de seções novas com 95% ou mais é muito maior em 2026 (1,06%) do que em 2022 (0,137%). Testes possíveis: o perfil do eleitorado por seção de 2022 (`perfil_eleitor_secao_2022_*`, não baixado), para comparar o cadastro das novas de 2022 com o das novas de 2026; e o TTE por seção de 2022, que o `detalhe_votacao_secao` não traz.
-3. O que são as 385 novas com 95% ou mais sem nenhum eleitor sem biometria: data de alistamento ou transferência dos eleitores (agregado por seção, via LAI). Se forem seções de alistamentos recentes, o "teto mais alto" fica explicado pela composição, sem peso morto.
+2. Por que o excesso de seções novas com 95% ou mais, com o tamanho controlado, é maior em 2026 (4,8 vezes, cerca de 340 seções acima do esperado) do que em 2022 (1,9 vez, cerca de 50). Testes possíveis: o perfil do eleitorado por seção de 2022 (`perfil_eleitor_secao_2022_*`, não baixado), para comparar o cadastro das novas de 2022 com o das novas de 2026; e o TTE por seção de 2022, que o `detalhe_votacao_secao` não traz.
+3. Recência do cadastro (a forma do "peso morto" que não foi testada): data da última operação no cadastro (alistamento, transferência, revisão), agregada por seção, via LAI, pelo menos para as 433 novas com 95% ou mais e para as antigas dos mesmos locais. Se forem seções de operações recentes, o "teto mais alto" fica explicado pela composição. A juventude, usada como proxy, não explicou (item 5b).
 
 ## Reproduzir
 

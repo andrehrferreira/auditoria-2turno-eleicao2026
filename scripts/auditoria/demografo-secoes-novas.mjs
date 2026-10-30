@@ -15,7 +15,8 @@
 //      exterior, de 2020), e o que aconteceu com essas seções em 2026 (o cadastro delas envelheceu?).
 // Pré-requisitos: demografo-baixar-tse.mjs (detalhe 2018/2020/2022), seguranca-h27-baixar.mjs (CEFT 2022/2024),
 // demografo-perfil.mjs (data/parsed/auditoria/demografo/perfil/*.tsv).
-//   5. cauda: seções com 95% ou mais observadas × esperadas por binomial com a taxa das antigas do mesmo local.
+//   5. cauda: seções com 95% ou mais observadas × esperadas por binomial com a taxa das antigas do mesmo local;
+//   6. controle de tamanho (faixas de 25 aptos, parecer 41) e proxy de recência (parcela de 16–20 anos no cadastro).
 // Saídas: data/parsed/auditoria/demografo/novas-{resumo.json,locais-2t.tsv,ge95-2t.tsv}
 // Uso: node --max-old-space-size=6000 scripts/auditoria/demografo-secoes-novas.mjs
 import { readFileSync, readdirSync } from 'node:fs';
@@ -218,6 +219,22 @@ for (const k of d22.chaves) if (!c22.s.has(k)) soDet++;
 R.fontes.ceft2022xDetalhe2022 = { soNoCeft: soCeft, soNoDetalhe: soDet };
 
 const SH = ['f16_17', 'f70_79', 'f80_89', 'f90_99', 'f100'];
+// Padronização indireta da cauda de 95% ou mais: para cada estrato, a taxa das ANTIGAS; esperado nas novas = soma dessas
+// taxas. Estrato sem nenhuma antiga fica sem base (contado à parte). Tamanho em faixas de 25 aptos (parecer 41).
+function padroniza(novas, antigas, estrato) {
+  const T = new Map();
+  for (const x of antigas) { const e = estrato(x); const v = T.get(e) ?? T.set(e, [0, 0]).get(e); v[0]++; if (x.comp / x.aptos >= 0.95) v[1]++; }
+  let obs = 0; let esp = 0; let semBase = 0; let semBaseGe95 = 0;
+  for (const x of novas) {
+    const ge = x.comp / x.aptos >= 0.95; if (ge) obs++;
+    const v = T.get(estrato(x));
+    if (!v) { semBase++; if (ge) semBaseGe95++; continue; }
+    esp += v[1] / v[0];
+  }
+  return { novas: novas.length, observadas: obs, esperadas: +esp.toFixed(1), razao: esp ? +((obs - semBaseGe95) / esp).toFixed(1) : null, excesso: +(obs - semBaseGe95 - esp).toFixed(1), novasSemBase: semBase, ge95SemBase: semBaseGe95 };
+}
+const tam25 = (x) => Math.floor(x.aptos / 25);
+const jovem = (x) => { const P = x.perfil; if (!P || !P.total) return 'sem perfil'; const q = (P.f16_17 + (P.f18_20 ?? 0)) / P.total; return q < 0.05 ? '<5%' : q < 0.1 ? '5-10%' : q < 0.2 ? '10-20%' : '20%+'; };
 const locaisTsv = ['turno\tlocal\tnovas\tantigas\taptos_novas\tcomp_novas\taptos_antigas\tcomp_antigas\taptos_antigas_2022\tcomp_antigas_2022\tnovas_ge95\tantigas_ge95\tsembio_novas_pct\tsembio_antigas_pct\t80mais_novas_pct\t80mais_antigas_pct'];
 for (const t of [1, 2]) {
   const r = {};
@@ -332,6 +349,14 @@ for (const t of [1, 2]) {
     tipoLocal: Object.fromEntries([['novas', N], ['antigas', A], ['novasGe95', ge95.filter((x) => x.nova)], ['antigasGe95', ge95.filter((x) => !x.nova)]].map(([g, a]) => [g, { tipo: cont(a, (x) => tipoLocal[t].get(x.k)?.tipo ?? 'sem registro'), classePeloNome: cont(a, (x) => tipoLocal[t].get(x.k)?.classe ?? 'sem registro') }])),
     dispersao: { novasAbaixo60: N.filter((x) => x.comp / x.aptos < 0.6).length, antigasAbaixo60: A.filter((x) => x.comp / x.aptos < 0.6).length },
   };
+  // controle de tamanho (parecer 41) e o proxy de "recência": parcela de 16–20 anos no cadastro da seção
+  const sTTE = (a) => a.filter((x) => x.tte === 0);
+  r.padronizacaoTamanho = {
+    todas: padroniza(N, A, tam25), semTTE: padroniza(sTTE(N), sTTE(A), tam25),
+    tamanhoEJovens: padroniza(N, A, (x) => `${tam25(x)}|${jovem(x)}`), tamanhoEJovensSemTTE: padroniza(sTTE(N), sTTE(A), (x) => `${tam25(x)}|${jovem(x)}`),
+    tamanhoJovensSemBio: padroniza(N, A, (x) => `${tam25(x)}|${jovem(x)}|${x.perfil ? Math.min(3, Math.ceil(20 * (x.perfil.total - x.perfil.biometria) / Math.max(1, x.perfil.total))) : 's'}`),
+  };
+  r.porParcelaJovem = Object.fromEntries(['<5%', '5-10%', '10-20%', '20%+', 'sem perfil'].map((b) => { const n = N.filter((x) => jovem(x) === b); const a = A.filter((x) => jovem(x) === b); const g = (z) => z.filter((x) => x.comp / x.aptos >= 0.95).length; return [b, { novas: n.length, novasGe95: g(n), pctNovas: pct(g(n), n.length), antigas: a.length, antigasGe95: g(a), pctAntigas: pct(g(a), a.length), taxaNovas: pct(n.reduce((s, x) => s + x.comp, 0), n.reduce((s, x) => s + x.aptos, 0)), taxaAntigas: pct(a.reduce((s, x) => s + x.comp, 0), a.reduce((s, x) => s + x.aptos, 0)) }]; }));
   if (t === 2) await writeFile(path.join(OUT, 'novas-ge95-2t.tsv'), `k\tnova\taptos\tcomp\ttte\ttaxa_antigas_local\tsem_bio\n${lista95.map((o) => [o.k, o.nova ? 1 : 0, o.aptos, o.comp, o.tte, o.taxaAntigasDoLocal, o.semBio].join('\t')).join('\n')}\n`);
   R[`${t}t`] = r;
   log(`turno ${t} ok`);
@@ -348,7 +373,9 @@ for (const t of [1, 2]) {
   // as mesmas seções em 2026 (mesma chave), mesmo turno
   const em26 = (a) => a.map((x) => S[t].get(x.k)).filter((y) => y && y.aptos > 0);
   const ag26 = (a) => ({ secoes: a.length, taxa: pct(a.reduce((s, y) => s + y.comp, 0), a.reduce((s, y) => s + y.aptos, 0)), ge95: a.filter((y) => y.comp / y.aptos >= 0.95).length, pctGe95: pct(a.filter((y) => y.comp / y.aptos >= 0.95).length, a.length), pctSemBiometria: agrega(a).pctSemBiometria, pct80mais: agrega(a).pct80mais });
+  const padr22 = padroniza(N, A, tam25);
   R[`historico2022_${t}t`] = {
+    padronizacaoTamanho: padr22,
     definicao: 'nova em 2022 = ausente do detalhe_votacao_secao de 2018 ou (fora de DF e exterior) de 2020',
     novas2022: ag(N), antigas2022: ag(A), razaoBrutaGe95: N.length && A.length ? +((N.filter((x) => x.comp / x.aptos >= 0.95).length / N.length) / (A.filter((x) => x.comp / x.aptos >= 0.95).length / A.length)).toFixed(1) : null,
     locaisMistos2022: { locais: mis.length, novas: ag(mis.flatMap((v) => v.n)), antigas: ag(mis.flatMap((v) => v.a)) },

@@ -24,6 +24,8 @@ const ARQUIVOS = [
   { nome: 'censo2022-9514-idade-c.json', tabela: 9514, url: `${SIDRA}/t/9514/n6/all/v/93/p/2022/c2/6794/c287/${IDADE_C}/c286/113635/f/c` },
   { nome: 'obitos-2654-2023.json', tabela: 2654, url: `${SIDRA}/t/2654/n6/all/v/343/p/2023/c244/0/c1836/0/c2/0/c260/${IDADE_OBITO}/c257/0/f/c` },
   { nome: 'obitos-2654-2024.json', tabela: 2654, url: `${SIDRA}/t/2654/n6/all/v/343/p/2024/c244/0/c1836/0/c2/0/c260/${IDADE_OBITO}/c257/0/f/c` },
+  // Brasil e UFs, idade simples de 65 a 99 e grupos de 5 anos de 65 a 99, 100+ (doc 09: votantes de 85–99 × população)
+  { nome: 'censo2022-9514-br-uf-idade-simples.json', tabela: 9514, url: `${SIDRA}/t/9514/n1/all/n3/all/v/93/p/2022/c2/6794/c287/93096,93097,93098,49108,49109,60040,60041,6653,6618,6619,6620,6621,6622,6623,6624,6625,6626,6627,6628,6629,6630,6631,6632,6633,6634,6635,6636,6637,6638,6639,6640,6641,6642,6643,6644,6645,6646,6647,6648,6649,6650,6651,6652/c286/113635/f/c` },
   { nome: 'estimativa-6579-2024-2025.json', tabela: 6579, url: `${SIDRA}/t/6579/n6/all/v/9324/p/2024,2025/f/c` },
 ];
 
