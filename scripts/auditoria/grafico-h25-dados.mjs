@@ -232,6 +232,10 @@ csv('h25-acurna-2026-por-dia.csv', ['dia', 'carteiras', 'depois_do_vencimento_da
   const pctDo13 = minimo / tot.a13;
   const s13A = tot.a13 / (tot.a13 + tot.a22);
   confere(pctValidos.toFixed(3) === '0.203' && pctTroca.toFixed(3) === '0.088' && pctDo13.toFixed(3) === '0.169', `parcela dos válidos ${(100 * pctValidos).toFixed(2)}%; troca = ${(100 * pctTroca).toFixed(2)}% dos votos 13+22 das seções; ${(100 * pctDo13).toFixed(2)}% dos votos do 13 nelas`);
+  // exclusão (T23): sem os votos das seções AC URNA, quem venceria
+  const semAc13 = tot.v13 - tot.a13;
+  const semAc22 = tot.v22 - tot.a22;
+  confere(semAc13 === 51115759 && semAc22 === 47799442 && semAc13 - semAc22 === 3316317, 'sem as seções AC URNA: 13 = 51.115.759, 22 = 47.799.442; o 13 venceria por 3.316.317');
 
   // conferência contra o estatístico (doc 10, resultado.json → teste4 e escala-uf.csv)
   const t4 = lerJson(path.join(RAIZ, 'data', 'parsed', 'auditoria', 'h25', 'resultado.json')).teste4;
@@ -261,6 +265,9 @@ csv('h25-acurna-2026-por-dia.csv', ['dia', 'carteiras', 'depois_do_vencimento_da
     ['Votos do 22 nas urnas AC URNA', tot.a22],
     ['Margem nacional do 13 sobre o 22', margem],
     ['Mínimo de votos trocados do 13 para o 22, só nessas urnas, para virar', minimo],
+    ['Votos do 13 sem as urnas AC URNA', semAc13],
+    ['Votos do 22 sem as urnas AC URNA', semAc22],
+    ['Margem do 13 sem as urnas AC URNA', semAc13 - semAc22],
   ]);
 
   // as seções das 54 carteiras emitidas depois do vencimento
@@ -280,6 +287,7 @@ csv('h25-acurna-2026-por-dia.csv', ['dia', 'carteiras', 'depois_do_vencimento_da
     if (t === 2) {
       confere(v13 + v22 === 13458, '2º turno: 13.458 votos no 13 e no 22 nas 53 seções (igual ao da segunda verificação)');
       confere(v13 + v22 < minimo, '2º turno: mesmo trocando todos os votos dessas seções, a margem nacional não vira');
+      confere((tot.v13 - v13) - (tot.v22 - v22) > 0, `2º turno: sem as 53 seções tardias, o 13 venceria por ${(tot.v13 - v13) - (tot.v22 - v22)}`);
       for (const [uf, v] of Object.entries(porUf)) {
         const u = uf2[uf]; const m = Math.abs(u.v13 - u.v22);
         confere(v.v13 + v.v22 < Math.floor(m / 2) + 1, `2º turno, ${uf}: votos das seções tardias (${v.v13 + v.v22}) abaixo do mínimo para virar a UF (${Math.floor(m / 2) + 1})`);

@@ -1,0 +1,29 @@
+{
+  "P1": "Fatos: retirar conferência de datas pode permitir aceitação de cadeia vencida; chave da AC permite assinar carteira nova, mas não renovar validade do certificado da própria AC nem garantir aceitação sob política completa. Hipótese: atacante que controla certificação, totalização e publicação pode produzir BUs adulterados com assinaturas verificáveis e manter BU = oficial; alterar apenas resultado oficial deixaria divergência, ausente no fato 5. Portanto, retirar conferência pode eliminar barreira específica, mas ganho depende das demais verificações e não demonstra ataque ocorrido. Pergunta ao TSE: quais verificações independentes impedem emissão e aceitação não autorizadas?",
+  "P2": "Fatos: verificação independente confirmou assinaturas dos BUs e vínculo criptográfico das carteiras com três ACs do TSE; não verificou apenas presença de assinatura. Isso identifica chave signatária e vínculo com AC, não pessoa operadora nem autorização de cada uso. Hipótese de que totalizador só verifica presença de assinatura não foi demonstrada; ausência de carteiras externas também não prova que sistema rejeitaria qualquer carteira externa. Pergunta ao TSE: quais verificações totalizador executa?",
+  "P3": "Fatos: certificado vencido identifica AC organizacional do TSE, não colaborador. Hipótese: antigo colaborador pode ter participado da emissão ou mantido acesso indevido à chave, mas arquivos apresentados não demonstram isso. Pergunta ao TSE: quem tinha custódia e acesso à chave, como acessos eram revogados e quem autorizou operações?",
+  "P4": "Fatos: carteiras são emitidas na fabricação ou recertificação, não por pleito; comportamento interno da totalização permanece desconhecido. Prática comum em PKI separa assinatura, confiança, datas e revogação; alguns sistemas tratam certificado de raiz como âncora configurada, com regras próprias de validade, sem que isso prove configuração do TSE. Hipóteses: política específica, outro certificado para mesma chave, exceção operacional ou falha de validação; validade longa de credenciais de equipamento não exige, por si, renovação eleitoral. Pergunta ao TSE: qual política temporal se aplica, qual certificado estava em uso e qual fundamento determina ciclo de renovação?",
+  "P5": "Fatos: carteiras com início de validade posterior ao vencimento publicado levantam questão concreta sobre continuidade da certificação e governança da chave. Ressalva: início de validade declarado não constitui prova independente do instante de assinatura; registros operacionais devem confirmar quando emissões ocorreram. Hipóteses de uso autorizado, exceção ou comprometimento não são resolvidas pelos pacotes públicos. Pergunta ao TSE: quem autorizou operações, quais controles protegiam chave e quais registros comprovam emissão, renovação e eventual revogação?",
+  "P6": "Fatos: excluir votos das urnas AC URNA não mudaria vencedor de Presidente no segundo turno: 13 ficaria com 51.115.759, 22 com 47.799.442, margem de 3.316.317; excluir somente 53 seções tardias também não mudaria vencedor. Demais cargos e primeiro turno permanecem pendentes; hipótese de troca de votos difere dessa conta de exclusão. Recusar pacote por falha técnica não equivale a autorização para eliminar votos: sem norma aplicável apresentada, não cabe afirmar descarte nem rito específico como procedimento correto. Pergunta ao TSE: qual norma rege rejeição, recuperação, reprocessamento ou apuração de BU que não passa na conferência?",
+  "entra": [
+    "Certificado publicado da AC URNA estava vencido nos dois turnos; carteiras com início de validade posterior ao vencimento também apareceram nos arquivos.",
+    "Assinaturas verificadas conferem com chaves de urnas certificadas pelas ACs do TSE, e soma dos boletins publicados coincide com resultado oficial; isso não esclarece controles internos nem exclui comprometimento dessas chaves.",
+    "Documentação disponível não esclarece política de validade, certificado efetivamente usado como referência nem autorização das emissões tardias; TSE deve esclarecer esses pontos.",
+    "Excluir votos das urnas AC URNA não mudaria vencedor de Presidente no segundo turno; demais cargos e primeiro turno não foram calculados."
+  ],
+  "fora": [
+    "Afirmações de que qualquer certificado seria aceito, de que totalizador apenas detecta presença de assinatura ou de que certificado organizacional pertence a ex-colaborador.",
+    "Conclusões de fraude, comprometimento de chave, ausência de impacto em todos os cargos ou segurança integral com base apenas nos arquivos publicados.",
+    "Equiparação entre assinatura matematicamente válida e aceitação por qualquer política: datas, revogação, autorização e outros controles podem impedir aceitação.",
+    "Recomendação de excluir votos automaticamente ou afirmação de que exclusão mudaria vencedor de Presidente no segundo turno.",
+    "Atribuição de consenso aos quatro revisores: propostas de inclusão dependem de concordância expressa dos quatro, não demonstrada nesta resposta."
+  ],
+  "perguntas_tse": [
+    "Quais verificações de assinatura, cadeia, datas, revogação e autorização são feitas na recepção e totalização, e quais registros comprovam execução?",
+    "Qual certificado e qual âncora de confiança da AC URNA eram usados depois do vencimento publicado; existia renovação ou exceção formal?",
+    "Quem custodiava chave da AC URNA, quem autorizava emissões e quais registros confirmam datas efetivas das assinaturas e desligamento de acessos?",
+    "Qual política fundamenta validade das carteiras e ausência de renovação por pleito, e como obter políticas, raízes e informações de revogação não acessíveis?",
+    "Qual norma e qual procedimento se aplicam quando BU ou sua cadeia não passa na conferência, preservando tratamento legal dos votos?",
+    "Quais controles independentes permitem detectar adulteração coordenada de certificação, boletins publicados e totalização?"
+  ]
+}
