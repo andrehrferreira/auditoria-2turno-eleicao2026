@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 579" width="860" height="579" role="img" aria-labelledby="titulo desc">
+<title id="titulo">H15: em quantas seções o teste acharia um bloco de votos inserido de propósito</title><desc id="desc">Poder do teste H15: bloco regular de 5, 10 e 20 votos achado em 0,0, 61,5, 94,0% das seções (alerta completo); bloco disfarçado em 0,0, 1,5, 4,2%.</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}
+  .l0{stroke:#2a78d6}.l1{stroke:#eb6834}.l2{stroke:#1baf7a}.p0{fill:#2a78d6}.p1{fill:#eb6834}.p2{fill:#1baf7a}.p1c{fill:#eb6834;fill-opacity:.45}.p0c{fill:#2a78d6;fill-opacity:.45}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}
+    .l0{stroke:#3987e5}.l1{stroke:#d95926}.l2{stroke:#199e70}.p0{fill:#3987e5}.p1{fill:#d95926}.p2{fill:#199e70}.p1c{fill:#d95926;fill-opacity:.45}.p0c{fill:#3987e5;fill-opacity:.45}}
+</style>
+<rect class="fundo" width="860" height="579" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">H15: em quantas seções o teste acharia um bloco de votos inserido de propósito</text>
+<text class="t2" x="20" y="52" font-size="13">Simulação: em cada seção do 2º turno, um bloco artificial de votos liberados pelo mesmo mesário no fim do dia.</text>
+<text class="t2" x="20" y="70" font-size="13">Barra = % das seções em que o teste pré-registrado acende o alerta.</text>
+<rect class="p0" x="20" y="91" width="22" height="11"/>
+<text class="t1" x="56" y="102" font-size="12.5">Bloco em ritmo regular (1 voto por minuto), alerta completo</text>
+<rect class="p0c" x="440" y="91" width="22" height="11"/>
+<text class="t1" x="476" y="102" font-size="12.5">Bloco em ritmo regular, sem exigir subida do comparecimento</text>
+<rect class="p1" x="20" y="111" width="22" height="11"/>
+<text class="t1" x="56" y="122" font-size="12.5">Bloco disfarçado (ritmo igual ao da fila real), sem exigir comparecimento</text>
+<line class="grade" x1="78" x2="836" y1="458" y2="458" stroke-width="1"/>
+<text class="t2" x="70" y="462" font-size="12" text-anchor="end">0%</text>
+<line class="grade" x1="78" x2="836" y1="398" y2="398" stroke-width="1"/>
+<text class="t2" x="70" y="402" font-size="12" text-anchor="end">20%</text>
+<line class="grade" x1="78" x2="836" y1="338" y2="338" stroke-width="1"/>
+<text class="t2" x="70" y="342" font-size="12" text-anchor="end">40%</text>
+<line class="grade" x1="78" x2="836" y1="278" y2="278" stroke-width="1"/>
+<text class="t2" x="70" y="282" font-size="12" text-anchor="end">60%</text>
+<line class="grade" x1="78" x2="836" y1="218" y2="218" stroke-width="1"/>
+<text class="t2" x="70" y="222" font-size="12" text-anchor="end">80%</text>
+<line class="grade" x1="78" x2="836" y1="158" y2="158" stroke-width="1"/>
+<text class="t2" x="70" y="162" font-size="12" text-anchor="end">100%</text>
+<line class="eixo" x1="78" x2="836" y1="458" y2="458" stroke-width="1"/>
+<text class="t2" x="18" y="308" font-size="12.5" text-anchor="middle" transform="rotate(-90 18 308)">Seções em que o bloco é achado (%)</text>
+<rect class="p0" x="135.3" y="458.0" width="42.0" height="0.0"><title>Regular, 5 votos, alerta completo: 0,0%</title></rect>
+<text class="t1" x="156.3" y="453.0" font-size="11.5" text-anchor="middle">0%</text>
+<rect class="p0c" x="181.3" y="458.0" width="42.0" height="0.0"><title>Regular, 5 votos, sem comparecimento: 0,0%</title></rect>
+<text class="t1" x="202.3" y="453.0" font-size="11.5" text-anchor="middle">0%</text>
+<rect class="p1" x="227.3" y="458.0" width="42.0" height="0.0"><title>Disfarçado, 5 votos, sem comparecimento: 0,0%</title></rect>
+<text class="t1" x="248.3" y="453.0" font-size="11.5" text-anchor="middle">0%</text>
+<text class="t2" x="204.3" y="476" font-size="12.5" text-anchor="middle">bloco de 5 votos</text>
+<rect class="p0" x="388.0" y="273.5" width="42.0" height="184.5"><title>Regular, 10 votos, alerta completo: 61,5%</title></rect>
+<text class="t1" x="409.0" y="268.5" font-size="11.5" text-anchor="middle">62%</text>
+<rect class="p0c" x="434.0" y="224.2" width="42.0" height="233.8"><title>Regular, 10 votos, sem comparecimento: 77,9%</title></rect>
+<text class="t1" x="455.0" y="219.2" font-size="11.5" text-anchor="middle">78%</text>
+<rect class="p1" x="480.0" y="453.4" width="42.0" height="4.6"><title>Disfarçado, 10 votos, sem comparecimento: 1,5%</title></rect>
+<text class="t1" x="501.0" y="448.4" font-size="11.5" text-anchor="middle">2%</text>
+<text class="t2" x="457.0" y="476" font-size="12.5" text-anchor="middle">bloco de 10 votos</text>
+<rect class="p0" x="640.7" y="176.0" width="42.0" height="282.0"><title>Regular, 20 votos, alerta completo: 94,0%</title></rect>
+<text class="t1" x="661.7" y="171.0" font-size="11.5" text-anchor="middle">94%</text>
+<rect class="p0c" x="686.7" y="158.8" width="42.0" height="299.2"><title>Regular, 20 votos, sem comparecimento: 99,7%</title></rect>
+<text class="t1" x="707.7" y="153.8" font-size="11.5" text-anchor="middle">100%</text>
+<rect class="p1" x="732.7" y="445.3" width="42.0" height="12.7"><title>Disfarçado, 20 votos, sem comparecimento: 4,2%</title></rect>
+<text class="t1" x="753.7" y="440.3" font-size="11.5" text-anchor="middle">4%</text>
+<text class="t2" x="709.7" y="476" font-size="12.5" text-anchor="middle">bloco de 20 votos</text>
+<text class="t2" x="20" y="512" font-size="12">Um bloco de 5 votos nunca é achado: numa seção de ~300 votos, 5 liberações seguidas do mesmo mesário acontecem por acaso</text>
+<text class="t2" x="20" y="529" font-size="12">com frequência demais para passar o limiar corrigido (2,5 em 100 milhões). Um bloco disfarçado no ritmo da fila também escapa.</text>
+<text class="t2" x="20" y="546" font-size="12">Dados: data/parsed/auditoria/h15-h17/poder.csv.</text>
+<text class="t2" x="20" y="567" font-size="11">Fonte: logs de urna publicados pelo TSE (pacotes do 2º turno, com o dia do 1º turno no mesmo log); script estatistico-h15-h17-analise.mjs.</text>
+</svg>
