@@ -351,6 +351,17 @@ A explicação "o cartório foi renovado com a mesma chave" é uma afirmação s
 
 Não se pode escrever que "a totalização aceitou certificado vencido". Não se sabe se ela confere certificados, nem com qual certificado de cartório, nem em que ponto do caminho. As perguntas exatas estão no fim.
 
+### "Se a validade não é conferida, qualquer carteira passaria, e um cartão de resultado adulterado com uma carteira qualquer seria contado"
+
+Este ponto foi analisado de forma independente por quatro revisores, cada um com uma especialidade (lógica e método, segurança de certificados, prática eleitoral e a coordenação da auditoria). As quatro análises chegaram à mesma resposta.
+
+- **A primeira parte procede.** Há sinal de que a validade de datas da cadeia não foi exigida: as carteiras das urnas antigas foram contadas, e uma conferência que exigisse datas, com o certificado publicado, as recusaria.
+- **O resto não decorre disso.** Conferir a data e conferir a assinatura são passos separados. Um sistema pode deixar de conferir a data e continuar conferindo se a carteira da urna foi carimbada pela chave do cartório e se o boletim foi assinado pela chave da urna. O mais comum em sistemas fechados é confiar diretamente na chave do cartório; nesse caso, a data do certificado do cartório deixa de importar, mas uma carteira feita com outra chave continua recusada.
+- **Fato: nenhum pacote com carteira "qualquer" foi contado nesta eleição.** As 503.525 carteiras de urna distintas dos dois turnos foram carimbadas pelas três chaves de cartório do TSE, sem nenhuma exceção. Um cartão adulterado com uma carteira qualquer deixaria no pacote publicado uma carteira que não confere com a chave do cartório, e isso não aparece em nenhum dos 499.207 pacotes de cada turno. Como o TSE publica o que recebeu, e o resultado oficial é exatamente a soma desses boletins publicados, todos os boletins contados têm carteira legítima.
+- **O que esse fato não prova:** que o sistema do TSE recusaria um pacote com carteira qualquer. Prova só que nenhum entrou. Saber se a recusa existe exige o programa de totalização ou um teste do próprio TSE.
+- **O risco real é outro.** Quem tivesse a chave do cartório AC URNA poderia carimbar uma carteira de urna e assinar um boletim adulterado que passaria em qualquer conferência, e, se a data não é conferida, com qualquer data de emissão. As 54 carteiras de julho a outubro mostram que essa chave continuou em uso depois do vencimento. Não há sinal de que tenha sido usada para fraude: as 54 são urnas comuns, sem chave repetida, e votaram como as vizinhas. Mas o controle que deveria limitar o uso dessa chave (vencimento e lista de revogação) não está visível.
+- **O teste que decidiria:** pedir ao TSE a lista de todas as carteiras que a AC URNA emitiu em 2026 e comparar com as 54 que aparecem nas urnas. Uma carteira emitida que não aparece em nenhuma urna seria o rastro de uma emissão fora do processo.
+
 ### "Não há como comprovar quem emitiu"
 
 Isso vale pela metade.
