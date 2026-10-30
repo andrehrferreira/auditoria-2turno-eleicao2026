@@ -8,7 +8,7 @@ Matemático forense, 30/10/2026. Banco: cópia de leitura de 29/10 10:50 UTC (`s
 - **Fato.** Seção a seção (detalhe oficial por seção): 499.207 seções de Presidente e 39.739 de Governador iguais ao BU em aptos, comparecimento, nominais, brancos, nulos e legenda. São 538.946 pares seção × cargo, 0 divergência.
 - **Fato.** Presidente número a número por seção (tabela `voto_oficial`): 499.205 seções, 0 divergência em 13, 22, 95 (branco) e 96 (nulo).
 - **Fato.** Governador candidato a candidato: por zona (1.026 pares), município (938) e UF (12), 0 divergência. O oficial não publica Governador por seção e candidato no 2º turno (abaixo).
-- **Fato.** Divulgação (Presidente no país e Governador nas 6 UFs com 2º turno): 7 de 7 totais iguais em 19 campos, inclusive seções, eleitorado, abstenção, nulo técnico e o voto de cada candidato.
+- **Fato.** Divulgação (Presidente no país e Governador nas 6 UFs com 2º turno): os 7 totais fecham com a soma dos boletins em eleitorado, comparecimento, abstenção, brancos, nulos, nulo técnico e voto de cada candidato. Os demais campos da divulgação são somas desses, constantes 0, contagens de seções ou cópia do próprio oficial (Teste A3).
 - **Fato.** Nulo técnico = 0 no 2º turno, em cada seção e em cada total. Nenhum voto do BU foi para um número fora da lista de candidatos da divulgação.
 - **Fato.** A única "diferença" que aparece numa soma é de universo, e é explicada: as 41 seções do exterior não instaladas estão no oficial com 423 aptos, comparecimento 0, e não têm BU.
 
@@ -133,17 +133,27 @@ Mesmo script. A tabela `voto_oficial` tem o `votacao_secao_2026_BR.csv` (gerado 
 
 Mesmo script. Lê os JSON da divulgação já baixados (`data/raw/2t/referencia`, sem rede): Presidente nacional (`br-c0001-e006258-u.json`) e Governador das 6 UFs (`<uf>-c0003-e006260-u.json`). Cada voto do BU recebe o destino que a divulgação dá ao candidato; número fora da lista vai para nulo técnico. O eleitorado das 41 seções não instaladas (`esni`) vem do detalhe de Presidente, porque elas não têm BU.
 
-19 campos comparados: seções (`ts`, `si`, `sni`), eleitorado (`te`, `esi`, `esni`), comparecimento `c`, abstenção `a`, brancos `vb`, nulos `vn`, nulo técnico `vnt`, total de nulos `tvn`, nominais válidos `vnom`, anulados `van`, anulados sub judice `vansj`, válidos `vv`, total `tv`, `vsan` e `vscv`.
+O script confere 19 campos, mas eles não valem o mesmo como prova (correção pedida na revisão cética 40). Do lado do boletim:
 
-| Total | Gerado em | Campos iguais | Eleitorado | Comparecimento | Abstenção | Brancos | Nulos | Nulo técnico | Candidato eleito (BU = oficial) | Outro candidato (BU = oficial) |
+| Grupo | Campos | De onde vem o lado do boletim |
+|---|---|---|
+| **Vem do conteúdo do boletim (7 grandezas)** | eleitorado das seções instaladas `esi`, comparecimento `c`, brancos `vb`, nulos `vn`, nominais válidos `vnom`, nulo técnico `vnt`, voto de cada candidato `vap` | soma dos BUs |
+| Soma de outros campos já comparados | eleitorado total `te` = `esi` + `esni`; abstenção `a` = `esi` − `c`; total de nulos `tvn` = `vn` + `vnt`; válidos `vv` = `vnom`; total `tv` | conta, não dado novo |
+| Constante 0 do lado do boletim | anulados `van`, anulados sub judice `vansj`, `vsan`, `vscv` | o teste só confere que o oficial também é 0 (no 2º turno não há candidato anulado) |
+| Copiado do próprio oficial | eleitorado das não instaladas `esni` (423) | tirado do `detalhe` oficial, porque essas seções não têm BU |
+| Contagem de seções | `ts`, `si`, `sni` | situação de cada seção no banco (pacote recebido ou não), não conteúdo do boletim |
+
+A prova de conteúdo está nas 7 grandezas da primeira linha: elas fecham nos 7 totais.
+
+| Total | Gerado em | Fecha | Eleitorado | Comparecimento | Abstenção | Brancos | Nulos | Nulo técnico | Candidato eleito (BU = oficial) | Outro candidato (BU = oficial) |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---|---|
-| País, Presidente | 25/10 23:27:02 | 19/19 | 158.745.502 (423 em não instaladas) | 128.236.074 | 30.509.005 | 1.430.496 | 2.723.305 | 0 | 13: 64.256.232 | 22: 59.826.041 |
-| AC, Governador | 25/10 21:26:35 | 19/19 | 613.336 | 453.334 | 160.002 | 11.979 | 29.612 | 0 | 11: 272.635 | 10: 139.108 |
-| AM, Governador | 25/10 22:10:45 | 19/19 | 2.796.187 | 2.189.860 | 606.327 | 39.610 | 75.947 | 0 | 55: 1.273.975 | 22: 800.328 |
-| DF, Governador | 25/10 21:28:25 | 19/19 | 2.244.176 | 1.854.323 | 389.853 | 55.771 | 72.280 | 0 | 11: 987.142 | 13: 739.130 |
-| ES, Governador | 25/10 21:32:45 | 19/19 | 2.987.603 | 2.405.654 | 581.949 | 64.871 | 132.846 | 0 | 10: 1.151.818 | 15: 1.056.119 |
-| RN, Governador | 25/10 21:24:45 | 19/19 | 2.656.286 | 2.229.510 | 426.776 | 35.873 | 80.214 | 0 | 13: 1.073.024 | 44: 1.040.399 |
-| TO, Governador | 25/10 21:45:15 | 19/19 | 1.180.466 | 953.385 | 227.081 | 20.323 | 61.903 | 0 | 45: 562.083 | 44: 309.076 |
+| País, Presidente | 25/10 23:27:02 | sim | 158.745.502 (423 em não instaladas) | 128.236.074 | 30.509.005 | 1.430.496 | 2.723.305 | 0 | 13: 64.256.232 | 22: 59.826.041 |
+| AC, Governador | 25/10 21:26:35 | sim | 613.336 | 453.334 | 160.002 | 11.979 | 29.612 | 0 | 11: 272.635 | 10: 139.108 |
+| AM, Governador | 25/10 22:10:45 | sim | 2.796.187 | 2.189.860 | 606.327 | 39.610 | 75.947 | 0 | 55: 1.273.975 | 22: 800.328 |
+| DF, Governador | 25/10 21:28:25 | sim | 2.244.176 | 1.854.323 | 389.853 | 55.771 | 72.280 | 0 | 11: 987.142 | 13: 739.130 |
+| ES, Governador | 25/10 21:32:45 | sim | 2.987.603 | 2.405.654 | 581.949 | 64.871 | 132.846 | 0 | 10: 1.151.818 | 15: 1.056.119 |
+| RN, Governador | 25/10 21:24:45 | sim | 2.656.286 | 2.229.510 | 426.776 | 35.873 | 80.214 | 0 | 13: 1.073.024 | 44: 1.040.399 |
+| TO, Governador | 25/10 21:45:15 | sim | 1.180.466 | 953.385 | 227.081 | 20.323 | 61.903 | 0 | 45: 562.083 | 44: 309.076 |
 
 - Seções: país `ts` 499.248, `si` 499.207, `sni` 41 = banco. Nas 6 UFs, todas as seções foram instaladas (`sni` = 0), e `ts` = seções com eleição 6260 no BU.
 - Anulados, anulados sub judice, `vsan` e `vscv`: 0 nos dois lados, nos 7 totais.
@@ -155,7 +165,24 @@ Juntando os testes: cada seção bate com o oficial (S1, S2); a soma das seçõe
 
 ## Contraprova (o teste acusa quando há diferença)
 
-**Fato.** `matematico-h03-2t-secao.mjs --contraprova` altera em memória 3 valores do BU, sem tocar o banco: em AC 01007/0009/0003 (Presidente), +1 branco e +1 voto no nº 99; em AC 01007/0009/0001 (Governador), +1 apto. Resultado: S1 acusa exatamente 3 divergências (brancos, nominais, aptos); S2 acusa 2 (nº 95 e nº 99); S3 acusa 1 voto em número fora da lista. As saídas da contraprova têm o sufixo `-contraprova`.
+**Fato.** `matematico-h03-2t-secao.mjs --contraprova` altera em memória 3 valores do BU, sem tocar o banco: em AC 01007/0009/0003 (Presidente), +1 branco e +1 voto no nº 99; em AC 01007/0009/0001 (Governador), +1 apto. Resultado: S1 acusa exatamente 3 divergências (brancos, nominais, aptos); S2 acusa 2 (nº 95 e nº 99); S3 acusa 1 voto em número fora da lista (AC 01007/0009/0003, nº 99).
+
+**Correção (revisão cética 40).** Na primeira versão, o S3 era calculado durante a leitura do BU, antes da alteração, e o próprio bloco da contraprova escrevia o voto no nº 99 na lista de achados: o "1 voto fora da lista" não provava nada. Agora a alteração muda só o dado do BU, e o S3 roda depois, sobre todos os BUs. O resultado continua 1, agora detectado pelo teste.
+
+**Fato.** `matematico-h03-2t-agregados.mjs --contraprova` altera em memória a soma dos BUs com 6 alterações, cada uma montada para aparecer até um nível certo:
+
+| # | Alteração | Esperado | Resultado |
+|---|---|---|---|
+| K1 | move 1 voto do nº 13 entre duas zonas do mesmo município (AC 01392, zonas 0001 e 0009) | 2 zonas; município, UF e país iguais | zona 2 (33.653 × 33.654 e 33.302 × 33.301); município 0; UF 0; país sem diferença |
+| K2 | move 1 voto do nº 22 entre dois municípios do AC (01007/0009 e 01015/0002) | 2 zonas e 2 municípios; UF e país iguais | zona 2; município 2; UF 0 |
+| K3 | +1 voto no nº 11, Governador do DF (97012/0001) | zona, município e UF 1 cada; DF: `vnom`, `vv`, `tv` e o candidato 11 | zona 1, município 1, UF 1; DF 3 campos (1.726.273 × 1.726.272) e nº 11 987.143 × 987.142 |
+| K4 | +1 voto no nº 99, Governador do TO (73008/0007) | zona, município e UF 1 cada (só no BU); TO: `vnt`, `tvn`, `tv` | zona 1, município 1, UF 1 (só no BU); TO 3 campos (`vnt` 1 × 0) e "nº 99 só no BU" |
+| K5 | +1 branco, Governador do AC | AC: `vb`, `tv` | AC 2 campos (11.980 × 11.979) |
+| K6 | +1 apto, Governador do ES | ES: `esi`, `te`, `a` | ES 3 campos (2.987.604 × 2.987.603) |
+
+Totais da contraprova: Presidente zona 4, município 2, UF 0; Governador zona 2, município 2, UF 2; divulgação BR, AM e RN sem diferença; AC 2, DF 3, ES 3 e TO 3 campos. Tudo como o esperado. K1 e K2 mostram por que o nível de cima não basta: uma troca entre zonas some no total do município, e uma troca entre municípios some no total da UF; só a comparação em cada nível a acusa.
+
+As saídas das contraprovas têm o sufixo `-contraprova`.
 
 ## Comparação com medidas anteriores
 
@@ -174,6 +201,8 @@ Juntando os testes: cada seção bate com o oficial (S1, S2); a soma das seçõe
 node scripts/auditoria/matematico-h03-2t-secao.mjs                # S0–S4, ~40 s → data/parsed/auditoria/matematico/h03-2t-secao-{resumo.txt,uf.csv,divergencias.csv}
 node scripts/auditoria/matematico-h03-2t-secao.mjs --contraprova  # contraprova → h03-2t-secao-contraprova-*
 node scripts/auditoria/matematico-h03-2t-agregados.mjs            # A1–A4, ~35 s → h03-2t-agregados-{resumo.txt,divulgacao.csv,candidatos.csv}
+node scripts/auditoria/matematico-h03-2t-agregados.mjs --contraprova  # 6 alterações K1–K6 → h03-2t-agregados-contraprova-*
+node scripts/auditoria/cetico-40-2t-oficial.mjs                    # caminho independente (boletim impresso), da revisão cética 40
 ```
 
 Entradas: cópia de leitura do banco; `data/raw/dadosabertos/detalhe_votacao_secao/detalhe_votacao_secao_2026.zip`; `data/raw/dadosabertos/votacao_candidato_munzona/votacao_candidato_munzona_2026.zip`; `data/raw/2t/referencia/*-u.json`. Sem rede.

@@ -10,11 +10,23 @@
 //       válidos vv, total tv, e o voto de cada candidato (vap) = soma dos BUs.
 //       O eleitorado das 41 seções não instaladas (esni) vem do detalhe_votacao_secao (o banco não tem BU delas).
 //   A4  toda linha do 2º turno no munzona é de Presidente ou de Governador de uma das 6 UFs com 2º turno.
-// Sem rede. Uso: node scripts/auditoria/matematico-h03-2t-agregados.mjs
+// Sem rede. Uso: node scripts/auditoria/matematico-h03-2t-agregados.mjs [--contraprova]
 // Saídas: data/parsed/auditoria/matematico/h03-2t-agregados-{resumo.txt,divulgacao.csv,candidatos.csv}
+// --contraprova: altera em memória a soma dos BUs (nada é gravado no banco) com 6 alterações, cada uma visível até um nível:
+//   K1 move 1 voto do nº 13 (Presidente) entre duas zonas do mesmo município → zona 2, município 0, UF 0, país 0;
+//   K2 move 1 voto do nº 22 entre dois municípios da mesma UF → zona 2, município 2, UF 0, país 0;
+//   K3 +1 voto do nº 11 (Governador DF) numa zona → zona/município/UF 1 cada; DF: vnom, vv, tv e o candidato 11;
+//   K4 +1 voto no nº 99 (Governador TO) numa zona → zona/município/UF 1 cada (só no BU); TO: vnt, tvn, tv;
+//   K5 +1 branco no Governador do AC → AC: vb, tv;   K6 +1 apto no Governador do ES → ES: esi, te, a.
+//   Esperado: Presidente zona 4, município 2, UF 0; Governador zona 2, município 2, UF 2; divulgação: BR 0 campos,
+//   AC 2, DF 3 (+ candidato 11), ES 3, TO 3 (+ nº 99 só no BU), AM e RN 0. Saídas com sufixo -contraprova.
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { abrirLeitura } from '../../src/banco-leitura.js';
+import { parseArgs } from 'node:util';
 import { ZIPS, entradasZip, linhasBrutas } from './contagem-zip.mjs';
+
+const { values: args } = parseArgs({ options: { contraprova: { type: 'boolean', default: false } } });
+const SUF = args.contraprova ? '-contraprova' : '';
 
 const TURNO = 2;
 const OUT = 'data/parsed/auditoria/matematico';
@@ -49,6 +61,34 @@ const eleUf = new Map(db.prepare(`SELECT e.uf, e.eleicao, COUNT(*) AS secoes, SU
   FROM secao_eleicao e JOIN secao s ON s.turno = e.turno AND s.uf = e.uf AND s.municipio = e.municipio AND s.zona = e.zona AND s.secao = e.secao
   WHERE e.turno = ? AND e.eleicao IN (6258, 6260) AND s.situacao = 'completa' GROUP BY 1, 2`).all(TURNO).map((r) => [`${r.uf}|${r.eleicao}`, r]));
 console.error(`  BU carregado em ${((Date.now() - inicio) / 1000).toFixed(0)} s`);
+
+if (args.contraprova) {
+  const chaves = [...nominalZona.keys()].sort();
+  const parte = (k) => k.split('|');
+  const soma = (k, d) => nominalZona.set(k, (nominalZona.get(k) ?? 0) + d);
+  // K1: duas zonas do mesmo município, nº 13
+  const z13 = chaves.filter((k) => parte(k)[3] === '1' && parte(k)[4] === '13');
+  let k1a, k1b;
+  for (const a of z13) { const b = z13.find((x) => x !== a && parte(x)[0] === parte(a)[0] && parte(x)[1] === parte(a)[1]); if (b) { k1a = a; k1b = b; break; } }
+  soma(k1a, -1); soma(k1b, +1);
+  // K2: dois municípios da mesma UF, nº 22
+  const z22 = chaves.filter((k) => parte(k)[3] === '1' && parte(k)[4] === '22');
+  const k2a = z22[0], k2b = z22.find((x) => parte(x)[0] === parte(k2a)[0] && parte(x)[1] !== parte(k2a)[1]);
+  soma(k2a, -1); soma(k2b, +1);
+  // K3: +1 no nº 11 do Governador do DF
+  const k3 = chaves.find((k) => k.startsWith('df|') && parte(k)[3] === '3' && parte(k)[4] === '11');
+  soma(k3, +1);
+  // K4: +1 no nº 99 do Governador do TO
+  const kt = chaves.find((k) => k.startsWith('to|') && parte(k)[3] === '3');
+  const k4 = `${parte(kt).slice(0, 4).join('|')}|99`;
+  soma(k4, +1);
+  // K5 e K6
+  tipoUf.set('ac|3|branco', tipoUf.get('ac|3|branco') + 1);
+  eleUf.set('es|6260', { ...eleUf.get('es|6260'), aptos: eleUf.get('es|6260').aptos + 1 });
+  p(`CONTRAPROVA: K1 ${k1a} −1 / ${k1b} +1; K2 ${k2a} −1 / ${k2b} +1; K3 ${k3} +1; K4 ${k4} +1; K5 AC Governador +1 branco; K6 ES Governador +1 apto`);
+  p('  Esperado: Presidente zona 4, município 2, UF 0; Governador zona 2, município 2, UF 2; divulgação BR 0, AC 2, AM 0, DF 3 (+ candidato 11), ES 3, RN 0, TO 3 (+ nº 99 só no BU)');
+}
+
 
 // ---------- eleitorado das seções não instaladas (detalhe, arquivo de Presidente) ----------
 const entradasDet = await entradasZip(ZIPS.detalheSecao);
@@ -184,7 +224,7 @@ for (const [abr, cargo, arq, eleicao] of alvo) {
 p(`  Seções não instaladas no detalhe (arquivo de Presidente): ${sniDetalhe}, eleitorado ${esniBr}`);
 
 const csv = (rows) => { if (!rows.length) return ''; const cols = Object.keys(rows[0]); return [cols.join(';'), ...rows.map((r) => cols.map((c) => String(r[c] ?? '')).join(';'))].join('\n') + '\n'; };
-writeFileSync(`${OUT}/h03-2t-agregados-divulgacao.csv`, csv(linhasDiv));
-writeFileSync(`${OUT}/h03-2t-agregados-candidatos.csv`, csv(linhasCand));
-p(`\nTempo: ${((Date.now() - inicio) / 1000).toFixed(0)} s. Saídas: ${OUT}/h03-2t-agregados-{resumo.txt,divulgacao.csv,candidatos.csv}`);
-writeFileSync(`${OUT}/h03-2t-agregados-resumo.txt`, saida.join('\n') + '\n');
+writeFileSync(`${OUT}/h03-2t-agregados${SUF}-divulgacao.csv`, csv(linhasDiv));
+writeFileSync(`${OUT}/h03-2t-agregados${SUF}-candidatos.csv`, csv(linhasCand));
+p(`\nTempo: ${((Date.now() - inicio) / 1000).toFixed(0)} s. Saídas: ${OUT}/h03-2t-agregados${SUF}-{resumo.txt,divulgacao.csv,candidatos.csv}`);
+writeFileSync(`${OUT}/h03-2t-agregados${SUF}-resumo.txt`, saida.join('\n') + '\n');

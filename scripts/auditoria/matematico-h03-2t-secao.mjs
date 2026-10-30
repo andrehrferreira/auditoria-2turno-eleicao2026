@@ -63,8 +63,7 @@ for (const s of db.prepare('SELECT uf, municipio, zona, secao, situacao, tipo_ar
 const ele = new Map(); // uf|mun|zona|secao|eleicao → linha
 for (const e of db.prepare(`SELECT uf, municipio, zona, secao, eleicao, aptos, comparecimento_majoritario AS cmaj FROM secao_eleicao
   WHERE turno = ? AND eleicao IN (6258, 6260)`).iterate(TURNO)) ele.set(`${e.uf}|${e.municipio}|${e.zona}|${e.secao}|${e.eleicao}`, e);
-const novo = () => ({ nominais: 0, brancos: 0, nulos: 0, legenda: 0, outros: 0, porNumero: new Map() });
-const nulosTecnicos = [];
+const novo = () => ({ nominais: 0, brancos: 0, nulos: 0, legenda: 0, outros: 0, porNumero: new Map(), porNominal: new Map() });
 for (const v of db.prepare(`SELECT uf, municipio, zona, secao, cargo, tipo_voto, numero, SUM(quantidade) AS q FROM voto_bu
   WHERE turno = ? AND cargo IN (1, 3) GROUP BY 1, 2, 3, 4, 5, 6, 7`).iterate(TURNO)) {
   const k = `${v.uf}|${v.municipio}|${v.zona}|${v.secao}|${v.cargo}`;
@@ -73,8 +72,7 @@ for (const v of db.prepare(`SELECT uf, municipio, zona, secao, cargo, tipo_voto,
   if (v.tipo_voto === 'nominal') {
     r.nominais += v.q;
     r.porNumero.set(v.numero, (r.porNumero.get(v.numero) ?? 0) + v.q);
-    const lista = v.cargo === 1 ? candPres : candGov.get(v.uf);
-    if (!lista?.has(v.numero) && v.q > 0) nulosTecnicos.push({ k, numero: v.numero, q: v.q });
+    r.porNominal.set(v.numero, (r.porNominal.get(v.numero) ?? 0) + v.q);
   } else if (v.tipo_voto === 'branco') { r.brancos += v.q; r.porNumero.set(95, (r.porNumero.get(95) ?? 0) + v.q); }
   else if (v.tipo_voto === 'nulo') { r.nulos += v.q; r.porNumero.set(96, (r.porNumero.get(96) ?? 0) + v.q); }
   else if (v.tipo_voto === 'legenda') r.legenda += v.q;
@@ -84,11 +82,18 @@ if (args.contraprova) {
   const kp = 'ac|01007|0009|0003|1';
   const rp = bu.get(kp);
   rp.brancos++; rp.porNumero.set(95, rp.porNumero.get(95) + 1);
-  rp.nominais++; rp.porNumero.set(99, 1); nulosTecnicos.push({ k: kp, numero: 99, q: 1 });
+  rp.nominais++; rp.porNumero.set(99, 1); rp.porNominal.set(99, 1); // só o dado do BU muda; a detecção (S3) roda depois
   const kg = [...bu.keys()].find((k) => k.endsWith('|3'));
   const kge = `${kg.slice(0, -2)}|6260`;
   ele.set(kge, { ...ele.get(kge), aptos: ele.get(kge).aptos + 1 });
   p(`CONTRAPROVA: ${kp} +1 branco e +1 voto no nº 99; ${kge} +1 apto (esperado: S1 3 divergências, S2 2, S3 1)`);
+}
+// S3 roda depois de carregar o BU (e depois da contraprova, se houver): cada voto nominal tem de ser para um candidato listado
+const nulosTecnicos = [];
+for (const [k, r] of bu) {
+  const [uf, , , , cargo] = k.split('|');
+  const lista = cargo === '1' ? candPres : candGov.get(uf);
+  for (const [numero, q] of r.porNominal) if (q > 0 && !lista?.has(numero)) nulosTecnicos.push({ k, numero, q });
 }
 const tiposOutros = [...bu.values()].reduce((a, r) => a + r.outros, 0);
 p(`BU do 2º turno: ${f(secoes.size)} seções, ${f(bu.size)} pares seção × cargo com voto (Presidente e Governador); votos de outro tipo: ${tiposOutros}`);

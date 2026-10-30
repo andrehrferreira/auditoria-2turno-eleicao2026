@@ -20,10 +20,18 @@
 // Sistema de Apuração, que grava comparecimento 0 na seção e só o traz por eleição.
 // Uso: node scripts/auditoria/matematico-c36-1t.mjs [--uf ac,df] [--contraprova]
 // Saídas: data/parsed/auditoria/matematico/c36-1t-{resumo.txt,violacoes.csv,cargo.csv}
-// --contraprova: altera em memória 4 seções do AC (as 4 primeiras completas de urna, em ordem de chave): +1 nulo de senador
-//   (C3), +1 apto em trânsito na eleição federal (C4), +1 liberado por biografia (C5), +1 no comparecimento da seção e +1 sem
-//   biometria (C6, sem tocar o C5). Esperado: exatamente 1 violação em cada um de C3, C4, C5 e C6. Saídas com sufixo
-//   -contraprova; nada é gravado no banco.
+// --contraprova: altera em memória 7 seções completas de urna do AC (em ordem de chave; nada é gravado no banco), cada
+//   alteração feita para violar uma só conta:
+//   1ª +1 nulo de senador (C3); 2ª +1 apto em trânsito na federal (C4); 3ª +1 liberado por biografia (C5);
+//   4ª +1 no comparecimento da seção e +1 sem biometria (C6 seção = federal, sem tocar o C5);
+//   5ª +1 no comparecimento proporcional da estadual e +1 nulo de dep. federal e de dep. estadual (C6 majoritário =
+//      proporcional, sem tocar o C3);
+//   6ª (primeira, a partir da 6ª, com federal = estadual e estadual < aptos) +1 no comparecimento majoritário e no
+//      proporcional da estadual, +1 nulo de governador, dep. federal e dep. estadual e +2 de senador (C6b: estadual passa
+//      a ter 1 votante a mais que a federal; C3 e C6 majoritário = proporcional continuam fechando);
+//   7ª (primeira, a partir da 6ª, com comparecimento e aptos iguais nas duas eleições) aptos e aptos da seção das duas eleições = comparecimento − 1 (C7 nas 3 comparações da seção: federal, estadual
+//      majoritário e proporcional; C4 e C6b continuam fechando, porque a diferença de aptos entre as eleições não muda).
+//   Esperado: C3 1, C4 1, C5 1, C6 1, C6 majoritário = proporcional 1, C6b 1, C7 3. Saídas com sufixo -contraprova.
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { abrirLeitura } from '../../src/banco-leitura.js';
 import { parseArgs } from 'node:util';
@@ -92,12 +100,24 @@ for (const uf of UFS) {
   }
 
   if (args.contraprova && uf === 'ac') {
-    const alvo = [...secoes.keys()].filter((k) => secoes.get(k).situacao === 'completa' && !String(secoes.get(k).tipo_arquivo).startsWith('sa')).sort().slice(0, 4).map((k) => secoes.get(k));
+    const todas = [...secoes.keys()].filter((k) => secoes.get(k).situacao === 'completa' && !String(secoes.get(k).tipo_arquivo).startsWith('sa')).sort().map((k) => secoes.get(k));
+    const alvo = todas.slice(0, 5);
+    const sexta = todas.slice(5).find((x) => x.ele.get(FEDERAL).maj === x.ele.get(ESTADUAL).maj && x.ele.get(ESTADUAL).maj < x.ele.get(ESTADUAL).aptos);
+    const igual = (x) => x.ele.get(FEDERAL).maj === x.ele.get(ESTADUAL).maj && x.ele.get(FEDERAL).aptos === x.ele.get(ESTADUAL).aptos;
+    alvo.push(sexta, todas.slice(5).find((x) => x !== sexta && x.ele.get(FEDERAL).maj > 0 && igual(x)));
+    const muda = (x, el, m) => x.ele.set(el, { ...x.ele.get(el), ...m(x.ele.get(el)) });
     alvo[0].votos.get(`${ESTADUAL}|5`).nulo++;
-    const e = alvo[1].ele.get(FEDERAL); alvo[1].ele.set(FEDERAL, { ...e, aptos_tte: e.aptos_tte + 1 });
+    muda(alvo[1], FEDERAL, (e) => ({ aptos_tte: e.aptos_tte + 1 }));
     alvo[2].por_biografia++;
     alvo[3].comparecimento++; alvo[3].sem_biometria++;
-    p(`CONTRAPROVA (AC): ${alvo.map((x, i) => `${['C3', 'C4', 'C5', 'C6'][i]} em ${x.municipio}/${x.zona}/${x.secao}`).join('; ')}`);
+    muda(alvo[4], ESTADUAL, (e) => ({ prop: e.prop + 1 }));
+    alvo[4].votos.get(`${ESTADUAL}|6`).nulo++; alvo[4].votos.get(`${ESTADUAL}|7`).nulo++;
+    muda(alvo[5], ESTADUAL, (e) => ({ maj: e.maj + 1, prop: e.prop + 1 }));
+    for (const c of [3, 6, 7]) alvo[5].votos.get(`${ESTADUAL}|${c}`).nulo++;
+    alvo[5].votos.get(`${ESTADUAL}|5`).nulo += 2;
+    for (const el of [FEDERAL, ESTADUAL]) muda(alvo[6], el, (e) => { const novo = alvo[6].ele.get(FEDERAL).maj - 1; return { aptos: novo, aptos_secao: novo - e.aptos_tte }; });
+    p(`CONTRAPROVA (AC): ${alvo.map((x, i) => `${['C3', 'C4', 'C5', 'C6', 'C6 maj=prop', 'C6b', 'C7'][i]} em ${x.municipio}/${x.zona}/${x.secao}`).join('; ')}`);
+    p('  Esperado: C3 1, C4 1, C5 1, C6 1, C6 majoritário = proporcional 1, C6b 1, C7 3 (federal, estadual majoritário e proporcional da mesma seção)');
   }
   for (const s of secoes.values()) {
     est.secoes++;
