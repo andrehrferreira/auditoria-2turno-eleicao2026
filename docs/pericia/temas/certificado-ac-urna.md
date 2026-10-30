@@ -2,12 +2,44 @@
 
 > **Base (30/10/2026).** Todos os números deste relatório foram recalculados por uma segunda verificação independente, sobre todas as seções dos dois turnos. Hipóteses e pendências vêm rotuladas.
 
+## Pedido de esclarecimento ao Tribunal Superior Eleitoral
+
+**Ao Tribunal Superior Eleitoral — Serviço de Informação ao Cidadão (Lei de Acesso à Informação)**
+
+**Assunto:** Pedido de informação sobre a autoridade certificadora AC URNA e a conferência dos certificados das urnas nas eleições de 2026.
+
+**Base legal:** Lei nº 12.527/2011 (Lei de Acesso à Informação), arts. 10 e 11. Prazo de resposta: 20 dias, prorrogável por 10.
+
+**Exposição.** Constatamos nos arquivos publicados pelo TSE para as eleições de 2026 (pleitos 3220 e 3221):
+
+1. o certificado da AC URNA publicado no pacote "formato-arquivos-bu-rdv-ass-digital-v2" (número de série 03, emitido pela AC RAIZ UE) tem validade de 22/07/2011 a 18/07/2026;
+2. os certificados das urnas modelo 2013 e 2015 são emitidos pela AC URNA; essas urnas assinaram 99.957 pacotes no 2º turno e 99.985 no 1º turno;
+3. 54 certificados de urna têm início de validade entre 20/07/2026 e 19/10/2026, com números de série de 34aea5 a 34b256, foram assinados pela chave da AC URNA e apontam para o certificado de número de série 03;
+4. os boletins dessas urnas estão no resultado oficial: no 2º turno, as 99.955 seções com essas urnas e voto para Presidente têm boletim igual ao resultado oficial por seção;
+5. nenhuma assinatura desses pacotes falhou na conferência com a chave pública do certificado publicado da AC URNA, nos dois turnos.
+
+**Pedidos.** Solicitamos os documentos e dados abaixo:
+
+1. **Conferência na totalização.** Se o sistema de totalização, ou o receptor que o precede, verifica a assinatura digital de cada boletim de urna e a cadeia de certificação do certificado da urna até a AC RAIZ UE ou a AC RAIZ UE v2. Em caso positivo: o nome e a versão do programa e da biblioteca que fazem essa verificação, e o documento técnico ou a configuração que a define, indicando se ela confere a data de validade do certificado da urna e de cada AC da cadeia, e em que data de referência (a da verificação, a da emissão do boletim, a da emissão do certificado ou nenhuma).
+2. **Certificado da AC URNA cadastrado como confiável.** O arquivo do certificado da AC URNA (DER) cadastrado como confiável nesse sistema em 04/10/2026 e em 25/10/2026, com número de série, período de validade e SHA-256. Se houve renovação do certificado de número de série 03, o certificado renovado, a data de emissão e a ata da cerimônia de emissão.
+3. **Certificados emitidos pela AC URNA em 2026.** A relação de todos os certificados emitidos pela AC URNA em 2026 (número de série, urna, data e motivo), com o registro de cada emissão e a indicação de quais foram revogados, incluindo todos os números de série da faixa de 34aea5 a 34b256, que comporta 946 números.
+4. **Lista de revogação, política e certificados das raízes.** A lista de certificados revogados (LCR) vigente da AC URNA e da AC RAIZ UE; a Declaração de Práticas de Certificação da AC URNA; e os certificados da AC RAIZ UE, da AC RAIZ UE v2 e da AC URNA v2.
+5. **Guarda da chave privada da AC URNA.** Onde a chave privada da AC URNA fica guardada; se em equipamento dedicado à guarda de chaves criptográficas (módulo de segurança em hardware), com o modelo e a certificação do equipamento; a relação dos cargos com acesso a ela; e o registro de uso dessa chave entre 18/07/2026 e 25/10/2026.
+6. **Autoridade certificadora de teste.** Se existe autoridade certificadora de teste ou de homologação separada da AC URNA de produção, com os certificados dela; e se algum certificado de teste ou de homologação foi emitido pela AC URNA de produção, com a relação desses certificados.
+7. **Lista de certificados ou de urnas esperadas.** Se a totalização confere o certificado de cada urna contra uma lista de certificados ou de urnas esperadas (por exemplo, a relação das urnas preparadas para cada seção, inclusive as de reserva). Em caso positivo, a lista usada em cada turno e o documento que descreve essa conferência.
+
+Os pedidos visam permitir a conferência independente dos resultados; não pressupõem irregularidade.
+
+Brasil, 30 de outubro de 2026.
+
+Auditoria independente das urnas — Eleições 2026
+
 ## Em poucas palavras
 
 - **Fato.** O certificado público da AC URNA, o "cartório digital" do TSE que emitiu as carteiras de identidade das urnas antigas (modelos 2013 e 2015), valeu de 22/07/2011 a 18/07/2026. Venceu antes dos dois turnos (04/10 e 25/10/2026).
 - **Fato.** Essas urnas assinaram 99.957 pacotes no 2º turno e 99.985 no 1º. Todas as assinaturas conferem com a chave dessa autoridade, e uma carteira alterada em um único bit é recusada.
 - **Fato.** A chave da AC URNA continuou carimbando carteiras depois do vencimento: 54 carteiras de urna têm início de validade entre 20/07 e 19/10/2026, e todas apontam para o certificado vencido. Essas urnas votaram em 53 seções no 2º turno e em 45 no 1º; duas foram carimbadas entre os turnos. A ordem dos números de série indica que as datas são as reais (inferência forte, não prova).
-- **Fato.** Os votos dessas seções estão no resultado oficial e variaram entre os turnos como os das seções vizinhas. Pela regra usual, um verificador com o certificado publicado recusaria as 99.957 seções do 2º turno; pelo "modelo de cadeia", recusaria as 53. Se e como o TSE confere, só ele pode dizer (**Hipótese** até a resposta).
+- **Fato.** Os votos dessas seções estão no resultado oficial, e o teste que compara a variação deles entre os turnos com a das seções vizinhas não encontrou diferença. Pela regra usual, um verificador com o certificado publicado recusaria as 99.957 seções do 2º turno; pelo "modelo de cadeia", recusaria as 53. Se e como o TSE confere, só ele pode dizer (**Hipótese** até a resposta).
 - **Fato (tamanho do risco, não sinal de fraude).** No 2º turno, 20,28% dos votos válidos passaram por essas urnas: 13.140.473 do 13 e 12.026.599 do 22. A margem do 13 no país foi de 4.430.191; trocar 2.215.096 votos só nessas urnas mudaria o vencedor.
 - O vencimento, sozinho, não permite forjar uma carteira. O que permitiria fraude: a chave secreta do cartório fora de controle, ou um programa alterado dentro de uma urna verdadeira. Os testes não acharam rastro de nenhum dos dois, e também não teriam como excluí-los.
 
@@ -197,7 +229,7 @@ Os testes sobre as carteiras e os votos foram feitos em 30/10/2026 em duas frent
 **Os números de série crescem com saltos.** Cada carteira tem um número de série, como uma nota fiscal.
 
 - **Fato:** os números crescem com a data, sem nenhuma inversão nas 92 carteiras de 2026. Mas há saltos: entre o primeiro (`34aea5`, 20/07) e o último (`34b256`, 19/10) depois do vencimento cabem 946 números, e só 54 deles estão em urnas que votaram. Antes do vencimento, em 2026, a proporção é parecida: 38 de 371 números.
-- **Hipótese:** a AC URNA emitiu mais carteiras depois de vencer do que as 54 que aparecem nas urnas que votaram. Só a lista de emissões do TSE responde (pergunta 3, no fim deste relatório).
+- **Hipótese:** a AC URNA emitiu mais carteiras depois de vencer do que as 54 que aparecem nas urnas que votaram. Só a lista de emissões do TSE responde (pedido 3, no início deste relatório).
 
 **A data de início é a data em que a carteira foi carimbada?** A data de início é escrita pelo relógio do sistema que emite. Por isso a afirmação "emitidas depois do vencimento" é **inferência forte, não prova**. O que a apoia (**Fato**, universo completo):
 
@@ -297,30 +329,30 @@ A diferença fica dentro do que o acaso produz (teste qui-quadrado). É formato,
 
 ### Os votos das urnas antigas comparados com os das urnas novas
 
+Os testes de votos abaixo foram feitos em todas as seções que cada um compara. Cada um diz se encontrou ou não uma diferença grande demais para vir do acaso. Não encontrar diferença não quer dizer que os votos foram iguais: quer dizer que o teste não separou a diferença do acaso. Os números dos testes (o tamanho de cada diferença, a margem do acaso e a partir de que tamanho cada teste enxerga) estão na análise técnica separada da auditoria.
+
 **Os votos das seções com carteira emitida depois do vencimento.** Cada seção foi comparada com ela mesma no outro turno e com as outras seções do mesmo local de votação. A referência é a mesma conta em todas as seções do país com pelo menos 2 vizinhas no local.
 
-| Grupo | Seções | Mudança na parcela do 13 entre os turnos, contra as vizinhas (ponto percentual) | p | O teste enxerga a partir de |
-|---|---:|---:|---:|---:|
-| Carteira tardia, 2º turno | 53 | +0,13 | 0,65 | 0,82 |
-| Carteira tardia, 1º turno | 45 | +0,06 | 0,84 | 0,87 |
-| Controle: urnas recertificadas em 2026 antes do vencimento | 37 | −0,05 | 0,89 | 1,03 |
+| Grupo | Seções | Mudança na parcela do 13 entre os turnos, contra as vizinhas |
+|---|---:|---|
+| Carteira tardia, 2º turno | 53 | o teste não encontrou diferença |
+| Carteira tardia, 1º turno | 45 | o teste não encontrou diferença |
+| Controle: urnas recertificadas em 2026 antes do vencimento | 37 | o teste não encontrou diferença |
 
-O **p** é a chance de o acaso, sozinho, produzir uma diferença daquele tamanho. Valores altos, como estes, querem dizer que a diferença não se separa do acaso.
-
-- **Fato:** nenhum grupo se afasta das vizinhas. Em votos, a diferença das 53 seções do 2º turno soma **13 votos a mais para o 13**, num total de 13.458 votos no 13 e no 22. As seções dos dois lados da data de vencimento votam igual.
-- **Fato:** no 2º turno, a parcela do 13 nessas seções fica 0,57 ponto acima da do local (p = 0,31, dentro do acaso), e já ficava 0,44 acima no 1º turno. É o perfil do lugar das urnas antigas.
-- **Fato:** 3 das 53 seções ficam a 3 desvios ou mais das vizinhas em alguma das medidas, contra 1,0 esperada (p = 0,08, sem correção para muitos testes). Uma vai a favor do 13 e duas contra. Em duas, o desvio já existia no 1º turno.
-- **Fato:** na seção SP 71072/0004/0114 (urna carimbada em 18/10), a parcela do 13 subiu 4,7 pontos a mais que a das 16 vizinhas do local (z = 2,4), depois de um 1º turno 7,4 pontos abaixo delas, com outra urna. Não passa o limite de 3 desvios. **Hipótese:** volta à média depois de um 1º turno fora do padrão. Na seção SP 62634/0214/0003 (urna reserva carimbada em 19/10): −1,6 ponto (z = −0,8).
-- **Limite:** com 53 seções, o teste não vê um desvio médio menor que 0,82 ponto. Também não vê nada que aja igual nas urnas vizinhas.
+- **Fato:** em nenhum dos três grupos o teste encontrou diferença em relação às vizinhas. As 53 seções do 2º turno somam 13.458 votos no 13 e no 22.
+- **Fato:** no 2º turno, a parcela do 13 nessas seções fica um pouco acima da do local, sem diferença que o teste separe do acaso, e já ficava acima no 1º turno. É o perfil do lugar das urnas antigas.
+- **Fato:** 3 das 53 seções passam da régua de afastamento forte em alguma das medidas. Uma vai a favor do 13 e duas contra. Em duas, o afastamento já existia no 1º turno. Três seções em 53 não se separam do que o acaso produz.
+- **Fato:** na seção SP 71072/0004/0114 (urna carimbada em 18/10), a parcela do 13 subiu mais que a das 16 vizinhas do local, depois de um 1º turno abaixo delas, com outra urna. Não passa a régua de afastamento forte. **Hipótese:** volta à média depois de um 1º turno fora do padrão. Na seção SP 62634/0214/0003 (urna reserva carimbada em 19/10), o teste não encontrou afastamento.
+- **Limite:** com 53 seções, o teste só enxerga um desvio médio a partir de certo tamanho; um desvio menor passa sem ser visto. Também não vê nada que aja igual nas urnas vizinhas.
 
 **Os votos de todas as urnas antigas contra os das urnas novas.**
 
-- **Fato:** a análise registrou 12 testes antes de olhar os votos (3 medidas × 4 comparações). Nenhum passa a correção para muitos testes. O maior valor é z = +2,55, abaixo do limite de 2,87. A segunda verificação rodou de novo o programa e obteve o mesmo resultado.
+- **Fato:** a análise registrou 12 testes antes de olhar os votos (3 medidas × 4 comparações). Nenhum encontrou diferença, já com a régua mais exigente que se usa quando se fazem muitos testes ao mesmo tempo (para que nenhum resultado apareça só por sorte). A segunda verificação rodou de novo o programa e obteve o mesmo resultado.
 - **Fato:** as urnas antigas e as novas ficam, em geral, em zonas e municípios diferentes. Só 516 das 99.957 seções com urna antiga (0,5%) dividem o local de votação com urna nova, em 123 locais de 47 municípios. **Os 12 testes combinados antes cobrem só essas seções** (483 no teste de mudança entre turnos).
-- **Fato, exploratório:** para cobrir as outras seções, a análise acrescentou depois comparações mais largas. Na mudança do 1º para o 2º turno, comparando dentro da UF, a parcela do 13 nas urnas antigas mudou −0,03 ponto em relação às novas (intervalo de 95% de −0,09 a +0,02). "Exploratório" quer dizer que a comparação foi escolhida depois de ver o primeiro resultado. Ela aponta no mesmo sentido, mas não é o teste combinado antes. O teste combinado antes dá −0,11 ponto (intervalo de −0,40 a +0,18).
-- **Fato (aritmética):** para virar o resultado do 2º turno só com essas urnas, seria preciso trocar 2.215.096 votos de um candidato para o outro, 8,8% dos votos no 13 e no 22 dessas urnas. As comparações exploratórias excluem uma diferença de nível maior que 1,5 ponto. Essa comparação de 8,8 com 1,5 depende das camadas exploratórias.
-- **Fato:** as seções com zeros a mais na carteira votam como as outras seções de urna antiga do mesmo local: −0,02 ponto na parcela do 13 (intervalo de −0,07 a +0,03). A sobra de zeros depende só do sorteio da assinatura, então essa comparação funciona como um sorteio natural.
-- **Fato:** o nível de votos das urnas antigas não mudou entre os turnos. Um desvio igual nos dois turnos, abaixo de 1 a 2 pontos, não se separa do perfil do lugar.
+- **Fato, exploratório:** para cobrir as outras seções, a análise acrescentou depois comparações mais largas. Na mudança do 1º para o 2º turno, comparando dentro da UF, o teste não encontrou diferença entre a parcela do 13 nas urnas antigas e nas novas. "Exploratório" quer dizer que a comparação foi escolhida depois de ver o primeiro resultado. Ela aponta no mesmo sentido do teste combinado antes, que também não encontrou diferença, mas não o substitui.
+- **Fato (aritmética):** para virar o resultado do 2º turno só com essas urnas, seria preciso trocar 2.215.096 votos de um candidato para o outro, 8,8% dos votos no 13 e no 22 dessas urnas. Uma diferença desse tamanho entre urnas antigas e novas apareceria nas comparações exploratórias, e elas não encontraram diferença. Essa leitura depende das comparações exploratórias, e não só do teste combinado antes.
+- **Fato:** entre as seções com zeros a mais na carteira e as outras seções de urna antiga do mesmo local, o teste não encontrou diferença na parcela do 13. A sobra de zeros depende só do sorteio da assinatura, então essa comparação funciona como um sorteio natural.
+- **Fato:** o nível de votos das urnas antigas não mudou entre os turnos. Um desvio pequeno e igual nos dois turnos não se separa do perfil do lugar.
 - **Não verificável:** o registro dos testes e os resultados foram guardados juntos, no mesmo momento. Não há rastro técnico de que o registro veio antes. A segunda verificação não acusa nada; recomenda registrar os testes separadamente nas próximas hipóteses.
 
 ## O raciocínio do auditor, ponto por ponto
@@ -349,7 +381,7 @@ O auditor tem razão num ponto que não depende de qual seja o caso: em todas as
 
 A explicação "o cartório foi renovado com a mesma chave" é uma afirmação sobre o que o TSE fez, sem documento público. Pela regra desta auditoria (procedimento de pessoas não é controle), ela fica como **risco** até o TSE publicar o certificado e a data de emissão.
 
-Não se pode escrever que "a totalização aceitou certificado vencido". Não se sabe se ela confere certificados, nem com qual certificado de cartório, nem em que ponto do caminho. As perguntas exatas estão no fim.
+Não se pode escrever que "a totalização aceitou certificado vencido". Não se sabe se ela confere certificados, nem com qual certificado de cartório, nem em que ponto do caminho. As perguntas exatas estão no pedido formal no início deste relatório.
 
 ### "Se a validade não é conferida, qualquer carteira passaria, e um cartão de resultado adulterado com uma carteira qualquer seria contado"
 
@@ -359,7 +391,7 @@ Este ponto foi analisado de forma independente por quatro revisores, cada um com
 - **O resto não decorre disso.** Conferir a data e conferir a assinatura são passos separados. Um sistema pode deixar de conferir a data e continuar conferindo se a carteira da urna foi carimbada pela chave do cartório e se o boletim foi assinado pela chave da urna. O mais comum em sistemas fechados é confiar diretamente na chave do cartório; nesse caso, a data do certificado do cartório deixa de importar, mas uma carteira feita com outra chave continua recusada.
 - **Fato: nenhum pacote com carteira "qualquer" foi contado nesta eleição.** As 503.525 carteiras de urna distintas dos dois turnos foram carimbadas pelas três chaves de cartório do TSE, sem nenhuma exceção. Um cartão adulterado com uma carteira qualquer deixaria no pacote publicado uma carteira que não confere com a chave do cartório, e isso não aparece em nenhum dos 499.207 pacotes de cada turno. Como o TSE publica o que recebeu, e o resultado oficial é exatamente a soma desses boletins publicados, todos os boletins contados têm carteira legítima.
 - **O que esse fato não prova:** que o sistema do TSE recusaria um pacote com carteira qualquer. Prova só que nenhum entrou. Saber se a recusa existe exige o programa de totalização ou um teste do próprio TSE.
-- **O risco real é outro.** Quem tivesse a chave do cartório AC URNA poderia carimbar uma carteira de urna e assinar um boletim adulterado que passaria em qualquer conferência, e, se a data não é conferida, com qualquer data de emissão. As 54 carteiras de julho a outubro mostram que essa chave continuou em uso depois do vencimento. Não há sinal de que tenha sido usada para fraude: as 54 são urnas comuns, sem chave repetida, e votaram como as vizinhas. Mas o controle que deveria limitar o uso dessa chave (vencimento e lista de revogação) não está visível.
+- **O risco real é outro.** Quem tivesse a chave do cartório AC URNA poderia carimbar uma carteira de urna e assinar um boletim adulterado que passaria em qualquer conferência, e, se a data não é conferida, com qualquer data de emissão. As 54 carteiras de julho a outubro mostram que essa chave continuou em uso depois do vencimento. Não há sinal de que tenha sido usada para fraude: as 54 são urnas comuns, sem chave repetida, e o teste de votos não encontrou diferença entre as seções delas e as vizinhas. Mas o controle que deveria limitar o uso dessa chave (vencimento e lista de revogação) não está visível.
 - **O teste que decidiria:** pedir ao TSE a lista de todas as carteiras que a AC URNA emitiu em 2026 e comparar com as 54 que aparecem nas urnas. Uma carteira emitida que não aparece em nenhuma urna seria o rastro de uma emissão fora do processo.
 
 ### "Não há como comprovar quem emitiu"
@@ -385,7 +417,7 @@ O que foi procurado e revisado:
 - **Fato:** nenhuma chave, número de série ou urna repetida entre as 503.525 carteiras; todas as carteiras da AC URNA apontam para o mesmo certificado de cartório; as 54 carteiras de julho a outubro seguem a mesma ordem, o mesmo ritmo e as mesmas sessões das outras autoridades.
 - **Fato:** o número da urna é o mesmo na carteira, no pacote e no boletim em 499.204 de 499.207 seções do 2º turno. As 3 diferenças são boletins regravados no cartório por outra urna, o Recuperador de Dados ([tópico 2](../02-coerencia-entre-arquivos.md)).
 - **Fato:** todas as urnas do 2º turno registram a mesma versão de programa, 10.23.0.0 ([tópico 1](../01-integridade-e-estrutura-dos-arquivos.md)).
-- **Fato:** os votos das seções com carteira tardia variaram como os das vizinhas, e nenhum dos 12 testes combinados antes acha diferença entre urnas antigas e novas.
+- **Fato:** o teste não encontrou diferença entre a variação dos votos das seções com carteira tardia e a das vizinhas, e nenhum dos 12 testes combinados antes encontrou diferença entre urnas antigas e novas.
 
 Nenhum desses testes mostra uma chave copiada ou um programa trocado. Mas nenhum deles prova que isso não aconteceu: uma cópia da chave, ou um programa alterado que registre a versão certa e aja igual em urnas antigas e novas, produz arquivos iguais aos legítimos.
 
@@ -481,7 +513,7 @@ Esta seção não diz que houve fraude. Ela mede **o tamanho da porta**: quantos
 
 ### O que os testes de votos mostraram
 
-As urnas da AC URNA votaram como as urnas novas do mesmo lugar, e as seções com carteira emitida depois do vencimento votaram como as suas vizinhas (seção "Os votos das urnas antigas comparados com os das urnas novas"). Uma troca do tamanho necessário para virar a eleição apareceria como uma diferença de 8,8 pontos entre urnas antigas e novas; nenhuma das comparações mostra diferença desse tamanho.
+Os testes foram feitos em todas as seções que comparam. Não encontraram diferença entre as urnas da AC URNA e as urnas novas do mesmo lugar, nem entre as seções com carteira emitida depois do vencimento e as suas vizinhas (seção "Os votos das urnas antigas comparados com os das urnas novas"). Não encontrar diferença não prova que os votos foram iguais. Uma troca do tamanho necessário para virar a eleição apareceria como uma diferença de 8,8 pontos entre urnas antigas e novas; as comparações não encontraram diferença. Os números dos testes estão na análise técnica separada da auditoria.
 
 **Limite:** os testes comparam urnas antigas com urnas novas e cada seção com as vizinhas. Eles não enxergam uma adulteração igual em todas as urnas, antigas e novas, nem uma que imite o padrão de votos de cada lugar.
 
@@ -493,18 +525,12 @@ As urnas da AC URNA votaram como as urnas novas do mesmo lugar, e as seções co
 - **Quem operou a chave do cartório e se as emissões foram autorizadas.** Só o registro do cartório, com o TSE, responde.
 - **Que a chave privada da AC URNA ficou só com o TSE**, antes ou depois do vencimento. Uma cópia dela produz carteiras indistinguíveis das legítimas.
 - **Que o programa dentro das urnas era o lacrado.** A assinatura prova que o arquivo não mudou depois de assinado, não o que o programa fez antes.
-- **Que houve fraude.** Uma carteira emitida depois do vencimento não é carteira falsa: ela tem o carimbo da chave verdadeira do cartório. O certificado vencido, sem um certificado renovado publicado, e o uso da chave depois do vencimento são uma lacuna de controle e de transparência, não um rastro de adulteração. Nenhuma assinatura falhou, nenhuma carteira alterada passou e os votos dessas seções não se afastam dos das vizinhas.
-- **Que não houve fraude.** Os testes acima não enxergam uma chave copiada, nem um programa alterado que registre a versão certa, nem um desvio menor que o tamanho que cada teste enxerga.
+- **Que houve fraude.** Uma carteira emitida depois do vencimento não é carteira falsa: ela tem o carimbo da chave verdadeira do cartório. O certificado vencido, sem um certificado renovado publicado, e o uso da chave depois do vencimento são uma lacuna de controle e de transparência, não um rastro de adulteração. Nenhuma assinatura falhou, nenhuma carteira alterada passou e os testes de votos não encontraram diferença entre essas seções e as vizinhas.
+- **Que não houve fraude.** Os testes acima não enxergam uma chave copiada, nem um programa alterado que registre a versão certa, nem um desvio pequeno demais para os testes de votos.
 
 ## Perguntas ao TSE
 
-Para enviar pela Lei de Acesso à Informação (LAI) ou por entidade fiscalizadora. Texto pronto:
-
-1. "Ao receber cada boletim de urna das eleições de 2026 (pleitos 3220 e 3221), o sistema de totalização, ou o receptor que o precede, verifica a assinatura digital do boletim e a cadeia de certificação do certificado da urna até a AC RAIZ UE ou a AC RAIZ UE v2? Em caso positivo, qual programa e qual biblioteca fazem essa verificação, e ela confere a data de validade do certificado da urna e de cada AC da cadeia? Em que data de referência: a data da verificação, a da emissão do boletim, a da emissão do certificado ou nenhuma?"
-2. "Qual certificado da AC URNA estava cadastrado como confiável nesse sistema em 04/10/2026 e em 25/10/2026? Solicito o arquivo do certificado (DER), o número de série, o período de validade e o SHA-256. O certificado da AC URNA publicado no pacote 'formato-arquivos-bu-rdv-ass-digital-v2' tem número de série 03 e validade até 18/07/2026. Se houve renovação desse certificado, solicito o certificado renovado, a data e a ata da cerimônia de emissão."
-3. "A AC URNA emitiu certificados de urna depois de 18/07/2026? Nos arquivos públicos das eleições de 2026 há 54 certificados de urna emitidos pela AC URNA com início de validade entre 20/07/2026 e 19/10/2026, com números de série de 34aea5 a 34b256, faixa que comporta 946 números. Solicito a relação de todos os certificados emitidos pela AC URNA em 2026 (número de série, urna, data e motivo), com o registro de cada emissão, e a informação de quais foram revogados."
-4. "Solicito a lista de certificados revogados (LCR) vigente da AC URNA e da AC RAIZ UE, a Declaração de Práticas de Certificação da AC URNA e os certificados da AC RAIZ UE, da AC RAIZ UE v2 e da AC URNA v2."
-5. "Onde fica guardada a chave privada da AC URNA, quem tem acesso a ela, e há registro de uso dessa chave entre 18/07/2026 e 25/10/2026?"
+As perguntas estão no pedido formal no início deste relatório ("Pedido de esclarecimento ao Tribunal Superior Eleitoral"), pronto para envio pela Lei de Acesso à Informação ou por entidade fiscalizadora.
 
 ## Limites
 
@@ -514,14 +540,14 @@ Para enviar pela Lei de Acesso à Informação (LAI) ou por entidade fiscalizado
 4. **Os certificados dos cartórios vieram de uma cópia pública** do pacote oficial de exemplos do TSE. A impressão digital é igual à registrada por outro projeto de auditoria. Falta baixar o pacote direto do site do TSE, pelo navegador, e comparar ([tópico 1](../01-integridade-e-estrutura-dos-arquivos.md), limite 4).
 5. **O que acontece dentro da urna antes da assinatura** não aparece nas assinaturas ([tópico 1](../01-integridade-e-estrutura-dos-arquivos.md), limite 6).
 6. **O caminho do boletim até a totalização** não é público. Os arquivos mostram o que a urna assinou e que o boletim é igual ao resultado oficial, não o que o sistema de totalização conferiu.
-7. **Os testes de votos têm tamanho mínimo.** Cada um diz a partir de que desvio enxerga. Um desvio menor, ou igual nas urnas antigas e novas, não aparece.
+7. **Os testes de votos têm tamanho mínimo.** Cada um só enxerga um desvio a partir de certo tamanho (os números estão na análise técnica separada da auditoria). Um desvio menor, ou igual nas urnas antigas e novas, não aparece.
 
 ## Próximos passos
 
 - [x] Conferir as assinaturas das urnas 2013 e 2015 nos dois turnos: 99.957 e 99.985 pacotes, 0 falha.
 - [x] Explicar as carteiras com zeros a mais: 37.457 e 37.440 pacotes, todos aprovados; proporção igual à prevista.
 - [x] Segunda verificação independente das carteiras de cada urna e dos votos.
-- [ ] **Pendente.** Enviar as cinco perguntas ao TSE.
+- [ ] **Pendente.** Enviar ao TSE o pedido de esclarecimento do início deste relatório.
 - [ ] **Pendente.** Baixar pelo navegador a lista de revogação e a política da AC URNA e da AC RAIZ UE, e procurar um certificado renovado da AC URNA.
 - [ ] **Pendente.** Segunda conferência, independente, do carimbo das carteiras das urnas novas (2020 e 2022) do 2º turno. Hoje ela vem só da verificação de lacres.
 - [ ] **Pendente.** Registrar no leitor a quantidade de carteiras com 2 zeros a mais.
@@ -535,9 +561,9 @@ Para enviar pela Lei de Acesso à Informação (LAI) ou por entidade fiscalizado
 
 **O tamanho do que estaria em jogo.** No 2º turno, 20,28% dos votos válidos do país passaram por essas urnas: 13.140.473 votos do 13 e 12.026.599 do 22. A margem do 13 foi de 4.430.191. Trocar 2.215.096 votos só nessas urnas, 9 em cada 100, mudaria o vencedor. É uma porta grande o bastante para decidir a eleição, e por isso a lacuna importa.
 
-**O que os dados não mostram.** Nenhum sinal de que alguém tenha passado por essa porta. Nenhuma assinatura falhou e nenhuma carteira inventada passou. As carteiras emitidas depois do vencimento têm o carimbo da chave verdadeira e seguem a mesma ordem e o mesmo ritmo das outras. Essas urnas votaram como as urnas novas do mesmo lugar, e as seções com carteira tardia votaram como as vizinhas. O que os testes não alcançam: uma cópia da chave do cartório, ou um programa alterado que aja igual em todas as urnas.
+**O que os dados não mostram.** Nenhum sinal de que alguém tenha passado por essa porta. Nenhuma assinatura falhou e nenhuma carteira inventada passou. As carteiras emitidas depois do vencimento têm o carimbo da chave verdadeira e seguem a mesma ordem e o mesmo ritmo das outras. Os testes de votos, feitos em todas as seções que comparam, não encontraram diferença entre essas urnas e as urnas novas do mesmo lugar, nem entre as seções com carteira tardia e as vizinhas; não encontrar diferença não prova que os votos foram iguais. O que os testes não alcançam: uma cópia da chave do cartório, ou um programa alterado que aja igual em todas as urnas.
 
-**O que precisa acontecer.** O TSE precisa responder às cinco perguntas deste relatório: qual conferência o sistema de totalização faz e com qual certificado; se há certificado renovado da AC URNA; a lista de todas as carteiras que o cartório emitiu em 2026; a lista de revogados; e quem guarda e usou a chave do cartório depois do vencimento. Sem essas respostas, a garantia de que essas carteiras vêm de um uso autorizado da chave depende só da palavra de quem a controla.
+**O que precisa acontecer.** O TSE precisa responder ao pedido de esclarecimento do início deste relatório: qual conferência o sistema de totalização faz e com qual certificado; se há certificado renovado da AC URNA; a lista de todas as carteiras que o cartório emitiu em 2026; a lista de revogados; quem guarda e usou a chave do cartório depois do vencimento; se há cartório de teste separado; e se a totalização confere uma lista de urnas esperadas. Sem essas respostas, a garantia de que essas carteiras vêm de um uso autorizado da chave depende só da palavra de quem a controla.
 
 ## Anexo — As urnas com certificado da AC URNA
 

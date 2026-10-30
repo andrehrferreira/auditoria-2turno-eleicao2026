@@ -1,64 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440" width="760" height="440" role="img" aria-labelledby="titulo desc">
-<title id="titulo">Governo do RJ, 1º turno: a conta da maioria absoluta</title><desc id="desc">O nº 22 teve 4.271.199 votos. Com 8.394.627 válidos, isso é 50,880%. Somando aos válidos os 274.411 votos do nº 10, seriam 8.669.038 válidos e 49,270%. Bastariam 147.771 válidos a mais de outros candidatos para o nº 22 ficar com exatamente 50%.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 272" width="760" height="272" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Governo do RJ, 1º turno: a conta da maioria absoluta</title><desc id="desc">O nº 22 teve 4.271.199 de 8.394.627 votos válidos (50,880%) e foi eleito no 1º turno. Bastariam 147.771 válidos a mais, de outros candidatos, para o nº 22 ficar com exatamente a metade e perder a maioria. O nº 10 teve 274.411 votos no boletim, contados como nulo técnico.</desc>
 <style>
   .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}.ref{stroke:#52514e}
   .s0{fill:#2a78d6}.s1{fill:#eb6834}.a0{stroke:#2a78d6}
   text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
   @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.ref{stroke:#c3c2b7}.s0{fill:#3987e5}.s1{fill:#d95926}.a0{stroke:#3987e5}}
 </style>
-<rect class="fundo" width="760" height="440" rx="6"/>
+<rect class="fundo" width="760" height="272" rx="6"/>
 <text class="t1" x="20" y="30" font-size="17" font-weight="600">Governo do RJ, 1º turno: a conta da maioria absoluta</text>
-<text class="t2" x="20" y="52" font-size="13">Aritmética com os números oficiais. Não é um resultado alternativo: a classificação dos votos do nº 10 está Pendente.</text>
-<text class="t1" x="20" y="88" font-size="14" font-weight="600">A. Fatia do nº 22 nos votos válidos</text>
-<line class="grade" x1="300" x2="300" y1="102" y2="190" stroke-width="1"/>
-<text class="t2" x="300" y="206" font-size="12" text-anchor="middle">48%</text>
-<line class="grade" x1="342.5" x2="342.5" y1="102" y2="190" stroke-width="1"/>
-<text class="t2" x="342.5" y="206" font-size="12" text-anchor="middle">48,5%</text>
-<line class="grade" x1="385" x2="385" y1="102" y2="190" stroke-width="1"/>
-<text class="t2" x="385" y="206" font-size="12" text-anchor="middle">49%</text>
-<line class="grade" x1="427.5" x2="427.5" y1="102" y2="190" stroke-width="1"/>
-<text class="t2" x="427.5" y="206" font-size="12" text-anchor="middle">49,5%</text>
-<line class="grade" x1="470" x2="470" y1="102" y2="190" stroke-width="1"/>
-<text class="t2" x="470" y="206" font-size="12" text-anchor="middle">50%</text>
-<line class="grade" x1="512.5" x2="512.5" y1="102" y2="190" stroke-width="1"/>
-<text class="t2" x="512.5" y="206" font-size="12" text-anchor="middle">50,5%</text>
-<line class="grade" x1="555" x2="555" y1="102" y2="190" stroke-width="1"/>
-<text class="t2" x="555" y="206" font-size="12" text-anchor="middle">51%</text>
-<line class="grade" x1="597.5" x2="597.5" y1="102" y2="190" stroke-width="1"/>
-<text class="t2" x="597.5" y="206" font-size="12" text-anchor="middle">51,5%</text>
-<line class="grade" x1="640" x2="640" y1="102" y2="190" stroke-width="1"/>
-<text class="t2" x="640" y="206" font-size="12" text-anchor="middle">52%</text>
-<line class="ref" x1="470" x2="470" y1="98" y2="190" stroke-width="1.5" stroke-dasharray="4 3"/>
-<text class="t1" x="464" y="104" font-size="12" text-anchor="end">metade dos válidos (50%)</text>
-<text class="t1" x="288" y="129.5" font-size="12.5" text-anchor="end">Conta oficial: 8.394.627 válidos</text>
-<line class="a0" x1="470" x2="544.8000000000002" y1="125" y2="125" stroke-width="2"/>
-<circle class="s0" cx="544.8000000000002" cy="125" r="6"><title>Conta oficial: 8.394.627 válidos 50,880%</title></circle>
-<text class="t1" x="554.8000000000002" y="129.5" font-size="12.5" font-weight="600" text-anchor="start">50,880%</text>
-<text class="t1" x="288" y="167" font-size="12.5" text-anchor="end">Somando os 274.411 votos do nº 10:</text>
-<text class="t1" x="288" y="182" font-size="12.5" text-anchor="end">8.669.038 válidos</text>
-<line class="a0" x1="470" x2="407.9500000000003" y1="170" y2="170" stroke-width="2"/>
-<circle class="s0" cx="407.9500000000003" cy="170" r="6"><title>Somando os 274.411 votos do nº 10: 49,270%</title></circle>
-<text class="t1" x="397.9500000000003" y="174.5" font-size="12.5" font-weight="600" text-anchor="end">49,270%</text>
-<text class="t2" x="470" y="224" font-size="12.5" text-anchor="middle">Votos do nº 22 (4.271.199) em percentual dos votos válidos</text>
-<text class="t1" x="20" y="262" font-size="14" font-weight="600">B. Votos que fariam o nº 22 ficar com exatamente a metade × votos do nº 10</text>
-<line class="grade" x1="300" x2="300" y1="276" y2="350" stroke-width="1"/>
-<text class="t2" x="300" y="366" font-size="12" text-anchor="middle">0</text>
-<line class="grade" x1="413.3333333333333" x2="413.3333333333333" y1="276" y2="350" stroke-width="1"/>
-<text class="t2" x="413.3333333333333" y="366" font-size="12" text-anchor="middle">100.000</text>
-<line class="grade" x1="526.6666666666666" x2="526.6666666666666" y1="276" y2="350" stroke-width="1"/>
-<text class="t2" x="526.6666666666666" y="366" font-size="12" text-anchor="middle">200.000</text>
-<line class="grade" x1="640" x2="640" y1="276" y2="350" stroke-width="1"/>
-<text class="t2" x="640" y="366" font-size="12" text-anchor="middle">300.000</text>
-<line class="eixo" x1="300" x2="300" y1="276" y2="350" stroke-width="1"/>
-<text class="t1" x="288" y="290" font-size="12.5" text-anchor="end">Válidos a mais, de outros candidatos,</text>
-<text class="t1" x="288" y="304" font-size="12.5" text-anchor="end">que levariam o nº 22 a 50%</text>
-<path class="s0" d="M300,282h163.47379999999998a4,4 0 0 1 4,4v14a4,4 0 0 1 -4,4h-163.47379999999998z"><title>Válidos a mais, de outros candidatos, que levariam o nº 22 a 50%: 147.771</title></path>
-<text class="t1" x="473.4738" y="297.5" font-size="12.5" font-weight="600">147.771</text>
-<text class="t1" x="288" y="330" font-size="12.5" text-anchor="end">Votos do nº 10, contados</text>
-<text class="t1" x="288" y="344" font-size="12.5" text-anchor="end">como nulo técnico</text>
-<path class="s1" d="M300,322h306.99913333333336a4,4 0 0 1 4,4v14a4,4 0 0 1 -4,4h-306.99913333333336z"><title>Votos do nº 10, contados como nulo técnico: 274.411</title></path>
-<text class="t1" x="616.9991333333334" y="337.5" font-size="12.5" font-weight="600">274.411</text>
-<text class="t2" x="470" y="384" font-size="12.5" text-anchor="middle">Votos (número)</text>
-<text class="t2" x="20" y="410" font-size="12">Maioria absoluta é mais da metade dos votos válidos. 4.271.199 × 2 − 8.394.627 = 147.771.</text>
-<text class="t2" x="20" y="428" font-size="11">Fonte: boletins de urna e divulgação oficial do TSE, 1º turno, todas as seções; números conferidos por segunda verificação independente.</text>
+<text class="t2" x="20" y="52" font-size="13">O nº 22 teve 4.271.199 de 8.394.627 votos válidos (50,880%) e foi eleito no 1º turno.</text>
+<text class="t2" x="20" y="70" font-size="13">Aritmética com os números oficiais. Se os votos do nº 10 deveriam contar está Pendente.</text>
+<line class="grade" x1="300" x2="300" y1="92" y2="166" stroke-width="1"/>
+<text class="t2" x="300" y="182" font-size="12" text-anchor="middle">0</text>
+<line class="grade" x1="413.3333333333333" x2="413.3333333333333" y1="92" y2="166" stroke-width="1"/>
+<text class="t2" x="413.3333333333333" y="182" font-size="12" text-anchor="middle">100.000</text>
+<line class="grade" x1="526.6666666666666" x2="526.6666666666666" y1="92" y2="166" stroke-width="1"/>
+<text class="t2" x="526.6666666666666" y="182" font-size="12" text-anchor="middle">200.000</text>
+<line class="grade" x1="640" x2="640" y1="92" y2="166" stroke-width="1"/>
+<text class="t2" x="640" y="182" font-size="12" text-anchor="middle">300.000</text>
+<line class="eixo" x1="300" x2="300" y1="92" y2="166" stroke-width="1"/>
+<text class="t1" x="288" y="106" font-size="12.5" text-anchor="end">Válidos a mais, de outros candidatos,</text>
+<text class="t1" x="288" y="120" font-size="12.5" text-anchor="end">que levariam o nº 22 a 50%</text>
+<path class="s0" d="M300,98h163.47379999999998a4,4 0 0 1 4,4v14a4,4 0 0 1 -4,4h-163.47379999999998z"><title>Válidos a mais, de outros candidatos, que levariam o nº 22 a 50%: 147.771</title></path>
+<text class="t1" x="473.4738" y="113.5" font-size="12.5" font-weight="600">147.771</text>
+<text class="t1" x="288" y="146" font-size="12.5" text-anchor="end">Votos do nº 10, contados</text>
+<text class="t1" x="288" y="160" font-size="12.5" text-anchor="end">como nulo técnico</text>
+<path class="s1" d="M300,138h306.99913333333336a4,4 0 0 1 4,4v14a4,4 0 0 1 -4,4h-306.99913333333336z"><title>Votos do nº 10, contados como nulo técnico: 274.411</title></path>
+<text class="t1" x="616.9991333333334" y="153.5" font-size="12.5" font-weight="600">274.411</text>
+<text class="t2" x="470" y="202" font-size="12.5" text-anchor="middle">Votos (número)</text>
+<text class="t2" x="20" y="224" font-size="12">Maioria absoluta é mais da metade dos votos válidos. 4.271.199 × 2 − 8.394.627 = 147.771.</text>
+<text class="t2" x="20" y="242" font-size="12">A barra laranja (274.411) é maior que a azul (147.771). O gráfico não mostra um resultado alternativo.</text>
+<text class="t2" x="20" y="260" font-size="11">Fonte: boletins de urna e divulgação oficial do TSE, 1º turno, todas as seções; números conferidos por segunda verificação independente.</text>
 </svg>

@@ -140,53 +140,28 @@ barras({
   fonte: FONTE26,
 });
 
-// 4. RJ governador: aritmética da maioria absoluta
+// 4. RJ governador: aritmética da maioria absoluta (só as duas quantidades de votos, barras a partir de zero).
+// Consenso T22 (docs/analysis/modelos/T22/sintese.md): saiu o painel com o percentual "com os votos do nº 10 somados
+// aos válidos"; fica o fato aritmético (274.411 > 147.771) e a Pendência sobre a exclusão do nº 10.
 {
   const g = Object.fromEntries(lerCsv('h03-1t-governador-rj-df.csv').filter((r) => r.uf === 'RJ').map((r) => [r.medida, Number(r.valor)]));
   const v22 = g['votos do nº 22 (eleito no 1º turno)']; const vv = g['votos válidos (oficial)'];
-  const pct = g['percentual do nº 22 nos válidos (oficial)']; const pct10 = g['percentual do nº 22 com os votos do nº 10 somados aos válidos'];
+  const pct = g['percentual do nº 22 nos válidos (oficial)'];
   const lim = g['votos válidos a mais, de outros candidatos, que levariam o nº 22 a exatamente 50%']; const v10 = g['votos do nº 10, classificados como nulo técnico'];
-  const vv10 = g['válidos somando os votos do nº 10'];
   const titulo = 'Governo do RJ, 1º turno: a conta da maioria absoluta';
-  const L = 760; const H = 440; const margE = 300; const larg = L - margE - 120;
-  const p = cabecalho(L, H, titulo, `O nº 22 teve ${fmt(v22)} votos. Com ${fmt(vv)} válidos, isso é ${fmt(pct, 3)}%. Somando aos válidos os ${fmt(v10)} votos do nº 10, seriam ${fmt(vv10)} válidos e ${fmt(pct10, 3)}%. Bastariam ${fmt(lim)} válidos a mais de outros candidatos para o nº 22 ficar com exatamente 50%.`);
+  const L = 760; const H = 272; const margE = 300; const larg = L - margE - 120;
+  const p = cabecalho(L, H, titulo, `O nº 22 teve ${fmt(v22)} de ${fmt(vv)} votos válidos (${fmt(pct, 3)}%) e foi eleito no 1º turno. Bastariam ${fmt(lim)} válidos a mais, de outros candidatos, para o nº 22 ficar com exatamente a metade e perder a maioria. O nº 10 teve ${fmt(v10)} votos no boletim, contados como nulo técnico.`);
   p.push(`<text class="t1" x="20" y="30" font-size="17" font-weight="600">${xml(titulo)}</text>`);
-  p.push(`<text class="t2" x="20" y="52" font-size="13">Aritmética com os números oficiais. Não é um resultado alternativo: a classificação dos votos do nº 10 está Pendente.</text>`);
-  // Painel A: percentual do nº 22 com dois denominadores (pontos, porque a escala não começa em zero)
-  p.push(`<text class="t1" x="20" y="88" font-size="14" font-weight="600">A. Fatia do nº 22 nos votos válidos</text>`);
-  const xmin = 48; const xmax = 52; const xp = (v) => margE + (larg * (v - xmin)) / (xmax - xmin);
-  const yA = [125, 170];
-  for (let m = xmin; m <= xmax; m += 0.5) {
-    p.push(`<line class="grade" x1="${xp(m)}" x2="${xp(m)}" y1="102" y2="190" stroke-width="1"/>`);
-    p.push(`<text class="t2" x="${xp(m)}" y="206" font-size="12" text-anchor="middle">${fmt(m, m % 1 ? 1 : 0)}%</text>`);
-  }
-  p.push(`<line class="ref" x1="${xp(50)}" x2="${xp(50)}" y1="98" y2="190" stroke-width="1.5" stroke-dasharray="4 3"/>`);
-  p.push(`<text class="t1" x="${xp(50) - 6}" y="104" font-size="12" text-anchor="end">metade dos válidos (50%)</text>`);
-  const linhasA = [
-    [`Conta oficial: ${fmt(vv)} válidos`, pct, `${fmt(pct, 3)}%`],
-    [`Somando os ${fmt(v10)} votos do nº 10:`, pct10, `${fmt(pct10, 3)}%`],
-  ];
-  linhasA.forEach(([rot, v, t], i) => {
-    const y = yA[i];
-    if (i === 1) {
-      p.push(`<text class="t1" x="${margE - 12}" y="${y - 3}" font-size="12.5" text-anchor="end">${xml(rot)}</text>`);
-      p.push(`<text class="t1" x="${margE - 12}" y="${y + 12}" font-size="12.5" text-anchor="end">${xml(`${fmt(vv10)} válidos`)}</text>`);
-    } else p.push(`<text class="t1" x="${margE - 12}" y="${y + 4.5}" font-size="12.5" text-anchor="end">${xml(rot)}</text>`);
-    p.push(`<line class="a0" x1="${xp(50)}" x2="${xp(v)}" y1="${y}" y2="${y}" stroke-width="2"/>`);
-    p.push(`<circle class="s0" cx="${xp(v)}" cy="${y}" r="6"><title>${xml(`${rot} ${t}`)}</title></circle>`);
-    p.push(`<text class="t1" x="${xp(v) + (v > 50 ? 10 : -10)}" y="${y + 4.5}" font-size="12.5" font-weight="600" text-anchor="${v > 50 ? 'start' : 'end'}">${t}</text>`);
-  });
-  p.push(`<text class="t2" x="${xp(50)}" y="224" font-size="12.5" text-anchor="middle">Votos do nº 22 (${fmt(v22)}) em percentual dos votos válidos</text>`);
-  // Painel B: as duas quantidades de votos, barras a partir de zero
-  p.push(`<text class="t1" x="20" y="262" font-size="14" font-weight="600">B. Votos que fariam o nº 22 ficar com exatamente a metade × votos do nº 10</text>`);
+  p.push(`<text class="t2" x="20" y="52" font-size="13">${xml(`O nº 22 teve ${fmt(v22)} de ${fmt(vv)} votos válidos (${fmt(pct, 3)}%) e foi eleito no 1º turno.`)}</text>`);
+  p.push(`<text class="t2" x="20" y="70" font-size="13">Aritmética com os números oficiais. Se os votos do nº 10 deveriam contar está Pendente.</text>`);
   const { topo, marcas } = passos(v10);
   const xb = (v) => margE + (larg * v) / topo;
-  const yB = [282, 322]; const altB = 22;
+  const yB = [98, 138]; const altB = 22; const y0 = 92; const y1 = 166;
   for (const m of marcas) {
-    p.push(`<line class="grade" x1="${xb(m)}" x2="${xb(m)}" y1="276" y2="350" stroke-width="1"/>`);
-    p.push(`<text class="t2" x="${xb(m)}" y="366" font-size="12" text-anchor="middle">${fmt(m)}</text>`);
+    p.push(`<line class="grade" x1="${xb(m)}" x2="${xb(m)}" y1="${y0}" y2="${y1}" stroke-width="1"/>`);
+    p.push(`<text class="t2" x="${xb(m)}" y="${y1 + 16}" font-size="12" text-anchor="middle">${fmt(m)}</text>`);
   }
-  p.push(`<line class="eixo" x1="${margE}" x2="${margE}" y1="276" y2="350" stroke-width="1"/>`);
+  p.push(`<line class="eixo" x1="${margE}" x2="${margE}" y1="${y0}" y2="${y1}" stroke-width="1"/>`);
   [[`Válidos a mais, de outros candidatos,`, 'que levariam o nº 22 a 50%', lim, 's0'], ['Votos do nº 10, contados', 'como nulo técnico', v10, 's1']].forEach(([r1, r2, v, cls], i) => {
     const y = yB[i];
     p.push(`<text class="t1" x="${margE - 12}" y="${y + 8}" font-size="12.5" text-anchor="end">${xml(r1)}</text>`);
@@ -194,8 +169,9 @@ barras({
     p.push(barra(cls, margE, y, xb(v) - margE, altB, `${r1} ${r2}: ${fmt(v)}`));
     p.push(`<text class="t1" x="${xb(v) + 6}" y="${y + altB / 2 + 4.5}" font-size="12.5" font-weight="600">${fmt(v)}</text>`);
   });
-  p.push(`<text class="t2" x="${margE + larg / 2}" y="384" font-size="12.5" text-anchor="middle">Votos (número)</text>`);
-  p.push(`<text class="t2" x="20" y="${H - 30}" font-size="12">${xml(`Maioria absoluta é mais da metade dos votos válidos. ${fmt(v22)} × 2 − ${fmt(vv)} = ${fmt(lim)}.`)}</text>`);
+  p.push(`<text class="t2" x="${margE + larg / 2}" y="${y1 + 36}" font-size="12.5" text-anchor="middle">Votos (número)</text>`);
+  p.push(`<text class="t2" x="20" y="${H - 48}" font-size="12">${xml(`Maioria absoluta é mais da metade dos votos válidos. ${fmt(v22)} × 2 − ${fmt(vv)} = ${fmt(lim)}.`)}</text>`);
+  p.push(`<text class="t2" x="20" y="${H - 30}" font-size="12">${xml(`A barra laranja (${fmt(v10)}) é maior que a azul (${fmt(lim)}). O gráfico não mostra um resultado alternativo.`)}</text>`);
   p.push(`<text class="t2" x="20" y="${H - 12}" font-size="11">${xml(FONTE26)}</text>`);
   p.push('</svg>');
   writeFileSync(path.join(DIR, 'h03-rj-governador-maioria.svg'), p.join('\n') + '\n');

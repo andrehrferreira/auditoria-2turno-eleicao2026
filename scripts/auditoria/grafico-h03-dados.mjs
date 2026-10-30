@@ -128,10 +128,13 @@ const [v22, vvRj, , lim] = [n(mRj[1]), n(mRj[2]), mRj[3], n(mRj[4])];
 const v10 = n(omi.find((o) => o.abr === 'rj' && o.cargo === '3' && o.numero === '10').votos);
 confere(vvRj === n(rj.vv_of) && v10 === n(rj.vnt_of) && v10 === 274411, 'RJ: válidos 8.394.627 e nulo técnico 274.411 (nº 10) iguais no fechamento');
 confere(2 * v22 - vvRj === lim && lim === 147771, 'RJ: 2 × 4.271.199 − 8.394.627 = 147.771 (com esse acréscimo o nº 22 fica com exatamente a metade)');
-const pctRj = (100 * v22) / vvRj; const pctRj10 = (100 * v22) / (vvRj + v10);
-confere(pctRj.toFixed(3) === '50.880' && pctRj10.toFixed(3) === '49.270', `RJ: ${pctRj.toFixed(3)}% e ${pctRj10.toFixed(3)}%`);
+confere(v10 > lim, 'RJ: os 274.411 votos do nº 10 (nulo técnico) são mais que os 147.771 que tirariam a maioria');
+const pctRj = (100 * v22) / vvRj;
+confere(pctRj.toFixed(3) === '50.880', `RJ: ${pctRj.toFixed(3)}% dos válidos`);
 const efRj = lerPv('matematico', 'h03-1t-efeito.csv').find((r) => r.abr === 'rj' && r.cargo === 'Governador');
-confere(efRj.lider.includes('50.880%') && efRj.lider.includes('49.270%'), 'RJ: os dois percentuais iguais aos do efeito.csv do autor');
+confere(efRj.lider.includes('50.880%'), 'RJ: percentual oficial igual ao do efeito.csv do autor');
+// Consenso T22 (docs/analysis/modelos/T22/sintese.md): o percentual "com os votos do nº 10 somados aos válidos" saiu
+// do relatório e deste CSV; fica só o fato aritmético (274.411 > 147.771) e a Pendência sobre a exclusão do nº 10.
 const mDf = ced.match(/df\|3: líder 11 ([\d.]+) \/ vv ([\d.]+) = ([\d.]+)%; faltam ([\d.]+) para a maioria; omitidos 55:([\d.]+)/);
 const df = fec.find((r) => r.abr === 'df' && r.cargo === '3');
 confere(mDf && n(mDf[2]) === n(df.vv_of) && n(mDf[4]) === 168 && n(mDf[5]) === n(df.vnt_of) && n(df.vnt_of) === 8456, 'DF: faltaram 168 votos; nulo técnico 8.456 (nº 55)');
@@ -142,8 +145,6 @@ csv('h03-1t-governador-rj-df.csv', ['uf', 'medida', 'valor'], [
   ['RJ', 'percentual do nº 22 nos válidos (oficial)', pctRj.toFixed(3)],
   ['RJ', 'votos válidos a mais, de outros candidatos, que levariam o nº 22 a exatamente 50%', lim],
   ['RJ', 'votos do nº 10, classificados como nulo técnico', v10],
-  ['RJ', 'válidos somando os votos do nº 10', vvRj + v10],
-  ['RJ', 'percentual do nº 22 com os votos do nº 10 somados aos válidos', pctRj10.toFixed(3)],
   ['DF', 'votos do nº 11 (líder, foi ao 2º turno)', n(mDf[1])],
   ['DF', 'votos válidos (oficial)', n(mDf[2])],
   ['DF', 'percentual do nº 11 nos válidos', mDf[3]],
