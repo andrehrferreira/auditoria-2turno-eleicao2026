@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { existsSync } from 'node:fs';
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
@@ -7,6 +9,7 @@ import {
   EXCECOES_PROCESSO,
   RE_PROCESSO,
   acharReferenciasDeProcesso,
+  dadosDoCertificado,
   embutirSvg,
   escoparCss,
   filtrarGlossario,
@@ -14,6 +17,8 @@ import {
   gerarTema,
   gerarTemas,
   localizarNavegador,
+  prepararAssinatura,
+  validarAssinatura,
 } from '../scripts/relatorio/gerar.mjs';
 import {
   contarHtml,
@@ -491,4 +496,131 @@ test('resumo executivo ausente: o relatório começa por "Como ler"; temas nunca
   await writeFile(arquivo, TEMA);
   const tema = await gerarTema({ arquivo, saida: path.join(dir, 'tema'), registrar: semRegistro });
   assert.doesNotMatch(await readFile(tema.htmlAbs, 'utf8'), /id="resumo"|Resumo executivo/);
+});
+
+// ------------------------------------------------------------------ assinatura digital (PAdES)
+
+const PYTHON = process.env.RELATORIO_PYTHON || (process.platform === 'win32' ? 'python' : 'python3');
+const TEM_PYHANKO = spawnSync(PYTHON, ['-m', 'pyhanko', '--version'], { encoding: 'utf8' }).status === 0;
+const OPENSSL = ['C:/Program Files/OpenSSL-Win64/bin/openssl.exe', 'openssl'].find(
+  (c) => spawnSync(c, ['version'], { encoding: 'utf8' }).status === 0,
+);
+const NAVEGADOR = localizarNavegador();
+
+async function chaveTemporaria(dir) {
+  const pasta = path.join(dir, 'chave');
+  await mkdir(pasta, { recursive: true });
+  const r = spawnSync(
+    OPENSSL,
+    [
+      'req', '-x509', '-newkey', 'rsa:2048', '-nodes', '-days', '2',
+      '-keyout', path.join(pasta, 'chave.pem'), '-out', path.join(pasta, 'certificado.pem'),
+      '-subj', '/CN=Teste do relatorio',
+      '-addext', 'basicConstraints=critical,CA:FALSE',
+      '-addext', 'keyUsage=critical,digitalSignature,nonRepudiation',
+    ],
+    { encoding: 'utf8' },
+  );
+  assert.equal(r.status, 0, r.stderr);
+  return pasta;
+}
+
+test('certificado público versionado: nome e impressão digital SHA-256', async () => {
+  const pem = await readFile(path.join(import.meta.dirname, '..', 'docs', 'relatorio', 'certificado-assinatura.pem'), 'utf8');
+  assert.doesNotMatch(pem, /PRIVATE KEY/);
+  assert.deepEqual(dadosDoCertificado(pem), {
+    nome: 'Auditoria independente das urnas — Eleições 2026',
+    impressao: 'CF:FB:8B:52:0A:97:11:94:8D:5A:32:FF:4A:5A:4E:1D:F7:6F:A9:84:E2:26:9F:16:8C:DF:62:3C:28:F3:CB:E3',
+  });
+});
+
+test('assinatura: sem chave ou sem pyHanko, não assina e explica por quê', async (t) => {
+  const dir = await diretorioTemporario(t);
+  const semChave = prepararAssinatura({ pasta: path.join(dir, 'nao-existe') });
+  assert.equal(semChave.ok, false);
+  assert.match(semChave.motivo, /chave de assinatura não encontrada .*RELATORIO_CHAVE.*sem assinatura/);
+  await writeFile(path.join(dir, 'chave.pem'), 'x');
+  await writeFile(path.join(dir, 'certificado.pem'), 'x');
+  const semPython = prepararAssinatura({ pasta: dir, python: path.join(dir, 'python-que-nao-existe') });
+  assert.equal(semPython.ok, false);
+  assert.match(semPython.motivo, /pyHanko não encontrado/);
+});
+
+test(
+  'PDF sem chave: sai sem assinatura, com aviso e com o .sha256',
+  { skip: !NAVEGADOR && 'sem Chrome/Edge nesta máquina' },
+  async (t) => {
+    const dir = await diretorioTemporario(t);
+    const pericia = await montarPericia(dir);
+    const msgs = [];
+    const r = await gerar({
+      pericia,
+      pdf: true,
+      saida: path.join(dir, 'saida'),
+      assinatura: { pasta: path.join(dir, 'sem-chave') },
+      registrar: (m) => msgs.push(m),
+    });
+    assert.equal(r.pdf.assinado, false);
+    assert.ok(msgs.some((m) => /^Aviso: chave de assinatura não encontrada/.test(m)));
+    const pdf = path.join(dir, 'saida', 'relatorio.pdf');
+    const hash = createHash('sha256').update(await readFile(pdf)).digest('hex');
+    assert.equal(await readFile(`${pdf}.sha256`, 'utf8'), `${hash}  relatorio.pdf\n`);
+    assert.doesNotMatch(await readFile(r.htmlAbs, 'utf8'), /assinado digitalmente/);
+  },
+);
+
+test(
+  'PDF assinado dentro do arquivo (PAdES), conferido, com certificado público copiado e .sha256',
+  { skip: (!NAVEGADOR && 'sem Chrome/Edge') || (!TEM_PYHANKO && 'sem python -m pyhanko') || (!OPENSSL && 'sem OpenSSL') },
+  async (t) => {
+    const dir = await diretorioTemporario(t);
+    const pasta = await chaveTemporaria(dir);
+    const pericia = await montarPericia(dir);
+    const certificadoPublico = path.join(dir, 'publico', 'certificado-assinatura.pem');
+    const msgs = [];
+    const r = await gerar({
+      pericia,
+      pdf: true,
+      saida: path.join(dir, 'saida'),
+      assinatura: { pasta, certificadoPublico },
+      registrar: (m) => msgs.push(m),
+    });
+    assert.equal(r.pdf.assinado, true);
+    const pdf = path.join(dir, 'saida', 'relatorio.pdf');
+    assert.ok(!existsSync(`${pdf}.assinando.pdf`));
+    // certificado público copiado; a chave não sai da pasta nem aparece nas mensagens
+    assert.ok((await readFile(certificadoPublico)).equals(await readFile(path.join(pasta, 'certificado.pem'))));
+    assert.ok(msgs.every((m) => !/PRIVATE KEY|chave\.pem/.test(m)));
+    assert.ok(msgs.some((m) => /^Assinatura: PDF assinado e conferido \(certificado SHA-256 [0-9A-F:]{95}\)$/.test(m)));
+    // linha da capa para o leitor
+    const { impressao } = dadosDoCertificado(await readFile(certificadoPublico, 'utf8'));
+    const doc = await readFile(r.htmlAbs, 'utf8');
+    assert.ok(
+      doc.includes(
+        `Documento assinado digitalmente por Teste do relatorio. Impressão digital do certificado <span class="inteiro">(SHA-256):</span> <span class="digital">${impressao}</span>.`,
+      ),
+    );
+    assert.match(doc, /não é de uma autoridade certificadora reconhecida[\s\S]*alterado depois de assinado/);
+    // .sha256 do arquivo assinado
+    const bytes = await readFile(pdf);
+    assert.equal(await readFile(`${pdf}.sha256`, 'utf8'), `${createHash('sha256').update(bytes).digest('hex')}  relatorio.pdf\n`);
+    assert.match(bytes.toString('latin1'), /\/ByteRange/);
+    // a mesma conferência que o leitor faz
+    assert.equal(validarAssinatura(pdf, certificadoPublico, PYTHON).ok, true);
+    // um byte trocado no meio do arquivo: a assinatura deixa de conferir
+    const adulterado = Buffer.from(bytes);
+    adulterado[Math.floor(adulterado.length / 3)] ^= 0xff;
+    const pdfAdulterado = path.join(dir, 'adulterado.pdf');
+    await writeFile(pdfAdulterado, adulterado);
+    assert.equal(validarAssinatura(pdfAdulterado, certificadoPublico, PYTHON).ok, false);
+  },
+);
+
+test('README sem o parágrafo "Registro de evidências" também é aceito', async (t) => {
+  const dir = await diretorioTemporario(t);
+  const readme = README_FIXO.replace('**Registro de evidências:** o livro de registro do processo.\n\n', '');
+  assert.notEqual(readme, README_FIXO);
+  const pericia = await montarPericia(dir, { readme });
+  const r = await gerar({ pericia, saida: path.join(dir, 'saida'), registrar: semRegistro });
+  assert.match(await readFile(r.htmlAbs, 'utf8'), /<section class="anexo" id="anexo-a">/);
 });

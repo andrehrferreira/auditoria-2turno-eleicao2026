@@ -8,8 +8,9 @@
 // Variável opcional: RELATORIO_NAVEGADOR=<caminho do chrome/msedge/chromium>.
 
 import { execFileSync, spawnSync } from 'node:child_process';
+import { X509Certificate, createHash } from 'node:crypto';
 import { existsSync, readFileSync, statSync } from 'node:fs';
-import { mkdir, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, mkdtemp, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -27,6 +28,9 @@ const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '.
 const PERICIA = path.join(RAIZ, 'docs', 'pericia');
 const SAIDA = path.join(RAIZ, 'docs', 'relatorio');
 const TEMAS = path.join(PERICIA, 'temas');
+// assinatura dos PDFs: a chave fica fora do repositório; só o certificado público é copiado para cá
+const PASTA_CHAVE = path.join(os.homedir(), '.auditoria-eleicoes-2026', 'assinatura');
+const CERTIFICADO_PUBLICO = path.join(SAIDA, 'certificado-assinatura.pem');
 const TITULO_CURTO = 'Relatório de perícia · Urnas 2026';
 const AVISO_CAPA = 'Documento em elaboração — conteúdo atualizado conforme os testes e a revisão cética';
 
@@ -250,6 +254,9 @@ async function lerFontes({ pericia = PERICIA, resumo = path.join(pericia, 'resum
   let iRegistro = linhas.findIndex((l, k) => k > iTopicos && k < iGlossario && /^\*\*Registro de evidências:\*\*/.test(l));
   if (iRegistro < 0) iRegistro = iGlossario;
   if (!(iTitulo < iTopicos && iTopicos < iGlossario)) throw new Error('docs/pericia/README.md: ordem das seções inesperada');
+  // fatias contíguas e em ordem: juntas cobrem todas as linhas do README
+  const limites = [0, iTitulo, iTitulo + 1, iTopicos, iRegistro, iGlossario, linhas.length];
+  if (limites.some((v, k) => k > 0 && v < limites[k - 1])) throw new Error('README dividido de forma incompleta (fatias fora de ordem)');
   const fatia = (a, b) => linhas.slice(a, b).join('\n');
   const partes = {
     titulo: fatia(iTitulo, iTitulo + 1),
@@ -259,10 +266,6 @@ async function lerFontes({ pericia = PERICIA, resumo = path.join(pericia, 'resum
     registro: fatia(iRegistro, iGlossario),
     glossario: fatia(iGlossario, linhas.length),
   };
-  const remontado = [partes.antes, partes.titulo, partes.comoLer, partes.topicos, partes.registro, partes.glossario]
-    .filter((p, k) => k !== 0 || p !== '')
-    .join('\n');
-  if (remontado !== readme) throw new Error('README dividido de forma incompleta (alguma linha ficou de fora)');
   if (partes.antes.trim()) throw new Error('docs/pericia/README.md: há texto antes do título');
 
   // o parágrafo "Registro de evidências" do README não entra: o relatório não traz o registro do processo
@@ -549,7 +552,18 @@ function htmlSumario(sumario) {
   return `${html}</ol>\n</nav>\n`;
 }
 
-function montarHtml({ saidas, sumario, meta, temAviso, capa = CAPA_COMPLETO }) {
+/** Linha da capa sobre a assinatura, para o leitor (sem caminho de arquivo). */
+function htmlAssinatura({ nome, impressao }) {
+  return (
+    `<div class="capa-assinatura"><dt>Assinatura</dt><dd>Documento assinado digitalmente por ${escaparHtml(nome)}. ` +
+    `Impressão digital do certificado <span class="inteiro">(SHA-256):</span> <span class="digital">${escaparHtml(impressao)}</span>.` +
+    '<span class="capa-nota">O leitor de PDF vai avisar que o certificado não é de uma autoridade certificadora reconhecida: ' +
+    'ele é da própria auditoria. A assinatura serve para mostrar se o arquivo foi alterado depois de assinado; ' +
+    'confira se a impressão digital acima é a mesma do certificado da assinatura.</span></dd></div>'
+  );
+}
+
+function montarHtml({ saidas, sumario, meta, temAviso, capa = CAPA_COMPLETO, assinatura = null }) {
   const grupos = [];
   for (const s of saidas) {
     const g = grupos.at(-1);
@@ -572,6 +586,7 @@ function montarHtml({ saidas, sumario, meta, temAviso, capa = CAPA_COMPLETO }) {
 <dl class="capa-meta">
 <div><dt>Data de geração</dt><dd>${escaparHtml(meta.data.longa)}, ${escaparHtml(meta.data.hora)}</dd></div>
 <div><dt>Versão</dt><dd>${escaparHtml(meta.versao)}</dd></div>
+${assinatura ? htmlAssinatura(assinatura) : ''}
 ${temAviso ? `<div><dt>Situação</dt><dd>${escaparHtml(AVISO_CAPA)}</dd></div>` : ''}
 </dl>
 </section>`);
@@ -744,6 +759,9 @@ li figure.grafico{margin-top:.6em}
 .capa-meta div{display:grid;grid-template-columns:34mm 1fr;padding:2.5pt 0}
 .capa-meta dt{color:var(--suave)}
 .capa-meta dd{margin:0}
+.capa-meta .digital{font-family:var(--mono);font-size:.9em;overflow-wrap:anywhere}
+.capa-meta .inteiro{white-space:nowrap}
+.capa-meta .capa-nota{display:block;margin-top:3pt;color:var(--suave);font-size:.94em}
 
 /* resumo executivo: leitura rápida */
 .resumo>ol{padding-left:1.9em}
@@ -822,6 +840,96 @@ export function filtrarGlossario(mdGlossario, textoTema) {
   return [...linhas.slice(0, iCab + 2), ...usados, ...linhas.slice(fim)].join('\n');
 }
 
+// ------------------------------------------------------------------ assinatura digital (PAdES)
+//
+// O PDF é assinado dentro do arquivo com pyHanko (python -m pyhanko), com um certificado
+// autoassinado. A chave nunca é lida por este programa: o caminho vai direto para o pyHanko.
+
+const pythonPadrao = () => process.env.RELATORIO_PYTHON || (process.platform === 'win32' ? 'python' : 'python3');
+
+/** Impressão digital SHA-256 e nome (CN) de um certificado em PEM. */
+export function dadosDoCertificado(pem) {
+  const c = new X509Certificate(pem);
+  const cn = /(?:^|\n)CN=([^\n]+)/.exec(c.subject)?.[1] ?? c.subject;
+  return { impressao: c.fingerprint256, nome: cn };
+}
+
+/**
+ * Decide se os PDFs serão assinados. Sem chave ou sem pyHanko, devolve { ok: false, motivo }:
+ * o PDF sai sem assinatura e com aviso, para a geração funcionar em qualquer máquina.
+ */
+export function prepararAssinatura({
+  pasta = process.env.RELATORIO_CHAVE || PASTA_CHAVE,
+  certificadoPublico = CERTIFICADO_PUBLICO,
+  python = pythonPadrao(),
+} = {}) {
+  const chave = path.join(pasta, 'chave.pem');
+  const certificado = path.join(pasta, 'certificado.pem');
+  if (!existsSync(chave) || !existsSync(certificado)) {
+    return { ok: false, motivo: 'chave de assinatura não encontrada (pasta indicada por RELATORIO_CHAVE); PDF gerado sem assinatura' };
+  }
+  const versao = spawnSync(python, ['-m', 'pyhanko', '--version'], { encoding: 'utf8' });
+  if (versao.status !== 0) {
+    return { ok: false, motivo: `pyHanko não encontrado ("${python} -m pyhanko"; indique o Python em RELATORIO_PYTHON); PDF gerado sem assinatura` };
+  }
+  return { ok: true, chave, certificado, certificadoPublico, python, ...dadosDoCertificado(readFileSync(certificado, 'utf8')) };
+}
+
+/** Assina o PDF no lugar, copia o certificado público e confere a assinatura; falha se não conferir. */
+export async function assinarPdf(pdfAbs, assinatura) {
+  const temporario = `${pdfAbs}.assinando.pdf`;
+  await rm(temporario, { force: true });
+  const r = spawnSync(
+    assinatura.python,
+    [
+      '-m', 'pyhanko', 'sign', 'addsig',
+      '--field', 'Assinatura',
+      '--reason', 'Relatório de perícia',
+      '--location', 'Brasil',
+      'pemder', '--key', assinatura.chave, '--cert', assinatura.certificado, '--no-pass',
+      pdfAbs, temporario,
+    ],
+    { encoding: 'utf8', timeout: 300_000 },
+  );
+  if (r.status !== 0 || !existsSync(temporario)) {
+    await rm(temporario, { force: true });
+    throw new Error(`a assinatura do PDF falhou (pyHanko, saída ${r.status}): ${(r.stderr || '').trim().split('\n').slice(-3).join(' ')}`);
+  }
+  const publico = readFileSync(assinatura.certificado);
+  if (!existsSync(assinatura.certificadoPublico) || !readFileSync(assinatura.certificadoPublico).equals(publico)) {
+    await mkdir(path.dirname(assinatura.certificadoPublico), { recursive: true });
+    await copyFile(assinatura.certificado, assinatura.certificadoPublico);
+  }
+  const v = validarAssinatura(temporario, assinatura.certificadoPublico, assinatura.python);
+  if (!v.ok) {
+    await rm(temporario, { force: true });
+    throw new Error(`a assinatura do PDF não conferiu depois de assinar:\n${v.saida}`);
+  }
+  await rename(temporario, pdfAbs);
+}
+
+/** `python -m pyhanko sign validate --pretty-print --trust <certificado> <pdf>`: íntegro e cobrindo o arquivo inteiro. */
+export function validarAssinatura(pdfAbs, certificado, python = pythonPadrao()) {
+  const r = spawnSync(python, ['-m', 'pyhanko', 'sign', 'validate', '--pretty-print', '--trust', certificado, pdfAbs], {
+    encoding: 'utf8',
+    timeout: 300_000,
+  });
+  const saida = `${r.stdout ?? ''}${r.stderr ?? ''}`;
+  const ok =
+    r.status === 0 &&
+    /The signature is judged VALID/.test(saida) &&
+    /The signature covers the entire file/.test(saida) &&
+    /The signature is cryptographically sound/.test(saida);
+  return { ok, saida: saida.trim() };
+}
+
+/** Arquivo `<nome>.pdf.sha256`, no formato do sha256sum (confere com `sha256sum -c`). */
+async function gravarSha256(pdfAbs) {
+  const hash = createHash('sha256').update(await readFile(pdfAbs)).digest('hex');
+  await writeFile(`${pdfAbs}.sha256`, `${hash}  ${path.basename(pdfAbs)}\n`);
+  return hash;
+}
+
 // ------------------------------------------------------------------ principal
 
 function contextoGit(pericia) {
@@ -833,7 +941,9 @@ function contextoGit(pericia) {
 }
 
 /** Converte, confere, monta e grava um documento (e o PDF, se pedido). */
-async function produzir({ lista, contexto, meta, temAviso, capa, saida, nome, pdf, registrar }) {
+async function produzir({ lista, contexto, meta, temAviso, capa, saida, nome, pdf, registrar, assinatura: opcoesAssinatura }) {
+  // a linha da assinatura vai na capa: decide antes de montar o HTML
+  const assinatura = pdf ? prepararAssinatura(opcoesAssinatura) : null;
   const { saidas, sumario, svgs, avisos } = converterTudo(lista, contexto);
   const { problemas, total } = conferir(saidas);
   if (problemas.length) {
@@ -846,7 +956,7 @@ async function produzir({ lista, contexto, meta, temAviso, capa, saida, nome, pd
         `o relatório é um documento independente:\n- ${processo.join('\n- ')}`,
     );
   }
-  const html = montarHtml({ saidas, sumario, meta, temAviso, capa });
+  const html = montarHtml({ saidas, sumario, meta, temAviso, capa, assinatura: assinatura?.ok ? assinatura : null });
   for (const s of saidas) {
     if (!html.includes(s.html)) throw new Error(`peça ${s.chave} (${relRepo(s.fonte)}) não entrou no documento`);
   }
@@ -870,12 +980,21 @@ async function produzir({ lista, contexto, meta, temAviso, capa, saida, nome, pd
     });
     resultadoPdf = await gerarPdf(htmlAbs, pdfAbs);
     registrar(`PDF: ${relRepo(pdfAbs)} (${resultadoPdf.paginas} páginas, ${path.basename(resultadoPdf.navegador)})`);
+    resultadoPdf.assinado = assinatura.ok;
+    if (assinatura.ok) {
+      await assinarPdf(pdfAbs, assinatura);
+      registrar(`Assinatura: PDF assinado e conferido (certificado SHA-256 ${assinatura.impressao})`);
+    } else {
+      registrar(`Aviso: ${assinatura.motivo}`);
+    }
+    resultadoPdf.sha256 = await gravarSha256(pdfAbs);
+    registrar(`SHA-256: ${relRepo(pdfAbs)}.sha256`);
   }
   return { htmlAbs, total, avisos, pdf: resultadoPdf };
 }
 
 /** Relatório completo: docs/pericia/NN-*.md. */
-export async function gerar({ pdf = false, saida = SAIDA, registrar = console.log, pericia = PERICIA, resumo } = {}) {
+export async function gerar({ pdf = false, saida = SAIDA, registrar = console.log, pericia = PERICIA, resumo, assinatura } = {}) {
   const fontes = await lerFontes({ pericia, resumo });
   const { contexto, meta } = contextoGit(pericia);
   return produzir({
@@ -888,11 +1007,12 @@ export async function gerar({ pdf = false, saida = SAIDA, registrar = console.lo
     nome: 'relatorio',
     pdf,
     registrar,
+    assinatura,
   });
 }
 
 /** Relatório temático: um arquivo de docs/pericia/temas/, com a mesma frente e o glossário. */
-export async function gerarTema({ arquivo, pdf = false, saida = path.join(SAIDA, 'temas'), registrar = console.log }) {
+export async function gerarTema({ arquivo, pdf = false, saida = path.join(SAIDA, 'temas'), registrar = console.log, assinatura }) {
   const abs = path.resolve(arquivo);
   const md = (await readFile(abs, 'utf8')).replace(/\r\n?/g, '\n');
   const { titulos } = converter(md, { link: () => '#', imagem: () => '', figura: () => '' });
@@ -919,11 +1039,12 @@ export async function gerarTema({ arquivo, pdf = false, saida = path.join(SAIDA,
     nome: path.basename(abs, '.md'),
     pdf,
     registrar,
+    assinatura,
   });
 }
 
 /** Todos os temas de docs/pericia/temas/ (sem nenhum, só avisa). */
-export async function gerarTemas({ pdf = false, dir = TEMAS, saida = path.join(SAIDA, 'temas'), registrar = console.log } = {}) {
+export async function gerarTemas({ pdf = false, dir = TEMAS, saida = path.join(SAIDA, 'temas'), registrar = console.log, assinatura } = {}) {
   const nomes = existsSync(dir) ? (await readdir(dir)).filter((n) => n.endsWith('.md')).sort() : [];
   if (!nomes.length) {
     registrar(`Nenhum tema em ${relRepo(dir)}/: nada a gerar.`);
@@ -932,7 +1053,7 @@ export async function gerarTemas({ pdf = false, dir = TEMAS, saida = path.join(S
   const resultados = [];
   for (const n of nomes) {
     registrar(`Tema: ${n}`);
-    resultados.push(await gerarTema({ arquivo: path.join(dir, n), pdf, saida, registrar }));
+    resultados.push(await gerarTema({ arquivo: path.join(dir, n), pdf, saida, registrar, assinatura }));
   }
   return resultados;
 }
