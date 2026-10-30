@@ -8,6 +8,8 @@ O que a urna fez desde a preparação até o encerramento, e em que horário? Ho
 
 Os achados deste tópico ainda não têm parecer do revisor cético (`docs/analysis/cetico-revisor/`). Por isso, em 29/10/2026, cada número deste texto foi **recalculado de forma independente**, sobre o universo completo, por um script próprio (`scripts/auditoria/verifica-pericia-linha-do-tempo.mjs`). Ele lê os boletins e os perfis dos diários no banco (cópia de leitura) e os perfis completos do 1º turno, e não usa as saídas dos scripts do auditor de linha do tempo. Os casos citados como exemplo foram conferidos no diário original (`scripts/auditoria/verifica-pericia-linha-do-tempo-bruto.mjs`). Só ficou no texto o número que bateu. Os números que não puderam ser refeitos foram retirados e aparecem como **"Pendente: em verificação"**.
 
+**Item 12 (a apuração na noite do 2º turno), atualizado em 30/10/2026:** este item tem parecer do revisor cético ([parecer 28](../analysis/cetico-revisor/28-chegada-dos-bus.md), sustentado com ressalvas; o revisor refez as contas do autor e chegou aos mesmos arquivos, byte a byte). O texto usa só a "afirmação revisada" do parecer. Os números foram contados de novo, seção a seção, por `scripts/auditoria/grafico-chegada-bu-dados.mjs`, que confere minuto a minuto a recontagem com a conta do autor (0 diferença) e com os arquivos do parecer.
+
 ## Resposta curta
 
 Tudo abaixo vale para o **2º turno (25/10/2026)**, salvo quando o texto diz "1º turno". Os testes de horário (abertura, encerramento e votos depois das 17h) cobrem as 497.896 seções do Brasil. As 1.310 seções do exterior ficam fora, porque falta o fuso de cada país (ver "Limites").
@@ -21,6 +23,7 @@ Tudo abaixo vale para o **2º turno (25/10/2026)**, salvo quando o texto diz "1�
 | Os votos depois das 17h mudaram o resultado? | Não. Mesmo se fossem todos de um lado só, seriam 0,8% da diferença entre os dois candidatos | **Fato** |
 | Houve voto em ritmo impossível para uma pessoa? | Não. Fora 3 seções com erro de leitura desta auditoria, o menor intervalo entre dois votos seguidos é de 16 segundos | **Fato** |
 | O mesário seguiu as regras de horário? | Não se pode afirmar. Há seções em que o mesário declarou à urna que "todas as pessoas presentes já votaram" e depois disso ainda houve voto. Quantas são: **Pendente: em verificação** | **Fato** (o registro existe); a contagem e o motivo são **Pendentes** |
+| Às 19h os boletins já existiam, mas o TSE os liberou aos poucos? (item 12) | Às 19h, 98,64% dos boletins do Brasil já tinham sido emitidos pelas urnas, e o TSE tinha registrado como recebidos 1.909 (0,38% das seções). De 17:10 a 19:03:37 o TSE não registrou nenhum boletim com voto; depois, registrou em lotes e com vazão limitada até 21:09. Onde os boletins esperaram, e se a ordem de liberação dependeu do voto das seções: **Pendente** | **Fato** (horários e contagens); **Pendente** (onde esperaram e a ordem) |
 
 O resultado mostra **o que a urna registrou e quando**. Não mostra **quem** estava diante da urna, nem se a entrada de eleitores depois das 17h foi autorizada (ver "O que este resultado prova e o que não prova").
 
@@ -41,6 +44,11 @@ O resultado mostra **o que a urna registrou e quando**. Não mostra **quem** est
 | **Ponto percentual (p.p.)** | A diferença entre duas porcentagens. De 52% para 51% é uma queda de 1 ponto percentual |
 | **Correlação** | Um número de −1 a +1 que diz se duas coisas sobem e descem juntas. Perto de 0 quer dizer que não há relação em linha reta entre elas; não exclui uma relação de outro formato |
 | **Comparação dentro da mesma zona** | Comparar seções vizinhas, da mesma zona eleitoral, para que diferenças de região, renda ou preferência política não se misturem ao efeito medido |
+| **Emissão do boletim** | O momento em que a urna, depois de encerrada a votação, imprime e grava o boletim (BU) da seção. Fica gravado no próprio boletim |
+| **Registro como recebido** | A hora em que o sistema do TSE anotou que recebeu o boletim de uma seção. Não é a hora em que o boletim saiu da seção: é como o carimbo de "protocolado" num balcão, que marca quando o atendente registrou o papel, e não quando a pessoa chegou na fila |
+| **Totalização** | A soma dos boletins feita pelo TSE para formar o resultado. Cada boletim tem a hora em que entrou nessa soma |
+| **Lote** | Um grupo de boletins registrados juntos, no mesmo segundo ou em poucos segundos, em vez de um a um |
+| **Vazão** | Quantos boletins o sistema registrou por minuto. "Vazão limitada" quer dizer que o número por minuto ficou preso num teto, como a água que sai de um cano estreito |
 
 ## Como foi feito
 
@@ -177,12 +185,93 @@ A seção, numa aldeia indígena, foi examinada a pedido de outro auditor porque
 - **Hipótese.** O atraso na abertura e a troca da urna (29 minutos e 54 segundos sem voto, das 16h26min22s às 16h56min16s locais) não explicam 3h54 de votação depois das 17h de Brasília no 1º turno. **Pendente:** a autorização do juiz eleitoral, se houver, na ata da seção ou da zona.
 - **O que o caso não mostra:** a queda do 22 não pode ser ligada ao horário, porque o registro dos votos não diz em quem cada eleitor votou. O diário mostra só que, no 1º turno, 81 dos 227 votos (35,7%) vieram depois das 17h de Brasília e, no 2º, a votação praticamente terminou às 11h locais.
 
+### 12. A apuração na noite do 2º turno: os boletins chegaram ao TSE e foram liberados aos poucos? (hipótese H06)
+
+**A pergunta.** Um auditor levantou esta hipótese, com estas palavras: "Às 19h, quando a divulgação foi liberada, mais de 90% dos BUs já tinham sido enviados ao TSE, mas foram liberados ao público de forma controlada, com variações e quedas impossíveis numa apuração aleatória."
+
+**Fonte e revisão.** O estudo é do estatístico eleitoral ([linha do tempo 06](../analysis/linha-do-tempo/06-chegada-dos-bus-e-divulgacao.md)). O revisor cético refez as contas e chegou aos mesmos arquivos, byte a byte ([parecer 28](../analysis/cetico-revisor/28-chegada-dos-bus.md), sustentado com ressalvas). Aqui entra só a "afirmação revisada" do parecer. Os números foram contados de novo, seção a seção, por `scripts/auditoria/grafico-chegada-bu-dados.mjs` (ver "Como repetir").
+
+**Cada boletim tem três horários.** Dois estão nos dados abertos do TSE (arquivo `detalhe_votacao_secao`, em hora de Brasília), e um, no próprio boletim:
+
+| Horário | O que é | De onde vem |
+|---|---|---|
+| Emissão | Quando a urna imprimiu e gravou o boletim, no fim da votação | Boletim da urna. O relógio da urna está na hora local e foi convertido para Brasília (item 1) |
+| Registro como recebido | Quando o sistema do TSE anotou que recebeu o boletim | Dados abertos, campo `DT_RECEBIMENTO_BU_HOR_TSE` |
+| Totalização | Quando o boletim entrou na soma do resultado | Dados abertos, campo `DT_PRIM_TOT_PARCIAL_HOR_TSE` |
+
+Nenhum arquivo público tem a hora em que o boletim saiu da seção ou do ponto de transmissão. Por isso este item compara a emissão com o registro, e não com o envio.
+
+**Universo (Fato).** As 499.248 seções do 2º turno, todas com hora de registro e de totalização. A hora de emissão existe nas 497.897 seções do Brasil. As 1.351 do exterior ficam fora só das contas de emissão, porque falta o fuso de cada país (como nos itens 1 a 11).
+
+**Resposta, parte por parte:**
+
+| Parte da hipótese | O que os arquivos mostram | Rótulo |
+|---|---|---|
+| "Às 19h, mais de 90% dos BUs já existiam" | Sim. Antes das 19h, 98,64% dos boletins do Brasil já tinham sido emitidos pelas urnas (491.127 de 497.897) | **Fato** |
+| "...já tinham sido enviados ao TSE" | Não dá para confirmar nem negar. Antes das 19h, o TSE tinha registrado como recebidos 1.909 boletins (0,38% das 499.248 seções). Havia boletins prontos esperando antes do registro: às 19:03:37, 5.651 foram registrados em 19 segundos. Onde eles esperaram, os arquivos públicos não dizem | **Fato** (números); **Pendente** (onde esperaram) |
+| "...liberados de forma controlada" | No ritmo, sim. De 17:10 a 19:03:37 o TSE não registrou nenhum boletim com voto. Depois, registrou em lotes, com vazão limitada, que subiu em degraus e ficou no teto até 21:09, com uma parada de 19:48 a 19:50. Se a ordem de liberação dependeu do voto das seções: **Pendente** | **Fato** (ritmo); **Pendente** (ordem × voto) |
+| "...variações e quedas impossíveis numa apuração aleatória" | **Pendente, sem número.** O teste que compara a curva real com ordens sorteadas é estatístico e fica na análise ([linha do tempo 06](../analysis/linha-do-tempo/06-chegada-dos-bus-e-divulgacao.md) e parecer 28) | **Pendente** |
+
+**O que foi encontrado:**
+
+- **Fato. O registro começou no mesmo segundo em 15 UFs.** O primeiro boletim registrado pelo TSE é das 17:05:10 em AC, AM, AP, BA, CE, DF, GO, MA, MG, MT, PA, PR, RO, RR e SC. Entre elas estão o Acre, 2 horas atrás de Brasília, e AM, MT, RO e RR, 1 hora atrás. Boletins de lugares tão diferentes não saem das seções no mesmo segundo. Isso mostra duas coisas: o campo usa um relógio único, o de Brasília; e ele marca o registro no sistema do TSE, não a saída da seção.
+- **Fato. Até as 17:10, o TSE registrou e somou 1.870 seções** (do Brasil e do exterior). Todo boletim com voto registrado antes das 19h está entre elas.
+- **Fato. De 17:10 a 19:03:37, o TSE não registrou nenhum boletim com voto.** Os 39 registros desse período são de seções do exterior que não foram instaladas e não têm voto, e entraram na soma às 19:02:54.
+- **Fato. Às 19:03:37 o registro voltou com um lote:** 5.651 boletins, todos com voto, registrados de 19:03:37 a 19:03:56 (19 segundos).
+- **Fato. Depois, o registro seguiu em lotes e com vazão limitada.** O número de boletins por minuto subiu em degraus e ficou preso num teto até 21:09, isto é, sempre havia boletim esperando registro. De 19:48 a 19:49 o TSE não registrou nenhum boletim, e de 19:48 a 19:50 não somou nenhum. Às 21:10 foram 2.058 registros, e a fila acabou. Exemplo de lote: de 19:30:00 a 19:39:59, em 292 dos 600 segundos não houve nenhum registro, e num só segundo houve 190.
+- **Fato. Dos 491.127 boletins emitidos antes das 19h, 490.035 (99,78%) só foram registrados depois das 19h.**
+- **Fato. Depois de registrado, o boletim entrou na soma em seguida.** O tempo entre o registro e a totalização teve mediana de 24 segundos, nas 499.248 seções. Das 497.339 seções registradas a partir das 19h, nenhuma foi ultrapassada, na soma, por outra registrada mais de 5 minutos depois dela. Ou seja: a ordem em que os resultados entraram na soma é a ordem de registro.
+- **Fato. No 1º turno (04/10/2026), sem prorrogação, o registro também foi feito em lotes e com degraus de vazão (17:14 a 18:01), com uma parada de 18:01 a 18:07.** Antes das 19h, o TSE já tinha registrado 60,81% das seções.
+- **Fato. A ordem de liberação não muda o resultado final.** O total é a soma dos boletins, e o boletim é igual ao resultado oficial em todas as 499.205 seções com voto do 2º turno ([tópico 5](05-soma-dos-boletins.md)). Uma liberação controlada mudaria só o que se viu durante a apuração, não a contagem.
+
+**Quanto já existia e quanto já estava registrado, hora a hora (Fato):**
+
+| Antes de | Boletins emitidos, 2º turno (de 497.897 do Brasil) | % | Seções registradas pelo TSE, 2º turno (de 499.248) | % | Seções registradas, 1º turno (de 499.248) | % |
+|---|---:|---:|---:|---:|---:|---:|
+| 17:30 | 489.346 | 98,28 | 1.876 | 0,38 | 11.914 | 2,39 |
+| 18:00 | 490.335 | 98,48 | 1.884 | 0,38 | 75.096 | 15,04 |
+| 18:30 | 490.905 | 98,60 | 1.884 | 0,38 | 178.736 | 35,80 |
+| **19:00** | **491.127** | **98,64** | **1.909** | **0,38** | **303.585** | **60,81** |
+| 19:30 | 497.877 | 100,00 | 27.549 | 5,52 | 422.272 | 84,58 |
+| 20:00 | 497.894 | 100,00 | 111.942 | 22,42 | 429.978 | 86,13 |
+| 20:30 | 497.894 | 100,00 | 271.075 | 54,30 | 457.786 | 91,70 |
+| 21:00 | 497.896 | 100,00 | 442.470 | 88,63 | 490.699 | 98,29 |
+| 22:00 | 497.896 | 100,00 | 499.131 | 99,98 | 498.027 | 99,76 |
+| 23:00 | 497.896 | 100,00 | 499.246 | 100,00 | 499.107 | 99,97 |
+
+"100,00" é arredondamento: a contagem exata está na coluna ao lado. Dados: [graficos/dados/chegada-bu-por-hora.csv](graficos/dados/chegada-bu-por-hora.csv).
+
+![2º turno: boletins já emitidos pelas urnas × boletins já registrados pelo TSE](graficos/chegada-bu-emitidos-x-registrados.svg)
+
+**Como ler:** o eixo de baixo é a hora de Brasília, das 17h às 23h; o eixo da esquerda é o percentual acumulado. A linha verde mostra quantos boletins do Brasil as urnas já tinham emitido: ela sobe quase toda até 17h30, quando as urnas encerram. A linha azul mostra quantas seções o TSE já tinha registrado no 2º turno: fica parada perto de zero até 19:03 e só então sobe, até 21h10. A distância entre a verde e a azul às 19h é o tamanho do que estava pronto e ainda não registrado. A linha laranja tracejada é o registro no 1º turno, que não teve prorrogação: ela começa a subir logo depois das 17h.
+
+![Seções registradas pelo TSE em cada minuto, 2º e 1º turno](graficos/chegada-bu-registros-por-minuto.svg)
+
+**Como ler:** cada degrau é um minuto, e a altura é quantos boletins o TSE registrou naquele minuto. No 2º turno (linha azul), depois de um começo às 17h05, a linha fica em zero até 19:03, quando aparece o lote de 5.651. Depois ela sobe em degraus, cai a zero na parada de 19:48 a 19:50, fica no teto até 21:09 e despenca às 21:10, quando a fila acaba. No 1º turno (laranja tracejada), o registro começa logo depois das 17h, também em degraus, e tem a parada de 18:01 a 18:07. Os dados minuto a minuto dos dois gráficos, das 17:00 às 03:00 do dia seguinte, estão em [graficos/dados/chegada-bu-por-minuto.csv](graficos/dados/chegada-bu-por-minuto.csv), e os marcos citados acima em [graficos/dados/chegada-bu-marcos.csv](graficos/dados/chegada-bu-marcos.csv).
+
+**Hipótese.** A parada de 17:10 a 19:03 está ligada à prorrogação da votação até as 19h (item 7). O ato do TSE que suspendeu o registro e o horário dele não foram conferidos (**Pendente**).
+
+**Pendente (sem número):**
+
+- **Onde os boletins esperaram** entre 17:10 e 19:03, e **em que ordem a fila foi atendida** depois. Isso depende dos registros de transmissão e da fila de recepção do TSE (hora de chegada × hora de registro de cada boletim), que não são públicos.
+- **Se a ordem de registro dependeu do voto das seções**, inclusive a ordem das UFs e de lugares inteiros (locais de votação, zonas, municípios). Os testes estatísticos estão no estudo e no parecer 28 e não entram neste relatório.
+- **Se os saltos e as quedas da curva da apuração são incomuns.** Também é teste estatístico e fica fora.
+- **O que o site de resultados mostrou, minuto a minuto.** O histórico dos arquivos de resultado publicados não está no repositório. Aqui, "divulgação" quer dizer a hora em que cada boletim entrou na soma.
+- **Seções com um novo registro "Recebido" depois da totalização** no arquivo de acompanhamento publicado pelo TSE (`aux.json`), algumas dias depois da eleição. O revisor recomenda perguntar ao TSE por quê, e se o boletim recebido depois é o mesmo que foi somado (parecer 28, item 1).
+- **Os outros minutos sem registro do 1º turno.** O gráfico mostra outros minutos em zero na linha do 1º turno, além da parada de 18:01 a 18:07. Eles não foram examinados.
+
+**Risco (princípio 8).** A explicação benigna, uma fila de registro com capacidade limitada, deixa rastro técnico nos dois turnos (lotes, degraus e paradas). Mas a **regra de atendimento da fila** não deixa rastro público. "O TSE registrou por ordem de chegada" é suposição, não teste.
+
+**Não se pode afirmar:** que os boletins já estavam no TSE às 19h, nem que não estavam; que a ordem de liberação foi escolhida, nem que não foi.
+
 ## Prova de que o teste funciona (contraprova)
 
 - **O teste de ritmo acusa o que é impossível.** Ele apontou os 339 intervalos de 0 a 14 segundos. Conferidos no diário original, eram linhas repetidas ou misturadas pela leitura. Ou seja, se a urna tivesse registrado votos colados, sem ciclo de eleitor, o teste os teria apontado. **Fato.**
 - **O teste de voto tardio acha voto tardio quando ele existe.** No 1º turno de Ipixuna-AM (item 11), ele encontrou 81 votos depois das 17h de Brasília, com o último às 20h53, conferidos no diário original. **Fato.**
 - **O teste de "voto depois de SIM".** **Pendente: em verificação** (a conferência anterior usou uma amostra, o que o princípio 9 não permite).
 - **O fuso sai do próprio dado.** Todas as 2.270 seções do Acre ficaram prontas às 6h locais e as 10 de Fernando de Noronha às 9h locais, o que bate com o fuso conhecido desses lugares. **Fato.**
+- **A recontagem da apuração bate com a do autor, minuto a minuto (item 12).** O script deste relatório conta de novo, seção a seção, os boletins emitidos, registrados e somados em cada um dos 601 minutos de 17:00 às 03:00, nos dois turnos, e compara com a contagem por minuto do autor: 0 diferença. Os marcos da afirmação revisada (98,64%, 1.909, 5.651 em 19 segundos, 99,78%, mediana de 24 segundos, paradas) são conferidos um a um, também contra o arquivo do revisor. **Fato.**
+- **O teste de registro acha o registro quando ele existe.** No 1º turno, sem prorrogação, a mesma conta mostra o registro começando logo depois das 17h e 60,81% das seções registradas antes das 19h. **Fato.**
 - **A trava das 17h deixa rastro.** A mensagem "Encerramento só pode ser solicitado após as 17:00:00 horas" aparece no diário quando alguém tenta encerrar antes (ex.: AL 27081/0053/0162, às 9h45). **Fato.**
 
 ## O que este resultado prova e o que não prova
@@ -191,6 +280,8 @@ A seção, numa aldeia indígena, foi examinada a pedido de outro auditor porque
 - **Não prova** que só votou depois das 17h quem estava na fila às 17h. A urna não controla isso; o mesário controla. Há seções em que a declaração do mesário de que todos já tinham votado é seguida de novo voto.
 - **Não prova** quem estava diante da urna em cada voto. O tempo do ciclo é compatível com um eleitor, mas também com o mesário digitando. Essa pergunta é do tópico 4.
 - **Não prova** que a extensão até 19h foi autorizada. Isso depende de um documento oficial ainda não conferido.
+- **Prova (item 12):** que, às 19h, 98,64% dos boletins do Brasil já tinham sido emitidos e só 0,38% das seções estavam registradas pelo TSE; que o registro de boletins com voto parou de 17:10 a 19:03:37 e voltou em lotes, com vazão limitada; e que, depois de registrado, cada boletim entrou na soma na ordem de registro.
+- **Não prova** onde os boletins esperaram, nem se a ordem em que foram liberados dependeu do voto das seções (item 12, Pendente).
 
 ## Limites
 
@@ -199,6 +290,8 @@ A seção, numa aldeia indígena, foi examinada a pedido de outro auditor porque
 - **Ciclos com 2 cargos.** Não medidos no universo completo (item 5).
 - **Contagens de votos tardios.** Uma contagem da coordenação (`scripts/h06-votos-apos-17h.mjs`) dá 34.066 votos depois das 17h e 1.960 depois das 18h no 2º turno. A diferença para 34.330 está explicada: aquela conta usa só seções cujo boletim saiu da urna da própria seção e inclui o exterior pelo relógio local. Sem o exterior, ela dá 33.668; os 662 votos que faltam para 34.330 estão em seções cujo boletim saiu de urna de reserva. **Fato.**
 - **Sigilo do voto.** Não dá para saber em quem votou o eleitor tardio, só comparar seções.
+- **Hora de envio do boletim (item 12).** Os arquivos públicos têm a hora de emissão, de registro e de totalização, mas não a hora em que o boletim saiu da seção ou do ponto de transmissão. **Fato.**
+- **Relógio de urnas de MT no 1º turno.** O revisor do item 12 achou sinais de que, no 1º turno, o relógio das urnas de três municípios de MT (90069, 90905 e 90921) estava na hora de Brasília, e não na local ([parecer 28](../analysis/cetico-revisor/28-chegada-dos-bus.md), item 7). A conta do 1º turno do item 6 converte essas seções com o fuso do município. **Pendente:** recontar o 1º turno dessas seções com a hora de Brasília.
 
 ## Como repetir
 
@@ -207,11 +300,23 @@ node scripts/auditoria/verifica-pericia-linha-do-tempo.mjs       # todos os núm
 node scripts/auditoria/verifica-pericia-linha-do-tempo-bruto.mjs --turno 2 --secao uf/municipio/zona/secao [--filtro re] [--de hh:mm --ate hh:mm]   # confere um caso no diário original
 ```
 
-A saída fica em `data/parsed/auditoria/verifica-pericia/linha-do-tempo.json`. As análises originais do auditor de linha do tempo estão em `docs/analysis/linha-do-tempo/01` a `05` e em `scripts/auditoria/tempo-*.mjs`.
+Item 12 (chegada dos boletins ao TSE):
+
+```
+node --max-old-space-size=4096 scripts/auditoria/grafico-chegada-bu-dados.mjs   # reconta seção a seção, confere com o autor e o revisor, grava os CSVs
+node scripts/auditoria/grafico-chegada-bu.mjs                                   # gera os dois gráficos
+node scripts/auditoria/estatistico-chegada-bu-aux.mjs                           # autor: lê os aux.json
+node --max-old-space-size=8192 scripts/auditoria/estatistico-chegada-bu-dados.mjs   # autor: arquivo por seção (secoes.csv)
+node --max-old-space-size=8192 scripts/auditoria/estatistico-chegada-bu.mjs         # autor: contagens por minuto e resumo
+node --max-old-space-size=8192 scripts/auditoria/cetico-chegada-bu.mjs --replicas 200   # revisor (parecer 28)
+```
+
+A saída fica em `data/parsed/auditoria/verifica-pericia/linha-do-tempo.json`; a do item 12, em `docs/pericia/graficos/dados/chegada-bu-*.csv`. As análises originais do auditor de linha do tempo estão em `docs/analysis/linha-do-tempo/01` a `05` e em `scripts/auditoria/tempo-*.mjs`.
 
 ## Próximos passos
 
-- **Pendente:** revisão cética dos itens deste tópico (`docs/analysis/cetico-revisor/`).
+- **Pendente:** revisão cética dos itens 1 a 11 deste tópico (`docs/analysis/cetico-revisor/`). O item 12 já tem (parecer 28).
+- **Pendente (item 12):** pedir ao TSE os registros de transmissão e da fila de recepção (hora de chegada e hora de registro de cada boletim, e a regra de atendimento), o ato que suspendeu o registro depois da decisão do STF e o histórico dos arquivos de resultado publicados durante a apuração.
 - **Pendente:** refazer, no universo completo, as medidas que dependem de reler cada diário: religamentos por causa e tempo parado, votos depois do "SIM", cancelamentos de encerramento, votos depois de pausa e forma de liberação dos votos tardios.
 - **Pendente:** conferir a versão assinada da decisão judicial no portal do STF e o ato do TSE ou dos TREs que estenderam o horário até 19h, com a lista de locais, e cruzar com os 313 locais inteiros e os 818 mistos.
 - **Pendente:** repetir a linha do tempo completa no 1º turno.

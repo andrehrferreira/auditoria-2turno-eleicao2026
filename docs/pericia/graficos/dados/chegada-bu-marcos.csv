@@ -1,0 +1,20 @@
+medida,valor,conferido_em
+seções do 2º turno (todas),499248,secoes.csv
+seções do Brasil com hora de emissão do BU,497897,secoes.csv
+BUs emitidos antes das 19h (Brasil),491127,secoes.csv; resumo.json b_represamento
+"BUs emitidos antes das 19h, % do Brasil",98.64,secoes.csv
+seções registradas como recebidas antes das 19h,1909,secoes.csv; resumo.json a_recebidasAntes19h
+  das quais registradas e totalizadas até as 17:10,1870,secoes.csv; resumo.json a_recebidasAntes19h
+"  das quais do exterior sem voto, totalizadas às 19:02:54",39,secoes.csv; resumo.json a_recebidasAntes19h
+primeiro BU com voto registrado depois das 17:10,19:03:37,secoes.csv
+BUs registrados de 19:03:37 a 19:03:56,5651,secoes.csv; resumo.json d_lote1903; 28-chegada-bu.json
+emitidos antes das 19h e registrados depois das 19h,490035,secoes.csv; resumo.json b_represamento
+  % dos emitidos antes das 19h,99.78,secoes.csv
+parada do registro (2º turno),19:48 a 19:50,secoes.csv
+registros no minuto 21:10 (a fila esvazia),2058,secoes.csv
+parada do registro (1º turno),18:01 a 18:07,secoes.csv
+UFs com o primeiro registro às 17:05:10,15,secoes.csv
+segundos sem registro de 19:30:00 a 19:39:59 (de 600),292,secoes.csv; 28-chegada-bu.json
+"maior número de registros num segundo, 19:30 a 19:40",190,secoes.csv; 28-chegada-bu.json
+"registro -> totalização, mediana (segundos)",24,secoes.csv; resumo.json b_atrasos
+seções ultrapassadas por outra registrada mais de 5 min depois,0,secoes.csv; resumo.json b_ordemTotalizacao
