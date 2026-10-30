@@ -345,9 +345,14 @@ async function principal() {
     for (const uf of ufs) {
       const arq = path.join(dirSaida, `${uf}.jsonl`);
       const linhas = ((await lerOuNulo(arq))?.toString() ?? '').split('\n').filter(Boolean);
+      // Linha cortada por queda no meio da escrita não parseia: é de zona não concluída e sai junto.
       const ficam = linhas.filter((l) => {
-        const r = JSON.parse(l);
-        return feitos[`${r.uf}/${r.municipio}/${r.zona}`];
+        try {
+          const r = JSON.parse(l);
+          return feitos[`${r.uf}/${r.municipio}/${r.zona}`];
+        } catch {
+          return false;
+        }
       });
       if (ficam.length < linhas.length) await writeFile(arq, ficam.map((l) => `${l}\n`).join(''));
     }
