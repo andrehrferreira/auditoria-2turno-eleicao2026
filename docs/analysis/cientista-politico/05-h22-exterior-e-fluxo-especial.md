@@ -10,7 +10,7 @@ Cientista político, 30/10/2026. Rótulos: **Fato**, **Hipótese**, **Recomenda�
   - 0 diferença entre o BU e o diário da urna, nos dois turnos;
   - 0 voto fora da janela;
   - nenhum intervalo entre votos abaixo de 15 s;
-  - 0 BU de cédula emitido antes do fim da votação no posto.
+  - 0 BU de cédula emitido antes do fim da votação no posto. Isso só vale se o relógio da máquina do SA estiver na hora de Brasília. Sem depender dessa premissa: no 2º turno, os 29 BUs foram recebidos pelo TSE 160 min ou mais depois do fechamento do posto.
 - **Fato.** O comparecimento do exterior subiu **11,6%** do 1º para o 2º turno: de 341.766 para 381.443 (37,3% → 41,6% dos aptos). Os votos nominais subiram +12,3%. Para comparar:
 
   | Ano | Votos nominais 1º → 2º no exterior | No Brasil |
@@ -82,7 +82,7 @@ node scripts/auditoria/politico-h22-linha-de-base.mjs # ~30 s: exterior em 2018 
 | Votos fora da janela (antes de "urna pronta" ou depois do encerramento) | 0 nos dois turnos | — |
 | Liberação por biometria ou manual pelo mesário | 0 nos dois turnos | 100% por título e ano de nascimento (já sabido) |
 | Aptos que mudam entre os turnos | 316 seções, saldo **+149** | No Brasil, 55.406 seções mudam, saldo **−149**. O total nacional de aptos é o mesmo nos dois turnos: 149 eleitores passaram do Brasil para o exterior entre os turnos |
-| Votos antes das 8 h locais | 0 | Relógio da urna na hora local: a urna fica pronta às 08:00 nos dois turnos, também na Europa, que saiu do horário de verão na madrugada do 2º turno |
+| Votos antes das 8 h locais | 0 | **Zero automático:** a urna só abre às 08:00 do próprio relógio, então o número mostra apenas que ela seguiu a própria regra. **Que o relógio estava na hora local é Fato** por outro teste ([cetico-revisor/37](../cetico-revisor/37-h18-h21-h22.md), seção 2). A Europa, Israel e o Líbano saíram do horário de verão na madrugada do 2º turno. Nessas 585 seções, a mediana do registro do mesário antes da abertura foi de 7,61 h para 7,48 h; nas 685 que não mudaram de horário, de 7,47 h para 7,34 h. A diferença entre os grupos é de cerca de 3 min; se o relógio não tivesse acompanhado a mudança, seria de 1 h |
 | Votos depois das 18 h locais | 1º turno: 99 votos em 8 seções. 2º turno: 0 | Fila de fim de dia do 1º turno: Bruxelas (2), Buenos Aires, Ciudad del Este (2), Nagóia e Toronto (2). Todos dentro da janela; último voto às 18:37 em Ciudad del Este |
 
 ## 3. Ritmo (Fato)
@@ -141,8 +141,16 @@ node scripts/auditoria/politico-h22-linha-de-base.mjs # ~30 s: exterior em 2018 
 - **Hora de emissão contra o fim da votação no posto:**
   - Premissa declarada: o relógio do SA está na hora de Brasília.
   - As 17 h locais de cada posto foram convertidas para a hora de Brasília pelo fuso IANA da cidade. A conversão leva em conta o horário de verão de cada data.
-  - Resultado: **0 de 60 BUs emitidos antes do fechamento**.
-  - A menor folga é de 30 min: Nassau, no 2º turno, com emissão às 18:29 e fechamento às 18:00 de Brasília.
+  - Resultado: **0 de 60 BUs emitidos antes do fechamento**, desde que o relógio da máquina do SA esteja na hora de Brasília.
+  - A menor folga é de 70 min no 1º turno e de 30 min no 2º turno (Nassau, com emissão às 18:29 e fechamento às 18:00 de Brasília).
+  - **Sem essa premissa, o resultado muda** ([cetico-revisor/37](../cetico-revisor/37-h18-h21-h22.md)):
+    - com o relógio 1 h adiantado, 3 BUs do 2º turno ficariam antes do fechamento;
+    - em UTC, 5 do 1º turno e 9 do 2º.
+  - **Âncora independente da premissa (Fato):** o horário de recebimento no TSE (`recebido_tse`), marcado pelo servidor na hora de Brasília.
+    - No 2º turno, cada um dos 29 BUs foi recebido 160 min ou mais depois do fechamento do próprio posto.
+    - O primeiro recebimento, às 19:25, já vem depois do fechamento de todos os postos.
+    - No 1º turno o banco não tem esse horário (0 de 31 BUs de SA).
+  - **Princípio 8:** a hora não confere o conteúdo. Um BU com números errados, digitado depois do fechamento, passa neste teste. O controle do conteúdo é a ata da junta (Pendente).
 - **Voto no SA contra o continente:**
   - As cidades de SA dão ao 13 mais que o resto do continente: +59 votos no 1º turno e +56 no 2º, sobre cerca de 700 a 800 votos dos dois finalistas.
   - **O mesmo excesso aparece em 2018 (+19 e +44) e em 2022 (+31 e +59)**, nas mesmas cidades.
@@ -228,7 +236,7 @@ node scripts/auditoria/politico-h22-linha-de-base.mjs # ~30 s: exterior em 2018 
 | *Processo:* rajada de fim de dia (H15) | acréscimo nas últimas horas | Não: o acréscimo é de manhã |
 | *Processo:* ritmo impossível | intervalo abaixo do tempo físico; pico acima da capacidade | Não: nenhum intervalo abaixo de 15 s; pico máximo de 95/h (38 s por eleitor) |
 | *Processo:* comparecimento acima do cadastro / seção fantasma | comp > aptos; seção num turno só | Não: 0 e 0 |
-| *Processo:* BU de cédula fabricado antes do fim da votação | emissão antes das 17 h locais | Não: 0 de 60 (com a premissa de relógio em Brasília) |
+| *Processo:* BU de cédula fabricado antes do fim da votação | emissão antes das 17 h locais | Não: 0 de 60, com a premissa de relógio em Brasília. Sem premissa, só no 2º turno: os 29 foram recebidos pelo TSE 160 min ou mais depois do fechamento |
 | *Processo:* substituição de eleitores que não iriam votar, espalhada | igual à mobilização em todos os sinais acima | **Indistinguível com estes dados** (princípio 8) |
 
 ## 8. O que o teste permite e não permite afirmar
@@ -236,7 +244,7 @@ node scripts/auditoria/politico-h22-linha-de-base.mjs # ~30 s: exterior em 2018 
 **Permite (Fato):**
 - No exterior, nos dois turnos e em todas as seções, o comparecimento cabe nos aptos e no cadastro, todo voto do BU tem o eleitor no diário da urna, não há voto fora da janela e não há seção que exista num turno só.
 - O ritmo do 2º turno é o do 1º com mais gente, na mesma cédula e com intervalos de mesma ordem. O acréscimo chegou de manhã.
-- O SA de 2026 é menor que o de 2022 (29 seções contra 99), cobre os mesmos postos pequenos nos dois turnos e não tem BU emitido antes do fim da votação local.
+- O SA de 2026 é menor que o de 2022 (29 seções contra 99), e cobre os mesmos postos pequenos nos dois turnos. Com o relógio do SA na hora de Brasília, nenhum BU foi emitido antes do fim da votação local. No 2º turno, sem essa premissa, todos foram recebidos pelo TSE 160 min ou mais depois do fechamento. A hora não confere o conteúdo digitado.
 - O aumento do comparecimento é largo e tem a geografia política de 2022. O lado que mais ganhou no exterior ganhou menos do disponível que no Brasil.
 
 **Não permite:**
