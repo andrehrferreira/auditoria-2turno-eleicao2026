@@ -11,7 +11,9 @@
 //    anteriores já estão no catálogo do 1º turno).
 //  - Motivo visível, nesta ordem (o primeiro que valer):
 //      falhou       a carga anterior não terminou com "Urna carregada com sucesso";
-//      erro         a sessão anterior tem linha ERRO;
+//      erro         a sessão anterior tem linha ERRO, exceto as duas de rotina (parecer cético 39): "GAP Problema ao
+//                   desmontar a MR" (gravada a cada ligação, em 498.698 seções na preparação do 2º turno) e "Falha na
+//                   captura da digital" (atendimento ao eleitor);
 //      reserva      a carga anterior era de urna de contingência (seção 0000) e a nova é de seção (reuso da reserva:
 //                   o motivo está na urna que ela substitui);
 //      paraReserva  a nova carga é de contingência (seção 0000);
@@ -49,6 +51,7 @@ const resultado = { definicoes: 'ver cabeçalho do script', recargas: {}, cargaN
 const casos = [];
 
 // ---------------------------------------------------------------- 1. Recargas
+const ROTINA = /desmontar a MR|Falha na captura da digital/;
 const ordemDiario = (g) => {
   const m = /^\d{8}(\d{2})(\d{2})(\d{4})(\d{2})(\d{2})(\d{2})-0\d\.jez$/.exec(g.nome);
   return m ? Number(`${m[3]}${m[2]}${m[1]}${m[4]}${m[5]}${m[6]}`) : 99999999999999;
@@ -91,7 +94,8 @@ for await (const p of jsonl(path.join(SAIDA, 'h23-relidos.jsonl'))) {
         const sec = (n) => Date.UTC(Math.floor(n / 1e10), Math.floor(n / 1e8) % 100 - 1, Math.floor(n / 1e6) % 100, Math.floor(n / 1e4) % 100, Math.floor(n / 100) % 100, n % 100) / 1000;
         conta(ordemConferida[p.turno], Math.abs(sec(oa) - sec(ini)) <= 600 ? 'arquivamentoAte10minDaNovaCarga' : 'arquivamentoLongeDaNovaCarga');
       } else conta(ordemConferida[p.turno], 'semHoraDeArquivamento');
-      const motivo = !a.carga.ok ? 'falhou' : a.erros > 0 ? 'erro' : a.carga.secao === '0000' && b.carga.secao !== '0000' ? 'reserva'
+      const errosRelevantes = Object.entries(a.errosMsg).filter(([m]) => !ROTINA.test(m)).reduce((x, [, n]) => x + n, 0);
+      const motivo = !a.carga.ok ? 'falhou' : errosRelevantes > 0 ? 'erro' : a.carga.secao === '0000' && b.carga.secao !== '0000' ? 'reserva'
         : b.carga.secao === '0000' ? 'paraReserva' : !mesmaSecao(a.carga, b.carga) ? 'outraSecao' : votosAnt > 0 ? 'votou'
         : b.carga.fcGeracao && iso(b.carga.fcGeracao) > (iso(a.carga.relogio) ?? '') ? 'novaMidia' : 'semMotivo';
       pares[p.turno].set(id, { turno: p.turno, k: p.k, urna: u, anterior: { codigo: a.carga.codigo, quando: iso(a.carga.digitada), secao: a.carga.secao, zona: a.carga.zona,
@@ -128,6 +132,7 @@ resultado.universo = { secoesComBuNosDoisTurnos: S.size, bu1t: bu[1].size, bu2t:
 const novaPorCodigo = { 1: new Map(), 2: new Map() };
 for (const t of [1, 2]) for (const r of pares[t].values()) novaPorCodigo[t].set(`${r.urna}|${r.nova.codigo}`, r);
 const marcadas = { semMotivo1t: new Set(), semMotivo2t: new Set(), recarga2t: new Set() };
+const recarga2tPorPeriodo = {};
 const buPorMotivo = { 1: {}, 2: {} };
 for (const t of [1, 2]) {
   for (const [k, b] of bu[t]) {
@@ -135,7 +140,7 @@ for (const t of [1, 2]) {
     if (!r) continue;
     conta(buPorMotivo[t], `${r.periodo} · ${r.motivo}`);
     if (r.motivo === 'semMotivo') marcadas[`semMotivo${t}t`].add(k);
-    if (t === 2) marcadas.recarga2t.add(k);
+    if (t === 2) { marcadas.recarga2t.add(k); conta(recarga2tPorPeriodo, r.periodo); }
   }
 }
 resultado.recargas.buGeradoPorCargaRecarregada = buPorMotivo;
@@ -189,6 +194,14 @@ for (const t of [1, 2]) {
   resultado.cargaSemLinhaDeSucesso2t = o;
 }
 
+// Carga feita no dia da votação do 1º turno que só gerou BU no 2º turno (reserva carregada durante a votação de 04/10,
+// guardada e usada no 2º turno; parecer cético 39)
+{
+  const cod1t = new Set([...bu[1].values()].map((b) => `${b.urna}|${b.codigo}`));
+  resultado.cargaNoDia.cargaDe0410SoNoBuDo2t = [...bu[2]].filter(([, b]) => b.carga?.startsWith(DIAS[1]) && !cod1t.has(`${b.urna}|${b.codigo}`))
+    .map(([k, b]) => ({ k, tipo: b.tipo, urna: b.urna, carga: b.carga, relogio: relogio.get(`${b.urna}|${b.codigo}`) ?? null }));
+}
+
 // ---------------------------------------------------------------- 3. Fora do bloco da zona (1º turno)
 const Z = new Map();
 for (const [k, b] of bu[1]) {
@@ -233,6 +246,13 @@ const conj = {
   semMotivo2t_e_cargaNoDia: [...marcadas.semMotivo2t].filter((k) => bu[2].get(k).carga?.startsWith(DIAS[2])).length,
 };
 resultado.conjuncao = conj;
+// Seções que votaram em cédula no 1º turno (BU do 1º turno com comparecimento 0 e do 2º > 0): saem dos testes de voto
+// (parecer cético 39; o tópico 11 já as deixa fora do universo).
+const cedula1t = [...S.values()].filter((s) => s.t1.comp === 0 && s.t2.comp > 0).map((s) => s.k);
+for (const k of cedula1t) for (const set of Object.values(marcadas)) set.delete(k);
+resultado.recargas.recarga2tPorPeriodo = recarga2tPorPeriodo;
+resultado.excluidasDosTestesDeVoto = cedula1t;
+for (const k of cedula1t) S.delete(k);
 const testes = {
   'recarga sem motivo entre os turnos (BU do 2º turno)': { set: marcadas.semMotivo2t, modos: [['variacao', 'zona'], ['t2', 'local']] },
   'qualquer recarga entre os turnos (BU do 2º turno)': { set: marcadas.recarga2t, modos: [['variacao', 'zona'], ['t1', 'local'], ['t2', 'local']] },

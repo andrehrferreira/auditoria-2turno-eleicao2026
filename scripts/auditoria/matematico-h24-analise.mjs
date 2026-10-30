@@ -195,7 +195,7 @@ for (const t of [1, 2]) {
   const tl = `t${t}`;
   const loc = new Map(); // locais com as duas espécies
   for (const s of S.values()) { const g = `${s.uf}/${s.municipio}/${s.zona}/${s[tl].local}`; const o = loc.get(g) ?? { com: 0, sem: 0 }; comTTE[t].has(s.k) ? o.com++ : o.sem++; loc.set(g, o); }
-  const o = { com: {}, com10: {}, semMesmoLocal: {}, naoConvencional: {} };
+  const o = { com: {}, com10: {}, com1a9: {}, semMesmoLocal: {}, naoConvencional: {} };
   const marca = (g, s, p) => {
     conta(g, 'secoes');
     if (p?.raj >= 10) conta(g, 'rajada10');
@@ -206,8 +206,10 @@ for (const t of [1, 2]) {
   for (const s of S.values()) {
     const p = P.get(`${t}|${s.k}`);
     const g = loc.get(`${s.uf}/${s.municipio}/${s.zona}/${s[tl].local}`);
+    // Grupos disjuntos (correção do parecer cético 39: o "sem trânsito" incluía as seções com 1 a 9 em trânsito)
     if (comTTE[t].has(s.k)) marca(o.com, s, p);
     if (comTTE10[t].has(s.k)) marca(o.com10, s, p);
+    else if (comTTE[t].has(s.k)) marca(o.com1a9, s, p);
     else if (g.com > 0) marca(o.semMesmoLocal, s, p);
     if (naoConv.has(s.k) && t === 2) marca(o.naoConvencional, s, p);
   }

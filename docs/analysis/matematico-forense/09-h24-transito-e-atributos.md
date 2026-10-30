@@ -1,6 +1,6 @@
 # 09. H24: eleitores em trânsito e atributos especiais usados para inflar seções?
 
-Matemático forense, 30/10/2026. Hipótese H24 de [hipoteses.md](../../hipoteses.md), proposta na discussão T19 ([síntese](../modelos/T19/sintese.md)). Banco: cópia de leitura de 29/10 10:50 UTC. Dados abertos do TSE já baixados: `eleitorado_local_votacao_2026.zip` (gerado em 25/10, os dois turnos) e `perfil_eleitor_secao_2026_<UF>.zip` (cadastro de julho). Universo completo: 499.207 seções com BU em cada turno, 517.179 seções nos dados abertos (inclui as agregadas e as 41 do exterior não instaladas).
+Matemático forense, 30/10/2026, revisto com as correções do [parecer cético 39](../cetico-revisor/39-h23-h24-t11.md). Hipótese H24 de [hipoteses.md](../../hipoteses.md), proposta na discussão T19 ([síntese](../modelos/T19/sintese.md)). Banco: cópia de leitura de 29/10 10:50 UTC. Dados abertos do TSE já baixados: `eleitorado_local_votacao_2026.zip` (gerado em 25/10, os dois turnos) e `perfil_eleitor_secao_2026_<UF>.zip` (cadastro de julho). Universo completo: 499.207 seções com BU em cada turno, 517.179 seções nos dados abertos (inclui as agregadas e as 41 do exterior não instaladas).
 
 ## Resposta curta
 
@@ -12,10 +12,10 @@ Matemático forense, 30/10/2026. Hipótese H24 de [hipoteses.md](../../hipoteses
   - o eleitorado da seção nos dados abertos é o mesmo nos dois turnos em 499.207 de 499.207;
   - aptos da eleição federal do BU = eleitorado da eleição federal nos dados abertos em 499.207 de 499.207, nos dois turnos;
   - Σ aptos no 1º turno = Σ aptos no 2º turno = 158.745.079, e o que as seções ganharam de aptos próprios (+11.039) é exatamente o que o trânsito perdeu (595.156 → 584.117).
-- **Fato (um balanço que não fecha por 42).** Cada eleitor em trânsito deveria sair de uma seção (cadastro − aptos da seção) e entrar em outra (aptos em trânsito). Nas 499.207 seções, as saídas somam 595.114 e as entradas 595.156 no 1º turno; 584.075 e 584.117 no 2º. **Faltam 42 saídas nos dois turnos.** As 41 seções do exterior não instaladas explicam 3 (cadastro 426, eleitorado federal 423). Restam **39 eleitores** contados nos aptos de uma seção de destino sem saída visível de nenhuma seção de origem. **Pendente:** achar onde estão; os dados abertos são de 25/10 e o BU usa o cadastro fechado antes da carga, e uma mudança de cadastro depois da carga também explicaria a diferença. 39 em 158,7 milhões não muda nenhum resultado.
+- **Pendente, sem número (balanço do trânsito).** Comparando o eleitorado da seção dos dados abertos com os aptos da seção do BU, a soma das "saídas" fica 42 abaixo da soma dos aptos em trânsito, igual nos dois turnos; as 41 seções do exterior não instaladas explicam 3. A conta supõe que o eleitorado da seção dos dados abertos (uma foto só, gerada em 25/10) seja o cadastro usado na carga das urnas, e isso não está comprovado. Por isso a diferença não vira número de eleitores: fica pendente até haver o cadastro da carga.
 - **Fato (presença do trânsito).** Os eleitores vindos de outra UF (só Presidente) compareceram 90,68% no 1º turno (165.584 de 182.612) e 92,47% no 2º (24.727 de 26.740). A presença geral foi 78,92% e 80,78%.
 - **Fato (mesmo local, com e sem trânsito).** As seções com 10 ou mais aptos em trânsito (8.817 no 1º turno, 8.611 no 2º) têm, contra as outras seções do mesmo local: comparecimento maior (+1,24 e +1,02 ponto), parcela do 13 maior (+1,57 e +1,32), brancos + nulos menores (−0,31 e −0,16) e **menos** votos liberados sem digital (−0,83 e −0,87 ponto). Todos passam da correção para 20 testes.
-- **Fato (anomalia operacional: a conjunção pedida não aparece).** Nas seções com trânsito há **menos** liberação sem digital e menos rajadas, não mais (tabela abaixo). Comparecimento acima dos aptos: 0 em qualquer grupo. Das seções com trânsito cujo comparecimento passa do que 100% de presença do trânsito explicaria (4.041 no 2º turno), só 6 têm também anomalia operacional no diário, todas com 1 a 5 eleitores em trânsito.
+- **Fato (anomalia operacional: a conjunção pedida não aparece).** Quanto mais trânsito, **menos** liberação sem digital: no 2º turno, mais de 50% dos votos sem digital em 0,60% das seções sem trânsito (do mesmo local de uma seção com trânsito), 0,39% das com 1 a 9 em trânsito e 0,22% das com 10 ou mais (tabela abaixo). Comparecimento acima dos aptos: 0 em qualquer grupo. Das seções com trânsito cujo comparecimento passa do que 100% de presença do trânsito explicaria, 10 no 1º turno e 6 no 2º têm também mais de 50% sem digital ou rajada no diário. Em 14 dessas 16, o próprio cadastro biométrico da seção explica a liberação sem digital. Sobram 2, ambas do 1º turno: AL 28819/0045/0174 e PR 79294/0019/0055.
 - **Fato (1º × 2º turno).** 71 seções ganharam 10 ou mais aptos em trânsito no 2º turno. A variação do comparecimento é igual à da zona (+0,10 ponto, p = 0,68); a da parcela do 13 é −0,46 ponto (p = 0,047, não passa da correção). O trânsito novo não veio junto com mais comparecimento nem com mais 13.
 - **Fato (impedimentos registrados pela urna, 2º turno, todos os diários).** A urna barrou na seção de origem 459 tentativas de presos provisórios (289 seções), 516 de militares em serviço (335), 81 de servidores da Justiça Eleitoral (67), 125 de eleitores que pediram acessibilidade em outra seção (61) e 3.551 de eleitores que pediram voto em trânsito (2.362). É controle técnico com rastro: quem foi transferido não vota na origem.
 - **Hipótese.** A diferença de voto entre seções com e sem trânsito no mesmo local é de perfil: quem pede trânsito (trabalhadores deslocados, estudantes, militares, presos, mesários de outra seção) vota diferente do vizinho e comparece mais, porque pediu para votar ali. Diferença de voto sem anomalia operacional não é indício pela regra declarada.
@@ -69,18 +69,41 @@ O comparecimento maior é em parte mecânico: o trânsito comparece 90% a 92%, e
 
 ## Anomalia operacional por grupo (Fato)
 
+Grupos disjuntos. **Correção (parecer cético 39):** na primeira versão, o grupo "sem trânsito, no mesmo local" incluía por engano as 142.141 seções com 1 a 9 em trânsito (erro de `else` no script). Corrigido; a conclusão fica mais forte.
+
 | Grupo (2º turno) | Seções | Mais de 50% sem digital (50+ votos) | Rajada de 10+ sem digital | As duas | Comparecimento > aptos |
 |---|---:|---:|---:|---:|---:|
-| Com trânsito (qualquer) | 150.752 | 571 (0,38%) | 230 (0,15%) | 173 | 0 |
+| Sem trânsito, no mesmo local de uma com trânsito | 234.756 | 1.414 (0,60%) | 521 (0,22%) | 414 | 0 |
+| Com 1 a 9 em trânsito | 142.141 | 552 (0,39%) | 222 (0,16%) | 167 | 0 |
 | Com 10+ em trânsito | 8.611 | 19 (0,22%) | 8 (0,09%) | 6 | 0 |
-| Sem trânsito, no mesmo local de uma com trânsito | 376.897 | 1.966 (0,52%) | 743 (0,20%) | 581 | 0 |
 | Locais não convencionais | 3.920 | 6 (0,15%) | 5 (0,13%) | 2 | 0 |
 
-No 1º turno: mais de 50% sem digital em 578 das 151.208 com trânsito (0,38%), 19 das 8.817 com 10+ (0,22%) e 1.994 das 377.552 sem trânsito no mesmo local (0,53%).
+No 1º turno, mais de 50% sem digital: 1.435 das 235.161 sem trânsito (0,61%), 559 das 142.391 com 1 a 9 (0,39%) e 19 das 8.817 com 10+ (0,22%).
 
-**T3 com o diário.** Comparecimento acima do que 100% de presença do trânsito explica (excesso > 3 desvios): 4.538 seções com trânsito no 1º turno (3,67%) e 9.009 sem trânsito (2,77%); no 2º, 4.041 (3,28%) e 8.581 (2,64%). Com anomalia operacional junto: **10 no 1º turno e 6 no 2º**, entre as com trânsito (0,22% e 0,15% dos excessos), contra 360 e 361 entre as sem trânsito (4,0% e 4,2%, quase todas do exterior, onde todo voto sai sem digital). As 6 do 2º turno: ES 57932/0009/0090, ES 56634/0025/0326, ES 56251/0034/0935, ES 56251/0054/0337, GO 96415/0031/0123 e PE 24570/0147/0373, com 1 a 5 aptos em trânsito. O trânsito não explica o excesso nelas (é de 1 a 5 eleitores, e o excesso é de 23 a 31); o sinal é de liberação sem digital, que é o tema da H15.
+**T3 com o diário.** Comparecimento acima do que 100% de presença do trânsito explica (excesso > 3 desvios): 4.538 seções com trânsito no 1º turno (3,67%) e 9.009 sem trânsito (2,77%); no 2º, 4.041 (3,28%) e 8.581 (2,64%). Com anomalia operacional junto: **10 no 1º turno e 6 no 2º**, entre as com trânsito, contra 360 e 361 entre as sem trânsito (quase todas do exterior, onde todo voto sai sem digital). No 2º turno as 6 têm de 1 a 5 aptos em trânsito; no 1º turno, 9 têm de 1 a 5 e a ES 56634/0025/0254 tem **26**.
 
-**Recomendação.** Passar as 6 seções do 2º turno e as 10 do 1º para a fila da H15 (liberação sem digital em bloco), não para a H24.
+**Conferência com o cadastro biométrico (correção do parecer cético 39).** "Mais de 50% sem digital" não leva em conta quantos eleitores da seção têm digital cadastrada. Comparei cada uma das 16 com o cadastro de julho (dados abertos, perfil do eleitorado). Liberação sem digital "explicada pelo cadastro" = 100% − % de eleitores com digital; supõe que quem tem e quem não tem digital comparecem igual (conta de conferência):
+
+| Seção | Turno | Em trânsito | Com digital no cadastro | Sem digital no diário | Explicada pelo cadastro |
+|---|---|---:|---:|---:|---:|
+| ES 57932/0009/0090 | 1º e 2º | 1 | 28,3% | 66,9% e 66,8% | 71,7% |
+| ES 56634/0025/0326 | 2º | 1 | 35,2% | 51,3% | 64,8% |
+| ES 56251/0034/0935 | 2º | 1 | 40,2% | 51,9% | 59,8% |
+| ES 56251/0054/0337 | 1º e 2º | 1 | 40,9% | 55,6% e 53,3% | 59,1% |
+| GO 96415/0031/0123 | 1º e 2º | 5 | 27,7% | 58,8% e 61,5% | 72,3% |
+| PE 24570/0147/0373 (marcada pela rajada) | 2º | 1 | 56,6% | 38,8% | 43,4% |
+| ES 56634/0025/0254 | 1º | 26 | 29,8% | 58,3% | 70,2% |
+| ES 56111/0020/0140 | 1º | 1 | 42,0% | 51,8% | 58,0% |
+| ES 56146/0010/0094 | 1º | 1 | 33,3% | 56,6% | 66,7% |
+| ES 56251/0034/0480 | 1º | 1 | 37,6% | 57,6% | 62,4% |
+| ES 56251/0054/0299 | 1º | 2 | 37,7% | 59,0% | 62,3% |
+| **AL 28819/0045/0174** | 1º | 1 | **100%** | **52,5%** | 0% |
+| **PR 79294/0019/0055** | 1º | 1 | **100%** | **98,2%** | 0% |
+
+- **Fato.** Em 14 das 16 (contando as que aparecem nos dois turnos uma vez por turno), a liberação sem digital fica abaixo da que o cadastro já explica: são seções com pouca biometria cadastrada. A rajada de 10 liberações sem digital também é esperada quando dois terços dos eleitores não têm digital. Essas 14 **não** são sinal da H15.
+- **Fato.** AL 28819/0045/0174 e PR 79294/0019/0055 (1º turno) têm todos os eleitores com digital no cadastro e mesmo assim liberaram 52,5% e 98,2% dos votos sem digital.
+
+**Recomendação.** Passar só AL 28819/0045/0174 e PR 79294/0019/0055 para a fila da H15 (liberação sem digital) e da H07 (leitor biométrico). As outras 14 saem da fila.
 
 ## Locais não convencionais (Fato)
 
@@ -88,12 +111,12 @@ Nível no 2º turno contra a própria zona (3.920 seções, 656 zonas): comparec
 
 ## O que permite e o que não permite afirmar
 
-- **Permite (Fato):** nenhuma seção tem mais eleitores votando do que inscritos, nem mais aptos do que o cadastro; nenhuma tem mais eleitores "só Presidente" votando do que inscritos; o cadastro da seção não mudou entre os turnos; a soma dos aptos é a mesma nos dois turnos; seções com muito trânsito liberam **menos** votos sem digital que as vizinhas; o trânsito que entrou só no 2º turno não trouxe mais comparecimento.
-- **Não permite:** dizer que todos os eleitores em trânsito votaram por si mesmos; dizer onde estão os 39 eleitores do balanço; separar preso, militar, servidor e deficiência visual por seção (não há esse dado público por seção); afirmar que a diferença de voto entre seções com e sem trânsito é só de perfil (é Hipótese).
+- **Permite (Fato):** nenhuma seção tem mais eleitores votando do que inscritos, nem mais aptos da seção do que o eleitorado da seção nos dados abertos; nenhuma tem mais eleitores "só Presidente" votando do que inscritos; o eleitorado da seção nos dados abertos é o mesmo nos dois turnos; a soma dos aptos é a mesma nos dois turnos; quanto mais trânsito, **menos** votos liberados sem digital; o trânsito que entrou só no 2º turno não trouxe mais comparecimento.
+- **Não permite:** dizer que todos os eleitores em trânsito votaram por si mesmos; dar número ao balanço do trânsito (depende do cadastro usado na carga); separar preso, militar, servidor e deficiência visual por seção (não há esse dado público por seção); afirmar que a diferença de voto entre seções com e sem trânsito é só de perfil (é Hipótese).
 
 ## Pendente
 
-- O balanço de 39 eleitores (entradas em trânsito sem saída visível): comparar com o cadastro usado na carga das urnas, que não é público.
+- O balanço do trânsito (entradas em trânsito sem saída visível no eleitorado dos dados abertos): comparar com o cadastro usado na carga das urnas, que não é público. Sem número até lá.
 - 1º turno: a contagem dos impedimentos por motivo (o catálogo nacional de mensagens só existe para o 2º turno).
 - Deficiência: o total por seção do cadastro de julho foi lido (`h24-atributos.jsonl`, campo `perfil.deficiencia`), mas não entrou em teste; não há o tipo da deficiência.
 
@@ -102,8 +125,8 @@ Nível no 2º turno contra a própria zona (3.920 seções, 656 zonas): comparec
 ```
 node scripts/auditoria/matematico-h24-dados.mjs        # atributos por seção dos dados abertos (locais + perfil), ~10 min
 node scripts/auditoria/matematico-h24-analise.mjs      # invariantes V1–V5, T1–T5, ~10 min
-node scripts/auditoria/matematico-h24-cadastro.mjs     # cadastro × aptos (C1–C3) e o balanço de 42, ~1 min
-node scripts/auditoria/matematico-h24-conjuncao.mjs    # T3 + diário (conjunção), ~2 min
+node scripts/auditoria/matematico-h24-cadastro.mjs     # cadastro × aptos (C1–C3) e o balanço do trânsito, ~1 min
+node scripts/auditoria/matematico-h24-conjuncao.mjs    # T3 + diário (conjunção) com o cadastro biométrico, ~2 min
 ```
 
 Saídas em `data/parsed/auditoria/matematico-forense/`: `h24-atributos.jsonl`, `h24-atributos-resumo.json`, `h24-resultado.json`, `h24-cadastro.json`, `h24-conjuncao.json`. O teste de permutação usa `scripts/auditoria/matematico-h23-lib.mjs`.

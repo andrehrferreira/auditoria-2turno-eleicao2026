@@ -2,12 +2,19 @@
 // trânsito explica (T3 de matematico-h24-analise.mjs, excesso > 3 desvios), quantas têm também anomalia operacional no
 // diário (mais de 50% dos votos sem digital, com 50+ votos; ou rajada de 10+ liberações sem digital em 10 minutos)?
 // Compara com a mesma conjunção nas seções sem trânsito (recalculada aqui com a mesma regra do T3).
+// Para cada caso com trânsito, confere o cadastro biométrico de julho (dados abertos, h24-atributos.jsonl, campo perfil):
+// parte sem digital "explicada" = 1 − eleitores com biometria / eleitores (supõe presença igual com e sem digital; conta
+// de conferência, parecer cético 39). Caso explicado pelo cadastro: parte sem digital no diário ≤ a explicada.
 // Uso: node scripts/auditoria/matematico-h24-conjuncao.mjs → data/parsed/auditoria/matematico-forense/h24-conjuncao.json
+import { createReadStream } from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
+import { createInterface } from 'node:readline';
 import path from 'node:path';
 import { abrirLeitura } from '../../src/banco-leitura.js';
 import { SAIDA, carregarSecoes, chave } from './matematico-h23-lib.mjs';
 
+const PERFIL = new Map();
+for await (const l of createInterface({ input: createReadStream(path.join(SAIDA, 'h24-atributos.jsonl')), crlfDelay: Infinity })) if (l) { const o = JSON.parse(l); if (o.perfil) PERFIL.set(o.k, o.perfil); }
 const R = JSON.parse(await readFile(path.join(SAIDA, 'h24-resultado.json'), 'utf8'));
 const { db, fonte } = await abrirLeitura();
 const S = carregarSecoes(db);
@@ -47,13 +54,23 @@ for (const t of [1, 2]) {
     const p = P.get(`${t}|${s.k}`);
     if (anom(p)) {
       g.excessoEAnomalia++;
-      if (com) o.casosComTransito.push({ k: s.k, tte: f.aptos_tte, comp: s[tl].comp, aptosSecao: f.aptos_secao, excesso: +excesso.toFixed(1), votosDiario: p.v, semDigital: p.v - p.b, rajada: p.raj });
+      if (com) {
+        const pf = PERFIL.get(s.k);
+        const pctCadastro = pf?.eleitores ? +(100 * pf.biometria / pf.eleitores).toFixed(1) : null;
+        const pctSemDigital = +(100 * (p.v - p.b) / p.v).toFixed(1);
+        const explicada = pctCadastro === null ? null : +(100 - pctCadastro).toFixed(1);
+        o.casosComTransito.push({ k: s.k, tte: f.aptos_tte, comp: s[tl].comp, aptosSecao: f.aptos_secao, excesso: +excesso.toFixed(1), votosDiario: p.v,
+          semDigital: p.v - p.b, pctSemDigital, rajada: p.raj, pctComDigitalNoCadastro: pctCadastro, pctSemDigitalExplicadaPeloCadastro: explicada,
+          explicadoPeloCadastro: explicada !== null && pctSemDigital <= explicada });
+      }
     }
   }
   const ref = R.testes[`T3 excesso de comparecimento ${t}t`];
   o.confereT3 = o.com.excesso === ref.com.excesso3dp && o.sem.excesso === ref.sem.excesso3dp;
   o.com.pctComAnomalia = +(100 * o.com.excessoEAnomalia / o.com.excesso).toFixed(2);
   o.sem.pctComAnomalia = +(100 * o.sem.excessoEAnomalia / o.sem.excesso).toFixed(2);
+  o.explicadosPeloCadastro = o.casosComTransito.filter((c) => c.explicadoPeloCadastro).length;
+  o.naoExplicados = o.casosComTransito.filter((c) => !c.explicadoPeloCadastro).map((c) => c.k);
   out[`${t}t`] = o;
 }
 await writeFile(path.join(SAIDA, 'h24-conjuncao.json'), JSON.stringify(out, null, 1));
