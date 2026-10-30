@@ -19,7 +19,9 @@ Entregas da auditoria, por data. Os números são os dos commits citados; o esta
   - 11, urnas trocadas por reserva (ec6e371);
   - 12, sigilo do voto (0f6575a).
 - Revisão geral da perícia por Astra, Grok e Kimi (T20), com triagem e correções em todos os tópicos e no resumo (2178a8e, 5e3e65a).
-- Consenso T22: os números de teste estatístico e o percentual hipotético do RJ (49,270%) saem do relatório; fica "o teste não encontrou diferença" (8648723, 2af0164).
+- Consenso T22: os números de teste estatístico e o percentual hipotético do RJ (49,270%) saem do relatório; fica "o teste não encontrou diferença" (8648723, 2af0164, ea77a0e).
+- Temático da AC URNA com a busca por carteiras de teste ou fora do padrão e com as respostas unânimes do consenso T23 (8b548dd, a5d7fdf). Relatório completo (176 páginas) e temático (34 páginas) regerados e assinados (33f8ca2, 20a4315).
+- README com o andamento de 30/10, os relatórios assinados e a forma de conferir a assinatura; CHANGELOG; licença MIT (2ac1127, a03a5a3, 1cbb9ae). Relatório das hipóteses em teste com H01 a H27 (3b1dacd).
 
 ### Hipóteses e testes
 
@@ -40,7 +42,10 @@ Entregas da auditoria, por data. Os números são os dos commits citados; o esta
   - urnas UE2013/UE2015 ligadas à AC URNA, cujo certificado venceu em 18/07/2026 (3f41f88);
   - a AC URNA emitiu 54 certificados de urna depois de vencer (5d27ff8, 7059eb1);
   - os votos dessas urnas não mostram padrão a favor de candidato (5c03b78);
-  - T21: quatro análises sobre a validação do certificado na totalização (a8a7dbb).
+  - T21: quatro análises sobre a validação do certificado na totalização (a8a7dbb);
+  - nenhuma das 503.525 carteiras de urna fora do molde de produção; 6 urnas certificadas entre os turnos; sustentado com ressalvas pela revisão cética 35 (0a9912b, ca58181, 4aac049);
+  - T23: consenso dos quatro revisores sobre o atacante com a chave e a totalização; sem as urnas da AC URNA o 13 ainda venceria o 2º turno por 3.316.317 (a5d7fdf).
+- **H27:** registrada, pacote trocado antes da totalização e seções fantasmas; primeira medida: fora do exterior e de um caso do Recuperador de Dados no ES, nenhuma carteira de urna assinou mais de uma seção (a2e195f).
 - **H26:** triagem da virada para o 13 por zona (região, modelo de urna, horário) (6d1175a, 2b107b7).
 
 ### Correções

@@ -522,8 +522,10 @@
         "A chave da AC URNA carimbou 54 carteiras de urna com início de validade entre 20/07 e 19/10/2026, todas apontando para o certificado vencido. Essas urnas votaram em 53 seções no 2º turno e em 45 no 1º; duas foram carimbadas entre os turnos.",
         "Nenhuma chave, número de série ou urna repetida entre as 503.525 carteiras de urna dos dois turnos. As assinaturas das urnas antigas conferem nos dois turnos.",
         "Com o certificado publicado, o verificador usual recusa as 99.957 seções do 2º turno com urna antiga. Os votos delas estão no resultado oficial: nas 99.955 com voto para Presidente, o boletim é igual ao oficial.",
-        "Nas 53 seções com carteira tardia, a parcela do 13 mudou entre os turnos como nas vizinhas do mesmo local (+0,13 ponto; 13 votos). Nenhum dos 12 testes combinados antes acha diferença entre urnas antigas e novas (eles cobrem as 516 seções de urna antiga que dividem o local com urna nova).",
-        "Tamanho do risco, não sinal de fraude: no 2º turno, 20,28% dos votos válidos passaram por essas urnas."
+        "Nas 53 seções com carteira tardia, o teste que compara a variação dos votos entre os turnos com a das vizinhas do mesmo local não encontrou diferença; os testes combinados antes também não encontraram diferença entre urnas antigas e novas. Não encontrar diferença não prova que os votos foram iguais.",
+        "Tamanho do risco, não sinal de fraude: no 2º turno, 20,28% dos votos válidos passaram por essas urnas.",
+        "Nenhuma das 503.525 carteiras de urna está fora do molde do seu cartório, inclusive as 54 tardias; seis urnas (duas da AC URNA e quatro da AC UE2020) foram certificadas entre os turnos e substituíram a urna do 1º turno. Limite: com a chave do cartório, copiando o molde publicado, sai uma carteira indistinguível.",
+        "Sem os votos das seções com urna da AC URNA, o 13 venceria o 2º turno de Presidente por 3.316.317 votos: a recusa dessas urnas, sozinha, não mudaria o vencedor."
       ],
       "falta": [
         "Resposta do TSE ao pedido pela LAI: se a totalização confere a assinatura e a validade, com qual certificado; emissões da AC URNA em 2026; lista de revogação, política e raízes; guarda da chave entre 18/07 e 25/10.",
@@ -531,8 +533,8 @@
         "Programa alterado e assinado com a chave verdadeira: não testável nos arquivos públicos."
       ],
       "alternativas": "Cartório renovado com a mesma chave (não publicado e não conferível nos arquivos); urnas antigas em lugares de perfil político diferente; validade conferida pelo TSE com outra cadeia ou pela data da emissão da carteira.",
-      "readme_sabe": "Certificado da AC URNA vencido em 18/07/2026; 54 carteiras de urna carimbadas depois; votos dessas seções iguais aos das vizinhas",
-      "readme_proximo": "Resposta do TSE pela LAI (conferência na totalização, emissões, guarda da chave)"
+      "readme_sabe": "Certificado da AC URNA vencido em 18/07/2026; 54 carteiras carimbadas depois; 0 carteira fora do molde nas 503.525; teste de votos sem diferença; sem essas urnas o 13 ainda venceria",
+      "readme_proximo": "Resposta do TSE ao pedido formal (conferência na totalização, guarda da chave, AC de teste, lista de urnas esperadas)"
     },
     {
       "id": "H26",
@@ -552,6 +554,27 @@
       "alternativas": "Votos de eliminados com força regional; abstenção diferente entre os turnos; zona pequena; padrão de 2018 e 2022; prorrogação até as 19h e fuso (H06).",
       "readme_sabe": "Triagem de todas as zonas feita; aguarda revisão cética",
       "readme_proximo": "Revisão cética; zonas fora da curva seção a seção; linha de base 2018 e 2022"
+    },
+    {
+      "id": "H27",
+      "titulo": "Pacote de seção trocado antes da totalização, assinado por outra urna com carteira válida (urna alterada, de reserva ou do Recuperador de Dados), e seções fantasmas",
+      "status": "em teste",
+      "como": [
+        "Procurar a mesma carteira de urna assinando mais de uma seção, em cada turno e entre os turnos.",
+        "Comparar a urna e a carga de cada pacote com a lista oficial de correspondência urna × seção do TSE, que vem de fora do pacote assinado.",
+        "Abrir cada seção em que o boletim foi regravado pelo Recuperador de Dados: quem assinou, se o diário da votação real está no pacote e se os votos fecham.",
+        "Conferir se toda seção contada existe no cadastro de eleitores por seção e no de locais de votação, e se há seções novas com comparecimento alto."
+      ],
+      "sabe": [],
+      "falta": [
+        "Lista de correspondência urna × seção do TSE cruzada com os pacotes.",
+        "Seções do Recuperador de Dados nos dois turnos, uma a uma.",
+        "Seções contadas × cadastro de eleitores e de locais de votação.",
+        "Revisão cética antes de levar qualquer número à perícia."
+      ],
+      "alternativas": "Computador do Sistema de Apuração no exterior (assina várias seções apuradas em cédula); Recuperador de Dados legítimo em urna com defeito; urnas de reserva (H14); seção nova por mudança de local.",
+      "readme_sabe": "Primeira medida: fora do exterior (apuração em cédula) e de um caso do Recuperador de Dados no ES, nenhuma carteira de urna assinou mais de uma seção",
+      "readme_proximo": "Lista de correspondência urna × seção do TSE; seções do Recuperador de Dados; seções × cadastro"
     }
   ],
   "fila": [
