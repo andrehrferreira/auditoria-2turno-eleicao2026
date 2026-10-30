@@ -374,3 +374,112 @@ Os títulos de mesário e de eleitor não foram lidos nem gravados.
    - checar se as liberações do padrão B vêm do mesmo mesário (sem gravar o título);
    - separar "dedo novo" de "dedo já visto" e a liberação sem captura como medidas próprias (parecer 45, seção 2).
 4. **Limite do desenho:** o salto medido só contra os pares do prédio mistura a seção com as vizinhas. O parecer 45 refez o salto contra a própria seção e a UF × modelo, e o sinal sumiu. Um próximo desenho deve usar essa definição e incluir as 26.933 seções sozinhas no prédio.
+
+## Adendo de 30/10/2026: segunda contagem das liberações à mão por dedos lidos
+
+**Pedido do coordenador:** recontar, com leitor próprio e sem o código do parecer 45, a divisão das liberações à mão pelo número de tentativas que leram um dedo (0 a 4), e achar por que as contagens de quem autorizou não fecham entre si no 1º turno.
+
+### Como foi contado
+
+**Script:** `scripts/auditoria/estatistico-h19-captura.mjs`.
+
+```bash
+node --max-old-space-size=6144 scripts/auditoria/estatistico-h19-captura.mjs --turno 1   # ~95 min; um processo por turno
+node --max-old-space-size=6144 scripts/auditoria/estatistico-h19-captura.mjs --turno 2
+node scripts/auditoria/estatistico-h19-captura.mjs --turno 1 --resumo                     # soma e compara (H08, leitor do doc 08, saída do parecer 45)
+```
+
+As saídas ficam em `data/parsed/auditoria/estatistico/h19/captura/`: `<t>t/<uf>.jsonl`, uma linha por seção, e `resumo-<t>t.json`.
+
+**Leitura do diário.** É a da H08: todos os pacotes da seção, log repetido uma vez, `.jez` aninhados e só as linhas da seção declarada. Cada urna vira um fluxo, com a **união das cópias** MI/ME.
+- O 1º turno é lido do pacote do 1º turno.
+- O código do parecer 45 não foi usado. A saída dele serviu só para a comparação final.
+- Universo: 27 UFs, 497.897 seções por turno, 0 erro de leitura.
+
+**Liberação à mão.** É o voto computado cujo ciclo tem `Dado digitado confere`, sem `Tipo de habilitação do eleitor [biométrica]` e sem `Ano de nascimento digitado é igual ao do cadastro`.
+
+**Tentativa que leu um dedo.** Conta-se no bloco de tentativas que vai de `Solicita digital. Tentativa [1] de [m]` até `Solicitação de dado pessoal do eleitor para habilitação manual`. Cada tentativa n termina com uma de duas mensagens:
+- `Capturada a digital. Tentativa [n] de [m]`: **um dedo foi lido**, e não foi reconhecido;
+- `Timeout de reconhecimento do dedo. Tentativa [n] de [m]`: o tempo acabou e **nenhum dedo foi lido**.
+
+A mensagem `Capturada a digital do mesário` é outra e não conta.
+
+**Quem autorizou.** Depois de `Solicita digital do mesário`, no mesmo ciclo:
+- **mesário registrado:** `Mesário … habilitou o eleitor`;
+- **dedo novo:** `Não encontrou digital coletada em nenhum dos arquivos…`;
+- **dedo já visto:** `Digital coletada bate com uma digital gravada após o registro inicial de mesário…`;
+- **sem marca:** nenhuma das três.
+
+### Resultado (Fato, universo completo)
+
+| Dedos lidos nas 4 tentativas | 1º turno | % | 2º turno | % |
+|---|---|---|---|---|
+| 4 | 7.352.344 | 88,13% | 7.474.289 | 86,58% |
+| 3 | 483.829 | 5,80% | 538.587 | 6,24% |
+| 2 | 201.326 | 2,41% | 240.638 | 2,79% |
+| 1 | 132.423 | 1,59% | 166.786 | 1,93% |
+| **0 (nenhum dedo lido)** | **172.318** | 2,07% | **212.171** | 2,46% |
+| **Total de liberações à mão** | **8.342.240** | | **8.632.471** | |
+
+| Quem autorizou | 1º turno | 2º turno |
+|---|---|---|
+| Mesário registrado | 5.120.439 | 5.841.108 |
+| Dedo novo, sem registro | 1.516.214 | 1.280.004 |
+| Dedo já visto, sem registro | 1.705.586 | 1.511.359 |
+| Sem marca de autorização | 1 | 0 |
+| Mais de uma marca no mesmo ciclo | 0 | 0 |
+
+**Conferências:**
+- Toda tentativa terminou em captura ou em tempo esgotado: nenhum bloco ficou incompleto.
+- Houve 2 liberações no 1º turno e 1 no 2º com só 1 tentativa pedida. São as 3 exceções do parecer, e entram na tabela pelo número de dedos lidos.
+- O total de liberações à mão é igual ao do leitor do doc 08 nos dois turnos, seção a seção (0 diferença).
+
+### Bate com o parecer 45?
+
+**Sim, nos dois turnos, nas 497.897 seções, uma a uma.** Comparei a saída por seção do parecer (`data/parsed/auditoria/cetico/45/captura/<uf>.jsonl`). As 5 classes de dedos lidos e as 4 classes de autorização são iguais em todas as seções, e os totais acima são os mesmos do parecer.
+
+**Limite da independência:**
+- Os dois contadores leem os mesmos arquivos e usam as mesmas mensagens do diário.
+- O código é diferente. O do parecer lê o dia do 1º turno pelo caminho do leitor do doc 08 (o pacote do 2º turno quando a urna é a mesma). O meu lê o pacote do 1º turno, com a união das cópias.
+- O que a concordância confirma: a contagem não depende do leitor nem da escolha do pacote.
+- O que ela não confirma: a interpretação das mensagens, que é a mesma nos dois.
+
+### Por que as contagens de quem autorizou não fechavam no 1º turno (Fato)
+
+Os números em conflito eram três:
+- mesário registrado: 5.120.426 (H08) × 5.120.439 (parecer);
+- sem mesário identificado: 3.221.798 (H08) × 3.221.800 (dedo novo + dedo já visto, parecer);
+- liberações com autorização classificada: 8.342.239 (parecer) × 8.342.240 (total de liberações).
+
+Há duas causas, e as duas fecham a conta até a unidade.
+
+**1. A saída da H08 do 1º turno foi gerada com a regra antiga das cópias.**
+- Os arquivos `data/parsed/auditoria/estatistico/h08/1t/*.secoes.jsonl` não têm o campo `copias`. Foram gravados antes da troca para a união das cópias (parecer cético 42), com a regra antiga, que fica só com a cópia de maior número de linhas e descarta trechos que estão só nas outras.
+- Em 4 seções do 1º turno, a maior cópia não tem o dia inteiro. A tabela mostra só a H08 antiga (maior cópia) e a união das cópias (este adendo).
+
+| Seção | Linhas descartadas (H08 antiga) | Votos: H08 antiga / união / BU | Mesário registrado: H08 antiga / união | Sem mesário: H08 antiga / união |
+|---|---|---|---|---|
+| MG 47830/0165/0031 | 1.092 | 157 / 194 / 194 | 9 / 12 | 0 / 0 |
+| PR 75353/0002/0574 | 542 | 304 / 324 / 324 | 24 / 26 | 7 / 7 |
+| PR 76570/0010/0273 | 2.305 | 125 / 227 / 227 | 6 / 8 | 8 / 11 |
+| RJ 58041/0155/0190 | 2.331 | 180 / 286 / 286 | 3 / 9 | 1 / 1 |
+| **Soma** | | | **+13** | **+3** |
+
+**2. Uma liberação em RJ 60011/0008/0061 não tem marca de autorização legível.**
+- É a urna de diário corrompido do doc 17.
+- No diário bruto do 1º turno (`node src/exportar.js --turno 1 --uf rj --municipio 60011 --zona 0008 --secao 0061 --log dia --stdout`), às 09:32 o ciclo mostra 4 dedos lidos e não reconhecidos, `Dado digitado confere` e `Solicita digital do mesário`.
+- Depois vêm duas leituras do dedo de quem autoriza: `Biometria coletada não é do mesário …` e uma linha corrompida (`Biometria cmletada lãm é do mesário …`).
+- O voto é computado às 09:33:49 sem nenhuma das três marcas de autorização.
+- A H08 conta essa liberação como "sem mesário" (V3s), porque falta a marca de mesário. O parecer e este adendo a contam à parte, como "sem marca".
+
+**A conta fecha:**
+- **mesário registrado:** 5.120.426 + 13 = **5.120.439**;
+- **sem mesário identificado:** 3.221.798 + 3 − 1 = **3.221.800** (= 1.516.214 + 1.705.586);
+- **total:** 5.120.439 + 3.221.800 + 1 sem marca = **8.342.240**. Os 8.342.239 do parecer são as liberações com autorização classificada; falta exatamente essa 1.
+
+**Efeitos:**
+- **H19 (este doc):** as 4 seções já estavam fora dos testes (exclusão "V3m + V3s da H08 diferente das falhas do leitor"). Os testes não mudam.
+- **Tabela do 1º turno do doc 18 (H13) e tabela de medidas acima:**
+  - V3m (5.120.426) e V3s (3.221.798) vêm da H08 antiga;
+  - com a união das cópias, os números certos são **5.120.439** e **3.221.801** (os 3.221.800 de dedo novo e já visto mais a liberação sem marca, contada como "sem mesário" na regra da H08);
+  - **Recomendação:** refazer a H08 do 1º turno com a regra atual (`--refazer`) antes de citar V3m e V3s do 1º turno. O 2º turno não muda: a contagem deste adendo bate com a H08 em todas as seções.
