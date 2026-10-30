@@ -1,10 +1,10 @@
-# 14. Outras formas de fraude testadas: cidade inteira, voto nulo combinado, exterior, recarga da urna, eleitores em trânsito e resultado trocado no caminho
+# 14. Outras formas de fraude testadas: cidade inteira, voto nulo combinado, exterior, recarga da urna, eleitores em trânsito, resultado trocado no caminho e falha da digital provocada
 
-> **Situação:** escrito em 30/10/2026. Reúne seis hipóteses do [quadro das hipóteses](10-quadro-das-hipoteses.md): H18 (mudança igual em todas as urnas de uma cidade), H21 (voto nulo usado como "senha" de compra de voto), H22 (exterior e seções apuradas em cédula), H23 (recarga e carga da urna fora do previsto), H24 (eleitores em trânsito) e H27 (resultado trocado no caminho e seções fantasmas). As seis passaram por uma segunda verificação independente, que refez as contas com programas próprios sobre todas as seções e procurou explicações que a primeira análise não tinha considerado. Ela confirmou os números e corrigiu o alcance de cada teste: H18, H22, H23, H24 e H27 sustentadas, com ressalvas que este texto já usa; na H21, o resultado do 2º turno é um fato do teste, mas o teste não tinha como encontrar o esquema no voto para Presidente. O texto usa só as afirmações que resistiram a essa verificação, e cada seção diz o que o teste não enxerga.
+> **Situação:** escrito em 30/10/2026. Reúne sete hipóteses do [quadro das hipóteses](10-quadro-das-hipoteses.md): H18 (mudança igual em todas as urnas de uma cidade), H21 (voto nulo usado como "senha" de compra de voto), H22 (exterior e seções apuradas em cédula), H23 (recarga e carga da urna fora do previsto), H24 (eleitores em trânsito), H27 (resultado trocado no caminho e seções fantasmas) e, acrescentada na mesma data, H19 (falha da digital provocada para abrir a liberação à mão). As sete passaram por uma segunda verificação independente, que refez as contas com programas próprios sobre todas as seções e procurou explicações que a primeira análise não tinha considerado. Ela confirmou os números e corrigiu o alcance de cada teste: H18, H22, H23, H24 e H27 sustentadas, com ressalvas que este texto já usa; na H21, o resultado do 2º turno é um fato do teste, mas o teste não tinha como encontrar o esquema no voto para Presidente. Na H19, ela confirmou as contagens até a unidade, mostrou que a medida antes chamada "falha da digital do mesário" é, na verdade, a liberação autorizada por um dedo que não é de mesário cadastrado, contou as liberações feitas sem nenhum dedo lido e não confirmou o único resultado fora do padrão, no Sudeste. O texto usa só as afirmações que resistiram a essa verificação, e cada seção diz o que o teste não enxerga.
 
 ## A pergunta
 
-Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, arquivos alterados, liberação de eleitor sem digital, troca de urna. Este tópico testa seis formas mais difíceis de ver, pensadas para escapar desses testes:
+Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, arquivos alterados, liberação de eleitor sem digital, troca de urna. Este tópico testa sete formas mais difíceis de ver, pensadas para escapar desses testes:
 
 1. **H18:** mudar um pouco o resultado de **todas** as urnas de uma cidade, por igual, para que nenhuma urna destoe das vizinhas.
 2. **H21:** combinar com o eleitor comprado um **número sem candidato** (voto nulo) e conferir depois, nos arquivos públicos, se ele apareceu na seção.
@@ -12,6 +12,7 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 4. **H23:** **carregar a urna de novo**, ou fora do dia previsto, para pôr nela um programa ou dados diferentes.
 5. **H24:** usar os **eleitores em trânsito** (quem vota fora da própria seção) para inflar seções.
 6. **H27:** **trocar o resultado de uma seção no caminho** até o TSE por outro, assinado por outra urna, ou contar o resultado de uma **seção que não existe**.
+7. **H19:** **provocar a falha da digital** numa seção escolhida, para que a mesa libere os eleitores à mão e, por esse caminho, ponha votos no lugar de quem não foi votar.
 
 ## Resposta curta
 
@@ -21,6 +22,7 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 - **Fato (H23):** em todas as 499.207 seções de cada turno, o código de carga do boletim está no diário da própria urna, no mesmo pacote. As recargas deixam rastro: 2.674 no 1º turno e 1.770 novas no 2º. Num grupo pequeno de seções, o motivo da recarga não aparece no diário; isso não é sinal de fraude (um defeito visto só pelo operador não deixa linha no diário), e as atas foram pedidas ao TSE (**Pendente**). Nas cargas feitas no próprio dia da votação, a hora digitada e o relógio da urna coincidem (item 4).
 - **Fato (H24):** em todas as seções dos dois turnos, os eleitores aptos são a soma dos eleitores da seção e dos em trânsito, e o total do país foi o mesmo nos dois turnos: 158.745.079. Nas seções com 10 ou mais eleitores em trânsito, a parte dos votos liberados sem digital foi **menor** que nas outras seções do mesmo local, ao contrário do que um uso fraudulento do trânsito deixaria (item 5).
 - **Fato (H27):** em todas as seções com urna dos dois turnos, o resultado foi assinado pela própria urna que ele diz ter votado, menos nas 17 seções em que os votos foram recuperados por outra urna (recuperação de dados), em que assinou uma urna de reserva registrada para a região. Nenhuma seção fantasma. Em 45 seções, o registro da urna só chegou ao TSE no dia da votação; no 2º turno, quase sempre junto com o próprio resultado (item 6).
+- **Fato (H19):** a urna sempre exigiu as quatro tentativas de digital antes da liberação à mão: das 16.974.711 liberações à mão dos dois turnos, só 3 tiveram menos. Mas uma tentativa pode terminar sem dedo nenhum, e 172.318 liberações no 1º turno e 212.171 no 2º foram feitas sem que o leitor lesse dedo nenhum. E o dedo que autoriza a liberação pode ser de qualquer pessoa. Isso é **risco**, não prova. A falha da digital ficou praticamente igual nos dois turnos (7,07% e 7,16%) e não acompanhou a mudança do voto; o único resultado fora do padrão, no Sudeste, não se confirma (item 7).
 - **Não se pode afirmar:** que nenhuma dessas formas de fraude foi usada em escala pequena, espalhada ou de um jeito que os arquivos públicos não registram. Cada item diz o que o teste não enxerga.
 
 ## Termos usados neste tópico
@@ -41,6 +43,13 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 - **Recuperação de dados (Recuperador de Dados, RED):** quando a urna não consegue gerar o boletim, o cartório lê o cartão de votos dela com um programa próprio e gera o boletim. Às vezes isso é feito em outra urna.
 - **Teste de Integridade:** auditoria pública feita no dia da votação. Algumas urnas são sorteadas e retiradas da seção na véspera; no dia, num local público, voluntários votam em cédulas de papel, os votos são digitados nessa urna, e no fim o boletim é comparado com as cédulas. Como um cliente oculto numa loja. Os eleitores da seção sorteada votam numa urna substituta.
 - **Seção fantasma:** seção que não existe de fato, mas tem resultado assinado e contado.
+- **Leitor de digital:** o pequeno sensor da urna onde o eleitor põe o dedo para ser identificado pela biometria.
+- **Tentativa:** cada vez que a urna pede o dedo e espera. A tentativa termina de um de dois jeitos: o leitor **lê** um dedo, que não bate com a digital do eleitor (o diário anota "Capturada a digital"), ou o **tempo acaba** sem dedo no leitor (o diário anota "Timeout de reconhecimento do dedo", isto é, tempo esgotado). Como uma senha de banco que bloqueia depois de quatro erros, mas em que deixar a tela parada até o tempo acabar também conta como erro.
+- **Liberação à mão (liberação pelo mesário):** depois de quatro tentativas sem reconhecimento, a mesa digita um dado do eleitor e põe um dedo no leitor para autorizar o voto. Neste item, "falha da digital" é esse caso: o eleitor tinha digital no arquivo da urna, não foi reconhecido nas quatro tentativas e foi liberado à mão.
+- **Taxa de falha:** a parte dos eleitores a quem a urna pediu a digital que acabou liberada à mão.
+- **Mesário cadastrado:** o mesário que registrou a própria digital e o título na urna da seção. Quando o dedo que autoriza a liberação é de um mesário cadastrado, o diário anota que aquele mesário habilitou o eleitor.
+- **Dedo sem dono:** o dedo que autoriza a liberação e não é de mesário cadastrado. A urna grava a digital desse dedo como nova ou a reconhece como uma digital já gravada no mesmo dia, sem ligar a ninguém.
+- **Vizinhas:** as outras seções do mesmo prédio de votação, com o mesmo modelo de urna.
 
 ## Como foi feito
 
@@ -52,6 +61,7 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 4. **H23:** em todos os pacotes dos dois turnos, o código de carga do boletim foi procurado no diário da mesma urna; as recargas foram contadas pelos diários guardados dentro dos novos, e o motivo, pelas linhas do diário antes da recarga; as cargas no dia da votação foram conferidas contra o relógio interno da urna.
 5. **H24:** as contas de eleitores aptos, em trânsito e de outro estado, seção por seção; a liberação sem digital nas seções com muitos eleitores em trânsito, comparada com as outras seções do mesmo local de votação.
 6. **H27:** para cada pacote, quem assinou, e se a urna e a carga do boletim estão na lista prévia e na lista final; cada caso fora das listas foi aberto no diário original; os pacotes de recuperação de dados; as seções com resultado contra o cadastro de locais e o resultado oficial.
+7. **H19:** nos diários de todas as urnas das 497.897 seções do Brasil, nos dois turnos (o exterior não usa digital): cada pedido de digital, cada tentativa e como ela terminou (dedo lido ou tempo esgotado), cada liberação à mão e quem a autorizou (mesário cadastrado ou dedo sem dono). Depois, a falha de cada seção foi comparada com a dela mesma no outro turno e com a das vizinhas, e a mudança da falha, com a mudança do voto. As seções que mais pesaram no único resultado fora do padrão foram lidas uma a uma no diário original, nos dois turnos.
 
 ## O que foi encontrado
 
@@ -259,6 +269,69 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 - Nas 17 recuperações feitas em outra urna, o diário da urna original só é coberto pela chave da urna que fez a recuperação.
 - Um programa adulterado e assinado com a chave oficial, que gere resultado, diário e assinatura normais ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)).
 
+### 7. Falha da digital provocada para liberar à mão (H19)
+
+**A suspeita.** Quando a digital do eleitor não é reconhecida, a mesa pode liberar o voto à mão. Alguém poderia provocar essas falhas numa seção escolhida (com o leitor obstruído, com o dedo errado no leitor ou deixando o tempo acabar) para abrir esse caminho e pôr votos no lugar de eleitores ausentes. Se isso tivesse sido feito no 2º turno, a falha da digital dessas seções teria mudado entre os turnos, e essa mudança acompanharia a mudança do voto.
+
+**Como a urna libera quem não passa na digital.**
+
+- **Fato:** quando a digital do eleitor não é reconhecida, a urna pede de novo, até quatro vezes. Só depois disso a mesa pode liberar o voto: digita um dado do eleitor e põe um dedo no leitor para autorizar. Em todas as urnas do país, nos dois turnos, a urna sempre exigiu as quatro tentativas antes de liberar: das 16.974.711 liberações à mão, só 3 tiveram menos de quatro tentativas (2 no 1º turno e 1 no 2º, todas com uma tentativa só).
+- **Fato (primeiro ponto fraco):** uma "tentativa" pode terminar sem dedo nenhum, quando o tempo acaba. Assim, é possível chegar à liberação à mão sem que nenhuma digital tenha sido lida. Em todo o país, 172.318 liberações do 1º turno e 212.171 do 2º foram feitas assim: nas quatro tentativas, o tempo acabou sem dedo no leitor. Isso é 2,07% e 2,46% das liberações à mão.
+- **Fato (segundo ponto fraco):** o dedo que autoriza a liberação pode ser de qualquer pessoa. A urna só anota o mesário quando o dedo é de um mesário cadastrado. Quando não é, ela grava a digital sem dono, e às vezes reconhece o mesmo dedo autorizando dezenas de vezes no mesmo dia. É como uma portaria que exige que alguém assine a entrada, mas aceita a assinatura de qualquer um.
+- **Risco (regra de controle, princípio 8):** a urna trava a liberação até as quatro tentativas, e essa trava funcionou. Mas ela não exige que alguma digital tenha sido lida, nem que quem autoriza seja mesário cadastrado. Nesses dois pontos, o controle depende só das pessoas da mesa. Cada liberação sem digital lida, e cada autorização por dedo sem dono, é uma porta aberta. Isso não é prova de que a porta foi usada.
+
+| Liberações à mão, contadas no diário da urna (Brasil, sem o exterior) | 1º turno | 2º turno |
+|---|---:|---:|
+| Total de liberações à mão | 8.342.240 | 8.632.471 |
+| … em que as quatro tentativas leram um dedo | 7.352.344 | 7.474.289 |
+| … em que três tentativas leram um dedo | 483.829 | 538.587 |
+| … em que duas tentativas leram um dedo | 201.326 | 240.638 |
+| … em que uma tentativa leu um dedo | 132.423 | 166.786 |
+| … **sem nenhum dedo lido** (quatro tempos esgotados) | **172.318** | **212.171** |
+| Parte das liberações à mão sem nenhum dedo lido | 2,07% | 2,46% |
+| Liberações sem nenhum dedo lido autorizadas por mesário cadastrado | 116.821 | 151.161 |
+| Eleitores **reconhecidos** pela digital que tiveram ao menos uma tentativa com tempo esgotado | 674.216 de 109.650.790 (0,61%) | 813.820 de 111.970.297 (0,73%) |
+
+**Como ler:** as cinco linhas que começam com "…" dividem o total de liberações à mão pelo número de tentativas em que o leitor de fato leu um dedo, e somam o total. A linha em negrito é a das liberações em que nenhum dedo foi lido. A última linha serve de régua: mostra o tempo esgotado entre os eleitores que acabaram reconhecidos, e não liberados à mão. Estes números são do diário da urna; o boletim dá um total de liberações à mão um pouco diferente, e a diferença está explicada no [tópico 4](04-liberacao-dos-eleitores.md), item 6.4.
+
+- **Fato:** a subida das liberações sem nenhum dedo lido entre os turnos acompanhou a subida do tempo esgotado entre os eleitores que acabaram reconhecidos (de 0,61% para 0,73%, na última linha da tabela). Isso aponta para uma causa geral, e não para seções escolhidas. **Hipótese (benigna, não testada):** dedo frio ou seco, que o leitor não detecta. Ainda assim, as seções em que a liberação sem nenhum dedo lido se repete muitas vezes merecem conferência no local (**Pendente**).
+
+**A falha da digital mudou entre os turnos?**
+
+- **Fato:** no país inteiro, a parte dos eleitores que não passou na digital ficou praticamente igual nos dois turnos: 7,07% no primeiro e 7,16% no segundo, contando todas as seções do Brasil. O número de tentativas por eleitor reconhecido também ficou igual.
+- **Fato:** as urnas mais antigas (modelos 2013 e 2015) falham mais, nos dois turnos, no mesmo nível. Por isso cada seção é comparada só com vizinhas do mesmo modelo de urna.
+- **Fato:** entre as liberações à mão, aumentou do 1º para o 2º turno a parte autorizada por um mesário cadastrado, identificado pelo título. É a mesma liberação, mais vezes com o mesário registrado.
+
+| Brasil, sem o exterior | 1º turno | 2º turno |
+|---|---:|---:|
+| Eleitores a quem a urna pediu a digital | 117.993.030 | 120.602.768 |
+| Não reconhecidos nas quatro tentativas e liberados à mão | 8.342.240 | 8.632.471 |
+| Taxa de falha | 7,07% | 7,16% |
+| Tentativas por eleitor reconhecido | 1,37 | 1,38 |
+
+**Como ler:** a taxa de falha é a segunda linha dividida pela primeira. "Tentativas por eleitor reconhecido" é quantas vezes, em média, o eleitor que acabou reconhecido precisou pôr o dedo. As duas medidas quase não mudaram entre os turnos.
+
+**Seções em que a falha mudou muito.**
+
+- **Fato:** em algumas seções, a falha da digital mudou entre os turnos muito mais do que o acaso explica. Nelas, a falha mais caiu do que subiu, e muitas tiveram a urna trocada entre os turnos. A quantidade exata depende de um corte estatístico e de quais seções têm vizinhas para comparar, e por isso fica fora deste relatório.
+- **Hipótese (benigna):** é o que se espera de leitores que estragam e de urnas trocadas, em que o leitor muda junto com a urna. Uma falha provocada no 2º turno faria a falha subir, e não cair.
+
+**A falha da digital mexeu no voto?**
+
+- **Fato:** comparando cada seção com as vizinhas, a mudança na falha da digital não acompanhou a mudança do voto, em nenhum estado nem região.
+- **Fato:** houve um único resultado fora do padrão, num grupo de seções do Sudeste em que a falha subiu mais que nas vizinhas. Ele não se confirma quando a subida é medida na própria seção, e não nas vizinhas. E nessas seções não foi votar mais gente do que nas vizinhas, o que seria necessário se alguém tivesse votado no lugar de quem faltou. Por isso ele não é tratado como indício de fraude.
+- **Fato (conferido no diário original):** as seções que mais pesam nesse resultado foram lidas uma a uma, nos dois turnos. Em nenhuma as falhas têm o desenho de falha escolhida (falhas em blocos, com leitor normal e um só mesário). Duas tiveram falhas em blocos de horas numa urna que não era a do 1º turno: numa, o leitor não reconhecia nem o dedo de quem autorizava; na outra, uma urna reserva, o leitor alternava entre períodos em que quase ninguém passava e períodos em que quase todos passavam na primeira tentativa. Na maioria das outras, as falhas estão espalhadas pelo dia, intercaladas com eleitores reconhecidos na primeira tentativa.
+- **Hipótese:** falhas espalhadas assim são o desenho de mais eleitores com dedo difícil, mas também de mesa que desiste rápido ou de liberação escolhida pessoa a pessoa; a contagem não separa os três. Na urna reserva, a contagem também não separa leitor com defeito intermitente de leitor obstruído e depois limpo. Essas seções estão na lista de conferência no local (**Pendente**).
+- **Fato (conferido no diário original):** em três dessas seções, a autorização mudou entre os turnos. No 2º turno, quem autorizou as liberações à mão deixou de ser mesário cadastrado (ou um dedo diferente a cada vez) e passou a ser um ou poucos dedos sem dono, que a urna reconheceu em série. A urna aceitou. Isso não prova nada, mas é a brecha que a regra de controle manda registrar, e essas seções estão na lista de conferência no local.
+
+**O que o teste não enxerga.**
+
+- As seções que são as únicas do seu prédio com aquele modelo de urna: são 26.933, muitas em locais pequenos, de uma seção só. Elas não têm vizinha para comparar e ficaram fora do teste de voto (**Pendente**).
+- Uma falha alta igual nos dois turnos. O teste olha a mudança entre os turnos; uma mesa que libera muito à mão nos dois turnos não aparece nele.
+- A liberação sem nenhum dedo lido entra no teste como falha comum. Se ela tivesse crescido só em certas seções, ficaria diluída no total de falhas.
+- Quem pôs o dedo. O diário mostra que alguém pôs um dedo (ou que ninguém pôs), mas não quem; quando o dedo não é de mesário cadastrado, não há nome.
+- Uma mudança pequena: o tamanho mínimo que o teste de voto enxerga é estimativa e fica fora deste relatório.
+
 ## Prova de que o teste funciona (contraprova)
 
 - **Fato (H18):** num teste de laboratório, votos trocados de propósito numa cidade isolada foram marcados pelo teste na maioria das vezes quando a mudança era grande, e raramente quando era pequena. É o que o teste promete: ele vê a mudança grande numa cidade, não a pequena nem a espalhada (o tamanho exato é estimativa e fica fora). O mesmo teste de laboratório mostrou o ponto cego: a mudança feita num estado inteiro quase não marcou cidades.
@@ -267,6 +340,8 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 - **Fato (H23):** a busca de recargas, refeita por uma segunda leitura de todos os pacotes, achou as mesmas 2.674 e 1.770 recargas, nenhuma a mais. A ordem das cargas foi conferida pela posição do diário guardado (o mais antigo fica dentro do mais novo) em todas as urnas com duas ou mais cargas no mesmo pacote (2.543 no 1º turno e 4.183 no 2º): a ordem concorda em todas. E uma regra que contasse qualquer linha de erro como motivo esconderia parte das recargas sem motivo escrito, por causa da linha de rotina descrita no item 4; por isso essa linha não é aceita como motivo.
 - **Fato (H27):** o teste acusa quando há o que acusar: foi ele que achou as 45 seções com registro só no dia, as 11 urnas fora das listas prévias, as 17 recuperações assinadas por outra urna e as 5 seções de SE com votação do Teste de Integridade, cada uma conferida no diário original.
 - **Pendente (H24):** não houve teste com dados alterados de propósito para mostrar que as contas de aptos e de trânsito acusariam uma alteração.
+- **Fato (H19):** a contagem das tentativas acusa o que procura: ela achou as 3 liberações à mão com menos de quatro tentativas e as liberações sem nenhum dedo lido. A soma das liberações à mão por essa contagem é igual, até a unidade, à de uma leitura anterior de todos os diários feita por outro programa (8.342.240 e 8.632.471). E a comparação entre os turnos acusa mudança forte quando ela existe: foi ela que achou as seções em que a falha mudou muito, muitas delas com a urna trocada, onde o leitor muda junto com a urna.
+- **Pendente (H19):** o menor efeito no voto que o teste enxerga só existe como estimativa, que fica fora deste relatório.
 
 ## Limites (o que não se pode afirmar)
 
@@ -275,6 +350,7 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 3. **O que depende de pessoas.** O motivo de cada recarga, a decisão de trocar uma urna, a contagem das cédulas e o envio do registro da urna ao TSE são feitos por pessoas. Pela regra desta perícia, isso não conta como controle; o que conta é o rastro técnico, e onde ele existe, foi conferido.
 4. **O programa da urna.** Nenhum teste deste tópico enxerga um programa adulterado e assinado com a chave oficial, que grava diário e resultado normais ([tópico 7](07-limites-da-pericia.md)).
 5. **Atributos do eleitor.** Preso, militar, servidor da Justiça Eleitoral e deficiência visual não estão nos arquivos públicos por seção.
+6. **Quem autorizou a liberação à mão.** Quando o dedo que autoriza não é de mesário cadastrado, o diário não diz de quem é. E a liberação sem nenhum dedo lido não deixa digital de ninguém (H19).
 
 ## Pendentes (sem número, salvo onde indicado)
 
@@ -284,6 +360,7 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 - **H23:** atas das seções com recarga sem motivo escrito no diário (pedidas ao TSE) e das cargas feitas no dia da votação; o comparecimento das seções com recarga entre os turnos, refeito sem as 2 seções que votaram em cédula no 1º turno; os diários do 2º turno sem a linha final da carga; as recargas sem motivo escrito do 1º turno.
 - **H24:** o balanço entre saídas e chegadas de eleitores em trânsito, que depende do cadastro usado na carga.
 - **H27:** a lista das seções sorteadas para o Teste de Integridade, por TRE, nos dois turnos; o comparecimento das seções em 2022, para comparar as seções novas.
+- **H19:** conferência no local (ata da mesa, manutenção da urna e quem autorizou as liberações) das seções com leitor intermitente, das seções com autorização em série por dedo sem dono e das seções com muitas liberações sem nenhum dedo lido; o teste das seções que são as únicas do seu prédio com aquele modelo de urna; a contagem, seção a seção, das liberações sem nenhum dedo lido.
 
 ## Pedidos ao TSE e aos TREs
 
@@ -294,11 +371,16 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 - **Origem das 2 urnas da BA, zona 71,** que não constam de lista nenhuma, e por que as urnas do 1º turno dessas seções foram trocadas.
 - **Por que a lista da véspera do 2º turno** não traz registros recebidos 11 dias antes, como nas seções MG 41238/0331/0001 e 0197.
 - **Uso de reserva de uma zona em outra**, e de um município em outro.
+- **Regra da autorização da liberação à mão:** por que a urna aceita o dedo de qualquer pessoa para autorizar, sem identificar o mesário, e se a urna reserva recebe o cadastro dos mesários da seção (H19).
+- **Tentativa sem dedo lido:** por que a tentativa que termina com o tempo esgotado conta como uma das quatro, e qual é o tempo de cada tentativa (H19).
+- **Atas das seções para conferência no local (H19):** pedidas ao TSE; a lista das seções vai no pedido separado, fora deste relatório.
 
 ## Próximos passos
 
 - [x] H18, H21, H22, H23, H24 e H27 medidas em todas as seções, com segunda verificação independente.
+- [x] H19 medida em todas as seções do Brasil, nos dois turnos, com segunda verificação independente.
 - [ ] **Pendente.** Pedidos de atas e de listas acima.
+- [ ] **Pendente.** H19: conferência no local das seções listadas no pedido; teste das seções sem vizinha do mesmo modelo; liberações sem nenhum dedo lido, seção a seção.
 - [ ] **Pendente.** Verificação local das 19 cidades da H18 e dos números da H21 sem explicação.
 - [ ] **Pendente.** Refazer o comparecimento das seções com recarga entre os turnos (H23).
 - [ ] **Pendente.** Comparar as seções novas com 2022 (H27).

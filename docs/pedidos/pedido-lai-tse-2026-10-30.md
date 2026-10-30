@@ -2,7 +2,7 @@
 
 **Ao Tribunal Superior Eleitoral — Ouvidoria / Serviço de Informação ao Cidadão (SIC)**
 
-**Assunto:** Pedido de informações e documentos sobre a certificação digital das urnas, a totalização, as correspondências entre urna e seção, as cargas de urna, o diário da urna, o voto no exterior, o cadastro eleitoral e o sigilo do voto nas eleições gerais de 2026 (pleitos 3220 e 3221; 1º turno em 04/10/2026 e 2º turno em 25/10/2026).
+**Assunto:** Pedido de informações e documentos sobre a certificação digital das urnas, a totalização, as correspondências entre urna e seção, as cargas de urna, o diário da urna, a liberação do eleitor pela digital, o voto no exterior, o cadastro eleitoral e o sigilo do voto nas eleições gerais de 2026 (pleitos 3220 e 3221; 1º turno em 04/10/2026 e 2º turno em 25/10/2026).
 
 **Base legal:** Lei nº 12.527/2011 (Lei de Acesso à Informação), arts. 10 e 11. Prazo de resposta: 20 dias, prorrogável por mais 10 mediante justificativa (art. 11, §§ 1º e 2º).
 
@@ -28,7 +28,7 @@ Até agora, as conferências feitas em todas as seções mostraram coerência en
 - no 2º turno, as assinaturas digitais dos 499.207 pacotes de urna foram conferidas, sem nenhuma falha;
 - no 2º turno, o boletim de cada seção é igual ao resultado oficial por seção para Presidente.
 
-Alguns pontos, porém, não podem ser respondidos só com os arquivos públicos: o que o sistema de totalização confere, como são guardadas as chaves das autoridades certificadoras, por que algumas urnas foram trocadas ou carregadas de novo, o que significam certos códigos do diário da urna e que critérios o cadastro usa. Os pedidos abaixo tratam só desses pontos.
+Alguns pontos, porém, não podem ser respondidos só com os arquivos públicos: o que o sistema de totalização confere, como são guardadas as chaves das autoridades certificadoras, por que algumas urnas foram trocadas ou carregadas de novo, o que significam certos códigos do diário da urna, como a urna autoriza a liberação do eleitor cuja digital não foi reconhecida e que critérios o cadastro usa. Os pedidos abaixo tratam só desses pontos.
 
 O objetivo é **esclarecer**, e não especular. Nenhum item pressupõe irregularidade. Cada fato citado como contexto foi lido nos arquivos publicados pelo TSE.
 
@@ -187,11 +187,11 @@ Contexto. No exterior há 1.351 seções em cada turno: 1.281 votaram em urna, 2
 **39. Títulos cancelados por óbito com voto registrado em 2026.** O número de inscrições canceladas por óbito depois do fechamento do cadastro para 2026 que tiveram comparecimento registrado no 1º ou no 2º turno de 2026, por zona, por faixa etária e por forma de habilitação na urna (como no item 38), indicando, para cada caso, se a data do óbito é anterior ou posterior à data do turno em que houve o voto. Não se pede nenhum dado pessoal.
 *Período:* do fechamento do cadastro para 2026 a 25/10/2026. *Formato:* CSV.
 
+**40. Origem das seções novas.** Para as seções criadas depois de 2022, a data e o motivo da criação (ato do TRE), e a distribuição, por seção, dos eleitores pela data de alistamento ou de transferência para aquela seção (por ano, sem dado pessoal), para 2026.
+
 ### H. Sigilo do voto
 
-**39-A. Origem das seções novas.** Para as seções criadas depois de 2022, a data e o motivo da criação (ato do TRE), e a distribuição, por seção, dos eleitores pela data de alistamento ou de transferência para aquela seção (por ano, sem dado pessoal), para 2026.
-
-**40. Números com formato de título gravados na suspensão do eleitor.** Quando o mesário suspende um eleitor que demora na cabine, o diário público da urna grava o número digitado. No 1º turno, 55.483 dessas linhas trazem 31.764 números com formato de título que não pertencem a nenhum mesário, presidente de mesa ou servidor registrado; no 2º turno, são 5.564 linhas e 3.801 números. Pede-se:
+**41. Números com formato de título gravados na suspensão do eleitor.** Quando o mesário suspende um eleitor que demora na cabine, o diário público da urna grava o número digitado. No 1º turno, 55.483 dessas linhas trazem 31.764 números com formato de título que não pertencem a nenhum mesário, presidente de mesa ou servidor registrado; no 2º turno, são 5.564 linhas e 3.801 números. Pede-se:
 - (a) de quem é o número gravado nessa linha (do eleitor suspenso, do mesário ou outro);
 - (b) a regra técnica da suspensão: o que a urna faz com os votos já confirmados e com os cargos não confirmados;
 - (c) se a publicação desse número no diário público foi avaliada quanto ao sigilo do voto e à proteção de dados pessoais, e o documento dessa avaliação.
@@ -199,10 +199,31 @@ Contexto. No exterior há 1.351 seções em cada turno: 1.281 votaram em urna, 2
 
 ### I. Mesa receptora e caderno de votação
 
-**41. Caderno de votação e atas de seções com padrão de liberação a esclarecer.** A ata da mesa receptora e cópia do caderno de votação (com os dados pessoais ocultados, preservando o número e a ordem das assinaturas) das seções:
+**42. Caderno de votação e atas de seções com padrão de liberação a esclarecer.** A ata da mesa receptora e cópia do caderno de votação (com os dados pessoais ocultados, preservando o número e a ordem das assinaturas) das seções:
 - PR 78573/0083/0101, nos dois turnos: no 2º turno, 16 avisos de "eleitor já votou", todos até 20 segundos depois de um voto liberado sem digital;
 - AL 28819/0045/0174 e PR 79294/0019/0055, no 1º turno: todos os eleitores dessas seções têm digital no cadastro, mas a urna liberou sem digital 52,5% e 98,2% dos votantes.
 Se a cópia não puder ser fornecida, pede-se a indicação de que o caderno está preservado e de qual órgão pode examiná-lo.
+*Período:* dia da votação de cada turno indicado. *Formato:* PDF.
+
+### J. Liberação do eleitor quando a digital não é reconhecida
+
+Contexto. Quando a digital do eleitor não é reconhecida, a urna pede o dedo até quatro vezes ("Solicita digital. Tentativa [n] de [4]"). Depois disso, a mesa digita um dado do eleitor e a urna pede "a digital do mesário" para autorizar a liberação. Nos diários publicados, em todas as seções do Brasil, nos dois turnos, a urna exigiu as quatro tentativas antes da liberação: das 16.974.711 liberações feitas assim, só 3 tiveram menos de quatro tentativas. Cada tentativa termina com "Capturada a digital" (um dedo foi lido e não bateu) ou com "Timeout de reconhecimento do dedo" (nenhum dedo foi lido a tempo). Em 172.318 liberações do 1º turno e 212.171 do 2º, as quatro tentativas terminaram com tempo esgotado, sem nenhum dedo lido. O dedo posto para autorizar a liberação termina de três formas no diário: "Mesário … habilitou o eleitor" (mesário registrado na urna); "Não encontrou digital coletada em nenhum dos arquivos, vai salvar a digital em novo arquivo"; ou "Digital coletada bate com uma digital gravada após o registro inicial de mesário". Nas duas últimas, a liberação é aceita sem identificar quem autorizou.
+
+**43. Quem pode autorizar a liberação feita pela mesa.** A norma ou especificação técnica que define quem pode autorizar, com a própria digital, a liberação de um eleitor cuja digital não foi reconhecida, e o motivo de a urna aceitar a autorização por um dedo que não é de mesário registrado, sem identificá-lo. Pede-se também:
+- (a) como os mesários são registrados na urna (em que momento, por quem e com que dados) e se a urna de contingência (reserva) que substitui a da seção durante a votação recebe esse registro;
+- (b) o que a urna faz com a digital "salva em novo arquivo" na autorização: onde fica guardada, se é publicada e se permite saber depois de quem é;
+- (c) se há limite para o número de liberações autorizadas pelo mesmo dedo não registrado como mesário.
+*Período:* norma e programa em uso no 1º e no 2º turno de 2026. *Formato:* documento técnico ou norma em PDF; resposta descritiva.
+
+**44. Tentativa que termina sem dedo lido.** A especificação que faz a tentativa terminada com "Timeout de reconhecimento do dedo" contar como uma das quatro tentativas exigidas antes da liberação pela mesa, embora nenhuma digital tenha sido lida; o tempo de espera de cada tentativa; e se a urna, o manual do mesário ou outra norma prevê alguma conferência adicional quando as quatro tentativas terminam sem nenhum dedo lido.
+*Período:* norma e programa em uso no 1º e no 2º turno de 2026. *Formato:* documento técnico ou norma em PDF; resposta descritiva.
+
+**45. Atas de seções com padrão de falha da digital a esclarecer.** A ata da mesa receptora, o registro de manutenção ou de substituição da urna e a indicação de quantos mesários foram registrados na urna e em que horário (sem dados pessoais) das seções abaixo, no turno indicado. Pede-se também se a ata registra quem autorizou as liberações feitas pela mesa.
+- Urna de contingência com leitor de digital que alterna entre períodos em que quase nenhum eleitor é reconhecido e períodos em que quase todos são (2º turno): SP 71072/0006/0427.
+- Falhas da digital em dobro em relação ao 1º turno, com a maior parte das liberações autorizada por um mesário registrado e as quatro tentativas feitas em menos tempo que no 1º turno (2º turno): RJ 60011/0009/0456.
+- Liberações autorizadas em série por um ou poucos dedos não registrados como mesário, reconhecidos pela urna muitas vezes no mesmo dia (2º turno): PR 74993/0159/0009, BA 36854/0180/0149, RJ 60011/0162/0164, SP 66630/0077/0002 e SP 71579/0324/0231.
+- Autorização por um dedo diferente a cada liberação, quase nunca de mesário registrado, com os eleitores reconhecidos normalmente (1º e 2º turno): MG 40150/0064/0005.
+- Muitas liberações em que as quatro tentativas terminaram sem nenhum dedo lido: RS 85316/0007/0017, SP 62936/0344/0060 e SC 81256/0082/0104 (2º turno); ES 56995/0053/0316 (1º turno).
 *Período:* dia da votação de cada turno indicado. *Formato:* PDF.
 
 Os pedidos visam permitir a conferência independente dos resultados; não pressupõem irregularidade.
