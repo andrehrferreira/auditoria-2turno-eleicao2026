@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1179" width="760" height="1179" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Nulo técnico nos cargos de deputado, por estado, 1º turno</title><desc id="desc">Votos de números de candidato (e de 4 legendas de partido) sem linha própria no resultado oficial. AC: Deputado federal 45; Deputado estadual (no DF, distrital) 19. AL: Deputado federal 0; Deputado estadual (no DF, distrital) 61. AM: Deputado federal 733; Deputado estadual (no DF, distrital) 0. AP: Deputado federal 37; Deputado estadual (no DF, distrital) 95. BA: Deputado federal 2.724; Deputado estadual (no DF, distrital) 754. CE: Deputado federal 2.544; Deputado estadual (no DF, distrital) 145. DF (distrital): Deputado federal 139; Deputado estadual (no DF, distrital) 487. ES: Deputado federal 259; Deputado estadual (no DF, distrital) 293. GO: Deputado federal 2.307; Deputado estadual (no DF, distrital) 631. MA: Deputado federal 76; Deputado estadual (no DF, distrital) 0. MG: Deputado federal 4.047; Deputado estadual (no DF, distrital) 2.154. MS: Deputado federal 5; Deputado estadual (no DF, distrital) 157. MT: Deputado federal 0; Deputado estadual (no DF, distrital) 31. PA: Deputado federal 53; Deputado estadual (no DF, distrital) 59. PB: Deputado federal 873; Deputado estadual (no DF, distrital) 0. PE: Deputado federal 1.327; Deputado estadual (no DF, distrital) 316. PI: Deputado federal 674; Deputado estadual (no DF, distrital) 31. PR: Deputado federal 71; Deputado estadual (no DF, distrital) 120. RJ: Deputado federal 24.223; Deputado estadual (no DF, distrital) 2.242. RN: Deputado federal 126; Deputado estadual (no DF, distrital) 710. RO: Deputado federal 243; Deputado estadual (no DF, distrital) 58. RR: Deputado federal 258; Deputado estadual (no DF, distrital) 11. RS: Deputado federal 358; Deputado estadual (no DF, distrital) 983. SC: Deputado federal 746; Deputado estadual (no DF, distrital) 498. SE: Deputado federal 1.352; Deputado estadual (no DF, distrital) 273. SP: Deputado federal 6.910; Deputado estadual (no DF, distrital) 503. TO: Deputado federal 23; Deputado estadual (no DF, distrital) 94</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}.ref{stroke:#52514e}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}.a0{stroke:#2a78d6}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.ref{stroke:#c3c2b7}.s0{fill:#3987e5}.s1{fill:#d95926}.a0{stroke:#3987e5}}
+</style>
+<rect class="fundo" width="760" height="1179" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Nulo técnico nos cargos de deputado, por estado, 1º turno</text>
+<text class="t2" x="20" y="52" font-size="13">Votos de números de candidato (e de 4 legendas de partido) sem linha própria no resultado oficial.</text>
+<rect class="s0" x="20" y="66" width="12" height="12" rx="2"/><text class="t1" x="38" y="77" font-size="13">Deputado federal</text>
+<rect class="s1" x="165.2" y="66" width="12" height="12" rx="2"/><text class="t1" x="183.2" y="77" font-size="13">Deputado estadual (no DF, distrital)</text>
+<line class="grade" x1="130" x2="130" y1="94" y2="1091" stroke-width="1"/>
+<text class="t2" x="130" y="1107" font-size="12" text-anchor="middle">0</text>
+<line class="grade" x1="222" x2="222" y1="94" y2="1091" stroke-width="1"/>
+<text class="t2" x="222" y="1107" font-size="12" text-anchor="middle">5.000</text>
+<line class="grade" x1="314" x2="314" y1="94" y2="1091" stroke-width="1"/>
+<text class="t2" x="314" y="1107" font-size="12" text-anchor="middle">10.000</text>
+<line class="grade" x1="406" x2="406" y1="94" y2="1091" stroke-width="1"/>
+<text class="t2" x="406" y="1107" font-size="12" text-anchor="middle">15.000</text>
+<line class="grade" x1="498" x2="498" y1="94" y2="1091" stroke-width="1"/>
+<text class="t2" x="498" y="1107" font-size="12" text-anchor="middle">20.000</text>
+<line class="grade" x1="590" x2="590" y1="94" y2="1091" stroke-width="1"/>
+<text class="t2" x="590" y="1107" font-size="12" text-anchor="middle">25.000</text>
+<line class="eixo" x1="130" x2="130" y1="94" y2="1091" stroke-width="1"/>
+<text class="t1" x="120" y="117" font-size="12.5" text-anchor="end">AC</text>
+<path class="s0" d="M130,100h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>AC, Deputado federal: 45</title></path>
+<text class="t1" x="138" y="110" font-size="12">45</text>
+<path class="s1" d="M130,114h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>AC, Deputado estadual (no DF, distrital): 19</title></path>
+<text class="t1" x="138" y="124" font-size="12">19</text>
+<text class="t1" x="120" y="154" font-size="12.5" text-anchor="end">AL</text>
+
+<text class="t1" x="136" y="147" font-size="12">0</text>
+<path class="s1" d="M130,151h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>AL, Deputado estadual (no DF, distrital): 61</title></path>
+<text class="t1" x="138" y="161" font-size="12">61</text>
+<text class="t1" x="120" y="191" font-size="12.5" text-anchor="end">AM</text>
+<path class="s0" d="M130,174h9.487200000000001a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-9.487200000000001z"><title>AM, Deputado federal: 733</title></path>
+<text class="t1" x="149.4872" y="184" font-size="12">733</text>
+
+<text class="t1" x="136" y="198" font-size="12">0</text>
+<text class="t1" x="120" y="228" font-size="12.5" text-anchor="end">AP</text>
+<path class="s0" d="M130,211h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>AP, Deputado federal: 37</title></path>
+<text class="t1" x="138" y="221" font-size="12">37</text>
+<path class="s1" d="M130,225h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>AP, Deputado estadual (no DF, distrital): 95</title></path>
+<text class="t1" x="138" y="235" font-size="12">95</text>
+<text class="t1" x="120" y="265" font-size="12.5" text-anchor="end">BA</text>
+<path class="s0" d="M130,248h46.1216a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-46.1216z"><title>BA, Deputado federal: 2.724</title></path>
+<text class="t1" x="186.1216" y="258" font-size="12">2.724</text>
+<path class="s1" d="M130,262h9.87360000000001a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-9.87360000000001z"><title>BA, Deputado estadual (no DF, distrital): 754</title></path>
+<text class="t1" x="149.8736" y="272" font-size="12">754</text>
+<text class="t1" x="120" y="302" font-size="12.5" text-anchor="end">CE</text>
+<path class="s0" d="M130,285h42.80959999999999a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-42.80959999999999z"><title>CE, Deputado federal: 2.544</title></path>
+<text class="t1" x="182.8096" y="295" font-size="12">2.544</text>
+<path class="s1" d="M130,299h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>CE, Deputado estadual (no DF, distrital): 145</title></path>
+<text class="t1" x="138.668" y="309" font-size="12">145</text>
+<text class="t1" x="120" y="339" font-size="12.5" text-anchor="end">DF (distrital)</text>
+<path class="s0" d="M130,322h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>DF (distrital), Deputado federal: 139</title></path>
+<text class="t1" x="138.5576" y="332" font-size="12">139</text>
+<path class="s1" d="M130,336h4.960800000000006a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-4.960800000000006z"><title>DF (distrital), Deputado estadual (no DF, distrital): 487</title></path>
+<text class="t1" x="144.9608" y="346" font-size="12">487</text>
+<text class="t1" x="120" y="376" font-size="12.5" text-anchor="end">ES</text>
+<path class="s0" d="M130,359h0.7656000000000063a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-0.7656000000000063z"><title>ES, Deputado federal: 259</title></path>
+<text class="t1" x="140.7656" y="369" font-size="12">259</text>
+<path class="s1" d="M130,373h1.3911999999999978a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-1.3911999999999978z"><title>ES, Deputado estadual (no DF, distrital): 293</title></path>
+<text class="t1" x="141.3912" y="383" font-size="12">293</text>
+<text class="t1" x="120" y="413" font-size="12.5" text-anchor="end">GO</text>
+<path class="s0" d="M130,396h38.448800000000006a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-38.448800000000006z"><title>GO, Deputado federal: 2.307</title></path>
+<text class="t1" x="178.4488" y="406" font-size="12">2.307</text>
+<path class="s1" d="M130,410h7.6103999999999985a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-7.6103999999999985z"><title>GO, Deputado estadual (no DF, distrital): 631</title></path>
+<text class="t1" x="147.6104" y="420" font-size="12">631</text>
+<text class="t1" x="120" y="450" font-size="12.5" text-anchor="end">MA</text>
+<path class="s0" d="M130,433h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>MA, Deputado federal: 76</title></path>
+<text class="t1" x="138" y="443" font-size="12">76</text>
+
+<text class="t1" x="136" y="457" font-size="12">0</text>
+<text class="t1" x="120" y="487" font-size="12.5" text-anchor="end">MG</text>
+<path class="s0" d="M130,470h70.4648a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-70.4648z"><title>MG, Deputado federal: 4.047</title></path>
+<text class="t1" x="210.4648" y="480" font-size="12">4.047</text>
+<path class="s1" d="M130,484h35.6336a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-35.6336z"><title>MG, Deputado estadual (no DF, distrital): 2.154</title></path>
+<text class="t1" x="175.6336" y="494" font-size="12">2.154</text>
+<text class="t1" x="120" y="524" font-size="12.5" text-anchor="end">MS</text>
+<path class="s0" d="M130,507h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>MS, Deputado federal: 5</title></path>
+<text class="t1" x="138" y="517" font-size="12">5</text>
+<path class="s1" d="M130,521h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>MS, Deputado estadual (no DF, distrital): 157</title></path>
+<text class="t1" x="138.8888" y="531" font-size="12">157</text>
+<text class="t1" x="120" y="561" font-size="12.5" text-anchor="end">MT</text>
+
+<text class="t1" x="136" y="554" font-size="12">0</text>
+<path class="s1" d="M130,558h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>MT, Deputado estadual (no DF, distrital): 31</title></path>
+<text class="t1" x="138" y="568" font-size="12">31</text>
+<text class="t1" x="120" y="598" font-size="12.5" text-anchor="end">PA</text>
+<path class="s0" d="M130,581h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>PA, Deputado federal: 53</title></path>
+<text class="t1" x="138" y="591" font-size="12">53</text>
+<path class="s1" d="M130,595h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>PA, Deputado estadual (no DF, distrital): 59</title></path>
+<text class="t1" x="138" y="605" font-size="12">59</text>
+<text class="t1" x="120" y="635" font-size="12.5" text-anchor="end">PB</text>
+<path class="s0" d="M130,618h12.063199999999995a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-12.063199999999995z"><title>PB, Deputado federal: 873</title></path>
+<text class="t1" x="152.0632" y="628" font-size="12">873</text>
+
+<text class="t1" x="136" y="642" font-size="12">0</text>
+<text class="t1" x="120" y="672" font-size="12.5" text-anchor="end">PE</text>
+<path class="s0" d="M130,655h20.416799999999995a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-20.416799999999995z"><title>PE, Deputado federal: 1.327</title></path>
+<text class="t1" x="160.4168" y="665" font-size="12">1.327</text>
+<path class="s1" d="M130,669h1.8144000000000062a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-1.8144000000000062z"><title>PE, Deputado estadual (no DF, distrital): 316</title></path>
+<text class="t1" x="141.8144" y="679" font-size="12">316</text>
+<text class="t1" x="120" y="709" font-size="12.5" text-anchor="end">PI</text>
+<path class="s0" d="M130,692h8.401600000000002a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-8.401600000000002z"><title>PI, Deputado federal: 674</title></path>
+<text class="t1" x="148.4016" y="702" font-size="12">674</text>
+<path class="s1" d="M130,706h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>PI, Deputado estadual (no DF, distrital): 31</title></path>
+<text class="t1" x="138" y="716" font-size="12">31</text>
+<text class="t1" x="120" y="746" font-size="12.5" text-anchor="end">PR</text>
+<path class="s0" d="M130,729h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>PR, Deputado federal: 71</title></path>
+<text class="t1" x="138" y="739" font-size="12">71</text>
+<path class="s1" d="M130,743h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>PR, Deputado estadual (no DF, distrital): 120</title></path>
+<text class="t1" x="138.208" y="753" font-size="12">120</text>
+<text class="t1" x="120" y="783" font-size="12.5" text-anchor="end">RJ</text>
+<path class="s0" d="M130,766h441.7031999999999a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-441.7031999999999z"><title>RJ, Deputado federal: 24.223</title></path>
+<text class="t1" x="581.7031999999999" y="776" font-size="12">24.223</text>
+<path class="s1" d="M130,780h37.25280000000001a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-37.25280000000001z"><title>RJ, Deputado estadual (no DF, distrital): 2.242</title></path>
+<text class="t1" x="177.2528" y="790" font-size="12">2.242</text>
+<text class="t1" x="120" y="820" font-size="12.5" text-anchor="end">RN</text>
+<path class="s0" d="M130,803h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>RN, Deputado federal: 126</title></path>
+<text class="t1" x="138.3184" y="813" font-size="12">126</text>
+<path class="s1" d="M130,817h9.063999999999993a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-9.063999999999993z"><title>RN, Deputado estadual (no DF, distrital): 710</title></path>
+<text class="t1" x="149.064" y="827" font-size="12">710</text>
+<text class="t1" x="120" y="857" font-size="12.5" text-anchor="end">RO</text>
+<path class="s0" d="M130,840h0.4712000000000103a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-0.4712000000000103z"><title>RO, Deputado federal: 243</title></path>
+<text class="t1" x="140.4712" y="850" font-size="12">243</text>
+<path class="s1" d="M130,854h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>RO, Deputado estadual (no DF, distrital): 58</title></path>
+<text class="t1" x="138" y="864" font-size="12">58</text>
+<text class="t1" x="120" y="894" font-size="12.5" text-anchor="end">RR</text>
+<path class="s0" d="M130,877h0.7471999999999923a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-0.7471999999999923z"><title>RR, Deputado federal: 258</title></path>
+<text class="t1" x="140.7472" y="887" font-size="12">258</text>
+<path class="s1" d="M130,891h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>RR, Deputado estadual (no DF, distrital): 11</title></path>
+<text class="t1" x="138" y="901" font-size="12">11</text>
+<text class="t1" x="120" y="931" font-size="12.5" text-anchor="end">RS</text>
+<path class="s0" d="M130,914h2.5871999999999957a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-2.5871999999999957z"><title>RS, Deputado federal: 358</title></path>
+<text class="t1" x="142.5872" y="924" font-size="12">358</text>
+<path class="s1" d="M130,928h14.087199999999996a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-14.087199999999996z"><title>RS, Deputado estadual (no DF, distrital): 983</title></path>
+<text class="t1" x="154.0872" y="938" font-size="12">983</text>
+<text class="t1" x="120" y="968" font-size="12.5" text-anchor="end">SC</text>
+<path class="s0" d="M130,951h9.726400000000012a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-9.726400000000012z"><title>SC, Deputado federal: 746</title></path>
+<text class="t1" x="149.7264" y="961" font-size="12">746</text>
+<path class="s1" d="M130,965h5.163199999999989a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-5.163199999999989z"><title>SC, Deputado estadual (no DF, distrital): 498</title></path>
+<text class="t1" x="145.1632" y="975" font-size="12">498</text>
+<text class="t1" x="120" y="1005" font-size="12.5" text-anchor="end">SE</text>
+<path class="s0" d="M130,988h20.876800000000003a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-20.876800000000003z"><title>SE, Deputado federal: 1.352</title></path>
+<text class="t1" x="160.8768" y="998" font-size="12">1.352</text>
+<path class="s1" d="M130,1002h1.0232000000000028a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-1.0232000000000028z"><title>SE, Deputado estadual (no DF, distrital): 273</title></path>
+<text class="t1" x="141.0232" y="1012" font-size="12">273</text>
+<text class="t1" x="120" y="1042" font-size="12.5" text-anchor="end">SP</text>
+<path class="s0" d="M130,1025h123.144a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-123.144z"><title>SP, Deputado federal: 6.910</title></path>
+<text class="t1" x="263.144" y="1035" font-size="12">6.910</text>
+<path class="s1" d="M130,1039h5.255200000000002a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h-5.255200000000002z"><title>SP, Deputado estadual (no DF, distrital): 503</title></path>
+<text class="t1" x="145.2552" y="1049" font-size="12">503</text>
+<text class="t1" x="120" y="1079" font-size="12.5" text-anchor="end">TO</text>
+<path class="s0" d="M130,1062h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>TO, Deputado federal: 23</title></path>
+<text class="t1" x="138" y="1072" font-size="12">23</text>
+<path class="s1" d="M130,1076h0a4,4 0 0 1 4,4v3a4,4 0 0 1 -4,4h0z"><title>TO, Deputado estadual (no DF, distrital): 94</title></path>
+<text class="t1" x="138" y="1086" font-size="12">94</text>
+<text class="t2" x="360" y="1127" font-size="12.5" text-anchor="middle">Votos no nulo técnico (número de votos)</text>
+<text class="t2" x="20" y="1149" font-size="12">A maior barra é o RJ, deputado federal: 24.223 votos, dos quais 23.684 do nº 7062.</text>
+<text class="t2" x="20" y="1167" font-size="11">Fonte: boletins de urna e divulgação oficial do TSE, 1º turno; parecer cético 26 (docs/analysis/cetico-revisor/26-h03-1turno-todos-cargos.md).</text>
+</svg>

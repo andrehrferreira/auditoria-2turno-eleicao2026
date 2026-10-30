@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 346" width="760" height="346" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Votos contados como "nulo técnico" no 1º turno, por cargo</title><desc id="desc">Votos que estão no boletim da urna, mas que o resultado oficial não conta como válidos. Presidente: Votos 5.246. Governador: Votos 342.427. Senador: Votos 221.990. Dep. Federal: Votos 50.153. Dep. Estadual: Votos 10.238. Dep. Distrital: Votos 487</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}.ref{stroke:#52514e}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}.a0{stroke:#2a78d6}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.ref{stroke:#c3c2b7}.s0{fill:#3987e5}.s1{fill:#d95926}.a0{stroke:#3987e5}}
+</style>
+<rect class="fundo" width="760" height="346" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Votos contados como "nulo técnico" no 1º turno, por cargo</text>
+<text class="t2" x="20" y="52" font-size="13">Votos que estão no boletim da urna, mas que o resultado oficial não conta como válidos.</text>
+<line class="grade" x1="250" x2="250" y1="72" y2="240" stroke-width="1"/>
+<text class="t2" x="250" y="256" font-size="12" text-anchor="middle">0</text>
+<line class="grade" x1="335" x2="335" y1="72" y2="240" stroke-width="1"/>
+<text class="t2" x="335" y="256" font-size="12" text-anchor="middle">100.000</text>
+<line class="grade" x1="420" x2="420" y1="72" y2="240" stroke-width="1"/>
+<text class="t2" x="420" y="256" font-size="12" text-anchor="middle">200.000</text>
+<line class="grade" x1="505" x2="505" y1="72" y2="240" stroke-width="1"/>
+<text class="t2" x="505" y="256" font-size="12" text-anchor="middle">300.000</text>
+<line class="grade" x1="590" x2="590" y1="72" y2="240" stroke-width="1"/>
+<text class="t2" x="590" y="256" font-size="12" text-anchor="middle">400.000</text>
+<line class="eixo" x1="250" x2="250" y1="72" y2="240" stroke-width="1"/>
+<text class="t1" x="240" y="91.5" font-size="12.5" text-anchor="end">Presidente</text>
+<path class="s0" d="M250,78h0.4591000000000065a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-0.4591000000000065z"><title>Presidente: 5.246</title></path>
+<text class="t1" x="260.45910000000003" y="91.5" font-size="12">5.246 (1 número)</text>
+<text class="t1" x="240" y="119.5" font-size="12.5" text-anchor="end">Governador</text>
+<path class="s0" d="M250,106h287.06295a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-287.06295z"><title>Governador: 342.427</title></path>
+<text class="t1" x="547.06295" y="119.5" font-size="12">342.427 (9 números)</text>
+<text class="t1" x="240" y="147.5" font-size="12.5" text-anchor="end">Senador</text>
+<path class="s0" d="M250,134h184.69150000000002a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-184.69150000000002z"><title>Senador: 221.990</title></path>
+<text class="t1" x="444.6915" y="147.5" font-size="12">221.990 (8 números)</text>
+<text class="t1" x="240" y="175.5" font-size="12.5" text-anchor="end">Dep. Federal</text>
+<path class="s0" d="M250,162h38.63004999999998a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-38.63004999999998z"><title>Dep. Federal: 50.153</title></path>
+<text class="t1" x="298.63005" y="175.5" font-size="12">50.153 (127 números e 4 legendas)</text>
+<text class="t1" x="240" y="203.5" font-size="12.5" text-anchor="end">Dep. Estadual</text>
+<path class="s0" d="M250,190h4.70229999999998a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-4.70229999999998z"><title>Dep. Estadual: 10.238</title></path>
+<text class="t1" x="264.7023" y="203.5" font-size="12">10.238 (102 números)</text>
+<text class="t1" x="240" y="231.5" font-size="12.5" text-anchor="end">Dep. Distrital</text>
+<path class="s0" d="M250,218h0a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h0z"><title>Dep. Distrital: 487</title></path>
+<text class="t1" x="258" y="231.5" font-size="12">487 (3 números)</text>
+<text class="t2" x="420" y="276" font-size="12.5" text-anchor="middle">Votos no nulo técnico (número de votos)</text>
+<text class="t2" x="20" y="298" font-size="12">Total: 630.541 votos, de 250 números de candidato e 4 legendas de partido.</text>
+<text class="t2" x="20" y="316" font-size="12">Em todos os 109 totais (estado × cargo), o nulo técnico oficial é igual à soma desses votos nos boletins.</text>
+<text class="t2" x="20" y="334" font-size="11">Fonte: boletins de urna e divulgação oficial do TSE, 1º turno; parecer cético 26 (docs/analysis/cetico-revisor/26-h03-1turno-todos-cargos.md).</text>
+</svg>

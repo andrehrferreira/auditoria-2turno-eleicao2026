@@ -8,11 +8,14 @@ Cada urna grava três registros da mesma votação: o boletim (o placar), o regi
 
 **Fato (2º turno, país inteiro, 499.207 seções com boletim):** o boletim e o registro dos votos são iguais em todas as seções e em todos os cargos (539.815 comparações, 0 diferença). As contas internas do boletim fecham em todas as seções que trazem os campos necessários (as exceções de formato estão listadas abaixo). Nenhuma seção tem mais eleitores votando do que eleitores aptos (revisado pelo cético).
 
-**Fato (2º turno, revisado pelo cético):** o diário da urna confere com o boletim nas 499.178 seções com urna eletrônica (as 29 do Sistema de Apuração não têm diário), menos em **3 seções onde a urna foi trocada por uma urna reserva**. Nelas, **50 votos** que estão no boletim e no registro dos votos não têm nenhuma linha em diário publicado: nem "voto computado" nem "voto confirmado". No RS há ainda 1 voto que só tem "voto confirmado". São 0,000039% dos 128.236.074 votos do país.
+**Fato (dois turnos, revisado pelo cético no [parecer 25](../analysis/cetico-revisor/25-votos-sem-log-reconciliacao.md)):** em todas as seções com urna eletrônica (499.178 no 2º turno e 499.176 no 1º; as do Sistema de Apuração não têm diário de eleitor), o número de votantes do boletim foi comparado com as linhas "O voto do eleitor foi computado" do diário da própria seção. Em nenhuma seção o diário tem mais votos que o boletim. O boletim tem mais votos que o diário em **6 seções do 2º turno (54 votos)** e **9 do 1º turno (159 votos)**:
+
+- em 4 seções do 2º turno (5 votos) e 6 do 1º (7 votos), o diário mostra o atendimento do eleitor, e a urna caiu ou foi desligada antes da última linha;
+- em 2 seções do 2º turno (49 votos) e 3 do 1º (152 votos), todas com urna reserva, o diário da urna que gravou os votos não está no pacote publicado. Os arquivos mostram como ele se perdeu: outra urna foi ligada com o cartão de votos da seção e gravou o próprio diário por cima. Os boletins dessas 5 seções estão assinados, e as assinaturas conferem.
 
 **Fato (dois turnos, revisado pelo cético no [parecer 24](../analysis/cetico-revisor/24-integridade-h04-h11.md)):** cada pacote foi gerado pela urna que o boletim diz. O número da urna é o mesmo no boletim, no pacote de lacres e na carteira de identidade digital da urna em todas as seções, menos nas que tiveram o boletim regravado por outra urna (3 no 2º turno, 14 no 1º), que têm a explicação no próprio pacote. Nenhum cartão de votação, nenhuma urna e nenhum código de carga aparece no boletim de duas seções do mesmo município ou da mesma zona. Nenhuma urna escreveu no diário de duas seções ao mesmo tempo (seção "Identificação da urna e dos cartões").
 
-**Pendente (1º turno):** a comparação dos boletins com o registro dos votos e com o resultado oficial publicado ainda não foi feita no país inteiro. O resultado parcial está em `docs/analysis/coerencia-contagem/`.
+**Pendente (1º turno):** a comparação dos boletins com o registro dos votos (C1) e as demais contas internas (C3 a C6) ainda não foram refeitas no país inteiro; o resultado parcial está em `docs/analysis/coerencia-contagem/`. A comparação do diário com o boletim (C2) foi feita no país inteiro pelo revisor (acima), e a do boletim com o resultado oficial, em todos os cargos, está no [tópico 5](05-soma-dos-boletins.md) (parecer 26).
 
 O que este resultado **não** prova: que quem votou era de fato o eleitor. Um voto dado por outra pessoa no lugar de um eleitor ausente gera boletim, registro e diário coerentes entre si. Esse ponto fica no tópico 4.
 
@@ -97,50 +100,93 @@ Cada diário do pacote da seção foi recontado em separado, no arquivo bruto (`
 | BA 34711/0021/0178 | da seção | 234 | 233 + 1 | voto confirmado e urna reiniciou antes de registrar "computado" |
 | PB 21750/0002/0254 | da seção | 304 | 303 + 1 | idem |
 | PI 11533/0003/0216 | da seção | 259 | 258 + 1 | idem |
-| **RS 89060/0017/0191** | reserva | 92 | 90 + 1 confirmado | **1 voto sem rastro no diário** |
-| **BA 35653/0173/0235** | reserva | 217 | 204 | **13 votos sem rastro no diário** |
-| **MA 08893/0047/0609** | reserva | 224 | 188 | **36 votos sem rastro no diário** |
+| **RS 89060/0017/0191** | reserva | 92 | 90 | **2 votos sem a linha "computado":** 1 com o voto confirmado e 1 com o atendimento pela metade (queda da urna) |
+| **BA 35653/0173/0235** | reserva | 217 | 204 | **13 votos sem nenhuma linha no diário** |
+| **MA 08893/0047/0609** | reserva | 224 | 188 | **36 votos sem nenhuma linha no diário** |
 
 - **Fato.** Sete das dez eram erro de leitura (diário duplicado, diário de outra seção, diário não aberto) ou voto confirmado pouco antes de a urna reiniciar.
-- **Fato (revisado pelo cético).** O 2º turno tem 11.748 seções com mais de um diário no pacote. Fora as 3 seções dos 50 votos, nenhuma tem voto sem rastro: nas outras 11.745, o boletim bate com os votos computados. O cético cruzou também o boletim com o diário nas 499.178 seções com urna eletrônica, e não há outra seção com voto sem rastro. As 29 do Sistema de Apuração não têm diário: são cédulas de papel, e o boletim delas traz comparecimento 0 na seção.
-- **Fato.** Nas 3 seções de um só diário achadas pelo C2 (BA 34711/0021/0178, PB 21750/0002/0254, PI 11533/0003/0216), o voto confirmado logo antes de a urna reiniciar entrou no boletim. **Pendente: em verificação** se há seções em que um voto confirmado antes de a urna cair **não** entrou no boletim, e quantas são. **Hipótese:** depende de a urna ter gravado o voto no cartão antes ou depois da queda. O diário não mostra qual foi.
+- **Fato (revisado pelo cético).** O 2º turno tem 11.748 seções com mais de um diário no pacote. Fora as 3 seções com urna reserva da tabela (MA, BA 35653 e RS), nas outras 11.745 o boletim bate com os votos computados. O cético cruzou também o boletim com o diário nas 499.178 seções com urna eletrônica (parecer 25), e as únicas seções com voto sem a linha "computado" são as 6 da tabela. As 29 do Sistema de Apuração não têm diário: são cédulas de papel, e o boletim delas traz comparecimento 0 na seção.
+- **Fato.** Nas 3 seções de um só diário achadas pelo C2 (BA 34711/0021/0178, PB 21750/0002/0254, PI 11533/0003/0216), o voto confirmado logo antes de a urna reiniciar entrou no boletim. Nas três, o diário mostra a habilitação do eleitor e a confirmação do voto; depois do religamento, a urna responde "O eleitor identificado já votou" (parecer 25). **Pendente: em verificação** se há seções em que um voto confirmado antes de a urna cair **não** entrou no boletim, e quantas são. **Hipótese:** depende de a urna ter gravado o voto no cartão antes ou depois da queda. O diário não mostra qual foi.
 
-### Os 50 votos sem rastro no diário
+### Votos do boletim sem rastro completo no diário (dois turnos)
 
-**Fato (revisado pelo cético, `docs/analysis/cetico-revisor/08-votos-sem-log-contingencia.md`, veredito "sustentado com ressalvas").** O texto abaixo segue a afirmação revisada.
+**Fato (revisado pelo cético no [parecer 25](../analysis/cetico-revisor/25-votos-sem-log-reconciliacao.md), que reconcilia as três contagens anteriores e o [parecer 08](../analysis/cetico-revisor/08-votos-sem-log-contingencia.md)).** O texto abaixo segue a afirmação revisada. O revisor comparou, em todas as seções com urna eletrônica dos dois turnos, o número de eleitores que votaram no boletim com as linhas "O voto do eleitor foi computado" do diário da própria seção. Cada cópia de um diário foi contada uma vez, e o diário de outra seção que veio no pacote foi separado. Nenhum pacote ficou sem diário e nenhum deu erro de leitura.
 
-Nas três seções, a urna original deu defeito e foi trocada por uma urna reserva (urna de contingência). O boletim e o registro dos votos, assinados pela reserva, têm os 50 votos. Boletim e registro fecham entre si e por candidato, e o boletim é igual ao resultado oficial. As assinaturas da urna reserva conferem com 0 falha nas três seções (no MA e na BA, depois de cortar 1 byte que sobra no campo do certificado: defeito da ferramenta de leitura, não do arquivo). **No MA e na BA, o diário da urna que recebeu esses votos não está no pacote.** Ele nunca entrou no pacote assinado: a lista de arquivos assinada tem um só arquivo de diário (`log.jez`, da urna reserva), e o lacre dele confere. Não foi retirado do pacote depois da assinatura. Uma cópia talvez exista na memória interna da urna que votou, e ela não é pública (Limites, item 3). **No RS**, o diário da urna que recebeu o voto está no pacote, mas termina antes do fim (ver abaixo).
+| | 2º turno | 1º turno |
+|---|---:|---:|
+| Seções comparadas (todas com urna eletrônica) | 499.178 | 499.176 |
+| Seções em que o boletim tem mais votos que o diário | 6 | 9 |
+| Votos do boletim sem a linha "computado" no diário | **54** | **159** |
+| ... com o atendimento do eleitor no diário, e a urna caiu ou foi desligada antes da última linha | 5 votos em 4 seções | 7 votos em 6 seções |
+| ... sem nenhuma linha do eleitor no diário publicado (o diário da urna que gravou os votos não está no pacote) | 49 votos em 2 seções | 152 votos em 3 seções |
+| Seções em que o diário tem mais votos que o boletim | 0 | 0 |
 
-O próprio boletim diz como esses eleitores foram liberados. A conta é: total do boletim menos o que os diários publicados mostram.
+Ficaram de fora, nos dois turnos, as 41 seções do exterior sem arquivo e as seções do Sistema de Apuração (cédula de papel), cujo diário não registra eleitores: 29 no 2º turno e 31 no 1º.
 
-| Seção | Votos sem diário | Com digital | Por biografia (digital não reconhecida) | Sem biometria cadastrada |
-|---|---:|---:|---:|---:|
-| MA 08893/0047/0609 | 36 | 32 | 4 | 0 |
-| BA 35653/0173/0235 | 13 | 1 | **12** | 0 |
-| RS 89060/0017/0191 | 1 sem rastro + 1 só com voto confirmado (as colunas de liberação contam os 2) | 1 | 1 | 0 |
+**Por que antes havia três números diferentes (50, 54 e 152).** Cada contagem media uma coisa. A de 54 conta todo voto sem a linha "computado". A de 50 conta os 49 sem nenhuma linha e mais 1 voto do RS que só tem a identificação do eleitor. No 1º turno, a contagem de 152 é a dos votos sem nenhuma linha. O revisor refez a conta com programa próprio e mostrou também que os métodos anteriores, aplicados ao 1º turno, dariam números errados por defeitos de leitura (parecer 25, "Bugs de leitura").
 
-Como o diário se perdeu (**Fato, MA e BA**, achado nos arquivos pelo cético). Nas duas seções, uma urna preparada para **outra seção** foi ligada com o cartão de votos (MV) da seção. A ordem foi esta:
+**Seção a seção (Fato, parecer 25).** Formato: UF município/zona/seção.
 
-1. essa urna começou a gravar o próprio diário na mídia externa;
-2. só depois recusou o cartão de votos, com "erro 72" (os dados do cartão não correspondem à urna);
-3. a urna reserva seguinte copiou da mídia externa o diário dessa urna recusada, e não o da urna que tinha recebido os votos.
+| Turno | Seção | Boletim | Diário da própria seção | Faltam | O que o diário mostra | O que aconteceu |
+|---|---|---:|---:|---:|---|---|
+| 2º | MA 08893/0047/0609 | 224 | 188 | 36 | nenhuma linha do eleitor | **Comprovado:** urna de outra seção gravou o próprio diário na mídia antes de ser recusada (erro 72) |
+| 2º | BA 35653/0173/0235 | 217 | 204 | 13 | nenhuma linha do eleitor | **Comprovado:** o mesmo mecanismo (erro 72) |
+| 2º | RS 89060/0017/0191 | 92 | 90 | 2 | 1 ciclo com o voto confirmado + 1 atendimento pela metade | **Comprovado:** queda da urna; o cartão tinha dados mais novos que a memória interna |
+| 2º | BA 34711/0021/0178 | 234 | 233 | 1 | ciclo com o voto confirmado | Urna reiniciou antes da linha "computado"; depois, "O eleitor identificado já votou" |
+| 2º | PB 21750/0002/0254 | 304 | 303 | 1 | ciclo com o voto confirmado | Reinício (bateria crítica); depois de 3 religamentos, "já votou" |
+| 2º | PI 11533/0003/0216 | 259 | 258 | 1 | ciclo com o voto confirmado | Reinício; depois, "já votou" |
+| 1º | BA 39934/0183/0175 | 272 | 136 | 136 | nenhuma linha do eleitor | **Comprovado**, com ressalva: a urna 02423907, da seção 0181, foi ligada com o cartão da 0175 e gravou o próprio diário por cima; aqui não há a linha "erro 72" |
+| 1º | SP 71072/0002/0035 | 247 | 232 | 15 | nenhuma linha do eleitor | Perda do diário **comprovada** (erro 72). **Não explicado:** qual urna gravou os 15 votos |
+| 1º | RS 89036/0083/0044 | 279 | 278 | 1 | nenhuma linha do eleitor | **Comprovado:** a urna original voltou e gravou o próprio diário por cima do da urna intermediária (erro 17) |
+| 1º | ES 56995/0053/0211 | 265 | 264 | 1 | ciclo com os 6 cargos confirmados | Reinício antes da linha "computado" |
+| 1º | RN 16039/0029/0028 | 242 | 241 | 1 | ciclo com os 6 cargos confirmados | Reinício; depois, "já votou" |
+| 1º | SP 63614/0227/0305 | 290 | 289 | 1 | ciclo com os 6 cargos confirmados | Reinício (bateria crítica) |
+| 1º | SP 64254/0291/0346 | 278 | 277 | 1 | ciclo com os 6 cargos confirmados | Reinício; depois, "já votou" |
+| 1º | SP 71072/0260/0037 | 285 | 284 | 1 | ciclo com os 6 cargos confirmados | Desligada pela chave; depois, "já votou" |
+| 1º | RJ 58971/0087/0184 | 258 | 256 | 2 | 12 atendimentos interrompidos por reinícios, nenhum com o Presidente confirmado | **Não explicado voto a voto:** não dá para dizer quais 2 dos 12 atendimentos viraram voto |
 
-- **MA 0609.** Os 36 votos foram gravados pela urna original da seção (nº 01663580), que abriu às 08:00:01. Às 10:25:54 o cartão foi posto na urna 01813459, preparada para a seção 0445. Ela foi **bloqueada** pelo erro 72, duas vezes (10:29:43 e 10:35:21), e não gravou votos. A urna reserva 01664037 registrou depois 188 votos. O diário da urna original não está no pacote.
-- **BA 0235.** Os 13 votos foram gravados por outra urna, entre a abertura (08:48:54) e as 09:50:30. Pelo nome do arquivo que ela deixou no pacote, é a urna 01681986. Nesse meio tempo, a urna original 01833178 foi recarregada em campo com a preparação da seção 0083. Às 09:50:30 ela foi ligada com o cartão da 0235 e o recusou com erro 72 às 09:54:07. A urna reserva 01656557 registrou depois 204 votos. O diário da urna 01681986 não está no pacote.
-- **RS 0191 (outro mecanismo).** O diário da urna original está publicado, com 15 votos. Ele para às 09:02:34, no meio da liberação de um eleitor, sem desligamento, e volta às 09:38:59. É compatível com queda da urna e perda do fim do diário.
+"Já votou" é a resposta da urna quando o mesmo título é identificado de novo. O diário não diz se é a mesma pessoa.
+
+**Como o diário se perdeu nas 5 seções sem nenhuma linha (Fato, parecer 25).** Nas 5, outra urna foi ligada com o cartão de votos (mídia de votação) da seção e gravou o próprio diário na mídia externa, por cima do anterior. Depois ela foi recusada ou parou sem votar. A urna reserva seguinte empacotou o diário que ficou, e não o da urna que tinha recebido os votos. A ordem foi esta:
+
+1. a urna nova começa a gravar o próprio diário na mídia externa;
+2. só depois confere o cartão de votos e o recusa: "erro 72" (os dados do cartão não correspondem à urna) ou "erro 17" (os dados do cartão não correspondem à memória interna);
+3. a urna reserva seguinte copia da mídia externa o diário que ficou lá.
+
+- **MA 0609 (2º turno).** Os 36 votos foram gravados pela urna original da seção (nº 01663580), que abriu às 08:00:01. O cartão foi posto na urna 01813459, preparada para a seção 0445. Ela gravou o diário na mídia e foi **bloqueada** pelo erro 72, duas vezes (10:29:43 e 10:35:21), sem gravar votos. A urna reserva 01664037 registrou depois 188 votos.
+- **BA 0235 (2º turno).** Os 13 votos foram gravados pela urna 01681986, entre a abertura (08:48:54) e as 09:50. O pacote traz o arquivo que ela gravou às 08:41:39 ao receber o cartão da seção, o que prova que ela operou esse cartão. A urna original 01833178, recarregada no dia com a preparação da seção 0083, foi ligada com o cartão às 09:50, gravou o diário na mídia às 09:52:45 e recebeu o erro 72 às 09:54:07. A urna reserva 01656557 registrou depois 204 votos.
+- **BA 0175 (1º turno).** A urna original da seção é a 02424441; o diário dela no pacote só começa às 13:23:37. Às 13:19:03, a urna 02423907, preparada para a seção 0181 e já substituída lá às 12:25, foi ligada com o cartão da 0175, gravou o próprio diário na mídia às 13:20:06 e parou às 13:20:46, sem abrir a votação. O diário dela, com 100 votos da seção 0181, é o que ficou na mídia; por isso aparece nos pacotes das duas seções. A urna reserva 02429118 deu mais 112 votos: 136 + 24 + 112 = 272. **Ressalva:** que a 02423907 foi recusada se apoia na falta de votação e de carga dela no histórico do boletim, não numa linha de erro.
+- **SP 0035 (1º turno).** O boletim abre às 09:34:17. A urna 02254720, preparada para a seção, só aparece no dia das 10:17:39 às 10:52: foi ligada com o cartão usado na seção nesse dia (9F62BC72), diferente do que ela tinha registrado na preparação, gravou o diário na mídia às 10:18:41 e recebeu o erro 72 às 10:19:32. A urna reserva 02253783 deu 232 votos. Os 15 votos das 09:34 às 10:18 foram gravados por uma urna cujo diário não está no pacote, e nenhum dos 878 pacotes da zona 0002 nos dois turnos cita esse cartão. O histórico de cargas do boletim só tem o código da 02254720 e o da reserva, mas o diário da 02254720 não tem nenhuma linha no dia antes das 10:17: essa contradição não foi explicada. **Pendente:** qual urna gravou esses 15 votos.
+- **RS 0044 (1º turno).** A urna original 01801772 votou 90 vezes e foi desligada às 11:04:26. A urna 01675257 recebeu o cartão às 11:11:50 (o arquivo que ela gravou nesse momento está no pacote). Que ela gravou votos no cartão é Hipótese forte: o histórico de cargas do boletim tem um código do meio, entre o da urna original e o da reserva. Às 11:40 a urna original foi religada com o mesmo cartão, gravou o próprio diário na mídia às 11:42:39 e recebeu o erro 17 às 11:44:13. A urna reserva 01651842 empacotou só o diário da 01801772; o da 01675257 (de 11:11 a 11:41) se perdeu.
+- **RS 0191 (2º turno, outro mecanismo).** O diário da urna original está no pacote. Ele para às 09:02:34, no meio do atendimento de um eleitor, sem desligamento, e volta às 09:38:59. Às 09:40:20 a urna restaurou o estado a partir do cartão de votos, que tinha dados mais novos que a memória interna. Às 09:42 um eleitor é habilitado e confirma o Presidente, e o diário termina aí. O boletim tem 2 votos a mais.
+
+**Assinaturas (Fato, parecer 25).** Os pacotes das 5 seções sem nenhuma linha foram conferidos: 0 falha. No 1º turno, BA 0175 e SP 0035 passam direto, e RS 0044 passa depois de cortar 1 byte zero que sobra no campo do certificado (defeito da ferramenta de leitura, não do arquivo; [tópico 1](01-integridade-e-estrutura-dos-arquivos.md)). O pacote assinado é o da urna reserva: a assinatura prova que boletim, registro dos votos e diário não mudaram depois dela. Não diz nada sobre o diário que nunca entrou no pacote. A lista assinada tem um só arquivo de diário, e o lacre dele confere: nada foi retirado do pacote depois da assinatura.
+
+**Como esses eleitores foram liberados, pelos contadores do boletim (Fato, parecer 25).** A conta é: total do boletim menos o que o diário da própria seção mostra. Nas seções com ciclo no diário, o boletim não diz qual atendimento virou voto, e a conta não se aplica.
+
+| Turno | Seção | Votos sem nenhuma linha | Com digital | Por biografia (digital não reconhecida) | Sem biometria cadastrada |
+|---|---|---:|---:|---:|---:|
+| 2º | MA 08893/0047/0609 | 36 | 32 | 4 | 0 |
+| 2º | BA 35653/0173/0235 | 13 | 1 | **12** | 0 |
+| 1º | BA 39934/0183/0175 | 136 | 117 | 7 | 12 |
+| 1º | SP 71072/0002/0035 | 15 | 13 | 2 | 0 |
+| 1º | RS 89036/0083/0044 | 1 | 1 | 0 | 0 |
+| | **Total** | **201** | **164** | **25** | **12** |
+
+No 2º turno, 33 dos 49 foram liberados por digital; no 1º, 131 dos 152. Contador do boletim não é linha de diário: ele diz a forma de liberação, não quem foi liberado.
 
 **BA 0235, liberação.** 12 dos 13 votos sem diário foram liberados por biografia, sem digital do eleitor. Nos 204 votos com diário da mesma seção, essa forma de liberação foi 10,3% (21 de 204). Essa comparação **não** mede raridade, porque a liberação por biografia se concentra por urna. **Pendente:** ainda não foi medido de forma reproduzível no universo completo com que frequência esse padrão aparece nas urnas substituídas do país e no modelo da urna 01681986. A estimativa do cético está em `docs/analysis/cetico-revisor/08-votos-sem-log-contingencia.md`. Por ora, não é evidência nem a favor nem contra.
 
 Duas leituras do risco:
 
-- **Hipótese (risco, princípio 8).** Na janela sem diário da BA, não dá para descartar votos lançados por quem não era o eleitor. Os arquivos públicos não provam, voto a voto, que esses 50 votos vieram de eleitores.
-- **Contra essa hipótese há só rastros agregados.** No MA, o boletim indica que 32 dos 36 votos foram liberados por digital conferida com o cadastro. Na BA, o padrão de 12 de 13 sem digital também aparece em urnas do mesmo modelo com diário completo, e o tamanho assinado do arquivo de digitais capturadas cresceu nessa janela, o que indica capturas no leitor, mas não de quem. O número de capturas é estimado pelo tamanho do arquivo e fica em `docs/analysis/cetico-revisor/08-votos-sem-log-contingencia.md`.
+- **Hipótese (risco, princípio 8, parecer 25).** Na janela sem diário dessas 5 seções (201 votos), não dá para descartar votos lançados por quem não era o eleitor. Os arquivos públicos não provam, voto a voto, que esses votos vieram de eleitores. Isso não se testa com arquivos públicos.
+- **Contra essa hipótese há só rastros agregados.** Os contadores do boletim (acima) e, na BA 0235, o tamanho assinado do arquivo de digitais capturadas, que cresceu nessa janela: isso indica capturas no leitor, mas não de quem. O número de capturas é estimado pelo tamanho do arquivo e fica em `docs/analysis/cetico-revisor/08-votos-sem-log-contingencia.md`.
 
-**Fato (revisado pelo cético).** No 2º turno, nenhuma outra seção tem voto sem rastro no diário. O efeito máximo desse tipo de falha é de 50 votos.
+**Fato (parecer 25).** Nos dois turnos, nenhuma outra seção tem voto do boletim sem a linha "computado" no diário. O efeito máximo desse tipo de falha é de 54 votos no 2º turno e 159 no 1º; os votos sem nenhuma linha são 49 e 152.
 
-**Risco (procedimento humano).** Tirar o cartão de uma urna e pôr em outra, e recarregar uma urna no dia da eleição, são feitos por pessoas (mesário, técnico). Esta perícia não conta "o mesário seguiu o procedimento" como controle. O que existe de controle técnico (boletim = registro dos votos, assinaturas, contadores de liberação, e o erro 72, que bloqueou as urnas com preparação de outra seção) fecha também nessas 3 seções. O que falta é o rastro linha a linha de 50 votos. No MA, a reserva usada ainda tinha a preparação de outra seção; na BA, a urna original foi recarregada em campo com a preparação de outra seção.
+**Risco (procedimento humano).** Tirar o cartão de uma urna e pôr em outra, e recarregar uma urna no dia da eleição, são feitos por pessoas (mesário, técnico). Esta perícia não conta "o mesário seguiu o procedimento" como controle. O que existe de controle técnico (boletim = registro dos votos, assinaturas, contadores de liberação, e os erros 72 e 17, que bloquearam as urnas com outro cartão) fecha também nessas seções. O que falta é o rastro linha a linha de 49 votos no 2º turno e 152 no 1º. Nos 5 casos, a urna grava o próprio diário na mídia externa **antes** de conferir o cartão, e isso apaga a trilha da urna anterior. **Pendente:** conferir na documentação do TSE se esse é o comportamento previsto.
 
-**Fato.** No 2º turno, 5.714 seções usaram urna reserva. Os 50 votos sem diário estão em 3 delas.
+**Fato.** No 2º turno, 5.714 seções usaram urna reserva. As 2 seções com votos sem nenhuma linha no diário (MA e BA) e a RS 89060/0017/0191 estão entre elas.
 
 ## O que foi encontrado: 1º turno (parcial)
 
@@ -148,7 +194,7 @@ Duas leituras do risco:
 
 ### Números de candidato que faltam no resultado por município
 
-**Pendente.** No 1º turno, o arquivo oficial por candidato, município e zona (`votacao_candidato_munzona`) não tem linha para alguns números de candidato que receberam votos nas urnas. A contagem foi feita só em parte das UFs, e a revisão cética ainda não terminou; os detalhes ficam em `docs/analysis/coerencia-contagem/01-bu-x-oficial.md`. **Hipótese:** são candidaturas canceladas, renunciadas ou negadas pela Justiça depois que as urnas foram preparadas. Para confirmar, falta baixar `consulta_cand_2026`.
+**Fato ([parecer 26](../analysis/cetico-revisor/26-h03-1turno-todos-cargos.md), 1º turno, 28 UFs).** O arquivo oficial por candidato, município e zona (`votacao_candidato_munzona`) não tem linha para 250 números de candidato que receberam 628.629 votos nas urnas. A divulgação oficial omite os mesmos 250 números e conta esses votos como nulo técnico. Detalhes, por estado e cargo, no [tópico 5](05-soma-dos-boletins.md). **Hipótese:** são candidaturas excluídas (registro negado, cancelado ou renunciado). **Pendente:** a situação de cada uma; no `consulta_cand_2026`, o campo da situação vem com "#NE" em todas as linhas.
 - **Fato.** No 2º turno não há números ausentes: Presidente e Governador batem por município e zona (12.584 e 1.026 pares, 0 diferença).
 
 ## Comparecimento alto (revisado pelo cético)
@@ -277,7 +323,7 @@ O pacote de uma seção pode trazer, além do diário da urna que votou, o diár
 
   **Como ler:** cada barra é um modelo de urna (o que a seção usou no 1º turno), e o comprimento é quantas seções, a cada mil, passaram a votar com outra urna, de reserva, no 2º turno. Quanto mais antigo o modelo, mais longa a barra: a urna de 2013 foi trocada 12,9 vezes mais que a de 2022. Dados: [graficos/dados/troca-urna-por-modelo.csv](graficos/dados/troca-urna-por-modelo.csv).
 
-- Em **5 seções** do 2º turno (MS 90514/0008/0486, MS 91650/0051/0044, PR 74918/0056/0037, PR 75833/0043/0397 e SP 61816/0016/0436), a urna foi carregada na manhã da própria votação, e a votação abriu atrasada. Isso foi conferido por dois caminhos: pelo diário e pela data da carga anotada no boletim. Nas 5, a conferência das assinaturas da carga está registrada com sucesso. A carga em si é feita por pessoas, fora da vista da mesa. Além delas, na BA 35653/0173/0235, a urna original foi recarregada no dia com a preparação de outra seção (seção "Os 50 votos sem rastro no diário", acima).
+- Em **5 seções** do 2º turno (MS 90514/0008/0486, MS 91650/0051/0044, PR 74918/0056/0037, PR 75833/0043/0397 e SP 61816/0016/0436), a urna foi carregada na manhã da própria votação, e a votação abriu atrasada. Isso foi conferido por dois caminhos: pelo diário e pela data da carga anotada no boletim. Nas 5, a conferência das assinaturas da carga está registrada com sucesso. A carga em si é feita por pessoas, fora da vista da mesa. Além delas, na BA 35653/0173/0235, a urna original foi recarregada no dia com a preparação de outra seção (seção "Votos do boletim sem rastro completo no diário", acima).
 - **Pendente:** a mesma conta de carga no dia da votação no 1º turno.
 - **Pendente:** a concentração de trocas de urna em algumas zonas é teste estatístico e fica fora deste relatório. O ponto que resiste às duas formas de cálculo do revisor são as zonas 1 e 2 de Aracaju (SE). Para elas, é preciso pedir ao TRE-SE os registros de troca de urna. Anomalia estatística não é prova: indica onde pedir as atas.
 
@@ -286,15 +332,16 @@ O pacote de uma seção pode trazer, além do diário da urna que votou, o diár
 ## Prova de que o teste funciona (contraprova)
 
 - **Fato.** A comparação diário × boletim (C2) apontou 10 seções. A recontagem achou em cada uma a causa: erros do próprio programa de leitura (diário não aberto, diário contado duas vezes, diário de outra seção) e votos de fato sem rastro. Ou seja, o teste é capaz de acusar diferença, inclusive diferenças que vinham de erro nosso.
+- **Fato (parecer 25).** A recontagem do revisor procurou o erro nos dois sentidos. Ela achou 1 voto sem rastro que o método anterior escondia (RS 89036/0083/0044, 1º turno: cópias do mesmo diário somadas davam mais votos no diário que no boletim) e corrigiu a BA 39934/0183/0175 de 36 para 136 votos (o diário de outra seção, que veio no pacote, era somado ao da própria). Depois de tirar cópias e diários de outra seção, nenhuma seção do país tem mais votos no diário que no boletim.
 - **Pendente.** Não há ainda um teste automático que altere de propósito um boletim ou um registro de votos e mostre que C1 a C6 acusam a alteração, como existe para os lacres (tópico 1) e para a soma dos boletins (tópico 5).
 - **Fato (parecer 24).** Os testes de identificação também acusam quando há diferença: o número da urna diferiu em 3 seções do 2º turno e 14 do 1º, e a comparação de períodos apontou 92 urnas. Cada caso foi aberto no arquivo original e explicado (Recuperador de Dados, diário copiado, relógio, diário de outra urna, linha corrompida). Na primeira versão, 4 desses casos estavam rotulados como "relógio"; no diário original, 2 eram relógio e 2 eram urna que só escreveu no fim do diário de outra (parecer 24, item 7). O texto acima já traz a forma corrigida.
 
 ## Limites
 
 1. **Coerência não é legitimidade.** Os três registros saem do mesmo programa. Um voto dado por outra pessoa no lugar do eleitor fica coerente nos três. A única defesa técnica com rastro é a digital do eleitor (tópico 4).
-2. **Lacres.** No 2º turno, os lacres conferem em todas as 499.207 seções com urna; no 1º turno, a conferência está Pendente ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)). Nas 3 seções dos 50 votos, o cético conferiu as assinaturas (0 falha). Além disso, o diário não traz a corrente de elos lacrada que o boletim tem: ele é protegido só pelo lacre do arquivo inteiro.
-3. **Os 50 votos só se esclarecem com dados que não são públicos:** o diário interno das urnas que gravaram esses votos, os arquivos de digitais capturadas dessas seções e a ata da mesa.
-4. **1º turno:** ainda não conferido no país inteiro (Pendente).
+2. **Lacres.** No 2º turno, os lacres conferem em todas as 499.207 seções com urna; no 1º turno, a conferência está Pendente ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)). Nas 5 seções com votos sem nenhuma linha no diário (2 do 2º turno e 3 do 1º), o cético conferiu as assinaturas (0 falha; pareceres 08 e 25). Além disso, o diário não traz a corrente de elos lacrada que o boletim tem: ele é protegido só pelo lacre do arquivo inteiro.
+3. **Os votos sem nenhuma linha no diário (49 no 2º turno e 152 no 1º) só se esclarecem com dados que não são públicos:** o diário interno das urnas que gravaram esses votos, os arquivos de digitais capturadas dessas seções e a ata da mesa.
+4. **1º turno:** o diário × boletim (C2) foi conferido no país inteiro (parecer 25); C1 e C3 a C6 continuam Pendentes.
 5. **Pendente.** A conferência independente do matemático forense sobre a corrente de elos do boletim e o ciclo de cada eleitor no diário (`docs/analysis/matematico-forense/01-catalogo.md`, itens I1 a I3 e I10 a I12) ainda não tem resultado escrito.
 6. **Números de série são gravados pelo próprio programa da urna.** A coerência entre eles mostra que nada foi trocado depois da assinatura e que o pacote não foi montado com pedaços de urnas diferentes. Não mostra que o programa não poderia gravar outro número. O caminho da urna até a totalização é coberto pelas assinaturas (tópico 1); os registros de transmissão só são entregues a entidades fiscalizadoras.
 
@@ -315,6 +362,13 @@ node scripts/auditoria/verifica-pericia-coerencia-munzona.mjs --turno 1 --uf ac,
 node scripts/auditoria/verifica-pericia-coerencia-munzona.mjs --turno 2
 node scripts/auditoria/verifica-pericia-coerencia-secao.mjs --uf ac,al,am,ap,ba,ce,df,es,go,ma,mg,ms,mt
 node scripts/auditoria/verifica-pericia-coerencia-zz.mjs            # seções não instaladas e do Sistema de Apuração no oficial
+
+# votos do boletim sem rastro no diário, dois turnos (parecer 25; cada turno ~30 min com 2 processos)
+node scripts/auditoria/cetico-vsr25-universo.mjs --turno 2 --procs 2
+node scripts/auditoria/cetico-vsr25-universo.mjs --turno 1 --procs 2
+node scripts/auditoria/cetico-vsr25-bruto.mjs --turno 1 --secao ba/39934/0183/0175 --secao sp/71072/0002/0035 --secao rs/89036/0083/0044
+node scripts/auditoria/cetico-vsr25-bruto.mjs --turno 2 --secao ma/08893/0047/0609 --secao ba/35653/0173/0235 --secao rs/89060/0017/0191
+node scripts/auditoria/cetico-vsr25-lacres.mjs                      # assinaturas das 5 seções sem nenhuma linha
 
 # identificação da urna e dos cartões (dependem da varredura de lacres do tópico 1)
 node scripts/auditoria/integridade-resumo.mjs --turno 2
@@ -343,11 +397,14 @@ Saídas do autor em `data/parsed/auditoria/contagem/` (`coerencia-*`, `log-pacot
 ## Próximos passos
 
 - [x] Revisão cética dos 50 votos sem diário (`cetico-revisor/08`, sustentado com ressalvas).
-- [ ] **Pendente.** Revisão cética dos números de candidato ausentes do resultado por município (1º turno).
-- [ ] **Pendente.** Pedir, pela via de fiscalização, o diário interno das urnas que gravaram os votos sem diário (MA 08893/0047/0609: urna 01663580; BA 35653/0173/0235: urna 01681986), o diário interno guardado pela urna 01833178 na recarga em campo, os arquivos de digitais capturadas dessas seções e a ata da mesa das 3 seções.
+- [x] Reconciliação das contagens de votos sem rastro no diário, nos dois turnos, universo completo ([parecer 25](../analysis/cetico-revisor/25-votos-sem-log-reconciliacao.md)).
+- [x] Revisão cética dos números de candidato ausentes do resultado por município, 1º turno ([parecer 26](../analysis/cetico-revisor/26-h03-1turno-todos-cargos.md); [tópico 5](05-soma-dos-boletins.md)).
+- [ ] **Pendente.** Pedir, pela via de fiscalização, o diário interno das urnas que gravaram os votos sem diário (2º turno: MA 08893/0047/0609, urna 01663580; BA 35653/0173/0235, urna 01681986. 1º turno: BA 39934/0183/0175, urna 02424441; RS 89036/0083/0044, urna 01675257; e a urna que abriu a SP 71072/0002/0035 às 09:34:17), o diário interno guardado pela urna 01833178 na recarga em campo, os arquivos de digitais capturadas dessas seções e a ata da mesa.
+- [ ] **Pendente.** Identificar a urna que gravou os 15 votos da SP 71072/0002/0035 (1º turno) antes das 10:18.
+- [ ] **Pendente.** Conferir na documentação do TSE se a urna deve gravar o próprio diário na mídia externa antes de conferir o cartão de votos (erros 72 e 17).
 - [ ] **Pendente.** Comparar a votação dessas 3 seções com a do 1º turno.
-- [ ] **Pendente.** Baixar `consulta_cand_2026` e confirmar a situação dos números ausentes.
-- [ ] **Pendente.** Refazer o 1º turno com as 14 UFs restantes e o exterior, e o C2 de AM e BA (os dados das 28 UFs já estão na cópia de leitura de 29/10/2026).
+- [ ] **Pendente.** Confirmar a situação dos números ausentes (o `consulta_cand_2026` traz "#NE" na situação).
+- [ ] **Pendente.** Refazer o 1º turno (C1 e C3 a C6) com as 14 UFs restantes e o exterior (os dados das 28 UFs já estão na cópia de leitura de 29/10/2026). O C2 do 1º turno já foi feito no país inteiro (parecer 25).
 - [ ] **Pendente.** Medir no país inteiro quantos votos confirmados antes de reinício da urna entraram ou não no boletim (inclusive nas seções com um só diário).
 - [ ] **Pendente.** Teste automático com boletim e registro alterados de propósito (contraprova de C1 a C6).
 - [x] Identificação da urna e dos cartões nos dois turnos, com revisão cética ([parecer 24](../analysis/cetico-revisor/24-integridade-h04-h11.md)).

@@ -1,0 +1,64 @@
+uf,cargo,nulo_tecnico,itens,numeros
+RJ,Governador,274411,1,nº 10
+SP,Senador,131009,2,"nº 300, nº 290"
+AM,Senador,57518,1,nº 181
+SE,Governador,33195,2,"nº 22, nº 45"
+RJ,Dep. Federal,24223,4,"nº 7062, nº 7088, nº 2705, nº 4087"
+SP,Governador,22370,1,nº 29
+PE,Senador,18179,1,nº 355
+DF,Governador,8456,1,nº 55
+SP,Dep. Federal,6910,22,"nº 1120, legenda 29, nº 2929, nº 3696, nº 3660, nº 2999, nº 2900, nº 2989, nº 2919, nº 2768, nº 2726, nº 2909, nº 4585, nº 4095, nº 3622, nº 3686, nº 2959, nº 3677, nº 2949, nº 2939, nº 2979, nº 2739"
+DF,Senador,6323,1,nº 555
+PI,Senador,6188,2,"nº 333, nº 338"
+Brasil,Presidente,5246,1,nº 28
+MG,Dep. Federal,4047,10,"nº 1399, nº 2555, nº 4489, nº 7022, nº 1290, nº 2505, nº 4589, nº 2025, nº 4525, nº 2501"
+MS,Senador,2773,1,nº 365
+BA,Dep. Federal,2724,6,"nº 1277, nº 2026, nº 2258, nº 4525, nº 3654, nº 4021"
+CE,Dep. Federal,2544,3,"nº 1300, nº 1224, nº 1016"
+RN,Governador,2378,2,"nº 50, nº 29"
+GO,Dep. Federal,2307,5,"nº 1378, nº 1000, nº 4514, nº 1248, nº 2772"
+RJ,Dep. Estadual,2242,13,"nº 40023, nº 10111, nº 15022, nº 15666, nº 15041, nº 15800, nº 12016, nº 10077, nº 20202, nº 70057, nº 15766, nº 12211, nº 10528"
+MG,Dep. Estadual,2154,20,"nº 10122, nº 11100, nº 15222, nº 23123, nº 10500, nº 77111, nº 35351, nº 33600, nº 15321, nº 44055, nº 45445, nº 33033, nº 40133, nº 30747, nº 35111, nº 15620, nº 20124, nº 12015, nº 33773, nº 35810"
+SE,Dep. Federal,1352,9,"legenda 25, nº 7700, nº 7777, nº 7711, legenda 77, nº 7733, nº 2055, nº 3033, nº 7722"
+PE,Dep. Federal,1327,8,"nº 4033, nº 2266, nº 7055, nº 7090, nº 7740, nº 1811, nº 1840, nº 1881"
+TO,Governador,1027,1,nº 35
+RS,Dep. Estadual,983,5,"nº 10800, nº 35555, nº 35222, nº 35147, nº 35432"
+PB,Dep. Federal,873,10,"nº 7070, legenda 70, nº 7080, nº 7010, nº 2727, nº 7040, nº 7030, nº 2777, nº 2700, nº 7060"
+BA,Dep. Estadual,754,1,nº 10100
+SC,Dep. Federal,746,5,"nº 1550, nº 7777, nº 7077, nº 5093, nº 2557"
+AM,Dep. Federal,733,1,nº 7777
+RN,Dep. Estadual,710,2,"nº 13013, nº 18777"
+PI,Dep. Federal,674,4,"nº 1112, nº 7022, nº 3321, nº 3322"
+GO,Dep. Estadual,631,5,"nº 22133, nº 20070, nº 30200, nº 18728, nº 18333"
+PB,Governador,590,1,nº 27
+SP,Dep. Estadual,503,4,"nº 33666, nº 33300, nº 33190, nº 50121"
+SC,Dep. Estadual,498,6,"nº 50044, nº 14007, nº 36007, nº 36358, nº 18800, nº 36123"
+DF,Dep. Distrital,487,3,"nº 22001, nº 45222, nº 15333"
+RS,Dep. Federal,358,12,"nº 7001, nº 4580, nº 7077, nº 3545, nº 7044, nº 2723, nº 7710, nº 7029, nº 3603, nº 3666, nº 3612, nº 3684"
+PE,Dep. Estadual,316,6,"nº 10555, nº 22500, nº 22145, nº 20192, nº 18181, nº 20615"
+ES,Dep. Estadual,293,6,"nº 27999, nº 15151, nº 30222, nº 15678, nº 30444, nº 35400"
+SE,Dep. Estadual,273,1,nº 20444
+ES,Dep. Federal,259,1,nº 2772
+RR,Dep. Federal,258,8,"nº 1588, nº 1515, nº 2201, nº 2700, nº 2710, nº 2727, nº 2525, nº 7750"
+RO,Dep. Federal,243,2,"nº 5544, nº 3312"
+MS,Dep. Estadual,157,3,"nº 50777, nº 25511, nº 70456"
+CE,Dep. Estadual,145,3,"nº 18888, nº 33444, nº 33622"
+DF,Dep. Federal,139,1,nº 4577
+RN,Dep. Federal,126,5,"nº 4088, nº 7000, nº 2711, nº 4588, nº 2799"
+PR,Dep. Estadual,120,3,"nº 14900, nº 45030, nº 77678"
+AP,Dep. Estadual,95,2,"nº 22888, nº 13690"
+TO,Dep. Estadual,94,2,"nº 22777, nº 55666"
+MA,Dep. Federal,76,5,"nº 3370, nº 2777, nº 3369, nº 3044, nº 3365"
+PR,Dep. Federal,71,1,nº 3522
+AL,Dep. Estadual,61,5,"nº 25222, nº 77222, nº 25125, nº 77333, nº 25551"
+PA,Dep. Estadual,59,4,"nº 44300, nº 25255, nº 30085, nº 45899"
+RO,Dep. Estadual,58,2,"nº 55055, nº 33012"
+PA,Dep. Federal,53,1,nº 2340
+AC,Dep. Federal,45,3,"nº 4000, nº 4022, nº 4033"
+AP,Dep. Federal,37,2,"nº 3012, nº 2772"
+MT,Dep. Estadual,31,2,"nº 18500, nº 18777"
+PI,Dep. Estadual,31,2,"nº 45333, nº 44700"
+TO,Dep. Federal,23,2,"nº 2777, nº 4045"
+AC,Dep. Estadual,19,2,"nº 10333, nº 20777"
+RR,Dep. Estadual,11,3,"nº 27155, nº 27999, nº 44192"
+MS,Dep. Federal,5,1,nº 3699

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 552" width="760" height="552" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Nulo técnico nos cargos de presidente, governador e senador</title><desc id="desc">Cada barra é um estado e um cargo. Entre parênteses, o número sem linha própria no resultado oficial. RJ · Governador (nº 10): Votos 274.411. SP · Senador (nº 300, nº 290): Votos 131.009. AM · Senador (nº 181): Votos 57.518. SE · Governador (nº 22, nº 45): Votos 33.195. SP · Governador (nº 29): Votos 22.370. PE · Senador (nº 355): Votos 18.179. DF · Governador (nº 55): Votos 8.456. DF · Senador (nº 555): Votos 6.323. PI · Senador (nº 333, nº 338): Votos 6.188. Brasil · Presidente (nº 28): Votos 5.246. MS · Senador (nº 365): Votos 2.773. RN · Governador (nº 50, nº 29): Votos 2.378. TO · Governador (nº 35): Votos 1.027. PB · Governador (nº 27): Votos 590</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}.ref{stroke:#52514e}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}.a0{stroke:#2a78d6}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.ref{stroke:#c3c2b7}.s0{fill:#3987e5}.s1{fill:#d95926}.a0{stroke:#3987e5}}
+</style>
+<rect class="fundo" width="760" height="552" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Nulo técnico nos cargos de presidente, governador e senador</text>
+<text class="t2" x="20" y="52" font-size="13">Cada barra é um estado e um cargo. Entre parênteses, o número sem linha própria no resultado oficial.</text>
+<line class="grade" x1="280" x2="280" y1="72" y2="464" stroke-width="1"/>
+<text class="t2" x="280" y="480" font-size="12" text-anchor="middle">0</text>
+<line class="grade" x1="383.3333333333333" x2="383.3333333333333" y1="72" y2="464" stroke-width="1"/>
+<text class="t2" x="383.3333333333333" y="480" font-size="12" text-anchor="middle">100.000</text>
+<line class="grade" x1="486.66666666666663" x2="486.66666666666663" y1="72" y2="464" stroke-width="1"/>
+<text class="t2" x="486.66666666666663" y="480" font-size="12" text-anchor="middle">200.000</text>
+<line class="grade" x1="590" x2="590" y1="72" y2="464" stroke-width="1"/>
+<text class="t2" x="590" y="480" font-size="12" text-anchor="middle">300.000</text>
+<line class="eixo" x1="280" x2="280" y1="72" y2="464" stroke-width="1"/>
+<text class="t1" x="270" y="91.5" font-size="12.5" text-anchor="end">RJ · Governador (nº 10)</text>
+<path class="s0" d="M280,78h279.55803333333336a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-279.55803333333336z"><title>RJ · Governador (nº 10): 274.411</title></path>
+<text class="t1" x="569.5580333333334" y="91.5" font-size="12">274.411</text>
+<text class="t1" x="270" y="119.5" font-size="12.5" text-anchor="end">SP · Senador (nº 300, nº 290)</text>
+<path class="s0" d="M280,106h131.37596666666667a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-131.37596666666667z"><title>SP · Senador (nº 300, nº 290): 131.009</title></path>
+<text class="t1" x="421.37596666666667" y="119.5" font-size="12">131.009</text>
+<text class="t1" x="270" y="147.5" font-size="12.5" text-anchor="end">AM · Senador (nº 181)</text>
+<path class="s0" d="M280,134h55.43526666666668a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-55.43526666666668z"><title>AM · Senador (nº 181): 57.518</title></path>
+<text class="t1" x="345.4352666666667" y="147.5" font-size="12">57.518</text>
+<text class="t1" x="270" y="175.5" font-size="12.5" text-anchor="end">SE · Governador (nº 22, nº 45)</text>
+<path class="s0" d="M280,162h30.301499999999976a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-30.301499999999976z"><title>SE · Governador (nº 22, nº 45): 33.195</title></path>
+<text class="t1" x="320.3015" y="175.5" font-size="12">33.195</text>
+<text class="t1" x="270" y="203.5" font-size="12.5" text-anchor="end">SP · Governador (nº 29)</text>
+<path class="s0" d="M280,190h19.11566666666664a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-19.11566666666664z"><title>SP · Governador (nº 29): 22.370</title></path>
+<text class="t1" x="309.11566666666664" y="203.5" font-size="12">22.370</text>
+<text class="t1" x="270" y="231.5" font-size="12.5" text-anchor="end">PE · Senador (nº 355)</text>
+<path class="s0" d="M280,218h14.784966666666662a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-14.784966666666662z"><title>PE · Senador (nº 355): 18.179</title></path>
+<text class="t1" x="304.78496666666666" y="231.5" font-size="12">18.179</text>
+<text class="t1" x="270" y="259.5" font-size="12.5" text-anchor="end">DF · Governador (nº 55)</text>
+<path class="s0" d="M280,246h4.737866666666662a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-4.737866666666662z"><title>DF · Governador (nº 55): 8.456</title></path>
+<text class="t1" x="294.73786666666666" y="259.5" font-size="12">8.456</text>
+<text class="t1" x="270" y="287.5" font-size="12.5" text-anchor="end">DF · Senador (nº 555)</text>
+<path class="s0" d="M280,274h2.533766666666679a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-2.533766666666679z"><title>DF · Senador (nº 555): 6.323</title></path>
+<text class="t1" x="292.5337666666667" y="287.5" font-size="12">6.323</text>
+<text class="t1" x="270" y="315.5" font-size="12.5" text-anchor="end">PI · Senador (nº 333, nº 338)</text>
+<path class="s0" d="M280,302h2.394266666666681a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-2.394266666666681z"><title>PI · Senador (nº 333, nº 338): 6.188</title></path>
+<text class="t1" x="292.3942666666667" y="315.5" font-size="12">6.188</text>
+<text class="t1" x="270" y="343.5" font-size="12.5" text-anchor="end">Brasil · Presidente (nº 28)</text>
+<path class="s0" d="M280,330h1.4208666666666545a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-1.4208666666666545z"><title>Brasil · Presidente (nº 28): 5.246</title></path>
+<text class="t1" x="291.42086666666665" y="343.5" font-size="12">5.246</text>
+<text class="t1" x="270" y="371.5" font-size="12.5" text-anchor="end">MS · Senador (nº 365)</text>
+<path class="s0" d="M280,358h0a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h0z"><title>MS · Senador (nº 365): 2.773</title></path>
+<text class="t1" x="288.8654333333333" y="371.5" font-size="12">2.773</text>
+<text class="t1" x="270" y="399.5" font-size="12.5" text-anchor="end">RN · Governador (nº 50, nº 29)</text>
+<path class="s0" d="M280,386h0a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h0z"><title>RN · Governador (nº 50, nº 29): 2.378</title></path>
+<text class="t1" x="288.45726666666667" y="399.5" font-size="12">2.378</text>
+<text class="t1" x="270" y="427.5" font-size="12.5" text-anchor="end">TO · Governador (nº 35)</text>
+<path class="s0" d="M280,414h0a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h0z"><title>TO · Governador (nº 35): 1.027</title></path>
+<text class="t1" x="288" y="427.5" font-size="12">1.027</text>
+<text class="t1" x="270" y="455.5" font-size="12.5" text-anchor="end">PB · Governador (nº 27)</text>
+<path class="s0" d="M280,442h0a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h0z"><title>PB · Governador (nº 27): 590</title></path>
+<text class="t1" x="288" y="455.5" font-size="12">590</text>
+<text class="t2" x="435" y="500" font-size="12.5" text-anchor="middle">Votos no nulo técnico (número de votos)</text>
+<text class="t2" x="20" y="522" font-size="12">Nos demais estados, esses três cargos não têm nulo técnico (0 voto).</text>
+<text class="t2" x="20" y="540" font-size="11">Fonte: boletins de urna e divulgação oficial do TSE, 1º turno; parecer cético 26 (docs/analysis/cetico-revisor/26-h03-1turno-todos-cargos.md).</text>
+</svg>
