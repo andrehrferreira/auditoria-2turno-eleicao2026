@@ -15,7 +15,9 @@ import { lerEntrada, listarEntradas } from '../../src/zip.js';
 // Para cada log (inclusive o aninhado da contingência), cada erro vira um evento com: data, pacote, arquivo SAVD,
 // se houve nova carga depois ("Urna carregada com sucesso" ou "Código de carga ... gravado"), se a mesma etapa
 // passou na inicialização seguinte, e quantos votos foram computados depois do erro até a próxima carga.
-// Também conta, por mensagem normalizada, todas as linhas de nível ERRO que mencionam assinatura/integridade.
+// Também conta, por mensagem normalizada, as linhas de nível ERRO que mencionam assinatura/integridade: linhas, seções,
+// seções com a mensagem na véspera ou no dia da votação (03, 04, 24 ou 25/10) e até 5 exemplos.
+// Atenção: a carga parece reiniciar o log, então um erro seguido de nova carga pode não aparecer no log publicado.
 //
 // Uso: node scripts/auditoria/integridade-autoverificacao.mjs --turno 2 [--uf sp] [--procs 10]
 // Saída: data/parsed/auditoria/integridade/<t>t/autoverificacao.jsonl (eventos) e autoverificacao-resumo.json
@@ -36,6 +38,8 @@ async function textosDeLog(handle, profundidade = 0) {
   return textos;
 }
 
+// Véspera e dia da votação dos dois turnos.
+const VESPERA_OU_DIA = new Set(['03/10/2026', '04/10/2026', '24/10/2026', '25/10/2026']);
 const RE_VERIF = /^Verificação de assinatura - Etapa \[(\d+)\] - \[([^\]]+)\] - \[([^\]]+)\]/;
 const relevante = (msg) => /assinatura|integridade|SAVD|Assinatura|Integridade/.test(msg);
 const normalizar = (msg) => msg.replace(/\d{2}\/\d{2}\/\d{4}/g, 'D').replace(/\[[\d.,:\-/ ]+\]/g, '[#]').replace(/\b[0-9A-F]{8,}\b/g, 'H').replace(/\d+/g, '#');
@@ -47,12 +51,16 @@ export function analisarLog(texto) {
   const errosPorMensagem = {};
   for (let i = 0; i < linhas.length; i++) {
     const [dataHora, nivel, urna, app, msg] = linhas[i];
-    if (nivel === 'ERRO' && relevante(msg)) errosPorMensagem[`${app} ${normalizar(msg)}`] = (errosPorMensagem[`${app} ${normalizar(msg)}`] ?? 0) + 1;
+    if (nivel === 'ERRO' && relevante(msg)) {
+      const e = (errosPorMensagem[`${app} ${normalizar(msg)}`] ??= { linhas: 0, dias: new Set() });
+      e.linhas++;
+      e.dias.add(dataHora.slice(0, 10));
+    }
     const m = RE_VERIF.exec(msg);
     if (!m || m[3] === 'SUCESSO') continue;
     const [, etapa, pacote, resultado] = m;
     const ev = { dataHora, urna, etapa: Number(etapa), pacote, resultado, detalhe: null, savd: null, novaCarga: null, mesmaEtapaDepois: null, proximaInicializacao: null,
-      votosDepoisSemNovaCarga: 0, urnaProntaDepoisSemNovaCarga: false };
+      votosDepoisSemNovaCarga: 0, votosDepoisPorDia: {}, urnaProntaDepoisSemNovaCarga: false };
     for (let j = i + 1; j < Math.min(linhas.length, i + 6); j++) {
       const d = linhas[j][4];
       const s = /pacote: \(([^)]*)\) \| Erro SAVD: \(([^)]*)\)/.exec(d);
@@ -76,7 +84,10 @@ export function analisarLog(texto) {
       const v = RE_VERIF.exec(d);
       if (ligou && v && v[2] === pacote && ev.mesmaEtapaDepois === null) ev.mesmaEtapaDepois = `${dh} ${v[3]}`;
       if (d === 'Urna pronta para receber votos') ev.urnaProntaDepoisSemNovaCarga = true;
-      if (d === 'O voto do eleitor foi computado') ev.votosDepoisSemNovaCarga++;
+      if (d === 'O voto do eleitor foi computado') {
+        ev.votosDepoisSemNovaCarga++;
+        ev.votosDepoisPorDia[dh.slice(0, 10)] = (ev.votosDepoisPorDia[dh.slice(0, 10)] ?? 0) + 1;
+      }
     }
     eventos.push(ev);
   }
@@ -105,7 +116,7 @@ async function filho() {
   const base = path.join(DIR_DADOS, 'raw', `${turno}t`, 'urnas');
   process.on('message', async ({ uf, municipio, zona }) => {
     const eventos = [];
-    const erros = {};
+    const erros = {}; // mensagem → { linhas, secoes, secoesVesperaOuDia, exemplos }
     let logs = 0;
     let falhasLeitura = 0;
     for (const secao of await subdirs(path.join(base, uf, municipio, zona))) {
@@ -119,7 +130,17 @@ async function filho() {
           for (const t of textos) {
             logs++;
             const r = analisarLog(t.texto);
-            for (const [k, n] of Object.entries(r.errosPorMensagem)) erros[k] = (erros[k] ?? 0) + n;
+            for (const [k, e] of Object.entries(r.errosPorMensagem)) {
+              const a = (erros[k] ??= { linhas: 0, secoes: 0, secoesVesperaOuDia: 0, exemplos: [], _vistas: new Set() });
+              a.linhas += e.linhas;
+              const onde = `${uf}/${municipio}/${zona}/${secao}`;
+              if (!a._vistas.has(onde)) {
+                a._vistas.add(onde);
+                a.secoes++;
+                if ([...e.dias].some((d) => VESPERA_OU_DIA.has(d))) a.secoesVesperaOuDia++;
+                if (a.exemplos.length < 5) a.exemplos.push(`${onde} ${[...e.dias].sort().join(',')}`);
+              }
+            }
             for (const ev of r.eventos) eventos.push({ onde: `${uf}/${municipio}/${zona}/${secao}`, hash: h, profundidade: t.profundidade, ...ev });
           }
         }
@@ -128,6 +149,7 @@ async function filho() {
         eventos.push({ onde: `${uf}/${municipio}/${zona}/${secao}`, erroLeitura: erro.message });
       }
     }
+    for (const e of Object.values(erros)) delete e._vistas;
     process.send({ uf, municipio, zona, eventos, erros, logs, falhasLeitura });
   });
   process.send({ pronto: true });
@@ -145,7 +167,7 @@ async function principal() {
   for (const uf of ufs) for (const municipio of await subdirs(path.join(base, uf))) for (const zona of await subdirs(path.join(base, uf, municipio))) fila.push({ uf, municipio, zona });
   const saida = createWriteStream(path.join(dirSaida, 'autoverificacao.jsonl'));
   const resumo = { turno, logs: 0, falhasLeitura: 0, eventos: 0, secoes: new Set(), porPacote: {}, porSavd: {}, porResultado: {}, novaCarga: { sim: 0, nao: 0 },
-    mesmaEtapaDepois: {}, comVotosSemNovaCarga: 0, votosSemNovaCarga: 0, porUf: {}, porData: {}, errosPorMensagem: {} };
+    mesmaEtapaDepois: {}, comVotosSemNovaCarga: 0, votosSemNovaCarga: 0, votosDepoisNoDia: { '04/10/2026': 0, '25/10/2026': 0 }, eventosVesperaOuDia: 0, porUf: {}, porData: {}, errosPorMensagem: {} };
   const inc = (o, k, n = 1) => {
     o[k] = (o[k] ?? 0) + n;
   };
@@ -164,7 +186,13 @@ async function principal() {
         if (m.pronto) return proximo();
         resumo.logs += m.logs;
         resumo.falhasLeitura += m.falhasLeitura;
-        for (const [k, n] of Object.entries(m.erros)) inc(resumo.errosPorMensagem, k, n);
+        for (const [k, e] of Object.entries(m.erros)) {
+          const a = (resumo.errosPorMensagem[k] ??= { linhas: 0, secoes: 0, secoesVesperaOuDia: 0, exemplos: [] });
+          a.linhas += e.linhas;
+          a.secoes += e.secoes;
+          a.secoesVesperaOuDia += e.secoesVesperaOuDia;
+          for (const x of e.exemplos) if (a.exemplos.length < 5) a.exemplos.push(x);
+        }
         for (const ev of m.eventos) {
           saida.write(`${JSON.stringify(ev)}\n`);
           if (ev.erroLeitura) continue;
@@ -179,6 +207,8 @@ async function principal() {
             resumo.comVotosSemNovaCarga++;
             resumo.votosSemNovaCarga += ev.votosDepoisSemNovaCarga;
           }
+          for (const d of Object.keys(resumo.votosDepoisNoDia)) resumo.votosDepoisNoDia[d] += ev.votosDepoisPorDia[d] ?? 0;
+          if (VESPERA_OU_DIA.has(ev.dataHora.slice(0, 10))) resumo.eventosVesperaOuDia++;
           inc(resumo.porUf, ev.onde.slice(0, 2));
           inc(resumo.porData, ev.dataHora.slice(0, 10));
         }
