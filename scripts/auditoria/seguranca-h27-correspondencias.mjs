@@ -79,7 +79,7 @@ for (const k of pacotes.keys()) if (!DODIA.csec.has(k)) somar(R.universo.pacoteS
 const c = {
   buIgualEfetivada: 0, buDifEfetivada: 0, cargaBuIgualEfetivada: 0, cargaBuDifEfetivada: 0,
   trocas: {}, buDifEsperadaSemDivergencia: 0,
-  assinanteIgualBU: 0, assinanteDifBU: 0, assinanteDifBUPorOrigem: {}, assinanteForaEspEf: {}, assinanteEmNenhumaLista: 0,
+  assinanteIgualBU: 0, assinanteDifBU: 0, assinanteDifBUPorOrigem: {}, assinanteForaEspEf: {}, assinanteEmNenhumaLista: 0, assinanteSoContraCesp: {}, parBUEstrito: {},
   parBU: {}, recbtoEfetivada: {}, recbtoEsperadaNoDiaOuDepois: 0,
   assinanteForaDasFaixas: 0, assinanteUE2022: 0, assinanteModeloDifFaixa: 0,
   csecMudouEntreVersoes: {},
@@ -100,6 +100,17 @@ for (const [k, p] of pacotes) {
   const papeisAss = [...new Set([...papeisEm(VESPERA, p.assinante), ...papeisEm(DODIA, p.assinante)])];
   const emCeft = p.assinante === f.urnaEf || p.assinante === f.urnaEsp;
   if (!sa && !papeisAss.length && !emCeft) { c.assinanteEmNenhumaLista++; caso('assinanteEmNenhumaLista', { k, assinante: p.assinante }); }
+  // Parecer 38: o CEFT copia a urna do BU, então "nas listas" contando o CEFT é circular. Contra a CESP (lista anterior),
+  // o assinante pode estar fora de todas as CESP do turno, e até fora das 4 CESP dos dois turnos.
+  if (!sa) {
+    const papeisOutro = LO.versoes.flatMap((V) => papeisEm(V, p.assinante));
+    const z = ufZona(k);
+    const papelCesp = !papeisAss.length ? (papeisOutro.length ? 'soNaCespDoOutroTurno' : 'emNenhumaCespDosDoisTurnos')
+      : papeisAss.includes(`secao:${k}`) ? 'esperadaDaPropriaSecao' : papeisAss.includes(`cont:${z}`) ? 'contingenciaDaPropriaZona'
+        : papeisAss.some((x) => x.startsWith('cont:')) ? 'contingenciaDeOutraZona' : 'esperadaDeOutraSecao';
+    somar(c.assinanteSoContraCesp, `${p.assinante === p.urnaBU ? 'assinante=urnaBU' : 'assinante≠urnaBU'}|${papelCesp}`);
+    if (!papeisAss.length) caso('assinanteForaDaCespDoTurno', { k, assinante: p.assinante, urnaBU: p.urnaBU, papelCesp, tipoUrna: p.tipoUrna });
+  }
   if (!emCeft) {
     const z = ufZona(k);
     const onde = !papeisAss.length ? 'emNenhumaCesp' : papeisAss.includes(`cont:${z}`) ? 'contingenciaDaMesmaZona'
@@ -115,6 +126,12 @@ for (const [k, p] of pacotes) {
     const classe = naVespera ? 'cespVespera' : noDia ? 'soCespDoDia' : `soCeft:${quando}`;
     somar(c.parBU, `${classe}|tipoUrna${p.tipoUrna}|div:${f.div || '-'}|origem:${f.origem}`);
     somar(c.recbtoEfetivada, `${quando}|origem:${f.origem}`);
+    // Casamento estrito (parecer 38): o par tem de estar na linha da PRÓPRIA seção ou como contingência da PRÓPRIA zona.
+    const estrito = (V) => (V.cargaDaUrna.get(p.urnaBU)?.has(nc(p.cargaBU)) ?? false)
+      && papeisEm(V, p.urnaBU).some((x) => x === `secao:${k}` || x === `cont:${ufZona(k)}`);
+    const classeEstrita = estrito(VESPERA) ? 'vesperaEstrito' : estrito(DODIA) ? 'soDiaEstrito'
+      : naVespera ? 'vesperaOutraZonaOuSecao' : noDia ? 'soDiaOutraZonaOuSecao' : `soCeft:${quando}`;
+    somar(c.parBUEstrito, classeEstrita);
     if (!naVespera) caso('parForaDaCespVespera', { k, classe, urnaBU: p.urnaBU, urnaEsp: f.urnaEsp, tipoUrna: p.tipoUrna, div: f.div, origem: f.origem, ...contexto(k, p.urnaBU) });
   }
   // 7. faixas públicas por modelo
