@@ -1,0 +1,3 @@
+Revisão dos 5 scripts anexados (Parte A). Pontos 1 e 2 do pedido (integridade-autoverificacao-depois.mjs, integridade-sobreposicao-bruto.mjs) não estão anexados — fora do escopo desta resposta.
+
+1. **Achado**: retomada perde dados silenciosamente em crash. **Motivo**: `feitos.json` é gravado a cada 200 zonas sem drenar os `createWriteStream`; se processo morre depois de gravar `feitos.json` mas antes do flush do buffer do stream, a zona consta como feita e as linhas nunca chegam ao `.jsonl`. Na retomada, zona é pulada (está em `feitos

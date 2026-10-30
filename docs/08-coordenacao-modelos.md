@@ -61,7 +61,7 @@ Status: `pendente` · `em andamento` · `concluída` · `bloqueada`
 | T11 | Interpretar a liberação manual com digital que não é de mesário cadastrado (31% das manuais no AC) | H05 | Kimi 3 | concluída | [parecer](analysis/modelos/T11/parecer.md): números reconciliados, doc 06 corrigido |
 | T13 | Conteúdo e validação do QR do e-Título; documentos que o mesário pode aceitar | H12 | Claude | pendente | idem T04 |
 | T16 | Revisão adversarial do método da frente de integridade (seriais, cópias de log, autoverificação, entre turnos) | H04, H11 | GPT Astra | concluída | [parecer](analysis/modelos/T16/parecer.md): 4 correções feitas, 4 Pendentes |
-| T17 | Revisão de código dos scripts `scripts/auditoria/integridade-*.mjs` | H04, H11 | Kimi 3 | em andamento | `analysis/modelos/T17/` |
+| T17 | Revisão de código dos scripts `scripts/auditoria/integridade-*.mjs` | H04, H11 | Kimi 3 | em andamento | [parecer](analysis/modelos/T17/parecer.md): 1 correção feita; resposta cortada e HTTP 502, reenviar |
 | T18 | Normas e fontes: erro de assinatura na inicialização, códigos SAVD, contingência e RED, carga, relógio, arquivos não publicados, seriais | H04, H11 | Grok | concluída | [parecer](analysis/modelos/T18/parecer.md): sem web, só pedidos de LAI |
 
 ## Critério de conclusão de uma tarefa

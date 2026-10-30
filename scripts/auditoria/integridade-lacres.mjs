@@ -386,7 +386,12 @@ async function principal() {
         if (concluidos % 200 === 0 || fila.length === 0) {
           const s2 = (Date.now() - inicio) / 1000;
           console.log(`${concluidos}/${total} zonas, ${diretorios} diretórios oficiais, ${falhas} com falha/anomalia, ${s2.toFixed(0)} s`);
-          salvando = salvando.then(() => writeFile(arquivoFeito, JSON.stringify(feitos)));
+          // Zona só vira "feita" em disco depois que as linhas dela saíram do buffer: o write('') resolve depois das
+          // escritas anteriores do mesmo stream. Sem isso, uma queda entre os dois passos perdia a zona na retomada.
+          const copia = JSON.stringify(feitos);
+          salvando = salvando
+            .then(() => Promise.all([...streams.values()].map((x) => new Promise((r) => x.write('', r)))))
+            .then(() => writeFile(arquivoFeito, copia));
         }
         proximo();
       });
@@ -397,8 +402,8 @@ async function principal() {
     if (fila.length === 0 && ativos === 0) resolve();
   });
   await salvando;
-  await writeFile(arquivoFeito, JSON.stringify(feitos));
   await Promise.all([...streams.values()].map((s) => new Promise((r) => s.end(r))));
+  await writeFile(arquivoFeito, JSON.stringify(feitos));
   console.log(`FIM turno ${turno}: ${concluidos} zonas, ${diretorios} diretórios oficiais, ${falhas} com falha/anomalia, ${((Date.now() - inicio) / 1000).toFixed(0)} s`);
 }
 
