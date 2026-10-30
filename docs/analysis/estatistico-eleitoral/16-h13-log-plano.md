@@ -75,3 +75,33 @@ O script injeta a fraude com f = 1% nos dados reais, refaz a regressão e mede o
 
 - `scripts/auditoria/estatistico-h13-log-analise.mjs` (lê a saída por seção de `estatistico-h08-varredura.mjs` e o banco).
 - `data/parsed/auditoria/estatistico/h13-log/`: cerco por via e região, tabela dos 204 testes, MDE, conferência diário × BU × perfil_log.
+
+## Adendo de 30/10/2026: separar composição × inserção no sinal V2 do painel (registrado antes de rodar)
+
+Depois do resultado ([18](18-h13-log-resultado.md)), sobrou um sinal fora do Nordeste: onde a liberação pelo ano de nascimento (V2) cresceu do 1º para o 2º turno, o 13 cresceu mais (Brasil β +4,98, z 9,2; Sudeste +6,32; Sul +9,66). Este adendo fixa, **antes** de rodar, os testes que separam duas leituras. O resultado vai num doc novo ([19](19-h13-v2-composicao.md)).
+
+- **Composição (benigna):** os eleitores sem digital na urna que voltaram a votar no 2º turno são de um perfil que pende mais para o 13 que os que eles substituem.
+- **Inserção (risco, princípio 8):** a mesa liberou pelo título e pelo ano de nascimento votos no lugar de ausentes sem digital na urna.
+
+**Unidades:** "fora do Nordeste" (Norte, Centro-Oeste, Sudeste e Sul), Sudeste e Sul; o Nordeste é relatado como comparação. Modelo de base: o painel do plano (efeito fixo de local, controles, peso 13 + 22, erro por local).
+
+**(a) Idade.** Do perfil do eleitorado por seção (`perfil_eleitor_secao_2026`, por faixa etária, com e sem biometria): p16–24 e p70+ (fração dos eleitores da seção) e, entre os eleitores **sem biometria no cadastro**, a fração de 16–24 e de 70+.
+- A1: painel + Δx_V2 × p16–24 e Δx_V2 × p70+ (centradas na média da unidade).
+- A2: painel + Δx_V2 × (fração de 16–24 entre os sem biometria) e Δx_V2 × (fração de 70+ entre os sem biometria).
+- Composição prevê interação diferente de zero, com o sinal da inclinação política da faixa (a do jovem e a do idoso, lidas no nível do 2º turno com os mesmos controles, relatadas ao lado). Inserção não prevê relação com a idade dos sem biometria.
+
+**(b) Horário e sequência, pelo diário (leitura nova, dois turnos, todas as seções).** Para cada voto: via, hora local, se o eleitor anterior da mesma urna também foi V2, e a hora do `Inicio do Encerramento`.
+- B1: Δx_V2 dividido em Δx_V2 na **última hora** antes do início do encerramento e Δx_V2 no resto do dia, os dois no mesmo painel. Teste: β(última hora) − β(resto).
+- B2: Δx_V2 dividido em V2 **em sequência** (o eleitor anterior da mesma urna também foi V2) e V2 isolado. Teste: β(sequência) − β(isolado).
+- Descritivo: parcela dos V2 e dos V1 na última hora, por turno (diferença em diferenças), e maior rajada de V2 em 10 minutos.
+- Inserção prevê β concentrado na última hora ou nas sequências; composição prevê inclinações iguais (cada eleitor a mais pesa igual, seja qual for a hora).
+
+**Número de testes do adendo:** 3 unidades × (A1: 2 + A2: 2 + B1: 1 + B2: 1) = **18**. Bonferroni a 5%: |z| ≥ 2,99.
+
+**(d) Concentração.** Contribuição de cada seção para o β do painel (numerador do estimador depois de tirar o efeito do local e dos controles), somada por zona e por município. Curva de concentração e parcela do numerador nas 1%, 5% e 10% maiores zonas e municípios, ao lado da parcela da alavanca (denominador) nas mesmas. Critério fixado agora: o sinal é **concentrado** se, tirando os 10 municípios de maior contribuição positiva, o z de "fora do Nordeste" cair abaixo de 3,67 (o corte do plano). Também: refazer sem cada UF, uma de cada vez.
+
+**(c) Bruto.** As 20 seções fora do Nordeste de maior contribuição positiva, nos dois turnos: número de V2, hora de cada V2, sequências de V2, menor intervalo entre dois V2 seguidos, `Foto do eleitor apresentada` e `Solicita digital` nos ciclos V2, linhas ERRO e ALERTA, e se há mesário associado a liberações (sem título). Inserção prevê rajadas e V2 seguidos em ritmo de mesa; composição prevê V2 espalhados no dia.
+
+**Leitura conjunta (fixada agora):** favorece composição se (a) mostra a interação esperada, (b) não concentra e (d) não depende de poucos municípios; favorece inserção se (b) concentra na última hora ou em sequência **e** (d) depende de poucos municípios **e** (c) mostra rajadas. Resultado misto fica como misto.
+
+**Recursos:** no máximo 2 processos Node ao mesmo tempo, sem linhas de execução extras; sem rede.
