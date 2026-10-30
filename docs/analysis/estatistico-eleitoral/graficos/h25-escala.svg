@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 428" width="900" height="428" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Quantos votos passaram pelas urnas da AC URNA, perto da margem do 2º turno</title><desc id="desc">Escala: margem nacional do 13 sobre o 22 (2º turno) 4.430.191; votos do 13 nas seções AC URNA 13.140.473; votos do 22 nas seções AC URNA 12.026.599; votos do 13 nas seções AC URNA com bytes a mais (A1) 4.904.023; votos do 22 nas seções AC URNA com bytes a mais (A1) 4.503.737; troca mínima 13→22 só nas seções A para virar o resultado 2.215.096.</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}.zero{stroke:#52514e}
+  .l0{stroke:#2a78d6}.l1{stroke:#eb6834}.l2{stroke:#1baf7a}.p0{fill:#2a78d6}.p1{fill:#eb6834}.p2{fill:#1baf7a}.p1c{fill:#eb6834;fill-opacity:.45}.p0c{fill:#2a78d6;fill-opacity:.45}.vazio{fill:#fcfcfb}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.zero{stroke:#c3c2b7}.vazio{fill:#1a1a19}
+    .l0{stroke:#3987e5}.l1{stroke:#d95926}.l2{stroke:#199e70}.p0{fill:#3987e5}.p1{fill:#d95926}.p2{fill:#199e70}.p1c{fill:#d95926;fill-opacity:.45}.p0c{fill:#3987e5;fill-opacity:.45}}
+</style>
+<rect class="fundo" width="900" height="428" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Quantos votos passaram pelas urnas da AC URNA, perto da margem do 2º turno</text>
+<text class="t2" x="20" y="52" font-size="13">Votos para presidente no 2º turno. Barras em milhões de votos.</text>
+<text class="t1" x="350" y="121" font-size="12.5" text-anchor="end">margem nacional do 13 sobre o 22 (2º turno)</text>
+<rect class="p2" x="360" y="106" width="151.7" height="22"><title>margem nacional do 13 sobre o 22 (2º turno): 4.430.191 votos</title></rect>
+<text class="t1" x="517.7134086421395" y="121" font-size="12">4,43 mi</text>
+<text class="t1" x="350" y="155" font-size="12.5" text-anchor="end">votos do 13 nas seções AC URNA</text>
+<rect class="p1" x="360" y="140" width="450.0" height="22"><title>votos do 13 nas seções AC URNA: 13.140.473 votos</title></rect>
+<text class="t1" x="816" y="155" font-size="12">13,14 mi</text>
+<text class="t1" x="350" y="189" font-size="12.5" text-anchor="end">votos do 22 nas seções AC URNA</text>
+<rect class="p0" x="360" y="174" width="411.9" height="22"><title>votos do 22 nas seções AC URNA: 12.026.599 votos</title></rect>
+<text class="t1" x="777.8550032407509" y="189" font-size="12">12,03 mi</text>
+<text class="t1" x="350" y="223" font-size="12.5" text-anchor="end">votos do 13 nas seções AC URNA com bytes a mais (A1)</text>
+<rect class="p1c" x="360" y="208" width="167.9" height="22"><title>votos do 13 nas seções AC URNA com bytes a mais (A1): 4.904.023 votos</title></rect>
+<text class="t1" x="533.939947823796" y="223" font-size="12">4,90 mi</text>
+<text class="t1" x="350" y="257" font-size="12.5" text-anchor="end">votos do 22 nas seções AC URNA com bytes a mais (A1)</text>
+<rect class="p0c" x="360" y="242" width="154.2" height="22"><title>votos do 22 nas seções AC URNA com bytes a mais (A1): 4.503.737 votos</title></rect>
+<text class="t1" x="520.2320166100566" y="257" font-size="12">4,50 mi</text>
+<text class="t1" x="350" y="291" font-size="12.5" text-anchor="end">troca mínima 13→22 só nas seções A para virar o resultado</text>
+<rect class="p2" x="360" y="276" width="75.9" height="22" fill-opacity=".45"><title>troca mínima 13→22 só nas seções A para virar o resultado: 2.215.096 votos</title></rect>
+<text class="t1" x="441.85672144374104" y="291" font-size="12">2,22 mi</text>
+<text class="t2" x="20" y="340" font-size="12">Como ler: a margem do vencedor (verde) é menor que os votos de cada candidato dentro das seções AC URNA. Por isso a escala sozinha não descarta</text>
+<text class="t2" x="20" y="357" font-size="12">nada: se essas urnas tivessem trocado voto em massa, o resultado poderia mudar. O que descarta uma troca grande são os testes de voto (gráficos acima).</text>
+<text class="t2" x="20" y="374" font-size="12">A última barra é o mínimo de votos que teriam de ser trocados de um candidato para o outro, só nessas urnas, para virar o resultado.</text>
+<text class="t2" x="20" y="391" font-size="12">Dados: data/parsed/auditoria/h25/grafico-escala.csv e escala-uf.csv.</text>
+<text class="t2" x="20" y="416" font-size="11">Fonte: BU do 1º e do 2º turno (presidente) e pacotes .vsc do 2º turno publicados pelo TSE; scripts estatistico-h25-dados.mjs e estatistico-h25.mjs.</text>
+</svg>

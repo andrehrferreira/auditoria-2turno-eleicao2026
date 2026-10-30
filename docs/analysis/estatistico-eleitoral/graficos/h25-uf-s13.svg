@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 807" width="900" height="807" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Por UF: a parcela do 13 nas urnas AC URNA mudou do 1º para o 2º turno de um jeito diferente?</title><desc id="desc">Efeito por UF. Brasil, variação: −0,03 p.p.</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}.zero{stroke:#52514e}
+  .l0{stroke:#2a78d6}.l1{stroke:#eb6834}.l2{stroke:#1baf7a}.p0{fill:#2a78d6}.p1{fill:#eb6834}.p2{fill:#1baf7a}.p1c{fill:#eb6834;fill-opacity:.45}.p0c{fill:#2a78d6;fill-opacity:.45}.vazio{fill:#fcfcfb}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.zero{stroke:#c3c2b7}.vazio{fill:#1a1a19}
+    .l0{stroke:#3987e5}.l1{stroke:#d95926}.l2{stroke:#199e70}.p0{fill:#3987e5}.p1{fill:#d95926}.p2{fill:#199e70}.p1c{fill:#d95926;fill-opacity:.45}.p0c{fill:#3987e5;fill-opacity:.45}}
+</style>
+<rect class="fundo" width="900" height="807" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Por UF: a parcela do 13 nas urnas AC URNA mudou do 1º para o 2º turno de um jeito diferente?</text>
+<text class="t2" x="20" y="52" font-size="13">Ponto azul: diferença A − B na variação da parcela do 13 entre os turnos, na mesma seção e com a mesma urna, dentro da UF,</text>
+<text class="t2" x="20" y="70" font-size="13">com perfil da seção e voto do 1º turno como controle. Círculo vazio: diferença no nível do 2º turno, dentro da mesma zona.</text>
+<line class="l0" x1="20" x2="46" y1="99" y2="99" stroke-width="2"/><circle class="p0" cx="33" cy="99" r="4.5"/>
+<text class="t1" x="56" y="104" font-size="12.5">Variação 1º → 2º turno (cobre todas as seções A da UF)</text>
+<line class="l1" x1="460" x2="486" y1="99" y2="99" stroke-width="2"/><circle class="vazio l1" cx="473" cy="99" r="4.5" stroke-width="2"/>
+<text class="t1" x="496" y="104" font-size="12.5">Nível no 2º turno, dentro da zona (só zonas com A e B)</text>
+<line class="grade" x1="300.0" x2="300.0" y1="134" y2="672" stroke-width="1"/>
+<text class="t2" x="300.0" y="688" font-size="12" text-anchor="middle">−4</text>
+<line class="grade" x1="371.3" x2="371.3" y1="134" y2="672" stroke-width="1"/>
+<text class="t2" x="371.3" y="688" font-size="12" text-anchor="middle">−3</text>
+<line class="grade" x1="442.5" x2="442.5" y1="134" y2="672" stroke-width="1"/>
+<text class="t2" x="442.5" y="688" font-size="12" text-anchor="middle">−2</text>
+<line class="grade" x1="513.8" x2="513.8" y1="134" y2="672" stroke-width="1"/>
+<text class="t2" x="513.8" y="688" font-size="12" text-anchor="middle">−1</text>
+<line class="zero" x1="585.0" x2="585.0" y1="134" y2="672" stroke-width="1" stroke-dasharray="4 3"/>
+<text class="t2" x="585.0" y="688" font-size="12" text-anchor="middle">0</text>
+<line class="grade" x1="656.3" x2="656.3" y1="134" y2="672" stroke-width="1"/>
+<text class="t2" x="656.3" y="688" font-size="12" text-anchor="middle">+1</text>
+<line class="grade" x1="727.5" x2="727.5" y1="134" y2="672" stroke-width="1"/>
+<text class="t2" x="727.5" y="688" font-size="12" text-anchor="middle">+2</text>
+<line class="grade" x1="798.8" x2="798.8" y1="134" y2="672" stroke-width="1"/>
+<text class="t2" x="798.8" y="688" font-size="12" text-anchor="middle">+3</text>
+<line class="grade" x1="870.0" x2="870.0" y1="134" y2="672" stroke-width="1"/>
+<text class="t2" x="870.0" y="688" font-size="12" text-anchor="middle">+4</text>
+<text class="t2" x="585" y="708" font-size="12.5" text-anchor="middle">Diferença A − B na parcela do 13 (pontos percentuais; positivo = a favor do 13)</text>
+<text class="t1" x="290" y="149" font-size="12.5" text-anchor="end" font-weight="600">Brasil (99.957 seções A)</text>
+<line class="l0" x1="578.7" x2="586.6" y1="141" y2="141" stroke-width="2"/>
+<circle class="p0" cx="582.7" cy="141" r="4.5"><title>BR, variação 1º → 2º: −0,03 p.p. (IC95 −0,09 a +0,02; z -1,15)</title></circle>
+<line class="l1" x1="548.9" x2="589.5" y1="149" y2="149" stroke-width="2"/>
+<circle class="vazio l1" cx="569.2" cy="149" r="4.5" stroke-width="2"><title>BR, nível 2º turno dentro da zona: −0,22 p.p. (IC95 −0,51 a +0,06)</title></circle>
+<text class="t2" x="290" y="171" font-size="12.5" text-anchor="end">AL (1.495 seções A)</text>
+<line class="l0" x1="552.7" x2="606.3" y1="163" y2="163" stroke-width="2"/>
+<circle class="p0" cx="579.5" cy="163" r="4.5"><title>AL, variação 1º → 2º: −0,08 p.p. (IC95 −0,45 a +0,30; z -0,40)</title></circle>
+<text class="t2" x="290" y="193" font-size="12.5" text-anchor="end">AM (2.174 seções A)</text>
+<line class="l0" x1="584.8" x2="609.3" y1="185" y2="185" stroke-width="2"/>
+<circle class="p0" cx="597.0" cy="185" r="4.5"><title>AM, variação 1º → 2º: +0,17 p.p. (IC95 −0,00 a +0,34; z 1,93)</title></circle>
+<line class="l1" x1="597.0" x2="626.2" y1="193" y2="193" stroke-width="2"/>
+<circle class="vazio l1" cx="611.6" cy="193" r="4.5" stroke-width="2"><title>AM, nível 2º turno dentro da zona: +0,37 p.p. (IC95 +0,17 a +0,58)</title></circle>
+<text class="t2" x="290" y="215" font-size="12.5" text-anchor="end">BA (7.989 seções A)</text>
+<line class="l0" x1="568.1" x2="607.1" y1="207" y2="207" stroke-width="2"/>
+<circle class="p0" cx="587.6" cy="207" r="4.5"><title>BA, variação 1º → 2º: +0,04 p.p. (IC95 −0,24 a +0,31; z 0,26)</title></circle>
+<text class="t2" x="290" y="237" font-size="12.5" text-anchor="end">CE (4.283 seções A)</text>
+<line class="l0" x1="565.0" x2="612.2" y1="229" y2="229" stroke-width="2"/>
+<circle class="p0" cx="588.6" cy="229" r="4.5"><title>CE, variação 1º → 2º: +0,05 p.p. (IC95 −0,28 a +0,38; z 0,30)</title></circle>
+<text class="t2" x="290" y="259" font-size="12.5" text-anchor="end">DF (1.373 seções A, poucos municípios)</text>
+<line class="l0" x1="568.4" x2="608.2" y1="251" y2="251" stroke-width="2"/>
+<circle class="p0" cx="588.3" cy="251" r="4.5"><title>DF, variação 1º → 2º: +0,05 p.p. (IC95 −0,23 a +0,33; z 0,33)</title></circle>
+<text class="t2" x="290" y="281" font-size="12.5" text-anchor="end">ES (2.482 seções A)</text>
+<line class="l0" x1="585.0" x2="619.7" y1="273" y2="273" stroke-width="2"/>
+<circle class="p0" cx="602.4" cy="273" r="4.5"><title>ES, variação 1º → 2º: +0,24 p.p. (IC95 +0,00 a +0,49; z 1,96)</title></circle>
+<text class="t2" x="290" y="303" font-size="12.5" text-anchor="end">GO (2.780 seções A)</text>
+<line class="l0" x1="531.8" x2="569.3" y1="295" y2="295" stroke-width="2"/>
+<circle class="p0" cx="550.6" cy="295" r="4.5"><title>GO, variação 1º → 2º: −0,48 p.p. (IC95 −0,75 a −0,22; z -3,60)</title></circle>
+<text class="t2" x="290" y="325" font-size="12.5" text-anchor="end">MA (3.620 seções A)</text>
+<line class="l0" x1="579.7" x2="606.5" y1="317" y2="317" stroke-width="2"/>
+<circle class="p0" cx="593.1" cy="317" r="4.5"><title>MA, variação 1º → 2º: +0,11 p.p. (IC95 −0,07 a +0,30; z 1,19)</title></circle>
+<line class="l1" x1="751.5" x2="795.1" y1="325" y2="325" stroke-width="2"/>
+<circle class="vazio l1" cx="773.3" cy="325" r="4.5" stroke-width="2"><title>MA, nível 2º turno dentro da zona: +2,64 p.p. (IC95 +2,34 a +2,95)</title></circle>
+<text class="t2" x="290" y="347" font-size="12.5" text-anchor="end">MG (9.081 seções A)</text>
+<line class="l0" x1="589.6" x2="612.2" y1="339" y2="339" stroke-width="2"/>
+<circle class="p0" cx="600.9" cy="339" r="4.5"><title>MG, variação 1º → 2º: +0,22 p.p. (IC95 +0,06 a +0,38; z 2,75)</title></circle>
+<text class="t2" x="290" y="369" font-size="12.5" text-anchor="end">MS (1.175 seções A)</text>
+<line class="l0" x1="533.4" x2="563.4" y1="361" y2="361" stroke-width="2"/>
+<circle class="p0" cx="548.4" cy="361" r="4.5"><title>MS, variação 1º → 2º: −0,51 p.p. (IC95 −0,72 a −0,30; z -4,79)</title></circle>
+<text class="t2" x="290" y="391" font-size="12.5" text-anchor="end">MT (1.422 seções A)</text>
+<line class="l0" x1="594.6" x2="611.6" y1="383" y2="383" stroke-width="2"/>
+<circle class="p0" cx="603.1" cy="383" r="4.5"><title>MT, variação 1º → 2º: +0,25 p.p. (IC95 +0,13 a +0,37; z 4,16)</title></circle>
+<line class="l1" x1="402.2" x2="674.1" y1="391" y2="391" stroke-width="2"/>
+<circle class="vazio l1" cx="538.2" cy="391" r="4.5" stroke-width="2"><title>MT, nível 2º turno dentro da zona: −0,66 p.p. (IC95 −2,57 a +1,25)</title></circle>
+<text class="t2" x="290" y="413" font-size="12.5" text-anchor="end">PA (4.522 seções A)</text>
+<line class="l0" x1="557.1" x2="596.4" y1="405" y2="405" stroke-width="2"/>
+<circle class="p0" cx="576.7" cy="405" r="4.5"><title>PA, variação 1º → 2º: −0,12 p.p. (IC95 −0,39 a +0,16; z -0,83)</title></circle>
+<text class="t2" x="290" y="435" font-size="12.5" text-anchor="end">PB (2.556 seções A)</text>
+<line class="l0" x1="561.1" x2="601.7" y1="427" y2="427" stroke-width="2"/>
+<circle class="p0" cx="581.4" cy="427" r="4.5"><title>PB, variação 1º → 2º: −0,05 p.p. (IC95 −0,34 a +0,23; z -0,35)</title></circle>
+<text class="t2" x="290" y="457" font-size="12.5" text-anchor="end">PE (4.555 seções A)</text>
+<line class="l0" x1="538.7" x2="563.0" y1="449" y2="449" stroke-width="2"/>
+<circle class="p0" cx="550.8" cy="449" r="4.5"><title>PE, variação 1º → 2º: −0,48 p.p. (IC95 −0,65 a −0,31; z -5,50)</title></circle>
+<text class="t2" x="290" y="479" font-size="12.5" text-anchor="end">PI (2.040 seções A)</text>
+<line class="l0" x1="573.6" x2="602.8" y1="471" y2="471" stroke-width="2"/>
+<circle class="p0" cx="588.2" cy="471" r="4.5"><title>PI, variação 1º → 2º: +0,04 p.p. (IC95 −0,16 a +0,25; z 0,43)</title></circle>
+<text class="t2" x="290" y="501" font-size="12.5" text-anchor="end">PR (5.869 seções A)</text>
+<line class="l0" x1="573.0" x2="593.4" y1="493" y2="493" stroke-width="2"/>
+<circle class="p0" cx="583.2" cy="493" r="4.5"><title>PR, variação 1º → 2º: −0,03 p.p. (IC95 −0,17 a +0,12; z -0,35)</title></circle>
+<text class="t2" x="290" y="523" font-size="12.5" text-anchor="end">RJ (8.299 seções A)</text>
+<line class="l0" x1="592.0" x2="613.9" y1="515" y2="515" stroke-width="2"/>
+<circle class="p0" cx="603.0" cy="515" r="4.5"><title>RJ, variação 1º → 2º: +0,25 p.p. (IC95 +0,10 a +0,41; z 3,21)</title></circle>
+<text class="t2" x="290" y="545" font-size="12.5" text-anchor="end">RN (1.477 seções A)</text>
+<line class="l0" x1="594.0" x2="635.9" y1="537" y2="537" stroke-width="2"/>
+<circle class="p0" cx="615.0" cy="537" r="4.5"><title>RN, variação 1º → 2º: +0,42 p.p. (IC95 +0,13 a +0,71; z 2,81)</title></circle>
+<text class="t2" x="290" y="567" font-size="12.5" text-anchor="end">RS (4.608 seções A)</text>
+<line class="l0" x1="564.6" x2="584.9" y1="559" y2="559" stroke-width="2"/>
+<circle class="p0" cx="574.7" cy="559" r="4.5"><title>RS, variação 1º → 2º: −0,14 p.p. (IC95 −0,29 a −0,00; z -1,99)</title></circle>
+<text class="t2" x="290" y="589" font-size="12.5" text-anchor="end">SC (4.069 seções A)</text>
+<line class="l0" x1="554.7" x2="577.8" y1="581" y2="581" stroke-width="2"/>
+<circle class="p0" cx="566.3" cy="581" r="4.5"><title>SC, variação 1º → 2º: −0,26 p.p. (IC95 −0,42 a −0,10; z -3,19)</title></circle>
+<text class="t2" x="290" y="611" font-size="12.5" text-anchor="end">SE (926 seções A)</text>
+<line class="l0" x1="583.4" x2="609.7" y1="603" y2="603" stroke-width="2"/>
+<circle class="p0" cx="596.5" cy="603" r="4.5"><title>SE, variação 1º → 2º: +0,16 p.p. (IC95 −0,02 a +0,35; z 1,72)</title></circle>
+<line class="l1" x1="559.6" x2="748.4" y1="611" y2="611" stroke-width="2"/>
+<circle class="vazio l1" cx="654.0" cy="611" r="4.5" stroke-width="2"><title>SE, nível 2º turno dentro da zona: +0,97 p.p. (IC95 −0,36 a +2,29)</title></circle>
+<text class="t2" x="290" y="633" font-size="12.5" text-anchor="end">SP (21.843 seções A)</text>
+<line class="l0" x1="581.3" x2="588.3" y1="625" y2="625" stroke-width="2"/>
+<circle class="p0" cx="584.8" cy="625" r="4.5"><title>SP, variação 1º → 2º: −0,00 p.p. (IC95 −0,05 a +0,05; z -0,12)</title></circle>
+<line class="l1" x1="554.6" x2="593.1" y1="633" y2="633" stroke-width="2"/>
+<circle class="vazio l1" cx="573.8" cy="633" r="4.5" stroke-width="2"><title>SP, nível 2º turno dentro da zona: −0,16 p.p. (IC95 −0,43 a +0,11)</title></circle>
+<text class="t2" x="290" y="655" font-size="12.5" text-anchor="end">TO (9 seções A, poucos municípios)</text>
+<text class="t2" x="20" y="736" font-size="12">Como ler: um software que puxasse voto entre os turnos deslocaria os pontos azuis para o mesmo lado em muitas UFs. Pontos dos dois lados</text>
+<text class="t2" x="20" y="753" font-size="12">do zero, com intervalos que cruzam o zero, são o que se espera do acaso. "Poucos municípios": o intervalo não é confiável (menos de 20 municípios).</text>
+<text class="t2" x="20" y="770" font-size="12">Dados: data/parsed/auditoria/h25/grafico-uf-s13.csv e efeito-uf.csv.</text>
+<text class="t2" x="20" y="795" font-size="11">Fonte: BU do 1º e do 2º turno (presidente) e pacotes .vsc do 2º turno publicados pelo TSE; scripts estatistico-h25-dados.mjs e estatistico-h25.mjs.</text>
+</svg>

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 463" width="900" height="463" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Urnas da AC URNA vencida votam diferente das urnas novas do mesmo lugar?</title><desc id="desc">Diferença A − B na parcela do 13. Sem controle: +0,53 p.p. no 2º turno. Mesmo local + perfil: +0,65 p.p. no 2º turno, +0,79 no 1º, variação −0,11.</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}.zero{stroke:#52514e}
+  .l0{stroke:#2a78d6}.l1{stroke:#eb6834}.l2{stroke:#1baf7a}.p0{fill:#2a78d6}.p1{fill:#eb6834}.p2{fill:#1baf7a}.p1c{fill:#eb6834;fill-opacity:.45}.p0c{fill:#2a78d6;fill-opacity:.45}.vazio{fill:#fcfcfb}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.zero{stroke:#c3c2b7}.vazio{fill:#1a1a19}
+    .l0{stroke:#3987e5}.l1{stroke:#d95926}.l2{stroke:#199e70}.p0{fill:#3987e5}.p1{fill:#d95926}.p2{fill:#199e70}.p1c{fill:#d95926;fill-opacity:.45}.p0c{fill:#3987e5;fill-opacity:.45}}
+</style>
+<rect class="fundo" width="900" height="463" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Urnas da AC URNA vencida votam diferente das urnas novas do mesmo lugar?</text>
+<text class="t2" x="20" y="52" font-size="13">Diferença na parcela do 13 (entre os votos no 13 e no 22) das seções com urna AC URNA (UE2013/UE2015) menos as seções com</text>
+<text class="t2" x="20" y="70" font-size="13">urna UE2020/UE2022, comparando lugares cada vez mais parecidos. Linha horizontal = intervalo de 95%.</text>
+<line class="l1" x1="20" x2="46" y1="99" y2="99" stroke-width="2"/><circle class="p1" cx="33" cy="99" r="4.5"/>
+<text class="t1" x="56" y="104" font-size="12.5">2º turno (nível)</text>
+<line class="l1" x1="460" x2="486" y1="99" y2="99" stroke-width="2"/><circle class="vazio l1" cx="473" cy="99" r="4.5" stroke-width="2"/>
+<text class="t1" x="496" y="104" font-size="12.5">1º turno (nível), as mesmas urnas</text>
+<line class="l0" x1="20" x2="46" y1="119" y2="119" stroke-width="2"/><circle class="p0" cx="33" cy="119" r="4.5"/>
+<text class="t1" x="56" y="124" font-size="12.5">Variação do 1º para o 2º turno na mesma seção</text>
+<line class="grade" x1="330.0" x2="330.0" y1="154" y2="294" stroke-width="1"/>
+<text class="t2" x="330.0" y="310" font-size="12" text-anchor="middle">−3</text>
+<line class="grade" x1="420.0" x2="420.0" y1="154" y2="294" stroke-width="1"/>
+<text class="t2" x="420.0" y="310" font-size="12" text-anchor="middle">−2</text>
+<line class="grade" x1="510.0" x2="510.0" y1="154" y2="294" stroke-width="1"/>
+<text class="t2" x="510.0" y="310" font-size="12" text-anchor="middle">−1</text>
+<line class="zero" x1="600.0" x2="600.0" y1="154" y2="294" stroke-width="1" stroke-dasharray="4 3"/>
+<text class="t2" x="600.0" y="310" font-size="12" text-anchor="middle">0</text>
+<line class="grade" x1="690.0" x2="690.0" y1="154" y2="294" stroke-width="1"/>
+<text class="t2" x="690.0" y="310" font-size="12" text-anchor="middle">+1</text>
+<line class="grade" x1="780.0" x2="780.0" y1="154" y2="294" stroke-width="1"/>
+<text class="t2" x="780.0" y="310" font-size="12" text-anchor="middle">+2</text>
+<line class="grade" x1="870.0" x2="870.0" y1="154" y2="294" stroke-width="1"/>
+<text class="t2" x="870.0" y="310" font-size="12" text-anchor="middle">+3</text>
+<text class="t2" x="600" y="330" font-size="12.5" text-anchor="middle">Diferença A − B na parcela do 13 (pontos percentuais; positivo = urnas AC URNA votam mais no 13)</text>
+<text class="t2" x="320" y="171" font-size="12.5" text-anchor="end">Brasil inteiro, sem controle (99.957 seções A)</text>
+<line class="l1" x1="500.7" x2="795.3" y1="159" y2="159" stroke-width="2"/>
+<circle class="p1" cx="648.0" cy="159" r="4.5"><title>bruto (sem controle), 2º turno: +0,53 p.p. (IC95 −1,10 a +2,17)</title></circle>
+<line class="l1" x1="494.4" x2="797.6" y1="167" y2="167" stroke-width="2"/>
+<circle class="vazio l1" cx="646.0" cy="167" r="4.5" stroke-width="2"><title>bruto (sem controle), 1º turno: +0,51 p.p. (IC95 −1,17 a +2,20)</title></circle>
+<line class="l0" x1="582.8" x2="608.0" y1="175" y2="175" stroke-width="2"/>
+<circle class="p0" cx="595.4" cy="175" r="4.5"><title>bruto (sem controle), variação 1º → 2º: −0,05 p.p. (IC95 −0,19 a +0,09)</title></circle>
+<text class="t2" x="320" y="197" font-size="12.5" text-anchor="end">Mesma UF + perfil da seção (98.526 seções A)</text>
+<line class="l1" x1="473.1" x2="734.7" y1="185" y2="185" stroke-width="2"/>
+<circle class="p1" cx="603.9" cy="185" r="4.5"><title>uf + perfil, 2º turno: +0,04 p.p. (IC95 −1,41 a +1,50)</title></circle>
+<line class="l1" x1="465.8" x2="743.4" y1="193" y2="193" stroke-width="2"/>
+<circle class="vazio l1" cx="604.6" cy="193" r="4.5" stroke-width="2"><title>uf + perfil, 1º turno: +0,05 p.p. (IC95 −1,49 a +1,59)</title></circle>
+<line class="l0" x1="587.9" x2="607.3" y1="201" y2="201" stroke-width="2"/>
+<circle class="p0" cx="597.6" cy="201" r="4.5"><title>uf + perfil, variação 1º → 2º: −0,03 p.p. (IC95 −0,13 a +0,08)</title></circle>
+<text class="t2" x="320" y="223" font-size="12.5" text-anchor="end">Mesmo município + perfil (36.205 seções A)</text>
+<line class="l1" x1="505.3" x2="728.8" y1="211" y2="211" stroke-width="2"/>
+<circle class="p1" cx="617.1" cy="211" r="4.5"><title>municipio + perfil, 2º turno: +0,19 p.p. (IC95 −1,05 a +1,43)</title></circle>
+<line class="l1" x1="501.3" x2="728.9" y1="219" y2="219" stroke-width="2"/>
+<circle class="vazio l1" cx="615.1" cy="219" r="4.5" stroke-width="2"><title>municipio + perfil, 1º turno: +0,17 p.p. (IC95 −1,10 a +1,43)</title></circle>
+<line class="l0" x1="595.7" x2="607.1" y1="227" y2="227" stroke-width="2"/>
+<circle class="p0" cx="601.4" cy="227" r="4.5"><title>municipio + perfil, variação 1º → 2º: +0,02 p.p. (IC95 −0,05 a +0,08)</title></circle>
+<text class="t2" x="320" y="249" font-size="12.5" text-anchor="end">Mesma zona eleitoral + perfil (26.708 seções A)</text>
+<line class="l1" x1="554.3" x2="605.7" y1="237" y2="237" stroke-width="2"/>
+<circle class="p1" cx="580.0" cy="237" r="4.5"><title>zona + perfil, 2º turno: −0,22 p.p. (IC95 −0,51 a +0,06)</title></circle>
+<line class="l1" x1="555.4" x2="609.8" y1="245" y2="245" stroke-width="2"/>
+<circle class="vazio l1" cx="582.6" cy="245" r="4.5" stroke-width="2"><title>zona + perfil, 1º turno: −0,19 p.p. (IC95 −0,50 a +0,11)</title></circle>
+<line class="l0" x1="592.6" x2="602.2" y1="253" y2="253" stroke-width="2"/>
+<circle class="p0" cx="597.4" cy="253" r="4.5"><title>zona + perfil, variação 1º → 2º: −0,03 p.p. (IC95 −0,08 a +0,02)</title></circle>
+<text class="t1" x="320" y="275" font-size="12.5" text-anchor="end" font-weight="600">Mesmo local de votação + perfil (516 seções A)</text>
+<line class="l1" x1="613.5" x2="702.6" y1="263" y2="263" stroke-width="2"/>
+<circle class="p1" cx="658.1" cy="263" r="4.5"><title>local + perfil, 2º turno: +0,65 p.p. (IC95 +0,15 a +1,14)</title></circle>
+<line class="l1" x1="627.8" x2="714.6" y1="271" y2="271" stroke-width="2"/>
+<circle class="vazio l1" cx="671.2" cy="271" r="4.5" stroke-width="2"><title>local + perfil, 1º turno: +0,79 p.p. (IC95 +0,31 a +1,27)</title></circle>
+<line class="l0" x1="563.6" x2="616.3" y1="279" y2="279" stroke-width="2"/>
+<circle class="p0" cx="590.0" cy="279" r="4.5"><title>local + perfil, variação 1º → 2º: −0,11 p.p. (IC95 −0,40 a +0,18)</title></circle>
+<text class="t2" x="20" y="358" font-size="12">Como ler: se a urna antiga puxasse voto para um candidato, o ponto laranja cheio ficaria longe da linha tracejada (zero) em todas as camadas,</text>
+<text class="t2" x="20" y="375" font-size="12">e o ponto azul (variação) também, caso a manipulação tivesse mudado entre os turnos. O nível se mexe de sinal conforme o lugar comparado</text>
+<text class="t2" x="20" y="392" font-size="12">(perfil do lugar) e é igual no 1º turno; a variação fica colada no zero em todas as camadas.</text>
+<text class="t2" x="20" y="409" font-size="12">O local de votação é a comparação mais justa, mas só 516 das 99.957 seções A dividem o local com urna nova.</text>
+<text class="t2" x="20" y="426" font-size="12">Dados: data/parsed/auditoria/h25/grafico-camadas-s13.csv.</text>
+<text class="t2" x="20" y="451" font-size="11">Fonte: BU do 1º e do 2º turno (presidente) e pacotes .vsc do 2º turno publicados pelo TSE; scripts estatistico-h25-dados.mjs e estatistico-h25.mjs.</text>
+</svg>

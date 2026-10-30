@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 549" width="900" height="549" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Há urnas AC URNA isoladas fora da curva?</title><desc id="desc">Distribuição do desvio padronizado dentro da zona, A × B, nível e variação.</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}.zero{stroke:#52514e}
+  .l0{stroke:#2a78d6}.l1{stroke:#eb6834}.l2{stroke:#1baf7a}.p0{fill:#2a78d6}.p1{fill:#eb6834}.p2{fill:#1baf7a}.p1c{fill:#eb6834;fill-opacity:.45}.p0c{fill:#2a78d6;fill-opacity:.45}.vazio{fill:#fcfcfb}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.zero{stroke:#c3c2b7}.vazio{fill:#1a1a19}
+    .l0{stroke:#3987e5}.l1{stroke:#d95926}.l2{stroke:#199e70}.p0{fill:#3987e5}.p1{fill:#d95926}.p2{fill:#199e70}.p1c{fill:#d95926;fill-opacity:.45}.p0c{fill:#3987e5;fill-opacity:.45}}
+</style>
+<rect class="fundo" width="900" height="549" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Há urnas AC URNA isoladas fora da curva?</text>
+<text class="t2" x="20" y="52" font-size="13">Distância de cada seção à sua zona eleitoral na parcela do 13 (perfil da seção descontado), em desvios típicos.</text>
+<text class="t2" x="20" y="70" font-size="13">Escala vertical logarítmica, para mostrar as pontas. Só zonas com urnas dos dois tipos.</text>
+<line class="l1" x1="20" x2="48" y1="99" y2="99" stroke-width="2.5"/>
+<text class="t1" x="56" y="104" font-size="12.5">Seções com urna AC URNA (A)</text>
+<line class="l0" x1="460" x2="488" y1="99" y2="99" stroke-width="2.5" stroke-dasharray="6 4"/>
+<text class="t1" x="496" y="104" font-size="12.5">Seções com urna UE2020/UE2022 (B)</text>
+<text class="t1" x="260" y="148" font-size="13" font-weight="600" text-anchor="middle">Nível no 2º turno</text>
+<line class="grade" x1="70" x2="450" y1="414" y2="414"/>
+<text class="t2" x="64" y="418" font-size="11" text-anchor="end">1/1.000.000</text>
+<line class="grade" x1="70" x2="450" y1="370.6666666666667" y2="370.6666666666667"/>
+<text class="t2" x="64" y="374.6666666666667" font-size="11" text-anchor="end">1/100.000</text>
+<line class="grade" x1="70" x2="450" y1="327.33333333333337" y2="327.33333333333337"/>
+<text class="t2" x="64" y="331.33333333333337" font-size="11" text-anchor="end">1/10.000</text>
+<line class="grade" x1="70" x2="450" y1="284" y2="284"/>
+<text class="t2" x="64" y="288" font-size="11" text-anchor="end">1/1.000</text>
+<line class="grade" x1="70" x2="450" y1="240.66666666666669" y2="240.66666666666669"/>
+<text class="t2" x="64" y="244.66666666666669" font-size="11" text-anchor="end">1%</text>
+<line class="grade" x1="70" x2="450" y1="197.33333333333331" y2="197.33333333333331"/>
+<text class="t2" x="64" y="201.33333333333331" font-size="11" text-anchor="end">10%</text>
+<line class="grade" x1="70" x2="450" y1="154" y2="154"/>
+<text class="t2" x="64" y="158" font-size="11" text-anchor="end">100%</text>
+<text class="t2" x="70" y="430" font-size="11" text-anchor="middle">−8</text>
+<text class="t2" x="117.5" y="430" font-size="11" text-anchor="middle">−6</text>
+<text class="t2" x="165" y="430" font-size="11" text-anchor="middle">−4</text>
+<text class="t2" x="212.5" y="430" font-size="11" text-anchor="middle">−2</text>
+<text class="t2" x="260" y="430" font-size="11" text-anchor="middle">0</text>
+<text class="t2" x="307.5" y="430" font-size="11" text-anchor="middle">+2</text>
+<text class="t2" x="355" y="430" font-size="11" text-anchor="middle">+4</text>
+<text class="t2" x="402.5" y="430" font-size="11" text-anchor="middle">+6</text>
+<text class="t2" x="450" y="430" font-size="11" text-anchor="middle">+8</text>
+<text class="t2" x="260" y="448" font-size="12" text-anchor="middle">desvio da seção em relação à zona (desvios típicos)</text>
+<polyline class="l0" fill="none" stroke-width="2" stroke-dasharray="6 4" points="99.7,337.3 111.6,341.5 123.4,326.3 135.3,320.9 147.2,304.9 159.1,289.4 170.9,280.8 182.8,264.6 194.7,249.1 206.6,229.9 218.4,214.1 230.3,199.8 242.2,189.9 254.1,184.9 265.9,185.3 277.8,190.1 289.7,199.3 301.6,213.4 313.4,229.8 325.3,247.1 337.2,263.1 349.1,278.3 360.9,294.4 372.8,306.3 384.7,322.5 396.6,326.3 408.4,341.5 420.3,347.0 432.2,337.3 444.1,347.0"/>
+<circle class="p0" cx="99.7" cy="337.3" r="2.5"><title>B, de −7,0 a −6,5: 5 seções (0,006%)</title></circle>
+<circle class="p0" cx="111.6" cy="341.5" r="2.5"><title>B, de −6,5 a −6,0: 4 seções (0,005%)</title></circle>
+<circle class="p0" cx="123.4" cy="326.3" r="2.5"><title>B, de −6,0 a −5,5: 9 seções (0,011%)</title></circle>
+<circle class="p0" cx="135.3" cy="320.9" r="2.5"><title>B, de −5,5 a −5,0: 12 seções (0,014%)</title></circle>
+<circle class="p0" cx="147.2" cy="304.9" r="2.5"><title>B, de −5,0 a −4,5: 28 seções (0,033%)</title></circle>
+<circle class="p0" cx="159.1" cy="289.4" r="2.5"><title>B, de −4,5 a −4,0: 64 seções (0,075%)</title></circle>
+<circle class="p0" cx="170.9" cy="280.8" r="2.5"><title>B, de −4,0 a −3,5: 101 seções (0,119%)</title></circle>
+<circle class="p0" cx="182.8" cy="264.6" r="2.5"><title>B, de −3,5 a −3,0: 239 seções (0,281%)</title></circle>
+<circle class="p0" cx="194.7" cy="249.1" r="2.5"><title>B, de −3,0 a −2,5: 545 seções (0,640%)</title></circle>
+<circle class="p0" cx="206.6" cy="229.9" r="2.5"><title>B, de −2,5 a −2,0: 1.508 seções (1,772%)</title></circle>
+<circle class="p0" cx="218.4" cy="214.1" r="2.5"><title>B, de −2,0 a −1,5: 3.492 seções (4,103%)</title></circle>
+<circle class="p0" cx="230.3" cy="199.8" r="2.5"><title>B, de −1,5 a −1,0: 7.451 seções (8,755%)</title></circle>
+<circle class="p0" cx="242.2" cy="189.9" r="2.5"><title>B, de −1,0 a −0,5: 12.657 seções (14,870%)</title></circle>
+<circle class="p0" cx="254.1" cy="184.9" r="2.5"><title>B, de −0,5 a 0,0: 16.438 seções (19,310%)</title></circle>
+<circle class="p0" cx="265.9" cy="185.3" r="2.5"><title>B, de 0,0 a +0,5: 16.143 seções (18,970%)</title></circle>
+<circle class="p0" cx="277.8" cy="190.1" r="2.5"><title>B, de +0,5 a +1,0: 12.526 seções (14,720%)</title></circle>
+<circle class="p0" cx="289.7" cy="199.3" r="2.5"><title>B, de +1,0 a +1,5: 7.652 seções (8,991%)</title></circle>
+<circle class="p0" cx="301.6" cy="213.4" r="2.5"><title>B, de +1,5 a +2,0: 3.628 seções (4,263%)</title></circle>
+<circle class="p0" cx="313.4" cy="229.8" r="2.5"><title>B, de +2,0 a +2,5: 1.515 seções (1,780%)</title></circle>
+<circle class="p0" cx="325.3" cy="247.1" r="2.5"><title>B, de +2,5 a +3,0: 606 seções (0,712%)</title></circle>
+<circle class="p0" cx="337.2" cy="263.1" r="2.5"><title>B, de +3,0 a +3,5: 258 seções (0,303%)</title></circle>
+<circle class="p0" cx="349.1" cy="278.3" r="2.5"><title>B, de +3,5 a +4,0: 115 seções (0,135%)</title></circle>
+<circle class="p0" cx="360.9" cy="294.4" r="2.5"><title>B, de +4,0 a +4,5: 49 seções (0,058%)</title></circle>
+<circle class="p0" cx="372.8" cy="306.3" r="2.5"><title>B, de +4,5 a +5,0: 26 seções (0,031%)</title></circle>
+<circle class="p0" cx="384.7" cy="322.5" r="2.5"><title>B, de +5,0 a +5,5: 11 seções (0,013%)</title></circle>
+<circle class="p0" cx="396.6" cy="326.3" r="2.5"><title>B, de +5,5 a +6,0: 9 seções (0,011%)</title></circle>
+<circle class="p0" cx="408.4" cy="341.5" r="2.5"><title>B, de +6,0 a +6,5: 4 seções (0,005%)</title></circle>
+<circle class="p0" cx="420.3" cy="347.0" r="2.5"><title>B, de +6,5 a +7,0: 3 seções (0,004%)</title></circle>
+<circle class="p0" cx="432.2" cy="337.3" r="2.5"><title>B, de +7,0 a +7,5: 5 seções (0,006%)</title></circle>
+<circle class="p0" cx="444.1" cy="347.0" r="2.5"><title>B, de +7,5 a +8,0: 3 seções (0,004%)</title></circle>
+<polyline class="l1" fill="none" stroke-width="2" points="111.6,332.8 123.4,345.8 135.3,332.8 147.2,306.7 159.1,297.6 170.9,290.4 182.8,271.1 194.7,249.4 206.6,228.4 218.4,212.7 230.3,198.7 242.2,189.5 254.1,185.1 265.9,185.2 277.8,190.2 289.7,200.0 301.6,214.0 313.4,230.8 325.3,251.1 337.2,267.6 349.1,293.6 360.9,300.7 372.8,332.8 384.7,319.7 396.6,332.8 408.4,325.2 420.3,345.8 444.1,345.8"/>
+<circle class="p1" cx="111.6" cy="332.8" r="2.5"><title>A, de −6,5 a −6,0: 2 seções (0,007%)</title></circle>
+<circle class="p1" cx="123.4" cy="345.8" r="2.5"><title>A, de −6,0 a −5,5: 1 seções (0,004%)</title></circle>
+<circle class="p1" cx="135.3" cy="332.8" r="2.5"><title>A, de −5,5 a −5,0: 2 seções (0,007%)</title></circle>
+<circle class="p1" cx="147.2" cy="306.7" r="2.5"><title>A, de −5,0 a −4,5: 8 seções (0,030%)</title></circle>
+<circle class="p1" cx="159.1" cy="297.6" r="2.5"><title>A, de −4,5 a −4,0: 13 seções (0,049%)</title></circle>
+<circle class="p1" cx="170.9" cy="290.4" r="2.5"><title>A, de −4,0 a −3,5: 19 seções (0,071%)</title></circle>
+<circle class="p1" cx="182.8" cy="271.1" r="2.5"><title>A, de −3,5 a −3,0: 53 seções (0,198%)</title></circle>
+<circle class="p1" cx="194.7" cy="249.4" r="2.5"><title>A, de −3,0 a −2,5: 168 seções (0,629%)</title></circle>
+<circle class="p1" cx="206.6" cy="228.4" r="2.5"><title>A, de −2,5 a −2,0: 512 seções (1,917%)</title></circle>
+<circle class="p1" cx="218.4" cy="212.7" r="2.5"><title>A, de −2,0 a −1,5: 1.180 seções (4,418%)</title></circle>
+<circle class="p1" cx="230.3" cy="198.7" r="2.5"><title>A, de −1,5 a −1,0: 2.482 seções (9,293%)</title></circle>
+<circle class="p1" cx="242.2" cy="189.5" r="2.5"><title>A, de −1,0 a −0,5: 4.044 seções (15,140%)</title></circle>
+<circle class="p1" cx="254.1" cy="185.1" r="2.5"><title>A, de −0,5 a 0,0: 5.109 seções (19,130%)</title></circle>
+<circle class="p1" cx="265.9" cy="185.2" r="2.5"><title>A, de 0,0 a +0,5: 5.081 seções (19,020%)</title></circle>
+<circle class="p1" cx="277.8" cy="190.2" r="2.5"><title>A, de +0,5 a +1,0: 3.909 seções (14,640%)</title></circle>
+<circle class="p1" cx="289.7" cy="200.0" r="2.5"><title>A, de +1,0 a +1,5: 2.318 seções (8,679%)</title></circle>
+<circle class="p1" cx="301.6" cy="214.0" r="2.5"><title>A, de +1,5 a +2,0: 1.100 seções (4,119%)</title></circle>
+<circle class="p1" cx="313.4" cy="230.8" r="2.5"><title>A, de +2,0 a +2,5: 450 seções (1,685%)</title></circle>
+<circle class="p1" cx="325.3" cy="251.1" r="2.5"><title>A, de +2,5 a +3,0: 153 seções (0,573%)</title></circle>
+<circle class="p1" cx="337.2" cy="267.6" r="2.5"><title>A, de +3,0 a +3,5: 64 seções (0,240%)</title></circle>
+<circle class="p1" cx="349.1" cy="293.6" r="2.5"><title>A, de +3,5 a +4,0: 16 seções (0,060%)</title></circle>
+<circle class="p1" cx="360.9" cy="300.7" r="2.5"><title>A, de +4,0 a +4,5: 11 seções (0,041%)</title></circle>
+<circle class="p1" cx="372.8" cy="332.8" r="2.5"><title>A, de +4,5 a +5,0: 2 seções (0,007%)</title></circle>
+<circle class="p1" cx="384.7" cy="319.7" r="2.5"><title>A, de +5,0 a +5,5: 4 seções (0,015%)</title></circle>
+<circle class="p1" cx="396.6" cy="332.8" r="2.5"><title>A, de +5,5 a +6,0: 2 seções (0,007%)</title></circle>
+<circle class="p1" cx="408.4" cy="325.2" r="2.5"><title>A, de +6,0 a +6,5: 3 seções (0,011%)</title></circle>
+<circle class="p1" cx="420.3" cy="345.8" r="2.5"><title>A, de +6,5 a +7,0: 1 seções (0,004%)</title></circle>
+<circle class="p1" cx="444.1" cy="345.8" r="2.5"><title>A, de +7,5 a +8,0: 1 seções (0,004%)</title></circle>
+<text class="t1" x="710" y="148" font-size="13" font-weight="600" text-anchor="middle">Variação do 1º para o 2º turno</text>
+<line class="grade" x1="520" x2="900" y1="414" y2="414"/>
+<text class="t2" x="514" y="418" font-size="11" text-anchor="end">1/1.000.000</text>
+<line class="grade" x1="520" x2="900" y1="370.6666666666667" y2="370.6666666666667"/>
+<text class="t2" x="514" y="374.6666666666667" font-size="11" text-anchor="end">1/100.000</text>
+<line class="grade" x1="520" x2="900" y1="327.33333333333337" y2="327.33333333333337"/>
+<text class="t2" x="514" y="331.33333333333337" font-size="11" text-anchor="end">1/10.000</text>
+<line class="grade" x1="520" x2="900" y1="284" y2="284"/>
+<text class="t2" x="514" y="288" font-size="11" text-anchor="end">1/1.000</text>
+<line class="grade" x1="520" x2="900" y1="240.66666666666669" y2="240.66666666666669"/>
+<text class="t2" x="514" y="244.66666666666669" font-size="11" text-anchor="end">1%</text>
+<line class="grade" x1="520" x2="900" y1="197.33333333333331" y2="197.33333333333331"/>
+<text class="t2" x="514" y="201.33333333333331" font-size="11" text-anchor="end">10%</text>
+<line class="grade" x1="520" x2="900" y1="154" y2="154"/>
+<text class="t2" x="514" y="158" font-size="11" text-anchor="end">100%</text>
+<text class="t2" x="520" y="430" font-size="11" text-anchor="middle">−8</text>
+<text class="t2" x="567.5" y="430" font-size="11" text-anchor="middle">−6</text>
+<text class="t2" x="615" y="430" font-size="11" text-anchor="middle">−4</text>
+<text class="t2" x="662.5" y="430" font-size="11" text-anchor="middle">−2</text>
+<text class="t2" x="710" y="430" font-size="11" text-anchor="middle">0</text>
+<text class="t2" x="757.5" y="430" font-size="11" text-anchor="middle">+2</text>
+<text class="t2" x="805" y="430" font-size="11" text-anchor="middle">+4</text>
+<text class="t2" x="852.5" y="430" font-size="11" text-anchor="middle">+6</text>
+<text class="t2" x="900" y="430" font-size="11" text-anchor="middle">+8</text>
+<text class="t2" x="710" y="448" font-size="12" text-anchor="middle">desvio da seção em relação à zona (desvios típicos)</text>
+<polyline class="l0" fill="none" stroke-width="2" stroke-dasharray="6 4" points="620.9,309.4 632.8,279.9 644.7,254.5 656.6,232.4 668.4,213.0 680.3,198.8 692.2,189.7 704.1,185.0 715.9,185.1 727.8,190.4 739.7,199.1 751.6,212.2 763.4,229.7 775.3,248.3 787.2,269.6 799.1,296.3 810.9,322.4 822.8,354.5 846.6,367.5"/>
+<circle class="p0" cx="620.9" cy="309.4" r="2.5"><title>B, de −4,0 a −3,5: 22 seções (0,026%)</title></circle>
+<circle class="p0" cx="632.8" cy="279.9" r="2.5"><title>B, de −3,5 a −3,0: 105 seções (0,124%)</title></circle>
+<circle class="p0" cx="644.7" cy="254.5" r="2.5"><title>B, de −3,0 a −2,5: 406 seções (0,480%)</title></circle>
+<circle class="p0" cx="656.6" cy="232.4" r="2.5"><title>B, de −2,5 a −2,0: 1.311 seções (1,549%)</title></circle>
+<circle class="p0" cx="668.4" cy="213.0" r="2.5"><title>B, de −2,0 a −1,5: 3.674 seções (4,341%)</title></circle>
+<circle class="p0" cx="680.3" cy="198.8" r="2.5"><title>B, de −1,5 a −1,0: 7.828 seções (9,250%)</title></circle>
+<circle class="p0" cx="692.2" cy="189.7" r="2.5"><title>B, de −1,0 a −0,5: 12.689 seções (14,990%)</title></circle>
+<circle class="p0" cx="704.1" cy="185.0" r="2.5"><title>B, de −0,5 a 0,0: 16.279 seções (19,240%)</title></circle>
+<circle class="p0" cx="715.9" cy="185.1" r="2.5"><title>B, de 0,0 a +0,5: 16.224 seções (19,170%)</title></circle>
+<circle class="p0" cx="727.8" cy="190.4" r="2.5"><title>B, de +0,5 a +1,0: 12.233 seções (14,460%)</title></circle>
+<circle class="p0" cx="739.7" cy="199.1" r="2.5"><title>B, de +1,0 a +1,5: 7.697 seções (9,095%)</title></circle>
+<circle class="p0" cx="751.6" cy="212.2" r="2.5"><title>B, de +1,5 a +2,0: 3.839 seções (4,536%)</title></circle>
+<circle class="p0" cx="763.4" cy="229.7" r="2.5"><title>B, de +2,0 a +2,5: 1.516 seções (1,791%)</title></circle>
+<circle class="p0" cx="775.3" cy="248.3" r="2.5"><title>B, de +2,5 a +3,0: 565 seções (0,668%)</title></circle>
+<circle class="p0" cx="787.2" cy="269.6" r="2.5"><title>B, de +3,0 a +3,5: 182 seções (0,215%)</title></circle>
+<circle class="p0" cx="799.1" cy="296.3" r="2.5"><title>B, de +3,5 a +4,0: 44 seções (0,052%)</title></circle>
+<circle class="p0" cx="810.9" cy="322.4" r="2.5"><title>B, de +4,0 a +4,5: 11 seções (0,013%)</title></circle>
+<circle class="p0" cx="822.8" cy="354.5" r="2.5"><title>B, de +4,5 a +5,0: 2 seções (0,002%)</title></circle>
+<circle class="p0" cx="846.6" cy="367.5" r="2.5"><title>B, de +5,5 a +6,0: 1 seções (0,001%)</title></circle>
+<polyline class="l1" fill="none" stroke-width="2" points="537.8,345.5 549.7,345.5 561.6,345.5 585.3,345.5 597.2,345.5 620.9,304.1 632.8,283.5 644.7,254.8 656.6,232.1 668.4,213.4 680.3,199.1 692.2,190.0 704.1,184.3 715.9,185.1 727.8,190.3 739.7,199.2 751.6,212.6 763.4,230.1 775.3,250.1 787.2,275.6 799.1,302.1 810.9,345.5"/>
+<circle class="p1" cx="537.8" cy="345.5" r="2.5"><title>A, de −7,5 a −7,0: 1 seções (0,004%)</title></circle>
+<circle class="p1" cx="549.7" cy="345.5" r="2.5"><title>A, de −7,0 a −6,5: 1 seções (0,004%)</title></circle>
+<circle class="p1" cx="561.6" cy="345.5" r="2.5"><title>A, de −6,5 a −6,0: 1 seções (0,004%)</title></circle>
+<circle class="p1" cx="585.3" cy="345.5" r="2.5"><title>A, de −5,5 a −5,0: 1 seções (0,004%)</title></circle>
+<circle class="p1" cx="597.2" cy="345.5" r="2.5"><title>A, de −5,0 a −4,5: 1 seções (0,004%)</title></circle>
+<circle class="p1" cx="620.9" cy="304.1" r="2.5"><title>A, de −4,0 a −3,5: 9 seções (0,034%)</title></circle>
+<circle class="p1" cx="632.8" cy="283.5" r="2.5"><title>A, de −3,5 a −3,0: 27 seções (0,103%)</title></circle>
+<circle class="p1" cx="644.7" cy="254.8" r="2.5"><title>A, de −3,0 a −2,5: 124 seções (0,473%)</title></circle>
+<circle class="p1" cx="656.6" cy="232.1" r="2.5"><title>A, de −2,5 a −2,0: 413 seções (1,575%)</title></circle>
+<circle class="p1" cx="668.4" cy="213.4" r="2.5"><title>A, de −2,0 a −1,5: 1.114 seções (4,247%)</title></circle>
+<circle class="p1" cx="680.3" cy="199.1" r="2.5"><title>A, de −1,5 a −1,0: 2.386 seções (9,097%)</title></circle>
+<circle class="p1" cx="692.2" cy="190.0" r="2.5"><title>A, de −1,0 a −0,5: 3.875 seções (14,770%)</title></circle>
+<circle class="p1" cx="704.1" cy="184.3" r="2.5"><title>A, de −0,5 a 0,0: 5.252 seções (20,020%)</title></circle>
+<circle class="p1" cx="715.9" cy="185.1" r="2.5"><title>A, de 0,0 a +0,5: 5.016 seções (19,120%)</title></circle>
+<circle class="p1" cx="727.8" cy="190.3" r="2.5"><title>A, de +0,5 a +1,0: 3.804 seções (14,500%)</title></circle>
+<circle class="p1" cx="739.7" cy="199.2" r="2.5"><title>A, de +1,0 a +1,5: 2.369 seções (9,032%)</title></circle>
+<circle class="p1" cx="751.6" cy="212.6" r="2.5"><title>A, de +1,5 a +2,0: 1.164 seções (4,438%)</title></circle>
+<circle class="p1" cx="763.4" cy="230.1" r="2.5"><title>A, de +2,0 a +2,5: 460 seções (1,754%)</title></circle>
+<circle class="p1" cx="775.3" cy="250.1" r="2.5"><title>A, de +2,5 a +3,0: 159 seções (0,606%)</title></circle>
+<circle class="p1" cx="787.2" cy="275.6" r="2.5"><title>A, de +3,0 a +3,5: 41 seções (0,156%)</title></circle>
+<circle class="p1" cx="799.1" cy="302.1" r="2.5"><title>A, de +3,5 a +4,0: 10 seções (0,038%)</title></circle>
+<circle class="p1" cx="810.9" cy="345.5" r="2.5"><title>A, de +4,0 a +4,5: 1 seções (0,004%)</title></circle>
+<text class="t2" x="20" y="478" font-size="12">Como ler: se algumas urnas antigas tivessem sido alteradas, a linha laranja ficaria acima da azul nas pontas (desvios grandes, à direita a favor</text>
+<text class="t2" x="20" y="495" font-size="12">do 13, à esquerda a favor do 22). As duas linhas se sobrepõem; as contagens nas pontas estão na tabela "Cauda" do doc 10.</text>
+<text class="t2" x="20" y="512" font-size="12">Dados: data/parsed/auditoria/h25/grafico-cauda-nivel-s13.csv e grafico-cauda-variacao-s13.csv.</text>
+<text class="t2" x="20" y="537" font-size="11">Fonte: BU do 1º e do 2º turno (presidente) e pacotes .vsc do 2º turno publicados pelo TSE; scripts estatistico-h25-dados.mjs e estatistico-h25.mjs.</text>
+</svg>
