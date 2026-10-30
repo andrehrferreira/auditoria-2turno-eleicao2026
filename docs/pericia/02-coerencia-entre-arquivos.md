@@ -15,7 +15,9 @@ Cada urna grava três registros da mesma votação: o boletim (o placar), o regi
 
 **Fato (dois turnos, com revisão independente):** cada pacote foi gerado pela urna que o boletim diz. O número da urna é o mesmo no boletim, no pacote de lacres e na carteira de identidade digital da urna em todas as seções, menos nas que tiveram o boletim regravado por outra urna (3 no 2º turno, 14 no 1º), que têm a explicação no próprio pacote. Nenhum cartão de votação, nenhuma urna e nenhum código de carga aparece no boletim de duas seções do mesmo município ou da mesma zona. No 2º turno, nenhuma urna escreveu no diário de duas seções ao mesmo tempo (seção "Identificação da urna e dos cartões").
 
-**Pendente (1º turno):** a comparação dos boletins com o registro dos votos (C1) e as demais contas internas (C3 a C6) ainda não foram refeitas no país inteiro; por ser parcial, o resultado não entra neste relatório. A comparação do diário com o boletim (C2) foi feita no país inteiro (acima), e a do boletim com o resultado oficial, em todos os cargos, está no [tópico 5](05-soma-dos-boletins.md).
+**Fato (1º turno, país inteiro):** o boletim e o registro dos votos são iguais em todas as seções e em todos os cargos (2.490.805 comparações, 0 diferença), conferido por uma segunda verificação independente ([tópico 13](13-mesa-e-sessao-do-eleitor.md)).
+
+**Pendente (1º turno):** as demais contas internas do boletim (C3 a C6) ainda não foram refeitas no país inteiro; por ser parcial, o resultado não entra neste relatório. A comparação do diário com o boletim (C2) foi feita no país inteiro (acima), e a do boletim com o resultado oficial, em todos os cargos, está no [tópico 5](05-soma-dos-boletins.md).
 
 O que este resultado **não** prova: que quem votou era de fato o eleitor. Um voto dado por outra pessoa no lugar de um eleitor ausente gera boletim, registro e diário coerentes entre si. Esse ponto fica no tópico 4.
 
