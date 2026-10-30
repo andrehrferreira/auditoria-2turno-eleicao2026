@@ -83,7 +83,7 @@ Comandos: `node scripts/auditoria/integridade-autoverificacao.mjs --turno 1 --pr
 ## Leitura (premissa 8)
 
 - A autoverificação é controle técnico com rastro. Ela acusou o erro, e em 53 eventos a urna foi recarregada (36) ou trocada (17).
-- **Risco:** em 138 eventos, a urna votou depois de acusar falha de assinatura, sem a nova carga que a própria mensagem pede. Em 32 deles o erro foi no sistema interno, justamente o caso em que a mensagem manda "faça uma nova carga". O único controle depois do erro é a verificação seguinte, feita pelo mesmo software.
+- **Risco:** em 138 eventos, a urna votou depois de acusar falha de assinatura, sem a nova carga que a própria mensagem pede. Em 41 deles o erro foi no sistema interno (32 sem nova carga e 9 de urnas que votaram e só depois foram trocadas; `porDestinoEOrigem` × `votosDepoisPorDia`), justamente o caso em que a mensagem manda "faça uma nova carga". O único controle depois do erro é a verificação seguinte, feita pelo mesmo software.
   - **Hipótese benigna, não testável com os arquivos públicos:** erro de leitura passageiro da memória (o código SAVD 5 aponta um arquivo).
   - Os arquivos não distinguem isso de um arquivo que mudou e voltou ao original.
 - **Não é prova de fraude** (princípio 4). Os BUs dessas seções estão assinados e conferidos, e os totais conferem com o oficial (H03, outra frente).

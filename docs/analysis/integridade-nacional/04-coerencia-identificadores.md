@@ -92,4 +92,4 @@ Comando: `node scripts/auditoria/integridade-resumo.mjs --turno 1 --dir data/par
 
 ## Limite
 
-Os identificadores vêm de arquivos gerados e assinados pelo próprio software da urna. Coerência entre eles mostra que nada foi trocado depois da assinatura, e que o pacote não foi montado com pedaços de urnas diferentes. Não mostra que o software não poderia gravar outro número (doc 06, R5).
+Os identificadores vêm de arquivos gerados e assinados pelo próprio software da urna. Quem mostra que nada foi trocado depois da assinatura são as assinaturas ([doc 02](02-lacres-h04-2turno.md)), não a coerência. A coerência mostra que, dentro do que o software declarou e assinou, o pacote não foi montado com pedaços de urnas diferentes. Não mostra que o software não poderia gravar outro número, nem exclui montagem antes da assinatura (doc 06, R5). No RED, FC, código de carga, FV e log aninhado estão todos sob a assinatura da urna recuperadora: não são testemunhas independentes da urna original (revisão externa T16, item 9).
