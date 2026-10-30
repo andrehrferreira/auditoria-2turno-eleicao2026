@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 486" width="900" height="486" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Relógio da urna: reserva × urna de seção</title><desc id="desc">Seções do 2º turno: controle 491.489; reserva antes de 25/10 848; reserva em 25/10 1.968. Relógio voltou sem ajuste (urna que votou): Controle (mesma urna de seção nos dois turnos) 4,40% (21.634 de 491.489); Reserva assumiu antes de 25/10 4,13% (35 de 848); Reserva assumiu em 25/10 4,01% (79 de 1.968). Relógio voltou sem ajuste (qualquer log): Controle (mesma urna de seção nos dois turnos) 4,40% (21.634 de 491.489); Reserva assumiu antes de 25/10 8,02% (68 de 848); Reserva assumiu em 25/10 8,18% (161 de 1.968). Ajuste de data e hora (ADH): Controle (mesma urna de seção nos dois turnos) 0,11% (518 de 491.489); Reserva assumiu antes de 25/10 0,35% (3 de 848); Reserva assumiu em 25/10 0,15% (3 de 1.968). ADH em 25/10: Controle (mesma urna de seção nos dois turnos) 0,01% (38 de 491.489); Reserva assumiu antes de 25/10 0,00% (0 de 848); Reserva assumiu em 25/10 0,10% (2 de 1.968). Relógio interno &gt; 1 h da hora digitada na carga: Controle (mesma urna de seção nos dois turnos) 3,50% (17.184 de 491.489); Reserva assumiu antes de 25/10 5,90% (50 de 848); Reserva assumiu em 25/10 4,98% (98 de 1.968). Relógio interno &gt; 1 dia da hora digitada na carga: Controle (mesma urna de seção nos dois turnos) 3,13% (15.362 de 491.489); Reserva assumiu antes de 25/10 4,25% (36 de 848); Reserva assumiu em 25/10 4,73% (93 de 1.968)</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}.ic{stroke:#0b0b0b}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}.s2{fill:#1baf7a}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.ic{stroke:#f0efec}.s0{fill:#3987e5}.s1{fill:#d95926}.s2{fill:#199e70}}
+</style>
+<rect class="fundo" width="900" height="486" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Relógio da urna: reserva × urna de seção</text>
+<text class="t2" x="20" y="52" font-size="13">Seções do 2º turno: controle 491.489; reserva antes de 25/10 848; reserva em 25/10 1.968.</text>
+<rect class="s0" x="20" y="66" width="12" height="12" rx="2"/><text class="t2" x="37" y="77" font-size="12">Controle (mesma urna de seção nos dois turnos)</text>
+<rect class="s1" x="343.8" y="66" width="12" height="12" rx="2"/><text class="t2" x="360.8" y="77" font-size="12">Reserva assumiu antes de 25/10</text>
+<rect class="s2" x="566.8" y="66" width="12" height="12" rx="2"/><text class="t2" x="583.8" y="77" font-size="12">Reserva assumiu em 25/10</text>
+<line class="grade" x1="330" x2="330" y1="102" y2="406" stroke-width="1"/>
+<text class="t2" x="330" y="422" font-size="11" text-anchor="middle">0</text>
+<line class="grade" x1="386.6666666666667" x2="386.6666666666667" y1="102" y2="406" stroke-width="1"/>
+<text class="t2" x="386.6666666666667" y="422" font-size="11" text-anchor="middle">2</text>
+<line class="grade" x1="443.3333333333333" x2="443.3333333333333" y1="102" y2="406" stroke-width="1"/>
+<text class="t2" x="443.3333333333333" y="422" font-size="11" text-anchor="middle">4</text>
+<line class="grade" x1="500" x2="500" y1="102" y2="406" stroke-width="1"/>
+<text class="t2" x="500" y="422" font-size="11" text-anchor="middle">6</text>
+<line class="grade" x1="556.6666666666666" x2="556.6666666666666" y1="102" y2="406" stroke-width="1"/>
+<text class="t2" x="556.6666666666666" y="422" font-size="11" text-anchor="middle">8</text>
+<line class="grade" x1="613.3333333333334" x2="613.3333333333334" y1="102" y2="406" stroke-width="1"/>
+<text class="t2" x="613.3333333333334" y="422" font-size="11" text-anchor="middle">10</text>
+<line class="grade" x1="670" x2="670" y1="102" y2="406" stroke-width="1"/>
+<text class="t2" x="670" y="422" font-size="11" text-anchor="middle">12</text>
+<text class="t2" x="500" y="440" font-size="12" text-anchor="middle">Seções com a característica (%)</text>
+<text class="t1" x="320" y="132.5" font-size="12" text-anchor="end">Relógio voltou sem ajuste (urna que votou)</text>
+<rect class="s0" x="330" y="112" width="124.71557518750842" height="9" rx="2"><title>Relógio voltou sem ajuste (urna que votou) — Controle (mesma urna de seção nos dois turnos): 4,40% (21.634 de 491.489)</title></rect>
+<line class="ic" x1="453.10072307711437" x2="456.3506235607692" y1="116.5" y2="116.5" stroke-width="1"/>
+<text class="t2" x="461.3506235607692" y="120" font-size="10">4,40% (21.634 de 491.489)</text>
+<rect class="s1" x="330" y="123" width="116.94182389937106" height="9" rx="2"><title>Relógio voltou sem ajuste (urna que votou) — Reserva assumiu antes de 25/10: 4,13% (35 de 848)</title></rect>
+<line class="ic" x1="414.50280627084834" x2="491.10373215914456" y1="127.5" y2="127.5" stroke-width="1"/>
+<text class="t2" x="496.10373215914456" y="131" font-size="10">4,13% (35 de 848)</text>
+<rect class="s2" x="330" y="134" width="113.7364498644987" height="9" rx="2"><title>Relógio voltou sem ajuste (urna que votou) — Reserva assumiu em 25/10: 4,01% (79 de 1.968)</title></rect>
+<line class="ic" x1="421.5956229262314" x2="470.95409100616564" y1="138.5" y2="138.5" stroke-width="1"/>
+<text class="t2" x="475.95409100616564" y="142" font-size="10">4,01% (79 de 1.968)</text>
+<text class="t1" x="320" y="179.5" font-size="12" text-anchor="end">Relógio voltou sem ajuste (qualquer log)</text>
+<rect class="s0" x="330" y="159" width="124.71557518750842" height="9" rx="2"><title>Relógio voltou sem ajuste (qualquer log) — Controle (mesma urna de seção nos dois turnos): 4,40% (21.634 de 491.489)</title></rect>
+<line class="ic" x1="453.10072307711437" x2="456.3506235607692" y1="163.5" y2="163.5" stroke-width="1"/>
+<text class="t2" x="461.3506235607692" y="167" font-size="10">4,40% (21.634 de 491.489)</text>
+<rect class="s1" x="330" y="170" width="227.2012578616352" height="9" rx="2"><title>Relógio voltou sem ajuste (qualquer log) — Reserva assumiu antes de 25/10: 8,02% (68 de 848)</title></rect>
+<line class="ic" x1="510.61281699795074" x2="614.5181024906803" y1="174.5" y2="174.5" stroke-width="1"/>
+<text class="t2" x="619.5181024906803" y="178" font-size="10">8,02% (68 de 848)</text>
+<rect class="s2" x="330" y="181" width="231.79200542005424" height="9" rx="2"><title>Relógio voltou sem ajuste (qualquer log) — Reserva assumiu em 25/10: 8,18% (161 de 1.968)</title></rect>
+<line class="ic" x1="529.7472000690408" x2="598.453626339463" y1="185.5" y2="185.5" stroke-width="1"/>
+<text class="t2" x="603.453626339463" y="189" font-size="10">8,18% (161 de 1.968)</text>
+<text class="t1" x="320" y="226.5" font-size="12" text-anchor="end">Ajuste de data e hora (ADH)</text>
+<rect class="s0" x="330" y="206" width="2.986163813771327" height="9" rx="2"><title>Ajuste de data e hora (ADH) — Controle (mesma urna de seção nos dois turnos): 0,11% (518 de 491.489)</title></rect>
+<line class="ic" x1="332.7399517268351" x2="333.25447508327994" y1="210.5" y2="210.5" stroke-width="1"/>
+<text class="t2" x="338.25447508327994" y="214" font-size="10">0,11% (518 de 491.489)</text>
+<rect class="s1" x="330" y="217" width="10.023584905660357" height="9" rx="2"><title>Ajuste de data e hora (ADH) — Reserva assumiu antes de 25/10: 0,35% (3 de 848)</title></rect>
+<line class="ic" x1="333.41088394243775" x2="359.3235274003909" y1="221.5" y2="221.5" stroke-width="1"/>
+<text class="t2" x="364.3235274003909" y="225" font-size="10">0,35% (3 de 848)</text>
+<rect class="s2" x="330" y="228" width="4.319105691056905" height="9" rx="2"><title>Ajuste de data e hora (ADH) — Reserva assumiu em 25/10: 0,15% (3 de 1.968)</title></rect>
+<line class="ic" x1="331.46923431374756" x2="342.67213147006254" y1="232.5" y2="232.5" stroke-width="1"/>
+<text class="t2" x="347.67213147006254" y="236" font-size="10">0,15% (3 de 1.968)</text>
+<text class="t1" x="320" y="273.5" font-size="12" text-anchor="end">ADH em 25/10</text>
+<rect class="s0" x="330" y="253" width="1" height="9" rx="2"><title>ADH em 25/10 — Controle (mesma urna de seção nos dois turnos): 0,01% (38 de 491.489)</title></rect>
+<line class="ic" x1="330.15961025199056" x2="330.30065660750273" y1="257.5" y2="257.5" stroke-width="1"/>
+<text class="t2" x="335.30065660750273" y="261" font-size="10">0,01% (38 de 491.489)</text>
+<rect class="s1" x="330" y="264" width="1" height="9" rx="2"><title>ADH em 25/10 — Reserva assumiu antes de 25/10: 0,00% (0 de 848)</title></rect>
+<line class="ic" x1="330" x2="342.777649428407" y1="268.5" y2="268.5" stroke-width="1"/>
+<text class="t2" x="347.777649428407" y="272" font-size="10">0,00% (0 de 848)</text>
+<rect class="s2" x="330" y="275" width="2.8794037940379553" height="9" rx="2"><title>ADH em 25/10 — Reserva assumiu em 25/10: 0,10% (2 de 1.968)</title></rect>
+<line class="ic" x1="330.78974523057093" x2="340.47782649865246" y1="279.5" y2="279.5" stroke-width="1"/>
+<text class="t2" x="345.47782649865246" y="283" font-size="10">0,10% (2 de 1.968)</text>
+<text class="t1" x="320" y="320.5" font-size="12" text-anchor="end">Relógio interno &gt; 1 h da hora digitada na carga</text>
+<rect class="s0" x="330" y="300" width="99.06223740510978" height="9" rx="2"><title>Relógio interno &gt; 1 h da hora digitada na carga — Controle (mesma urna de seção nos dois turnos): 3,50% (17.184 de 491.489)</title></rect>
+<line class="ic" x1="427.61746833767006" x2="430.527603757991" y1="304.5" y2="304.5" stroke-width="1"/>
+<text class="t2" x="435.527603757991" y="308" font-size="10">3,50% (17.184 de 491.489)</text>
+<rect class="s1" x="330" y="311" width="167.05974842767296" height="9" rx="2"><title>Relógio interno &gt; 1 h da hora digitada na carga — Reserva assumiu antes de 25/10: 5,90% (50 de 848)</title></rect>
+<line class="ic" x1="457.52298953463634" x2="547.8673584674649" y1="315.5" y2="315.5" stroke-width="1"/>
+<text class="t2" x="552.8673584674649" y="319" font-size="10">5,90% (50 de 848)</text>
+<rect class="s2" x="330" y="322" width="141.09078590785907" height="9" rx="2"><title>Relógio interno &gt; 1 h da hora digitada na carga — Reserva assumiu em 25/10: 4,98% (98 de 1.968)</title></rect>
+<line class="ic" x1="446.25901968253214" x2="500.8927812870116" y1="326.5" y2="326.5" stroke-width="1"/>
+<text class="t2" x="505.8927812870116" y="330" font-size="10">4,98% (98 de 1.968)</text>
+<text class="t1" x="320" y="367.5" font-size="12" text-anchor="end">Relógio interno &gt; 1 dia da hora digitada na carga</text>
+<rect class="s0" x="330" y="347" width="88.55878090184456" height="9" rx="2"><title>Relógio interno &gt; 1 dia da hora digitada na carga — Controle (mesma urna de seção nos dois turnos): 3,13% (15.362 de 491.489)</title></rect>
+<line class="ic" x1="417.1907499668001" x2="419.9475733162925" y1="351.5" y2="351.5" stroke-width="1"/>
+<text class="t2" x="424.9475733162925" y="355" font-size="10">3,13% (15.362 de 491.489)</text>
+<rect class="s1" x="330" y="358" width="120.28301886792451" height="9" rx="2"><title>Relógio interno &gt; 1 dia da hora digitada na carga — Reserva assumiu antes de 25/10: 4,25% (36 de 848)</title></rect>
+<line class="ic" x1="417.3238918670536" x2="494.9349005344132" y1="362.5" y2="362.5" stroke-width="1"/>
+<text class="t2" x="499.9349005344132" y="366" font-size="10">4,25% (36 de 848)</text>
+<rect class="s2" x="330" y="369" width="133.8922764227642" height="9" rx="2"><title>Relógio interno &gt; 1 dia da hora digitada na carga — Reserva assumiu em 25/10: 4,73% (93 de 1.968)</title></rect>
+<line class="ic" x1="439.7380350456304" x2="493.04479565097995" y1="373.5" y2="373.5" stroke-width="1"/>
+<text class="t2" x="498.04479565097995" y="377" font-size="10">4,73% (93 de 1.968)</text>
+<text class="t2" x="20" y="464" font-size="12">Como ler: a hora da urna é digitada por gente na carga; relógio que volta sem ajuste registrado seria o rastro de log fora de ordem.</text>
+</svg>

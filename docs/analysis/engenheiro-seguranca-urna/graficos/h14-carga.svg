@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 721" width="900" height="721" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Carga da urna que votou no 2º turno: reserva × urna de seção</title><desc id="desc">Seções do 2º turno: controle 491.489; reserva antes de 25/10 848; reserva em 25/10 1.968. Carregada até 04/10 (1º turno): Controle (mesma urna de seção nos dois turnos) 100,00% (491.489 de 491.489); Reserva assumiu antes de 25/10 91,86% (779 de 848); Reserva assumiu em 25/10 89,68% (1.765 de 1.968). Carregada de 05/10 a 23/10: Controle (mesma urna de seção nos dois turnos) 0,00% (0 de 491.489); Reserva assumiu antes de 25/10 8,02% (68 de 848); Reserva assumiu em 25/10 9,81% (193 de 1.968). Carregada em 24/10 (véspera): Controle (mesma urna de seção nos dois turnos) 0,00% (0 de 491.489); Reserva assumiu antes de 25/10 0,12% (1 de 848); Reserva assumiu em 25/10 0,51% (10 de 1.968). Carregada em 25/10 (dia): Controle (mesma urna de seção nos dois turnos) 0,00% (0 de 491.489); Reserva assumiu antes de 25/10 0,00% (0 de 848); Reserva assumiu em 25/10 0,00% (0 de 1.968). Carga digitada fora de 6h–20h: Controle (mesma urna de seção nos dois turnos) 0,24% (1.158 de 491.489); Reserva assumiu antes de 25/10 1,06% (9 de 848); Reserva assumiu em 25/10 1,63% (32 de 1.968). Dia sem carga de urna de seção da zona: Controle (mesma urna de seção nos dois turnos) 0,18% (861 de 491.489); Reserva assumiu antes de 25/10 31,84% (270 de 848); Reserva assumiu em 25/10 27,29% (537 de 1.968). Zona da carga ≠ zona da seção: Controle (mesma urna de seção nos dois turnos) 0,00% (0 de 491.489); Reserva assumiu antes de 25/10 9,20% (78 de 848); Reserva assumiu em 25/10 2,39% (47 de 1.968). Mídia de carga fora do lote da zona: Controle (mesma urna de seção nos dois turnos) 0,04% (195 de 491.489); Reserva assumiu antes de 25/10 26,53% (225 de 848); Reserva assumiu em 25/10 21,04% (414 de 1.968). Mídia de carga usada em outra zona: Controle (mesma urna de seção nos dois turnos) 0,00% (0 de 491.489); Reserva assumiu antes de 25/10 25,24% (214 de 848); Reserva assumiu em 25/10 19,21% (378 de 1.968). Computador da mídia fora da zona: Controle (mesma urna de seção nos dois turnos) 0,02% (80 de 491.489); Reserva assumiu antes de 25/10 8,25% (70 de 848); Reserva assumiu em 25/10 2,64% (52 de 1.968). Mídia de carga gerada a partir de 05/10: Controle (mesma urna de seção nos dois turnos) 0,00% (0 de 491.489); Reserva assumiu antes de 25/10 0,12% (1 de 848); Reserva assumiu em 25/10 0,05% (1 de 1.968)</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}.ic{stroke:#0b0b0b}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}.s2{fill:#1baf7a}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.ic{stroke:#f0efec}.s0{fill:#3987e5}.s1{fill:#d95926}.s2{fill:#199e70}}
+</style>
+<rect class="fundo" width="900" height="721" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Carga da urna que votou no 2º turno: reserva × urna de seção</text>
+<text class="t2" x="20" y="52" font-size="13">Seções do 2º turno: controle 491.489; reserva antes de 25/10 848; reserva em 25/10 1.968.</text>
+<rect class="s0" x="20" y="66" width="12" height="12" rx="2"/><text class="t2" x="37" y="77" font-size="12">Controle (mesma urna de seção nos dois turnos)</text>
+<rect class="s1" x="343.8" y="66" width="12" height="12" rx="2"/><text class="t2" x="360.8" y="77" font-size="12">Reserva assumiu antes de 25/10</text>
+<rect class="s2" x="566.8" y="66" width="12" height="12" rx="2"/><text class="t2" x="583.8" y="77" font-size="12">Reserva assumiu em 25/10</text>
+<line class="grade" x1="330" x2="330" y1="102" y2="641" stroke-width="1"/>
+<text class="t2" x="330" y="657" font-size="11" text-anchor="middle">0</text>
+<line class="grade" x1="398" x2="398" y1="102" y2="641" stroke-width="1"/>
+<text class="t2" x="398" y="657" font-size="11" text-anchor="middle">20</text>
+<line class="grade" x1="466" x2="466" y1="102" y2="641" stroke-width="1"/>
+<text class="t2" x="466" y="657" font-size="11" text-anchor="middle">40</text>
+<line class="grade" x1="534" x2="534" y1="102" y2="641" stroke-width="1"/>
+<text class="t2" x="534" y="657" font-size="11" text-anchor="middle">60</text>
+<line class="grade" x1="602" x2="602" y1="102" y2="641" stroke-width="1"/>
+<text class="t2" x="602" y="657" font-size="11" text-anchor="middle">80</text>
+<line class="grade" x1="670" x2="670" y1="102" y2="641" stroke-width="1"/>
+<text class="t2" x="670" y="657" font-size="11" text-anchor="middle">100</text>
+<text class="t2" x="500" y="675" font-size="12" text-anchor="middle">Seções com a característica (%)</text>
+<text class="t1" x="320" y="132.5" font-size="12" text-anchor="end">Carregada até 04/10 (1º turno)</text>
+<rect class="s0" x="330" y="112" width="340" height="9" rx="2"><title>Carregada até 04/10 (1º turno) — Controle (mesma urna de seção nos dois turnos): 100,00% (491.489 de 491.489)</title></rect>
+<line class="ic" x1="669.9973424963918" x2="670" y1="116.5" y2="116.5" stroke-width="1"/>
+<text class="t2" x="675" y="120" font-size="10">100,00% (491.489 de 491.489)</text>
+<rect class="s1" x="330" y="123" width="312.33490566037744" height="9" rx="2"><title>Carregada até 04/10 (1º turno) — Reserva assumiu antes de 25/10: 91,86% (779 de 848)</title></rect>
+<line class="ic" x1="635.4176738681775" x2="647.9683453166099" y1="127.5" y2="127.5" stroke-width="1"/>
+<text class="t2" x="652.9683453166099" y="131" font-size="10">91,86% (779 de 848)</text>
+<rect class="s2" x="330" y="134" width="304.92886178861795" height="9" rx="2"><title>Carregada até 04/10 (1º turno) — Reserva assumiu em 25/10: 89,68% (1.765 de 1.968)</title></rect>
+<line class="ic" x1="630.0939152135693" x2="639.2380635822933" y1="138.5" y2="138.5" stroke-width="1"/>
+<text class="t2" x="644.2380635822933" y="142" font-size="10">89,68% (1.765 de 1.968)</text>
+<text class="t1" x="320" y="179.5" font-size="12" text-anchor="end">Carregada de 05/10 a 23/10</text>
+<rect class="s0" x="330" y="159" width="1" height="9" rx="2"><title>Carregada de 05/10 a 23/10 — Controle (mesma urna de seção nos dois turnos): 0,00% (0 de 491.489)</title></rect>
+<line class="ic" x1="330" x2="330.0026575036083" y1="163.5" y2="163.5" stroke-width="1"/>
+<text class="t2" x="335.0026575036083" y="167" font-size="10">0,00% (0 de 491.489)</text>
+<rect class="s1" x="330" y="170" width="27.264150943396203" height="9" rx="2"><title>Carregada de 05/10 a 23/10 — Reserva assumiu antes de 25/10: 8,02% (68 de 848)</title></rect>
+<line class="ic" x1="351.6735380397541" x2="364.14217229888163" y1="174.5" y2="174.5" stroke-width="1"/>
+<text class="t2" x="369.14217229888163" y="178" font-size="10">8,02% (68 de 848)</text>
+<rect class="s2" x="330" y="181" width="33.34349593495938" height="9" rx="2"><title>Carregada de 05/10 a 23/10 — Reserva assumiu em 25/10: 9,81% (193 de 1.968)</title></rect>
+<line class="ic" x1="359.13854536026065" x2="368.08092297837266" y1="185.5" y2="185.5" stroke-width="1"/>
+<text class="t2" x="373.08092297837266" y="189" font-size="10">9,81% (193 de 1.968)</text>
+<text class="t1" x="320" y="226.5" font-size="12" text-anchor="end">Carregada em 24/10 (véspera)</text>
+<rect class="s0" x="330" y="206" width="1" height="9" rx="2"><title>Carregada em 24/10 (véspera) — Controle (mesma urna de seção nos dois turnos): 0,00% (0 de 491.489)</title></rect>
+<line class="ic" x1="330" x2="330.0026575036083" y1="210.5" y2="210.5" stroke-width="1"/>
+<text class="t2" x="335.0026575036083" y="214" font-size="10">0,00% (0 de 491.489)</text>
+<rect class="s1" x="330" y="217" width="1" height="9" rx="2"><title>Carregada em 24/10 (véspera) — Reserva assumiu antes de 25/10: 0,12% (1 de 848)</title></rect>
+<line class="ic" x1="330.07078484874955" x2="332.26080355923614" y1="221.5" y2="221.5" stroke-width="1"/>
+<text class="t2" x="337.26080355923614" y="225" font-size="10">0,12% (1 de 848)</text>
+<rect class="s2" x="330" y="228" width="1.7276422764227846" height="9" rx="2"><title>Carregada em 24/10 (véspera) — Reserva assumiu em 25/10: 0,51% (10 de 1.968)</title></rect>
+<line class="ic" x1="330.93921093654166" x2="333.17173996336834" y1="232.5" y2="232.5" stroke-width="1"/>
+<text class="t2" x="338.17173996336834" y="236" font-size="10">0,51% (10 de 1.968)</text>
+<text class="t1" x="320" y="273.5" font-size="12" text-anchor="end">Carregada em 25/10 (dia)</text>
+<rect class="s0" x="330" y="253" width="1" height="9" rx="2"><title>Carregada em 25/10 (dia) — Controle (mesma urna de seção nos dois turnos): 0,00% (0 de 491.489)</title></rect>
+<line class="ic" x1="330" x2="330.0026575036083" y1="257.5" y2="257.5" stroke-width="1"/>
+<text class="t2" x="335.0026575036083" y="261" font-size="10">0,00% (0 de 491.489)</text>
+<rect class="s1" x="330" y="264" width="1" height="9" rx="2"><title>Carregada em 25/10 (dia) — Reserva assumiu antes de 25/10: 0,00% (0 de 848)</title></rect>
+<line class="ic" x1="330" x2="331.5333179314088" y1="268.5" y2="268.5" stroke-width="1"/>
+<text class="t2" x="336.5333179314088" y="272" font-size="10">0,00% (0 de 848)</text>
+<rect class="s2" x="330" y="275" width="1" height="9" rx="2"><title>Carregada em 25/10 (dia) — Reserva assumiu em 25/10: 0,00% (0 de 1.968)</title></rect>
+<line class="ic" x1="330" x2="330.662398034406" y1="279.5" y2="279.5" stroke-width="1"/>
+<text class="t2" x="335.662398034406" y="283" font-size="10">0,00% (0 de 1.968)</text>
+<text class="t1" x="320" y="320.5" font-size="12" text-anchor="end">Carga digitada fora de 6h–20h</text>
+<rect class="s0" x="330" y="300" width="1" height="9" rx="2"><title>Carga digitada fora de 6h–20h — Controle (mesma urna de seção nos dois turnos): 0,24% (1.158 de 491.489)</title></rect>
+<line class="ic" x1="330.75629422600167" x2="330.84850258331164" y1="304.5" y2="304.5" stroke-width="1"/>
+<text class="t2" x="335.84850258331164" y="308" font-size="10">0,24% (1.158 de 491.489)</text>
+<rect class="s1" x="330" y="311" width="3.6084905660377444" height="9" rx="2"><title>Carga digitada fora de 6h–20h — Reserva assumiu antes de 25/10: 1,06% (9 de 848)</title></rect>
+<line class="ic" x1="331.9017804126293" x2="336.8159718079714" y1="315.5" y2="315.5" stroke-width="1"/>
+<text class="t2" x="341.8159718079714" y="319" font-size="10">1,06% (9 de 848)</text>
+<rect class="s2" x="330" y="322" width="5.52845528455282" height="9" rx="2"><title>Carga digitada fora de 6h–20h — Reserva assumiu em 25/10: 1,63% (32 de 1.968)</title></rect>
+<line class="ic" x1="333.92400259569087" x2="337.77376460832795" y1="326.5" y2="326.5" stroke-width="1"/>
+<text class="t2" x="342.77376460832795" y="330" font-size="10">1,63% (32 de 1.968)</text>
+<text class="t1" x="320" y="367.5" font-size="12" text-anchor="end">Dia sem carga de urna de seção da zona</text>
+<rect class="s0" x="330" y="347" width="1" height="9" rx="2"><title>Dia sem carga de urna de seção da zona — Controle (mesma urna de seção nos dois turnos): 0,18% (861 de 491.489)</title></rect>
+<line class="ic" x1="330.55717037709724" x2="330.6367150558824" y1="351.5" y2="351.5" stroke-width="1"/>
+<text class="t2" x="335.6367150558824" y="355" font-size="10">0,18% (861 de 491.489)</text>
+<rect class="s1" x="330" y="358" width="108.2547169811321" height="9" rx="2"><title>Dia sem carga de urna de seção da zona — Reserva assumiu antes de 25/10: 31,84% (270 de 848)</title></rect>
+<line class="ic" x1="427.8928632679084" x2="449.17348333925423" y1="362.5" y2="362.5" stroke-width="1"/>
+<text class="t2" x="454.17348333925423" y="366" font-size="10">31,84% (270 de 848)</text>
+<rect class="s2" x="330" y="369" width="92.77439024390242" height="9" rx="2"><title>Dia sem carga de urna de seção da zona — Reserva assumiu em 25/10: 27,29% (537 de 1.968)</title></rect>
+<line class="ic" x1="416.2384671540819" x2="429.6112197578891" y1="373.5" y2="373.5" stroke-width="1"/>
+<text class="t2" x="434.6112197578891" y="377" font-size="10">27,29% (537 de 1.968)</text>
+<text class="t1" x="320" y="414.5" font-size="12" text-anchor="end">Zona da carga ≠ zona da seção</text>
+<rect class="s0" x="330" y="394" width="1" height="9" rx="2"><title>Zona da carga ≠ zona da seção — Controle (mesma urna de seção nos dois turnos): 0,00% (0 de 491.489)</title></rect>
+<line class="ic" x1="330" x2="330.0026575036083" y1="398.5" y2="398.5" stroke-width="1"/>
+<text class="t2" x="335.0026575036083" y="402" font-size="10">0,00% (0 de 491.489)</text>
+<rect class="s1" x="330" y="405" width="31.273584905660357" height="9" rx="2"><title>Zona da carga ≠ zona da seção — Reserva assumiu antes de 25/10: 9,20% (78 de 848)</title></rect>
+<line class="ic" x1="355.27100712455683" x2="368.52740797984757" y1="409.5" y2="409.5" stroke-width="1"/>
+<text class="t2" x="373.52740797984757" y="413" font-size="10">9,20% (78 de 848)</text>
+<rect class="s2" x="330" y="416" width="8.119918699186996" height="9" rx="2"><title>Zona da carga ≠ zona da seção — Reserva assumiu em 25/10: 2,39% (47 de 1.968)</title></rect>
+<line class="ic" x1="336.1223716038027" x2="340.74822489847213" y1="420.5" y2="420.5" stroke-width="1"/>
+<text class="t2" x="345.74822489847213" y="424" font-size="10">2,39% (47 de 1.968)</text>
+<text class="t1" x="320" y="461.5" font-size="12" text-anchor="end">Mídia de carga fora do lote da zona</text>
+<rect class="s0" x="330" y="441" width="1" height="9" rx="2"><title>Mídia de carga fora do lote da zona — Controle (mesma urna de seção nos dois turnos): 0,04% (195 de 491.489)</title></rect>
+<line class="ic" x1="330.11724739681057" x2="330.15520040439054" y1="445.5" y2="445.5" stroke-width="1"/>
+<text class="t2" x="335.15520040439054" y="449" font-size="10">0,04% (195 de 491.489)</text>
+<rect class="s1" x="330" y="452" width="90.21226415094338" height="9" rx="2"><title>Mídia de carga fora do lote da zona — Reserva assumiu antes de 25/10: 26,53% (225 de 848)</title></rect>
+<line class="ic" x1="410.48486792836894" x2="430.65930723283475" y1="456.5" y2="456.5" stroke-width="1"/>
+<text class="t2" x="435.65930723283475" y="460" font-size="10">26,53% (225 de 848)</text>
+<rect class="s2" x="330" y="463" width="71.52439024390242" height="9" rx="2"><title>Mídia de carga fora do lote da zona — Reserva assumiu em 25/10: 21,04% (414 de 1.968)</title></rect>
+<line class="ic" x1="395.59678334172287" x2="407.8357033245489" y1="467.5" y2="467.5" stroke-width="1"/>
+<text class="t2" x="412.8357033245489" y="471" font-size="10">21,04% (414 de 1.968)</text>
+<text class="t1" x="320" y="508.5" font-size="12" text-anchor="end">Mídia de carga usada em outra zona</text>
+<rect class="s0" x="330" y="488" width="1" height="9" rx="2"><title>Mídia de carga usada em outra zona — Controle (mesma urna de seção nos dois turnos): 0,00% (0 de 491.489)</title></rect>
+<line class="ic" x1="330" x2="330.0026575036083" y1="492.5" y2="492.5" stroke-width="1"/>
+<text class="t2" x="335.0026575036083" y="496" font-size="10">0,00% (0 de 491.489)</text>
+<rect class="s1" x="330" y="499" width="85.80188679245282" height="9" rx="2"><title>Mídia de carga usada em outra zona — Reserva assumiu antes de 25/10: 25,24% (214 de 848)</title></rect>
+<line class="ic" x1="406.2566277156661" x2="426.10657220319206" y1="503.5" y2="503.5" stroke-width="1"/>
+<text class="t2" x="431.10657220319206" y="507" font-size="10">25,24% (214 de 848)</text>
+<rect class="s2" x="330" y="510" width="65.3048780487805" height="9" rx="2"><title>Mídia de carga usada em outra zona — Reserva assumiu em 25/10: 19,21% (378 de 1.968)</title></rect>
+<line class="ic" x1="389.59354941066107" x2="401.4241469397963" y1="514.5" y2="514.5" stroke-width="1"/>
+<text class="t2" x="406.4241469397963" y="518" font-size="10">19,21% (378 de 1.968)</text>
+<text class="t1" x="320" y="555.5" font-size="12" text-anchor="end">Computador da mídia fora da zona</text>
+<rect class="s0" x="330" y="535" width="1" height="9" rx="2"><title>Computador da mídia fora da zona — Controle (mesma urna de seção nos dois turnos): 0,02% (80 de 491.489)</title></rect>
+<line class="ic" x1="330.0444714930454" x2="330.06886920957527" y1="539.5" y2="539.5" stroke-width="1"/>
+<text class="t2" x="335.06886920957527" y="543" font-size="10">0,02% (80 de 491.489)</text>
+<rect class="s1" x="330" y="546" width="28.06603773584908" height="9" rx="2"><title>Computador da mídia fora da zona — Reserva assumiu antes de 25/10: 8,25% (70 de 848)</title></rect>
+<line class="ic" x1="352.39015197335806" x2="365.0220993184314" y1="550.5" y2="550.5" stroke-width="1"/>
+<text class="t2" x="370.0220993184314" y="554" font-size="10">8,25% (70 de 848)</text>
+<rect class="s2" x="330" y="557" width="8.983739837398389" height="9" rx="2"><title>Computador da mídia fora da zona — Reserva assumiu em 25/10: 2,64% (52 de 1.968)</title></rect>
+<line class="ic" x1="336.8700962990324" x2="341.72477663599443" y1="561.5" y2="561.5" stroke-width="1"/>
+<text class="t2" x="346.72477663599443" y="565" font-size="10">2,64% (52 de 1.968)</text>
+<text class="t1" x="320" y="602.5" font-size="12" text-anchor="end">Mídia de carga gerada a partir de 05/10</text>
+<rect class="s0" x="330" y="582" width="1" height="9" rx="2"><title>Mídia de carga gerada a partir de 05/10 — Controle (mesma urna de seção nos dois turnos): 0,00% (0 de 491.489)</title></rect>
+<line class="ic" x1="330" x2="330.0026575036083" y1="586.5" y2="586.5" stroke-width="1"/>
+<text class="t2" x="335.0026575036083" y="590" font-size="10">0,00% (0 de 491.489)</text>
+<rect class="s1" x="330" y="593" width="1" height="9" rx="2"><title>Mídia de carga gerada a partir de 05/10 — Reserva assumiu antes de 25/10: 0,12% (1 de 848)</title></rect>
+<line class="ic" x1="330.07078484874955" x2="332.26080355923614" y1="597.5" y2="597.5" stroke-width="1"/>
+<text class="t2" x="337.26080355923614" y="601" font-size="10">0,12% (1 de 848)</text>
+<rect class="s2" x="330" y="604" width="1" height="9" rx="2"><title>Mídia de carga gerada a partir de 05/10 — Reserva assumiu em 25/10: 0,05% (1 de 1.968)</title></rect>
+<line class="ic" x1="330.0304982587416" x2="330.9767550622148" y1="608.5" y2="608.5" stroke-width="1"/>
+<text class="t2" x="335.9767550622148" y="612" font-size="10">0,05% (1 de 1.968)</text>
+<text class="t2" x="20" y="699" font-size="12">Como ler: cada barra é a parte das seções do grupo com a característica; o traço preto é o intervalo de 95%.</text>
+</svg>

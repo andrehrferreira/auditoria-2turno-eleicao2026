@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 486" width="900" height="486" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Mesma seção, do 1º para o 2º turno: o que mudou no log quando a urna mudou</title><desc id="desc">Seções do 2º turno: controle 491.489; reserva antes de 25/10 848; reserva em 25/10 1.968. Valores do 1º e do 2º turno na mesma seção. Votos sem biometria (% dos votos): Controle (mesma urna de seção nos dois turnos) +0,22 p.p.; Reserva assumiu antes de 25/10 +0,16 p.p. (dif. -0,29); Reserva assumiu em 25/10 +0,10 p.p. (dif. -0,16). Liberação pelo mesário (% dos votos): Controle (mesma urna de seção nos dois turnos) +0,47 p.p.; Reserva assumiu antes de 25/10 +0,86 p.p. (dif. 0,31); Reserva assumiu em 25/10 -0,24 p.p. (dif. -0,78). "Já votou" (por 100 votos): Controle (mesma urna de seção nos dois turnos) -0,01 p.p.; Reserva assumiu antes de 25/10 +0,00 p.p. (dif. 0,02); Reserva assumiu em 25/10 +0,01 p.p. (dif. 0,02). BU com voto sem linha no log (% seções): Controle (mesma urna de seção nos dois turnos) +0,00 p.p.; Reserva assumiu antes de 25/10 +0,00 p.p. (dif. 0,00); Reserva assumiu em 25/10 +0,10 p.p. (dif. 0,10). Rajada 10+ sem biometria (% seções): Controle (mesma urna de seção nos dois turnos) +0,24 p.p.; Reserva assumiu antes de 25/10 +0,71 p.p. (dif. 0,47); Reserva assumiu em 25/10 +1,02 p.p. (dif. 0,77). Intervalo entre votos &lt; 20 s (% seções): Controle (mesma urna de seção nos dois turnos) +0,04 p.p.; Reserva assumiu antes de 25/10 +0,00 p.p. (dif. -0,04); Reserva assumiu em 25/10 +0,15 p.p. (dif. 0,11)</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}.ic{stroke:#0b0b0b}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}.s2{fill:#1baf7a}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.ic{stroke:#f0efec}.s0{fill:#3987e5}.s1{fill:#d95926}.s2{fill:#199e70}}
+</style>
+<rect class="fundo" width="900" height="486" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Mesma seção, do 1º para o 2º turno: o que mudou no log quando a urna mudou</text>
+<text class="t2" x="20" y="52" font-size="13">Seções do 2º turno: controle 491.489; reserva antes de 25/10 848; reserva em 25/10 1.968. Valores do 1º e do 2º turno na mesma seção.</text>
+<rect class="s0" x="20" y="66" width="12" height="12" rx="2"/><text class="t2" x="37" y="77" font-size="12">Controle (mesma urna de seção nos dois turnos)</text>
+<rect class="s1" x="343.8" y="66" width="12" height="12" rx="2"/><text class="t2" x="360.8" y="77" font-size="12">Reserva assumiu antes de 25/10</text>
+<rect class="s2" x="566.8" y="66" width="12" height="12" rx="2"/><text class="t2" x="583.8" y="77" font-size="12">Reserva assumiu em 25/10</text>
+<line class="grade" x1="330" x2="330" y1="102" y2="406" stroke-width="1"/>
+<text class="t2" x="330" y="422" font-size="11" text-anchor="middle">-1,0</text>
+<line class="grade" x1="398" x2="398" y1="102" y2="406" stroke-width="1"/>
+<text class="t2" x="398" y="422" font-size="11" text-anchor="middle">-0,5</text>
+<line class="grade" x1="466" x2="466" y1="102" y2="406" stroke-width="1"/>
+<text class="t2" x="466" y="422" font-size="11" text-anchor="middle">0,0</text>
+<line class="grade" x1="534" x2="534" y1="102" y2="406" stroke-width="1"/>
+<text class="t2" x="534" y="422" font-size="11" text-anchor="middle">0,5</text>
+<line class="grade" x1="602" x2="602" y1="102" y2="406" stroke-width="1"/>
+<text class="t2" x="602" y="422" font-size="11" text-anchor="middle">1,0</text>
+<line class="grade" x1="670" x2="670" y1="102" y2="406" stroke-width="1"/>
+<text class="t2" x="670" y="422" font-size="11" text-anchor="middle">1,5</text>
+<line class="eixo" x1="466" x2="466" y1="102" y2="406" stroke-width="1.5"/>
+<text class="t2" x="500" y="440" font-size="12" text-anchor="middle">Mudança do 1º para o 2º turno (pontos percentuais)</text>
+<text class="t1" x="320" y="132.5" font-size="12" text-anchor="end">Votos sem biometria (% dos votos)</text>
+<rect class="s0" x="466" y="112" width="29.37854415970844" height="9" rx="2"><title>Votos sem biometria (% dos votos) — Controle (mesma urna de seção nos dois turnos): +0,22 p.p.</title></rect>
+<text class="t2" x="500.37854415970844" y="120" font-size="10">+0,22 p.p.</text>
+<rect class="s1" x="466" y="123" width="21.173891528650074" height="9" rx="2"><title>Votos sem biometria (% dos votos) — Reserva assumiu antes de 25/10: +0,16 p.p. (dif. -0,29)</title></rect>
+<line class="ic" x1="388.29179879266593" x2="524.8718045314167" y1="127.5" y2="127.5" stroke-width="1"/>
+<text class="t2" x="529.8718045314167" y="131" font-size="10">+0,16 p.p. (dif. -0,29)</text>
+<rect class="s2" x="466" y="134" width="13.506958299972212" height="9" rx="2"><title>Votos sem biometria (% dos votos) — Reserva assumiu em 25/10: +0,10 p.p. (dif. -0,16)</title></rect>
+<line class="ic" x1="415.91436019891205" x2="532.1316831014526" y1="138.5" y2="138.5" stroke-width="1"/>
+<text class="t2" x="537.1316831014526" y="142" font-size="10">+0,10 p.p. (dif. -0,16)</text>
+<text class="t1" x="320" y="179.5" font-size="12" text-anchor="end">Liberação pelo mesário (% dos votos)</text>
+<rect class="s0" x="466" y="159" width="63.49656547033794" height="9" rx="2"><title>Liberação pelo mesário (% dos votos) — Controle (mesma urna de seção nos dois turnos): +0,47 p.p.</title></rect>
+<text class="t2" x="534.4965654703379" y="167" font-size="10">+0,47 p.p.</text>
+<rect class="s1" x="466" y="170" width="117.60479368403867" height="9" rx="2"><title>Liberação pelo mesário (% dos votos) — Reserva assumiu antes de 25/10: +0,86 p.p. (dif. 0,31)</title></rect>
+<line class="ic" x1="526.0226212272094" x2="617.3529699404157" y1="174.5" y2="174.5" stroke-width="1"/>
+<text class="t2" x="622.3529699404157" y="178" font-size="10">+0,86 p.p. (dif. 0,31)</text>
+<rect class="s2" x="433.4665944244519" y="181" width="32.5334055755481" height="9" rx="2"><title>Liberação pelo mesário (% dos votos) — Reserva assumiu em 25/10: -0,24 p.p. (dif. -0,78)</title></rect>
+<line class="ic" x1="375.37586372317094" x2="470.20729987742476" y1="185.5" y2="185.5" stroke-width="1"/>
+<text class="t2" x="475.20729987742476" y="189" font-size="10">-0,24 p.p. (dif. -0,78)</text>
+<text class="t1" x="320" y="226.5" font-size="12" text-anchor="end">"Já votou" (por 100 votos)</text>
+<rect class="s0" x="465.1315027392966" y="206" width="1" height="9" rx="2"><title>"Já votou" (por 100 votos) — Controle (mesma urna de seção nos dois turnos): -0,01 p.p.</title></rect>
+<text class="t2" x="471" y="214" font-size="10">-0,01 p.p.</text>
+<rect class="s1" x="466" y="217" width="1" height="9" rx="2"><title>"Já votou" (por 100 votos) — Reserva assumiu antes de 25/10: +0,00 p.p. (dif. 0,02)</title></rect>
+<line class="ic" x1="462.79590968670516" x2="471.5887447017532" y1="221.5" y2="221.5" stroke-width="1"/>
+<text class="t2" x="476.5887447017532" y="225" font-size="10">+0,00 p.p. (dif. 0,02)</text>
+<rect class="s2" x="466" y="228" width="1" height="9" rx="2"><title>"Já votou" (por 100 votos) — Reserva assumiu em 25/10: +0,01 p.p. (dif. 0,02)</title></rect>
+<line class="ic" x1="464.90412111362537" x2="469.57680347263977" y1="232.5" y2="232.5" stroke-width="1"/>
+<text class="t2" x="474.57680347263977" y="236" font-size="10">+0,01 p.p. (dif. 0,02)</text>
+<text class="t1" x="320" y="273.5" font-size="12" text-anchor="end">BU com voto sem linha no log (% seções)</text>
+<rect class="s0" x="466" y="253" width="1" height="9" rx="2"><title>BU com voto sem linha no log (% seções) — Controle (mesma urna de seção nos dois turnos): +0,00 p.p.</title></rect>
+<text class="t2" x="471" y="261" font-size="10">+0,00 p.p.</text>
+<rect class="s1" x="466" y="264" width="1" height="9" rx="2"><title>BU com voto sem linha no log (% seções) — Reserva assumiu antes de 25/10: +0,00 p.p. (dif. 0,00)</title></rect>
+<line class="ic" x1="465.8465995573909" x2="466.15340044260904" y1="268.5" y2="268.5" stroke-width="1"/>
+<text class="t2" x="471.15340044260904" y="272" font-size="10">+0,00 p.p. (dif. 0,00)</text>
+<rect class="s2" x="466" y="275" width="13.821138211382106" height="9" rx="2"><title>BU com voto sem linha no log (% seções) — Reserva assumiu em 25/10: +0,10 p.p. (dif. 0,10)</title></rect>
+<line class="ic" x1="452.7312729870338" x2="506.9110034357305" y1="279.5" y2="279.5" stroke-width="1"/>
+<text class="t2" x="511.9110034357305" y="283" font-size="10">+0,10 p.p. (dif. 0,10)</text>
+<text class="t1" x="320" y="320.5" font-size="12" text-anchor="end">Rajada 10+ sem biometria (% seções)</text>
+<rect class="s0" x="466" y="300" width="32.873167049516894" height="9" rx="2"><title>Rajada 10+ sem biometria (% seções) — Controle (mesma urna de seção nos dois turnos): +0,24 p.p.</title></rect>
+<text class="t2" x="503.8731670495169" y="308" font-size="10">+0,24 p.p.</text>
+<rect class="s1" x="466" y="311" width="96.2264150943397" height="9" rx="2"><title>Rajada 10+ sem biometria (% seções) — Reserva assumiu antes de 25/10: +0,71 p.p. (dif. 0,47)</title></rect>
+<line class="ic" x1="485.4333806132686" x2="639.0194495754106" y1="315.5" y2="315.5" stroke-width="1"/>
+<text class="t2" x="644.0194495754106" y="319" font-size="10">+0,71 p.p. (dif. 0,47)</text>
+<rect class="s2" x="466" y="322" width="138.21138211382117" height="9" rx="2"><title>Rajada 10+ sem biometria (% seções) — Reserva assumiu em 25/10: +1,02 p.p. (dif. 0,77)</title></rect>
+<line class="ic" x1="543.9009523741709" x2="664.5218118534715" y1="326.5" y2="326.5" stroke-width="1"/>
+<text class="t2" x="669.5218118534715" y="330" font-size="10">+1,02 p.p. (dif. 0,77)</text>
+<text class="t1" x="320" y="367.5" font-size="12" text-anchor="end">Intervalo entre votos &lt; 20 s (% seções)</text>
+<rect class="s0" x="466" y="347" width="5.838584383373814" height="9" rx="2"><title>Intervalo entre votos &lt; 20 s (% seções) — Controle (mesma urna de seção nos dois turnos): +0,04 p.p.</title></rect>
+<text class="t2" x="476.8385843833738" y="355" font-size="10">+0,04 p.p.</text>
+<rect class="s1" x="466" y="358" width="1" height="9" rx="2"><title>Intervalo entre votos &lt; 20 s (% seções) — Reserva assumiu antes de 25/10: +0,00 p.p. (dif. -0,04)</title></rect>
+<line class="ic" x1="465.1975576511807" x2="466.80244234881934" y1="362.5" y2="362.5" stroke-width="1"/>
+<text class="t2" x="471.80244234881934" y="366" font-size="10">+0,00 p.p. (dif. -0,04)</text>
+<rect class="s2" x="466" y="369" width="20.731707317073187" height="9" rx="2"><title>Intervalo entre votos &lt; 20 s (% seções) — Reserva assumiu em 25/10: +0,15 p.p. (dif. 0,11)</title></rect>
+<line class="ic" x1="456.4403319424716" x2="517.0230826916747" y1="373.5" y2="373.5" stroke-width="1"/>
+<text class="t2" x="522.0230826916747" y="377" font-size="10">+0,15 p.p. (dif. 0,11)</text>
+<text class="t2" x="20" y="464" font-size="12">Como ler: barra à direita do zero = aumentou no 2º turno; traço = intervalo de 95%; sinal seria a barra da reserva longe da do controle.</text>
+</svg>

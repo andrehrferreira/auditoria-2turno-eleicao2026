@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 304" width="900" height="304" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Onde a urna reserva do 2º turno aparece no 1º turno</title><desc id="desc">2.818 seções com reserva nova no 2º turno (grupo H14). não aparece no 1º turno: Seções H14 94,39% (2.660). log aninhado de seção no 1º turno: Seções H14 4,29% (121). BU de seção no 1º turno: Seções H14 1,17% (33). log principal de seção no 1º turno: Seções H14 0,14% (4)</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}.ic{stroke:#0b0b0b}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}.s2{fill:#1baf7a}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.ic{stroke:#f0efec}.s0{fill:#3987e5}.s1{fill:#d95926}.s2{fill:#199e70}}
+</style>
+<rect class="fundo" width="900" height="304" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Onde a urna reserva do 2º turno aparece no 1º turno</text>
+<text class="t2" x="20" y="52" font-size="13">2.818 seções com reserva nova no 2º turno (grupo H14).</text>
+<rect class="s1" x="20" y="66" width="12" height="12" rx="2"/><text class="t2" x="37" y="77" font-size="12">Seções H14</text>
+<line class="grade" x1="330" x2="330" y1="102" y2="224" stroke-width="1"/>
+<text class="t2" x="330" y="240" font-size="11" text-anchor="middle">0</text>
+<line class="grade" x1="398" x2="398" y1="102" y2="224" stroke-width="1"/>
+<text class="t2" x="398" y="240" font-size="11" text-anchor="middle">20</text>
+<line class="grade" x1="466" x2="466" y1="102" y2="224" stroke-width="1"/>
+<text class="t2" x="466" y="240" font-size="11" text-anchor="middle">40</text>
+<line class="grade" x1="534" x2="534" y1="102" y2="224" stroke-width="1"/>
+<text class="t2" x="534" y="240" font-size="11" text-anchor="middle">60</text>
+<line class="grade" x1="602" x2="602" y1="102" y2="224" stroke-width="1"/>
+<text class="t2" x="602" y="240" font-size="11" text-anchor="middle">80</text>
+<line class="grade" x1="670" x2="670" y1="102" y2="224" stroke-width="1"/>
+<text class="t2" x="670" y="240" font-size="11" text-anchor="middle">100</text>
+<text class="t2" x="500" y="258" font-size="12" text-anchor="middle">Seções do grupo H14 (%)</text>
+<text class="t1" x="320" y="121.5" font-size="12" text-anchor="end">não aparece no 1º turno</text>
+<rect class="s1" x="330" y="112" width="320.93683463449247" height="9" rx="2"><title>não aparece no 1º turno — Seções H14: 94,39% (2.660)</title></rect>
+<line class="ic" x1="647.8380415114767" x2="653.6246628444304" y1="116.5" y2="116.5" stroke-width="1"/>
+<text class="t2" x="658.6246628444304" y="120" font-size="10">94,39% (2.660)</text>
+<text class="t1" x="320" y="146.5" font-size="12" text-anchor="end">log aninhado de seção no 1º turno</text>
+<rect class="s1" x="330" y="137" width="14.599006387508894" height="9" rx="2"><title>log aninhado de seção no 1º turno — Seções H14: 4,29% (121)</title></rect>
+<line class="ic" x1="342.25869677484604" x2="347.36243575080675" y1="141.5" y2="141.5" stroke-width="1"/>
+<text class="t2" x="352.36243575080675" y="145" font-size="10">4,29% (121)</text>
+<text class="t1" x="320" y="171.5" font-size="12" text-anchor="end">BU de seção no 1º turno</text>
+<rect class="s1" x="330" y="162" width="3.9815471965933398" height="9" rx="2"><title>BU de seção no 1º turno — Seções H14: 1,17% (33)</title></rect>
+<line class="ic" x1="332.8391912552624" x2="335.57593169139767" y1="166.5" y2="166.5" stroke-width="1"/>
+<text class="t2" x="340.57593169139767" y="170" font-size="10">1,17% (33)</text>
+<text class="t1" x="320" y="196.5" font-size="12" text-anchor="end">log principal de seção no 1º turno</text>
+<rect class="s1" x="330" y="187" width="1" height="9" rx="2"><title>log principal de seção no 1º turno — Seções H14: 0,14% (4)</title></rect>
+<line class="ic" x1="330.1877208690741" x2="331.2390580117816" y1="191.5" y2="191.5" stroke-width="1"/>
+<text class="t2" x="336.2390580117816" y="195" font-size="10">0,14% (4)</text>
+<text class="t2" x="20" y="282" font-size="12">Como ler: "não aparece" = a reserva não votou nem registrou log em nenhuma seção no 1º turno (ficou guardada).</text>
+</svg>

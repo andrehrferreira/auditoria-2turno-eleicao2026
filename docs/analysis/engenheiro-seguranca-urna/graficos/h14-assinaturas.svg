@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 721" width="900" height="721" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Verificação de assinaturas no log: reserva × urna de seção</title><desc id="desc">Seções do 2º turno: controle 491.489; reserva antes de 25/10 848; reserva em 25/10 1.968. Etapas do boot de votação fora do padrão: Controle (mesma urna de seção nos dois turnos) 0,00% (16 de 491.489); Reserva assumiu antes de 25/10 0,00% (0 de 848); Reserva assumiu em 25/10 0,05% (1 de 1.968). Etapa sem SUCESSO no boot de votação: Controle (mesma urna de seção nos dois turnos) 0,00% (0 de 491.489); Reserva assumiu antes de 25/10 0,00% (0 de 848); Reserva assumiu em 25/10 0,00% (0 de 1.968). Verificação da mídia externa ≠ 0: Controle (mesma urna de seção nos dois turnos) 0,05% (235 de 491.489); Reserva assumiu antes de 25/10 0,35% (3 de 848); Reserva assumiu em 25/10 0,15% (3 de 1.968). Boot de votação sem a etapa -lo.vsc: Controle (mesma urna de seção nos dois turnos) 0,00% (16 de 491.489); Reserva assumiu antes de 25/10 0,00% (0 de 848); Reserva assumiu em 25/10 0,36% (7 de 1.968). Etapa [ERRO] no log da urna que votou: Controle (mesma urna de seção nos dois turnos) 0,03% (143 de 491.489); Reserva assumiu antes de 25/10 0,12% (1 de 848); Reserva assumiu em 25/10 0,00% (0 de 1.968). Etapa [ERRO] em qualquer log do pacote: Controle (mesma urna de seção nos dois turnos) 0,03% (143 de 491.489); Reserva assumiu antes de 25/10 0,24% (2 de 848); Reserva assumiu em 25/10 0,25% (5 de 1.968). Erro de assinatura no log da urna que votou: Controle (mesma urna de seção nos dois turnos) 0,16% (767 de 491.489); Reserva assumiu antes de 25/10 0,59% (5 de 848); Reserva assumiu em 25/10 0,05% (1 de 1.968). Erro de assinatura em qualquer log: Controle (mesma urna de seção nos dois turnos) 0,16% (767 de 491.489); Reserva assumiu antes de 25/10 1,65% (14 de 848); Reserva assumiu em 25/10 0,86% (17 de 1.968). Estado (.vsu) com erro e restaurado: Controle (mesma urna de seção nos dois turnos) 0,01% (51 de 491.489); Reserva assumiu antes de 25/10 0,12% (1 de 848); Reserva assumiu em 25/10 0,10% (2 de 1.968). Troca de cartão de votação em 25/10: Controle (mesma urna de seção nos dois turnos) 0,00% (20 de 491.489); Reserva assumiu antes de 25/10 0,00% (0 de 848); Reserva assumiu em 25/10 0,05% (1 de 1.968). Pacote com falha de lacre: Controle (mesma urna de seção nos dois turnos) 0,00% (0 de 491.489); Reserva assumiu antes de 25/10 0,00% (0 de 848); Reserva assumiu em 25/10 0,00% (0 de 1.968)</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}.ic{stroke:#0b0b0b}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}.s2{fill:#1baf7a}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.ic{stroke:#f0efec}.s0{fill:#3987e5}.s1{fill:#d95926}.s2{fill:#199e70}}
+</style>
+<rect class="fundo" width="900" height="721" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Verificação de assinaturas no log: reserva × urna de seção</text>
+<text class="t2" x="20" y="52" font-size="13">Seções do 2º turno: controle 491.489; reserva antes de 25/10 848; reserva em 25/10 1.968.</text>
+<rect class="s0" x="20" y="66" width="12" height="12" rx="2"/><text class="t2" x="37" y="77" font-size="12">Controle (mesma urna de seção nos dois turnos)</text>
+<rect class="s1" x="343.8" y="66" width="12" height="12" rx="2"/><text class="t2" x="360.8" y="77" font-size="12">Reserva assumiu antes de 25/10</text>
+<rect class="s2" x="566.8" y="66" width="12" height="12" rx="2"/><text class="t2" x="583.8" y="77" font-size="12">Reserva assumiu em 25/10</text>
+<line class="grade" x1="330" x2="330" y1="102" y2="641" stroke-width="1"/>
+<text class="t2" x="330" y="657" font-size="11" text-anchor="middle">0,0</text>
+<line class="grade" x1="386.6666666666667" x2="386.6666666666667" y1="102" y2="641" stroke-width="1"/>
+<text class="t2" x="386.6666666666667" y="657" font-size="11" text-anchor="middle">0,5</text>
+<line class="grade" x1="443.3333333333333" x2="443.3333333333333" y1="102" y2="641" stroke-width="1"/>
+<text class="t2" x="443.3333333333333" y="657" font-size="11" text-anchor="middle">1,0</text>
+<line class="grade" x1="500" x2="500" y1="102" y2="641" stroke-width="1"/>
+<text class="t2" x="500" y="657" font-size="11" text-anchor="middle">1,5</text>
+<line class="grade" x1="556.6666666666666" x2="556.6666666666666" y1="102" y2="641" stroke-width="1"/>
+<text class="t2" x="556.6666666666666" y="657" font-size="11" text-anchor="middle">2,0</text>
+<line class="grade" x1="613.3333333333334" x2="613.3333333333334" y1="102" y2="641" stroke-width="1"/>
+<text class="t2" x="613.3333333333334" y="657" font-size="11" text-anchor="middle">2,5</text>
+<line class="grade" x1="670" x2="670" y1="102" y2="641" stroke-width="1"/>
+<text class="t2" x="670" y="657" font-size="11" text-anchor="middle">3,0</text>
+<text class="t2" x="500" y="675" font-size="12" text-anchor="middle">Seções com a característica (%)</text>
+<text class="t1" x="320" y="132.5" font-size="12" text-anchor="end">Etapas do boot de votação fora do padrão</text>
+<rect class="s0" x="330" y="112" width="1" height="9" rx="2"><title>Etapas do boot de votação fora do padrão — Controle (mesma urna de seção nos dois turnos): 0,00% (16 de 491.489)</title></rect>
+<line class="ic" x1="330.227109351026" x2="330.5993620959999" y1="116.5" y2="116.5" stroke-width="1"/>
+<text class="t2" x="335.5993620959999" y="120" font-size="10">0,00% (16 de 491.489)</text>
+<rect class="s1" x="330" y="123" width="1" height="9" rx="2"><title>Etapas do boot de votação fora do padrão — Reserva assumiu antes de 25/10: 0,00% (0 de 848)</title></rect>
+<line class="ic" x1="330" x2="381.1105977136281" y1="127.5" y2="127.5" stroke-width="1"/>
+<text class="t2" x="386.1105977136281" y="131" font-size="10">0,00% (0 de 848)</text>
+<rect class="s2" x="330" y="134" width="5.758807588075854" height="9" rx="2"><title>Etapas do boot de votação fora do padrão — Reserva assumiu em 25/10: 0,05% (1 de 1.968)</title></rect>
+<line class="ic" x1="331.0166086247208" x2="362.55850207382616" y1="138.5" y2="138.5" stroke-width="1"/>
+<text class="t2" x="367.55850207382616" y="142" font-size="10">0,05% (1 de 1.968)</text>
+<text class="t1" x="320" y="179.5" font-size="12" text-anchor="end">Etapa sem SUCESSO no boot de votação</text>
+<rect class="s0" x="330" y="159" width="1" height="9" rx="2"><title>Etapa sem SUCESSO no boot de votação — Controle (mesma urna de seção nos dois turnos): 0,00% (0 de 491.489)</title></rect>
+<line class="ic" x1="330" x2="330.0885834536096" y1="163.5" y2="163.5" stroke-width="1"/>
+<text class="t2" x="335.0885834536096" y="167" font-size="10">0,00% (0 de 491.489)</text>
+<rect class="s1" x="330" y="170" width="1" height="9" rx="2"><title>Etapa sem SUCESSO no boot de votação — Reserva assumiu antes de 25/10: 0,00% (0 de 848)</title></rect>
+<line class="ic" x1="330" x2="381.1105977136281" y1="174.5" y2="174.5" stroke-width="1"/>
+<text class="t2" x="386.1105977136281" y="178" font-size="10">0,00% (0 de 848)</text>
+<rect class="s2" x="330" y="181" width="1" height="9" rx="2"><title>Etapa sem SUCESSO no boot de votação — Reserva assumiu em 25/10: 0,00% (0 de 1.968)</title></rect>
+<line class="ic" x1="330" x2="352.0799344802003" y1="185.5" y2="185.5" stroke-width="1"/>
+<text class="t2" x="357.0799344802003" y="189" font-size="10">0,00% (0 de 1.968)</text>
+<text class="t1" x="320" y="226.5" font-size="12" text-anchor="end">Verificação da mídia externa ≠ 0</text>
+<rect class="s0" x="330" y="206" width="5.418907306843778" height="9" rx="2"><title>Verificação da mídia externa ≠ 0 — Controle (mesma urna de seção nos dois turnos): 0,05% (235 de 491.489)</title></rect>
+<line class="ic" x1="334.76907166057043" x2="336.1572416963401" y1="210.5" y2="210.5" stroke-width="1"/>
+<text class="t2" x="341.1572416963401" y="214" font-size="10">0,05% (235 de 491.489)</text>
+<rect class="s1" x="330" y="217" width="40.094339622641485" height="9" rx="2"><title>Verificação da mídia externa ≠ 0 — Reserva assumiu antes de 25/10: 0,35% (3 de 848)</title></rect>
+<line class="ic" x1="343.6435357697511" x2="447.29410960156366" y1="221.5" y2="221.5" stroke-width="1"/>
+<text class="t2" x="452.29410960156366" y="225" font-size="10">0,35% (3 de 848)</text>
+<rect class="s2" x="330" y="228" width="17.27642276422762" height="9" rx="2"><title>Verificação da mídia externa ≠ 0 — Reserva assumiu em 25/10: 0,15% (3 de 1.968)</title></rect>
+<line class="ic" x1="335.87693725499025" x2="380.6885258802501" y1="232.5" y2="232.5" stroke-width="1"/>
+<text class="t2" x="385.6885258802501" y="236" font-size="10">0,15% (3 de 1.968)</text>
+<text class="t1" x="320" y="273.5" font-size="12" text-anchor="end">Boot de votação sem a etapa -lo.vsc</text>
+<rect class="s0" x="330" y="253" width="1" height="9" rx="2"><title>Boot de votação sem a etapa -lo.vsc — Controle (mesma urna de seção nos dois turnos): 0,00% (16 de 491.489)</title></rect>
+<line class="ic" x1="330.227109351026" x2="330.5993620959999" y1="257.5" y2="257.5" stroke-width="1"/>
+<text class="t2" x="335.5993620959999" y="261" font-size="10">0,00% (16 de 491.489)</text>
+<rect class="s1" x="330" y="264" width="1" height="9" rx="2"><title>Boot de votação sem a etapa -lo.vsc — Reserva assumiu antes de 25/10: 0,00% (0 de 848)</title></rect>
+<line class="ic" x1="330" x2="381.1105977136281" y1="268.5" y2="268.5" stroke-width="1"/>
+<text class="t2" x="386.1105977136281" y="272" font-size="10">0,00% (0 de 848)</text>
+<rect class="s2" x="330" y="275" width="40.31165311653115" height="9" rx="2"><title>Boot de votação sem a etapa -lo.vsc — Reserva assumiu em 25/10: 0,36% (7 de 1.968)</title></rect>
+<line class="ic" x1="349.5387855794621" x2="413.007382429165" y1="279.5" y2="279.5" stroke-width="1"/>
+<text class="t2" x="418.007382429165" y="283" font-size="10">0,36% (7 de 1.968)</text>
+<text class="t1" x="320" y="320.5" font-size="12" text-anchor="end">Etapa [ERRO] no log da urna que votou</text>
+<rect class="s0" x="330" y="300" width="3.297462744164477" height="9" rx="2"><title>Etapa [ERRO] no log da urna que votou — Controle (mesma urna de seção nos dois turnos): 0,03% (143 de 491.489)</title></rect>
+<line class="ic" x1="332.79953396741763" x2="333.8839234273496" y1="304.5" y2="304.5" stroke-width="1"/>
+<text class="t2" x="338.8839234273496" y="308" font-size="10">0,03% (143 de 491.489)</text>
+<rect class="s1" x="330" y="311" width="13.36477987421381" height="9" rx="2"><title>Etapa [ERRO] no log da urna que votou — Reserva assumiu antes de 25/10: 0,12% (1 de 848)</title></rect>
+<line class="ic" x1="332.35949495831875" x2="405.3601186412049" y1="315.5" y2="315.5" stroke-width="1"/>
+<text class="t2" x="410.3601186412049" y="319" font-size="10">0,12% (1 de 848)</text>
+<rect class="s2" x="330" y="322" width="1" height="9" rx="2"><title>Etapa [ERRO] no log da urna que votou — Reserva assumiu em 25/10: 0,00% (0 de 1.968)</title></rect>
+<line class="ic" x1="330" x2="352.0799344802003" y1="326.5" y2="326.5" stroke-width="1"/>
+<text class="t2" x="357.0799344802003" y="330" font-size="10">0,00% (0 de 1.968)</text>
+<text class="t1" x="320" y="367.5" font-size="12" text-anchor="end">Etapa [ERRO] em qualquer log do pacote</text>
+<rect class="s0" x="330" y="347" width="3.297462744164477" height="9" rx="2"><title>Etapa [ERRO] em qualquer log do pacote — Controle (mesma urna de seção nos dois turnos): 0,03% (143 de 491.489)</title></rect>
+<line class="ic" x1="332.79953396741763" x2="333.8839234273496" y1="351.5" y2="351.5" stroke-width="1"/>
+<text class="t2" x="338.8839234273496" y="355" font-size="10">0,03% (143 de 491.489)</text>
+<rect class="s1" x="330" y="358" width="26.729559748427675" height="9" rx="2"><title>Etapa [ERRO] em qualquer log do pacote — Reserva assumiu antes de 25/10: 0,24% (2 de 848)</title></rect>
+<line class="ic" x1="337.3327583052228" x2="426.9958711801964" y1="362.5" y2="362.5" stroke-width="1"/>
+<text class="t2" x="431.9958711801964" y="366" font-size="10">0,24% (2 de 848)</text>
+<rect class="s2" x="330" y="369" width="28.794037940379383" height="9" rx="2"><title>Etapa [ERRO] em qualquer log do pacote — Reserva assumiu em 25/10: 0,25% (5 de 1.968)</title></rect>
+<line class="ic" x1="342.30427319891544" x2="397.25154237301825" y1="373.5" y2="373.5" stroke-width="1"/>
+<text class="t2" x="402.25154237301825" y="377" font-size="10">0,25% (5 de 1.968)</text>
+<text class="t1" x="320" y="414.5" font-size="12" text-anchor="end">Erro de assinatura no log da urna que votou</text>
+<rect class="s0" x="330" y="394" width="17.686391082336854" height="9" rx="2"><title>Erro de assinatura no log da urna que votou — Controle (mesma urna de seção nos dois turnos): 0,16% (767 de 491.489)</title></rect>
+<line class="ic" x1="346.479054990481" x2="348.9820341475193" y1="398.5" y2="398.5" stroke-width="1"/>
+<text class="t2" x="353.9820341475193" y="402" font-size="10">0,16% (767 de 491.489)</text>
+<rect class="s1" x="330" y="405" width="66.82389937106916" height="9" rx="2"><title>Erro de assinatura no log da urna que votou — Reserva assumiu antes de 25/10: 0,59% (5 de 848)</title></rect>
+<line class="ic" x1="358.57167464864466" x2="485.5840024944612" y1="409.5" y2="409.5" stroke-width="1"/>
+<text class="t2" x="490.5840024944612" y="413" font-size="10">0,59% (5 de 848)</text>
+<rect class="s2" x="330" y="416" width="5.758807588075854" height="9" rx="2"><title>Erro de assinatura no log da urna que votou — Reserva assumiu em 25/10: 0,05% (1 de 1.968)</title></rect>
+<line class="ic" x1="331.0166086247208" x2="362.55850207382616" y1="420.5" y2="420.5" stroke-width="1"/>
+<text class="t2" x="367.55850207382616" y="424" font-size="10">0,05% (1 de 1.968)</text>
+<text class="t1" x="320" y="461.5" font-size="12" text-anchor="end">Erro de assinatura em qualquer log</text>
+<rect class="s0" x="330" y="441" width="17.686391082336854" height="9" rx="2"><title>Erro de assinatura em qualquer log — Controle (mesma urna de seção nos dois turnos): 0,16% (767 de 491.489)</title></rect>
+<line class="ic" x1="346.479054990481" x2="348.9820341475193" y1="445.5" y2="445.5" stroke-width="1"/>
+<text class="t2" x="353.9820341475193" y="449" font-size="10">0,16% (767 de 491.489)</text>
+<rect class="s1" x="330" y="452" width="187.10691823899367" height="9" rx="2"><title>Erro de assinatura em qualquer log — Reserva assumiu antes de 25/10: 1,65% (14 de 848)</title></rect>
+<line class="ic" x1="441.7388311168336" x2="641.897988999332" y1="456.5" y2="456.5" stroke-width="1"/>
+<text class="t2" x="646.897988999332" y="460" font-size="10">1,65% (14 de 848)</text>
+<rect class="s2" x="330" y="463" width="97.89972899728997" height="9" rx="2"><title>Erro de assinatura em qualquer log — Reserva assumiu em 25/10: 0,86% (17 de 1.968)</title></rect>
+<line class="ic" x1="391.20264032990696" x2="486.2952898621869" y1="467.5" y2="467.5" stroke-width="1"/>
+<text class="t2" x="491.2952898621869" y="471" font-size="10">0,86% (17 de 1.968)</text>
+<text class="t1" x="320" y="508.5" font-size="12" text-anchor="end">Estado (.vsu) com erro e restaurado</text>
+<rect class="s0" x="330" y="488" width="1.176018181485233" height="9" rx="2"><title>Estado (.vsu) com erro e restaurado — Controle (mesma urna de seção nos dois turnos): 0,01% (51 de 491.489)</title></rect>
+<line class="ic" x1="330.8945310354315" x2="331.5460703971924" y1="492.5" y2="492.5" stroke-width="1"/>
+<text class="t2" x="336.5460703971924" y="496" font-size="10">0,01% (51 de 491.489)</text>
+<rect class="s1" x="330" y="499" width="13.36477987421381" height="9" rx="2"><title>Estado (.vsu) com erro e restaurado — Reserva assumiu antes de 25/10: 0,12% (1 de 848)</title></rect>
+<line class="ic" x1="332.35949495831875" x2="405.3601186412049" y1="503.5" y2="503.5" stroke-width="1"/>
+<text class="t2" x="410.3601186412049" y="507" font-size="10">0,12% (1 de 848)</text>
+<rect class="s2" x="330" y="510" width="11.517615176151764" height="9" rx="2"><title>Estado (.vsu) com erro e restaurado — Reserva assumiu em 25/10: 0,10% (2 de 1.968)</title></rect>
+<line class="ic" x1="333.1589809222837" x2="371.9113059946099" y1="514.5" y2="514.5" stroke-width="1"/>
+<text class="t2" x="376.9113059946099" y="518" font-size="10">0,10% (2 de 1.968)</text>
+<text class="t1" x="320" y="555.5" font-size="12" text-anchor="end">Troca de cartão de votação em 25/10</text>
+<rect class="s0" x="330" y="535" width="1" height="9" rx="2"><title>Troca de cartão de votação em 25/10 — Controle (mesma urna de seção nos dois turnos): 0,00% (20 de 491.489)</title></rect>
+<line class="ic" x1="330.298558669887" x2="330.7123847754929" y1="539.5" y2="539.5" stroke-width="1"/>
+<text class="t2" x="335.7123847754929" y="543" font-size="10">0,00% (20 de 491.489)</text>
+<rect class="s1" x="330" y="546" width="1" height="9" rx="2"><title>Troca de cartão de votação em 25/10 — Reserva assumiu antes de 25/10: 0,00% (0 de 848)</title></rect>
+<line class="ic" x1="330" x2="381.1105977136281" y1="550.5" y2="550.5" stroke-width="1"/>
+<text class="t2" x="386.1105977136281" y="554" font-size="10">0,00% (0 de 848)</text>
+<rect class="s2" x="330" y="557" width="5.758807588075854" height="9" rx="2"><title>Troca de cartão de votação em 25/10 — Reserva assumiu em 25/10: 0,05% (1 de 1.968)</title></rect>
+<line class="ic" x1="331.0166086247208" x2="362.55850207382616" y1="561.5" y2="561.5" stroke-width="1"/>
+<text class="t2" x="367.55850207382616" y="565" font-size="10">0,05% (1 de 1.968)</text>
+<text class="t1" x="320" y="602.5" font-size="12" text-anchor="end">Pacote com falha de lacre</text>
+<rect class="s0" x="330" y="582" width="1" height="9" rx="2"><title>Pacote com falha de lacre — Controle (mesma urna de seção nos dois turnos): 0,00% (0 de 491.489)</title></rect>
+<line class="ic" x1="330" x2="330.0885834536096" y1="586.5" y2="586.5" stroke-width="1"/>
+<text class="t2" x="335.0885834536096" y="590" font-size="10">0,00% (0 de 491.489)</text>
+<rect class="s1" x="330" y="593" width="1" height="9" rx="2"><title>Pacote com falha de lacre — Reserva assumiu antes de 25/10: 0,00% (0 de 848)</title></rect>
+<line class="ic" x1="330" x2="381.1105977136281" y1="597.5" y2="597.5" stroke-width="1"/>
+<text class="t2" x="386.1105977136281" y="601" font-size="10">0,00% (0 de 848)</text>
+<rect class="s2" x="330" y="604" width="1" height="9" rx="2"><title>Pacote com falha de lacre — Reserva assumiu em 25/10: 0,00% (0 de 1.968)</title></rect>
+<line class="ic" x1="330" x2="352.0799344802003" y1="608.5" y2="608.5" stroke-width="1"/>
+<text class="t2" x="357.0799344802003" y="612" font-size="10">0,00% (0 de 1.968)</text>
+<text class="t2" x="20" y="699" font-size="12">Como ler: barra maior no grupo da reserva só seria sinal se aparecesse no log da urna que votou e no boot em que ela votou.</text>
+</svg>
