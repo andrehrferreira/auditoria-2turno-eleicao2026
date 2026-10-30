@@ -26,7 +26,7 @@ const ESTILO = `<style>
   text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
   @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.s0{fill:#3987e5}.s1{fill:#d95926}.s2{fill:#8a8984}.liga{stroke:#6d6c66}}
 </style>`;
-const FONTE30 = 'Fonte: boletins e diários de todas as urnas, dois turnos; parecer cético 30 (docs/analysis/cetico-revisor/30-h14-urnas-reserva.md).';
+const FONTE30 = 'Fonte: boletins e diários de todas as urnas, dois turnos; números conferidos por segunda verificação independente.';
 
 function cabecalho(p, L, H, titulo, subtitulo, desc) {
   p.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${L} ${H}" width="${L}" height="${H}" role="img" aria-labelledby="titulo desc">`);

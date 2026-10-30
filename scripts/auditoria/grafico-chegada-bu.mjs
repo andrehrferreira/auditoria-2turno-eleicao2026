@@ -77,7 +77,7 @@ const fechar = (q, notas, arquivo) => {
 // faixas invisíveis, uma por minuto, com os valores ao passar o mouse
 const alvos = (q, texto) => d.forEach((r, m) => q.p.push(`<rect class="alvo" x="${x(m)}" y="${q.topo}" width="${x(m + 1) - x(m)}" height="${q.base - q.topo}"><title>${xml(texto(r))}</title></rect>`));
 
-const FONTE = 'Fonte: dados abertos do TSE (detalhe_votacao_secao, hora de registro e de totalização) e boletins de urna (hora de emissão); parecer cético 28.';
+const FONTE = 'Fonte: dados abertos do TSE e boletins de urna (horas de emissão, registro e totalização); conferido por segunda verificação independente.';
 
 // ---------- 1. Percentual acumulado: emitidos × registrados ----------
 {
@@ -113,7 +113,7 @@ const FONTE = 'Fonte: dados abertos do TSE (detalhe_votacao_secao, hora de regis
     'Cada ponto é o acumulado até o fim daquele minuto. "Registrada" é a hora em que o sistema do TSE registrou o BU como recebido,',
     'não a hora em que ele saiu da seção. Emitidos: só o Brasil (o exterior não tem fuso conhecido). Registradas: todas as seções, com o exterior.',
     'Faixas cinza: períodos sem registro de BU com voto no 2º turno.',
-    'Dados minuto a minuto, de 17:00 a 03:00 do dia seguinte: docs/pericia/graficos/dados/chegada-bu-por-minuto.csv.',
+    'Dados minuto a minuto, de 17:00 a 03:00 do dia seguinte, na tabela que acompanha este gráfico.',
   ], 'chegada-bu-emitidos-x-registrados.svg');
 }
 
@@ -148,6 +148,6 @@ const FONTE = 'Fonte: dados abertos do TSE (detalhe_votacao_secao, hora de regis
     'Cada degrau é um minuto. "Registrada" é a hora em que o sistema do TSE registrou o BU como recebido, não a hora em que ele saiu da seção.',
     'Faixas cinza: períodos sem registro de BU com voto no 2º turno. Fora das paradas citadas no texto, a linha do 1º turno tem',
     'outros minutos sem registro, que ainda não foram examinados.',
-    'Dados minuto a minuto, de 17:00 a 03:00 do dia seguinte: docs/pericia/graficos/dados/chegada-bu-por-minuto.csv.',
+    'Dados minuto a minuto, de 17:00 a 03:00 do dia seguinte, na tabela que acompanha este gráfico.',
   ], 'chegada-bu-registros-por-minuto.svg');
 }

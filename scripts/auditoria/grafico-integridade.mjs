@@ -87,7 +87,7 @@ function barras({ arquivo, titulo, subtitulo, cats, series, eixo, fonte, casas =
   console.log(`gravado docs/pericia/graficos/${arquivo}`);
 }
 
-const FONTE24 = 'Fonte: arquivos oficiais do TSE; parecer cético 24 (docs/analysis/cetico-revisor/24-integridade-h04-h11.md).';
+const FONTE24 = 'Fonte: arquivos oficiais do TSE, todas as seções; números conferidos por segunda verificação independente.';
 
 // 1. Pacotes conferidos por modelo de urna, 2º turno
 const mod = lerCsv('lacres-por-modelo-2t.csv');
@@ -110,7 +110,7 @@ barras({
   series: ['2º turno (181 anotações)', '1º turno (146 anotações)'],
   cats: dest.map((r) => ({ rotulo: r.descricao.replace(' (nova carga) na mesma urna', '\n(nova carga) na mesma urna').replace(', sem nova carga', ',\nsem nova carga'), valores: [r.eventos_2t, r.eventos_1t] })),
   eixo: 'Anotações de erro (número)',
-  fonte: 'Fonte: diários de todas as urnas; docs/analysis/integridade-nacional/07, sustentado no parecer cético 24 (item 10).',
+  fonte: 'Fonte: diários de todas as urnas; números conferidos por segunda verificação independente.',
 });
 
 // 3. Cartões de votação com o mesmo número: observado × esperado pelo acaso

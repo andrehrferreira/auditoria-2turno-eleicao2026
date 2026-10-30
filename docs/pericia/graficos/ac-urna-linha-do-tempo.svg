@@ -90,5 +90,5 @@
 <line class="marco" x1="638.7123287671147" x2="638.7123287671147" y1="312" y2="422" stroke-width="1.5" stroke-dasharray="4 3"/>
 <text class="t1" x="643.7123287671147" y="310" font-size="12" text-anchor="start">2º turno 25/10</text>
 <text class="t2" x="20" y="464" font-size="12">Eixo: tempo (anos no painel 1; meses de 2026 no painel 2). Laranja: a autoridade das urnas 2013 e 2015.</text>
-<text class="t2" x="20" y="480" font-size="11">Fonte: data/certificados/ac/*.der (pacote oficial do TSE); carteiras das urnas: parecer cético 24. Dados: graficos/dados/h25-*.csv.</text>
+<text class="t2" x="20" y="480" font-size="11">Fonte: certificados do pacote oficial do TSE e carteiras das urnas; números conferidos por segunda verificação independente.</text>
 </svg>

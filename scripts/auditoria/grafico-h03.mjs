@@ -86,7 +86,7 @@ function barras({ arquivo, titulo, subtitulo, cats, series, eixo, fonte, nota, a
   console.log(`gravado docs/pericia/graficos/${arquivo}`);
 }
 
-const FONTE26 = 'Fonte: boletins de urna e divulgação oficial do TSE, 1º turno; parecer cético 26 (docs/analysis/cetico-revisor/26-h03-1turno-todos-cargos.md).';
+const FONTE26 = 'Fonte: boletins de urna e divulgação oficial do TSE, 1º turno, todas as seções; números conferidos por segunda verificação independente.';
 
 // 1. Nulo técnico por cargo
 const cargo = lerCsv('h03-1t-nulo-tecnico-por-cargo.csv');

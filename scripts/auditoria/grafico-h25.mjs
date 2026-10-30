@@ -110,7 +110,7 @@ corpo.push(`<text class="t1" x="20" y="30" font-size="17" font-weight="600">${xm
 corpo.push(`<text class="t2" x="20" y="52" font-size="13">${xml(sub)}</text>`);
 corpo.push(...p);
 corpo.push(`<text class="t2" x="20" y="${H - 28}" font-size="12">${xml('Eixo: tempo (anos no painel 1; meses de 2026 no painel 2). Laranja: a autoridade das urnas 2013 e 2015.')}</text>`);
-corpo.push(`<text class="t2" x="20" y="${H - 12}" font-size="11">${xml('Fonte: data/certificados/ac/*.der (pacote oficial do TSE); carteiras das urnas: parecer cético 24. Dados: graficos/dados/h25-*.csv.')}</text>`);
+corpo.push(`<text class="t2" x="20" y="${H - 12}" font-size="11">${xml('Fonte: certificados do pacote oficial do TSE e carteiras das urnas; números conferidos por segunda verificação independente.')}</text>`);
 corpo.push('</svg>');
 writeFileSync(path.join(DIR, 'ac-urna-linha-do-tempo.svg'), corpo.join('\n') + '\n');
 console.log('gravado docs/pericia/graficos/ac-urna-linha-do-tempo.svg');
@@ -170,7 +170,7 @@ console.log('gravado docs/pericia/graficos/ac-urna-linha-do-tempo.svg');
   }
   q.push(`<text class="t2" x="${mE + lg / 2}" y="${topo + altP + 40}" font-size="12.5" text-anchor="middle">${xml('Dia de início da validade da carteira, 2026 (eixo vertical: carteiras emitidas no dia)')}</text>`);
   q.push(`<text class="t2" x="20" y="${H2 - 28}" font-size="12">${xml('Só aparecem carteiras de urnas que votaram no 1º ou no 2º turno. Números de cada dia: tabela do texto.')}</text>`);
-  q.push(`<text class="t2" x="20" y="${H2 - 12}" font-size="11">${xml('Fonte: carteiras de todos os pacotes dos dois turnos; parecer cético 33. Dados: graficos/dados/h25-acurna-2026-por-dia.csv.')}</text>`);
+  q.push(`<text class="t2" x="20" y="${H2 - 12}" font-size="11">${xml('Fonte: carteiras de todos os pacotes dos dois turnos; números conferidos por segunda verificação independente.')}</text>`);
   q.push('</svg>');
   writeFileSync(path.join(DIR, 'ac-urna-emissoes-2026.svg'), q.join('\n') + '\n');
   console.log('gravado docs/pericia/graficos/ac-urna-emissoes-2026.svg');

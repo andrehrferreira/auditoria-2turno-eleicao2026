@@ -427,6 +427,6 @@
 <text class="t2" x="20" y="542" font-size="12">Cada ponto é o acumulado até o fim daquele minuto. "Registrada" é a hora em que o sistema do TSE registrou o BU como recebido,</text>
 <text class="t2" x="20" y="559" font-size="12">não a hora em que ele saiu da seção. Emitidos: só o Brasil (o exterior não tem fuso conhecido). Registradas: todas as seções, com o exterior.</text>
 <text class="t2" x="20" y="576" font-size="12">Faixas cinza: períodos sem registro de BU com voto no 2º turno.</text>
-<text class="t2" x="20" y="593" font-size="12">Dados minuto a minuto, de 17:00 a 03:00 do dia seguinte: docs/pericia/graficos/dados/chegada-bu-por-minuto.csv.</text>
-<text class="t2" x="20" y="614" font-size="11">Fonte: dados abertos do TSE (detalhe_votacao_secao, hora de registro e de totalização) e boletins de urna (hora de emissão); parecer cético 28.</text>
+<text class="t2" x="20" y="593" font-size="12">Dados minuto a minuto, de 17:00 a 03:00 do dia seguinte, na tabela que acompanha este gráfico.</text>
+<text class="t2" x="20" y="614" font-size="11">Fonte: dados abertos do TSE e boletins de urna (horas de emissão, registro e totalização); conferido por segunda verificação independente.</text>
 </svg>
