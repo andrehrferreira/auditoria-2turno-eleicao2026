@@ -84,9 +84,15 @@ Comandos: `node scripts/auditoria/integridade-urnas-reaproveitadas.mjs --turno 2
   - Como o mesmo log vai parar em dois pacotes, no caso da urna 2391275 (BA 38490/0011): ela falhou na seção 0594 em 04/10 às 07:50, e o cartão de votação (MV `B10A2CB2`) foi para a reserva levando a cópia do log até 07:53 (996 linhas). Em 15/10 a urna foi recarregada como reserva e assumiu a seção 0486 em 25/10. O log antigo foi arquivado dentro dela e saiu no pacote da 0486 com 1.050 linhas. O código de carga é o mesmo nos dois.
   - Exemplo de relógio acertado: PA 04839/0100/0251. A carga começa às "27/09 19:30" do relógio interno, e o operador digita **21/10/2026 10:33**. A urna tinha sido usada na seção 0055 até 04/10. O mesmo ocorre em MT 90670/0039/0376 (relógio em 15/09, data digitada 24/10).
   - Linha corrompida: no log aninhado do RJ 60011/0008/0061 (1º turno, guardado no pacote do 2º), a linha "Tecla ildevida presqimnada" traz a urna `01760981`. A urna do BU é a `01760983`. O mesmo log tem também `01740981` (92 linhas) e `01560983` (4 linhas): todas são o número `01760983` com o bit 0x02 apagado em algum dígito (3→1, 6→4, 7→5). A `01760981` verdadeira é a urna do BU do MS 91014/0004/0077.
+- **Fato, 1º turno** (mesmos scripts com `--turno 1 --dir data/parsed/auditoria/integridade/1t-identificadores`, 499.207 seções):
+  - 4 urnas aparecem em mais de uma seção. São poucas porque o pacote do 1º turno não traz o histórico de urnas reaproveitadas depois.
+  - 2 têm períodos cruzados, e as 2 são cópia do mesmo log (mesmo código de carga, conferido no bruto). Escrita simultânea: 0.
+  - Uma delas tem linhas do dia nas duas seções: a urna 2423907 (BA 39934/0183). Ela votou na seção 0181 das 08:00 às 12:25 de 04/10 e foi substituída pela reserva, com o cartão `A23FBB23`.
+  - Às 13:19, essa urna foi ligada com o cartão `008B59DC`, da seção 0175. Registrou "MV original … registrada na MI: A23FBB23" e "Serial da MV: 008B59DC", gravou o histórico dela no cartão e parou às 13:20:46. Não abriu a aplicação de votação nem registrou voto.
+  - Às 13:23 o cartão voltou para a urna da própria 0175 (2424441). Por isso o log da 2423907 está nos pacotes das duas seções.
 - **Leitura:** a urna substituída numa seção (no 1º turno ou antes do 2º) foi reaproveitada em outra. É coerente com o fluxo de contingência e não aparece no teste de urna repetida do BU, que dá 0.
 
 ## Pendente
 
 - Entre turnos: mesma urna na mesma seção, quantas trocaram e por quê (contingência, reaproveitamento); FV, FC e código de carga; MR (o log do 1º turno não registra o serial da MR, só o tamanho dela: Fato no AC).
-- Repetir no 1º turno (seriais e mesma urna em mais de uma seção).
+- Repetir no 1º turno os seriais (MR, FV, FC). A mesma urna em mais de uma seção já foi feita no 1º turno.

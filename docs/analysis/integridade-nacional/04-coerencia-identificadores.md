@@ -58,9 +58,12 @@ O certificado e o `.vsc` concordam entre si nos 499.207 diretórios. O certifica
 ### FV `00000000` (30 seções)
 
 - **Fato:** os 29 BUs do Sistema de Apuração (exterior, `-busa.dat`, tipoUrna 3) têm FV `00000000`. O log do computador de apuração registra a MV dele.
-- **Fato:** o BU RED de MG 46256/0131/0046 também tem FV `00000000`. O log da urna 2408841 registra a MV `EE9785B7`.
-- **Hipótese:** o RED grava zero no campo FV do BU.
-  - **Recomendação:** conferir nas outras 15 seções RED. Nas 3 com outra urna, a FV do BU é igual à MV da urna original no log aninhado? Ainda não medido.
+- **Fato:** o BU RED de MG 46256/0131/0046 também tem FV `00000000`. O log da urna 2408841 registra a MV `EE9785B7` às 07:11 de 25/10.
+- **Fato** (`node scripts/auditoria/integridade-casos-especiais.mjs --turno 2` → `casos-especiais.json`, campos `fvBU`, `fvBuEntreMvsLidas` e `redSemMv`):
+  - Nas outras 15 seções RED, a FV do BU é um dos cartões de votação lidos no log ("Serial da MV:").
+  - Isso inclui as 3 recuperadas por outra urna (ES 57932/0009/0085, RJ 58696/0027/0139, SP 64777/0393/0312): a FV do BU é o cartão da urna original, e a urna recuperadora leu o mesmo serial.
+  - Só em MG 46256/0131/0046 o RED registrou "Detectado Urna de Votação sem MV" (18:42:24). A recuperação foi feita sem cartão, a partir da memória interna, e o BU saiu com FV `00000000`.
+- Correção: uma versão anterior deste doc levantava a hipótese de que o RED grava zero no campo FV. Está refutada: o zero aparece só na recuperação sem cartão.
 
 ### MR não lida em 24 ou 25/10 (123 seções)
 
