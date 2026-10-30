@@ -18,11 +18,14 @@
 //   HIPÓTESE (só sensibilidade): SP 71072/0280/0913 +1 (dois turnos), RS 88994/0131/0007 +1 (1º), BA 34134/0171/0166 −1 (2º).
 //   GO 93734/0133/0062 (30 min atrasado, 1º turno) não entra: a régua é por hora cheia; o último voto foi às 16:15 do relógio
 //   (16:45 reais), sem efeito depois das 17h.
-// Uso: node --max-old-space-size=8192 scripts/auditoria/seguranca-h20-h06-corrigido.mjs
+// Também refaz as contas por seção do tópico 3 da perícia (itens 6 a 9) antes e depois da correção (bloco no fim).
+// Uso: node --max-old-space-size=8192 scripts/auditoria/seguranca-h20-h06-corrigido.mjs   (≈ 5 min)
 // Saída: data/parsed/auditoria/engenheiro-seguranca-urna/h20/h06-corrigido.json
+import { spawnSync } from 'node:child_process';
 import { createReadStream } from 'node:fs';
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { createInterface } from 'node:readline';
 import { abrirLeitura } from '../../src/banco-leitura.js';
 import { DIR_DADOS, UFS } from '../../src/config.js';
@@ -124,6 +127,70 @@ for (const n of (await readdir(base1)).filter((x) => /^(rj|pr)-/.test(x))) {
     }
   }
 }
+// ---- Contas por seção do tópico 3 (itens 6 a 9), antes e depois da correção ----
+// Fonte das contas do relatório: verifica-pericia-linha-do-tempo.mjs. Para usar exatamente as mesmas definições, este
+// script roda uma cópia dele duas vezes, em processo separado e um de cada vez:
+//   antes  = cópia sem mudança de régua (só a saída vai para outro arquivo);
+//   depois = cópia que lê o relógio por seção de seguranca-h20-relogio-corrigido.mjs (tabela das 81 + correções Fato).
+// As cópias ficam em data/parsed/auditoria/engenheiro-seguranca-urna/h20/ (geradas, não editar).
+const DIR_H20 = path.join(DIR_DADOS, 'parsed', 'auditoria', 'engenheiro-seguranca-urna', 'h20');
+const DIR_SCRIPTS = path.dirname(import.meta.filename);
+const url = (p) => pathToFileURL(p).href;
+const fonte = await readFile(path.join(DIR_SCRIPTS, 'verifica-pericia-linha-do-tempo.mjs'), 'utf8');
+const troca = (txt, de, para) => {
+  const n = txt.split(de).length - 1;
+  if (n !== 1) throw new Error(`verifica-pericia-linha-do-tempo.mjs mudou: "${de}" aparece ${n} vez(es)`);
+  return txt.replace(de, para);
+};
+async function rodarVerifica(nome, relogio) {
+  let t = fonte;
+  t = troca(t, "from '../../src/config.js'", `from '${url(path.join(DIR_SCRIPTS, '..', '..', 'src', 'config.js'))}'`);
+  t = troca(t, "from '../../src/banco-leitura.js'", `from '${url(path.join(DIR_SCRIPTS, '..', '..', 'src', 'banco-leitura.js'))}'`);
+  t = troca(t, "from './relogio-fora-do-fuso.mjs'", `from '${url(path.join(DIR_SCRIPTS, relogio))}'`);
+  t = troca(t, "path.join(SAIDA, 'linha-do-tempo.json')", JSON.stringify(path.join(DIR_H20, `verifica-${nome}.json`)));
+  t = troca(t, 'console.log(JSON.stringify(R, null, 1));', '');
+  const arq = path.join(DIR_H20, `_verifica-${nome}.mjs`);
+  await writeFile(arq, `// GERADO por seguranca-h20-h06-corrigido.mjs a partir de verifica-pericia-linha-do-tempo.mjs; não editar.\n${t}`);
+  const r = spawnSync(process.execPath, ['--max-old-space-size=8192', arq], { stdio: 'inherit' });
+  if (r.status !== 0) throw new Error(`cópia ${nome} do verifica falhou (${r.status})`);
+  return JSON.parse(await readFile(path.join(DIR_H20, `verifica-${nome}.json`), 'utf8'));
+}
+const extrair = (R) => {
+  const v = R.votosTardios, en = R.encerramento, rs = R.resultado;
+  return {
+    item6: {
+      votos17: v.v17, secoes17: v.s17, votos18: v.v18, secoes18: v.s18, votos19: v.v19, secoes19: v.s19, pct17: v.pct17, pctSecoes17: v.pctSecoes17,
+      ufMenor: v.ufMenor, ufMaior: v.ufMaior, top18: v.top18, porUfPct17: Object.fromEntries(Object.entries(v.porUf).map(([u, x]) => [u, x.pct17])),
+      ultimoVotoMinutosDepoisDas17: v.ultimoMinApos17, turno1: { votos17: R.turno1.v17, votos18: R.turno1.v18, secoes17: R.turno1.s17 },
+    },
+    item7: { encerraram19hOuDepois: en.classes['19h+']?.secoes, de1900a1909: en.de1900a1909, de17h30a18h59: en.classes['17h30-18h59']?.secoes,
+      municipios19: en.municipios19, locaisTodas19: en.locaisTodas19, locaisMistos: en.locaisMistos, exatamente190000: en.exatamente190000,
+      votos17nas19: en.classes['19h+']?.v17, votos18nas19: en.classes['19h+']?.v18, votos19nas19: en.classes['19h+']?.v19, semTardioNas19: en.classes['19h+']?.semTardio,
+      encerramentoMaisCedoBrasilia: en.minRel17, encerramentosAntes17: en.antes17 },
+    item8: Object.fromEntries(Object.entries(en.classes).map(([k, c]) => [k, { secoes: c.secoes, comTardio: c.comTardio, votos17: c.v17, votos18: c.v18 }])),
+    item9: { tardio17: rs.tardio17, correlacao: rs.correlacao, locais19: R.locais19, v17SobreMargemPct: rs.v17SobreMargemPct, margem: rs.margem },
+    exterior: R.exterior,
+  };
+};
+const antes = extrair(await rodarVerifica('antes', 'relogio-fora-do-fuso.mjs'));
+const depois = extrair(await rodarVerifica('depois', 'seguranca-h20-relogio-corrigido.mjs'));
+// diferenças, campo a campo (só onde mudou)
+const mudou = {};
+const comparar = (a, b, pre = '') => {
+  for (const k of new Set([...Object.keys(a ?? {}), ...Object.keys(b ?? {})])) {
+    const x = a?.[k], y = b?.[k], p = pre ? `${pre}.${k}` : k;
+    if (x && typeof x === 'object' && !Array.isArray(x)) comparar(x, y, p);
+    else if (JSON.stringify(x) !== JSON.stringify(y)) mudou[p] = { antes: x, depois: y };
+  }
+};
+comparar(antes, depois);
+res.topico3 = {
+  fonte: 'verifica-pericia-linha-do-tempo.mjs (mesmas definições), antes e depois das correções Fato do 2º e do 1º turno',
+  conferenciaAntes: { votos17: antes.item6.votos17 === RELATORIO[2].v17, votos18: antes.item6.votos18 === RELATORIO[2].v18 },
+  conferenciaDepois: { votos17IgualAContaSimples: depois.item6.votos17 === res.turnos[2].corrigidoSoFatos.v17, votos17T1IgualAContaSimples: depois.item6.turno1.votos17 === res.turnos[1].corrigidoSoFatos.v17 },
+  antes, depois, mudou,
+};
+console.log('tópico 3, o que mudou:', JSON.stringify(mudou, null, 1));
 await writeFile(path.join(DIR_DADOS, 'parsed', 'auditoria', 'engenheiro-seguranca-urna', 'h20', 'h06-corrigido.json'), JSON.stringify(res, null, 1));
 for (const t of [1, 2]) {
   const r = res.turnos[t];

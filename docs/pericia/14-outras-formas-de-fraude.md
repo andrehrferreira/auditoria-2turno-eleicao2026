@@ -139,7 +139,7 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 
 | Hora local | 8 h | 9 h | 10 h | 11 h | 12 h | 13 h | 14 h | 15 h | 16 h | 17 h | 18 h |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| Votos no 2º turno menos votos no 1º | +13.573 | +6.878 | +8.829 | +7.360 | +5.063 | +1.891 | −652 | −783 | −721 | −1.704 | −99 |
+| Votos no 2º turno menos votos no 1º | +13.716 | +6.874 | +8.816 | +7.387 | +5.042 | +1.883 | −663 | −797 | −733 | −1.791 | −99 |
 
 **Como ler:** cada coluna é uma hora do dia, no horário do país da seção. O número é quantos votos a mais (ou a menos) as urnas do exterior registraram nessa hora no 2º turno, em comparação com o 1º. Os maiores aumentos estão nas primeiras horas; a partir das 14 h, o 2º turno teve menos votos que o 1º. Fonte: diários das seções com urna nos dois turnos.
 
@@ -148,7 +148,7 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 **Como ler:** é a tabela acima em barras. Cada barra é uma hora do dia, no horário do país da seção. A barra azul, para cima do zero, quer dizer que o 2º turno teve mais votos que o 1º naquela hora; a laranja, para baixo, que teve menos. O número junto de cada barra é a diferença. A maior barra azul é a das 8 h; da 14 h em diante, as barras são laranja e pequenas. O aumento do comparecimento, de 341.766 para 381.443, aparece nas barras da manhã, e não numa onda no fim do dia.
 
 - **Fato (o relógio das urnas estava na hora local):** a Europa, Israel e o Líbano saíram do horário de verão na madrugada do dia do 2º turno. Se o relógio das urnas não tivesse acompanhado a mudança, o horário em que os mesários se registraram antes da abertura, medido pelo relógio da urna, teria saltado 1 hora nesses países e não nos outros. Ele mudou o mesmo tanto nas 585 seções dos países que mudaram de horário e nas 685 dos demais, com diferença de poucos minutos entre os dois grupos. Por isso a comparação por hora é válida.
-- **Fato (exceção, item 8):** em 3 seções de Lisboa, a urna ficou ligada durante a madrugada em que o horário de verão acabou e seguiu com o relógio 1 hora adiantado no 2º turno. A tabela e o gráfico acima contam pela hora do relógio de cada urna: os 87 votos dessas 3 seções que aparecem na coluna das 17 h foram dados às 16 h reais. Nenhum voto delas ficou fora das 8 h às 17 h reais. **Pendente:** refazer a tabela e o gráfico pela hora real dessas 3 seções.
+- **Fato (exceção, item 8):** em 3 seções de Lisboa, a urna ficou ligada durante a madrugada em que o horário de verão acabou e seguiu com o relógio 1 hora adiantado no 2º turno. A tabela e o gráfico acima já contam essas 3 seções pela hora real: os 87 votos que o relógio delas marcou na hora das 17 h foram dados às 16 h. Nenhum voto delas ficou fora das 8 h às 17 h reais.
 - **Fato (seções em cédula):** no 2º turno, cada um dos 29 resultados apurados em cédula foi recebido pelo TSE pelo menos 160 minutos depois do fim da votação no próprio posto, pelo relógio do servidor do TSE. No 1º turno, a base não tem a hora de recebimento desses resultados (**Pendente**).
 
 **O que o teste não enxerga.**

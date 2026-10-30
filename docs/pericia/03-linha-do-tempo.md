@@ -119,7 +119,7 @@ Para votar, cada eleitor passa por um ciclo: o mesário digita o título, a urna
 | | Votos | Seções |
 |---|---|---|
 | Total de votos no diário | 127.854.844 | 497.896 |
-| Depois das 17h | 34.315 (0,027%) | 29.854 (6,0%) (conta anterior à correção de relógio; ver abaixo) |
+| Depois das 17h | 34.315 (0,027%) | 29.853 (6,0%) |
 | Depois das 18h | 1.993 | 1.667 |
 | Depois das 19h | 11 | 11 |
 
@@ -132,7 +132,7 @@ Para votar, cada eleitor passa por um ciclo: o mesário digita o título, a urna
 | 2º turno, votos depois das 17h | 34.330 | 34.315 |
 | 2º turno, votos depois das 18h | 1.993 | 1.993 |
 
-As seções corrigidas, com o que o diário mostra em cada uma, estão no [tópico 14](14-outras-formas-de-fraude.md), item 8. No 2º turno, toda a diferença (15 votos) vem de uma seção de Goiás, GO 92274/0119/0049, cujo relógio estava 1 hora adiantado: os 15 votos que o relógio dela marcou depois das 17h foram dados antes das 17h reais. **Pendente:** as demais medidas dos itens 6 a 9 (número de seções, percentuais por UF, horário do último voto, tabela do item 8 e comparações do item 9) ainda são da conta anterior à correção, em que essa seção contava 15 votos depois das 17h; refazê-las com a correção.
+As seções corrigidas, com o que o diário mostra em cada uma, estão no [tópico 14](14-outras-formas-de-fraude.md), item 8. No 2º turno, toda a diferença (15 votos) vem de uma seção de Goiás, GO 92274/0119/0049, cujo relógio estava 1 hora adiantado: os 15 votos que o relógio dela marcou depois das 17h foram dados antes das 17h reais. As demais medidas dos itens 6 a 9 foram refeitas com a correção (**Fato**): a seção de Goiás sai da contagem de seções com voto depois das 17h (29.854 → 29.853) e passa do grupo que encerrou entre 17h30 e 18h59 para o grupo que encerrou até 17h29, porque o boletim dela encerrou às 18h04 do relógio, 17h04 reais. Os percentuais por UF, o horário do último voto e as comparações do item 9 não mudam.
 
 **Fato.** O boletim dessas seções soma 127.854.363 eleitores. A diferença de 481 vem das 9 seções do item 10 em que o diário lido não bate com o boletim; nenhuma delas tem voto depois das 17h, então as três linhas de baixo não são afetadas.
 
@@ -143,7 +143,7 @@ As seções corrigidas, com o que o diário mostra em cada uma, estão no [tópi
 
 ### 7. Seções abertas até 19h
 
-- **Fato.** 6.352 seções encerraram às 19h de Brasília ou depois (6.257 entre 19h00 e 19h09). Outras 1.260 encerraram entre 17h30 e 18h59. As 6.352 estão em 147 municípios, sobretudo Rio de Janeiro (1.978 seções), São Paulo (1.481), Salvador (730), Petrópolis (285), João Pessoa (265), Itaboraí (237) e Recife (220). Em 313 locais de votação, todas as seções foram até 19h; em 818 locais, só parte delas.
+- **Fato.** 6.352 seções encerraram às 19h de Brasília ou depois (6.257 entre 19h00 e 19h09). Outras 1.259 encerraram entre 17h30 e 18h59. As 6.352 estão em 147 municípios, sobretudo Rio de Janeiro (1.978 seções), São Paulo (1.481), Salvador (730), Petrópolis (285), João Pessoa (265), Itaboraí (237) e Recife (220). Em 313 locais de votação, todas as seções foram até 19h; em 818 locais, só parte delas.
 - **Fato (exemplo conferido no diário original).** **A urna não exigiu as 19h.** Em BA 38490/0002/0047, o mesário mandou encerrar às 17h11, respondeu "SIM" à pergunta "Todas as pessoas presentes já votaram?", cancelou o encerramento às 17h11min59s e só encerrou às 19h04. **Pendente: em verificação** quantas seções fizeram o mesmo. Em 16 seções o boletim registra o encerramento exatamente às 19:00:00.
 - **Fato.** Nessas 6.352 seções houve 4.492 votos depois das 17h, 1.860 depois das 18h e 11 depois das 19h. 3.339 delas não tiveram nenhum voto registrado depois das 17h.
 - **Fato.** No 1º turno, em todas as UFs, não aparece esse degrau. Os encerramentos tardios diminuem aos poucos, como fila: 2.863 seções encerraram entre 18h50 e 18h59, 2.162 entre 19h00 e 19h09 e 1.595 entre 19h10 e 19h19, e alguns seguem até depois das 22h. No 2º turno foram 390, 6.257 e 72 nesses mesmos intervalos.
@@ -156,11 +156,11 @@ Quem estava na fila às 17h é atendido em sequência. Se a urna fica parada por
 
 | Grupo (hora em que o boletim encerrou, Brasília) | Seções no grupo | Seções com voto depois das 17h | Votos depois das 17h | Votos depois das 18h |
 |---|---|---|---|---|
-| até 17h29 | 490.284 | 26.454 | 29.191 | 0 |
-| 17h30 a 18h59 | 1.260 | 387 | 647 | 133 |
+| até 17h29 | 490.285 | 26.454 | 29.191 | 0 |
+| 17h30 a 18h59 | 1.259 | 386 | 632 | 133 |
 | 19h ou depois | 6.352 | 3.013 | 4.492 | 1.860 |
 
-**Fato**, na conta anterior à correção de relógio do item 6: a soma da coluna de votos depois das 17h é 34.330. Com a correção, a seção de Goiás deixa de ter voto depois das 17h; a nova divisão por grupo está **Pendente**.
+**Fato**, já com a correção de relógio do item 6: a soma da coluna de votos depois das 17h é 34.315.
 
 - **Pendente: em verificação.** Quantos votos vieram depois de a urna ficar parada 10 ou 30 minutos, e como esses votos foram liberados (digital, ano de nascimento ou liberação manual). Esses números dependem de reler os diários segundo a segundo e ainda não foram refeitos de forma independente.
 - **Fato (exemplos conferidos no diário original).** Há seções em que o mesário respondeu "SIM" a "Todas as pessoas presentes já votaram?" e ainda houve voto depois. Em AL 28614/0021/0410, a resposta "SIM" veio às 17h00min20s, o encerramento foi abortado às 17h01min01s, um eleitor foi identificado às 17h01min17s, liberado pela digital, e votou às 17h01min37s; o mesário respondeu "SIM" de novo e encerrou às 17h02. Em BA 36854/0180/0147, o último voto antes das 17h foi às 16h30, e o eleitor seguinte foi atendido às 18h25. **Pendente: em verificação** em quantas seções houve voto depois do "SIM".

@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500" width="760" height="500" role="img" aria-labelledby="titulo desc">
-<title id="titulo">Exterior: votos a mais ou a menos no 2º turno, hora a hora</title><desc id="desc">Votos registrados em cada hora no 2º turno menos os da mesma hora no 1º. O aumento veio de manhã. 8 h: +13.573; 9 h: +6.878; 10 h: +8.829; 11 h: +7.360; 12 h: +5.063; 13 h: +1.891; 14 h: −652; 15 h: −783; 16 h: −721; 17 h: −1.704; 18 h: −99</desc>
+<title id="titulo">Exterior: votos a mais ou a menos no 2º turno, hora a hora</title><desc id="desc">Votos registrados em cada hora no 2º turno menos os da mesma hora no 1º. O aumento veio de manhã. 8 h: +13.716; 9 h: +6.874; 10 h: +8.816; 11 h: +7.387; 12 h: +5.042; 13 h: +1.883; 14 h: −663; 15 h: −797; 16 h: −733; 17 h: −1.791; 18 h: −99</desc>
 <style>
   .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.tb{fill:#ffffff}.tp{fill:#0b0b0b}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}
   .s0{fill:#2a78d6}.s1{fill:#eb6834}.s2{fill:#1baf7a}.s3{fill:#eda100}.a0{fill:#86b6ef}.a1{fill:#2a78d6}.a2{fill:#104281}
@@ -31,40 +31,40 @@
 <text class="t2" x="72" y="141.33333333333334" font-size="12" text-anchor="end">+14.000</text>
 <line class="grade" x1="80" x2="730" y1="104" y2="104" stroke-width="1"/>
 <text class="t2" x="72" y="108" font-size="12" text-anchor="end">+16.000</text>
-<path class="s0" d="M92.54545454545455,370.6666666666667v-222.2166666666667a4,4 0 0 1 4,-4h26a4,4 0 0 1 4,4v222.2166666666667z"><title>8 h: +13.573 votos no 2º turno em relação ao 1º</title></path>
-<text class="t1" x="109.54545454545455" y="138.45" font-size="12" text-anchor="middle">+13.573</text>
+<path class="s0" d="M92.54545454545455,370.6666666666667v-224.60000000000002a4,4 0 0 1 4,-4h26a4,4 0 0 1 4,4v224.60000000000002z"><title>8 h: +13.716 votos no 2º turno em relação ao 1º</title></path>
+<text class="t1" x="109.54545454545455" y="136.06666666666666" font-size="12" text-anchor="middle">+13.716</text>
 <text class="t2" x="109.54545454545455" y="424" font-size="12" text-anchor="middle">8 h</text>
-<path class="s0" d="M151.63636363636363,370.6666666666667v-110.63333333333338a4,4 0 0 1 4,-4h26a4,4 0 0 1 4,4v110.63333333333338z"><title>9 h: +6.878 votos no 2º turno em relação ao 1º</title></path>
-<text class="t1" x="168.63636363636363" y="250.0333333333333" font-size="12" text-anchor="middle">+6.878</text>
+<path class="s0" d="M151.63636363636363,370.6666666666667v-110.56666666666666a4,4 0 0 1 4,-4h26a4,4 0 0 1 4,4v110.56666666666666z"><title>9 h: +6.874 votos no 2º turno em relação ao 1º</title></path>
+<text class="t1" x="168.63636363636363" y="250.10000000000002" font-size="12" text-anchor="middle">+6.874</text>
 <text class="t2" x="168.63636363636363" y="424" font-size="12" text-anchor="middle">9 h</text>
-<path class="s0" d="M210.72727272727275,370.6666666666667v-143.15000000000003a4,4 0 0 1 4,-4h26a4,4 0 0 1 4,4v143.15000000000003z"><title>10 h: +8.829 votos no 2º turno em relação ao 1º</title></path>
-<text class="t1" x="227.72727272727275" y="217.51666666666665" font-size="12" text-anchor="middle">+8.829</text>
+<path class="s0" d="M210.72727272727275,370.6666666666667v-142.93333333333334a4,4 0 0 1 4,-4h26a4,4 0 0 1 4,4v142.93333333333334z"><title>10 h: +8.816 votos no 2º turno em relação ao 1º</title></path>
+<text class="t1" x="227.72727272727275" y="217.73333333333335" font-size="12" text-anchor="middle">+8.816</text>
 <text class="t2" x="227.72727272727275" y="424" font-size="12" text-anchor="middle">10 h</text>
-<path class="s0" d="M269.8181818181818,370.6666666666667v-118.66666666666669a4,4 0 0 1 4,-4h26a4,4 0 0 1 4,4v118.66666666666669z"><title>11 h: +7.360 votos no 2º turno em relação ao 1º</title></path>
-<text class="t1" x="286.8181818181818" y="242" font-size="12" text-anchor="middle">+7.360</text>
+<path class="s0" d="M269.8181818181818,370.6666666666667v-119.11666666666667a4,4 0 0 1 4,-4h26a4,4 0 0 1 4,4v119.11666666666667z"><title>11 h: +7.387 votos no 2º turno em relação ao 1º</title></path>
+<text class="t1" x="286.8181818181818" y="241.55" font-size="12" text-anchor="middle">+7.387</text>
 <text class="t2" x="286.8181818181818" y="424" font-size="12" text-anchor="middle">11 h</text>
-<path class="s0" d="M328.90909090909093,370.6666666666667v-80.38333333333338a4,4 0 0 1 4,-4h26a4,4 0 0 1 4,4v80.38333333333338z"><title>12 h: +5.063 votos no 2º turno em relação ao 1º</title></path>
-<text class="t1" x="345.90909090909093" y="280.2833333333333" font-size="12" text-anchor="middle">+5.063</text>
+<path class="s0" d="M328.90909090909093,370.6666666666667v-80.03333333333336a4,4 0 0 1 4,-4h26a4,4 0 0 1 4,4v80.03333333333336z"><title>12 h: +5.042 votos no 2º turno em relação ao 1º</title></path>
+<text class="t1" x="345.90909090909093" y="280.6333333333333" font-size="12" text-anchor="middle">+5.042</text>
 <text class="t2" x="345.90909090909093" y="424" font-size="12" text-anchor="middle">12 h</text>
-<path class="s0" d="M388.00000000000006,370.6666666666667v-27.51666666666671a4,4 0 0 1 4,-4h26a4,4 0 0 1 4,4v27.51666666666671z"><title>13 h: +1.891 votos no 2º turno em relação ao 1º</title></path>
-<text class="t1" x="405.00000000000006" y="333.15" font-size="12" text-anchor="middle">+1.891</text>
+<path class="s0" d="M388.00000000000006,370.6666666666667v-27.383333333333383a4,4 0 0 1 4,-4h26a4,4 0 0 1 4,4v27.383333333333383z"><title>13 h: +1.883 votos no 2º turno em relação ao 1º</title></path>
+<text class="t1" x="405.00000000000006" y="333.2833333333333" font-size="12" text-anchor="middle">+1.883</text>
 <text class="t2" x="405.00000000000006" y="424" font-size="12" text-anchor="middle">13 h</text>
-<path class="s1" d="M447.0909090909091,370.6666666666667v6.866666666666674a4,4 0 0 0 4,4h26a4,4 0 0 0 4,-4v-6.866666666666674z"><title>14 h: −652 votos no 2º turno em relação ao 1º</title></path>
-<text class="t1" x="464.0909090909091" y="396.53333333333336" font-size="12" text-anchor="middle">−652</text>
+<path class="s1" d="M447.0909090909091,370.6666666666667v7.0499999999999545a4,4 0 0 0 4,4h26a4,4 0 0 0 4,-4v-7.0499999999999545z"><title>14 h: −663 votos no 2º turno em relação ao 1º</title></path>
+<text class="t1" x="464.0909090909091" y="396.71666666666664" font-size="12" text-anchor="middle">−663</text>
 <text class="t2" x="464.0909090909091" y="424" font-size="12" text-anchor="middle">14 h</text>
-<path class="s1" d="M506.18181818181813,370.6666666666667v9.049999999999955a4,4 0 0 0 4,4h26a4,4 0 0 0 4,-4v-9.049999999999955z"><title>15 h: −783 votos no 2º turno em relação ao 1º</title></path>
-<text class="t1" x="523.1818181818181" y="398.71666666666664" font-size="12" text-anchor="middle">−783</text>
+<path class="s1" d="M506.18181818181813,370.6666666666667v9.283333333333303a4,4 0 0 0 4,4h26a4,4 0 0 0 4,-4v-9.283333333333303z"><title>15 h: −797 votos no 2º turno em relação ao 1º</title></path>
+<text class="t1" x="523.1818181818181" y="398.95" font-size="12" text-anchor="middle">−797</text>
 <text class="t2" x="523.1818181818181" y="424" font-size="12" text-anchor="middle">15 h</text>
-<path class="s1" d="M565.2727272727273,370.6666666666667v8.016666666666652a4,4 0 0 0 4,4h26a4,4 0 0 0 4,-4v-8.016666666666652z"><title>16 h: −721 votos no 2º turno em relação ao 1º</title></path>
-<text class="t1" x="582.2727272727273" y="397.68333333333334" font-size="12" text-anchor="middle">−721</text>
+<path class="s1" d="M565.2727272727273,370.6666666666667v8.21666666666664a4,4 0 0 0 4,4h26a4,4 0 0 0 4,-4v-8.21666666666664z"><title>16 h: −733 votos no 2º turno em relação ao 1º</title></path>
+<text class="t1" x="582.2727272727273" y="397.8833333333333" font-size="12" text-anchor="middle">−733</text>
 <text class="t2" x="582.2727272727273" y="424" font-size="12" text-anchor="middle">16 h</text>
-<path class="s1" d="M624.3636363636364,370.6666666666667v24.399999999999977a4,4 0 0 0 4,4h26a4,4 0 0 0 4,-4v-24.399999999999977z"><title>17 h: −1.704 votos no 2º turno em relação ao 1º</title></path>
-<text class="t1" x="641.3636363636364" y="414.06666666666666" font-size="12" text-anchor="middle">−1.704</text>
+<path class="s1" d="M624.3636363636364,370.6666666666667v25.849999999999966a4,4 0 0 0 4,4h26a4,4 0 0 0 4,-4v-25.849999999999966z"><title>17 h: −1.791 votos no 2º turno em relação ao 1º</title></path>
+<text class="t1" x="641.3636363636364" y="415.51666666666665" font-size="12" text-anchor="middle">−1.791</text>
 <text class="t2" x="641.3636363636364" y="424" font-size="12" text-anchor="middle">17 h</text>
 <path class="s1" d="M683.4545454545455,370.6666666666667v0a1.6499999999999773,1.6499999999999773 0 0 0 1.6499999999999773,1.6499999999999773h30.700000000000045a1.6499999999999773,1.6499999999999773 0 0 0 1.6499999999999773,-1.6499999999999773v0z"><title>18 h: −99 votos no 2º turno em relação ao 1º</title></path>
 <text class="t1" x="700.4545454545455" y="387.31666666666666" font-size="12" text-anchor="middle">−99</text>
 <text class="t2" x="700.4545454545455" y="424" font-size="12" text-anchor="middle">18 h</text>
-<text class="t2" x="405" y="444" font-size="12.5" text-anchor="middle">Hora local do país da seção (relógio da urna)</text>
+<text class="t2" x="405" y="444" font-size="12.5" text-anchor="middle">Hora local do país da seção (3 seções de Lisboa corrigidas no 2º turno)</text>
 <text class="t2" x="18" y="254" font-size="12.5" text-anchor="middle" transform="rotate(-90 18 254)">Votos no 2º turno − votos no 1º</text>
 <text class="t2" x="20" y="470" font-size="12">Comparecimento no exterior: 341.766 no 1º turno e 381.443 no 2º.</text>
 <text class="t2" x="20" y="488" font-size="11">Fonte: diários das seções do exterior com urna nos dois turnos; números conferidos por segunda verificação independente.</text>
