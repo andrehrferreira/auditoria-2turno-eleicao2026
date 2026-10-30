@@ -1,6 +1,6 @@
 # 12. Sigilo do voto: os arquivos públicos permitem ligar um voto a um eleitor?
 
-> **Situação:** escrito em 30/10/2026 a partir do [parecer cético 29](../analysis/cetico-revisor/29-h09-sigilo.md) (sustentado com ressalvas), que revisou o achado do engenheiro de segurança ([doc 05](../analysis/engenheiro-seguranca-urna/05-h09-sigilo.md)) com um programa próprio, rodado nos dois turnos inteiros ao mesmo tempo. O texto usa as "afirmações revisadas" do parecer. Por decisão do parecer, ficam fora deste relatório, e só em `docs/analysis/`: a frase "o diário liga o título ao voto nulo" (depende de quem é o dono do número, que ainda é Hipótese), a contagem de sessões de eleitor que terminam em voto nulo e qualquer contagem de "eleitores identificados". Os números deste tópico foram conferidos de novo, contra as saídas dos dois programas e contra o banco, por `scripts/auditoria/grafico-h09-dados.mjs` (ver "Como repetir"). É a hipótese H09 do [quadro das hipóteses](10-quadro-das-hipoteses.md).
+> **Situação:** escrito em 30/10/2026. O achado passou por uma segunda verificação independente, feita com um programa próprio, rodado nos dois turnos inteiros ao mesmo tempo. A conclusão dessa verificação: "sustentado, com ressalvas". O texto usa só as afirmações que resistiram a essa verificação. Por decisão dela, ficam fora deste relatório: a frase "o diário liga o título ao voto nulo" (depende de quem é o dono do número, que ainda é Hipótese), a contagem de sessões de eleitor que terminam em voto nulo e qualquer contagem de "eleitores identificados". Para este tópico, os números foram conferidos mais uma vez contra os resultados dos dois programas e contra o banco de dados da auditoria. É a hipótese H09 do [quadro das hipóteses](10-quadro-das-hipoteses.md).
 
 ## A pergunta
 
@@ -31,12 +31,12 @@ O voto é secreto: ninguém pode saber em quem uma pessoa votou. Para cada urna,
 
 ## Como foi feito
 
-**Universo (Fato).** Os dois turnos inteiros: 499.248 seções por turno, 499.207 pacotes de arquivos, 41 seções sem arquivo publicado, 0 falha de leitura (parecer 29). Dois programas independentes leram todos os RDVs e todos os diários: o do engenheiro de segurança (`scripts/auditoria/seguranca-h09-sigilo.mjs`) e o do revisor cético (`scripts/auditoria/cetico-h09-sigilo.mjs`), este com os dois turnos juntos, para cruzar os números de um turno com os papéis do outro. As seções unânimes foram contadas também pelo banco (tabela `voto_rdv`), por um terceiro caminho.
+**Universo (Fato).** Os dois turnos inteiros: 499.248 seções por turno, 499.207 pacotes de arquivos, 41 seções sem arquivo publicado, 0 falha de leitura. Dois programas independentes, escritos à parte, leram todos os RDVs e todos os diários. O segundo leu os dois turnos juntos, para cruzar os números de um turno com os papéis do outro. As seções unânimes foram contadas também no banco de dados da auditoria, que guarda os votos do RDV de cada seção, por um terceiro caminho.
 
-**Privacidade.** Nenhum programa grava número de título ou de CPF: os números ficam só na memória durante a leitura, e a saída passa por uma trava que apaga qualquer sequência de 10 a 12 dígitos com dígito verificador de título ou de CPF (ela não disparou). Este relatório não reproduz nenhum número. A base privada de CPFs e a pasta `data/private/` não foram usadas.
+**Privacidade.** Nenhum programa grava número de título ou de CPF: os números ficam só na memória durante a leitura, e a saída passa por uma trava que apaga qualquer sequência de 10 a 12 dígitos com dígito verificador de título ou de CPF (ela não disparou). Este relatório não reproduz nenhum número. A base privada de CPFs que a auditoria guarda à parte não foi usada, nem nenhum outro arquivo privado.
 
 1. **Ordem dos votos.** Para cada lista do RDV (um cargo de uma seção), o programa confere se cada voto vem antes do seguinte pela regra (tipo do voto, número digitado). Se a lista estivesse na ordem de chegada dos eleitores, ela sairia desarrumada por esse critério.
-2. **Cédulas de MG.** O revisor comparou, posição por posição, as listas de cargos diferentes da mesma seção, para ver se a posição 1 de deputado federal e a posição 1 de deputado estadual são a mesma cédula (`scripts/auditoria/cetico-h09-cedula.mjs`).
+2. **Cédulas de MG.** A segunda verificação comparou, posição por posição, as listas de cargos diferentes da mesma seção, para ver se a posição 1 de deputado federal e a posição 1 de deputado estadual são a mesma cédula.
 3. **Seções pequenas.** Soma dos votos do RDV por seção e cargo: quantos votaram e quantos candidatos diferentes receberam voto.
 4. **Números no diário.** Em cada linha de todos os diários, o programa procura sequências de 10 ou mais dígitos dentro da mensagem e confere se têm formato de título (ou de CPF). Cada número é classificado pelo papel que o diário lhe dá naquela urna e, se não tiver papel ali, cruzado com todos os títulos de mesário do país (1.992.260 nos diários do 1º turno e 2.074.207 nos do 2º), com os servidores e com os presidentes que encerraram cada urna, nos dois turnos.
 
@@ -62,7 +62,7 @@ O voto é secreto: ninguém pode saber em quem uma pessoa votou. Para cada urna,
 | 2 seções de MG, apuração mista: cédulas digitadas | 10, 1 ordenada | não houve |
 | 2 seções de MG, apuração mista: cópia do boletim | 10, 6 ordenadas | não houve |
 
-Fonte: parecer 29, item 1; dados em [graficos/dados/h09-rdv-ordem.csv](graficos/dados/h09-rdv-ordem.csv).
+Fonte: contagem da segunda verificação independente.
 
 - Nenhuma lista trouxe tipo de voto fora da lista da especificação, nem campo além de tipo e número, nos dois turnos.
 - Como cada voto tem só tipo e número, numa lista ordenada dois votos iguais são indistinguíveis: **qualquer** ordem de chegada dos eleitores gera o mesmo arquivo.
@@ -70,13 +70,13 @@ Fonte: parecer 29, item 1; dados em [graficos/dados/h09-rdv-ordem.csv](graficos/
 
 ![Listas de votos do RDV em ordem de tipo e número, por origem](graficos/h09-rdv-ordem.svg)
 
-**Como ler:** cada par de barras é um tipo de origem da lista; azul é o 1º turno e laranja o 2º. Uma barra cheia (100%) quer dizer que todas as listas daquela origem estão em ordem de tipo e número, e portanto não guardam a ordem de chegada dos eleitores. Só as listas de cédula das 2 seções de MG ficam abaixo de 100%: estão na ordem em que as cédulas foram digitadas. As listas de MG copiadas do boletim (4 fora de ordem) trazem os votos agrupados por candidato, sem informação por eleitor. Dados: [graficos/dados/h09-rdv-ordem.csv](graficos/dados/h09-rdv-ordem.csv).
+**Como ler:** cada par de barras é um tipo de origem da lista; azul é o 1º turno e laranja o 2º. Uma barra cheia (100%) quer dizer que todas as listas daquela origem estão em ordem de tipo e número, e portanto não guardam a ordem de chegada dos eleitores. Só as listas de cédula das 2 seções de MG ficam abaixo de 100%: estão na ordem em que as cédulas foram digitadas. As listas de MG copiadas do boletim (4 fora de ordem) trazem os votos agrupados por candidato, sem informação por eleitor.
 
 ### 2. A exceção: as cédulas de 2 seções de MG no 1º turno (Fato)
 
 As seções MG 41238/0039/0168 e MG 50075/0047/0041 tiveram apuração mista no 1º turno: parte dos votos na urna e 20 cédulas de papel em cada uma, digitadas depois no Sistema de Apuração. Todas as 13 listas fora de ordem do país estão nessas 2 seções: 9 de cédula e 4 copiadas do boletim.
 
-- **Fato:** nas listas de cédula, a ordem é a de digitação, e a mesma posição corresponde à mesma cédula nas listas de deputado. Nas 20 posições de cada seção, o deputado federal e o estadual são do mesmo partido (ou os dois são branco ou nulo) em 12 (MG 41238) e 11 (MG 50075). O revisor mediu, embaralhando as posições ao acaso muitas vezes, que isso não acontece por coincidência (parecer 29, item 2).
+- **Fato:** nas listas de cédula, a ordem é a de digitação, e a mesma posição corresponde à mesma cédula nas listas de deputado. Nas 20 posições de cada seção, o deputado federal e o estadual são do mesmo partido (ou os dois são branco ou nulo) em 12 (MG 41238) e 11 (MG 50075). A segunda verificação mediu, embaralhando as posições ao acaso muitas vezes, que isso não acontece por coincidência.
 - **Fato:** o arquivo mostra, para cada uma das 40 cédulas de deputado, o par de votos (federal e estadual). Em MG 50075/0047/0041, mostra também o trio de votos para governador e os dois senadores de cada uma das 20 cédulas. Em MG 41238 o teste do trio não tem poder (há poucos brancos e nulos para comparar).
 - **Fato:** o voto para presidente não segue essa ordem.
 - **O que isso permite:** a cédula não tem nome, e o arquivo não diz em que ordem as cédulas foram depositadas. O risco não é identificar quem votou, mas "assinar" uma cédula com uma combinação rara de votos combinada antes, e conferi-la depois no arquivo público.
@@ -108,7 +108,7 @@ Por UF (seções, entre parênteses os eleitores):
 | Governador, 1º turno (2) | MG 1 (13); PI 1 (72) |
 | Deputado federal, 1º turno (1) | MT 1 (297) |
 
-Fonte: parecer 29, item 3; contagem por UF igual no programa do engenheiro e no banco (`voto_rdv`), conferida por `grafico-h09-dados.mjs`. Dados: [graficos/dados/h09-secoes-unanimes-por-uf.csv](graficos/dados/h09-secoes-unanimes-por-uf.csv).
+Fonte: contagem da segunda verificação independente. A contagem por UF é igual no primeiro programa e no banco de dados da auditoria, e foi conferida mais uma vez para este tópico.
 
 - **O que isso permite:** quem sabe quem compareceu a uma dessas seções (a mesa, um fiscal, os vizinhos) sabe como cada um votou naquele cargo.
 - **O mesário:** o diário publica "Mesário [título] é eleitor da seção". Se esse mesário votou na seção unânime, o voto dele está, na prática, publicado junto com o título. O diário não diz se ele votou, então isso é uma possibilidade, não um fato medido.
@@ -132,21 +132,21 @@ Linhas "Título [número] é válido / inválido para suspender a votação" **n
 | **Título válido sem papel nenhum no país (dois turnos)** | **11.922** | **43.561** | **1.953** | **3.611** |
 | Fora do atendimento de um eleitor | 0 | 0 | 0 | 0 |
 
-Fonte: parecer 29, item 4.1. Dados: [graficos/dados/h09-suspensao-por-papel.csv](graficos/dados/h09-suspensao-por-papel.csv).
+Fonte: contagem da segunda verificação independente.
 
 - **Fato:** somando "válido" e "inválido", são **55.483 linhas** no dia do 1º turno e **5.564** no dia do 2º com um número de formato válido de título que não é de nenhum mesário, presidente de mesa ou servidor registrado em nenhuma urna do país, em nenhum dos dois turnos.
 - **Fato:** contando cada número uma vez só (o mesmo número pode ser digitado várias vezes no mesmo atendimento), são **31.764 números diferentes** no 1º turno e **3.801** no 2º.
 - **Fato:** cada número aparece em uma única seção do país. A exceção é 1 número do 1º turno, que aparece em 2 seções. Um número de fiscal, de servidor ou de "título de serviço" que circulasse entre seções apareceria em várias.
 - **Fato:** todas essas linhas estão dentro do atendimento de um eleitor, com data e hora.
-- **Fato:** não é erro de leitura: o número vem da própria mensagem, conferido no arquivo original (parecer 29, item 4.2). Também não se explica por erro de digitação do título do mesário: no 1º turno, dos números sem papel na urna, só 52 de 12.032 ("válido") e 33 de 43.686 ("inválido") diferem em 2 dígitos ou menos de algum título de mesário daquela urna; os outros diferem em 3 ou mais.
+- **Fato:** não é erro de leitura: o número vem da própria mensagem, conferido no arquivo original. Também não se explica por erro de digitação do título do mesário: no 1º turno, dos números sem papel na urna, só 52 de 12.032 ("válido") e 33 de 43.686 ("inválido") diferem em 2 dígitos ou menos de algum título de mesário daquela urna; os outros diferem em 3 ou mais.
 
 ![De quem é o número gravado quando o mesário suspende um eleitor](graficos/h09-suspensao-por-papel.svg)
 
-**Como ler:** cada barra é uma mensagem num turno ("válido" ou "inválido") e soma 100% das linhas daquele dia. Azul: título de mesário registrado na própria urna, o uso esperado. Azul-claro: outro papel registrado (presidente que encerrou a urna, servidor, mesário de outra urna ou do outro turno). Cinza: número que nem é título (dígito verificador errado). Laranja: título válido sem papel nenhum no país. À direita, o número de linhas em laranja e o total (no 1º turno, "válido", sem a linha repetida no mesmo pacote). Na mensagem "inválido", o laranja é a maior parte; na "válido", a menor. Dados: [graficos/dados/h09-suspensao-por-papel.csv](graficos/dados/h09-suspensao-por-papel.csv).
+**Como ler:** cada barra é uma mensagem num turno ("válido" ou "inválido") e soma 100% das linhas daquele dia. Azul: título de mesário registrado na própria urna, o uso esperado. Azul-claro: outro papel registrado (presidente que encerrou a urna, servidor, mesário de outra urna ou do outro turno). Cinza: número que nem é título (dígito verificador errado). Laranja: título válido sem papel nenhum no país. À direita, o número de linhas em laranja e o total (no 1º turno, "válido", sem a linha repetida no mesmo pacote). Na mensagem "inválido", o laranja é a maior parte; na "válido", a menor.
 
 ### 5. De quem é esse número (Hipótese; confirmação Pendente)
 
-**Para o número que a urna recusa ("inválido"): Hipótese forte de que é o título do próprio eleitor que estava na cabine.** O parecer 29 (item 4.3) aponta três sinais independentes:
+**Para o número que a urna recusa ("inválido"): Hipótese forte de que é o título do próprio eleitor que estava na cabine.** A segunda verificação aponta três sinais independentes:
 
 1. Nos atendimentos com esse número, o eleitor tinha sido liberado pelo número do título quase sempre, bem mais do que no conjunto dos atendimentos. Quando foi liberado pelo CPF, o número quase nunca aparece. Leitura: o mesário redigita o título que acabou de digitar para liberar o eleitor.
 2. Depois de um "inválido" sem papel, a tentativa seguinte é com frequência **o mesmo número de novo**, outra vez recusado. Um erro de digitação mudaria a cada tentativa; um número copiado de um documento se repete.
@@ -159,29 +159,29 @@ Fonte: parecer 29, item 4.1. Dados: [graficos/dados/h09-suspensao-por-papel.csv]
 ### 6. O que isso permite, e o que não permite
 
 - **Fato:** o diário público traz, para cada um desses números, a seção, a data e a hora, dentro do atendimento de um eleitor. Um número de título é dado pessoal, qualquer que seja o dono.
-- **Hipótese:** se o número "inválido" for o título do eleitor suspenso, o diário liga aquele eleitor ao horário em que esteve na cabine e, quando o atendimento termina com "Atribuído voto nulo por suspensão [cargo]", ao voto nulo que a urna atribuiu nos cargos que ele não tinha confirmado. Quantos atendimentos estão nessa situação: **Pendente**, sem número (o parecer 29 tirou essa contagem do relatório até a confirmação).
-- **Fato:** isso não revela voto em candidato. Os votos que o eleitor confirmou antes da suspensão ficam nas listas ordenadas do RDV, misturados aos dos outros eleitores, e cada cargo é ordenado à parte (parecer 29, item 1).
+- **Hipótese:** se o número "inválido" for o título do eleitor suspenso, o diário liga aquele eleitor ao horário em que esteve na cabine e, quando o atendimento termina com "Atribuído voto nulo por suspensão [cargo]", ao voto nulo que a urna atribuiu nos cargos que ele não tinha confirmado. Quantos atendimentos estão nessa situação: **Pendente**, sem número (essa contagem fica fora do relatório até a confirmação).
+- **Fato:** isso não revela voto em candidato. Os votos que o eleitor confirmou antes da suspensão ficam nas listas ordenadas do RDV, misturados aos dos outros eleitores, e cada cargo é ordenado à parte.
 - **Fato:** nenhuma outra mensagem do diário diz em quem se votou. A única com conteúdo de voto é "Atribuído voto nulo por suspensão [cargo]".
 
 ### 7. A mensagem de encerramento também traz números fora de registro (Fato)
 
 Ao encerrar a votação, o presidente da mesa digita o próprio título, e o diário grava "Título digitado para encerramento: [número]".
 
-- **Fato:** 5.688 linhas no 1º turno e 1.750 no dia do 2º turno trazem um título que não é de mesário registrado em nenhuma urna do país no mesmo turno (números do programa do engenheiro, revisados no parecer 29, item 5). Estão fora do atendimento de eleitores.
+- **Fato:** 5.688 linhas no 1º turno e 1.750 no dia do 2º turno trazem um título que não é de mesário registrado em nenhuma urna do país no mesmo turno (números do primeiro programa, revisados pela segunda verificação). Estão fora do atendimento de eleitores.
 - **Hipótese:** o mais provável é o presidente da mesa sem registro biométrico na urna, ou seja, um membro da mesa e não um eleitor votando. Mesmo assim, é número de pessoa publicado fora de um papel registrado.
 - **Pendente:** na mesma mensagem há sequências de 11 dígitos com dígito verificador de CPF acima do que o acaso daria. Pode ser CPF digitado no lugar do título. Não conferido; fica sem número.
 
 ### 8. Fora dessas mensagens, nenhum número de título (Fato, com ressalva)
 
-Só têm número com formato de título as mensagens de mesário (registro, digital, habilitação de eleitor), as de servidor do cartório ("mídia gerada pelo usuário"), a de encerramento e as duas de suspensão, nos dois turnos (conferido no programa do engenheiro e pelo revisor). Números de série de urna, de computador e de chave não passam no dígito verificador. **Ressalva:** a busca só vê números de 10 a 12 dígitos escritos por extenso (ver Limites).
+Só têm número com formato de título as mensagens de mesário (registro, digital, habilitação de eleitor), as de servidor do cartório ("mídia gerada pelo usuário"), a de encerramento e as duas de suspensão, nos dois turnos (conferido nos dois programas). Números de série de urna, de computador e de chave não passam no dígito verificador. **Ressalva:** a busca só vê números de 10 a 12 dígitos escritos por extenso (ver Limites).
 
 ## Prova de que o teste funciona (contraprova)
 
 - **Fato (a conferência de ordem acusa desordem quando ela existe):** o mesmo teste que dá 100% nas listas da urna acusou as 9 listas de cédula de MG que estão na ordem de digitação.
-- **Fato (teste com um voto cuja hora se conhece):** o "voto nulo por suspensão" é o único voto cuja hora o diário revela. Se o RDV seguisse a ordem de votação, a posição desse voto no RDV seria a mesma posição do eleitor no diário em todos os casos. No 1º turno, das 135.770 linhas de nulo por suspensão no dia, 84.075 podem ser comparadas (cargo de uma escolha, um só diário com votos, contagem igual): a posição coincide em 431 (0,51%). No 2º turno, 1 de 619. Isso é coincidência de posição, não ordem de votação. Dados: [graficos/dados/h09-ancora.csv](graficos/dados/h09-ancora.csv).
+- **Fato (teste com um voto cuja hora se conhece):** o "voto nulo por suspensão" é o único voto cuja hora o diário revela. Se o RDV seguisse a ordem de votação, a posição desse voto no RDV seria a mesma posição do eleitor no diário em todos os casos. No 1º turno, das 135.770 linhas de nulo por suspensão no dia, 84.075 podem ser comparadas (cargo de uma escolha, um só diário com votos, contagem igual): a posição coincide em 431 (0,51%). No 2º turno, 1 de 619. Isso é coincidência de posição, não ordem de votação.
 - **Fato (o dígito verificador está certo):** todos os títulos de mesário do país passam na conta: 3.748.505 de 3.748.505 linhas "Mesário [título] registrado" nos diários do 1º turno e 7.542.425 de 7.542.425 nos do 2º (que trazem também o 1º turno das urnas reaproveitadas). Uma conta errada reprovaria parte deles. Dois programas escritos à parte concordam em todas as contagens comparadas.
 - **Fato (o cruzamento de papéis acha quem tem papel):** na mensagem "Mesário [título] habilitou o eleitor", que não entrou na montagem da lista de mesários, o número é de mesário registrado na urna em 10.949.368 de 10.949.380 linhas (diários do 2º turno, todos os períodos). As 12 restantes são de um mesário cujo registro ficou num diário não publicado.
-- **Fato (rotas independentes):** as seções unânimes deram o mesmo resultado, seção a seção e por UF, no programa do engenheiro e no banco (`voto_rdv`). No Acre, o programa do revisor e o do engenheiro batem em todas as contagens comparadas (parecer 29).
+- **Fato (rotas independentes):** as seções unânimes deram o mesmo resultado, seção a seção e por UF, no primeiro programa e no banco de dados da auditoria. No Acre, os dois programas batem em todas as contagens comparadas.
 
 ## Limites (o que não se pode afirmar)
 
@@ -195,40 +195,21 @@ Só têm número com formato de título as mensagens de mesário (registro, digi
 ## Pendentes (sem número)
 
 - **Dono dos números da suspensão** ("inválido" e "válido"): perguntas ao TSE (item 5).
-- **Quantos atendimentos terminam em voto nulo por suspensão com um desses números:** fora do relatório até a confirmação do dono (parecer 29).
+- **Quantos atendimentos terminam em voto nulo por suspensão com um desses números:** fora do relatório até a confirmação do dono.
 - **Sequências com dígito verificador de CPF na mensagem de encerramento:** não conferidas.
 - **Ordem das cédulas de MG:** se a ordem de digitação reflete a ordem de votação.
-- **Voto nulo com número próprio:** o RDV publica o número digitado em todo voto nulo. Um eleitor pode anular com um número combinado e alguém conferir depois no arquivo da seção. O tamanho desse canal foi medido pelo engenheiro e não foi revisado pelo cético.
+- **Voto nulo com número próprio:** o RDV publica o número digitado em todo voto nulo. Um eleitor pode anular com um número combinado e alguém conferir depois no arquivo da seção. O tamanho desse canal foi medido, mas ainda não passou pela segunda verificação.
 - **Características do eleitor no diário** (por exemplo, áudio ativado por cadastro de deficiência visual, preso provisório, militar em serviço): só identificam alguém se combinadas com um número de título na mesma sessão. Contagem não revisada.
 - **Busca do número de título em formas codificadas:** feita só no ES, 2º turno, a pedido do próprio titular, e ainda não refeita de forma independente ([tópico 7](07-limites-da-pericia.md)).
 
 ## Recomendação ao TSE
 
-Não gravar no diário o número digitado na suspensão nem no encerramento. Gravar só o resultado (aceito ou recusado) e o papel de quem autorizou. E ordenar também as listas de cédula do Sistema de Apuração (parecer 29, Recomendações).
-
-## Como repetir
-
-```
-# leitura dos dois turnos (engenheiro de segurança, doc 05): ~40 min por turno
-node scripts/auditoria/seguranca-h09-sigilo.mjs --turno 2 --procs 6
-node scripts/auditoria/seguranca-h09-sigilo.mjs --turno 1 --procs 6
-
-# revisão cética (parecer 29): os dois turnos juntos, 46 min; cédulas de MG; conferência rápida no AC
-node scripts/auditoria/cetico-h09-sigilo.mjs --turnos 1,2 --procs 4
-node scripts/auditoria/cetico-h09-cedula.mjs
-node scripts/auditoria/cetico-h09-sigilo.mjs --turnos 1,2 --uf ac
-
-# tabelas e gráficos deste tópico (confere cada número contra as saídas acima e o banco; ~5 min)
-node --max-old-space-size=4096 scripts/auditoria/grafico-h09-dados.mjs
-node scripts/auditoria/grafico-h09.mjs
-```
-
-Saídas em `data/parsed/auditoria/engenheiro-seguranca-urna/h09/` e `data/parsed/auditoria/cetico-revisor/h09/`, só com contagens. Nenhum número de título ou de CPF é gravado, e o script deste tópico se recusa a gravar um CSV com sequência de 10 ou mais dígitos.
+Não gravar no diário o número digitado na suspensão nem no encerramento. Gravar só o resultado (aceito ou recusado) e o papel de quem autorizou. E ordenar também as listas de cédula do Sistema de Apuração.
 
 ## Próximos passos
 
-- [x] Ordem do RDV, cédulas de MG, seções unânimes e números no diário, nos dois turnos, com revisão cética ([parecer 29](../analysis/cetico-revisor/29-h09-sigilo.md)).
+- [x] Ordem do RDV, cédulas de MG, seções unânimes e números no diário, nos dois turnos, com segunda verificação independente.
 - [ ] **Pendente.** Enviar ao TSE as três perguntas do item 5 sobre a suspensão.
-- [ ] **Pendente.** Revisão cética do canal do voto nulo com número próprio e das características do eleitor no diário.
+- [ ] **Pendente.** Segunda verificação independente do canal do voto nulo com número próprio e das características do eleitor no diário.
 - [ ] **Pendente.** Conferir as sequências com dígito verificador de CPF na mensagem de encerramento.
 - [ ] **Pendente.** Pedir ao TSE a norma de digitação das cédulas no Sistema de Apuração.
