@@ -14,37 +14,44 @@ Trabalhos anteriores: [2º turno 2022](https://github.com/andrehrferreira/audito
 
 ## Andamento
 
-Atualizado em 29/10/2026, 09:30. O painel `coleta-tse` do Claude Code lê esta tabela: mantenha o formato e os marcadores.
+Atualizado em 30/10/2026. O painel `coleta-tse` do Claude Code lê esta tabela: mantenha o formato e os marcadores.
 
 <!-- andamento:inicio -->
 | Fase | Etapa | Status | Detalhe |
 |---|---|---|---|
 | 1. Coleta | Arquivos de urna do 2º turno | concluída | 499.248/499.248 seções (499.207 completas + 41 não instaladas); 17.931/17.931 agregadas |
 | 1. Coleta | Arquivos de urna do 1º turno | concluída | 499.248/499.248 seções (499.207 completas + 41 não instaladas); 17.931/17.931 agregadas |
-| 1. Coleta | aux.json do 2º turno (status oficial por seção) | em andamento | 395.227 seções conferidas (faltam SP e TO), 0 com hash oficial diferente do pacote |
+| 1. Coleta | aux.json do 2º turno (status oficial por seção) | em andamento | Falta a lista oficial de parte de SP e de todo o TO; 0 seção com hash oficial diferente do pacote |
 | 1. Coleta | aux.json do 1º turno | pendente | Começa depois do aux do 2º turno |
 | 1. Coleta | Dados abertos (resultado oficial, perfil do eleitorado, comparecimento por idade, candidaturas, 2018 e 2022) | concluída | data/raw/dadosabertos |
 | 1. Coleta | Candidatos e municípios (referência) | concluída | 1º e 2º turno |
 | 2. Leitura | Decodificador pela especificação oficial (BU, RDV, imgbu, vsc) | concluída | src/asn1.js + src/esquemas.js |
 | 2. Leitura | Conversor de seção para JSON legível | concluída | src/exportar.js, sob demanda |
 | 2. Leitura | Banco SQLite para consultas | concluída | 1º e 2º turno: 28/28 UFs, 499.248 seções cada, 0 erro de carga; resultado oficial carregado |
-| 2. Leitura | Cópia de leitura com índices analíticos | concluída | Dois turnos com 28/28 UFs (cópia de 29/10, 10h50 UTC); índices e ANALYZE só na cópia (doc 09) |
+| 2. Leitura | Cópia de leitura com índices analíticos | concluída | Dois turnos com 28/28 UFs; índices e ANALYZE só na cópia (doc 09) |
 | 2. Leitura | Perfil por seção (métricas de log e BU) | em andamento | Regeneração das 28 UFs nos dois turnos com a ordem do log corrigida (pacotes com 2+ logs); depois, recarga do perfil_log |
-| 3. Integridade | Assinaturas e hashes no país inteiro (H04) | em andamento | Auditor E rodando; AC, ES e ZZ: 0 falha; 3 seções de contingência exigem corte de 1 byte no certificado (defeito de leitura) |
-| 3. Integridade | Cadeia de evidências da perícia | em andamento | docs/pericia/evidencias |
-| 4. Análises | A1/B2: soma dos BUs × resultado oficial (H03) | em andamento | Presidente igual ao oficial nos dois turnos (499.205 e 499.206 seções, 0 diferença); demais cargos pendentes |
-| 4. Análises | Coerência BU × RDV × log | em andamento | 2º turno: 50 votos sem rastro no log em 3 seções de contingência; contagens de outros auditores a reconciliar (pareceres 20 e 25) |
+| 3. Integridade | Hashes e assinaturas no país inteiro (H04) | concluída | Dois turnos, 499.207 pacotes cada: 0 arquivo alterado; 1 pacote de MG (1º turno) com o boletim impresso fora da lista lacrada; carteiras com bytes a mais são defeito de leitura, não de assinatura |
+| 3. Integridade | Certificados das urnas (H25) | concluída | AC URNA vencida em 18/07/2026 assinou 54 certificados de urna depois de vencer; 0 certificado de fora das 3 ACs do TSE (503.525); pedido de esclarecimento ao TSE no relatório temático |
+| 3. Integridade | Seriais e trocas de urna (H11) | concluída | Dois turnos: 0 número de urna e 0 código de carga repetidos entre seções; cartões de votação repetidos na quantidade que o acaso prevê; urnas religadas e trocadas explicadas (revisão cética 24) |
+| 4. Análises | A1/B2: soma dos BUs × resultado oficial (H03) | em andamento | 1º turno: todos os cargos iguais ao oficial (109/109 pares UF × cargo); 2º turno: Presidente igual em 499.205 seções; demais campos do 2º turno pendentes |
+| 4. Análises | Coerência BU × RDV × log | concluída | Votos do boletim sem linha no diário reconciliados nos dois turnos (revisões céticas 20 e 25) |
 | 4. Análises | B5/H10: crescimento entre turnos | concluída | H10 refutada como escrita (parecer 05); linha de base 2018/2022 |
-| 4. Análises | C2/H01: títulos de falecidos | em andamento | Cadastro: ≥148.553 títulos 100+ sem pessoa; uso no 1º turno: 0,72% (oficial); mínimo de 157 votos 100+ sem biometria; 2º turno: arquivo oficial ainda sem dados |
-| 4. Análises | A5/B1/H02/H05: liberação sem biometria e mesários | em andamento | 16 mil seções explicadas por "foto sem digital"; Auditor B rodando |
-| 4. Análises | H13: liberados sem biometria votaram no 13, sobretudo no Nordeste? | em andamento | 5 métodos e revisão cética feitos (parecer 15); aritmética na perícia 04; falta a conta com a liberação do log |
-| 4. Análises | A2/B3/H06: votos após 17h e encerramento às 19h | em andamento | 34.330 votos após 17h (0,027%); parecer 11: não muda o resultado, há associação pequena com o 13 de causa não identificada |
+| 4. Análises | C2/H01: títulos de falecidos | em andamento | Cadastro: piso de títulos 100+ sem pessoa no Censo; uso no 1º turno: 0,72% (oficial); 2º turno: arquivo oficial ainda sem dados |
+| 4. Análises | A5/B1/H02/H05: liberação sem biometria e mesários | em andamento | 28 UFs nos dois turnos: o teste não decide (revisões céticas 27 e 31); falha do leitor de digital não explica os sinais |
+| 4. Análises | H13: liberados sem biometria votaram no 13, sobretudo no Nordeste? | em andamento | 5 métodos e revisão cética feitos (parecer 15); falta a conta com a liberação do log |
+| 4. Análises | A2/B3/H06: chegada dos BUs, votos após 17h e encerramento às 19h | em andamento | Às 19h, 98,64% dos BUs já emitidos e 0,38% registrados no TSE; divulgação seguiu a ordem de registro (revisão cética 28); 81 seções do 1º turno com relógio 1 h adiantado corrigidas; decisão da prorrogação pendente |
 | 4. Análises | A10/H08: sequências impossíveis | em andamento | Menor intervalo 16 s (parecer 12); falta o ciclo completo com os perfis refeitos |
+| 4. Análises | H09: sigilo do voto nos arquivos públicos | concluída | Universo dos dois turnos: o RDV não guarda a ordem de votação; números com formato de título nas mensagens de suspensão do diário (revisão cética 29) |
+| 4. Análises | H14: urnas trocadas por reserva no 2º turno | concluída | 5.714 seções com reserva comparadas com a mesma seção no 1º turno: sem diferença detectável, sem marca de software adulterado (revisão cética 30) |
+| 4. Análises | H15/H16/H17: mesa, máquina de estados do eleitor, suspensão e "já votou" | concluída | Sem sinal de fraude na mesa; 0 sessão órfã; 0 voto sem habilitação no 1º turno (revisões céticas 31 e 32) |
+| 4. Análises | H26: virada para o 13 por zona | em andamento | Triagem das 2.641 zonas feita: virada geral, não concentrada; falta a revisão cética |
+| 4. Análises | H18–H24 (inserção uniforme, falha induzida, relógio, RDV, exterior, recarga, trânsito) | pendente | Registradas a partir da discussão T19 |
 | 4. Análises | A3/A4 e forense estatística | em andamento | Parecer 13: sem marca de fraude concentrada; os testes não veem fraude espalhada ou proporcional |
 | 4. Análises | Aumento de comparecimento entre turnos | em andamento | Estatístico concluído; em revisão cética (parecer 22) |
-| 4. Análises | A8, A12/H11, A13, B4 | em andamento | Segurança, matemático e biometria concluídos; em revisão cética (pareceres 20, 21, 24 e 25) |
-| 5. Relatório | Perícia em linguagem simples | em andamento | Tópicos 00 a 10 verificados pela regra "só dados 100% corretos" (29/10); revisão externa dos números por Grok, Astra e Kimi (T15) |
-| 5. Relatório | Relatório das hipóteses em teste (PDF) | concluída | [docs/relatorios/hipoteses-em-teste.pdf](docs/relatorios/hipoteses-em-teste.pdf), retrato de 29/10 |
+| 5. Relatório | Perícia em linguagem simples | em andamento | Resumo executivo e tópicos 00 a 12; revisão geral (T20) e consenso T22 aplicados; texto independente do processo |
+| 5. Relatório | Relatório completo (PDF assinado) | em andamento | [docs/relatorio/relatorio.pdf](docs/relatorio/relatorio.pdf); nova versão assinada depois do consenso T22 |
+| 5. Relatório | Relatório temático: certificado vencido da AC URNA (PDF assinado) | em andamento | [docs/relatorio/temas/certificado-ac-urna.pdf](docs/relatorio/temas/certificado-ac-urna.pdf), com as planilhas das urnas embutidas; nova versão com o pedido ao TSE a gerar |
+| 5. Relatório | Relatório das hipóteses em teste (PDF) | em andamento | [docs/relatorios/hipoteses-em-teste.pdf](docs/relatorios/hipoteses-em-teste.pdf); atualização para H01–H26 |
 <!-- andamento:fim -->
 
 ## Hipóteses em análise
@@ -77,10 +84,29 @@ Na fila, ainda sem número de hipótese: queda de brancos e nulos entre os turno
 - Todos os arquivos conferidos pelo hash do manifesto (`vota.vsc`) e pelo SHA-512 de cada arquivo. Um `log.jez` faltava no zip de SP e foi baixado por seção (confere com o `vota.vsc`).
 - Seções "Recebida" no site de resultados (em vez de "Totalizada"), **parcial**: 5.270 até agora, em 10 UFs (faltam SP e TO no retrato do aux.json), com datas de 25 a 28/10. Nelas, os votos para presidente no BU são idênticos aos do resultado oficial (0 divergentes). Detalhes na [perícia 00](docs/pericia/00-coleta-completa.md).
 
+## Relatórios
+
+| Documento | O que é |
+|---|---|
+| [Relatório de perícia completo (PDF)](docs/relatorio/relatorio.pdf) | Resumo executivo com os principais achados, os tópicos 0 a 12 e o glossário, em linguagem simples. Gerado a partir de [docs/pericia/](docs/pericia/README.md) |
+| [O certificado vencido da AC URNA (PDF)](docs/relatorio/temas/certificado-ac-urna.pdf) | Relatório temático da H25: abre com o pedido formal de esclarecimento ao TSE; traz o tamanho do risco, a conclusão e, embutidas no PDF, as planilhas das urnas ligadas à AC URNA nos dois turnos |
+| [Hipóteses em teste (PDF)](docs/relatorios/hipoteses-em-teste.pdf) | Quadro de todas as hipóteses, com o que já se sabe e o próximo teste |
+
+Os PDFs da perícia são assinados digitalmente dentro do arquivo (PAdES) com o certificado da auditoria, "Auditoria independente das urnas — Eleições 2026". A assinatura aparece no painel de assinaturas do leitor de PDF; qualquer mudança depois da assinatura a invalida. O certificado é autoassinado: confira a impressão digital SHA-256 do certificado público, [docs/relatorio/certificado-assinatura.pem](docs/relatorio/certificado-assinatura.pem):
+
+```
+CF:FB:8B:52:0A:97:11:94:8D:5A:32:FF:4A:5A:4E:1D:F7:6F:A9:84:E2:26:9F:16:8C:DF:62:3C:28:F3:CB:E3
+```
+
+Para conferir pela linha de comando (pyHanko): `python -m pyhanko sign validate --pretty-print --trust docs/relatorio/certificado-assinatura.pem docs/relatorio/relatorio.pdf`.
+
 ## Como rodar
 
 ```
 npm test                                          # suíte de testes
+npm run relatorio                                 # relatório completo em HTML (docs/relatorio/)
+npm run relatorio:pdf                             # o mesmo, em PDF assinado
+npm run relatorio:temas                           # relatórios temáticos (docs/pericia/temas/) em PDF assinado
 node src/coleta.js [--turno 1|2] [--uf ac,sp]     # coleta: índice, zips, extração, aux, conferência (--ajuda)
 node src/referencia.js --turno 2                  # candidatos e municípios do TSE
 node src/dadosabertos.js                          # dados abertos oficiais (CDN)
@@ -104,17 +130,26 @@ Os dados ficam em `data/` (fora do git): `raw/<t>t/zip` (zips do TSE), `raw/<t>t
 | `src/banco.js` | Banco SQLite (doc 09) |
 | `src/dadosabertos.js` | Dados abertos do TSE |
 | `src/modelos.js` | Revisores auxiliares (doc 08) |
+| `scripts/auditoria/` | Scripts de cada frente e de cada gráfico da perícia |
+| `scripts/relatorio/gerar.mjs`, `markdown.mjs` | Relatório em HTML e PDF assinado; bloqueia referência ao processo e link para fora do relatório |
 
 ## Próximos passos
 
-1. Revisão cética dos achados de integridade, segurança, matemático e estatístico (pareceres 20 a 25) e incorporação do que for sustentado à perícia.
-2. Perfis por seção refeitos nas 28 UFs e recarga do banco; refazer o que depende do diário da urna (H05, H08 e H13 com a liberação do log).
-3. Assinaturas digitais e números de série no país inteiro (H04, H11).
-4. Demais cargos: soma das urnas × resultado oficial (H03).
-5. Pedidos ao TSE pela Lei de Acesso à Informação (lista no [relatório de hipóteses](docs/relatorios/hipoteses-em-teste.pdf)).
+1. Gerar e assinar a nova versão do relatório completo e do temático da AC URNA (com o pedido ao TSE).
+2. Enviar ao TSE o pedido de esclarecimento sobre a AC URNA e os demais pedidos pela Lei de Acesso à Informação (lista no [relatório de hipóteses](docs/relatorios/hipoteses-em-teste.pdf)).
+3. Revisão cética da H26 (virada por zona); testar H18 e H21 a H24.
+4. Perfis por seção refeitos nas 28 UFs e recarga do banco; refazer o que depende do diário da urna (H08 e H13 com a liberação do log).
+5. Demais campos do 2º turno: soma das urnas × resultado oficial (H03).
+6. Entrada de H15, H16 e H17 na perícia e anexo de tabelas de dados no relatório.
+
+O histórico das entregas está no [CHANGELOG](CHANGELOG.md).
 
 ## Como contribuir ou contestar
 
 Encontrou um erro de conta, de método ou de leitura? Abra uma *issue* com o número, o arquivo e o comando que o reproduz. Toda afirmação deste repositório deve poder ser refeita a partir dos arquivos públicos do TSE com os scripts daqui; o que não puder ser refeito não vale como Fato.
 
 O que **não** está no repositório: os arquivos brutos do TSE e o banco (são grandes; os scripts baixam e montam tudo, ver "Como rodar") e qualquer base com dado pessoal (CPF), que nunca sai da máquina do auditor.
+
+## Licença
+
+[MIT](LICENSE).
