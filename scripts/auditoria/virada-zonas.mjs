@@ -9,14 +9,17 @@
 //     Fora da curva (corte fixado no plano): q de Benjamini-Hochberg < 0,01 e |virada além do esperado| ≥ 2 p.p.
 //   - Horas: votosPorHoraLocal do log, levadas a Brasília pelo fuso do município (moda da hora de abertura do BU − 8) e
 //     pelas exceções de relógio (relogio-fora-do-fuso.csv). Exterior fica sem hora.
+//   - Modelo da urna e horário dentro da zona: efeito fixo de zona e EP agrupado por zona (parecer cético 34). Habilitação dos
+//     votos depois das 17h: data/parsed/auditoria/cetico/h06-reproducao-logs.jsonl (cetico-h06-reproducao-logs.mjs).
 // Só leitura. Uso: node --max-old-space-size=8192 scripts/auditoria/virada-zonas.mjs
 // Saídas em data/parsed/auditoria/virada-zonas/: zonas.csv, triagem.csv, secoes-caudas.csv, por-regiao.csv, por-modelo.csv,
 // por-hora.csv, resumo.json.
+import { readFileSync } from 'node:fs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { abrirLeitura } from '../../src/banco-leitura.js';
 import { RAIZ, paraCsv, mqo, medianaMad } from './forense-lib.mjs';
-import { lerPares, REGIAO, bh, pNormal2 } from './estatistico-lib.mjs';
+import { lerPares, REGIAO, bh, pNormal2, mqEfeitoFixo } from './estatistico-lib.mjs';
 import { difRelogioPorSecao, difSecao } from './relogio-fora-do-fuso.mjs';
 
 const SAIDA = path.join(RAIZ, 'data', 'parsed', 'auditoria', 'virada-zonas');
@@ -227,43 +230,28 @@ await writeFile(path.join(SAIDA, 'por-regiao.csv'), paraCsv(porRegiao, COLUNAS_R
 resumo.porRegiao = porRegiao.filter((l) => l.nivel !== 'uf');
 
 // ---------- 5. Modelo da urna, dentro da zona ----------
-// desvio da seção = rl − nom2 × (taxa da zona); média por modelo = Σ desvio / Σ nom2; EP agrupado por zona.
-function porModelo(filtroZona, filtroSecao) {
-  const acc = new Map();
-  for (const z of zonas) {
-    if (!filtroZona(z) || z.nom2 <= 0) continue;
-    const taxa = z.rl / z.nom2;
-    for (const s of z.secoesLista) {
-      const g = filtroSecao(s);
-      if (!g) continue;
-      const a = acc.get(g) ?? acc.set(g, { secoes: 0, D: 0, N: 0, zonas: new Map() }).get(g);
-      const d = s.rl - s.nom2 * taxa;
-      a.secoes++; a.D += d; a.N += s.nom2;
-      const pz = a.zonas.get(z) ?? a.zonas.set(z, [0, 0]).get(z);
-      pz[0] += d; pz[1] += s.nom2;
-    }
-  }
-  return [...acc].map(([grupo, a]) => {
-    const m = a.D / a.N, G = a.zonas.size;
-    let v = 0;
-    for (const [d, n] of a.zonas.values()) v += (d - m * n) ** 2;
-    const ep = G > 1 ? Math.sqrt((G / (G - 1)) * v) / a.N : NaN;
-    return { grupo, secoes: a.secoes, zonas: G, nominais2: a.N, desvioNaZona: r4(100 * m), ep: r4(100 * ep), z: r2(m / ep) };
-  }).sort((x, y) => x.grupo.localeCompare(y.grupo));
+// Contraste de cada grupo de urna com as outras urnas da mesma zona (parecer cético 34, seção E): virada além do esperado
+// da seção (p.p.) sobre o indicador do grupo, efeito fixo de zona, só zonas com seções dos dois lados, peso = nominais
+// do 2º turno, EP agrupado por zona. "Menor desvio visível" = 3 × EP.
+const zonaDe = (s) => `${s.uf}|${s.zona}`;
+const alemSecao = (s) => pp(s.rl, s.nom2);
+const GRUPOS_URNA = { ...Object.fromEntries(MODELOS.map((m) => [m, (s) => s.modelo2 === m])), 'trocou de modelo': (s) => s.modelo1 !== s.modelo2 };
+function contraste(lista, nome, f) {
+  const lados = new Map();
+  for (const s of lista) { const l = lados.get(zonaDe(s)) ?? lados.set(zonaDe(s), [0, 0]).get(zonaDe(s)); l[f(s) ? 0 : 1]++; }
+  const mistas = lista.filter((s) => { const l = lados.get(zonaDe(s)); return l[0] && l[1]; });
+  const aj = mistas.length ? mqEfeitoFixo(mistas, { y: alemSecao, x: (s) => [f(s) ? 1 : 0], w: (s) => s.nom2, grupo: zonaDe, cluster: zonaDe }) : null;
+  return { grupo: nome, secoesDoGrupo: mistas.filter(f).length, zonasMistas: new Set(mistas.map(zonaDe)).size,
+    contraste: r4(aj?.b[0]), ep: r4(aj?.ep[0]), z: r2(aj ? aj.b[0] / aj.ep[0] : NaN), menorVisivel: r4(aj ? 3 * aj.ep[0] : NaN) };
 }
 const porModeloLinhas = [];
-const grupoModelo = (s) => (s.modelo1 !== s.modelo2 ? `trocou ${s.modelo1}→${s.modelo2}` : s.modelo2);
-for (const reg of ['BR', 'N', 'NE', 'CO', 'SE', 'S', 'EX']) {
-  for (const l of porModelo((z) => reg === 'BR' || z.regiao === reg, grupoModelo)) porModeloLinhas.push({ regiao: reg, ...l });
+for (const reg of ['BR', 'N', 'NE', 'CO', 'SE', 'S']) {
+  const lista = P.filter((s) => s.nom2 > 0 && (reg === 'BR' || REGIAO[s.uf] === reg));
+  for (const [nome, f] of Object.entries(GRUPOS_URNA)) porModeloLinhas.push({ regiao: reg, ...contraste(lista, nome, f) });
 }
-const COLUNAS_MOD = ['regiao', 'grupo', 'secoes', 'zonas', 'nominais2', 'desvioNaZona', 'ep', 'z'];
-await writeFile(path.join(SAIDA, 'por-modelo.csv'), paraCsv(porModeloLinhas, COLUNAS_MOD));
-const mediaAntigas = (l) => r2(l.reduce((a, z) => a + z.ue2013 + z.ue2015, 0) * 100 / l.reduce((a, z) => a + z.secoes, 0));
-resumo.modelo = {
-  nacional: porModeloLinhas.filter((l) => l.regiao === 'BR'),
-  parcelaUrnasAntigas: { fora13: mediaAntigas(zonas.filter((z) => z.fora === 13)), fora22: mediaAntigas(zonas.filter((z) => z.fora === 22)),
-    demais: mediaAntigas(zonas.filter((z) => !z.fora)) },
-};
+await writeFile(path.join(SAIDA, 'por-modelo.csv'), paraCsv(porModeloLinhas, Object.keys(porModeloLinhas[0])));
+resumo.modelo = { nacional: porModeloLinhas.filter((l) => l.regiao === 'BR') };
+log('modelo');
 
 // ---------- 6. Horário ----------
 const porHora = [];
@@ -282,25 +270,40 @@ for (const [g, f] of Object.entries(grupos)) {
   }
 }
 await writeFile(path.join(SAIDA, 'por-hora.csv'), paraCsv(porHora, Object.keys(porHora[0])));
-// Dentro da zona: a seção que passou a votar mais tarde vira mais? Inclinação ponderada (nom2) da virada além do esperado
-// da seção (p.p.) sobre a variação da parcela de votos desde as 15h (p.p.), ambas centradas na zona; EP agrupado por zona.
-function inclinacaoTardia(h0) {
-  let Sxx = 0, Sxy = 0;
-  const porZona = [];
-  for (const z of zonas) {
-    const l = z.secoesLista.filter((s) => s.h1 && s.h2 && s.nom2 > 0 && s.c1 > 0 && s.c2 > 0);
-    if (l.length < 3) continue;
-    const pts = l.map((s) => ({ w: s.nom2, y: pp(s.rl, s.nom2), x: parcelaDesde(s.h2, h0) - parcelaDesde(s.h1, h0) })).filter((p) => Number.isFinite(p.x) && Number.isFinite(p.y));
-    const W = pts.reduce((a, p) => a + p.w, 0);
-    const mx = pts.reduce((a, p) => a + p.w * p.x, 0) / W, my = pts.reduce((a, p) => a + p.w * p.y, 0) / W;
-    for (const p of pts) { p.x -= mx; p.y -= my; Sxx += p.w * p.x * p.x; Sxy += p.w * p.x * p.y; }
-    porZona.push(pts);
+// Dentro da zona: a seção com mais votos tardios vira mais? Cada turno com a sua parcela tardia, na mesma regressão (a
+// diferença entre turnos misturava as duas; parecer cético 34, seção C). y = virada além do esperado da seção (p.p.);
+// controles: log dos aptos, Δcomparecimento, parcela do 13 e abstenção no 1º turno; efeito fixo e EP por zona; peso nom2.
+const comHora = P.filter((s) => s.h1 && s.h2 && s.nom2 > 0 && s.c1 > 0 && s.a1 > 0);
+const controles = (s) => [Math.log(s.a2), pp(s.c2 - s.c1, s.a2), pp(s.v13_1, s.v13_1 + s.v22_1 + s.out1), pp(s.a1 - s.c1, s.a1)];
+const votosDesde = (h, h0) => h.slice(h0).reduce((a, b) => a + b, 0);
+const coef = (aj, i, nome) => ({ [nome]: r4(aj.b[i]), [`${nome}_ep`]: r4(aj.ep[i]), [`${nome}_z`]: r2(aj.b[i] / aj.ep[i]) });
+function horarioPorTurno(lista, h0) {
+  const aj = mqEfeitoFixo(lista, { y: alemSecao, x: (s) => [parcelaDesde(s.h2, h0), parcelaDesde(s.h1, h0), ...controles(s)], w: (s) => s.nom2, grupo: zonaDe, cluster: zonaDe });
+  return { desdeHoraBrasilia: h0, secoes: aj.n, zonas: aj.G, ...coef(aj, 0, 'parcela2t'), ...coef(aj, 1, 'parcela1t') };
+}
+// Em votos: resíduo líquido da seção (votos) sobre o nº de votos depois das 17h em cada turno, com Δcomparecimento.
+function horarioEmVotos(lista) {
+  const aj = mqEfeitoFixo(lista, { y: (s) => s.rl, x: (s) => [votosDesde(s.h2, 17), votosDesde(s.h1, 17), s.c2 - s.c1], grupo: zonaDe, cluster: zonaDe });
+  return { secoes: aj.n, ...coef(aj, 0, 'porVoto17h2t'), ...coef(aj, 1, 'porVoto17h1t'),
+    votos17h2t: lista.reduce((a, s) => a + votosDesde(s.h2, 17), 0), secoesCom17h2t: lista.filter((s) => votosDesde(s.h2, 17) > 0).length };
+}
+// Habilitação dos votos depois das 17h do 2º turno, lida do log bruto por cetico-h06-reproducao-logs.mjs (H06)
+function habilitacaoTardia() {
+  const arq = path.join(RAIZ, 'data', 'parsed', 'auditoria', 'cetico', 'h06-reproducao-logs.jsonl');
+  const caudas = new Map(zonas.filter((z) => Math.abs(z.z) >= 3).map((z) => [`${z.uf}|${z.zona}`, z.z > 0 ? 'cauda13' : 'cauda22']));
+  const acc = {};
+  for (const l of readFileSync(arq, 'utf8').split('\n')) {
+    if (!l) continue;
+    const s = JSON.parse(l);
+    for (const g of ['todas', caudas.get(`${s.uf}|${s.zona}`) ?? 'demais']) {
+      const a = acc[g] ??= { secoes: 0, tardios: 0, biometria: 0, ano_nascimento: 0, dado_pessoal_manual: 0 };
+      a.secoes++; a.tardios += s.tardios;
+      for (const [k, v] of Object.entries(s.habTardios ?? {})) a[k] = (a[k] ?? 0) + v;
+    }
   }
-  const b = Sxy / Sxx;
-  let v = 0;
-  for (const pts of porZona) { const u = pts.reduce((a, p) => a + p.w * p.x * (p.y - b * p.x), 0); v += u * u; }
-  const G = porZona.length, ep = Math.sqrt((G / (G - 1)) * v) / Sxx;
-  return { desdeHoraBrasilia: h0, zonas: G, inclinacao: r4(b), ep: r4(ep), z: r2(b / ep) };
+  for (const a of Object.values(acc)) for (const k of ['biometria', 'ano_nascimento', 'dado_pessoal_manual']) a[`${k}Pct`] = r2(pp(a[k], a.tardios));
+  const s2 = P.reduce((a, s) => ({ c: a.c + s.c2, pb: a.pb + s.pb2 }), { c: 0, pb: 0 });
+  return { fonte: path.relative(RAIZ, arq), grupos: acc, biometriaNoTotalDo2tPct: r2(pp(s2.pb, s2.c)) };
 }
 resumo.horario = {
   conferencias: conf.horas,
@@ -309,9 +312,36 @@ resumo.horario = {
     const conta = (c) => l.reduce((m, z) => ((m[z[c]] = (m[z[c]] ?? 0) + 1), m), {});
     return [g, { zonas: l.length, pico1: conta('pico1'), pico2: conta('pico2') }];
   })),
-  dentroDaZona: [inclinacaoTardia(15), inclinacaoTardia(17)],
+  dentroDaZona: [horarioPorTurno(comHora, 15), horarioPorTurno(comHora, 17)],
+  dentroDaZonaPorRegiao: Object.fromEntries(['N', 'NE', 'CO', 'SE', 'S'].map((reg) => [reg, horarioPorTurno(comHora.filter((s) => REGIAO[s.uf] === reg), 17)])),
+  emVotos: horarioEmVotos(comHora),
+  habilitacaoDepoisDas17h: habilitacaoTardia(),
 };
 log('horário');
+
+// ---------- 6b. Cauda: comparecimento e habilitação do aumento ----------
+// Zonas com z ≥ 3 (lado do 13), z ≤ −3 (lado do 22) e as demais; "demais nas UFs da cauda do 13" como comparação justa.
+// Δcomparecimento em p.p. dos aptos do 2º turno; desvio da mediana das zonas da UF; aumento por tipo de habilitação do BU
+// (por biometria, sem biometria cadastrada, ano de nascimento).
+const dComp = (z) => pp(z.c2 - z.c1, z.a2);
+const medUf = new Map(ufs.map((uf) => [uf, medianaMad(zonas.filter((z) => z.uf === uf).map(dComp)).mediana]));
+const ufsCauda13 = new Set(zonas.filter((z) => z.z >= 3).map((z) => z.uf));
+function cauda(lista) {
+  const ss = lista.flatMap((z) => z.secoesLista);
+  const soma = (f) => ss.reduce((a, s) => a + f(s), 0);
+  const dc = soma((s) => s.c2 - s.c1);
+  return { zonas: lista.length, dComparecimentoMediano: r2(medianaMad(lista.map(dComp)).mediana),
+    acimaDaUfMediano: r2(medianaMad(lista.map((z) => dComp(z) - medUf.get(z.uf))).mediana), aumento: dc,
+    porBiometriaPct: r2(pp(soma((s) => s.pb2 - s.pb1), dc)), semBiometriaCadastradaPct: r2(pp(soma((s) => s.sb2 - s.sb1), dc)),
+    anoNascimentoPct: r2(pp(soma((s) => s.pg2 - s.pg1), dc)),
+    comparecimentoCaiu: lista.filter((z) => z.c2 < z.c1).length,
+    ...(lista.length <= 50 ? { zonasComComparecimentoEmQueda: lista.filter((z) => z.c2 < z.c1).map((z) => `${z.uf}/${z.zona} ${z.municipioPrincipal} (${z.c2 - z.c1})`) } : {}) };
+}
+resumo.cauda = {
+  'z>=3': cauda(zonas.filter((z) => z.z >= 3)), 'z<=-3': cauda(zonas.filter((z) => z.z <= -3)),
+  demais: cauda(zonas.filter((z) => !(Math.abs(z.z) >= 3))),
+  demaisNasUfsDaCauda13: cauda(zonas.filter((z) => !(Math.abs(z.z) >= 3) && ufsCauda13.has(z.uf))),
+};
 
 // ---------- 7. Listas ----------
 const curta = (z) => ({ uf: z.uf, zona: z.zona, municipio: z.municipioPrincipal, secoes: z.secoes, viradaBruta: r2(z.viradaBruta), alemEsperado: r2(z.alemEsperado), z: r2(z.z), virou: z.virou });
@@ -323,4 +353,6 @@ resumo.listas = {
 };
 await writeFile(path.join(SAIDA, 'resumo.json'), JSON.stringify(resumo, null, 1));
 log(`saídas em ${SAIDA}`);
-console.log(JSON.stringify({ conferencias: conf, escala: resumo.escalaPorRegiao, porRegiao: resumo.porRegiao, modelo: resumo.modelo, horario: resumo.horario.dentroDaZona }, null, 1));
+console.log(JSON.stringify({ conferencias: conf, porRegiao: resumo.porRegiao, modelo: resumo.modelo,
+  horario: { dentroDaZona: resumo.horario.dentroDaZona, porRegiao: resumo.horario.dentroDaZonaPorRegiao, emVotos: resumo.horario.emVotos, habilitacao: resumo.horario.habilitacaoDepoisDas17h },
+  cauda: resumo.cauda }, null, 1));
