@@ -148,6 +148,176 @@ export function embutirSvg(svg, prefixo, alt) {
   return s;
 }
 
+// ------------------------------------------------------------------ Anexo B: tabelas de dados dos gráficos
+//
+// Cada gráfico tem a planilha de onde saiu em graficos/dados/. A ligação foi tirada dos programas que
+// desenham os gráficos (scripts/auditoria/grafico-*.mjs: cada um lê estas planilhas e grava o SVG).
+// Gráfico fora da lista: vale a planilha de mesmo nome (<gráfico>.csv), se existir. Sem planilha, a
+// geração avisa e o gráfico fica fora do anexo.
+
+export const DADOS_DOS_GRAFICOS = {
+  'lacres-por-modelo-2t.svg': ['lacres-por-modelo-2t.csv'],
+  'autoverificacao-depois-do-erro.svg': ['autoverificacao-destino.csv'],
+  'seriais-cartao-votacao-observado-esperado.svg': ['seriais-cartao-votacao-pares.csv'],
+  'troca-urna-por-modelo.svg': ['troca-urna-por-modelo.csv'],
+  'chegada-bu-emitidos-x-registrados.svg': ['chegada-bu-por-minuto.csv'],
+  'chegada-bu-registros-por-minuto.svg': ['chegada-bu-por-minuto.csv'],
+  'h03-nulo-tecnico-por-cargo.svg': ['h03-1t-nulo-tecnico-por-cargo.csv'],
+  'h03-nulo-tecnico-majoritarios.svg': ['h03-1t-nulo-tecnico-uf-cargo.csv'],
+  'h03-nulo-tecnico-deputados-por-uf.svg': ['h03-1t-fechamento-uf-cargo.csv'],
+  'h03-rj-governador-maioria.svg': ['h03-1t-governador-rj-df.csv'],
+  'h09-rdv-ordem.svg': ['h09-rdv-ordem.csv'],
+  'h09-suspensao-por-papel.svg': ['h09-suspensao-por-papel.csv'],
+  'h14-parcela-13-1t-2t.svg': ['h14-parcela-13-1t-2t.csv'],
+  'h14-carga-reserva.svg': ['h14-carga-reserva.csv'],
+  'h14-rastro-sinais.svg': ['h14-rastro-sinais.csv'],
+  'ac-urna-linha-do-tempo.svg': ['h25-ac-validade.csv', 'h25-marcos.csv'],
+  'ac-urna-emissoes-2026.svg': ['h25-acurna-2026-por-dia.csv'],
+  'ac-urna-tamanho-do-risco.svg': ['h25-risco-brasil.csv'],
+};
+
+/** Linhas mostradas por tabela no anexo; o resto fica só na planilha embutida no PDF. */
+export const MAX_LINHAS_ANEXO = 60;
+
+/** Planilhas de um gráfico: { csvs: caminhos que existem, faltando: nomes ligados que não existem }. */
+export function planilhasDoGrafico(graficoAbs, mapa = DADOS_DOS_GRAFICOS) {
+  const dir = path.join(path.dirname(graficoAbs), 'dados');
+  const nome = path.basename(graficoAbs);
+  const nomes = mapa[nome] ?? [`${nome.replace(/\.[^.]+$/, '')}.csv`];
+  const csvs = nomes.map((n) => path.join(dir, n)).filter((a) => existsSync(a));
+  const faltando = nome in mapa ? nomes.filter((n) => !existsSync(path.join(dir, n))) : [];
+  return { csvs, faltando };
+}
+
+/** CSV (vírgula, aspas duplas) → linhas de células. Tolera BOM e CRLF. */
+export function lerCsv(texto) {
+  const linhas = [];
+  let linha = [];
+  let celula = '';
+  let aspas = false;
+  const s = texto.replace(/^﻿/, '');
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i];
+    if (aspas) {
+      if (c === '"' && s[i + 1] === '"') {
+        celula += '"';
+        i++;
+      } else if (c === '"') aspas = false;
+      else celula += c;
+    } else if (c === '"') aspas = true;
+    else if (c === ',') {
+      linha.push(celula);
+      celula = '';
+    } else if (c === '\n' || c === '\r') {
+      if (c === '\r' && s[i + 1] === '\n') i++;
+      linha.push(celula);
+      linhas.push(linha);
+      linha = [];
+      celula = '';
+    } else celula += c;
+  }
+  if (celula !== '' || linha.length) linhas.push([...linha, celula]);
+  return linhas.filter((l) => l.some((c) => c !== ''));
+}
+
+/** "secoes_registradas_2t" → "Secoes registradas 2t". */
+export function tituloDeColuna(nome) {
+  const t = nome.replace(/_/g, ' ').replace(/\s+/g, ' ').trim();
+  return t.charAt(0).toUpperCase() + t.slice(1);
+}
+
+const RE_NUMERO = /^-?(?:0|[1-9]\d*)(?:\.\d+)?$/;
+// colunas de identificação (modelo de urna, número da urna, zona, seção, série): o número fica como está
+const RE_COLUNA_CODIGO = /^(?:modelo|numero|zona|secao|serie|ano|codigo)(?:_|$)/i;
+
+/** Número no padrão brasileiro: "1234567.5" → "1.234.567,5". Texto, código com zero à esquerda etc. ficam iguais. */
+export function numeroBr(valor) {
+  if (!RE_NUMERO.test(valor)) return valor;
+  const [, sinal, inteiro, decimal] = /^(-?)(\d+)(?:\.(\d+))?$/.exec(valor);
+  return `${sinal}${inteiro.replace(/\B(?=(\d{3})+$)/g, '.')}${decimal === undefined ? '' : `,${decimal}`}`;
+}
+
+const escaparMd = (s) => s.replace(/\s+/g, ' ').trim().replace(/[\\`*_[\]<>|~!#]/g, '\\$&');
+
+/** Título do gráfico: o <title> do SVG; sem ele, o texto alternativo da imagem. */
+function tituloDoGrafico(conteudo, alt) {
+  const m = /<title\b[^>]*>([\s\S]*?)<\/title>/.exec(conteudo);
+  const t = m?.[1].replace(/<[^>]+>/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&').trim();
+  return t || alt;
+}
+
+const INTRO_ANEXO_DADOS = [
+  'Cada gráfico deste relatório foi desenhado a partir de uma tabela de números. Este anexo traz essas tabelas, ' +
+    'na ordem das figuras e com o mesmo título de cada gráfico, para quem quiser conferir os valores um a um.',
+  'Os números seguem o padrão brasileiro: o ponto separa os milhares e a vírgula separa os decimais. ' +
+    'Nos títulos das colunas, “1t” e “2t” querem dizer 1º e 2º turno, e “pct” quer dizer porcentagem.',
+  `Cada tabela vai também inteira, como planilha embutida neste PDF: abra pelo painel de anexos do leitor de PDF (ícone de clipe). ` +
+    `Quando a tabela tem mais de ${MAX_LINHAS_ANEXO} linhas, aqui aparecem só as ${MAX_LINHAS_ANEXO} primeiras.`,
+];
+
+/**
+ * Markdown do Anexo B a partir das figuras do documento ([{ abs, num, alt }], em ordem).
+ * Devolve { md, origem, planilhas, tabelas, avisos }; md é null se nenhum gráfico tiver planilha.
+ * `origem[i]` diz de que planilha e linha veio a linha i do markdown (para as mensagens de erro).
+ */
+export function montarAnexoDados(figuras, { lerArquivo = (abs) => readFileSync(abs), mapa = DADOS_DOS_GRAFICOS, maximo = MAX_LINHAS_ANEXO } = {}) {
+  const md = [];
+  const origem = [];
+  const add = (texto = '', onde = null) => {
+    md.push(texto);
+    origem.push(onde);
+  };
+  const avisos = [];
+  const planilhas = [];
+  const mostrada = new Map(); // planilha → figura em que a tabela já saiu
+  add('## Tabelas de dados');
+  for (const p of INTRO_ANEXO_DADOS) {
+    add();
+    add(p);
+  }
+  for (const f of figuras) {
+    const { csvs, faltando } = planilhasDoGrafico(f.abs, mapa);
+    for (const n of faltando) avisos.push(`Figura ${f.num} (${relRepo(f.abs)}): ligada à planilha ${n}, que não existe na pasta de dados`);
+    if (!csvs.length) {
+      avisos.push(`Figura ${f.num} (${relRepo(f.abs)}): gráfico sem planilha de dados; fica fora do Anexo B`);
+      continue;
+    }
+    add();
+    add(`### Figura ${f.num} — ${escaparMd(tituloDoGrafico(lerArquivo(f.abs).toString('utf8'), f.alt))}`);
+    for (const csv of csvs) {
+      add();
+      if (mostrada.has(csv)) {
+        add(`Os dados desta figura estão na mesma planilha da Figura ${mostrada.get(csv)}, mostrada acima.`);
+        continue;
+      }
+      mostrada.set(csv, f.num);
+      planilhas.push(csv);
+      const [cab = [], ...corpo] = lerCsv(lerArquivo(csv).toString('utf8'));
+      const n = cab.length;
+      const celula = (l, k) => l[k] ?? '';
+      const codigo = cab.map((c) => RE_COLUNA_CODIGO.test(c));
+      const numerica = cab.map((_, k) => corpo.some((l) => celula(l, k) !== '') && corpo.every((l) => celula(l, k) === '' || RE_NUMERO.test(celula(l, k))));
+      const mostradas = corpo.slice(0, maximo);
+      const faltam = corpo.length - mostradas.length;
+      add(`Planilha embutida neste PDF: \`${path.basename(csv)}\` (${numeroBr(String(corpo.length))} ${corpo.length === 1 ? 'linha' : 'linhas'}).`);
+      add();
+      const onde = `${relRepo(csv)}:1`;
+      add(`| ${cab.map((c) => escaparMd(tituloDeColuna(c))).join(' | ')} |`, onde);
+      add(`|${cab.map((_, k) => (numerica[k] ? '---:' : '---')).join('|')}|`, onde);
+      mostradas.forEach((l, i) => {
+        const cels = Array.from({ length: n }, (_, k) => escaparMd(codigo[k] ? celula(l, k) : numeroBr(celula(l, k))));
+        add(`| ${cels.join(' | ')} |`, `${relRepo(csv)}:${i + 2}`);
+      });
+      if (faltam > 0) {
+        add();
+        add(`… e mais ${numeroBr(String(faltam))} ${faltam === 1 ? 'linha' : 'linhas'} na planilha embutida no PDF.`);
+      }
+    }
+  }
+  add();
+  return { md: planilhas.length ? md.join('\n') : null, origem, planilhas, tabelas: planilhas.length, avisos };
+}
+
 // ------------------------------------------------------------------ navegador
 
 export function candidatosNavegador(env = process.env, plataforma = process.platform) {
@@ -374,6 +544,7 @@ function montarConversor({ peca, estado, ancoras, avisos, contexto }) {
       ? embutirSvg(conteudo.toString('utf8'), prefixo, alt)
       : `<img src="data:image/${path.extname(abs).slice(1)};base64,${conteudo.toString('base64')}" alt="${escaparHtml(alt)}">`;
     const num = peca.papel === 'topico' ? `${peca.numero}.${++estado.figurasTopico}` : String(estado.figuras);
+    estado.listaFiguras.push({ abs, num, alt });
     return `<figure class="grafico" data-imagem><figcaption data-ger>Figura ${num}</figcaption>${corpo}</figure>`;
   };
   const titulo = ({ nivel, html, plano, id }) => {
@@ -439,10 +610,11 @@ function converterTudo(lista, contexto) {
     tituloTopico: '',
     svgs: new Map(),
     foraDoRelatorio: [],
+    listaFiguras: [],
   };
   let chaveAtual = null;
   const saidas = [];
-  for (const peca of lista) {
+  const converterPeca = (peca) => {
     if (peca.chave !== chaveAtual) {
       chaveAtual = peca.chave;
       estado.figurasTopico = 0;
@@ -452,6 +624,18 @@ function converterTudo(lista, contexto) {
     const opcoes = montarConversor({ peca, estado, ancoras, avisos, contexto });
     const { html } = converter(peca.md, opcoes);
     saidas.push({ ...peca, html, tituloSecao: estado.tituloTopico });
+  };
+  for (const peca of lista) converterPeca(peca);
+  // Anexo B (só no relatório completo): a tabela de dados de cada gráfico, depois do glossário
+  let anexosDados = [];
+  if (contexto.anexoDados) {
+    const a = montarAnexoDados(estado.listaFiguras, { lerArquivo: contexto.lerArquivo });
+    for (const m of a.avisos) avisos.add(m);
+    if (a.md) {
+      anexosDados = a.planilhas;
+      const fonte = path.dirname(a.planilhas[0]);
+      converterPeca({ chave: 'anexo-b', fonte, md: a.md, prefixo: 'dados-', papel: 'anexo', letra: 'B', linha0: 0, origem: a.origem, paisagem: true });
+    }
   }
   // resumo sem título "# ": o gerador dá o nome
   if (lista.some((p) => p.papel === 'resumo') && !estado.sumario.some((e) => e.id === 'resumo')) {
@@ -467,7 +651,7 @@ function converterTudo(lista, contexto) {
         `tire o link ou troque por um tópico:\n- ${msgs.join('\n- ')}`,
     );
   }
-  return { saidas, sumario: estado.sumario, svgs: estado.svgs, avisos: [...avisos] };
+  return { saidas, sumario: estado.sumario, svgs: estado.svgs, avisos: [...avisos], anexosDados };
 }
 
 /** Número da linha (base 1) no arquivo de origem para a linha `i` (base 0) de uma peça. */
@@ -485,7 +669,9 @@ export function conferirProcesso(saidas, svgs, contexto) {
   const problemas = [];
   for (const p of saidas) {
     for (const a of acharReferenciasDeProcesso(linhasVisiveis(p.md))) {
-      problemas.push(`${relRepo(p.fonte)}:${linhaNoArquivo(p, a.linha - 1, contexto)}: "${a.achado}" em "${a.trecho}"`);
+      // peça gerada (Anexo B): a origem diz a planilha e a linha; o texto fixo do gerador não tem arquivo
+      const onde = p.origem ? p.origem[a.linha - 1] ?? `Anexo B (texto do gerador), linha ${a.linha}` : `${relRepo(p.fonte)}:${linhaNoArquivo(p, a.linha - 1, contexto)}`;
+      problemas.push(`${onde}: "${a.achado}" em "${a.trecho}"`);
     }
   }
   for (const [arquivo, svg] of svgs) {
@@ -584,7 +770,7 @@ function montarHtml({ saidas, sumario, meta, temAviso, capa = CAPA_COMPLETO, ass
       g.html += s.html;
       g.titulo ||= s.tituloSecao;
     } else {
-      grupos.push({ chave: s.chave, papel: s.papel, numero: s.numero, html: s.html, titulo: s.tituloSecao });
+      grupos.push({ chave: s.chave, papel: s.papel, numero: s.numero, html: s.html, titulo: s.tituloSecao, paisagem: s.paisagem });
     }
   }
   const paginas = [];
@@ -620,14 +806,22 @@ ${temAviso ? `<div><dt>Situação</dt><dd>${escaparHtml(AVISO_CAPA)}</dd></div>`
     }
     const nome = `p-${g.chave}`;
     const direita = g.papel === 'topico' ? `${g.numero} · ${g.titulo}` : g.titulo;
-    paginas.push({ nome, direita });
+    paginas.push({ nome, direita, paisagem: g.paisagem });
     const classe = g.papel === 'topico' ? 'topico' : g.papel === 'frente-titulada' ? 'frente' : 'anexo';
     corpo.push(`<section class="${classe}" id="${g.chave}">\n${g.html}</section>`);
   }
   const cssPaginas = paginas
     .map((p) => {
       const sel = p.nome === 'p-como-ler' ? '#como-ler' : p.nome === 'p-sumario' ? '#sumario' : `#${p.nome.slice(2)}`;
-      return `${sel}{page:${p.nome}}\n@page ${p.nome}{@top-right{content:${cssString(p.direita)}}}`;
+      const css = `${sel}{page:${p.nome}}\n@page ${p.nome}{${p.paisagem ? 'size:A4 landscape;' : ''}@top-right{content:${cssString(p.direita)}}}`;
+      if (!p.paisagem) return css;
+      // tabelas largas (Anexo B): página deitada e tabela compacta
+      return (
+        `${css}\n${sel} table.tabela{font-size:7pt;line-height:1.25}` +
+        `${sel} th,${sel} td{padding-left:3.5pt;padding-right:3.5pt}` +
+        `${sel} th:first-child,${sel} td:first-child{padding-left:0}` +
+        `${sel} th:last-child,${sel} td:last-child{padding-right:0}`
+      );
     })
     .join('\n');
   const rodape = `Versão ${meta.versaoCurta} · gerado em ${meta.data.curta}`;
@@ -991,10 +1185,12 @@ function contextoGit(pericia) {
 }
 
 /** Converte, confere, monta e grava um documento (e o PDF, se pedido). */
-async function produzir({ lista, contexto, meta, temAviso, capa, saida, nome, pdf, registrar, assinatura: opcoesAssinatura, anexos = [] }) {
+async function produzir({ lista, contexto, meta, temAviso, capa, saida, nome, pdf, registrar, assinatura: opcoesAssinatura, anexos: anexosDoTema = [] }) {
   // a linha da assinatura vai na capa: decide antes de montar o HTML
   const assinatura = pdf ? prepararAssinatura(opcoesAssinatura) : null;
-  const { saidas, sumario, svgs, avisos } = converterTudo(lista, contexto);
+  const { saidas, sumario, svgs, avisos, anexosDados } = converterTudo(lista, contexto);
+  // planilhas do Anexo B: embutidas no PDF pelo mesmo caminho dos anexos do tema
+  const anexos = [...anexosDoTema, ...anexosDados];
   const { problemas, total } = conferir(saidas);
   if (problemas.length) {
     throw new Error(`a conferência markdown × HTML falhou:\n- ${problemas.join('\n- ')}`);
@@ -1026,6 +1222,9 @@ async function produzir({ lista, contexto, meta, temAviso, capa, saida, nome, pd
     `Conferência .md × HTML: ${total.titulos} títulos, ${total.tabelas} tabelas, ${total.imagens} gráficos, ` +
       `${total.rotulos} rótulos, ${total.codigos} blocos de código, ${total.palavras} palavras — tudo presente.`,
   );
+  if (contexto.anexoDados) {
+    registrar(`Anexo B: ${anexosDados.length} ${anexosDados.length === 1 ? 'tabela de dados' : 'tabelas de dados'}`);
+  }
   for (const a of avisos) registrar(`Aviso: ${a}`);
   let resultadoPdf = null;
   if (pdf) {
@@ -1053,13 +1252,14 @@ async function produzir({ lista, contexto, meta, temAviso, capa, saida, nome, pd
     resultadoPdf.sha256 = await gravarSha256(pdfAbs);
     registrar(`SHA-256: ${relRepo(pdfAbs)}.sha256`);
   }
-  return { htmlAbs, total, avisos, pdf: resultadoPdf };
+  return { htmlAbs, total, avisos, anexosDados: anexosDados.map((a) => path.basename(a)), pdf: resultadoPdf };
 }
 
-/** Relatório completo: docs/pericia/NN-*.md. */
+/** Relatório completo: docs/pericia/NN-*.md, com o glossário (Anexo A) e as tabelas de dados dos gráficos (Anexo B). */
 export async function gerar({ pdf = false, saida = SAIDA, registrar = console.log, pericia = PERICIA, resumo, assinatura } = {}) {
   const fontes = await lerFontes({ pericia, resumo });
   const { contexto, meta } = contextoGit(pericia);
+  contexto.anexoDados = true;
   return produzir({
     lista: pecas(fontes),
     contexto,

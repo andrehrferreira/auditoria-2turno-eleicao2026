@@ -6,7 +6,9 @@ import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 import {
+  DADOS_DOS_GRAFICOS,
   EXCECOES_PROCESSO,
+  MAX_LINHAS_ANEXO,
   RE_PROCESSO,
   acharReferenciasDeProcesso,
   dadosDoCertificado,
@@ -16,8 +18,13 @@ import {
   gerar,
   gerarTema,
   gerarTemas,
+  lerCsv,
   localizarNavegador,
+  montarAnexoDados,
+  numeroBr,
+  planilhasDoGrafico,
   prepararAssinatura,
+  tituloDeColuna,
   validarAssinatura,
 } from '../scripts/relatorio/gerar.mjs';
 import {
@@ -230,13 +237,14 @@ const SVG_FIXO =
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" width="100" height="50"><style>.b{fill:#2a78d6}</style>\n' +
   '<rect class="b" width="40" height="20"/>\n<text x="1" y="45">Fonte: arquivos oficiais do TSE</text>\n</svg>';
 
-async function montarPericia(base, { readme = README_FIXO, topicos = {}, svg = SVG_FIXO } = {}) {
+async function montarPericia(base, { readme = README_FIXO, topicos = {}, svg = SVG_FIXO, dados = {} } = {}) {
   const pericia = path.join(base, 'pericia');
-  await mkdir(path.join(pericia, 'graficos'), { recursive: true });
+  await mkdir(path.join(pericia, 'graficos', 'dados'), { recursive: true });
   await mkdir(path.join(pericia, 'temas'), { recursive: true });
   await writeFile(path.join(pericia, 'README.md'), readme);
   for (const [nome, md] of Object.entries({ ...TOPICOS_FIXOS, ...topicos })) await writeFile(path.join(pericia, nome), md);
   await writeFile(path.join(pericia, 'graficos', 'g.svg'), svg);
+  for (const [nome, csv] of Object.entries(dados)) await writeFile(path.join(pericia, 'graficos', 'dados', nome), csv);
   return pericia;
 }
 
@@ -647,6 +655,118 @@ test('README sem o parágrafo "Registro de evidências" também é aceito', asyn
   assert.match(await readFile(r.htmlAbs, 'utf8'), /<section class="anexo" id="anexo-a">/);
 });
 
+// ------------------------------------------------------------------ Anexo B (tabelas de dados dos gráficos)
+
+const CSV_FIXO = 'modelo_urna,local_da_secao,pacotes_com_falha,pct\n2020,"São Paulo, SP",1234567,12.5\n2013,AC,0,0.25\n';
+
+test('Anexo B: leitura do CSV, títulos de coluna e números no padrão brasileiro', () => {
+  assert.deepEqual(lerCsv('﻿a,b\r\n1,"x, ""y"""\r\n\r\n'), [['a', 'b'], ['1', 'x, "y"']]);
+  assert.deepEqual(lerCsv('a,b\n1,2'), [['a', 'b'], ['1', '2']]);
+  assert.equal(tituloDeColuna('secoes_registradas_2t'), 'Secoes registradas 2t');
+  assert.equal(tituloDeColuna('uf'), 'Uf');
+  assert.equal(numeroBr('158745079'), '158.745.079');
+  assert.equal(numeroBr('1876'), '1.876');
+  assert.equal(numeroBr('34.90'), '34,90');
+  assert.equal(numeroBr('1234567.0418'), '1.234.567,0418');
+  assert.equal(numeroBr('-2.8'), '-2,8');
+  assert.equal(numeroBr('0'), '0');
+  // texto, código com zero à esquerda, data e hora ficam como estão
+  for (const v of ['0254', 'nº 7062', '2026-07-18', '17:30', 'AC UE2020', '11 de 11', '']) assert.equal(numeroBr(v), v);
+});
+
+test('Anexo B: ligação gráfico → planilha conferida contra os arquivos de docs/pericia/graficos', () => {
+  const graficos = path.join(import.meta.dirname, '..', 'docs', 'pericia', 'graficos');
+  for (const [svg, csvs] of Object.entries(DADOS_DOS_GRAFICOS)) {
+    assert.ok(existsSync(path.join(graficos, svg)), `gráfico da lista não existe: ${svg}`);
+    assert.ok(csvs.length > 0, svg);
+    for (const c of csvs) assert.ok(existsSync(path.join(graficos, 'dados', c)), `${svg} → ${c}: planilha não existe`);
+    assert.deepEqual(planilhasDoGrafico(path.join(graficos, svg)).faltando, [], svg);
+  }
+});
+
+test('relatório completo: Anexo B depois do glossário, com título da figura e tabela formatada, sem caminho', async (t) => {
+  const dir = await diretorioTemporario(t);
+  const pericia = await montarPericia(dir, { dados: { 'g.csv': CSV_FIXO } });
+  const msgs = [];
+  const r = await gerar({ pericia, saida: path.join(dir, 'saida'), registrar: (m) => msgs.push(m) });
+  const doc = await readFile(r.htmlAbs, 'utf8');
+  assert.deepEqual(r.anexosDados, ['g.csv']);
+  assert.ok(msgs.includes('Anexo B: 1 tabela de dados'));
+  assert.ok(!msgs.some((m) => /^Aviso:/.test(m)), msgs.join('\n'));
+  assert.ok(doc.indexOf('id="anexo-a"') < doc.indexOf('<section class="anexo" id="anexo-b">'), 'Anexo B depois do Anexo A');
+  const b = doc.slice(doc.indexOf('<section class="anexo" id="anexo-b">'));
+  assert.match(b, /<p class="sobretitulo" data-ger>Anexo B<\/p><h1 id="dados-tabelas-de-dados" class="titulo-secao">Tabelas de dados<\/h1>/);
+  // título = número da figura + título do gráfico (sem <title> no SVG, o texto alternativo)
+  assert.match(b, /<h3 id="[^"]+">Figura 1\.1 — Gráfico de exemplo<\/h3>/);
+  assert.match(b, /Planilha embutida neste PDF: <code>g\.<wbr>csv<\/code> \(2 linhas\)/);
+  assert.match(b, /<thead><tr><th class="d">Modelo urna<\/th><th>Local da secao<\/th><th class="d">Pacotes com falha<\/th><th class="d">Pct<\/th><\/tr><\/thead>/);
+  assert.match(b, /<tr><td class="d">2020<\/td><td>São Paulo, SP<\/td><td class="d">1\.234\.567<\/td><td class="d">12,5<\/td><\/tr>/);
+  assert.match(b, /<td class="d">0,25<\/td>/);
+  assert.doesNotMatch(b, /e mais \d+ linha/);
+  // sumário, página deitada e nada de caminho
+  assert.match(doc, /<li class="sum-1 sum-anexo"><a href="#anexo-b"><span class="num">Anexo B<\/span><span class="texto">Tabelas de dados<\/span>/);
+  assert.match(doc, /#anexo-b\{page:p-anexo-b\}\n@page p-anexo-b\{size:A4 landscape;@top-right\{content:"Anexo B · Tabelas de dados"\}\}/);
+  assert.doesNotMatch(b, /graficos\/|dados\/|pericia/);
+  // a conferência .md × HTML conta a tabela do anexo
+  assert.equal(r.total.tabelas, 3);
+  // o relatório temático não leva o Anexo B
+  const tema = await gerarTema({ arquivo: await montarTema(path.join(dir, 'tema'), TEMA), saida: path.join(dir, 'tema', 'saida'), registrar: semRegistro });
+  assert.doesNotMatch(await readFile(tema.htmlAbs, 'utf8'), /anexo-b|Anexo B/);
+});
+
+test('Anexo B: tabela com mais de 60 linhas mostra as 60 primeiras e diz quantas faltam', async (t) => {
+  const dir = await diretorioTemporario(t);
+  const linhas = Array.from({ length: MAX_LINHAS_ANEXO + 1234 }, (_, i) => `${i + 1},${(i + 1) * 1000}`);
+  const pericia = await montarPericia(dir, { dados: { 'g.csv': `linha,votos\n${linhas.join('\n')}\n` } });
+  const r = await gerar({ pericia, saida: path.join(dir, 'saida'), registrar: semRegistro });
+  const b = (await readFile(r.htmlAbs, 'utf8')).split('id="anexo-b"')[1];
+  const corpo = b.slice(b.indexOf('<tbody>'), b.indexOf('</tbody>'));
+  assert.equal((corpo.match(/<tr>/g) ?? []).length, MAX_LINHAS_ANEXO);
+  assert.match(corpo, /<td class="d">60<\/td><td class="d">60\.000<\/td><\/tr>\n$/);
+  assert.match(b, /\(1\.294 linhas\)/);
+  assert.match(b, /<p>… e mais 1\.234 linhas na planilha embutida no PDF\.<\/p>/);
+});
+
+test('Anexo B: gráfico sem planilha gera aviso (não falha) e fica fora do anexo', async (t) => {
+  const dir = await diretorioTemporario(t);
+  const pericia = await montarPericia(dir);
+  const msgs = [];
+  const r = await gerar({ pericia, saida: path.join(dir, 'saida'), registrar: (m) => msgs.push(m) });
+  assert.ok(msgs.some((m) => /^Aviso: Figura 1\.1 \(.*g\.svg\): gráfico sem planilha de dados; fica fora do Anexo B$/.test(m)), msgs.join('\n'));
+  assert.ok(msgs.includes('Anexo B: 0 tabelas de dados'));
+  assert.deepEqual(r.anexosDados, []);
+  assert.doesNotMatch(await readFile(r.htmlAbs, 'utf8'), /id="anexo-b"/);
+  // ligação explícita para planilha que não existe: aviso com o nome; a outra planilha da lista entra
+  const svg = path.join(pericia, 'graficos', 'g.svg');
+  await writeFile(path.join(pericia, 'graficos', 'dados', 'existe.csv'), 'a\n1\n');
+  const a = montarAnexoDados([{ abs: svg, num: '2.3', alt: 'G' }], { mapa: { 'g.svg': ['sumiu.csv', 'existe.csv'] } });
+  assert.equal(a.tabelas, 1);
+  assert.match(a.avisos.join('\n'), /^Figura 2\.3 \(.*g\.svg\): ligada à planilha sumiu\.csv, que não existe na pasta de dados$/);
+  const nenhuma = montarAnexoDados([{ abs: svg, num: '2.3', alt: 'G' }], { mapa: { 'g.svg': ['sumiu.csv'] } });
+  assert.equal(nenhuma.md, null);
+  assert.equal(nenhuma.avisos.length, 2);
+});
+
+test('Anexo B: dois gráficos da mesma planilha mostram a tabela uma vez', async (t) => {
+  const dir = await diretorioTemporario(t);
+  const pericia = await montarPericia(dir, { dados: { 'g.csv': CSV_FIXO } });
+  const svg = path.join(pericia, 'graficos', 'g.svg');
+  const a = montarAnexoDados([{ abs: svg, num: '1.1', alt: 'Um' }, { abs: svg, num: '3.2', alt: 'Dois' }]);
+  assert.equal(a.tabelas, 1);
+  assert.equal((a.md.match(/^\|---/gm) ?? []).length, 1);
+  assert.match(a.md, /### Figura 3\.2 — Dois\n\nOs dados desta figura estão na mesma planilha da Figura 1\.1, mostrada acima\./);
+});
+
+test('Anexo B: referência do processo numa célula da planilha faz a geração falhar com planilha e linha', async (t) => {
+  const dir = await diretorioTemporario(t);
+  const pericia = await montarPericia(dir, { dados: { 'g.csv': 'medida,valor\nseções,10\nconferido em docs/analysis/x,1\n' } });
+  await assert.rejects(gerar({ pericia, saida: dir, registrar: semRegistro }), (e) => {
+    assert.match(e.message, /referências do processo da auditoria/);
+    assert.match(e.message, /g\.csv:3: "docs\/" em/);
+    return true;
+  });
+});
+
 // ------------------------------------------------------------------ anexos do tema (planilhas embutidas no PDF)
 
 const TEM_FITZ = spawnSync(PYTHON, ['-c', 'import fitz'], { encoding: 'utf8' }).status === 0;
@@ -704,6 +824,19 @@ test(
     const doc = await readFile(r.htmlAbs, 'utf8');
     assert.match(doc, /<dt>Anexos<\/dt><dd><span class="digital">urnas-exemplo\.csv<\/span>\.<span class="capa-nota">[^<]*painel de anexos/);
     assert.doesNotMatch(doc, /certificado-exemplo\/anexos|temas\//);
+  },
+);
+
+test(
+  'relatório completo em PDF: planilhas do Anexo B embutidas como anexos',
+  { skip: (!NAVEGADOR && 'sem Chrome/Edge') || (!TEM_FITZ && 'sem PyMuPDF') },
+  async (t) => {
+    const dir = await diretorioTemporario(t);
+    const pericia = await montarPericia(dir, { dados: { 'g.csv': CSV_FIXO } });
+    const r = await gerar({ pericia, pdf: true, saida: path.join(dir, 'saida'), assinatura: { pasta: path.join(dir, 'sem-chave') }, registrar: semRegistro });
+    assert.deepEqual(r.pdf.anexos, ['g.csv']);
+    assert.equal(lerAnexosPdf(path.join(dir, 'saida', 'relatorio.pdf'))['g.csv'], CSV_FIXO);
+    assert.match(await readFile(r.htmlAbs, 'utf8'), /<dt>Anexos<\/dt><dd><span class="digital">g\.csv<\/span>/);
   },
 );
 
