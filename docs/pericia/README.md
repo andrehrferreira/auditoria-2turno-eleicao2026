@@ -26,6 +26,8 @@ Toda afirmação traz um destes rótulos:
 
 **Versão para impressão:** `npm run relatorio:pdf` gera, a partir destes arquivos, o relatório completo em `docs/relatorio/relatorio.pdf` (e `npm run relatorio`, só o HTML); o texto continua sendo editado aqui.
 
+**Comece pelo resumo:** [os principais achados](resumo.md), em poucas páginas: o que foi conferido e bate, as brechas encontradas, o que não dá para afirmar e o que está pendente. Ele não traz número novo; cada número remete ao tópico onde está.
+
 ## Tópicos
 
 | # | Tópico | Pergunta que responde | Situação |
