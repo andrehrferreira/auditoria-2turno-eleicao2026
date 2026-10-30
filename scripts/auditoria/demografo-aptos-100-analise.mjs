@@ -87,10 +87,12 @@ function popEst(l, Y, a) {
     return s + p10(l, x) * sobrev(x, k, f);
   }, 0);
 }
-const tetoDe = (l, Y, a, base) => { // base 2010 ou 2022; ninguém morre; 100+ abre a coorte inteira
-  const k = Y - base; const P = base === 2010 ? p10 : p22;
-  if (a < 100) return P(l, a - k);
-  let s = 0; for (let x = 100 - k; x <= 100; x++) s += P(l, x); return s;
+// Teto sem mortes, janela ESTRITA (parecer cético 44): o Censo conta a idade em 31/07 e a eleição é em outubro, então
+// quem tem a anos na data de referência da idade (qualquer data de agosto a dezembro do ano Y) tinha a−k ou a−k−1 no Censo.
+// Faixa [a0, a1] em Y ← idades [a0−k−1, a1−k] no Censo; 100+ ← (99−k)+. Ninguém morre e ninguém migra.
+const tetoFaixa = (l, Y, f, base) => {
+  const k = Y - base; const P = base === 2010 ? p10 : p22; const [a0, a1] = FAIXA_IDADES[f];
+  const fim = a1 === 100 ? 100 : a1 - k; let s = 0; for (let x = a0 - k - 1; x <= fim; x++) s += P(l, x); return s;
 };
 const somaF = (fn, f) => { const [a0, a1] = FAIXA_IDADES[f]; let s = 0; for (let a = a0; a <= a1; a++) s += fn(a); return s; };
 
@@ -101,8 +103,8 @@ R.fatorMortalidade = Object.fromEntries([...FATOR].map(([k, v]) => [k, +v.toFixe
 }
 const POP = (l) => Object.fromEntries(ANOS.map((Y) => [Y, Object.fromEntries(FX.map((f) => {
   const est = Math.round(somaF((a) => popEst(l, Y, a), f));
-  const t10 = somaF((a) => tetoDe(l, Y, a, 2010), f);
-  const t22 = Y > 2022 ? somaF((a) => tetoDe(l, Y, a, 2022), f) : null;
+  const t10 = tetoFaixa(l, Y, f, 2010);
+  const t22 = Y > 2022 ? tetoFaixa(l, Y, f, 2022) : Y === 2022 && f === '100+' ? p22(l, 99) + p22(l, 100) : null; // 2022: mesmo ano, 99 e 100+
   return [f, { aptos: ap(Y, f, l === 'BR' ? null : l), populacaoEstimada: est, tetoSemMortesCenso2010: t10, tetoSemMortesCenso2022: t22 }];
 }))]));
 R.populacaoBrasil = POP('BR');
@@ -140,6 +142,27 @@ R.fluxoCoortesBrasil = {};
 for (const Y of [2014, 2018, 2022]) for (const N of [86, 91, 96]) for (const modo of ['populacao', 'uniforme']) {
   (R.fluxoCoortesBrasil[`${Y}->${Y + 4}`] ??= {})[`${N}+ (${modo})`] = coorte('BR', Y, N, modo);
 }
+// sensibilidade da decomposição de 2018 → 2022 à mortalidade (parecer cético 44): vivos da geração em 2018 =
+// (Censo 2022 de 100+ mais de 0 a 1/6 dos de 99 anos) ÷ (1 − q)^4; títulos da geração em 2018 = 100+ mais de 67% a 85%
+// dos 95–99 (a idade de 95 anos com 15% a 33% da faixa). Estoque em 2018 = títulos − vivos; mortes não baixadas
+// (líquido) = 100+ de 2022 − (títulos de 2018 − mortes), mortes = vivos 2018 − vivos 2022.
+{
+  const t2018 = [ap(2018, '100+') + 0.67 * ap(2018, '95-99'), ap(2018, '100+') + 0.85 * ap(2018, '95-99')];
+  const viv22 = [p22('BR', 100), p22('BR', 100) + p22('BR', 99) / 6]; const fim = ap(2022, '100+');
+  R.sensibilidadeDecomposicao2018_2022 = { titulosDaGeracao2018: t2018.map(Math.round), aptos100_2022: fim, porMortalidadeAnual: Object.fromEntries([0.20, 0.25, 0.28, 0.30, 0.35].map((qq) => {
+    const s4 = (1 - qq) ** 4; const viv18 = viv22.map((v) => v / s4);
+    const est = [t2018[0] - viv18[1], t2018[1] - viv18[0]];
+    const naoBaixadas = [fim - (t2018[1] - (viv18[0] - viv22[0])), fim - (t2018[0] - (viv18[1] - viv22[1]))];
+    return [`${Math.round(qq * 100)}%`, { vivos2018: viv18.map(Math.round), estoque2018: est.map(Math.round), mortesNaoBaixadas: naoBaixadas.map(Math.round), fimSeSoAsMortesSaissem: [Math.round(t2018[0] - (viv18[1] - viv22[1])), Math.round(t2018[1] - (viv18[0] - viv22[0]))] }];
+  })) };
+}
+// teste sem Censo (parecer cético 44): a faixa que recebe o estoque ganha títulos e quase nenhum votante (série do doc 09)
+{
+  const s = ler(path.join(OUT, 'salto-85-99-resumo.json')).serie;
+  R.titulosXVotantes = Object.fromEntries(['95-99', '100+'].map((f) => [f, Object.fromEntries(ANOS.map((a) => [a, { aptos: s[f][`${a}-1t`].aptos, votantes: s[f][`${a}-1t`].votantes, taxa: s[f][`${a}-1t`].taxa }]))]));
+  const d = (f, a, b) => ({ titulos: s[f][`${b}-1t`].aptos - s[f][`${a}-1t`].aptos, votantes: s[f][`${b}-1t`].votantes - s[f][`${a}-1t`].votantes });
+  R.titulosXVotantes.variacoes = { '95-99 2014->2018': d('95-99', 2014, 2018), '100+ 2018->2022': d('100+', 2018, 2022), '100+ 2022->2026': d('100+', 2022, 2026) };
+}
 
 // ---------- (5) UF: série, população, biometria de 2026 (perfil por seção somado), degrau
 const perfMun = new Map(); const perfUf = new Map();
@@ -147,8 +170,8 @@ for (const f of readdirSync(path.join(OUT, 'perfil'))) {
   const L = readFileSync(path.join(OUT, 'perfil', f), 'utf8').trimEnd().split('\n'); const ix = Object.fromEntries(L[0].split('\t').map((n, i) => [n, i]));
   for (const l of L.slice(1)) {
     const c = l.split('\t'); if (c[0] === 'zz') continue;
-    const v = ['f90_99', 'sembio_f90_99', 'f100', 'sembio_f100'].map((n) => Number(c[ix[n]]));
-    for (const [m, k] of [[perfMun, `${c[0].toUpperCase()}|${c[1]}`], [perfUf, c[0].toUpperCase()]]) { const a = m.get(k) ?? m.set(k, [0, 0, 0, 0]).get(k); v.forEach((x, i) => { a[i] += x; }); }
+    const v = ['f90_99', 'sembio_f90_99', 'f100', 'sembio_f100', 'f70_79', 'sembio_f70_79'].map((n) => Number(c[ix[n]]));
+    for (const [m, k] of [[perfMun, `${c[0].toUpperCase()}|${c[1]}`], [perfUf, c[0].toUpperCase()]]) { const a = m.get(k) ?? m.set(k, [0, 0, 0, 0, 0, 0]).get(k); v.forEach((x, i) => { a[i] += x; }); }
   }
 }
 const sb90 = (pf) => (pf && pf[0] + pf[2] ? (pf[1] + pf[3]) / (pf[0] + pf[2]) : null); // sem biometria entre os aptos de 90+ (2026)
@@ -203,6 +226,11 @@ R.ufConcentracaoDelta100_2018_2022 = { total: totDeltaUf, maiores: deltaUf.slice
   const W = xs.reduce((s, x) => s + x[2], 0); const mx = xs.reduce((s, x) => s + x[2] * x[0], 0) / W; const my = xs.reduce((s, x) => s + x[2] * x[1], 0) / W;
   const cov = xs.reduce((s, x) => s + x[2] * (x[0] - mx) * (x[1] - my), 0); const vx = xs.reduce((s, x) => s + x[2] * (x[0] - mx) ** 2, 0); const vy = xs.reduce((s, x) => s + x[2] * (x[1] - my) ** 2, 0);
   R.correlacaoUfSemBio90XRazao100 = r3(cov / Math.sqrt(vx * vy));
+  // a mesma correlação com uma medida que não contém os títulos de 90+: sem biometria entre 70 e 79 anos (parecer cético 44)
+  const ys = UFS.map((u) => { const pf = perfUf.get(u); return [pf[5] / pf[4], R.uf[u].razao100_2022, ap(2022, '90-94', u) + ap(2022, '95-99', u) + ap(2022, '100+', u)]; });
+  const W2 = ys.reduce((s, x) => s + x[2], 0); const mx2 = ys.reduce((s, x) => s + x[2] * x[0], 0) / W2; const my2 = ys.reduce((s, x) => s + x[2] * x[1], 0) / W2;
+  const c2 = ys.reduce((s, x) => s + x[2] * (x[0] - mx2) * (x[1] - my2), 0); const v2x = ys.reduce((s, x) => s + x[2] * (x[0] - mx2) ** 2, 0); const v2y = ys.reduce((s, x) => s + x[2] * (x[1] - my2) ** 2, 0);
+  R.correlacaoUfSemBio70_79XRazao100 = r3(c2 / Math.sqrt(v2x * v2y));
 }
 
 // ---------- (5) município: tetos sem mortes (Censo 2010 e 2022), concentração, biometria de 2026
@@ -219,22 +247,23 @@ for (const f of ['censo2022-9514-idade-b.json', 'censo2022-9514-idade-c.json']) 
 }
 const s10 = (m, a0, a1) => { let s = 0; for (let a = a0; a <= a1; a++) s += m.get(a) ?? 0; return s; };
 const chaves = new Set(ANOS.flatMap((a) => Object.keys(B.municipio[a])));
-const munTsv = ['uf\tmunicipio_tse\tibge\tnome\taptos95_99_2014\taptos95_99_2018\taptos95_99_2022\taptos95_99_2026\taptos100_2014\taptos100_2018\taptos100_2022\taptos100_2026\tcenso2010_88mais\tcenso2010_92mais\tcenso2010_96mais\tcenso2010_87_91\tcenso2010_91_95\tcenso2022_100\tcenso2022_96mais\tsembio90mais_2026_pct\tsembio100_2026_pct'];
-const testes = { '2014: 95–99 > Censo 2010 91–95': [], '2014: 100+ > Censo 2010 96+': [], '2018: 95–99 > Censo 2010 87–91': [], '2018: 100+ > Censo 2010 92+': [], '2022: 100+ > Censo 2010 88+': [], '2022: 100+ > Censo 2022 100+': [], '2026: 100+ > Censo 2022 96+': [] };
+const munTsv = ['uf\tmunicipio_tse\tibge\tnome\taptos95_99_2014\taptos95_99_2018\taptos95_99_2022\taptos95_99_2026\taptos100_2014\taptos100_2018\taptos100_2022\taptos100_2026\tcenso2010_87mais\tcenso2010_91mais\tcenso2010_95mais\tcenso2010_86_91\tcenso2010_90_95\tcenso2022_100\tcenso2022_95mais\tsembio90mais_2026_pct\tsembio100_2026_pct'];
+// janelas estritas (parecer cético 44): a faixa de Y recebe as idades a−k e a−k−1 do Censo de 31/07
+const testes = { '2014: 95–99 > Censo 2010 90–95': [], '2014: 100+ > Censo 2010 95+': [], '2018: 95–99 > Censo 2010 86–91': [], '2018: 100+ > Censo 2010 91+': [], '2022: 100+ > Censo 2010 87+': [], '2026: 100+ > Censo 2022 95+': [] };
 const muns = []; let semIbge = 0; let sem2010 = 0;
 for (const km of chaves) {
   const info = infoMun.get(km); const ib = info?.codigo_ibge; if (!ib) semIbge++;
   const m10 = ib ? c10.get(ib) : null; const m22 = ib ? c22.get(ib) : null; if (ib && !m10) sem2010++;
   const A = (a, f) => B.municipio[a][km]?.[f] ?? 0;
   const pf = perfMun.get(km);
-  const x = { km, nome: info?.nome ?? '', ibge: ib ?? '', a95: ANOS.map((a) => A(a, '95-99')), a100: ANOS.map((a) => A(a, '100+')), sb: sb90(pf), sb100: pf && pf[2] ? pf[3] / pf[2] : null, apt90_2026: pf ? pf[0] + pf[2] : 0 };
-  if (m10) Object.assign(x, { t88: s10(m10, 88, 100), t92: s10(m10, 92, 100), t96: s10(m10, 96, 100), t87_91: s10(m10, 87, 91), t91_95: s10(m10, 91, 95) });
-  if (m22) Object.assign(x, { c100: m22.g100 ?? 0, c96: (m22.g95_99 ?? 0) - (m22.s95 ?? 0) + (m22.g100 ?? 0) });
+  const x = { km, nome: info?.nome ?? '', ibge: ib ?? '', a95: ANOS.map((a) => A(a, '95-99')), a100: ANOS.map((a) => A(a, '100+')), sb: sb90(pf), sb100: pf && pf[2] ? pf[3] / pf[2] : null, sb70: pf && pf[4] ? pf[5] / pf[4] : null, apt90_2026: pf ? pf[0] + pf[2] : 0 };
+  if (m10) Object.assign(x, { t87: s10(m10, 87, 100), t91: s10(m10, 91, 100), t95: s10(m10, 95, 100), t86_91: s10(m10, 86, 91), t90_95: s10(m10, 90, 95) });
+  if (m22) Object.assign(x, { c100: m22.g100 ?? 0, c95: (m22.g95_99 ?? 0) + (m22.g100 ?? 0) });
   const t = (nome, v, teto) => { if (teto !== undefined && v > teto) testes[nome].push({ municipio: `${x.nome}/${km.split('|')[0]}`, aptos: v, teto, excesso: v - teto }); };
-  if (m10) { t('2014: 95–99 > Censo 2010 91–95', x.a95[0], x.t91_95); t('2014: 100+ > Censo 2010 96+', x.a100[0], x.t96); t('2018: 95–99 > Censo 2010 87–91', x.a95[1], x.t87_91); t('2018: 100+ > Censo 2010 92+', x.a100[1], x.t92); t('2022: 100+ > Censo 2010 88+', x.a100[2], x.t88); }
-  if (m22) { t('2022: 100+ > Censo 2022 100+', x.a100[2], x.c100); t('2026: 100+ > Censo 2022 96+', x.a100[3], x.c96); }
+  if (m10) { t('2014: 95–99 > Censo 2010 90–95', x.a95[0], x.t90_95); t('2014: 100+ > Censo 2010 95+', x.a100[0], x.t95); t('2018: 95–99 > Censo 2010 86–91', x.a95[1], x.t86_91); t('2018: 100+ > Censo 2010 91+', x.a100[1], x.t91); t('2022: 100+ > Censo 2010 87+', x.a100[2], x.t87); }
+  if (m22) t('2026: 100+ > Censo 2022 95+', x.a100[3], x.c95);
   muns.push(x);
-  munTsv.push([...km.split('|'), x.ibge, x.nome, ...x.a95, ...x.a100, x.t88 ?? '', x.t92 ?? '', x.t96 ?? '', x.t87_91 ?? '', x.t91_95 ?? '', x.c100 ?? '', x.c96 ?? '', x.sb === null ? '' : +(100 * x.sb).toFixed(2), x.sb100 === null ? '' : +(100 * x.sb100).toFixed(2)].join('\t'));
+  munTsv.push([...km.split('|'), x.ibge, x.nome, ...x.a95, ...x.a100, x.t87 ?? '', x.t91 ?? '', x.t95 ?? '', x.t86_91 ?? '', x.t90_95 ?? '', x.c100 ?? '', x.c95 ?? '', x.sb === null ? '' : +(100 * x.sb).toFixed(2), x.sb100 === null ? '' : +(100 * x.sb100).toFixed(2)].join('\t'));
 }
 R.municipioTestesTeto = { municipios: chaves.size, semCodigoIbge: semIbge, semCenso2010: sem2010,
   testes: Object.fromEntries(Object.entries(testes).map(([k, v]) => [k, { municipios: v.length, excessoSomado: v.reduce((s, y) => s + y.excesso, 0), maiores: v.sort((a, b) => b.excesso - a.excesso).slice(0, 12) }])) };
@@ -246,16 +275,22 @@ R.municipioTestesTeto = { municipios: chaves.size, semCodigoIbge: semIbge, semCe
     parcela10: pct(ac(10), tot), parcela100: pct(ac(100), tot), parcela1000: pct(ac(1000), tot),
     maiores: d.slice(0, 15).map((y) => ({ municipio: `${y.x.nome}/${y.x.km.split('|')[0]}`, aptos100_2018: y.x.a100[1], aptos100_2022: y.x.a100[2], censo2022_100: y.x.c100 ?? null, semBio90mais2026: y.x.sb === null ? null : +(100 * y.x.sb).toFixed(1) })) };
 }
-// grupos de município pela parcela sem biometria entre os aptos de 90+ em 2026 (proxy de revisão biométrica)
+// municípios pela parcela sem biometria entre 70 e 79 anos (medida que não contém os títulos de 90+)
+{
+  const acima = muns.filter((x) => x.sb70 !== null && x.sb70 > 0.10); const resto = muns.filter((x) => !(x.sb70 !== null && x.sb70 > 0.10));
+  const t26 = muns.reduce((s, x) => s + x.a100[3], 0); const sm = (a, i) => a.reduce((s, x) => s + x.a100[i], 0);
+  R.municipioSemBio70_79 = { municipiosAcimaDe10pct: acima.length, aptos100_2026: sm(acima, 3), parcela100_2026: pct(sm(acima, 3), t26), demais: { municipios: resto.length, aptos100_2022: sm(resto, 2), aptos100_2026: sm(resto, 3) } };
+}
+// grupos de município pela parcela sem biometria entre os aptos de 90+ em 2026 (medida endógena: contém os próprios títulos)
 {
   const G = [['até 5%', (v) => v <= 0.05], ['5% a 25%', (v) => v > 0.05 && v <= 0.25], ['25% a 75%', (v) => v > 0.25 && v < 0.75], ['75% ou mais', (v) => v >= 0.75]];
   R.municipioGruposBiometria = G.map(([nome, f]) => {
     const a = muns.filter((x) => x.sb !== null && f(x.sb)); const s = (fn) => a.reduce((t, x) => t + (fn(x) ?? 0), 0);
     const o = { grupo: nome, municipios: a.length, aptos90mais2026: s((x) => x.apt90_2026) };
     for (const [i, Y] of ANOS.entries()) { o[`aptos95_99_${Y}`] = s((x) => x.a95[i]); o[`aptos100_${Y}`] = s((x) => x.a100[i]); }
-    o.censo2022_100 = s((x) => x.c100); o.censo2010_88mais = s((x) => x.t88); o.censo2022_96mais = s((x) => x.c96);
-    o.razao100_2018_sobre_censo2010_92mais = r3(o.aptos100_2018 / s((x) => x.t92)); o.razao100_2022_sobre_censo2022 = r3(o.aptos100_2022 / o.censo2022_100);
-    o.razao100_2026_sobre_censo2022_96mais = r3(o.aptos100_2026 / o.censo2022_96mais);
+    o.censo2022_100 = s((x) => x.c100); o.censo2010_87mais = s((x) => x.t87); o.censo2022_95mais = s((x) => x.c95);
+    o.razao100_2018_sobre_censo2010_91mais = r3(o.aptos100_2018 / s((x) => x.t91)); o.razao100_2022_sobre_censo2022 = r3(o.aptos100_2022 / o.censo2022_100);
+    o.razao100_2026_sobre_censo2022_95mais = r3(o.aptos100_2026 / o.censo2022_95mais);
     o.crescimento100_2018_2022 = r3(o.aptos100_2022 / o.aptos100_2018); o.crescimento100_2022_2026 = r3(o.aptos100_2026 / o.aptos100_2022);
     o.degrau95_2014 = r3(o.aptos95_99_2014 / s((x) => B.municipio[2014][x.km]?.['90-94'] ?? 0)); o.degrau100_2018 = r3(o.aptos100_2018 / o.aptos95_99_2018);
     return o;
