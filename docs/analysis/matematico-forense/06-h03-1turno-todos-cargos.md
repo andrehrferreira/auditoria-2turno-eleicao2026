@@ -180,9 +180,9 @@ No cenário, cada número omitido conta para o seu candidato e para a agremiaç�
 - **Proporcionais sem efeito.** O maior omitido é o RJ dep. federal nº 7062, com 23.684 votos (12,5% do quociente). O partido dele (70) teve 159.772 votos e nenhuma vaga.
   - Mesmo sem o omitido, a média do 70 já superava a menor média vencedora (158.682). O partido ficou fora porque nenhum candidato dele chegou a 20% do quociente (38.016). O mais votado teve 32.149.
   - O nº 7062 também não chega a 20%. Com ele, o 70 continua sem vaga.
-  - Nos outros pares, o maior omitido fica abaixo de 1,0% do quociente.
+  - Nos outros pares, o maior omitido fica abaixo de 1,0% do quociente (o maior deles é o CE nº 1300, com 0,98%, que o CSV arredonda para "1.0%").
+- **Governador perto do limite com `vnt`:** DF, 49,990%, faltaram 168 votos. O DF tem `vnt` de 8.456 votos (nº 55): anular 335 votos válidos de outros candidatos bastaria para o nº 11 vencer no 1º turno (parecer cético [26](../cetico-revisor/26-h03-1turno-todos-cargos.md)). Correção: uma versão anterior punha o DF na lista abaixo, "sem `vnt`".
 - **Governadores perto do limite, sem `vnt`** (não dependem da classificação, mas qualquer reclassificação futura pesaria):
-  - DF: 49,990%, faltaram 168 votos;
   - PR: 50,109%, 6.773 votos acima do mínimo;
   - AC: 49,758%, faltaram 1.064;
   - ES: 49,647%, faltaram 7.453.
