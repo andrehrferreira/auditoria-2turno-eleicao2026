@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 278" width="760" height="278" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Lacres conferidos no 2º turno, por modelo de urna</title><desc id="desc">Pacotes de seção conferidos um a um, em todo o país e no exterior. Nenhum falhou. Urna 2020 (Ed521, AC UE2020): Pacotes 200.504. Urna 2022 (Ed521, AC UE2022): Pacotes 198.746. Urna 2015 (ECDSA, AC URNA): Pacotes 87.502. Urna 2013 (ECDSA, AC URNA): Pacotes 12.455</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.s0{fill:#3987e5}.s1{fill:#d95926}}
+</style>
+<rect class="fundo" width="760" height="278" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Lacres conferidos no 2º turno, por modelo de urna</text>
+<text class="t2" x="20" y="52" font-size="13">Pacotes de seção conferidos um a um, em todo o país e no exterior. Nenhum falhou.</text>
+<line class="grade" x1="250" x2="250" y1="72" y2="208" stroke-width="1"/>
+<text class="t2" x="250" y="224" font-size="12" text-anchor="middle">0</text>
+<line class="grade" x1="322" x2="322" y1="72" y2="208" stroke-width="1"/>
+<text class="t2" x="322" y="224" font-size="12" text-anchor="middle">50.000</text>
+<line class="grade" x1="394" x2="394" y1="72" y2="208" stroke-width="1"/>
+<text class="t2" x="394" y="224" font-size="12" text-anchor="middle">100.000</text>
+<line class="grade" x1="466" x2="466" y1="72" y2="208" stroke-width="1"/>
+<text class="t2" x="466" y="224" font-size="12" text-anchor="middle">150.000</text>
+<line class="grade" x1="538" x2="538" y1="72" y2="208" stroke-width="1"/>
+<text class="t2" x="538" y="224" font-size="12" text-anchor="middle">200.000</text>
+<line class="grade" x1="610" x2="610" y1="72" y2="208" stroke-width="1"/>
+<text class="t2" x="610" y="224" font-size="12" text-anchor="middle">250.000</text>
+<line class="eixo" x1="250" x2="250" y1="72" y2="208" stroke-width="1"/>
+<text class="t1" x="240" y="92" font-size="13" text-anchor="end">Urna 2020 (Ed521, AC UE2020)</text>
+<path class="s0" d="M250,78h284.72576000000004a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-284.72576000000004z"/>
+<text class="t1" x="544.72576" y="91.5" font-size="12.5">200.504 · 0 falha</text>
+<text class="t1" x="240" y="128" font-size="13" text-anchor="end">Urna 2022 (Ed521, AC UE2022)</text>
+<path class="s0" d="M250,114h282.19424000000004a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-282.19424000000004z"/>
+<text class="t1" x="542.19424" y="127.5" font-size="12.5">198.746 · 0 falha</text>
+<text class="t1" x="240" y="164" font-size="13" text-anchor="end">Urna 2015 (ECDSA, AC URNA)</text>
+<path class="s0" d="M250,150h122.00288a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-122.00288z"/>
+<text class="t1" x="382.00288" y="163.5" font-size="12.5">87.502 · 0 falha</text>
+<text class="t1" x="240" y="200" font-size="13" text-anchor="end">Urna 2013 (ECDSA, AC URNA)</text>
+<path class="s0" d="M250,186h13.935200000000009a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-13.935200000000009z"/>
+<text class="t1" x="273.9352" y="199.5" font-size="12.5">12.455 · 0 falha</text>
+<text class="t2" x="430" y="244" font-size="12.5" text-anchor="middle">Pacotes conferidos (número de seções)</text>
+<text class="t2" x="20" y="266" font-size="11">Fonte: arquivos oficiais do TSE; parecer cético 24 (docs/analysis/cetico-revisor/24-integridade-h04-h11.md).</text>
+</svg>

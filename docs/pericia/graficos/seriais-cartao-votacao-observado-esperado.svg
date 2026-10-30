@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 348" width="760" height="348" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Cartões de votação com o mesmo número: encontrado × previsto pelo acaso</title><desc id="desc">Pares de seções com o mesmo número de cartão (8 dígitos hexadecimais, 4.294.967.296 valores possíveis). 2º turno: Pares encontrados 29; Previstos pelo acaso 29. 1º turno: Pares encontrados 30; Previstos pelo acaso 29. Entre os turnos
+(cartão do 1º em outra seção no 2º): Pares encontrados 59; Previstos pelo acaso 58</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.s0{fill:#3987e5}.s1{fill:#d95926}}
+</style>
+<rect class="fundo" width="760" height="348" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Cartões de votação com o mesmo número: encontrado × previsto pelo acaso</text>
+<text class="t2" x="20" y="52" font-size="13">Pares de seções com o mesmo número de cartão (8 dígitos hexadecimais, 4.294.967.296 valores possíveis).</text>
+<rect class="s0" x="20" y="66" width="12" height="12" rx="2"/><text class="t1" x="38" y="77" font-size="13">Pares encontrados</text>
+<rect class="s1" x="172.4" y="66" width="12" height="12" rx="2"/><text class="t1" x="190.4" y="77" font-size="13">Previstos pelo acaso</text>
+<line class="grade" x1="250" x2="250" y1="94" y2="260" stroke-width="1"/>
+<text class="t2" x="250" y="276" font-size="12" text-anchor="middle">0</text>
+<line class="grade" x1="370" x2="370" y1="94" y2="260" stroke-width="1"/>
+<text class="t2" x="370" y="276" font-size="12" text-anchor="middle">20</text>
+<line class="grade" x1="490" x2="490" y1="94" y2="260" stroke-width="1"/>
+<text class="t2" x="490" y="276" font-size="12" text-anchor="middle">40</text>
+<line class="grade" x1="610" x2="610" y1="94" y2="260" stroke-width="1"/>
+<text class="t2" x="610" y="276" font-size="12" text-anchor="middle">60</text>
+<line class="eixo" x1="250" x2="250" y1="94" y2="260" stroke-width="1"/>
+<text class="t1" x="240" y="125" font-size="13" text-anchor="end">2º turno</text>
+<path class="s0" d="M250,100h170a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-170z"/>
+<text class="t1" x="430" y="113.5" font-size="12.5">29</text>
+<path class="s1" d="M250,122h170.06a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-170.06z"/>
+<text class="t1" x="430.06" y="135.5" font-size="12.5">29,01</text>
+<text class="t1" x="240" y="183" font-size="13" text-anchor="end">1º turno</text>
+<path class="s0" d="M250,158h176a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-176z"/>
+<text class="t1" x="436" y="171.5" font-size="12.5">30</text>
+<path class="s1" d="M250,180h170.06a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-170.06z"/>
+<text class="t1" x="430.06" y="193.5" font-size="12.5">29,01</text>
+<text class="t1" x="240" y="233.5" font-size="13" text-anchor="end">Entre os turnos</text>
+<text class="t1" x="240" y="248.5" font-size="13" text-anchor="end">(cartão do 1º em outra seção no 2º)</text>
+<path class="s0" d="M250,216h350a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-350z"/>
+<text class="t1" x="610" y="229.5" font-size="12.5">59</text>
+<path class="s1" d="M250,238h344a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-344z"/>
+<text class="t1" x="604" y="251.5" font-size="12.5">58,0</text>
+<text class="t2" x="430" y="296" font-size="12.5" text-anchor="middle">Pares de seções (número)</text>
+<text class="t2" x="20" y="318" font-size="12">Pares no mesmo município: 0 nos três casos. É a repetição no mesmo lugar que indicaria um cartão usado em duas urnas.</text>
+<text class="t2" x="20" y="336" font-size="11">Fonte: arquivos oficiais do TSE; parecer cético 24 (docs/analysis/cetico-revisor/24-integridade-h04-h11.md).</text>
+</svg>

@@ -1,0 +1,4 @@
+destino,descricao,eventos_2t,eventos_1t
+novaCarga,Programa instalado de novo (nova carga) na mesma urna,36,36
+trocaUrna,Urna trocada por reserva,17,11
+semNovaCarga,"Mesma urna religada, sem nova carga",128,99

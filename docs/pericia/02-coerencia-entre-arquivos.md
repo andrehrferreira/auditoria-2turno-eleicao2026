@@ -10,6 +10,8 @@ Cada urna grava três registros da mesma votação: o boletim (o placar), o regi
 
 **Fato (2º turno, revisado pelo cético):** o diário da urna confere com o boletim nas 499.178 seções com urna eletrônica (as 29 do Sistema de Apuração não têm diário), menos em **3 seções onde a urna foi trocada por uma urna reserva**. Nelas, **50 votos** que estão no boletim e no registro dos votos não têm nenhuma linha em diário publicado: nem "voto computado" nem "voto confirmado". No RS há ainda 1 voto que só tem "voto confirmado". São 0,000039% dos 128.236.074 votos do país.
 
+**Fato (dois turnos, revisado pelo cético no [parecer 24](../analysis/cetico-revisor/24-integridade-h04-h11.md)):** cada pacote foi gerado pela urna que o boletim diz. O número da urna é o mesmo no boletim, no pacote de lacres e na carteira de identidade digital da urna em todas as seções, menos nas que tiveram o boletim regravado por outra urna (3 no 2º turno, 14 no 1º), que têm a explicação no próprio pacote. Nenhum cartão de votação, nenhuma urna e nenhum código de carga aparece no boletim de duas seções do mesmo município ou da mesma zona. Nenhuma urna escreveu no diário de duas seções ao mesmo tempo (seção "Identificação da urna e dos cartões").
+
 **Pendente (1º turno):** a comparação dos boletins com o registro dos votos e com o resultado oficial publicado ainda não foi feita no país inteiro. O resultado parcial está em `docs/analysis/coerencia-contagem/`.
 
 O que este resultado **não** prova: que quem votou era de fato o eleitor. Um voto dado por outra pessoa no lugar de um eleitor ausente gera boletim, registro e diário coerentes entre si. Esse ponto fica no tópico 4.
@@ -35,6 +37,9 @@ Termos usados abaixo:
 - **Mídia externa (ME):** o cartão onde a urna também grava o próprio diário.
 - **Sistema de Apuração (SA):** usado quando não há urna funcionando; a junta eleitoral digita o resultado de cédulas de papel.
 - **Recuperador de Dados (RED):** programa que um técnico usa para gerar o boletim a partir da mídia de votação de uma urna que não conseguiu gerá-lo.
+- **Número de série:** o número de fábrica que identifica cada urna e cada cartão de memória. No boletim, o número do cartão de votação aparece com o nome "FV".
+- **Mídia de resultado (MR):** o cartão de memória em que a urna grava o resultado no fim do dia, para levá-lo ao cartório.
+- **Mídia de carga (FC) e carga:** a carga é a instalação, antes da eleição, do programa e dos dados da seção na urna. Ela é feita com a mídia de carga, e um mesmo cartão de carga instala várias urnas. Cada instalação recebe um **código de carga** próprio.
 
 ## Como foi feito
 
@@ -156,18 +161,142 @@ Fonte: `docs/analysis/cetico-revisor/10-a7-comparecimento-alto-sem-digital.md`, 
 - **Fato.** Nessas 639 seções, 8.236 dos 108.628 eleitores com digital cadastrada (7,58%) foram liberados por biografia (digital não reconhecida). **Pendente:** a comparação com a taxa esperada pela própria zona, e o limite que ela daria para votos no lugar de ausentes, dependem de modelo estatístico e ficam em `docs/analysis/cetico-revisor/10-a7-comparecimento-alto-sem-digital.md`. **Não** testa fraude concentrada em poucas seções, fraude pelo ano de nascimento nem fraude que não passa pela digital.
 - **Fato.** Um filtro inicial aponta 23 seções: comparecimento de 95% ou mais e liberação sem biometria acima da zona, com p binomial < 0,001. **Pendente:** quantas continuam apontadas quando o cálculo leva em conta a variação real entre seções. A resposta depende do modelo; na estimativa do cético, nenhuma se sustenta de forma firme. A análise desse ponto continua no tópico 4.
 
+## Identificação da urna e dos cartões (dois turnos)
+
+A pergunta aqui é outra: o pacote de cada seção foi gerado pela urna que o boletim diz, com os cartões que o diário diz? E algum cartão ou alguma urna aparece em duas seções, o que indicaria um cartão usado em mais de uma urna ou um resultado trocado no caminho?
+
+Fontes: [integridade-nacional/03](../analysis/integridade-nacional/03-seriais-h11.md) e [04](../analysis/integridade-nacional/04-coerencia-identificadores.md), revisados pelo cético no [parecer 24](../analysis/cetico-revisor/24-integridade-h04-h11.md) (itens 5 a 9 e 15 a 19). O texto abaixo segue as afirmações revisadas.
+
+### Número da urna: boletim × pacote de lacres × carteira digital
+
+**Fato (parecer 24, item 9, recontado pelo revisor com programa próprio).** O número da urna que está na carteira de identidade digital é igual ao número no pacote de lacres e ao número no boletim em:
+
+| Turno | Seções | Iguais | Diferentes |
+|---|---:|---:|---:|
+| 2º | 499.207 | 499.204 | 3 |
+| 1º | 499.207 | 499.193 | 14 |
+
+As diferenças são todas boletins regravados no cartório por outra urna, com o Recuperador de Dados (abaixo).
+
+**Pendente.** As demais conferências desse teste (cartão de votação do boletim × cartão lido no diário, modelo da urna, mídia de carga e código de carga) estão em [integridade-nacional/04](../analysis/integridade-nacional/04-coerencia-identificadores.md). O revisor conferiu que elas somam todas as seções, mas não as recontou com programa próprio. Por isso os números delas não entram aqui.
+
+### Boletim regravado por outra urna (Recuperador de Dados)
+
+**Fato (parecer 24, itens 8 e 15).**
+
+- No 2º turno, 16 seções tiveram o boletim gerado pelo Recuperador de Dados (no 1º turno, 50). Em 15 das 16, os votos anotados nos diários do pacote somam o comparecimento do boletim. A exceção é ES 57932/0009/0085, cujo pacote traz também o diário de outra seção (tabela das 10 seções do C2, acima).
+- Em 14 seções do 1º turno e 3 do 2º, o boletim foi regravado no cartório por **outra urna**. Nas 17, o boletim guarda o código de carga da urna original da seção, o mesmo que aparece no diário dessa urna, e os votos registrados por ela batem com o boletim.
+
+As 17 seções (`data/parsed/auditoria/cetico/integridade-casos.json` → `B`, de `cetico-integridade-casos.mjs`):
+
+| Turno | Seção (UF município/zona/seção) | Urna do boletim (a original) | Urna que regravou |
+|---|---|---|---|
+| 2º | ES 57932/0009/0085 | 1841837 | 1758779 |
+| 2º | RJ 58696/0027/0139 | 2179194 | 2189420 |
+| 2º | SP 64777/0393/0312 | 2396114 | 2399743 |
+| 1º | AL 27057/0022/0581 | 2073355 | 2072552 |
+| 1º | BA 38857/0108/0148 | 1768711 | 1672673 |
+| 1º | ES 56472/0024/0100 | 1840092 | 1771857 |
+| 1º | ES 56995/0053/0028 | 1677012 | 1656698 |
+| 1º | ES 57053/0001/0046 | 2036425 | 2353044 |
+| 1º | ES 57053/0001/0413 | 2036420 | 2036277 |
+| 1º | MS 91570/0031/0007 | 2150794 | 2152596 |
+| 1º | PR 75280/0133/0034 | 2081583 | 2077196 |
+| 1º | PR 76236/0093/0083 | 2060632 | 2056331 |
+| 1º | RN 18813/0009/0144 | 2348402 | 2052038 |
+| 1º | SE 31054/0001/0346 | 1751434 | 1791133 |
+| 1º | SE 32417/0022/0133 | 2044616 | 2273651 |
+| 1º | SP 71072/0418/0073 | 2001951 | 2276282 |
+| 1º | SP 71072/0418/0418 | 2087618 | 2403160 |
+
+Em 3 delas (ES 56995/0053/0028, PR 75280/0133/0034 e SP 71072/0418/0073), a urna que regravou tinha sido preparada com o mesmo cartão de carga da original, porque um cartão de carga prepara várias urnas. Mesmo nelas, o código de carga, que é próprio de cada instalação, é o da urna original.
+
+**Risco (princípio 8).** Nessas 17 seções, a assinatura pública é da urna que regravou o boletim, não da que recebeu os votos. A ligação com a urna original está no código de carga do boletim e no diário dela, que vêm dentro do pacote assinado pela urna que regravou. Com os arquivos públicos, não dá para testar se o cartão lido no cartório é o da urna original. O que dá para testar foi testado: os votos do diário da urna original batem com o boletim.
+
+### Cartão de votação, urna e código de carga repetidos entre seções
+
+**Fato (parecer 24, item 5).** Nenhum cartão de votação, nenhuma urna e nenhum código de carga aparece no boletim de duas seções do mesmo município ou da mesma zona, em nenhum dos turnos.
+
+| | 2º turno | 1º turno |
+|---|---|---|
+| Seções com urna (sem as do Sistema de Apuração) | 499.178 | 499.176 |
+| Número da urna repetido em outra seção | 0 | 0 |
+| Código de carga repetido em outra seção | 0 | 0 |
+| Pares de seções com o mesmo número de cartão de votação | 29, nenhum no mesmo município | 30, nenhum no mesmo município |
+| Grupo de 3 ou mais seções com o mesmo número de cartão | nenhum | 1 grupo de 5 com o número `00000000` (abaixo) |
+
+- O número do cartão de votação tem 8 dígitos hexadecimais (algarismos de 0 a 9 e letras de A a F), o que dá 4.294.967.296 valores possíveis. Entre centenas de milhares de cartões, alguns números se repetem por acaso, em lugares distantes, pelo mesmo motivo por que duas pessoas numa sala costumam fazer aniversário no mesmo dia. A quantidade de pares encontrada é a que o acaso prevê para números desse tamanho; a conta está em [integridade-nacional/03](../analysis/integridade-nacional/03-seriais-h11.md) e foi conferida pelo revisor. O que denunciaria um cartão usado em mais de uma urna seria a repetição no mesmo município ou na mesma zona, e ela não aparece.
+- **1º turno, o número `00000000`:** são 5 seções em que o boletim não traz número de cartão. Em 4, o boletim foi regravado pelo Recuperador de Dados sem cartão, a partir da memória interna da urna. Na quinta (MS 90999/0022/0043), o cartão de votação foi trocado na manhã da votação, antes de a urna ficar pronta, e o boletim saiu sem o número; o diário registra o cartão novo.
+- **Entre os turnos:** 60 números de cartão do 1º turno aparecem em outra seção no 2º turno: 59 em lugares diferentes e o `00000000` de uma regravação sem cartão em MG. Nenhum no mesmo município, nenhum na mesma zona.
+
+![Cartões de votação com o mesmo número: encontrado × previsto pelo acaso](graficos/seriais-cartao-votacao-observado-esperado.svg)
+
+**Como ler:** para cada comparação, a barra azul é o número de pares de seções com o mesmo número de cartão que foram encontrados, e a laranja é o número de pares que o acaso prevê. A previsão é uma conta exata: quantos pares iguais aparecem quando se sorteiam, ao acaso, tantos números de 8 dígitos hexadecimais quantos são os cartões (para o 2º turno, 499.177 × 499.176 ÷ 2 ÷ 4.294.967.296 = 29,01). O revisor testou se os números dos cartões se comportam como sorteados ao acaso, e eles se comportam (parecer 24, item 5). Barras do mesmo tamanho querem dizer: não há mais repetição do que o acaso explica. Na comparação entre os turnos, o `00000000` de MG fica fora da barra, por não ser um número de cartão.
+
+A lista dos 29 pares do 2º turno, com as duas seções de cada par, está em [graficos/dados/seriais-cartao-votacao-pares-2t-lista.csv](graficos/dados/seriais-cartao-votacao-pares-2t-lista.csv). Exemplo: o cartão `4F7E1079` aparece em AL 28193/0019/0243 e em ES 57037/0057/0107. Dados do gráfico: [seriais-cartao-votacao-pares.csv](graficos/dados/seriais-cartao-votacao-pares.csv).
+
+### Mídia de resultado: o número não identifica o cartão
+
+**Fato (parecer 24, item 6).** O número de série da mídia de resultado não identifica o cartão.
+
+- Ele está anotado no diário, não no boletim. Das 499.178 seções com urna do 2º turno, 499.055 registram no diário a leitura da mídia de resultado na véspera ou no dia da votação.
+- Em **1.566 seções** o número é o mesmo para vários cartões gerados de uma vez, num mesmo computador e no mesmo horário: 7 grupos, com 1.266 seções no exterior, 289 no RJ, 9 no AP e 2 no DF.
+- Em outros **30 pares** de seções, o número se repete entre cartões gerados em momentos diferentes.
+- Isso não afeta o resultado. O número da mídia de resultado não entra no boletim, e o resultado publicado é o assinado pela urna ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)). Mas o número não serve para provar qual cartão foi usado.
+- **Hipótese (parecer 24):** em alguns computadores que preparam esses cartões, o número de série é gerado de um jeito pouco variado (por exemplo, a partir do relógio). Os mesmos computadores aparecem em mais de um dos 30 pares.
+
+### A mesma urna em duas seções
+
+O pacote de uma seção pode trazer, além do diário da urna que votou, o diário de outra urna: a urna original que foi substituída por uma reserva, ou a mesma urna antes de uma nova carga. Contando esses diários guardados, uma urna pode aparecer em mais de uma seção. O caso típico é a urna substituída numa seção e reaproveitada em outra depois de nova carga.
+
+**Fato (parecer 24, item 7, conferido no diário original).** No 2º turno, 360 urnas aparecem em duas seções ou mais, contando os diários guardados. **Nenhuma urna escreveu no diário de duas seções ao mesmo tempo.** Os 92 casos em que os períodos pareciam se cruzar se explicam no próprio arquivo:
+
+| Explicação, conferida no diário original | Urnas |
+|---|---:|
+| O mesmo diário copiado em dois pacotes | 87 |
+| Relógio da urna acertado na carga: as linhas anteriores ao acerto têm a data errada do relógio interno | 2 |
+| Urna que escreveu só no fim do diário de outra urna | 2 |
+| Uma linha com o número da urna corrompido | 1 |
+| Escrita em duas seções ao mesmo tempo | **0** |
+
+### Troca de urna e carga no dia da votação
+
+**Fato (parecer 24, itens 16, 17 e 19).**
+
+- No 2º turno, **5.714 seções** votaram com urna reserva. Em 2.818 delas a reserva entrou depois do 1º turno. Em 2.893 a reserva já vinha do 1º turno. Em 3, a própria urna da seção foi recarregada como reserva. No 1º turno, 3.033 boletins registram urna reserva (sem contar o tipo raro de reserva que só encerra a seção).
+- Entre o 1º e o 2º turno, a urna mais antiga (modelo 2013) foi substituída por reserva em 34,9 de cada mil seções, e a mais nova (modelo 2022) em 2,7 de cada mil. Contas exatas, nas 499.176 seções com urna nos dois turnos, pelo modelo da urna do 1º turno:
+
+  | Modelo da urna no 1º turno | Seções | Trocadas por reserva no 2º turno | Por mil seções |
+  |---|---:|---:|---:|
+  | 2013 | 11.921 | 416 | 34,90 |
+  | 2015 | 88.035 | 894 | 10,16 |
+  | 2020 | 200.463 | 970 | 4,84 |
+  | 2022 | 198.757 | 538 | 2,71 |
+
+  ![Urnas trocadas por reserva entre o 1º e o 2º turno, por modelo](graficos/troca-urna-por-modelo.svg)
+
+  **Como ler:** cada barra é um modelo de urna (o que a seção usou no 1º turno), e o comprimento é quantas seções, a cada mil, passaram a votar com outra urna, de reserva, no 2º turno. Quanto mais antigo o modelo, mais longa a barra: a urna de 2013 foi trocada 12,9 vezes mais que a de 2022. Dados: [graficos/dados/troca-urna-por-modelo.csv](graficos/dados/troca-urna-por-modelo.csv).
+
+- Em **5 seções** do 2º turno (MS 90514/0008/0486, MS 91650/0051/0044, PR 74918/0056/0037, PR 75833/0043/0397 e SP 61816/0016/0436), a urna foi carregada na manhã da própria votação, e a votação abriu atrasada. Isso foi conferido por dois caminhos: pelo diário e pela data da carga anotada no boletim. Nas 5, a conferência das assinaturas da carga está registrada com sucesso. A carga em si é feita por pessoas, fora da vista da mesa. Além delas, na BA 35653/0173/0235, a urna original foi recarregada no dia com a preparação de outra seção (seção "Os 50 votos sem rastro no diário", acima).
+- **Pendente:** a mesma conta de carga no dia da votação no 1º turno.
+- **Pendente:** a concentração de trocas de urna em algumas zonas é teste estatístico e fica fora deste relatório. O ponto que resiste às duas formas de cálculo do revisor são as zonas 1 e 2 de Aracaju (SE). Para elas, é preciso pedir ao TRE-SE os registros de troca de urna. Anomalia estatística não é prova: indica onde pedir as atas.
+
+**Risco (princípio 8).** Trocar a urna, passar o cartão de votação de uma urna para outra e carregar uma urna no dia são feitos por pessoas. O que existe de controle técnico com rastro (assinaturas, código de carga, diários guardados no pacote) fecha nesses casos. Os motivos de cada troca não estão nos arquivos públicos.
+
 ## Prova de que o teste funciona (contraprova)
 
 - **Fato.** A comparação diário × boletim (C2) apontou 10 seções. A recontagem achou em cada uma a causa: erros do próprio programa de leitura (diário não aberto, diário contado duas vezes, diário de outra seção) e votos de fato sem rastro. Ou seja, o teste é capaz de acusar diferença, inclusive diferenças que vinham de erro nosso.
 - **Pendente.** Não há ainda um teste automático que altere de propósito um boletim ou um registro de votos e mostre que C1 a C6 acusam a alteração, como existe para os lacres (tópico 1) e para a soma dos boletins (tópico 5).
+- **Fato (parecer 24).** Os testes de identificação também acusam quando há diferença: o número da urna diferiu em 3 seções do 2º turno e 14 do 1º, e a comparação de períodos apontou 92 urnas. Cada caso foi aberto no arquivo original e explicado (Recuperador de Dados, diário copiado, relógio, diário de outra urna, linha corrompida). Na primeira versão, 4 desses casos estavam rotulados como "relógio"; no diário original, 2 eram relógio e 2 eram urna que só escreveu no fim do diário de outra (parecer 24, item 7). O texto acima já traz a forma corrigida.
 
 ## Limites
 
 1. **Coerência não é legitimidade.** Os três registros saem do mesmo programa. Um voto dado por outra pessoa no lugar do eleitor fica coerente nos três. A única defesa técnica com rastro é a digital do eleitor (tópico 4).
-2. **Lacres.** Até onde a conferência dos lacres foi feita está no tópico 1. Nas 3 seções dos 50 votos, o cético conferiu as assinaturas (0 falha). Além disso, o diário não traz a corrente de elos lacrada que o boletim tem: ele é protegido só pelo lacre do arquivo inteiro.
+2. **Lacres.** No 2º turno, os lacres conferem em todas as 499.207 seções com urna; no 1º turno, a conferência está Pendente ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)). Nas 3 seções dos 50 votos, o cético conferiu as assinaturas (0 falha). Além disso, o diário não traz a corrente de elos lacrada que o boletim tem: ele é protegido só pelo lacre do arquivo inteiro.
 3. **Os 50 votos só se esclarecem com dados que não são públicos:** o diário interno das urnas que gravaram esses votos, os arquivos de digitais capturadas dessas seções e a ata da mesa.
 4. **1º turno:** ainda não conferido no país inteiro (Pendente).
 5. **Pendente.** A conferência independente do matemático forense sobre a corrente de elos do boletim e o ciclo de cada eleitor no diário (`docs/analysis/matematico-forense/01-catalogo.md`, itens I1 a I3 e I10 a I12) ainda não tem resultado escrito.
+6. **Números de série são gravados pelo próprio programa da urna.** A coerência entre eles mostra que nada foi trocado depois da assinatura e que o pacote não foi montado com pedaços de urnas diferentes. Não mostra que o programa não poderia gravar outro número. O caminho da urna até a totalização é coberto pelas assinaturas (tópico 1); os registros de transmissão só são entregues a entidades fiscalizadoras.
 
 ## Como repetir
 
@@ -186,9 +315,30 @@ node scripts/auditoria/verifica-pericia-coerencia-munzona.mjs --turno 1 --uf ac,
 node scripts/auditoria/verifica-pericia-coerencia-munzona.mjs --turno 2
 node scripts/auditoria/verifica-pericia-coerencia-secao.mjs --uf ac,al,am,ap,ba,ce,df,es,go,ma,mg,ms,mt
 node scripts/auditoria/verifica-pericia-coerencia-zz.mjs            # seções não instaladas e do Sistema de Apuração no oficial
+
+# identificação da urna e dos cartões (dependem da varredura de lacres do tópico 1)
+node scripts/auditoria/integridade-resumo.mjs --turno 2
+node scripts/auditoria/integridade-resumo.mjs --turno 1 --dir data/parsed/auditoria/integridade/1t-identificadores
+node scripts/auditoria/integridade-casos-especiais.mjs --turno 2    # Recuperador de Dados, mídia de resultado
+node scripts/auditoria/integridade-entre-turnos.mjs                 # trocas de urna e cartões entre os turnos
+node scripts/auditoria/integridade-urnas-reaproveitadas.mjs --turno 2
+node scripts/auditoria/integridade-sobreposicao-bruto.mjs --turno 2 # os 92 períodos cruzados, no diário original
+node scripts/auditoria/seguranca-caminhos-fora-fluxo.mjs --turno 2  # Recuperador de Dados e urna reserva
+node scripts/auditoria/seguranca-carga-no-dia.mjs --turno 2         # carga no dia da votação
+
+# revisão cética (parecer 24)
+node scripts/auditoria/cetico-integridade-recontagem.mjs --turno 2
+node scripts/auditoria/cetico-integridade-recontagem.mjs --turno 1 --dir data/parsed/auditoria/integridade/1t-identificadores
+node scripts/auditoria/cetico-integridade-casos.mjs
+node scripts/auditoria/cetico-integridade-log-urna.mjs --turno 2 --secao se/32417/0022/0039 --urna 02286264
+node scripts/auditoria/cetico-integridade-trocas-modelo.mjs         # troca de urna por modelo
+
+# tabelas e gráficos (só leem as saídas acima e conferem as somas)
+node scripts/auditoria/grafico-integridade-dados.mjs
+node scripts/auditoria/grafico-integridade.mjs
 ```
 
-Saídas do autor em `data/parsed/auditoria/contagem/` (`coerencia-*`, `log-pacote-*`, `munzona-*`, `a7-*`).
+Saídas do autor em `data/parsed/auditoria/contagem/` (`coerencia-*`, `log-pacote-*`, `munzona-*`, `a7-*`), em `data/parsed/auditoria/integridade/` e, do revisor, em `data/parsed/auditoria/cetico/`.
 
 ## Próximos passos
 
@@ -200,3 +350,7 @@ Saídas do autor em `data/parsed/auditoria/contagem/` (`coerencia-*`, `log-pacot
 - [ ] **Pendente.** Refazer o 1º turno com as 14 UFs restantes e o exterior, e o C2 de AM e BA (os dados das 28 UFs já estão na cópia de leitura de 29/10/2026).
 - [ ] **Pendente.** Medir no país inteiro quantos votos confirmados antes de reinício da urna entraram ou não no boletim (inclusive nas seções com um só diário).
 - [ ] **Pendente.** Teste automático com boletim e registro alterados de propósito (contraprova de C1 a C6).
+- [x] Identificação da urna e dos cartões nos dois turnos, com revisão cética ([parecer 24](../analysis/cetico-revisor/24-integridade-h04-h11.md)).
+- [ ] **Pendente.** Recontar com programa próprio as demais conferências de identificação (cartão de votação, modelo, mídia e código de carga).
+- [ ] **Pendente.** Carga no dia da votação no 1º turno.
+- [ ] **Pendente.** Pedir ao TRE-SE os registros de troca de urna das zonas 1 e 2 de Aracaju, e aos TREs do RJ e do AP e ao TSE (exterior) o procedimento de geração das mídias de resultado.
