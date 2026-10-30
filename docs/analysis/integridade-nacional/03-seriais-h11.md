@@ -8,7 +8,7 @@
   - Nesses grupos, o serial da MR identifica a geração, não o cartão.
   - Não afeta o lacre: o BU não leva o serial da MR, e o log que o registra está assinado pela urna.
 
-Entre turnos: **Pendente** (falta a extração do 1º turno no país; ver doc 01).
+1º turno e entre turnos: seções abaixo.
 
 Comandos: `node scripts/auditoria/integridade-resumo.mjs --turno 2` (`resumo.json` → `teste2`; `casos.jsonl` → `repeticao_*`), `node scripts/auditoria/integridade-casos-especiais.mjs --turno 2` (`casos-especiais.json` → `mr`), `node scripts/auditoria/integridade-urnas-reaproveitadas.mjs --turno 2` (`urnas-reaproveitadas.json`).
 
@@ -61,6 +61,35 @@ Para cada seção do grupo, o script lê no log o bloco da leitura da MR: comput
   - Abre caminho só para trocar um cartão por outro sem que o serial denuncie.
 - **Divergência registrada:** [boatos/02](../boatos/02-mesmo-drive-e-resultados-iguais.md) lista só o grupo do AP e 38 pares. A diferença está no método: aqui, a MR é a última lida na véspera ou no dia da eleição, e a geração vem do próprio log. **Recomendação:** o autor de boatos/02 confere os grupos do RJ e do exterior no script dele.
 
+### Seriais no 1º turno
+
+Comandos: `node scripts/auditoria/integridade-resumo.mjs --turno 1 --dir data/parsed/auditoria/integridade/1t-identificadores` e `node scripts/auditoria/integridade-casos-especiais.mjs --turno 1 --dir data/parsed/auditoria/integridade/1t-identificadores`. Universo: 499.207 seções; 499.176 com urna, sem os 31 BUs do Sistema de Apuração.
+
+| Serial | Seções com valor | Valores distintos | Repetidos | Detalhe |
+|---|---|---|---|---|
+| Nº interno da urna (BU) | 499.176 | 499.176 | **0** | — |
+| Código de carga (BU) | 499.176 | 499.176 | **0** | — |
+| FV (BU) | 499.176 | 499.142 | 30 pares + 1 grupo de 5 | Pares em municípios diferentes; esperado pelo acaso: 29,0. O grupo de 5 é `00000000` (abaixo) |
+| MR (log) | 186 | 158 | 13 valores | Só 186 logs do 1º turno registram serial de MR (50 deles de seções RED). Os 13 grupos têm, cada um, uma única geração |
+| FC (BU) | 499.176 | 23.067 | 22.888 em 2+ seções | De 2 a 126 seções por mídia; 22.415 grupos numa só zona, 473 em mais de uma |
+
+- **Fato, FV `00000000` no 1º turno (5 seções de urna comum):**
+  - 4 são recuperações pelo RED em que o log registra "Detectado Urna de Votação sem MV": GO 94773/0110/0016, PE 25178/0055/0042, RJ 58653/0144/0242 e SP 70572/0307/0417.
+  - A quinta é MS 90999/0022/0043, votação normal (`votacaoUE`). Em 04/10, a urna pediu a mídia de votação 5 vezes entre 06:26 e 08:14 ("O aplicativo Software de Votação precisa de uma mídia de votação"). Às 08:21 foi feita a contingência de MV com o cartão `299E20C5` ("Contingência de MV executada com sucesso"), e a urna ficou pronta às 08:29. O BU saiu com FV `00000000`; o log registra o cartão novo.
+- **Fato, RED no 1º turno (50 seções):** em 46, a FV do BU é um cartão lido no log; nas 4 restantes, é a recuperação sem cartão acima. Em 14 delas, outra urna recuperou. Nas 50, os votos do dia nos logs somam o comparecimento do BU.
+
+### Entre turnos
+
+Comando: `node scripts/auditoria/integridade-entre-turnos.mjs` → `data/parsed/auditoria/integridade/entre-turnos.json` e `entre-turnos-casos.jsonl`. Universo: 499.176 seções com urna nos dois turnos (o 2º tem mais 2, os SA mistos de MG que votaram em urna).
+
+- **Fato:** a versão do software no BU é a mesma nas 499.176 seções nos dois turnos.
+- **Fato:** 4.424 seções têm outra urna no BU do 2º turno. Pelo tipo de urna no BU (1º → 2º turno): seção → seção 1.562; seção → reserva 2.733; reserva → reserva 83; reserva → seção 44; seção → reserva encerrando a seção 2.
+- **Fato:** o código de carga mudou em 4.794 seções: as 4.424 que trocaram de urna e 370 com a mesma urna recarregada.
+- **Fato:** nenhuma mídia de carga do 1º turno aparece em outra zona no 2º. Nenhuma seção mudou de FC sem mudar de código de carga.
+- **Fato:** 81 urnas votaram numa seção no 1º turno e em outra no 2º (48 de seção nas duas, 32 de seção que viraram reserva, 1 reserva nas duas).
+- **Fato:** 60 FVs do 1º turno aparecem em outra seção no 2º. São 59 coincidências, todas em municípios diferentes (o acaso prevê 58,0 para seriais de 32 bits), e o `00000000` da recuperação sem cartão de MG 46256/0131/0046, igual ao das 5 seções do 1º turno.
+- **Pendente:** por que 1.562 seções trocaram de urna de seção entre os turnos sem contingência registrada no BU, e o que as 81 urnas que mudaram de seção têm no log.
+
 ### Mesma urna em mais de uma seção, contando a contingência
 
 O log aninhado guarda o log da urna original substituída numa contingência (a cópia que estava no cartão de votação), ou o log anterior da mesma urna, arquivado quando ela é recarregada ([doc 07](07-autoverificacao-no-log.md)).
@@ -94,5 +123,4 @@ Comandos: `node scripts/auditoria/integridade-urnas-reaproveitadas.mjs --turno 2
 
 ## Pendente
 
-- Entre turnos: mesma urna na mesma seção, quantas trocaram e por quê (contingência, reaproveitamento); FV, FC e código de carga; MR (o log do 1º turno não registra o serial da MR, só o tamanho dela: Fato no AC).
-- Repetir no 1º turno os seriais (MR, FV, FC). A mesma urna em mais de uma seção já foi feita no 1º turno.
+- Entre turnos: o motivo das trocas de urna (contagens na seção "Entre turnos" acima).

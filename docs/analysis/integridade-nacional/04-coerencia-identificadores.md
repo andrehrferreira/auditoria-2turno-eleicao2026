@@ -71,6 +71,25 @@ O certificado e o `.vsc` concordam entre si nos 499.207 diretórios. O certifica
 - Não afeta o lacre: o BU e o log estão assinados.
 - Afeta só o teste de MR repetida ([doc 03](03-seriais-h11.md)): essas seções ficam fora do grupo de MR do 2º turno.
 
+## 1º turno
+
+Comando: `node scripts/auditoria/integridade-resumo.mjs --turno 1 --dir data/parsed/auditoria/integridade/1t-identificadores` (`teste3`). RED: `integridade-casos-especiais.mjs --turno 1 --dir …/1t-identificadores`. Universo: 499.207 seções.
+
+| Conferência | Igual | Diferente | Sem dado |
+|---|---|---|---|
+| Município/zona/seção e pleito do BU = diretório | 499.207 | 0 | 0 |
+| Nº da urna: BU = `.vsc` = certificado = log principal | 499.193 | 14 | 0 |
+| Log principal com um só número de urna | 499.206 | 1 | 0 |
+| FV do BU = MV do log | 499.171 | 36 | 0 |
+| Modelo `.vsc` = modelo no log | 499.207 | 0 | 0 |
+| Mídia de carga (FC) BU = log | 499.193 | 11 | 3 |
+| Código de carga BU = log | 499.190 | 14 | 3 |
+
+- **Fato:** as 14 com outra urna são pacotes do RED recuperados por outra urna. Nelas, FC e código de carga do BU são os da urna original.
+- **Fato:** as 36 com FV diferente têm todas FV `00000000`: os 31 BUs do Sistema de Apuração, 4 recuperações RED sem cartão e a contingência de MV de MS 90999/0022/0043 ([doc 03](03-seriais-h11.md)).
+- **Fato:** o log com dois números de urna é o de RJ 60011/0008/0061, com bits apagados: `01740981` é `01760983` corrompido ([doc 03](03-seriais-h11.md)).
+- **Limite:** a extração do 1º turno não conferiu lacres (`--sem-lacres`). Ela registrou um extra: em MG 50075/0047/0041 (Sistema de Apuração misto), o `imgbu.dat` foi publicado fora da lista lacrada.
+
 ## Limite
 
 Os identificadores vêm de arquivos gerados e assinados pelo próprio software da urna. Coerência entre eles mostra que nada foi trocado depois da assinatura, e que o pacote não foi montado com pedaços de urnas diferentes. Não mostra que o software não poderia gravar outro número (doc 06, R5).

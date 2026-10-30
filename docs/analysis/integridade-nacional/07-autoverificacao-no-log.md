@@ -62,6 +62,24 @@ Comandos:
 
 A lista completa, com contagem de linhas e 5 exemplos de seção por mensagem, está em `autoverificacao-resumo.json` → `errosPorMensagem`.
 
+## 1º turno
+
+Comandos: `node scripts/auditoria/integridade-autoverificacao.mjs --turno 1 --procs 8` (7 min) e `node scripts/auditoria/integridade-autoverificacao-depois.mjs --turno 1 --dir data/parsed/auditoria/integridade/1t-identificadores` → `data/parsed/auditoria/integridade/1t/`.
+
+**Universo:** 499.248 seções lidas; 41 sem pacote (exterior, não instaladas); 499.207 pacotes, 507.327 logs, 0 ilegível.
+
+- **Fato:** 146 eventos `Verificação de assinatura … [ERRO]` em 128 seções, 22 deles na véspera ou no dia (03 e 04/10). Nenhum outro resultado além de SUCESSO e ERRO.
+- **Fato, o que veio depois do erro:**
+
+  | Depois do erro | Eventos | Mídia externa | Sistema interno |
+  |---|---|---|---|
+  | Nova carga da mesma urna | 36 | 31 | 5 |
+  | Troca de urna | 11 | 1 | 10 |
+  | Sem nova carga | 99, em 97 seções | 80 | 19 |
+
+  - As 36 novas cargas são as mesmas do 2º turno: preparação, 20 a 30/09, de 1 a 111 minutos depois do erro (mediana: 8).
+- **Fato:** 106 eventos (103 seções) têm votos depois do erro: 24.422 votos em 04/10. É o mesmo número medido pelos pacotes do 2º turno, que guardam o histórico do 1º. As duas varreduras conferem entre si.
+
 ## Leitura (premissa 8)
 
 - A autoverificação é controle técnico com rastro. Ela acusou o erro, e em 53 eventos a urna foi recarregada (36) ou trocada (17).
@@ -69,8 +87,8 @@ A lista completa, com contagem de linhas e 5 exemplos de seção por mensagem, e
   - **Hipótese benigna, não testável com os arquivos públicos:** erro de leitura passageiro da memória (o código SAVD 5 aponta um arquivo).
   - Os arquivos não distinguem isso de um arquivo que mudou e voltou ao original.
 - **Não é prova de fraude** (princípio 4). Os BUs dessas seções estão assinados e conferidos, e os totais conferem com o oficial (H03, outra frente).
-- **Recomendação:** pedir ao TSE o significado dos códigos SAVD (0, 2, 5) e a regra de procedimento para esse erro. Comparar os resultados dessas 162 seções com as vizinhas (estatístico). Repetir a varredura no 1º turno, para as urnas recarregadas entre turnos.
+- **Recomendação:** pedir ao TSE o significado dos códigos SAVD (0, 2, 5) e a regra de procedimento para esse erro. Comparar os resultados dessas seções com as vizinhas (estatístico).
 
 ## Pendente
 
-- Varredura dos logs do 1º turno (os logs do 2º turno só trazem o histórico do 1º turno das urnas que não foram recarregadas).
+- Nenhum item de varredura. Falta só a resposta do TSE sobre os códigos SAVD (Recomendação acima).
