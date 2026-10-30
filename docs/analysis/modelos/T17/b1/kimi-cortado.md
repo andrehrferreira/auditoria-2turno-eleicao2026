@@ -1,0 +1,3 @@
+# T17 — Revisão: integridade-sobreposicao-bruto.mjs (+ doc 07)
+
+1. **Achado:** descarte de linhas antes do acerto do relógio depende de match exato da string `'Data e hora atualizada'` e `'Início das operações do logd'` em `c[4]`. **Motivo:** se mensagem real tiver variação (espaço, sufixo, capitalização, campo em outra posição), nenhuma linha é descartada e sessão nunca reseta. Linhas com relógio errado (ex.: data de fábrica) entram em `minhas`; ordenação joga essas linhas nos extremos; janela comum tende a ficar vazia → `ini > fim` → par nem entra em `pares`
