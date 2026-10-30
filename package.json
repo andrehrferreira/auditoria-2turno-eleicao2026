@@ -9,6 +9,8 @@
   },
   "scripts": {
     "coleta": "node src/coleta.js",
-    "test": "node --test \"test/**/*.test.js\""
+    "test": "node --test \"test/**/*.test.js\"",
+    "relatorio": "node scripts/relatorio/gerar.mjs",
+    "relatorio:pdf": "node scripts/relatorio/gerar.mjs --pdf"
   }
 }

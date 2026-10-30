@@ -24,6 +24,8 @@ Toda afirmação traz um destes rótulos:
 - **Gráficos:** cada gráfico tem um título que diz o que ele mostra, eixos com unidade, legenda e uma frase "como ler". Os dados do gráfico ficam guardados junto, com o script que os gera.
 - **Linguagem:** frases curtas, sem jargão. Todo termo técnico é explicado na primeira vez, com uma comparação do dia a dia.
 
+**Versão para impressão:** `npm run relatorio:pdf` gera, a partir destes arquivos, o relatório completo em `docs/relatorio/relatorio.pdf` (e `npm run relatorio`, só o HTML); o texto continua sendo editado aqui.
+
 ## Tópicos
 
 | # | Tópico | Pergunta que responde | Situação |
