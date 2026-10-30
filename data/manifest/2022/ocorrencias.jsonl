@@ -1,0 +1,5 @@
+{"em":"2026-10-30T14:42:34.936Z","etapa":"catalogo","gravidade":"info","mg":{"1t":{"nome":"MG - Arquivos transmitidos para totalização - Primeiro turno - 06.10.2022","url":"https://cdn.tse.jus.br/estatistica/sead/eleicoes/eleicoes2022/arqurnatot/bu_imgbu_logjez_rdv_vscmr_2022_1t_MG.zip","criado":"2022-10-06T17:44:58.831439","hashNoCatalogo":null},"2t":{"nome":"MG - Arquivos transmitidos para totalização - Segundo turno - 02.11.2022","url":"https://cdn.tse.jus.br/estatistica/sead/eleicoes/eleicoes2022/arqurnatot/bu_imgbu_logjez_rdv_vscmr_2022_2t_MG.zip","criado":"2022-11-02T21:48:55.010071","hashNoCatalogo":null}}}
+{"em":"2026-10-30T15:17:27.777Z","etapa":"conferir","turno":1,"gravidade":"falha","id":"mg/47872/0167/0041","erros":["0 manifestos .vsc"]}
+{"em":"2026-10-30T15:17:27.777Z","etapa":"conferir","turno":1,"gravidade":"falha","id":"mg/51390/0244/0091","erros":["sem logjez"]}
+{"em":"2026-10-30T15:17:27.777Z","etapa":"conferir","turno":1,"gravidade":"falha","id":"mg/49050/0196/0173","erros":["0 manifestos .vsc"]}
+{"em":"2026-10-30T15:42:39.515Z","etapa":"conferir","turno":1,"gravidade":"falha","id":"mg/51390/0244/0091","erros":["sem logjez"]}

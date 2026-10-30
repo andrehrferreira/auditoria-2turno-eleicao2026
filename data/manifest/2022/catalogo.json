@@ -1,0 +1,22 @@
+{
+  "conjunto": "resultados-2022-arquivos-transmitidos-para-totalizacao",
+  "titulo": "Resultados 2022 - Arquivos transmitidos para totalização",
+  "recursos": 56,
+  "modificado": "2024-10-15T17:34:27.871408",
+  "consultadoEm": "2026-10-30T14:42:34.935Z",
+  "urlConsulta": "https://dadosabertos.tse.jus.br/api/3/action/package_show?id=resultados-2022-arquivos-transmitidos-para-totalizacao",
+  "mg": {
+    "1t": {
+      "nome": "MG - Arquivos transmitidos para totalização - Primeiro turno - 06.10.2022",
+      "url": "https://cdn.tse.jus.br/estatistica/sead/eleicoes/eleicoes2022/arqurnatot/bu_imgbu_logjez_rdv_vscmr_2022_1t_MG.zip",
+      "criado": "2022-10-06T17:44:58.831439",
+      "hashNoCatalogo": null
+    },
+    "2t": {
+      "nome": "MG - Arquivos transmitidos para totalização - Segundo turno - 02.11.2022",
+      "url": "https://cdn.tse.jus.br/estatistica/sead/eleicoes/eleicoes2022/arqurnatot/bu_imgbu_logjez_rdv_vscmr_2022_2t_MG.zip",
+      "criado": "2022-11-02T21:48:55.010071",
+      "hashNoCatalogo": null
+    }
+  }
+}

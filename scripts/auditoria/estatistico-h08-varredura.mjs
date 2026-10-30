@@ -87,7 +87,7 @@ export function fluxosDoTexto(texto, dia, secao, outras) {
 }
 
 /** Processa um fluxo (linhas de uma urna, na ordem gravada). */
-function processarFluxo(linhas, hist, sec) {
+export function processarFluxo(linhas, hist, sec) {
   const vistas = new Set();
   let I = null, Iciclo = null, H = null, confs = [], marcas = { bio: false, ano: false, dado: false, mes: false };
   let prevV = null, primeiroV = null;

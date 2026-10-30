@@ -204,3 +204,40 @@ Relatados ao lado: a razão entre os dois coeficientes e a correlação, dentro 
 - **Estrutural:** T1 positivo e significativo, e T2 não significativo.
 - **Próprio de 2026:** T1 nulo (|z| < 2) e T2 positivo e significativo.
 - **Inconclusivo:** qualquer outro caso, ou um T1 nulo com erro tão grande que caberia o valor de 2026. O poder vai relatado: o efeito que T1 veria com 80%, (2,64 + 0,84) × erro.
+
+## Adendo 5 de 30/10/2026: teste direto em MG com os diários de urna de 2022 (registrado antes de ler qualquer diário de 2022 e antes de rodar)
+
+O [doc 23](23-h13-v2-2022.md) leu MG como **próprio de 2026**, mas com um substituto fraco (Δc × sb dá 2,5 vezes o sinal real e se correlaciona 0,33 com a V2 real dentro do local). Com autorização do André, a rede fica liberada para os arquivos de urna de **MG, 2022, 1º e 2º turno** (zips por UF da CDN do TSE). Com eles, a V2 de 2022 por seção existe, e o teste fica direto, sem substituto. O resultado vai no doc 24.
+
+**Arquivos (cdn.tse.jus.br/estatistica/sead/eleicoes/eleicoes2022/arqurnatot, conferidos no catálogo oficial de dados abertos):**
+- `bu_imgbu_logjez_rdv_vscmr_2022_1t_MG.zip` (pleito 406, 02/10/2022) e `bu_imgbu_logjez_rdv_vscmr_2022_2t_MG.zip` (pleito 407, 30/10/2022);
+- URL, ETag, Last-Modified, tamanho e SHA-256 no manifesto `data/manifest/2022/zips.jsonl` e em `24-arquivos-baixados.csv`;
+- integridade: CRC de cada entrada do zip, SHA-512 de cada arquivo da seção contra o `.vsc` da própria seção, e seções do zip contra as seções de MG com comparecimento no `detalhe_votacao_secao_2022` (só `_BR.csv`).
+
+**Leitura do diário.** A mesma de `estatistico-h08-varredura.mjs`: fluxo por urna, só a seção declarada, união das cópias da mesma urna (`juntarCopias`), linha idêntica repetida conta uma vez, e o mesmo ciclo de eleitor. A data do dia é a de cada turno de 2022. As vias e a prioridade são as do plano: V1 digital > V2 ano de nascimento > V3m dado pessoal com mesário > V3s dado pessoal sem mesário > outra.
+- **Antes de rodar o modelo**, as mensagens do diário de 2022 são conferidas num diário e pela contagem de todas as mensagens do dia em MG. Se uma marca de via tiver outro texto em 2022, a troca é documentada no doc 24, com o texto de 2026 e o de 2022 lado a lado. Essa decisão usa só o texto e a contagem das mensagens, nunca o voto.
+- **Se o diário de 2022 não tiver marca que separe a V2** (ano de nascimento) das outras liberações sem digital, o teste fica **impossível**, e isso é dito. Nesse caso não se troca a medida depois de ver os dados.
+- Conferência: votos do diário contra o comparecimento de presidente da seção no `detalhe` (que vem do BU), por turno.
+
+**Medida e modelo: os do doc 22 (adendo 3), iguais nos dois anos.**
+- e_v = (votos da via no 2º turno − no 1º) ÷ eleitores da seção no perfil do eleitorado do **mesmo ano** (`perfil_eleitor_secao_2022_MG` para 2022), para V2, V3m e V3s; Δc = (votos do diário no 2º − no 1º) ÷ eleitores.
+- ΔY = parcela do 13 em 13 + 22 no 2º turno menos no 1º.
+- ΔY ~ e_V2 + e_V3m + e_V3s + Δc + controles: fração sem biometria no cadastro, 60+, 16–24, escolaridade baixa, superior, log do eleitorado (perfil do ano) e um indicador por modelo de urna presente no ano (o mais recente é a base).
+- Efeito fixo de local de votação (UF, município, zona, número do local, do 2º turno); peso 13 + 22 do 2º turno; erro CR1 por local.
+- Ficam fora, com contagem: seção sem os dois turnos; sem diário, ou com votos do diário ≠ comparecimento; menos de 20 votos em 13 + 22 em algum turno; sem perfil; sozinha no seu local.
+- **2026 é refeito com o mesmo script e as mesmas regras** (sem o filtro de horário do doc 22, que não existe para 2022). Espera-se reproduzir o doc 22 (MG +5,68, z 4,19) perto disso; a diferença, se houver, é relatada.
+
+**Testes (só MG):**
+- T1: coeficiente de e_V2 em 2022, bicaudal;
+- T2: diferença 2026 − 2022, com os erros dos dois anos tratados como independentes.
+- **2 testes.** Bonferroni a 5%: |z| ≥ 2,24.
+
+**Leitura (fixada agora):**
+- **Estrutural:** T1 positivo e significativo, e T2 não significativo.
+- **Existia em 2022, maior em 2026:** T1 positivo e significativo, e T2 positivo e significativo.
+- **Próprio de 2026:** T1 nulo (|z| < 2) e T2 positivo e significativo.
+- **Inconclusivo:** qualquer outro caso, ou T1 nulo com erro tão grande que o efeito que T1 veria com 80% de poder, (2,24 + 0,84) × erro, passe do coeficiente de 2026.
+
+**Relatados sem teste:** a mesma regressão com a parcela do 13 no 1º turno e x_V2 do 1º turno (regressão à média), nos dois anos; o coeficiente de e_V3m nos dois anos (o achado exploratório de MG no doc 22); parcela de cada via nos votos, por ano e turno.
+
+**Recursos:** no máximo 2 processos Node pesados; rede só para o TSE e só MG; um pedido por vez. O diário traz o título do mesário: nenhum título é gravado (na saída, só contagens; no doc, números com formato de título viram #).

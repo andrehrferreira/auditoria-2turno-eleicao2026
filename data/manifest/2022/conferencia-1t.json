@@ -1,0 +1,35 @@
+{
+ "turno": 1,
+ "pleito": "406",
+ "situacoes": {
+  "completa": 49980,
+  "incompleta": 1
+ },
+ "tiposPorSecao": {
+  "bu,imgbu,logjez,rdv,vscmr": 49978,
+  "busa,imgbusa,logsajez,rdv,vscsa": 2,
+  "bu,imgbu,rdv,vscmr": 1
+ },
+ "manifestos": {
+  "vscmr": 49979,
+  "vscsa": 2
+ },
+ "falhas": [
+  {
+   "id": "mg/51390/0244/0091",
+   "erros": [
+    "sem logjez"
+   ]
+  }
+ ],
+ "secoesNoZip": 49981,
+ "extras": 1,
+ "detalhe": {
+  "secoes": 49981,
+  "comComparecimento": 49981
+ },
+ "detalheSemZip": [],
+ "zipSemDetalhe": [],
+ "ok": false,
+ "conferidoEm": "2026-10-30T15:42:39.513Z"
+}
