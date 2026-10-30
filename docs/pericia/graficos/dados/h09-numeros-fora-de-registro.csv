@@ -1,0 +1,5 @@
+turno,mensagem,linhas_no_dia,numeros_diferentes,criterio
+1º turno,Suspensão (válido + inválido),55483,31764,"não é mesário, presidente que encerrou nem servidor registrado em nenhuma urna do país, nos dois turnos (parecer 29)"
+2º turno,Suspensão (válido + inválido),5564,3801,"não é mesário, presidente que encerrou nem servidor registrado em nenhuma urna do país, nos dois turnos (parecer 29)"
+1º turno,Encerramento da votação,5688,Pendente,"não é mesário registrado em nenhuma urna do país no mesmo turno (números do autor, parecer 29 item 5)"
+2º turno,Encerramento da votação,1750,Pendente,"não é mesário registrado em nenhuma urna do país no mesmo turno (números do autor, parecer 29 item 5)"

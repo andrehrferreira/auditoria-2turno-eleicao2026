@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 426" width="760" height="426" role="img" aria-labelledby="titulo desc">
+<title id="titulo">De quem é o número gravado quando o mesário suspende um eleitor</title><desc id="desc">Linhas da mensagem "Título ... é válido / inválido para suspender a votação", no dia de cada turno. 1º turno, "válido": 82.4 linhas; Mesário registrado na própria urna 69.91; Outro papel registrado (presidente que encerrou, servidor, mesário de outra urna ou turno) 569; Não é título (dígito verificador errado) 0; Título válido sem papel nenhum no país 11.92. 1º turno, "inválido": 55.96 linhas; Mesário registrado na própria urna 200; Outro papel registrado (presidente que encerrou, servidor, mesário de outra urna ou turno) 130; Não é título (dígito verificador errado) 12.07; Título válido sem papel nenhum no país 43.56. 2º turno, "válido": 8.5 linhas; Mesário registrado na própria urna 6.51; Outro papel registrado (presidente que encerrou, servidor, mesário de outra urna ou turno) 38; Não é título (dígito verificador errado) 0; Título válido sem papel nenhum no país 1.95. 2º turno, "inválido": 4.99 linhas; Mesário registrado na própria urna 10; Outro papel registrado (presidente que encerrou, servidor, mesário de outra urna ou turno) 5; Não é título (dígito verificador errado) 1.36; Título válido sem papel nenhum no país 3.61</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.tb{fill:#ffffff}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}.s2{fill:#9a9993}.s3{fill:#8fb8ea}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.tb{fill:#ffffff}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.s0{fill:#3987e5}.s1{fill:#d95926}.s2{fill:#8a8984}.s3{fill:#5f8fc9}}
+</style>
+<rect class="fundo" width="760" height="426" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">De quem é o número gravado quando o mesário suspende um eleitor</text>
+<text class="t2" x="20" y="52" font-size="13">Linhas da mensagem "Título ... é válido / inválido para suspender a votação", no dia de cada turno.</text>
+<rect class="s0" x="20" y="70" width="12" height="12" rx="2"/><text class="t1" x="38" y="81" font-size="13">Mesário registrado na própria urna</text>
+<rect class="s3" x="20" y="90" width="12" height="12" rx="2"/><text class="t1" x="38" y="101" font-size="13">Outro papel registrado (presidente que encerrou, servidor, mesário de outra urna ou turno)</text>
+<rect class="s2" x="20" y="110" width="12" height="12" rx="2"/><text class="t1" x="38" y="121" font-size="13">Não é título (dígito verificador errado)</text>
+<rect class="s1" x="338" y="110" width="12" height="12" rx="2"/><text class="t1" x="356" y="121" font-size="13">Título válido sem papel nenhum no país</text>
+<line class="grade" x1="150" x2="150" y1="138" y2="334" stroke-width="1"/>
+<text class="t2" x="150" y="350" font-size="12" text-anchor="middle">0%</text>
+<line class="grade" x1="252.5" x2="252.5" y1="138" y2="334" stroke-width="1"/>
+<text class="t2" x="252.5" y="350" font-size="12" text-anchor="middle">25%</text>
+<line class="grade" x1="355" x2="355" y1="138" y2="334" stroke-width="1"/>
+<text class="t2" x="355" y="350" font-size="12" text-anchor="middle">50%</text>
+<line class="grade" x1="457.5" x2="457.5" y1="138" y2="334" stroke-width="1"/>
+<text class="t2" x="457.5" y="350" font-size="12" text-anchor="middle">75%</text>
+<line class="grade" x1="560" x2="560" y1="138" y2="334" stroke-width="1"/>
+<text class="t2" x="560" y="350" font-size="12" text-anchor="middle">100%</text>
+<text class="t1" x="140" y="156" font-size="13" text-anchor="end">1º turno</text>
+<text class="t2" x="140" y="171" font-size="12.5" text-anchor="end">"válido"</text>
+<rect class="s0" x="150" y="144" width="347.85" height="30"/>
+<text class="tb" x="323.93" y="163.5" font-size="12" text-anchor="middle">85%</text>
+<rect class="s3" x="497.85" y="144" width="2.83" height="30"/>
+<rect class="s1" x="500.68" y="144" width="59.32" height="30"/>
+<text class="tb" x="530.34" y="163.5" font-size="12" text-anchor="middle">14%</text>
+<text class="t1" x="568" y="156" font-size="12.5" font-weight="600">11.92 sem papel</text>
+<text class="t2" x="568" y="171" font-size="12">de 82.4 linhas</text>
+<text class="t1" x="140" y="208" font-size="13" text-anchor="end">1º turno</text>
+<text class="t2" x="140" y="223" font-size="12.5" text-anchor="end">"inválido"</text>
+<rect class="s0" x="150" y="196" width="1.47" height="30"/>
+<rect class="s3" x="151.47" y="196" width="1" height="30"/>
+<rect class="s2" x="152.42" y="196" width="88.42" height="30"/>
+<text class="tb" x="196.63" y="215.5" font-size="12" text-anchor="middle">22%</text>
+<rect class="s1" x="240.84" y="196" width="319.16" height="30"/>
+<text class="tb" x="400.42" y="215.5" font-size="12" text-anchor="middle">78%</text>
+<text class="t1" x="568" y="208" font-size="12.5" font-weight="600">43.56 sem papel</text>
+<text class="t2" x="568" y="223" font-size="12">de 55.96 linhas</text>
+<text class="t1" x="140" y="260" font-size="13" text-anchor="end">2º turno</text>
+<text class="t2" x="140" y="275" font-size="12.5" text-anchor="end">"válido"</text>
+<rect class="s0" x="150" y="248" width="313.94" height="30"/>
+<text class="tb" x="306.97" y="267.5" font-size="12" text-anchor="middle">77%</text>
+<rect class="s3" x="463.94" y="248" width="1.83" height="30"/>
+<rect class="s1" x="465.77" y="248" width="94.23" height="30"/>
+<text class="tb" x="512.89" y="267.5" font-size="12" text-anchor="middle">23%</text>
+<text class="t1" x="568" y="260" font-size="12.5" font-weight="600">1.95 sem papel</text>
+<text class="t2" x="568" y="275" font-size="12">de 8.5 linhas</text>
+<text class="t1" x="140" y="312" font-size="13" text-anchor="end">2º turno</text>
+<text class="t2" x="140" y="327" font-size="12.5" text-anchor="end">"inválido"</text>
+<rect class="s0" x="150" y="300" width="1" height="30"/>
+<rect class="s3" x="150.82" y="300" width="1" height="30"/>
+<rect class="s2" x="151.23" y="300" width="112.07" height="30"/>
+<text class="tb" x="207.27" y="319.5" font-size="12" text-anchor="middle">27%</text>
+<rect class="s1" x="263.3" y="300" width="296.7" height="30"/>
+<text class="tb" x="411.65" y="319.5" font-size="12" text-anchor="middle">72%</text>
+<text class="t1" x="568" y="312" font-size="12.5" font-weight="600">3.61 sem papel</text>
+<text class="t2" x="568" y="327" font-size="12">de 4.99 linhas</text>
+<text class="t2" x="355" y="370" font-size="12.5" text-anchor="middle">Parte das linhas da mensagem, por quem é o número (%)</text>
+<text class="t2" x="20" y="396" font-size="12">Laranja: número com formato válido de título que não é de nenhum mesário, presidente ou servidor registrado no país.</text>
+<text class="t2" x="20" y="414" font-size="11">Fonte: RDV e diário (log) de todas as urnas, dois turnos; parecer cético 29 (docs/analysis/cetico-revisor/29-h09-sigilo.md).</text>
+</svg>

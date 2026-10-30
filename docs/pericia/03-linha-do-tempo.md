@@ -156,7 +156,7 @@ Quem estava na fila às 17h é atendido em sequência. Se a urna fica parada por
 
 ### 9. Os votos tardios favoreceram algum lado?
 
-Não é possível saber em quem cada eleitor tardio votou: o registro dos votos é embaralhado para proteger o sigilo. Dá para comparar seções.
+Não é possível saber em quem cada eleitor tardio votou: o registro dos votos vem ordenado por tipo e número, e não pela ordem de votação, para proteger o sigilo ([tópico 12](12-sigilo-do-voto.md)). Dá para comparar seções.
 
 - **Fato.** Comparando, dentro da mesma zona, seções com e sem voto depois das 17h: as seções com voto tardio têm, em média, +0,26 ponto percentual a mais para o candidato 13 (contando só os votos em 13 e 22), em 3.880 zonas. Sem separar por zona, a diferença parecia de 2,35 pontos (53,98% contra 51,63%); quase toda ela some quando se comparam seções vizinhas.
 - **Fato.** Correlação, dentro da zona, entre a parcela de votos tardios da seção e o percentual do 13: +0,013, em 497.830 seções. Isto é, praticamente nenhuma relação.

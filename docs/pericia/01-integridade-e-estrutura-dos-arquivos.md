@@ -27,7 +27,7 @@ Quando a votação termina, a urna grava um conjunto de arquivos. O TSE publica 
 | Arquivo | O que é, em palavras simples | Tamanho nesta seção |
 |---|---|---|
 | Boletim de Urna (`-bu.dat`) | O placar da urna: votos de cada candidato, brancos, nulos, quantos eleitores podiam votar e quantos votaram, horário de abertura e de encerramento | 1.527 bytes (menos que uma página de texto) |
-| Registro Digital do Voto (`-rdv.dat`) | A lista de todos os votos, um por um, **em ordem embaralhada**. Não tem nome nem identificação de eleitor. Serve para recontar os votos de forma independente | 5.015 bytes |
+| Registro Digital do Voto (`-rdv.dat`) | A lista de todos os votos, um por um, **ordenada por tipo de voto e número digitado, não pela ordem de votação** ([tópico 12](12-sigilo-do-voto.md)). Não tem nome nem identificação de eleitor. Serve para recontar os votos de forma independente | 5.015 bytes |
 | Diário da urna (`-log.jez`) | Um arquivo compactado (como um .zip) com o diário de bordo da urna: cada evento com data e hora, desde a preparação da urna semanas antes até o encerramento | 177.719 bytes compactado, 962.771 bytes aberto, 9.916 linhas |
 | Pacote de lacres (`-vota.vsc`) | A "nota fiscal" dos arquivos: lista os arquivos que a urna gerou, o tamanho de cada um, a impressão digital de cada um e o lacre de cada um | 62.605 bytes |
 

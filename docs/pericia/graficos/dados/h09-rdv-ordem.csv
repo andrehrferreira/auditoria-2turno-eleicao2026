@@ -1,0 +1,11 @@
+turno,origem_da_lista,listas,ordenadas_por_tipo_e_numero,fora_de_ordem,ordenadas_pct
+1º turno,Urna da seção,2475472,2475472,0,100
+1º turno,Urna reserva,15044,15044,0,100
+1º turno,Recuperador de Dados (RED),250,250,0,100
+1º turno,Apuração em papel no exterior (cédulas),29,29,0,100
+1º turno,Apuração mista em MG: cédulas digitadas,10,1,9,10
+1º turno,Apuração mista em MG: cópia do boletim,10,6,4,60
+2º turno,Urna da seção,533659,533659,0,100
+2º turno,Urna reserva,6110,6110,0,100
+2º turno,Recuperador de Dados (RED),19,19,0,100
+2º turno,Apuração em papel no exterior (cédulas),29,29,0,100

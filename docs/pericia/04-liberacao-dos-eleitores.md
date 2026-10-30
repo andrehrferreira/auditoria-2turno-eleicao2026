@@ -34,7 +34,7 @@ Brecha aberta não é prova de fraude. Este tópico mede se o uso dessas brechas
 
 ## Por que não dá para ver em quem o liberado votou
 
-O log diz **como** cada eleitor foi liberado e a que horas. O Registro Digital do Voto (RDV) traz os votos da seção um a um, mas embaralhados e sem nenhuma ligação com o eleitor. Isso é o sigilo do voto, e é proposital. Então:
+O log diz **como** cada eleitor foi liberado e a que horas. O Registro Digital do Voto (RDV) traz os votos da seção um a um, mas ordenados por tipo de voto e número digitado, não pela ordem de votação, e sem nenhuma ligação com o eleitor ([tópico 12](12-sigilo-do-voto.md)). Isso é o sigilo do voto, e é proposital. Então:
 
 - não existe, em nenhum arquivo público, a informação "este eleitor, liberado sem digital, votou no 13";
 - o que dá para fazer é **cercar**. Um exemplo inventado: numa seção com 200 votos, 190 para o 13 e 30 liberados sem digital, pelo menos 20 desses 30 votaram no 13, porque só sobram 10 votos que não foram para o 13;
