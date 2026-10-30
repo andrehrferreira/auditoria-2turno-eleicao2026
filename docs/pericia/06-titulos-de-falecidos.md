@@ -8,7 +8,7 @@ O cadastro de eleitores de 2026 tem títulos de pessoas que já morreram? E algu
 
 | Pergunta | Resposta | Rótulo |
 |---|---|---|
-| O cadastro tem títulos de pessoas que provavelmente já morreram? | Sim. No saldo do país, há **148.553 títulos de eleitores com 100 anos ou mais a mais do que as pessoas com 96 anos ou mais contadas no Censo 2022**, supondo que nenhuma delas tenha morrido desde então e que o TSE conte a idade até o fim de julho de 2026. A data em que o TSE conta a idade não está documentada. Contando também quem tinha 95 anos no Censo, o saldo que vale para qualquer data de 2026 é de **94.985**. Quantos sobram com a mortalidade real é estimativa de modelo e fica fora deste relatório. | **Fato** (os dois saldos) e **Pendente** (data da idade; estimativa com mortalidade) |
+| O cadastro tem títulos de pessoas que provavelmente já morreram? | **O cadastro tem mais eleitores de 100 anos ou mais do que o Censo 2022 contou de pessoas que poderiam ter essa idade em 2026.** São 297.977 eleitores aptos de 100+ com domicílio no Brasil. O Censo contou 149.424 pessoas com 96 anos ou mais e 53.568 com 95 anos. Quantos títulos sobram não entra aqui com número: depende da data em que o TSE conta a idade, que não está documentada, e de conferir quantos idosos o Censo deixou de contar. Qualquer conta exigiria suposições, por exemplo a de que ninguém morreu desde o Censo. | **Fato** (as contagens e a comparação) e **Pendente** (o tamanho do excedente) |
 | Esses títulos foram usados para votar no 1º turno? | Pela contagem oficial do TSE, votaram 0,72% dos eleitores de 100+ anos, e 0,26% nos municípios onde sobram títulos. Isso não mostra uso desses títulos em larga escala. A contagem é do TSE e não pode ser refeita com os arquivos das urnas. | **Fato**, com ressalva |
 | E no 2º turno? | O TSE ainda não publicou a contagem por idade. Os testes indiretos só conseguem ver uso amplo e espalhado por igual nas seções. Uso concentrado em poucas seções, ou espalhado só nas seções com 1 ou 2 eleitores de 100+, não aparece neles, mesmo quando passa de 10% dos títulos de 100+. | **Fato** (o que os testes não veem) e **Pendente** (quanto uso fica descartado) |
 | Por onde um título de falecido poderia ser usado? | Pelo eleitor sem biometria cadastrada, que a urna libera só com o ano de nascimento. 92% dos títulos de 100+ estão nesse grupo. | **Fato** |
@@ -35,7 +35,9 @@ Foram comparadas duas contagens oficiais:
 - **O perfil do eleitorado do TSE** (arquivo oficial do perfil do eleitorado por seção, gerado em 14/07/2026): quantos eleitores há em cada seção, por faixa de idade e com ou sem biometria cadastrada.
 - **O Censo 2022 do IBGE** (tabela 9514): quantas pessoas moravam em cada município, por idade.
 
-Quem tinha 96 anos ou mais no Censo de 2022 (data de referência: fim de julho de 2022) é quem pode ter 100 anos ou mais até o fim de julho de 2026. Se o TSE contar a idade numa data posterior, por exemplo a da eleição, parte de quem tinha 95 anos no Censo também chega a 100+. Esse grupo de pessoas nascidas na mesma época é chamado de **coorte**. A conta mais simples é: eleitores de 100+ em 2026 menos a coorte de 96+ de 2022. Essa conta supõe que **ninguém** dessa coorte morreu em quatro anos, o que favorece o cadastro. Por isso, se o Censo estiver completo e a idade for contada até o fim de julho de 2026, o resultado é um **piso**. A data em que o TSE conta a idade não está documentada (**Pendente**). Somando à coorte os 53.568 que tinham 95 anos no Censo, o piso vale para qualquer data de 2026: 297.977 − 149.424 − 53.568 = **94.985** (**Fato**).
+Quem tinha 96 anos ou mais no Censo de 2022 (data de referência: fim de julho de 2022) é quem pode ter 100 anos ou mais até o fim de julho de 2026. Se o TSE contar a idade numa data posterior, por exemplo a da eleição, parte de quem tinha 95 anos no Censo também chega a 100+. Esse grupo de pessoas nascidas na mesma época é chamado de **coorte**. Somando à coorte os 53.568 que tinham 95 anos no Censo, ela cobre qualquer data de 2026. A data em que o TSE conta a idade não está documentada (**Pendente**).
+
+A comparação feita foi: o número de eleitores de 100+ em 2026 é maior ou menor do que essa coorte contada no Censo? Subtrair um do outro daria um tamanho para a diferença, mas esse tamanho dependeria de suposições que não puderam ser conferidas: que ninguém da coorte morreu em quatro anos, que o Censo contou todos os idosos e em que data o TSE conta a idade. Por isso este relatório registra só a comparação, e não o tamanho da diferença.
 
 Depois, aplicou-se a mortalidade medida pelo IBGE (Estatísticas do Registro Civil, tabela 2654, média de 2023 e 2024) para estimar quantos da coorte ainda estariam vivos. Essa parte é estimativa de modelo, e não contagem.
 
@@ -46,9 +48,9 @@ Depois, aplicou-se a mortalidade medida pelo IBGE (Estatísticas do Registro Civ
 | Eleitores aptos com 100 anos ou mais, com domicílio eleitoral no Brasil | 297.977 (298.239 contando o exterior) | **Fato** |
 | Pessoas com 100+ anos no Censo 2022 | 37.814 | **Fato** |
 | Pessoas com 96+ anos no Censo 2022 (a coorte que chega a 100+ em 2026) | 149.424 | **Fato** |
-| **Títulos de 100+ sem pessoa correspondente, supondo que ninguém morreu e que a idade é contada até o fim de julho de 2026** | **148.553** | **Fato** (piso, com essa condição) |
 | Pessoas com 95 anos no Censo 2022 | 53.568 | **Fato** |
-| Títulos de 100+ sem pessoa correspondente, supondo que ninguém morreu, para qualquer data de 2026 | **94.985** | **Fato** (piso) |
+| **O cadastro tem mais eleitores de 100+ do que o Censo contou de pessoas que poderiam ter essa idade em 2026** (96+ no Censo, ou 95+ se a idade for contada depois do fim de julho de 2026) | **Sim**, nas duas formas de contar | **Fato** |
+| Tamanho do excedente (quantos títulos de 100+ não têm pessoa correspondente) | sem número: depende da data em que o TSE conta a idade e de conferir quantos idosos o Censo deixou de contar; qualquer conta exigiria suposições, como a de que ninguém morreu | **Pendente** |
 | Coorte ainda viva em 2026 e títulos sem pessoa correspondente, com a mortalidade do IBGE | estimativa de modelo, fora deste relatório | **Pendente** |
 | Eleitores de 100+ sem biometria cadastrada | 274.143 (92,0% dos 297.977 do Brasil) | **Fato** |
 
@@ -67,7 +69,6 @@ Para comparação, a parcela sem biometria é de 55,4% entre 90 e 99 anos, 27,9%
 | Ceará | 1.925 | 85,2% |
 
 - Só a cidade do Rio de Janeiro tem 68.142 eleitores de 100+, contra 6.786 moradores de 96+ no Censo 2022.
-- As maiores sobras (sem descontar mortes) estão nas capitais e em cidades grandes: Rio de Janeiro (+61.356), São Paulo (+39.442), Belo Horizonte (+10.413), Nova Iguaçu (+5.143) e São Gonçalo (+4.822).
 - Na Bahia e no Ceará há **menos** eleitores de 100+ do que moradores de 96+, e a maioria deles tem biometria.
 - Entre os eleitores de 100+, 51% são homens. Entre 95 e 99 anos, 43%. Entre 90 e 94, 38%. Numa população real, a parcela de mulheres cresce com a idade, porque elas vivem mais.
 
@@ -79,19 +80,20 @@ Para comparação, a parcela sem biometria é de 55,4% entre 90 e 99 anos, 27,9%
 
 O título de quem morre só é cancelado quando o óbito chega à Justiça Eleitoral. Essa comunicação depende de pessoas: o cartório de registro civil precisa enviar, e o cartório eleitoral precisa processar. Além disso, depois dos 70 anos o voto é facultativo, e faltar à eleição não cancela o título. Um título de quem morreu aos 85 anos pode continuar no cadastro por décadas sem chamar atenção.
 
-Pelo princípio 8 desta perícia, uma etapa feita por pessoas **não conta como controle**. Ela não serve para explicar que "está tudo certo" nem para acusar alguém. Ela é tratada como **risco**: uma brecha que precisa ser testada nos dados para saber se foi usada. O saldo de 94.985 títulos, que vale para qualquer data de 2026, já mostra que essa brecha existe em escala grande, a menos que o Censo tenha deixado de contar uma parte grande dos idosos (ver a contraprova abaixo). A Parte 2 mostra o que os dados dizem sobre o uso.
+Pelo princípio 8 desta perícia, uma etapa feita por pessoas **não conta como controle**. Ela não serve para explicar que "está tudo certo" nem para acusar alguém. Ela é tratada como **risco**: uma brecha que precisa ser testada nos dados para saber se foi usada. A brecha existe: o cadastro tem mais eleitores de 100+ do que o Censo contou de pessoas com idade para isso em 2026. O tamanho dela é **Pendente**, porque depende da data em que o TSE conta a idade e de quantos idosos o Censo deixou de contar (ver a contraprova abaixo). A Parte 2 mostra o que os dados dizem sobre o uso.
 
 ### Prova de que o teste funciona (contraprova)
 
 - **Reprodução independente.** Uma segunda verificação, independente, leu de novo os arquivos brutos do TSE e do IBGE com outro programa e chegou aos mesmos números: 297.977, 149.424 e 274.143. A soma dos 5.570 municípios dá exatamente os totais do país, e nenhum município ficou sem par entre TSE e IBGE (**Fato**).
-- **E se o Censo tiver deixado de contar idosos?** Para zerar o piso de 148.553, o Censo teria de ter contado só 149.424 de pelo menos 297.977 pessoas de 96+, isto é, no máximo 50,15% delas (**Fato**, conta direta). O efeito de subcontagens menores sobre a estimativa com mortalidade é conta de modelo e fica fora deste relatório (**Pendente**).
+- **E se o Censo tiver deixado de contar idosos?** Quanto mais idosos o Censo tiver deixado de contar, menor é a diferença entre o cadastro e a população. Quantos ele deixou de contar não foi conferido. Por isso o tamanho do excedente fica **Pendente**, sem número.
 - **E se forem datas de nascimento inválidas?** O cadastro tem um código próprio para data inválida (1.212 eleitores), separado da faixa de 100+ (**Fato**).
-- **E se a idade for calculada em outra data?** A data não está documentada (**Pendente**). Se for posterior ao fim de julho de 2026, o piso de 148.553 deixa de valer. O piso de 94.985, que inclui quem tinha 95 anos no Censo, vale para qualquer data de 2026 (**Fato**).
+- **E se a idade for calculada em outra data?** A data não está documentada (**Pendente**). Se for posterior ao fim de julho de 2026, parte de quem tinha 95 anos no Censo também chega a 100+. Mesmo somando os 53.568 que tinham 95 anos, o cadastro continua com mais eleitores de 100+ do que o Censo contou de pessoas com idade para isso, em qualquer data de 2026 (**Fato**).
 - **E se forem eleitores que moram no exterior?** O exterior tem 262 eleitores de 100+ e já foi excluído da conta (**Fato**).
 
 ### O que não se pode afirmar com este teste
 
-- **Município a município, a comparação engana.** O título fica onde a pessoa se alistou, e o Censo conta onde ela mora. Em 1.068 municípios há mais eleitores de 100+ do que moradores de 96+, em 4.186 acontece o contrário e em 316 os dois números são iguais. O número confiável é o saldo do país (148.553, ou 94.985 se a idade for contada depois do fim de julho de 2026), e não a soma dos municípios com sobra (**Fato**).
+- **Município a município, a comparação engana.** O título fica onde a pessoa se alistou, e o Censo conta onde ela mora. Em 1.068 municípios há mais eleitores de 100+ do que moradores de 96+, em 4.186 acontece o contrário e em 316 os dois números são iguais. A comparação que vale é a do país inteiro, e não a soma dos municípios com sobra (**Fato**).
+- **A comparação não mostra quem votou nem uso desses títulos.** Ela mede o cadastro, e não o comparecimento. O uso é tratado na Parte 2.
 - **Faixa de 90 a 99 anos.** Pode haver sobra também nessa faixa, mas o resultado muda de sinal conforme as premissas do modelo. Não é achado (**Pendente**).
 
 ## Parte 2. Esses títulos foram usados para votar?
