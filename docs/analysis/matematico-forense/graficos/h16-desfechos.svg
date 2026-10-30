@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 490" width="900" height="490" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Sessões de eleitor que não terminaram em voto computado</title><desc id="desc">Todas as seções com urna. Votos computados: 125.274.326 (1º turno) e 128.235.189 (2º turno). Desistência (suspenso sem voto): 1º turno 42.951; 2º turno 7.860. Interrompida: urna reiniciou: 1º turno 2.906; 2º turno 783. Interrompida: "Votação suspensa": 1º turno 2.613; 2º turno 556. Interrompida: encerramento: 1º turno 0; 2º turno 0. Interrompida: log da urna acaba: 1º turno 202; 2º turno 39. Órfã sem explicação: 1º turno 0; 2º turno 0. Voto computado sem habilitação: 1º turno 2; 2º turno 0. Voto do BU sem nenhuma linha no log (C3): 1º turno 152; 2º turno 50</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.s0{fill:#3987e5}.s1{fill:#d95926}}
+</style>
+<rect class="fundo" width="900" height="490" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Sessões de eleitor que não terminaram em voto computado</text>
+<text class="t2" x="20" y="52" font-size="13">Todas as seções com urna. Votos computados: 125.274.326 (1º turno) e 128.235.189 (2º turno).</text>
+<rect class="s0" x="20" y="66" width="12" height="12" rx="2"/><text class="t2" x="38" y="77" font-size="12">1º turno</text>
+<rect class="s1" x="106" y="66" width="12" height="12" rx="2"/><text class="t2" x="124" y="77" font-size="12">2º turno</text>
+<line class="grade" x1="330" x2="330" y1="94" y2="430"/>
+<text class="t2" x="330" y="446" font-size="11" text-anchor="middle">1</text>
+<line class="grade" x1="414" x2="414" y1="94" y2="430"/>
+<text class="t2" x="414" y="446" font-size="11" text-anchor="middle">10</text>
+<line class="grade" x1="498" x2="498" y1="94" y2="430"/>
+<text class="t2" x="498" y="446" font-size="11" text-anchor="middle">100</text>
+<line class="grade" x1="582" x2="582" y1="94" y2="430"/>
+<text class="t2" x="582" y="446" font-size="11" text-anchor="middle">1.000</text>
+<line class="grade" x1="666" x2="666" y1="94" y2="430"/>
+<text class="t2" x="666" y="446" font-size="11" text-anchor="middle">10.000</text>
+<line class="grade" x1="750" x2="750" y1="94" y2="430"/>
+<text class="t2" x="750" y="446" font-size="11" text-anchor="middle">100.000</text>
+<text class="t1" x="320" y="120" font-size="12" text-anchor="end">Desistência (suspenso sem voto)</text>
+<rect class="s0" x="330" y="100" width="389.16975549303015" height="11" rx="2"/>
+<text class="t2" x="724.1697554930302" y="110" font-size="11">42.951</text>
+<rect class="s1" x="330" y="114" width="327.2154938673102" height="11" rx="2"/>
+<text class="t2" x="662.2154938673102" y="124" font-size="11">7.860</text>
+<text class="t1" x="320" y="160" font-size="12" text-anchor="end">Interrompida: urna reiniciou</text>
+<rect class="s0" x="330" y="140" width="290.9168312368082" height="11" rx="2"/>
+<text class="t2" x="625.9168312368082" y="150" font-size="11">2.906</text>
+<rect class="s1" x="330" y="154" width="243.07598801286724" height="11" rx="2"/>
+<text class="t2" x="578.0759880128672" y="164" font-size="11">783</text>
+<text class="t1" x="320" y="200" font-size="12" text-anchor="end">Interrompida: "Votação suspensa"</text>
+<rect class="s0" x="330" y="180" width="287.0397104170954" height="11" rx="2"/>
+<text class="t2" x="622.0397104170954" y="190" font-size="11">2.613</text>
+<rect class="s1" x="330" y="194" width="230.5862824928928" height="11" rx="2"/>
+<text class="t2" x="565.5862824928928" y="204" font-size="11">556</text>
+<text class="t1" x="320" y="240" font-size="12" text-anchor="end">Interrompida: encerramento</text>
+<text class="t2" x="334" y="230" font-size="11">0</text>
+<text class="t2" x="334" y="244" font-size="11">0</text>
+<text class="t1" x="320" y="280" font-size="12" text-anchor="end">Interrompida: log da urna acaba</text>
+<rect class="s0" x="330" y="260" width="193.64951503351642" height="11" rx="2"/>
+<text class="t2" x="528.6495150335164" y="270" font-size="11">202</text>
+<rect class="s1" x="330" y="274" width="133.64942699022595" height="11" rx="2"/>
+<text class="t2" x="468.64942699022595" y="284" font-size="11">39</text>
+<text class="t1" x="320" y="320" font-size="12" text-anchor="end">Órfã sem explicação</text>
+<text class="t2" x="334" y="310" font-size="11">0</text>
+<text class="t2" x="334" y="324" font-size="11">0</text>
+<text class="t1" x="320" y="360" font-size="12" text-anchor="end">Voto computado sem habilitação</text>
+<rect class="s0" x="330" y="340" width="25.286519635774425" height="11" rx="2"/>
+<text class="t2" x="360.2865196357744" y="350" font-size="11">2</text>
+<text class="t2" x="334" y="364" font-size="11">0</text>
+<text class="t1" x="320" y="400" font-size="12" text-anchor="end">Voto do BU sem nenhuma linha no log (C3)</text>
+<rect class="s0" x="330" y="380" width="183.27486138736094" height="11" rx="2"/>
+<text class="t2" x="518.2748613873609" y="390" font-size="11">152</text>
+<rect class="s1" x="330" y="394" width="142.71348036422557" height="11" rx="2"/>
+<text class="t2" x="477.7134803642256" y="404" font-size="11">50</text>
+<line class="eixo" x1="330" x2="330" y1="94" y2="430"/>
+<text class="t2" x="20" y="472" font-size="12">Escala logarítmica: cada linha da grade vale 10 vezes a anterior. "0" = nenhum caso.</text></svg>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 378" width="900" height="378" role="img" aria-labelledby="titulo desc">
+<title id="titulo">1º turno: pares de seções com votos iguais, cargo a cargo</title><desc id="desc">Pares de seções do mesmo estado e do mesmo tamanho: 68.595.557. Quantos têm exatamente os mesmos votos. Presidente: Pares de seções com votos iguais 4. Governador: Pares de seções com votos iguais 161. Senador (2 votos): Pares de seções com votos iguais 0. Deputado federal: Pares de seções com votos iguais 0. Deputado estadual: Pares de seções com votos iguais 0. Deputado distrital: Pares de seções com votos iguais 0. Consulta popular (PE): Pares de seções com votos iguais 0. Boletim inteiro (todos os cargos): Pares de seções com votos iguais 0</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.s0{fill:#3987e5}.s1{fill:#d95926}}
+</style>
+<rect class="fundo" width="900" height="378" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">1º turno: pares de seções com votos iguais, cargo a cargo</text>
+<text class="t2" x="20" y="52" font-size="13">Pares de seções do mesmo estado e do mesmo tamanho: 68.595.557. Quantos têm exatamente os mesmos votos.</text>
+<rect class="s0" x="20" y="66" width="12" height="12" rx="2"/><text class="t2" x="38" y="77" font-size="12">Pares de seções com votos iguais</text>
+<line class="grade" x1="330" x2="330" y1="94" y2="318"/>
+<text class="t2" x="330" y="334" font-size="11" text-anchor="middle">1</text>
+<line class="grade" x1="470" x2="470" y1="94" y2="318"/>
+<text class="t2" x="470" y="334" font-size="11" text-anchor="middle">10</text>
+<line class="grade" x1="610" x2="610" y1="94" y2="318"/>
+<text class="t2" x="610" y="334" font-size="11" text-anchor="middle">100</text>
+<line class="grade" x1="750" x2="750" y1="94" y2="318"/>
+<text class="t2" x="750" y="334" font-size="11" text-anchor="middle">1.000</text>
+<text class="t1" x="320" y="113" font-size="12" text-anchor="end">Presidente</text>
+<rect class="s0" x="330" y="100" width="84.28839878591475" height="11" rx="2"/>
+<text class="t2" x="419.28839878591475" y="110" font-size="11">4</text>
+<text class="t1" x="320" y="139" font-size="12" text-anchor="end">Governador</text>
+<rect class="s0" x="330" y="126" width="308.955622644459" height="11" rx="2"/>
+<text class="t2" x="643.955622644459" y="136" font-size="11">161</text>
+<text class="t1" x="320" y="165" font-size="12" text-anchor="end">Senador (2 votos)</text>
+<text class="t2" x="334" y="162" font-size="11">0</text>
+<text class="t1" x="320" y="191" font-size="12" text-anchor="end">Deputado federal</text>
+<text class="t2" x="334" y="188" font-size="11">0</text>
+<text class="t1" x="320" y="217" font-size="12" text-anchor="end">Deputado estadual</text>
+<text class="t2" x="334" y="214" font-size="11">0</text>
+<text class="t1" x="320" y="243" font-size="12" text-anchor="end">Deputado distrital</text>
+<text class="t2" x="334" y="240" font-size="11">0</text>
+<text class="t1" x="320" y="269" font-size="12" text-anchor="end">Consulta popular (PE)</text>
+<text class="t2" x="334" y="266" font-size="11">0</text>
+<text class="t1" x="320" y="295" font-size="12" text-anchor="end">Boletim inteiro (todos os cargos)</text>
+<text class="t2" x="334" y="292" font-size="11">0</text>
+<line class="eixo" x1="330" x2="330" y1="94" y2="318"/>
+<text class="t2" x="20" y="360" font-size="12">Escala logarítmica. "0" = nenhum par. Boletim inteiro igual exigiria senador igual, que nunca ocorreu.</text></svg>
