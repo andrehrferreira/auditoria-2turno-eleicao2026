@@ -54,6 +54,7 @@ Por UF, todas com 0 falha. As UFs sem urna UE2013/UE2015 são AC, AP, RO e RR. O
   - Em `lerCertificado`, cortar `derBytes` no fim do primeiro elemento DER (cabeçalho mais comprimento declarado) antes de `raiz()` e de `new X509Certificate()`.
   - Aceitar a sobra só se for toda de zeros e registrar o tamanho dela em `observacoes`.
   - Sobra diferente de zero continua sendo falha.
+  - O corte vale também para os certificados com 2 bytes zero a mais, que o leitor hoje aceita sem aviso: cerca de 6.147 no 2º turno e 6.262 no 1º (parecer cético [24](../cetico-revisor/24-integridade-h04-h11.md), item 2). Não é falha de segurança, mas a sobra precisa ficar registrada.
   - Teste: o `.vsc` do CE 15989/0055/0160 (1 byte `00`) e um com 3 bytes.
 
 ## Observação registrada: AC URNA vencida

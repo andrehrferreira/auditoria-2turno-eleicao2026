@@ -106,11 +106,13 @@ Comandos: `node scripts/auditoria/integridade-urnas-reaproveitadas.mjs --turno 2
     | Resultado no bruto | Urnas |
     |---|---|
     | Mesmo log em dois pacotes: na janela comum, um lado não tem nenhuma linha que o outro não tenha (no mínimo 24 linhas iguais por par) | 87 |
-    | Relógio acertado na carga: as linhas anteriores a "Data e hora atualizada" têm a data errada do relógio interno | 4 |
+    | Relógio acertado na carga: as linhas anteriores a "Data e hora atualizada" têm a data errada do relógio interno (PA 04839/0100/0251, MT 90670/0039/0376) | 2 |
+    | Urna que só escreveu no fim do log de outra urna: o teste dá a ela a primeira e a última linha do log inteiro, e o cruzamento é só aparente (MG 2080602 na seção 0264, SE 2286264 na seção 0039) | 2 |
     | Linha isolada com o número da urna corrompido (RJ 60011/0008/0061, log com bits apagados) | 1 |
     | Escrita simultânea em duas seções | 0 |
 
   - Como o mesmo log vai parar em dois pacotes, no caso da urna 2391275 (BA 38490/0011): ela falhou na seção 0594 em 04/10 às 07:50, e o cartão de votação (MV `B10A2CB2`) foi para a reserva levando a cópia do log até 07:53 (996 linhas). Em 15/10 a urna foi recarregada como reserva e assumiu a seção 0486 em 25/10. O log antigo foi arquivado dentro dela e saiu no pacote da 0486 com 1.050 linhas. O código de carga é o mesmo nos dois.
+  - Correção (parecer cético [24](../cetico-revisor/24-integridade-h04-h11.md), item 7): uma versão anterior deste doc dava os 4 casos como relógio. No bruto, 2 são relógio e 2 são urna que só aparece no fim do log de outra.
   - Exemplo de relógio acertado: PA 04839/0100/0251. A carga começa às "27/09 19:30" do relógio interno, e o operador digita **21/10/2026 10:33**. A urna tinha sido usada na seção 0055 até 04/10. O mesmo ocorre em MT 90670/0039/0376 (relógio em 15/09, data digitada 24/10).
   - Linha corrompida: no log aninhado do RJ 60011/0008/0061 (1º turno, guardado no pacote do 2º), a linha "Tecla ildevida presqimnada" traz a urna `01760981`. A urna do BU é a `01760983`. O mesmo log tem também `01740981` (92 linhas) e `01560983` (4 linhas): todas são o número `01760983` com o bit 0x02 apagado em algum dígito (3→1, 6→4, 7→5). A `01760981` verdadeira é a urna do BU do MS 91014/0004/0077.
 - **Fato, 1º turno** (mesmos scripts com `--turno 1 --dir data/parsed/auditoria/integridade/1t-identificadores`, 499.207 seções):
