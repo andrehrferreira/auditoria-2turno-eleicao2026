@@ -40,8 +40,8 @@ Comandos:
   - Exemplo: SP 71072/0353/0853, `/lib/avlib.vst`, erro SAVD `5 - /lib/libQt6Gui.so.6`, às 07:35:08 de 04/10. SUCESSO às 07:39:15, urna pronta às 08:00:02.
   - Exemplo: SP 71072/0246/0151, `/boot/boot/avboot.vst`, `5 - /boot/boot/uenux`, às 10:25:46 de 24/10. SUCESSO às 10:29:21.
 - **Fato:** o erro informa o arquivo que falhou (`Erro SAVD: (código - arquivo)`).
-  - Códigos vistos: 0, 2 e 5.
-  - Arquivos: `/boot/boot/uenux` 8, `libQt6Gui.so.6` 7, `/uenux/bin/atue` 4, `/uenux/bin/red` 2, `libapiio_resources.so` 2, `libecourna.so` 2, `/etc/avetc.vst` 2, e outros com 1. Na mídia externa, `infomidia.vsc` 107. Lista completa em `porSavd`.
+  - Códigos vistos: 0, 2, 3, 5 e 6 (3: MT 91677/0020/0676, `/etc/avetc.vst`; 6: PI 10219/0088/0019, `libapiui.so`, e RN 16691/0009/0189, `avusrchave.vst`).
+  - Arquivos: `/boot/boot/uenux` 8, `libQt6Gui.so.6` 7, `/uenux/bin/atue` 4, `/uenux/bin/red` 2, `libapiio_resources.so` 2, `libecourna.so` 2, `/etc/avetc.vst` 2, e outros com 1. No pacote de voz RHVoice, 10 erros trazem só o arquivo (`voice.da…` 7), sem código SAVD. Na mídia externa, `infomidia.vsc` 107 e o `<seção>-lo.vsc` da própria seção 21. 4 eventos não têm linha de detalhe. Lista completa em `porSavd` (depois da correção da leitura, parecer cético 36; varredura refeita em 30/10/2026: 181 eventos, verificação seguinte 138/10/33, iguais aos de antes).
 
 ### Outras mensagens de erro de assinatura (nível ERRO), por seção
 

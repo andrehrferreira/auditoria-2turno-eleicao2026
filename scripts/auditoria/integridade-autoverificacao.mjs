@@ -18,6 +18,8 @@ import { lerEntrada, listarEntradas } from '../../src/zip.js';
 // Também conta, por mensagem normalizada, as linhas de nível ERRO que mencionam assinatura/integridade: linhas, seções,
 // seções com a mensagem na véspera ou no dia da votação (03, 04, 24 ou 25/10) e até 5 exemplos.
 // Atenção: a carga parece reiniciar o log, então um erro seguido de nova carga pode não aparecer no log publicado.
+// Atenção: votosSemNovaCarga e votosDepoisNoDia do resumo somam por evento (dois erros no mesmo log contam os mesmos
+// votos). O número sem repetição é o de autoverificacao-depois.json → comVotoDepois.votosPorDia.
 //
 // Uso: node scripts/auditoria/integridade-autoverificacao.mjs --turno 2 [--uf sp] [--procs 10]
 // Saída: data/parsed/auditoria/integridade/<t>t/autoverificacao.jsonl (eventos) e autoverificacao-resumo.json
@@ -59,16 +61,17 @@ export function analisarLog(texto) {
     const m = RE_VERIF.exec(msg);
     if (!m || m[3] === 'SUCESSO') continue;
     const [, etapa, pacote, resultado] = m;
-    const ev = { dataHora, urna, etapa: Number(etapa), pacote, resultado, detalhe: null, savd: null, novaCarga: null, mesmaEtapaDepois: null, proximaInicializacao: null,
+    const ev = { dataHora, urna, etapa: Number(etapa), pacote, resultado, detalhe: null, savd: null, arquivo: null, novaCarga: null, mesmaEtapaDepois: null, proximaInicializacao: null,
       votosDepoisSemNovaCarga: 0, votosDepoisPorDia: {}, urnaProntaDepoisSemNovaCarga: false };
+    // Detalhe: "pacote: (p) [| arquivo: (a)] | Erro SAVD: (n - arquivo)"; o log pode cortar a linha antes do ")".
     for (let j = i + 1; j < Math.min(linhas.length, i + 6); j++) {
       const d = linhas[j][4];
-      const s = /pacote: \(([^)]*)\) \| Erro SAVD: \(([^)]*)\)/.exec(d);
-      if (s) {
-        ev.detalhe = d.slice(0, 300);
-        ev.savd = s[2];
-        break;
-      }
+      const p = /pacote: \(([^)]*)\)/.exec(d);
+      if (!p || p[1] !== pacote) continue;
+      ev.detalhe = d.slice(0, 300);
+      ev.savd = /Erro SAVD: \(([^)]*)(?:\)|$)/.exec(d)?.[1] ?? null;
+      ev.arquivo = /\| arquivo: \(([^)]*)(?:\)|$)/.exec(d)?.[1] ?? null;
+      break;
     }
     let ligou = false;
     for (let j = i + 1; j < linhas.length; j++) {
@@ -82,7 +85,7 @@ export function analisarLog(texto) {
         break;
       }
       const v = RE_VERIF.exec(d);
-      if (ligou && v && v[2] === pacote && ev.mesmaEtapaDepois === null) ev.mesmaEtapaDepois = `${dh} ${v[3]}`;
+      if (ligou && v && Number(v[1]) === ev.etapa && v[2] === pacote && ev.mesmaEtapaDepois === null) ev.mesmaEtapaDepois = `${dh} ${v[3]}`;
       if (d === 'Urna pronta para receber votos') ev.urnaProntaDepoisSemNovaCarga = true;
       if (d === 'O voto do eleitor foi computado') {
         ev.votosDepoisSemNovaCarga++;
@@ -209,7 +212,7 @@ async function principal() {
           resumo.eventos++;
           resumo.secoes.add(ev.onde);
           inc(resumo.porPacote, ev.pacote);
-          inc(resumo.porSavd, (ev.savd ?? 'sem detalhe').replace(/^\d+ - /, ''));
+          inc(resumo.porSavd, ev.savd ? ev.savd.replace(/^\d+ - /, '') : ev.arquivo ? `arquivo: ${ev.arquivo}` : 'sem detalhe');
           inc(resumo.porResultado, ev.resultado);
           resumo.novaCarga[ev.novaCarga ? 'sim' : 'nao']++;
           inc(resumo.mesmaEtapaDepois, ev.mesmaEtapaDepois ? ev.mesmaEtapaDepois.split(' ').at(-1) : 'sem nova verificação');
