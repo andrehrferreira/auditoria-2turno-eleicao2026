@@ -88,13 +88,13 @@ Votos por hora de Brasília, soma do país (`por-hora.csv`):
 - **Fato:** o pico mudou de hora. No 1º turno, a hora de maior votação foi 11h em 1.309 zonas, e 15h ou 16h em 275. No 2º turno, foi 8h em 1.897 zonas e nunca depois das 12h.
 - **Hipótese:** no 1º turno o eleitor digita 6 ou 7 cargos e a fila anda devagar; no 2º turno são 2 cargos e a fila da manhã acaba cedo. Vale para as duas pontas da triagem: as 4 zonas fora da curva têm o mesmo perfil de horas do país.
 - **Fato:** dentro da mesma zona, a seção cuja parcela de votos depois das 15h cresceu mais virou **menos** para o 13: −0,017 p.p. de virada por p.p. de parcela tardia (erro-padrão 0,001; 2.640 zonas). Depois das 17h: −0,035 (0,002). O efeito é pequeno: 10 p.p. a mais de votos tardios = 0,17 p.p. a menos de virada.
-- **Pendente:** os votos do 1º turno depois das 17h somam aqui 3.723.358, contra 3.672.406 na H06 (1,4% a mais). No 2º turno, 34.330 contra 34.066. Falta conciliar o fuso dos dois scripts.
+- **Fato (conciliação com a linha do tempo):** a tabela soma só seções com log nos dois turnos (497.896). Fica fora SP 64777/0395/0298, cujo log do 2º turno o perfil não leu ([cetico-revisor/21](../cetico-revisor/21-invariantes-sem-violacao.md)). Ela tem 2 votos no 1º turno depois das 17h. Com ela, o 1º turno dá 3.723.360 votos depois das 17h, igual à perícia (tópico 03). O 2º turno dá 34.330, igual a [linha-do-tempo/02](../linha-do-tempo/02-votos-apos-17h.md). Os 3.672.406 da H06 são outro recorte: só as urnas da própria seção, sem as de contingência, e com o exterior na hora local. Os perfis de hora do banco e os gravados em disco são idênticos nas 499.207 seções do 1º turno, e o fuso por município também.
 
 ## Limites
 
 - O esperado é ajustado por UF. Uma virada igual em toda a UF fica dentro do esperado e não aparece como zona fora da curva. Essa pergunta é a da H10 (balanço por UF) e da linha de base histórica.
 - As zonas próximas umas das outras não são independentes, e o z robusto não tem taxa de falso alerta calibrada por simulação.
 - O exterior é uma zona só (sem comparação de z).
-- **Pendente:** a mesma triagem em 2018 e 2022, para saber se as zonas da cauda já se destacavam (base `munzona`).
-- **Pendente:** as 4 zonas fora da curva para o 22 olhadas seção a seção (eleição local, seções que mudaram, governador no 2º turno).
+- Linha de base de 2018 e 2022: [03](03-linha-de-base.md). 10 das 22 zonas da cauda do 13 já eram cauda do PT em 2018, e a cauda do 22 no Maranhão se repete em 2018 e 2022.
+- As 4 zonas fora da curva para o 22, seção a seção: [04](04-casos.md). Efeito espalhado pela zona, em todos os modelos de urna, junto com mudanças de comparecimento.
 - **Pendente:** se "data de pico" quis dizer a hora de chegada do boletim ao TSE, rodar a mesma comparação com `recebido_tse`.
