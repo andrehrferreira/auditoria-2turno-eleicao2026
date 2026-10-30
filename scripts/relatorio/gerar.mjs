@@ -344,6 +344,11 @@ function montarConversor({ peca, estado, ancoras, avisos, contexto }) {
         const nota = `<span class="ref-completo" data-ger> (${jaDiz ? 'no' : `ver tópico ${n} do`} relatório completo)</span>`;
         return { href: null, depois: nota };
       }
+    } else if (/^temas\/[^/]+\.md$/.test(nome)) {
+      // relatório completo: o relatório temático é um documento à parte
+      const jaDiz = /tem[áa]tico/i.test(textoDoLink);
+      const nota = `<span class="ref-completo" data-ger> (${jaDiz ? 'documento' : 'relatório temático'} à parte)</span>`;
+      return { href: null, depois: nota };
     }
     const alvo = idDoArquivo(nome);
     if (alvo) {

@@ -284,6 +284,20 @@ test('link para fora do relatório (análises, hipóteses, registro) faz a gera�
   });
 });
 
+test('relatório completo: link para um relatório temático vira texto com nota de documento à parte', async (t) => {
+  const dir = await diretorioTemporario(t);
+  const pericia = await montarPericia(dir, {
+    topicos: {
+      '00-coleta.md': '# 0. Coleta\n\n## A pergunta\n\nVer o [relatório temático](temas/x.md) e [O certificado](temas/x.md#a-pergunta).\n',
+    },
+  });
+  const r = await gerar({ pericia, saida: path.join(dir, 'saida'), registrar: semRegistro });
+  const doc = await readFile(r.htmlAbs, 'utf8');
+  assert.match(doc, /<span class="link-sem-destino">relatório temático<\/span><span class="ref-completo" data-ger> \(documento à parte\)<\/span>/);
+  assert.match(doc, /<span class="link-sem-destino">O certificado<\/span><span class="ref-completo" data-ger> \(relatório temático à parte\)<\/span>/);
+  assert.doesNotMatch(doc, /temas\/x/);
+});
+
 test('referências do processo: regex, exceções e linhas', () => {
   const positivos = [
     'sustentado no parecer cético 24',
