@@ -318,3 +318,47 @@ test('linha de comando: --tema sem arquivo sai com erro de uso', () => {
   assert.equal(r.status, 1);
   assert.match(r.stderr, /Uso: .*--tema docs\/pericia\/temas\/<slug>\.md/);
 });
+
+// ------------------------------------------------------------------ resumo executivo
+
+test('resumo executivo presente: logo depois da capa, antes de "Como ler", no sumário, links internos e conferido', async (t) => {
+  const dir = await diretorioTemporario(t);
+  const resumo = path.join(dir, 'resumo.md');
+  await writeFile(
+    resumo,
+    '# Resumo executivo\n\n1. **499.207 pacotes, 0 falha.** **Fato:** lacres conferem. [→ tópico 1](01-integridade-e-estrutura-dos-arquivos.md)\n' +
+      '2. **Pendente:** 1º turno. [→ tópico 5](05-soma-dos-boletins.md)\n',
+  );
+  const r = await gerar({ saida: path.join(dir, 'saida'), resumo, registrar: () => {} });
+  const doc = await readFile(r.htmlAbs, 'utf8');
+  const capa = doc.indexOf('<section class="capa"');
+  const sec = doc.indexOf('<section class="frente resumo" id="resumo">');
+  const comoLer = doc.indexOf('<section class="frente" id="como-ler">');
+  assert.ok(capa >= 0 && capa < sec && sec < comoLer, 'ordem: capa, resumo, como ler');
+  assert.match(doc, /#resumo\{page:p-resumo\}\n@page p-resumo\{@top-right\{content:"Resumo executivo"\}\}/);
+  assert.match(doc, /<h1 id="resumo-resumo-executivo" class="titulo-secao">Resumo executivo<\/h1>/);
+  assert.match(doc, /<a href="#t01">→ tópico 1<\/a>/);
+  assert.match(doc, /<a href="#t05">→ tópico 5<\/a>/);
+  assert.match(doc, /<span class="rotulo">Fato<\/span>/);
+  const sumario = doc.slice(doc.indexOf('<nav class="sumario"'), doc.indexOf('</nav>'));
+  assert.ok(sumario.indexOf('href="#resumo"') < sumario.indexOf('href="#como-ler"'));
+  assert.equal((sumario.match(/href="#resumo"/g) ?? []).length, 1);
+
+  // sem título "# ": o gerador dá o nome, que não entra na conferência
+  await writeFile(resumo, '- **Fato:** item.\n');
+  const r2 = await gerar({ saida: path.join(dir, 'saida2'), resumo, registrar: () => {} });
+  const doc2 = await readFile(r2.htmlAbs, 'utf8');
+  assert.match(doc2, /<section class="frente resumo" id="resumo">\n<h1 class="titulo-secao" data-ger>Resumo executivo<\/h1>/);
+  assert.match(doc2, /<li class="sum-1 sum-frente"><a href="#resumo"><span class="num"><\/span><span class="texto">Resumo executivo<\/span>/);
+});
+
+test('resumo executivo ausente: o relatório começa por "Como ler"; temas nunca levam o resumo', async (t) => {
+  const dir = await diretorioTemporario(t);
+  const r = await gerar({ saida: dir, resumo: path.join(dir, 'nao-existe.md'), registrar: () => {} });
+  const doc = await readFile(r.htmlAbs, 'utf8');
+  assert.doesNotMatch(doc, /id="resumo"|href="#resumo"/);
+  assert.match(doc, /<ol class="sum">\n<li class="sum-1 sum-frente"><a href="#como-ler">/);
+  const arquivo = await montarTema(dir, TEMA);
+  const tema = await gerarTema({ arquivo, saida: path.join(dir, 'tema'), registrar: () => {} });
+  assert.doesNotMatch(await readFile(tema.htmlAbs, 'utf8'), /id="resumo"|Resumo executivo/);
+});

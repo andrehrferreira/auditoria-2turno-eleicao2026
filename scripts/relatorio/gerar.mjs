@@ -184,13 +184,15 @@ const CAPA_COMPLETO = {
   tituloPagina: 'Relatório de perícia — Arquivos das urnas das eleições de 2026',
 };
 
+const TITULO_RESUMO = 'Resumo executivo';
+
 const ROTULO_HTML = (palavra) => `<span class="rotulo">${escaparHtml(palavra)}</span>`;
 
 /**
  * Lê as fontes e devolve as peças: cada uma é um trecho de markdown de um arquivo,
  * com o papel que tem no documento. A conferência é feita peça a peça.
  */
-async function lerFontes() {
+async function lerFontes({ resumo = path.join(PERICIA, 'resumo.md') } = {}) {
   const nomes = (await readdir(PERICIA)).filter((n) => /^\d{2}-.+\.md$/.test(n)).sort();
   const topicos = [];
   for (const nome of nomes) {
@@ -231,8 +233,10 @@ async function lerFontes() {
   const evLinhas = ev.split('\n');
   const iEvTitulo = evLinhas.findIndex((l) => /^# /.test(l));
   if (iEvTitulo < 0) throw new Error('docs/pericia/evidencias/README.md: sem título (# )');
+  const resumoMd = existsSync(resumo) ? (await readFile(resumo, 'utf8')).replace(/\r\n?/g, '\n') : null;
   return {
     topicos,
+    resumo: resumoMd === null ? null : { arquivo: resumo, md: resumoMd },
     readme: { arquivo: leia, partes, temAviso: /^> \[!WARNING\]/m.test(partes.comoLer) },
     evidencias: {
       arquivo: evArquivo,
@@ -245,10 +249,14 @@ async function lerFontes() {
 /** Peças em ordem de documento. `dir` é a pasta do arquivo, para resolver links relativos. */
 function pecas(fontes) {
   const { readme, evidencias } = fontes;
-  const lista = [
+  const lista = [];
+  if (fontes.resumo) {
+    lista.push({ chave: 'resumo', fonte: fontes.resumo.arquivo, md: fontes.resumo.md, prefixo: 'resumo-', papel: 'resumo' });
+  }
+  lista.push(
     { chave: 'como-ler', fonte: readme.arquivo, md: readme.partes.comoLer, prefixo: 'leia-', papel: 'frente' },
     { chave: 'topicos', fonte: readme.arquivo, md: readme.partes.topicos, prefixo: 'leia-', papel: 'frente-titulada' },
-  ];
+  );
   for (const t of fontes.topicos) {
     const id = `t${String(t.numero).padStart(2, '0')}`;
     lista.push({ chave: id, fonte: t.arquivo, md: t.md, prefixo: `${id}-`, papel: 'topico', numero: t.numero });
@@ -294,7 +302,10 @@ function montarConversor({ peca, estado, ancoras, avisos, contexto }) {
         return { href: url && frag ? `${url}#${encodeURIComponent(frag)}` : url, depois: nota };
       }
     }
-    const rel = relRepo(abs);
+    let rel = relRepo(abs);
+    // o resumo fica ao lado dos tópicos: "NN-*.md" é sempre um tópico do relatório
+    const vizinho = path.relative(dir, abs).split(path.sep).join('/');
+    if (peca.papel === 'resumo' && /^\d{2}-[^/]+\.md$/.test(vizinho)) rel = `docs/pericia/${vizinho}`;
     const alvo = idDoArquivo(rel);
     if (alvo) {
       if (!frag) return `#${alvo.id}`;
@@ -336,6 +347,11 @@ function montarConversor({ peca, estado, ancoras, avisos, contexto }) {
         return `<h2 id="${id}"><span class="num" data-ger>${num}</span> ${html}</h2>`;
       }
       return `<h${nivel} id="${id}">${html}</h${nivel}>`;
+    }
+    if (peca.papel === 'resumo' && nivel === 1) {
+      estado.sumario.push({ nivel: 1, id: peca.chave, num: '', html });
+      estado.tituloTopico = plano;
+      return `<h1 id="${id}" class="titulo-secao">${html}</h1>`;
     }
     if (peca.papel === 'frente-titulada' && nivel <= 2) {
       estado.sumario.push({ nivel: 1, id: peca.chave, num: '', html });
@@ -387,6 +403,10 @@ function converterTudo(lista, contexto) {
     const { html } = converter(peca.md, opcoes);
     saidas.push({ ...peca, html, tituloSecao: estado.tituloTopico });
   }
+  // resumo sem título "# ": o gerador dá o nome
+  if (lista.some((p) => p.papel === 'resumo') && !estado.sumario.some((e) => e.id === 'resumo')) {
+    estado.sumario.unshift({ nivel: 1, id: 'resumo', num: '', html: TITULO_RESUMO });
+  }
   return { saidas, sumario: estado.sumario, avisos: [...avisos] };
 }
 
@@ -425,9 +445,17 @@ function dataPtBr(d) {
 
 function htmlSumario(sumario) {
   let html = '<nav class="sumario" id="sumario" aria-labelledby="sumario-titulo">\n<h1 id="sumario-titulo" class="titulo-secao">Sumário</h1>\n<ol class="sum">\n';
-  html += '<li class="sum-1 sum-frente"><a href="#como-ler"><span class="num"></span><span class="texto">Como ler este relatório</span></a></li>\n';
+  // "Como ler" vem logo depois do resumo executivo (se houver)
+  const comoLer = '<li class="sum-1 sum-frente"><a href="#como-ler"><span class="num"></span><span class="texto">Como ler este relatório</span></a></li>\n';
   let aberto = false;
+  let comoLerFeito = false;
   for (const e of sumario) {
+    if (!comoLerFeito && e.id !== 'resumo') {
+      if (aberto) html += '</ol></li>\n';
+      aberto = false;
+      html += comoLer;
+      comoLerFeito = true;
+    }
     const texto = e.html.replace(/<\/?a\b[^>]*>/g, '');
     if (e.nivel === 1) {
       if (aberto) html += '</ol></li>\n';
@@ -439,6 +467,7 @@ function htmlSumario(sumario) {
     }
   }
   if (aberto) html += '</ol></li>\n';
+  if (!comoLerFeito) html += comoLer;
   return `${html}</ol>\n</nav>\n`;
 }
 
@@ -474,6 +503,12 @@ ${temAviso ? `<div><dt>Situação</dt><dd>${escaparHtml(AVISO_CAPA)}</dd></div>`
       corpo.push(`<section class="frente" id="como-ler">\n<h1 class="titulo-secao" data-ger>Como ler este relatório</h1>\n${g.html}</section>`);
       corpo.push(htmlSumario(sumario));
       paginas.push({ nome: 'p-sumario', direita: 'Sumário' });
+      continue;
+    }
+    if (g.chave === 'resumo') {
+      paginas.push({ nome: 'p-resumo', direita: g.titulo || TITULO_RESUMO });
+      const cabeca = g.titulo ? '' : `<h1 class="titulo-secao" data-ger>${TITULO_RESUMO}</h1>\n`;
+      corpo.push(`<section class="frente resumo" id="resumo">\n${cabeca}${g.html}</section>`);
       continue;
     }
     const nome = `p-${g.chave}`;
@@ -632,6 +667,12 @@ li figure.grafico{margin-top:.6em}
 .capa-meta dt{color:var(--suave)}
 .capa-meta dd{margin:0}
 
+/* resumo executivo: leitura rápida */
+.resumo>ol{padding-left:1.9em}
+.resumo>ol>li{margin:0 0 .8em;padding-left:.25em}
+.resumo>ol>li::marker{font-size:1em;font-weight:700;color:var(--destaque)}
+.resumo strong{font-variant-numeric:tabular-nums lining-nums}
+
 /* sumário */
 .sumario ol{list-style:none;margin:0;padding:0}
 .sumario li{margin:0}
@@ -759,8 +800,8 @@ async function produzir({ lista, contexto, meta, temAviso, capa, saida, nome, pd
 }
 
 /** Relatório completo: docs/pericia/NN-*.md. */
-export async function gerar({ pdf = false, saida = SAIDA, registrar = console.log } = {}) {
-  const fontes = await lerFontes();
+export async function gerar({ pdf = false, saida = SAIDA, registrar = console.log, resumo } = {}) {
+  const fontes = await lerFontes({ resumo });
   const { contexto, meta } = contextoGit();
   return produzir({
     lista: pecas(fontes),
