@@ -1,0 +1,1 @@
+ok   cx/gpt-6-astra: docs\analysis\modelos\T19\astra\r2\astra.md
