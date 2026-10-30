@@ -191,8 +191,22 @@ Este é o contraste mais forte: mesma seção, mesmos eleitores, urna diferente.
 
   | No dia 25/10, seções H14 no dia | Votos | Sem biometria | Pelo mesário | Linhas ERRO do leitor biométrico |
   |---|---|---|---|---|
-  | Urna substituída (antes da troca) | 155.894 | 16,42% | 6,71% | 2.226 |
+  | Urna substituída (antes da troca) | 155.663 | 16,42% | 6,72% | 2.226 |
   | Reserva (depois da troca) | 356.354 | 14,97% | 4,16% | 40 |
+
+  - **Correção (30/10/2026, parecer 39 do revisor cético, item do tópico 11).** A primeira versão desta linha somava cópias do mesmo diário:
+    - em BA 39870/0133/0184, o pacote traz duas cópias do mesmo diário da urna anterior (185 linhas idênticas);
+    - em MG 40690/0016/0264, um diário contém o outro (46 linhas).
+  - O script agora conta cada linha do diário uma vez por urna e por seção, comparando a linha inteira, com o hash encadeado. As 1.423 seções com voto antes da troca são as mesmas.
+
+  | Número | Antes | Depois |
+  |---|---|---|
+  | Votos | 155.894 | 155.663 |
+  | Sem biometria | 16,42% (25.597 votos) | 16,42% (25.567) |
+  | Pelo mesário | 6,71% (10.461) | 6,72% (10.457) |
+  | Erros do leitor | 2.226 | 2.226 |
+
+  A linha da reserva não muda, e as rajadas também não. Na reserva da SP 61654/0014/0250 (seção sem registro de contingência, fora desta tabela), uma linha ERRO do leitor aparecia em duas cópias e passou a contar uma vez (2 → 1).
 
   Em 759 seções com 50 ou mais votos em cada urna, a reserva liberou mais sem biometria que a substituída em 336 e menos em 420. Os erros do leitor ficam na urna substituída. A causa mais comum da troca no dia, pela última mensagem ERRO/ALERTA da original, é a MR (823) ou o leitor biométrico (176 "Falha na captura da digital", 71 "ERROR opening the biometric reader", 24 + 17 + 11 + 7 de outros erros do leitor).
 - **Fato:** "reinício" e "linhas ERRO" sobem no dia da troca por construção: a contingência é um reinício, e a urna que falha grava erro. Nas seções H14 entre turnos, os reinícios do **1º turno** já eram altos (14,7% × 2,9% no controle): a urna que falhava no 1º turno foi a trocada. É evidência a favor da explicação benigna.

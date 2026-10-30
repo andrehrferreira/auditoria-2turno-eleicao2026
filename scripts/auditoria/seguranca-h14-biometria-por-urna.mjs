@@ -34,16 +34,22 @@ for (const [k, g] of oficial) {
   const dir = path.join(BASE, ...k.split('/'));
   const aux = JSON.parse(await readFile(path.join(dir, 'aux.json'), 'utf8'));
   const urnas = {};
+  // Parecer 39: o pacote pode trazer cópias do mesmo diário (BA 39870/0133/0184: dois logd.dat iguais; MG 40690/0016/0264:
+  // um diário contém o outro). Cada linha (com o hash encadeado, única) conta uma vez por urna na seção.
+  const vistas = new Map(); // urna -> Set de linhas já contadas
   for (const h of aux.hashes.filter((x) => x.hash && x.hash !== '0' && (x.arq ?? []).some((a) => a.nm))) {
     const nomes = await readdir(path.join(dir, h.hash));
     const nl = acharArquivo(nomes, 'log');
     if (!nl) continue;
     for (const t of await textos(mem(await readFile(path.join(dir, h.hash, nl))))) {
-      // separa as linhas por urna (um logd.dat pode trazer linhas de outra urna)
+      // separa as linhas por urna (um logd.dat pode trazer linhas de outra urna), sem repetir linha já contada
       const porUrna = new Map();
       for (const l of t.split('\n')) {
         const u = l.split('\t')[2];
         if (!u) continue;
+        const v = vistas.get(u) ?? vistas.set(u, new Set()).get(u);
+        if (v.has(l)) continue;
+        v.add(l);
         (porUrna.get(u) ?? porUrna.set(u, []).get(u)).push(l);
       }
       for (const [u, ls] of porUrna) {
