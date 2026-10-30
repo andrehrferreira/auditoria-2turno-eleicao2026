@@ -181,9 +181,17 @@ Contexto. No exterior há 1.351 seções em cada turno: 1.281 votaram em urna, 2
 **37. Cancelamentos de título por óbito.** O número de inscrições canceladas por óbito, por município, por mês e por faixa etária, separando as anteriores e as posteriores ao fechamento do cadastro para 2026. Não se pede nenhum dado pessoal.
 *Período:* 01/01/2022 a 25/10/2026. *Formato:* CSV.
 
+**38. Votantes de 80 anos ou mais por forma de habilitação.** Por zona eleitoral, em cada turno de 2022 e de 2026, o número de votantes de 80 a 89 anos, de 90 a 99 anos e de 100 anos ou mais, separados pela forma como a urna os habilitou: (a) pela digital do próprio eleitor; (b) pelo ano de nascimento digitado, sem digital; (c) liberação feita pelo mesário depois de digital não reconhecida. Contexto: no 1º turno, os votantes de 85 a 99 anos passaram de 267.098 em 2022 para 460.338 em 2026. O diário da urna registra a forma de habilitação, mas não a idade do eleitor, e os dados de comparecimento por idade não separam a forma de habilitação; só o cadastro liga uma informação à outra. Não se pede nenhum dado pessoal.
+*Período:* 1º e 2º turno de 2022 e de 2026. *Formato:* CSV.
+
+**39. Títulos cancelados por óbito com voto registrado em 2026.** O número de inscrições canceladas por óbito depois do fechamento do cadastro para 2026 que tiveram comparecimento registrado no 1º ou no 2º turno de 2026, por zona, por faixa etária e por forma de habilitação na urna (como no item 38), indicando, para cada caso, se a data do óbito é anterior ou posterior à data do turno em que houve o voto. Não se pede nenhum dado pessoal.
+*Período:* do fechamento do cadastro para 2026 a 25/10/2026. *Formato:* CSV.
+
 ### H. Sigilo do voto
 
-**38. Números com formato de título gravados na suspensão do eleitor.** Quando o mesário suspende um eleitor que demora na cabine, o diário público da urna grava o número digitado. No 1º turno, 55.483 dessas linhas trazem 31.764 números com formato de título que não pertencem a nenhum mesário, presidente de mesa ou servidor registrado; no 2º turno, são 5.564 linhas e 3.801 números. Pede-se:
+**39-A. Origem das seções novas.** Para as seções criadas depois de 2022, a data e o motivo da criação (ato do TRE), e a distribuição, por seção, dos eleitores pela data de alistamento ou de transferência para aquela seção (por ano, sem dado pessoal), para 2026.
+
+**40. Números com formato de título gravados na suspensão do eleitor.** Quando o mesário suspende um eleitor que demora na cabine, o diário público da urna grava o número digitado. No 1º turno, 55.483 dessas linhas trazem 31.764 números com formato de título que não pertencem a nenhum mesário, presidente de mesa ou servidor registrado; no 2º turno, são 5.564 linhas e 3.801 números. Pede-se:
 - (a) de quem é o número gravado nessa linha (do eleitor suspenso, do mesário ou outro);
 - (b) a regra técnica da suspensão: o que a urna faz com os votos já confirmados e com os cargos não confirmados;
 - (c) se a publicação desse número no diário público foi avaliada quanto ao sigilo do voto e à proteção de dados pessoais, e o documento dessa avaliação.
@@ -191,7 +199,7 @@ Contexto. No exterior há 1.351 seções em cada turno: 1.281 votaram em urna, 2
 
 ### I. Mesa receptora e caderno de votação
 
-**39. Caderno de votação e atas de seções com padrão de liberação a esclarecer.** A ata da mesa receptora e cópia do caderno de votação (com os dados pessoais ocultados, preservando o número e a ordem das assinaturas) das seções:
+**41. Caderno de votação e atas de seções com padrão de liberação a esclarecer.** A ata da mesa receptora e cópia do caderno de votação (com os dados pessoais ocultados, preservando o número e a ordem das assinaturas) das seções:
 - PR 78573/0083/0101, nos dois turnos: no 2º turno, 16 avisos de "eleitor já votou", todos até 20 segundos depois de um voto liberado sem digital;
 - AL 28819/0045/0174 e PR 79294/0019/0055, no 1º turno: todos os eleitores dessas seções têm digital no cadastro, mas a urna liberou sem digital 52,5% e 98,2% dos votantes.
 Se a cópia não puder ser fornecida, pede-se a indicação de que o caderno está preservado e de qual órgão pode examiná-lo.
