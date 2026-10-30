@@ -70,3 +70,9 @@ Por UF, todas com 0 falha. As UFs sem urna UE2013/UE2015 são AC, AP, RO e RR. O
 ## Limite
 
 Este teste prova que o arquivo não mudou depois de assinado e que quem assinou tinha uma chave certificada por uma das três ACs. Não prova que essas ACs só certificaram urnas reais, nem que o software dentro da urna é o lacrado (doc 06, R2, R4 e R5).
+
+## 1º turno (30/10/2026)
+
+- **Fato:** `node scripts/auditoria/integridade-lacres.mjs --turno 1` sobre os 499.207 diretórios oficiais (499.248 seções; 41 sem pacote). 37.440 diretórios param na leitura do certificado (bytes zero a mais: 37.389 com 1, 51 com 3; todos AC URNA; UE2015 33.020, UE2013 4.420), exatamente o previsto pelo parecer 24, item 4. `node scripts/auditoria/integridade-reverificar.mjs --turno 1`: 37.440 de 37.440 aprovados com o certificado cortado, 0 falha.
+- **Recontagem independente:** `node scripts/auditoria/cetico-integridade-recontagem.mjs --turno 1 --dir data/parsed/auditoria/integridade/1t` → 499.207 oficiais, 0 duplicata, 0 erro de certificado, 1 diretório com arquivo extra: `imgbu.dat` de MG 50075/0047/0041 publicado fora da lista lacrada (já registrado no doc 04).
+- **Incidente de execução:** a extração foi interrompida e retomada com dois processos ao mesmo tempo; 108.447 linhas repetidas (mesmo diretório) foram removidas e `feitos.json` refeito a partir das linhas existentes antes da retomada única. Nenhuma zona ficou marcada como concluída sem linhas.
