@@ -28,7 +28,7 @@ De cada urna saem o **boletim de urna** (o placar da seção), o **registro digi
 
 **5. Nas urnas trocadas por reserva, o teste de votos não encontrou diferença em relação às vizinhas.** **Fato.** No 2º turno, 5.714 seções votaram com urna reserva (a que substitui a urna com defeito). Nas 2.818 trocas novas, o teste que compara a mudança da parcela do 13 entre os turnos com a das seções sem troca da mesma zona não encontrou diferença. Não encontrar diferença não prova que os votos foram iguais: quer dizer que o teste não separou a diferença do acaso. Os números do teste estão na análise técnica separada da auditoria. Mesmo que todos os 742.671 votos do 13 nas 5.714 seções com reserva fossem, na verdade, do 22, o 13 venceria por 2.944.849. → [tópico 11](11-urnas-reserva.md)
 
-**6. Horários de votação e de apuração.** **Fato.** Depois das 17h de Brasília houve 34.330 votos: se fossem todos de um lado, seriam 0,8% da diferença entre os candidatos. Fora 3 seções com erro de leitura desta auditoria, o menor intervalo entre dois votos foi de 16 segundos. Na apuração, às 19h, 98,64% dos boletins já tinham sido emitidos pelas urnas, e o TSE tinha registrado 1.909 (0,38% das seções): todos os que tinham voto, até as 17:10, e 39 de seções do exterior sem urna; de 17:10 a 19:03:37 não registrou nenhum boletim com voto, e depois registrou em lotes até 21:09. A ordem de registro não muda o total, que é a soma dos boletins. **Pendente:** onde os boletins esperaram e se a ordem dependeu do voto das seções. → [tópico 3](03-linha-do-tempo.md)
+**6. Horários de votação e de apuração.** **Fato.** Depois das 17h de Brasília houve 34.330 votos: se fossem todos de um lado, seriam 0,8% da diferença entre os candidatos. Lidos os diários de todas as urnas dos dois turnos, nenhum eleitor votou mais depressa do que uma pessoa consegue digitar: o menor intervalo entre dois votos foi de 16 segundos no 2º turno. Na apuração, às 19h, 98,64% dos boletins já tinham sido emitidos pelas urnas, e o TSE tinha registrado 1.909 (0,38% das seções): todos os que tinham voto, até as 17:10, e 39 de seções do exterior sem urna; de 17:10 a 19:03:37 não registrou nenhum boletim com voto, e depois registrou em lotes até 21:09. A ordem de registro não muda o total, que é a soma dos boletins. **Pendente:** onde os boletins esperaram e se a ordem dependeu do voto das seções. → [tópico 3](03-linha-do-tempo.md), [tópico 10](10-quadro-das-hipoteses.md)
 
 ### Brechas e riscos encontrados
 
@@ -71,7 +71,7 @@ De cada urna saem o **boletim de urna** (o placar da seção), o **registro digi
 | H05 | Mesários liberando outras pessoas sem digital | aberta | [tópico 4](04-liberacao-dos-eleitores.md) |
 | H06 | Prorrogação do horário e liberação controlada dos boletins | em teste | [tópico 3](03-linha-do-tempo.md) |
 | H07 | Urnas antigas postas onde se quer dispensar a digital | **refutada** | [tópico 10](10-quadro-das-hipoteses.md) |
-| H08 | Votos rápidos demais para uma pessoa | aberta | [tópico 3](03-linha-do-tempo.md) |
+| H08 | Votos rápidos demais para uma pessoa | aberta | [tópico 10](10-quadro-das-hipoteses.md) |
 | H09 | Arquivos públicos permitem saber em quem alguém votou | aberta | [tópico 12](12-sigilo-do-voto.md) |
 | H10 | O vencedor cresceu mais do que havia de votos | **refutada** | [tópico 8](08-virada-do-2-turno.md) |
 | H11 | Mesmo cartão em várias urnas, ou resultado trocado no caminho | em teste | [tópico 2](02-coerencia-entre-arquivos.md) |

@@ -5,7 +5,7 @@
 > - **(revisado):** o número passou por uma revisão independente, que tentou derrubar a conclusão, refez as contas e a confirmou;
 > - **(recalculado):** o número foi recalculado de forma independente, por programas próprios desta auditoria, sobre todas as seções; os casos do item 7 foram conferidos também no diário original da urna.
 >
-> O que não pôde ser reproduzido saiu do texto e aparece como **Pendente**, sem número. Os itens 1, 4 e 5 cobrem as 28 unidades (26 estados, DF e exterior) nos dois turnos, e o item 7, o 2º turno, com as exclusões que cada item declara (seções apuradas pelo Sistema de Apuração, que não dividem a liberação e não têm log de urna). O teste do item 6.1 cobre as 27 UFs com o detalhamento de habilitação nos dois turnos (revisão de 30/10/2026); o exterior fica fora porque lá não há eleitor liberado pela digital para comparar.
+> O que não pôde ser reproduzido saiu do texto e aparece como **Pendente**, sem número. Os itens 1, 4 e 5 cobrem as 28 unidades (26 estados, DF e exterior) nos dois turnos, e o item 7, o 2º turno, com as exclusões que cada item declara (seções apuradas pelo Sistema de Apuração, que não dividem a liberação e não têm log de urna). O teste do item 6.1 cobre as 27 UFs com o detalhamento de habilitação nos dois turnos (revisão de 30/10/2026); o exterior fica fora porque lá não há eleitor liberado pela digital para comparar. A conta do pior caso com a liberação contada no diário, no fim do item 6.4, cobre todas as seções do Brasil, sem o exterior, no 2º turno; a comparação entre seções do mesmo prédio deixa de fora as seções sem dado no perfil do eleitorado, as muito pequenas e as poucas em que o diário difere do boletim, e não usa as que são a única seção do prédio (revisão de 30/10/2026).
 
 ## A pergunta
 
@@ -21,6 +21,7 @@ Quantos eleitores votaram depois de pôr o dedo no leitor da urna, e quantos vot
 - **Fato (recalculado):** 97 seções liberaram à mão metade ou mais dos votantes, todas com urnas de 2013 ou 2015 (item 8).
 - **Pendente: em verificação.** Se as seções que liberam mais gente sem digital votam mais num dos candidatos, comparando seções parecidas (item 6.2).
 - **Fato (recalculado com duas contas):** no Nordeste, de 3,41% a 99,93% dos liberados sem digital podem ter votado no 13. Mesmo no pior caso para o 13, anulando esses votos, ele ainda venceria por 166.144 votos. No Brasil inteiro, porém, o pior caso aritmético dos 15.884.298 liberados sem digital inverteria o resultado: a aritmética, sozinha, não fecha essa porta (item 6.4). Em quem os liberados de fato votaram é estimativa e fica fora deste relatório.
+- **Fato (revisado):** contando a liberação no diário da urna, 5.841.108 eleitores foram liberados à mão por um mesário identificado no 2º turno (sem o exterior). No pior caso, a margem de 4.430.191 a favor do 13 passaria a 1.401.371 a favor do 22; só com os 1.795.037 do Nordeste, o 13 ainda venceria por 2.636.659. No Nordeste, as seções que liberaram mais sem digital não votaram mais no 13 que as do mesmo prédio, mas essa comparação não enxerga fraude que atinja só uma pequena parte desses eleitores. Fora do Nordeste, um sinal no Sul, em MG e no RS continua em análise (item 6.4).
 - **Limite que não muda:** o voto é secreto. Nenhum arquivo diz em quem votou o eleitor liberado sem digital. Esse voto só pode ser cercado por cima e por baixo, ou estimado pela comparação entre seções, mas nunca observado.
 
 ## Antes de começar: como uma pessoa é liberada para votar
@@ -171,7 +172,9 @@ Fonte: estudo com as 28 UFs, conferido por uma revisão independente, que o conf
 
 #### 6.2. Seções que liberam mais votam mais no 13? (Pendente: em verificação)
 
-A pergunta é se as seções que liberam mais gente sem digital votam mais no 13, comparando seções da mesma zona e descontando o perfil do eleitorado (idade, cadastro sem biometria, tamanho) e o modelo da urna, nos dois turnos. A análise original fez essa conta, mas ela ainda não foi reproduzida de forma independente nem passou pela revisão independente. Por isso, nenhum número dela entra aqui, e nenhuma conclusão sobre essa associação é tirada neste tópico.
+A pergunta é se as seções que liberam mais gente sem digital votam mais no 13, comparando seções da mesma zona e descontando o perfil do eleitorado (idade, cadastro sem biometria, tamanho) e o modelo da urna, nos dois turnos. A análise original fez essa conta, mas ela ainda não foi reproduzida de forma independente nem passou pela revisão independente. Por isso, nenhum número dela entra aqui, e nenhuma conclusão sobre essa associação é tirada neste item.
+
+Uma comparação parecida, entre seções do mesmo prédio de votação e com a liberação contada no diário da urna, já passou pela revisão independente. O resultado dela para o Nordeste, e um sinal ainda em análise no Sul, em MG e no RS, estão no fim do item 6.4.
 
 Duas leituras terão de ser testadas quando o número existir:
 
@@ -190,7 +193,7 @@ Se mesários votassem no lugar de ausentes, as seções com quase todos os eleit
 
 #### 6.4. Os liberados votaram majoritariamente no 13, sobretudo no Nordeste?
 
-Essa hipótese (H13) foi apresentada ao projeto. O voto de quem foi liberado sem digital não é registrado em lugar nenhum (ver "Por que não dá para ver em quem o liberado votou"). Por isso, a resposta tem duas partes: o que a aritmética garante, que entra aqui, e o que só se estima com modelos estatísticos, que fica fora deste relatório.
+Essa hipótese (H13) foi apresentada ao projeto. O voto de quem foi liberado sem digital não é registrado em lugar nenhum (ver "Por que não dá para ver em quem o liberado votou"). Por isso, a resposta tem duas partes: o que a aritmética garante, que entra aqui, e o que só se estima com modelos estatísticos, que fica fora deste relatório. Da comparação entre seções do mesmo prédio, revisada de forma independente, entra só o resultado em palavras (fim deste item).
 
 **Quantos foram liberados sem digital, por região (2º turno, Brasil sem o exterior):**
 
@@ -217,9 +220,36 @@ Na última coluna, cada linha anula só os liberados daquela região. Liberados 
 
 Fonte: boletins de todas as seções, pela base de dados da auditoria; a tabela por UF fica nos documentos de análise. A mesma conta foi feita por outro caminho, a partir dos resumos de cada boletim, e as duas dão o mesmo resultado no Nordeste: 3,4% a 99,9% (a outra conta publica uma casa decimal) e a mesma margem de 166.144. Exclusões: as 1.310 seções do exterior. Nenhuma seção do Brasil ficou sem o detalhamento no boletim do 2º turno: as 2 de MG que saem do item 1 têm o detalhamento no 2º turno e entram aqui.
 
-**O que fica fora deste relatório:** cinco métodos estatísticos estimaram em quem os liberados votaram e se votaram diferente de quem usou a digital na mesma zona. Também mediram que tamanho de fraude cada teste seria capaz de ver. Essas medidas são estimativas de modelo, e por isso nenhum número delas entra aqui. Elas ficam nos documentos de análise da auditoria, junto com as revisões independentes que as examinaram.
+**O que fica fora deste relatório:** cinco métodos estatísticos, e a comparação entre seções do mesmo prédio descrita abaixo, estimaram em quem os liberados votaram e se votaram diferente de quem usou a digital no mesmo lugar. Também mediram que tamanho de fraude cada teste seria capaz de ver. Essas medidas são estimativas de modelo, e por isso nenhum número delas entra aqui. Elas ficam nos documentos de análise da auditoria, junto com as revisões independentes que as examinaram.
 
-- **Pendente:** a mesma conta aritmética com a liberação contada no log (mesário identificado), depois que os resumos dos logs forem refeitos com a ordem das linhas corrigida.
+**A conta do pior caso, com a liberação contada no diário (revisado, 30/10/2026).**
+
+O boletim diz quantos eleitores foram liberados à mão, mas não separa os que a urna ligou a um mesário dos que ela não ligou a ninguém. O diário da urna separa. A auditoria leu os diários de todas as urnas e contou, atendimento por atendimento, a forma de liberação de cada eleitor. Uma conferência independente leu de novo todos os diários com um programa próprio e chegou aos mesmos números, até a unidade.
+
+- **Fato (revisado):** no 2º turno, **5.841.108** eleitores (sem contar o exterior) foram liberados à mão por um **mesário identificado**, isto é, a urna ligou a digital posta no leitor a um mesário registrado na seção. Como o voto é secreto, não dá para saber em quem votaram.
+- **Fato (revisado):** imagine o pior caso: todos esses votos teriam ido para o 13, até onde cada seção permite, e seriam todos anulados. A diferença a favor do 13, que foi de **4.430.191** votos, passaria a **1.401.371 votos a favor do 22**.
+- **Fato (revisado):** só com os liberados assim no Nordeste (**1.795.037**), o 13 ainda venceria, por **2.636.659** votos.
+
+| Região | Liberados à mão com mesário identificado | Parte que pode ter votado no 13 | Margem nacional no pior caso para o 13 |
+|---|---|---|---|
+| Nordeste | 1.795.037 | 1,01% a 99,95% | 2.636.659 |
+| Brasil (sem exterior) | 5.841.108 | 0,35% a 99,91% | −1.401.371 |
+
+Como na tabela anterior, cada linha anula só os liberados daquela região, e um número negativo quer dizer vitória do 22. A contagem pelo diário e a do boletim (item 1) diferem um pouco: o boletim não separa a liberação manual com e sem mesário, e em 6 seções do 2º turno o diário tem menos votos que o boletim ([tópico 2](02-coerencia-entre-arquivos.md)).
+
+Essa conta não diz que houve fraude. Ela diz só que a aritmética sozinha não basta para descartar a hipótese: é preciso olhar como as seções se comportaram.
+
+**O que as seções mostram no Nordeste (revisado).**
+
+- **Fato (revisado):** comparamos seções do **mesmo prédio de votação**, com eleitorado de idade e escolaridade parecidas. As que tiveram mais eleitores liberados sem digital (pelo ano de nascimento, à mão com mesário identificado ou à mão sem mesário) não votaram mais no 13 do que as vizinhas, nem no 2º turno nem no ganho do 1º para o 2º turno.
+- **Limite:** esse tipo de comparação não enxerga tudo. Uma fraude a favor do 13 que atingisse só uma pequena parte desses eleitores passaria despercebida. Também passaria uma fraude igual em todas as seções de um prédio, ou igual nos dois turnos. O tamanho do que escaparia é estimativa de simulação e fica fora deste relatório.
+- **Fato (revisado):** no Centro-Oeste, as seções com mais eleitores liberados pelo ano de nascimento votam mais no 13 que as do mesmo prédio, mas isso já acontecia no 1º turno: é uma característica dessas seções, e não algo que surgiu no 2º turno.
+
+**Um sinal fora do Nordeste, ainda em aberto (Hipótese, em análise).**
+
+- No Sul, em Minas Gerais e no Rio Grande do Sul, as seções que tiveram mais eleitores **liberados pelo ano de nascimento** no 2º turno do que no 1º tiveram um crescimento um pouco maior do 13. O sinal aparece espalhado por milhares de seções, não em poucas, e não se concentra no fim do dia.
+- Duas explicações cabem nos dados. Pode ser só o perfil de quem voltou a votar no 2º turno. Ou pode ser voto no lugar de eleitor ausente. Os dados por seção não separam uma da outra. A explicação de que seriam jovens votando foi testada e não tem apoio.
+- Essa análise foi feita depois de olhar os dados. Por isso o caso continua em análise, e nenhum número dela entra aqui. **Pendente:** um teste com plano registrado antes de rodar, para o Sul, MG e o RS.
 
 ### 7. "O eleitor identificado já votou"
 
@@ -275,6 +305,7 @@ Fonte: boletins dos dois turnos. A conta foi feita duas vezes, por caminhos inde
 - **Item 3:** um segundo caso, que a análise original não tinha olhado, foi conferido no arquivo bruto do perfil (ES, Vitória, zona 52, seção 33: perfil com 394 de 394 eleitores com biometria, boletim com 19 e 20 sem biometria nos dois turnos). O marcador da foto foi medido em duas verificações independentes, com seções diferentes.
 - **Item 3, o que o teste de uso consegue ver:** na revisão independente, foram injetados votos falsos do tamanho observado em parte das seções. Quando eles estão em muitas seções, o teste os pega; quando estão numa parte pequena das seções, a detecção é incerta. **O teste não consegue ver uso em poucas seções ou com poucos eleitores por seção.** Ele não prova que não houve uso: mostra que um uso amplo como o simulado teria deixado sinal, e esse sinal não apareceu.
 - **Item 6.1:** nas duas revisões independentes, foram inseridos votos falsos nos dados reais e medido o que o teste pega e o que não pega (a segunda revisão repetiu com 20 rodadas e outro sorteio, e o resultado qualitativo se manteve). Foi assim que se chegou aos pontos cegos listados em 6.1. A revisão também conferiu três seções no boletim original dos dois turnos (PR 74993/0159/0009, PR 77399/0124/0080 e MG 52752/0268/0068): os números batem com a base de dados da auditoria.
+- **Item 6.4, liberação contada no diário:** a revisão independente leu de novo todos os diários dos dois turnos com um programa próprio, que decide a forma de liberação de outro jeito, e chegou aos mesmos 5.841.108 liberados com mesário identificado e às mesmas margens no pior caso. No 2º turno, em todas as seções menos 6, o diário dá o mesmo número de votos e a mesma divisão por forma de liberação que o boletim.
 - **Item 6.3:** em simulação, seções levadas a 95% de comparecimento só com votos falsos sem digital quase nunca foram marcadas: o teste por seção é fraco. O teste do conjunto das 639, pelo caminho da digital que falhou, só vale para fraude espalhada por essas seções.
 - **Itens 1, 4, 5 e 7:** os números foram recalculados de forma independente, de todas as seções dos dois turnos, e os casos do item 7 foram conferidos no log bruto. Esses itens são contagens; ainda não passaram pela revisão independente.
 
@@ -306,7 +337,8 @@ Fonte: boletins dos dois turnos. A conta foi feita duas vezes, por caminhos inde
 
 ## Próximos passos
 
-- **Pendente:** refazer a conta do item 6.4 com a liberação contada no log, depois que os resumos dos logs forem refeitos.
+- ~~Pendente: refazer a conta do item 6.4 com a liberação contada no log~~ — feita em 30/10/2026, com revisão independente (item 6.4).
+- **Pendente:** um teste com plano registrado antes de rodar para o sinal do Sul, de MG e do RS (item 6.4), que separe o perfil de quem voltou a votar de voto no lugar de ausente.
 - **Pendente:** reproduzir de forma independente a comparação do item 6.2 e a do item 5 com os controles de perfil do eleitorado, e passar as duas pela revisão independente.
 - **Pendente:** revisão independente das contagens dos itens 1, 2, 4, 5 e 7.
 - **Pendente:** medir o marcador da foto nas 16.011 seções do item 3, nas seções sem excesso e no país inteiro, para saber o tamanho real do grupo "tem foto, não tem digital na urna".
