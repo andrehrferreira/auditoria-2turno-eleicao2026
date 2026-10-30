@@ -109,7 +109,7 @@ Na BA 39934/0183/0175, a mídia externa levou para o pacote o log de **outra se�
 
 - **Hipótese (técnica):** a mídia externa reaproveitada entre seções do mesmo local perdeu o log da urna original, ou nunca o recebeu.
 - **Risco (princípio 8):** troca de urna e de mídia é feita por pessoas. Nessas janelas, os votos só têm o rastro agregado do BU.
-- **Peso técnico:** 130 dos 152 têm habilitação por biometria contada no BU assinado. É contador da urna, não linha de log.
+- **Peso técnico:** 131 dos 152 têm habilitação por biometria (correção do parecer cético [20](../cetico-revisor/20-matematico-ciclo-e-votos-sem-rastro.md): uma versão anterior dizia 130, e a própria tabela soma 131) contada no BU assinado. É contador da urna, não linha de log.
 
 **Recomendação:**
 
