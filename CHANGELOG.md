@@ -21,7 +21,7 @@ Entregas da auditoria, por data. Os números são os dos commits citados; o esta
 - Revisão geral da perícia por Astra, Grok e Kimi (T20), com triagem e correções em todos os tópicos e no resumo (2178a8e, 5e3e65a).
 - Consenso T22: os números de teste estatístico e o percentual hipotético do RJ (49,270%) saem do relatório; fica "o teste não encontrou diferença" (8648723, 2af0164, ea77a0e).
 - Temático da AC URNA com a busca por carteiras de teste ou fora do padrão e com as respostas unânimes do consenso T23 (8b548dd, a5d7fdf). Relatório completo (176 páginas) e temático (34 páginas) regerados e assinados (33f8ca2, 20a4315).
-- README com o andamento de 30/10, os relatórios assinados e a forma de conferir a assinatura; CHANGELOG; licença MIT (2ac1127, a03a5a3, 1cbb9ae). Relatório das hipóteses em teste com H01 a H27 (3b1dacd).
+- README com o andamento de 30/10, os relatórios assinados e a forma de conferir a assinatura; CHANGELOG; licença MIT (2ac1127, a03a5a3, 1cbb9ae). Relatório das hipóteses em teste com H01 a H26 (3b1dacd) e depois H27 (a55b0bb).
 
 ### Hipóteses e testes
 
