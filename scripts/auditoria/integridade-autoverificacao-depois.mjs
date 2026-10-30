@@ -12,10 +12,11 @@ import { DIR_DADOS } from '../../src/config.js';
 //   trocaUrna  — o erro está num log aninhado de outra urna que não a do BU, e não houve nova carga dela (contingência);
 //   semNovaCarga — o erro está no log da urna do BU e nenhuma carga veio depois.
 // Controle: em evento no log principal (profundidade 0), a data da carga do BU não pode ser posterior ao erro.
-// Entrada: <t>t/autoverificacao.jsonl (integridade-autoverificacao.mjs) e <t>t/<uf>.jsonl (integridade-lacres.mjs).
+// Entrada: <t>t/autoverificacao.jsonl (integridade-autoverificacao.mjs) e <uf>.jsonl de integridade-lacres.mjs (<t>t, ou --dir;
+// no 1º turno, 1t-identificadores). O evento é casado com o pacote pelo hash do diretório.
 // Saída: <t>t/autoverificacao-depois.json
 //
-// Uso: node scripts/auditoria/integridade-autoverificacao-depois.mjs --turno 2
+// Uso: node scripts/auditoria/integridade-autoverificacao-depois.mjs --turno 2 [--dir <pasta dos <uf>.jsonl>]
 
 const ordem = (d) => `${d.slice(6, 10)}${d.slice(3, 5)}${d.slice(0, 2)}${d.slice(11, 19)}`;
 const dataCargaBu = (s) => `${s.slice(6, 8)}/${s.slice(4, 6)}/${s.slice(0, 4)} ${s.slice(9, 11)}:${s.slice(11, 13)}:${s.slice(13, 15)}`;
@@ -26,28 +27,29 @@ const minutos = (a, b) => {
 const interno = (pacote) => !pacote.startsWith('/dsk/fe/');
 
 async function principal() {
-  const { values } = parseArgs({ options: { turno: { type: 'string', default: '2' } } });
+  const { values } = parseArgs({ options: { turno: { type: 'string', default: '2' }, dir: { type: 'string' } } });
   const dir = path.join(DIR_DADOS, 'parsed', 'auditoria', 'integridade', `${values.turno}t`);
+  const dirPacotes = values.dir ?? dir;
   const eventos = (await readFile(path.join(dir, 'autoverificacao.jsonl'), 'utf8')).trim().split('\n').map((l) => JSON.parse(l)).filter((e) => !e.erroLeitura);
-  const alvo = new Set(eventos.map((e) => e.onde));
+  const alvo = new Set(eventos.map((e) => `${e.onde} ${e.hash}`));
   const pacotes = new Map();
   for (const uf of [...new Set(eventos.map((e) => e.onde.slice(0, 2)))].sort()) {
-    for await (const l of createInterface({ input: createReadStream(path.join(dir, `${uf}.jsonl`)), crlfDelay: Infinity })) {
+    for await (const l of createInterface({ input: createReadStream(path.join(dirPacotes, `${uf}.jsonl`)), crlfDelay: Infinity })) {
       if (!l.includes('"papel":"oficial"')) continue;
       const r = JSON.parse(l);
-      const k = `${r.uf}/${r.municipio}/${r.zona}/${r.secao}`;
+      const k = `${r.uf}/${r.municipio}/${r.zona}/${r.secao} ${r.hash}`;
       if (alvo.has(k)) pacotes.set(k, r);
     }
   }
 
-  const r = { turno: Number(values.turno), eventos: eventos.length, secoes: alvo.size, semPacote: 0, semLog: 0, casadoSemData: [], controleCargaDepoisDoErroNoMesmoLog: [],
+  const r = { turno: Number(values.turno), eventos: eventos.length, secoes: new Set(eventos.map((e) => e.onde)).size, semPacote: 0, semLog: 0, casadoSemData: [], controleCargaDepoisDoErroNoMesmoLog: [],
     porDestino: {}, porDestinoEOrigem: {}, porDestinoEVerificacaoSeguinte: {}, novaCargaMinutos: [], semNovaCarga: { eventos: 0, secoes: new Set(), votosPorDia: {} },
     casos: [] };
   const inc = (o, k) => {
     o[k] = (o[k] ?? 0) + 1;
   };
   for (const e of eventos) {
-    const p = pacotes.get(e.onde);
+    const p = pacotes.get(`${e.onde} ${e.hash}`);
     if (!p) {
       r.semPacote++;
       continue;
