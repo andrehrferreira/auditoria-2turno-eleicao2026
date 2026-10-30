@@ -2,6 +2,9 @@
 
 Estatístico eleitoral, 30/10/2026. Pedido do André: "as urnas UE2013/UE2015, assinadas pelo certificado da AC URNA vencido em 18/07/2026 (antes dos dois turnos), podem ter rodado sistema alterado; vamos analisar se as urnas com esse problema têm voto majoritário para um dos candidatos em padrão". Hipótese H25 de [hipoteses.md](../../hipoteses.md). Rótulos: **Fato** (sai de script do repo sobre arquivo público), **Hipótese**, **Recomendação**, **Pendente**.
 
+
+> **Revisão cética 33:** números sustentados. Rotular como **exploratório**: a variação de −0,03 ponto e o "máximo de cerca de 1,5 ponto" vêm de camadas acrescentadas depois de ver o resultado; o teste pré-registrado (mesmo local) cobre só 516 seções (0,5% das seções AC URNA). O pré-registro entrou no mesmo commit dos resultados (5c03b78), então não há rastro técnico de que veio antes.
+
 ## Resposta curta
 
 - **Fato:** as urnas assinadas pela AC URNA (99.957 seções no 2º turno, 20,3% dos votos no 13 e no 22) **não** mostram padrão de voto a favor de nenhum candidato.

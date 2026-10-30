@@ -227,8 +227,10 @@ export function verificarLacres({ vsc, arquivos, acs, dataEleicao }) {
   if (dataEleicao) {
     registrar('certificado', 'certificado da urna válido na data da eleição', urna.validoDe <= dataEleicao && dataEleicao <= urna.validoAte,
       `${urna.validoDe.toISOString().slice(0, 10)} a ${urna.validoAte.toISOString().slice(0, 10)}`);
-    // Observação, não falha: o certificado publicado da AC URNA venceu em 18/07/2026 e ainda assim valida urnas
-    // UE2013/UE2015 (provável renovação com a mesma chave, não publicada; doc 06).
+    // Observação, não falha: o certificado publicado da AC URNA venceu em 18/07/2026 e a chave dele assina os
+    // certificados das urnas UE2013/UE2015 usadas na eleição, inclusive 54 com início de validade depois do
+    // vencimento, todos apontando para o certificado vencido (H25; parecer cético 33). Não há certificado renovado
+    // publicado; o motivo é pergunta ao TSE, não suposição deste código.
     if (ac && !(ac.validoDe <= dataEleicao && dataEleicao <= ac.validoAte)) {
       observacoes.push(`certificado publicado da ${ac.nome} fora da validade na data da eleição (${ac.validoDe.toISOString().slice(0, 10)} a ${ac.validoAte.toISOString().slice(0, 10)})`);
     }
