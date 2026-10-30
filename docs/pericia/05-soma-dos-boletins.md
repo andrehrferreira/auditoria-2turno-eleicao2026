@@ -106,6 +106,10 @@ Nenhum número de candidato com voto no boletim falta no oficial, e nenhum apare
 
 **Como ler:** cada linha é um total publicado pelo TSE na noite da eleição. Cada número da linha é igual à soma dos boletins das seções daquele estado (ou do país). Nos 6 estados, todas as seções foram instaladas. Os eleitores aptos para Governador são um pouco menos que os de Presidente no mesmo estado porque o eleitor em trânsito vindo de outro estado só vota para Presidente.
 
+![Governador, 2º turno: soma dos boletins × resultado oficial, por estado](graficos/h03-2t-governador-por-uf.svg)
+
+**Como ler:** cada estado tem duas barras: a de cima é a soma dos boletins das urnas; a de baixo, o total oficial publicado pelo TSE. O comprimento de cada barra é o comparecimento, dividido em quatro pedaços: votos do mais votado, do segundo colocado, brancos e nulos (a cor de cada pedaço está na legenda). Dentro das barras está o número do candidato e, quando cabe, os votos dele. As duas barras de cada estado têm o mesmo tamanho e os mesmos pedaços: a diferença é 0 em todos os números, nos 6 estados. É como pôr lado a lado o extrato do banco e os recibos do caixa: se nada se perdeu no caminho, os dois batem até o último centavo.
+
 **As 41 seções não instaladas (Fato).** São todas do exterior. Estão no resultado oficial com 423 eleitores, nenhum votante e nenhum voto, e não têm boletim no pacote publicado. É exatamente a diferença entre os aptos do oficial e os do boletim (158.745.502 − 158.745.079 = 423). A abstenção oficial é calculada só sobre as seções instaladas: 158.745.079 − 128.236.074 = 30.509.005. Isso é a regra de cálculo do TSE e não muda nenhum voto.
 
 Caso conferido: AC, Bujari, zona 9, seção 3, com LULA 81 e FLAVIO BOLSONARO 146 no boletim, no registro dos votos e no resultado oficial.

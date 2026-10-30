@@ -253,6 +253,12 @@ Fonte: perfil de comparecimento e abstenção do TSE, 1º turno de cada ano, Bra
 
 **Como ler:** de 2022 para 2026, a taxa subiu em todas as faixas de 70 a 99 anos, e caiu na de 100 ou mais.
 
+O gráfico abaixo mostra a mesma tabela em barras.
+
+![Parte dos eleitores de 70 anos ou mais que foi votar, 1º turno de 2018, 2022 e 2026](graficos/h01-comparecimento-idosos.svg)
+
+**Como ler:** cada grupo de três barras é uma faixa de idade; de cima para baixo, as barras são 2018, 2022 e 2026 (a cor de cada ano está na legenda). O comprimento da barra é a taxa de comparecimento da faixa, escrita ao lado: de cada 100 eleitores aptos, quantos foram votar. De 70 a 99 anos, a barra de 2026 é a mais longa do grupo, já a partir da faixa de 70 a 74 anos. Na faixa de 100 anos ou mais, a de 2026 é a mais curta (0,72%, contra 0,91% em 2022 e 3,9% em 2018).
+
 **A régua não mudou (Fato).** O total de votantes contado por idade é o mesmo contado seção por seção, nas três eleições:
 
 | 1º turno | Votantes no arquivo por idade | Votantes no resultado por seção | Diferença |
@@ -396,7 +402,7 @@ Fonte: resultado por seção e perfil do eleitorado do TSE, 2º turno de 2026. *
 
 **Fato:** no mesmo prédio de votação, a seção nova vota em média um pouco **menos** que as antigas, e as antigas desses prédios votaram em 2026 como em 2022. Esse mesmo excesso de seções novas muito altas já aconteceu em 2022, em escala menor, e desapareceu nos anos seguintes.
 
-**Pendente:** por que o excesso de 2026 é maior, e se ele vem de a seção nova reunir eleitores que se cadastraram ou se mudaram há pouco tempo. Esse teste depende da data de alistamento ou transferência dos eleitores de cada seção, que só a Justiça Eleitoral tem. As 56 seções novas com 98% ou mais são poucas o bastante para conferir uma a uma (local de votação, eleitores em trânsito, liberação sem digital e diário da urna): **Pendente**.
+**Pendente:** por que o excesso de 2026 é maior, e se ele vem de a seção nova reunir eleitores que se cadastraram ou se mudaram há pouco tempo. Esse teste depende da data de alistamento ou transferência dos eleitores de cada seção, que só a Justiça Eleitoral tem. As 56 seções novas com 98% ou mais foram conferidas uma a uma (local de votação, eleitores em trânsito, liberação sem digital e diário da urna) (**Fato**, conferido por uma segunda verificação independente): ficam em comunidades rurais, indígenas e quilombolas pequenas, 42 delas num local de votação sem nenhuma seção antiga, com cadastro todo com digital em 50 delas e comparecimento alto também no 1º turno em 46; nenhuma divide o local com outra, e nada no diário aponta troca. O motivo da criação dessas seções foi pedido ao TSE (**Pendente**).
 
 **O que isso não permite dizer:** o exame mede cadastro e comparecimento, e não diz se algum voto foi irregular. Nenhum destes testes vê voto dado com o título de outra pessoa.
 
@@ -432,7 +438,7 @@ Fonte: resultado por seção e perfil do eleitorado do TSE, 2º turno de 2026. *
 
 - **Comparecimento oficial dos idosos por município e por biometria, 1º turno.** A parte que conta os votos que só podem ter vindo de títulos sem digital passou pela revisão independente e está na Parte 4. A busca de municípios e zonas onde votaram mais centenários do que seria possível ainda não entra com número.
 - **Forma de liberação dos idosos e títulos cancelados por óbito com voto em 2026:** dependem dos pedidos 2 e 6 acima (Parte 4).
-- **Seções novas:** a causa do excesso de seções novas com 95% ou mais em 2026 e a conferência, uma a uma, das 56 com 98% ou mais.
+- **Seções novas:** a causa do excesso de seções novas com 95% ou mais em 2026 (data de alistamento e motivo da criação pedidos ao TSE).
 - **Comparecimento × mortes recentes por município** e **variação entre turnos nos grupos que costumam faltar.** Ainda não passaram pela revisão independente.
 - **2º turno por idade:** refazer a medida direta quando o TSE publicar o arquivo.
 - **Diário das urnas nos lugares apontados:** horário e sequência das liberações por ano de nascimento em Arame, Icatu e Pirapemas (MA), Redentora (RS), Florianópolis (SC), Pilão Arcado (BA) e nas zonas do excesso de "sem biometria".
@@ -451,6 +457,6 @@ Os números deste tópico vêm de duas fontes. A maior parte passou pela revisã
 - [x] Incluir os votos de idosos que só podem ter vindo de títulos sem digital (Parte 4), depois da revisão independente
 - [ ] Incluir a busca de municípios e zonas com mais centenários votando do que seria possível, depois da revisão independente
 - [ ] Refazer o piso de votos sem digital com o perfil do eleitorado de 2022, para saber se ele cresceu
-- [ ] Conferir uma a uma as 56 seções novas com 98% ou mais de comparecimento no 2º turno
+- [x] Conferir uma a uma as 56 seções novas com 98% ou mais de comparecimento no 2º turno
 - [ ] Examinar o diário das urnas nos lugares e zonas apontados (horário e sequência das liberações por ano de nascimento)
 - [ ] Registrar as verificações deste tópico no livro de evidências da auditoria

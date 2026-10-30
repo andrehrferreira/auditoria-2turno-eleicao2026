@@ -82,6 +82,10 @@ Fonte: segunda verificação independente, com programa próprio, sobre todos os
 - **Fato:** os votos do boletim sem a linha de voto gravado são as mesmas 6 e 9 seções do [tópico 2](02-coerencia-entre-arquivos.md), com o mesmo mecanismo: a urna caiu ou foi desligada antes de gravar a última linha, ou outra urna gravou o próprio diário por cima. Nenhuma seção nova.
 - **Fato:** em 304 atendimentos do 2º turno e 100 do 1º, o diário guardado no pacote é de outra seção (ES 57932/0009/0085 traz o diário da seção 0112; BA 39934/0183/0175, o da 0181). Eles ficam fora da tabela acima e não mudam nenhum total.
 
+![Eleitores liberados que não terminaram em voto gravado, por turno](graficos/h16-desfechos-liberacoes.svg)
+
+**Como ler:** o gráfico mostra só as liberações que não terminaram em voto gravado; todas as outras viraram voto (125.274.326 de 125.322.998 no 1º turno e 128.235.189 de 128.244.427 no 2º). Cada par de barras é um tipo de fim, com o 1º turno em cima e o 2º embaixo (a cor de cada turno está na legenda). As interrupções aparecem separadas pela causa que o diário anota (item 5). A última linha, a da sessão órfã, é zero nos dois turnos: é ela que mostraria um atendimento que "sumiu", como a ficha de pronto-socorro que nunca fecha.
+
 **Por UF, 2º turno (Fato):**
 
 | UF | Habilitações | Votos computados | Desistências | Interrupções | Sessões órfãs | Votos do boletim sem "computado" (seções) |

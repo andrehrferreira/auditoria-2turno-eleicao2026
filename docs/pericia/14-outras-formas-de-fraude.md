@@ -124,6 +124,10 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 
 **Como ler:** cada coluna é uma hora do dia, no horário do país da seção. O número é quantos votos a mais (ou a menos) as urnas do exterior registraram nessa hora no 2º turno, em comparação com o 1º. Os maiores aumentos estão nas primeiras horas; a partir das 14 h, o 2º turno teve menos votos que o 1º. Fonte: diários das seções com urna nos dois turnos.
 
+![Exterior: votos a mais ou a menos no 2º turno, hora a hora](graficos/h22-exterior-votos-por-hora.svg)
+
+**Como ler:** é a tabela acima em barras. Cada barra é uma hora do dia, no horário do país da seção. A barra azul, para cima do zero, quer dizer que o 2º turno teve mais votos que o 1º naquela hora; a laranja, para baixo, que teve menos. O número junto de cada barra é a diferença. A maior barra azul é a das 8 h; da 14 h em diante, as barras são laranja e pequenas. O aumento do comparecimento, de 341.766 para 381.443, aparece nas barras da manhã, e não numa onda no fim do dia.
+
 - **Fato (o relógio das urnas estava na hora local):** a Europa, Israel e o Líbano saíram do horário de verão na madrugada do dia do 2º turno. Se o relógio das urnas não tivesse acompanhado a mudança, o horário em que os mesários se registraram antes da abertura, medido pelo relógio da urna, teria saltado 1 hora nesses países e não nos outros. Ele mudou o mesmo tanto nas 585 seções dos países que mudaram de horário e nas 685 dos demais, com diferença de poucos minutos entre os dois grupos. Por isso a comparação por hora é válida.
 - **Fato (seções em cédula):** no 2º turno, cada um dos 29 resultados apurados em cédula foi recebido pelo TSE pelo menos 160 minutos depois do fim da votação no próprio posto, pelo relógio do servidor do TSE. No 1º turno, a base não tem a hora de recebimento desses resultados (**Pendente**).
 
@@ -204,6 +208,10 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 | **Total de seções com urna** | **499.176** | **499.178** |
 
 **Como ler:** cada linha conta as seções em que a urna que votou, com a carga que ela declara, foi achada naquele lugar das listas. As linhas somam o total de seções com urna de cada turno (sem as apuradas em cédula). A reserva de outra zona é o mesmo assunto do [tópico 11](11-urnas-reserva.md), item 6.
+
+![Urna que votou fora da linha da própria seção na lista da véspera](graficos/h27-par-urna-carga-listas.svg)
+
+**Como ler:** o gráfico mostra as linhas da tabela acima, menos a primeira: as seções em que o par urna e carga do boletim não estava na linha da própria seção na lista da véspera (lá estavam 495.981 no 1º turno e 496.138 no 2º). Cada par de barras é um lugar das listas, com o 1º turno em cima e o 2º embaixo (a cor de cada turno está na legenda). As três primeiras linhas são de listas feitas antes da votação; as duas últimas são de urnas que só aparecem na lista final, publicada depois. A última linha (17 e 28) são as seções com o registro da urna só no dia, tratadas logo abaixo.
 
 - **Fato:** a lista prévia não lista tudo. Ela traz uma urna por seção e as reservas de cada zona; uma urna preparada e registrada depois, ou registrada e não incluída, fica de fora. No 2º turno, 11 urnas que assinaram resultado não aparecem em nenhuma lista prévia dos dois turnos. Todas são a própria urna do boletim da seção; nenhuma assinou mais de uma seção nem assinou pacote que declara outra urna. Não há assinante "estranho".
 - **Fato (as 45 seções com registro só no dia):** em 17 seções do 1º turno e 28 do 2º, o registro da urna só chegou ao TSE no dia da votação, depois da abertura. No 2º turno, em 25 das 28, o registro chegou junto com o próprio resultado, no mesmo segundo ou até 3 segundos antes dele. Nessas seções, a lista de chamada não serve de prova feita antes.

@@ -174,6 +174,11 @@ export const DADOS_DOS_GRAFICOS = {
   'ac-urna-linha-do-tempo.svg': ['h25-ac-validade.csv', 'h25-marcos.csv'],
   'ac-urna-emissoes-2026.svg': ['h25-acurna-2026-por-dia.csv'],
   'ac-urna-tamanho-do-risco.svg': ['h25-risco-brasil.csv'],
+  'h03-2t-governador-por-uf.svg': ['h03-2t-governador-por-uf.csv'],
+  'h01-comparecimento-idosos.svg': ['h01-comparecimento-idosos.csv'],
+  'h16-desfechos-liberacoes.svg': ['h16-desfechos-liberacoes.csv'],
+  'h22-exterior-votos-por-hora.svg': ['h22-exterior-votos-por-hora.csv'],
+  'h27-par-urna-carga-listas.svg': ['h27-par-urna-carga-listas.csv'],
 };
 
 /** Linhas mostradas por tabela no anexo; o resto fica só na planilha embutida no PDF. */

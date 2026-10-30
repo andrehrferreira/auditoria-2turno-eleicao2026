@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 452" width="760" height="452" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Urna que votou fora da linha da própria seção na lista da véspera</title><desc id="desc">Onde ela foi achada. Na linha da própria seção estavam 495.981 (1º turno) e 496.138 (2º turno). Lista da véspera, como reserva da própria zona: 1º turno (04/10) 2.953; 2º turno (25/10) 2.549. Só na lista da manhã do dia: 1º turno (04/10) 179; 2º turno (25/10) 345. Lista da véspera, como reserva de outra zona: 1º turno (04/10) 44; 2º turno (25/10) 98. Só na lista final, registrado antes do dia: 1º turno (04/10) 2; 2º turno (25/10) 20. Só na lista final, registrado no dia da votação: 1º turno (04/10) 17; 2º turno (25/10) 28</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.tb{fill:#ffffff}.tp{fill:#0b0b0b}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}.s2{fill:#1baf7a}.s3{fill:#eda100}.a0{fill:#86b6ef}.a1{fill:#2a78d6}.a2{fill:#104281}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.s0{fill:#3987e5}.s1{fill:#d95926}.s2{fill:#199e70}.s3{fill:#c98500}.a0{fill:#184f95}.a1{fill:#3987e5}.a2{fill:#9ec5f4}}
+</style>
+<rect class="fundo" width="760" height="452" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Urna que votou fora da linha da própria seção na lista da véspera</text>
+<text class="t2" x="20" y="52" font-size="13">Onde ela foi achada. Na linha da própria seção estavam 495.981 (1º turno) e 496.138 (2º turno).</text>
+<rect class="s0" x="20" y="70" width="12" height="12" rx="2"/><text class="t1" x="38" y="81" font-size="13">1º turno (04/10)</text>
+<rect class="s1" x="165.2" y="70" width="12" height="12" rx="2"/><text class="t1" x="183.2" y="81" font-size="13">2º turno (25/10)</text>
+<line class="grade" x1="230" x2="230" y1="94" y2="364" stroke-width="1"/>
+<text class="t2" x="230" y="380" font-size="12" text-anchor="middle">0</text>
+<line class="grade" x1="306.6666666666667" x2="306.6666666666667" y1="94" y2="364" stroke-width="1"/>
+<text class="t2" x="306.6666666666667" y="380" font-size="12" text-anchor="middle">500</text>
+<line class="grade" x1="383.33333333333337" x2="383.33333333333337" y1="94" y2="364" stroke-width="1"/>
+<text class="t2" x="383.33333333333337" y="380" font-size="12" text-anchor="middle">1.000</text>
+<line class="grade" x1="460" x2="460" y1="94" y2="364" stroke-width="1"/>
+<text class="t2" x="460" y="380" font-size="12" text-anchor="middle">1.500</text>
+<line class="grade" x1="536.6666666666667" x2="536.6666666666667" y1="94" y2="364" stroke-width="1"/>
+<text class="t2" x="536.6666666666667" y="380" font-size="12" text-anchor="middle">2.000</text>
+<line class="grade" x1="613.3333333333333" x2="613.3333333333333" y1="94" y2="364" stroke-width="1"/>
+<text class="t2" x="613.3333333333333" y="380" font-size="12" text-anchor="middle">2.500</text>
+<line class="grade" x1="690" x2="690" y1="94" y2="364" stroke-width="1"/>
+<text class="t2" x="690" y="380" font-size="12" text-anchor="middle">3.000</text>
+<line class="eixo" x1="230" x2="230" y1="94" y2="364" stroke-width="1"/>
+<text class="t1" x="220" y="115.5" font-size="13" text-anchor="end">Lista da véspera, como</text>
+<text class="t1" x="220" y="130.5" font-size="13" text-anchor="end">reserva da própria zona</text>
+<path class="s0" d="M230,100h448.7933333333333a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-448.7933333333333z"><title>Lista da véspera, como reserva da própria zona, 1º turno (04/10): 2.953</title></path>
+<text class="t1" x="688.7933333333333" y="112.5" font-size="12">2.953</text>
+<path class="s1" d="M230,120h386.8466666666667a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-386.8466666666667z"><title>Lista da véspera, como reserva da própria zona, 2º turno (25/10): 2.549</title></path>
+<text class="t1" x="626.8466666666667" y="132.5" font-size="12">2.549</text>
+<text class="t1" x="220" y="171.5" font-size="13" text-anchor="end">Só na lista da</text>
+<text class="t1" x="220" y="186.5" font-size="13" text-anchor="end">manhã do dia</text>
+<path class="s0" d="M230,156h23.44666666666666a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-23.44666666666666z"><title>Só na lista da manhã do dia, 1º turno (04/10): 179</title></path>
+<text class="t1" x="263.44666666666666" y="168.5" font-size="12">179</text>
+<path class="s1" d="M230,176h48.89999999999998a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-48.89999999999998z"><title>Só na lista da manhã do dia, 2º turno (25/10): 345</title></path>
+<text class="t1" x="288.9" y="188.5" font-size="12">345</text>
+<text class="t1" x="220" y="227.5" font-size="13" text-anchor="end">Lista da véspera, como</text>
+<text class="t1" x="220" y="242.5" font-size="13" text-anchor="end">reserva de outra zona</text>
+<path class="s0" d="M230,212h2.7466666666666697a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-2.7466666666666697z"><title>Lista da véspera, como reserva de outra zona, 1º turno (04/10): 44</title></path>
+<text class="t1" x="242.74666666666667" y="224.5" font-size="12">44</text>
+<path class="s1" d="M230,232h11.02666666666667a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-11.02666666666667z"><title>Lista da véspera, como reserva de outra zona, 2º turno (25/10): 98</title></path>
+<text class="t1" x="251.02666666666667" y="244.5" font-size="12">98</text>
+<text class="t1" x="220" y="283.5" font-size="13" text-anchor="end">Só na lista final,</text>
+<text class="t1" x="220" y="298.5" font-size="13" text-anchor="end">registrado antes do dia</text>
+<path class="s0" d="M230,268h0a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h0z"><title>Só na lista final, registrado antes do dia, 1º turno (04/10): 2</title></path>
+<text class="t1" x="238" y="280.5" font-size="12">2</text>
+<path class="s1" d="M230,288h0a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h0z"><title>Só na lista final, registrado antes do dia, 2º turno (25/10): 20</title></path>
+<text class="t1" x="239.06666666666666" y="300.5" font-size="12">20</text>
+<text class="t1" x="220" y="339.5" font-size="13" text-anchor="end">Só na lista final, registrado</text>
+<text class="t1" x="220" y="354.5" font-size="13" text-anchor="end">no dia da votação</text>
+<path class="s0" d="M230,324h0a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h0z"><title>Só na lista final, registrado no dia da votação, 1º turno (04/10): 17</title></path>
+<text class="t1" x="238.60666666666665" y="336.5" font-size="12">17</text>
+<path class="s1" d="M230,344h0.29333333333332234a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-0.29333333333332234z"><title>Só na lista final, registrado no dia da votação, 2º turno (25/10): 28</title></path>
+<text class="t1" x="240.29333333333332" y="356.5" font-size="12">28</text>
+<text class="t2" x="460" y="400" font-size="12.5" text-anchor="middle">Seções com urna (par urna e carga do boletim)</text>
+<text class="t2" x="20" y="422" font-size="12">Listas da véspera e da manhã: feitas antes da votação. Lista final: publicada depois, com a urna que de fato votou.</text>
+<text class="t2" x="20" y="440" font-size="11">Fonte: listas de correspondências do TSE e pacotes de todas as seções com urna, dois turnos; conferido por segunda verificação independente.</text>
+</svg>

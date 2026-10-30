@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 452" width="760" height="452" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Eleitores liberados que não terminaram em voto gravado, por turno</title><desc id="desc">Todos os outros votaram: 125.274.326 de 125.322.998 no 1º turno e 128.235.189 de 128.244.427 no 2º. Desistência: 1º turno (04/10) 42.951; 2º turno (25/10) 7.860. Interrompido, com erro ou falta de energia no diário: 1º turno (04/10) 1.008; 2º turno (25/10) 481. Interrompido, só com o desligamento pela chave: 1º turno (04/10) 2.844; 2º turno (25/10) 615. Interrompido, sem causa anotada no diário: 1º turno (04/10) 1.869; 2º turno (25/10) 282. Sem fim registrado (sessão órfã): 1º turno (04/10) 0; 2º turno (25/10) 0</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.tb{fill:#ffffff}.tp{fill:#0b0b0b}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}.s2{fill:#1baf7a}.s3{fill:#eda100}.a0{fill:#86b6ef}.a1{fill:#2a78d6}.a2{fill:#104281}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.s0{fill:#3987e5}.s1{fill:#d95926}.s2{fill:#199e70}.s3{fill:#c98500}.a0{fill:#184f95}.a1{fill:#3987e5}.a2{fill:#9ec5f4}}
+</style>
+<rect class="fundo" width="760" height="452" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Eleitores liberados que não terminaram em voto gravado, por turno</text>
+<text class="t2" x="20" y="52" font-size="13">Todos os outros votaram: 125.274.326 de 125.322.998 no 1º turno e 128.235.189 de 128.244.427 no 2º.</text>
+<rect class="s0" x="20" y="70" width="12" height="12" rx="2"/><text class="t1" x="38" y="81" font-size="13">1º turno (04/10)</text>
+<rect class="s1" x="165.2" y="70" width="12" height="12" rx="2"/><text class="t1" x="183.2" y="81" font-size="13">2º turno (25/10)</text>
+<line class="grade" x1="230" x2="230" y1="94" y2="364" stroke-width="1"/>
+<text class="t2" x="230" y="380" font-size="12" text-anchor="middle">0</text>
+<line class="grade" x1="322" x2="322" y1="94" y2="364" stroke-width="1"/>
+<text class="t2" x="322" y="380" font-size="12" text-anchor="middle">10.000</text>
+<line class="grade" x1="414" x2="414" y1="94" y2="364" stroke-width="1"/>
+<text class="t2" x="414" y="380" font-size="12" text-anchor="middle">20.000</text>
+<line class="grade" x1="506" x2="506" y1="94" y2="364" stroke-width="1"/>
+<text class="t2" x="506" y="380" font-size="12" text-anchor="middle">30.000</text>
+<line class="grade" x1="598" x2="598" y1="94" y2="364" stroke-width="1"/>
+<text class="t2" x="598" y="380" font-size="12" text-anchor="middle">40.000</text>
+<line class="grade" x1="690" x2="690" y1="94" y2="364" stroke-width="1"/>
+<text class="t2" x="690" y="380" font-size="12" text-anchor="middle">50.000</text>
+<line class="eixo" x1="230" x2="230" y1="94" y2="364" stroke-width="1"/>
+<text class="t1" x="220" y="123" font-size="13" text-anchor="end">Desistência</text>
+<path class="s0" d="M230,100h391.14920000000006a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-391.14920000000006z"><title>Desistência, 1º turno (04/10): 42.951</title></path>
+<text class="t1" x="631.1492000000001" y="112.5" font-size="12">42.951</text>
+<path class="s1" d="M230,120h68.31200000000001a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-68.31200000000001z"><title>Desistência, 2º turno (25/10): 7.860</title></path>
+<text class="t1" x="308.312" y="132.5" font-size="12">7.860</text>
+<text class="t1" x="220" y="171.5" font-size="13" text-anchor="end">Interrompido, com erro ou</text>
+<text class="t1" x="220" y="186.5" font-size="13" text-anchor="end">falta de energia no diário</text>
+<path class="s0" d="M230,156h5.273599999999988a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-5.273599999999988z"><title>Interrompido, com erro ou falta de energia no diário, 1º turno (04/10): 1.008</title></path>
+<text class="t1" x="245.2736" y="168.5" font-size="12">1.008</text>
+<path class="s1" d="M230,176h0.4251999999999896a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-0.4251999999999896z"><title>Interrompido, com erro ou falta de energia no diário, 2º turno (25/10): 481</title></path>
+<text class="t1" x="240.4252" y="188.5" font-size="12">481</text>
+<text class="t1" x="220" y="227.5" font-size="13" text-anchor="end">Interrompido, só com o</text>
+<text class="t1" x="220" y="242.5" font-size="13" text-anchor="end">desligamento pela chave</text>
+<path class="s0" d="M230,212h22.164800000000014a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-22.164800000000014z"><title>Interrompido, só com o desligamento pela chave, 1º turno (04/10): 2.844</title></path>
+<text class="t1" x="262.1648" y="224.5" font-size="12">2.844</text>
+<path class="s1" d="M230,232h1.657999999999987a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-1.657999999999987z"><title>Interrompido, só com o desligamento pela chave, 2º turno (25/10): 615</title></path>
+<text class="t1" x="241.658" y="244.5" font-size="12">615</text>
+<text class="t1" x="220" y="283.5" font-size="13" text-anchor="end">Interrompido, sem causa</text>
+<text class="t1" x="220" y="298.5" font-size="13" text-anchor="end">anotada no diário</text>
+<path class="s0" d="M230,268h13.194799999999987a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-13.194799999999987z"><title>Interrompido, sem causa anotada no diário, 1º turno (04/10): 1.869</title></path>
+<text class="t1" x="253.1948" y="280.5" font-size="12">1.869</text>
+<path class="s1" d="M230,288h0a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h0z"><title>Interrompido, sem causa anotada no diário, 2º turno (25/10): 282</title></path>
+<text class="t1" x="238.5944" y="300.5" font-size="12">282</text>
+<text class="t1" x="220" y="339.5" font-size="13" text-anchor="end">Sem fim registrado</text>
+<text class="t1" x="220" y="354.5" font-size="13" text-anchor="end">(sessão órfã)</text>
+
+<text class="t1" x="236" y="336.5" font-size="12">0</text>
+
+<text class="t1" x="236" y="356.5" font-size="12">0</text>
+<text class="t2" x="460" y="400" font-size="12.5" text-anchor="middle">Liberações de eleitor (número de atendimentos)</text>
+<text class="t2" x="20" y="422" font-size="12">Sessão órfã: liberação sem voto, sem desistência e sem parada da urna no diário. Zero nos dois turnos.</text>
+<text class="t2" x="20" y="440" font-size="11">Fonte: diários de todas as urnas, dois turnos; números conferidos por segunda verificação independente.</text>
+</svg>

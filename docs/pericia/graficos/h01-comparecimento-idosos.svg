@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 704" width="760" height="704" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Parte dos eleitores de 70 anos ou mais que foi votar, 1º turno</title><desc id="desc">De 2022 para 2026 a parte subiu em todas as faixas de 70 a 99 anos, e caiu na de 100 ou mais. 70 a 74 anos: 2018 55,3%; 2022 61,1%; 2026 68,9%. 75 a 79 anos: 2018 37,5%; 2022 41,8%; 2026 52,3%. 80 a 84 anos: 2018 24,1%; 2022 27,0%; 2026 37,2%. 85 a 89 anos: 2018 13,3%; 2022 15,7%; 2026 24,3%. 90 a 94 anos: 2018 4,9%; 2022 6,7%; 2026 13,5%. 95 a 99 anos: 2018 1,9%; 2022 1,6%; 2026 4,3%. 100 anos ou mais: 2018 3,9%; 2022 0,91%; 2026 0,72%</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.tb{fill:#ffffff}.tp{fill:#0b0b0b}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}.s2{fill:#1baf7a}.s3{fill:#eda100}.a0{fill:#86b6ef}.a1{fill:#2a78d6}.a2{fill:#104281}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.s0{fill:#3987e5}.s1{fill:#d95926}.s2{fill:#199e70}.s3{fill:#c98500}.a0{fill:#184f95}.a1{fill:#3987e5}.a2{fill:#9ec5f4}}
+</style>
+<rect class="fundo" width="760" height="704" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Parte dos eleitores de 70 anos ou mais que foi votar, 1º turno</text>
+<text class="t2" x="20" y="52" font-size="13">De 2022 para 2026 a parte subiu em todas as faixas de 70 a 99 anos, e caiu na de 100 ou mais.</text>
+<rect class="a0" x="20" y="70" width="12" height="12" rx="2"/><text class="t1" x="38" y="81" font-size="13">2018</text>
+<rect class="a1" x="78.8" y="70" width="12" height="12" rx="2"/><text class="t1" x="96.8" y="81" font-size="13">2022</text>
+<rect class="a2" x="137.6" y="70" width="12" height="12" rx="2"/><text class="t1" x="155.6" y="81" font-size="13">2026</text>
+<line class="grade" x1="160" x2="160" y1="94" y2="616" stroke-width="1"/>
+<text class="t2" x="160" y="632" font-size="12" text-anchor="middle">0%</text>
+<line class="grade" x1="225" x2="225" y1="94" y2="616" stroke-width="1"/>
+<text class="t2" x="225" y="632" font-size="12" text-anchor="middle">10%</text>
+<line class="grade" x1="290" x2="290" y1="94" y2="616" stroke-width="1"/>
+<text class="t2" x="290" y="632" font-size="12" text-anchor="middle">20%</text>
+<line class="grade" x1="355" x2="355" y1="94" y2="616" stroke-width="1"/>
+<text class="t2" x="355" y="632" font-size="12" text-anchor="middle">30%</text>
+<line class="grade" x1="420" x2="420" y1="94" y2="616" stroke-width="1"/>
+<text class="t2" x="420" y="632" font-size="12" text-anchor="middle">40%</text>
+<line class="grade" x1="485" x2="485" y1="94" y2="616" stroke-width="1"/>
+<text class="t2" x="485" y="632" font-size="12" text-anchor="middle">50%</text>
+<line class="grade" x1="550" x2="550" y1="94" y2="616" stroke-width="1"/>
+<text class="t2" x="550" y="632" font-size="12" text-anchor="middle">60%</text>
+<line class="grade" x1="615" x2="615" y1="94" y2="616" stroke-width="1"/>
+<text class="t2" x="615" y="632" font-size="12" text-anchor="middle">70%</text>
+<line class="grade" x1="680" x2="680" y1="94" y2="616" stroke-width="1"/>
+<text class="t2" x="680" y="632" font-size="12" text-anchor="middle">80%</text>
+<line class="eixo" x1="160" x2="160" y1="94" y2="616" stroke-width="1"/>
+<text class="t1" x="150" y="133" font-size="13" text-anchor="end">70 a 74 anos</text>
+<path class="a0" d="M160,100h355.1659793461138a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-355.1659793461138z"><title>70 a 74 anos, 2018: 55,3%</title></path>
+<text class="t1" x="525.1659793461138" y="112.5" font-size="12">55,3%</text>
+<path class="a1" d="M160,120h392.9130564039731a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-392.9130564039731z"><title>70 a 74 anos, 2022: 61,1%</title></path>
+<text class="t1" x="562.9130564039731" y="132.5" font-size="12">61,1%</text>
+<path class="a2" d="M160,140h443.69528852249744a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-443.69528852249744z"><title>70 a 74 anos, 2026: 68,9%</title></path>
+<text class="t1" x="613.6952885224974" y="152.5" font-size="12">68,9%</text>
+<text class="t1" x="150" y="209" font-size="13" text-anchor="end">75 a 79 anos</text>
+<path class="a0" d="M160,176h239.78542408507872a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-239.78542408507872z"><title>75 a 79 anos, 2018: 37,5%</title></path>
+<text class="t1" x="409.7854240850787" y="188.5" font-size="12">37,5%</text>
+<path class="a1" d="M160,196h267.92532635069676a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-267.92532635069676z"><title>75 a 79 anos, 2022: 41,8%</title></path>
+<text class="t1" x="437.92532635069676" y="208.5" font-size="12">41,8%</text>
+<path class="a2" d="M160,216h335.8795674603008a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-335.8795674603008z"><title>75 a 79 anos, 2026: 52,3%</title></path>
+<text class="t1" x="505.8795674603008" y="228.5" font-size="12">52,3%</text>
+<text class="t1" x="150" y="285" font-size="13" text-anchor="end">80 a 84 anos</text>
+<path class="a0" d="M160,252h152.84914693147402a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-152.84914693147402z"><title>80 a 84 anos, 2018: 24,1%</title></path>
+<text class="t1" x="322.849146931474" y="264.5" font-size="12">24,1%</text>
+<path class="a1" d="M160,272h171.37655551298906a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-171.37655551298906z"><title>80 a 84 anos, 2022: 27,0%</title></path>
+<text class="t1" x="341.37655551298906" y="284.5" font-size="12">27,0%</text>
+<path class="a2" d="M160,292h237.54371022645074a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-237.54371022645074z"><title>80 a 84 anos, 2026: 37,2%</title></path>
+<text class="t1" x="407.54371022645074" y="304.5" font-size="12">37,2%</text>
+<text class="t1" x="150" y="361" font-size="13" text-anchor="end">85 a 89 anos</text>
+<path class="a0" d="M160,328h82.18451741222535a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-82.18451741222535z"><title>85 a 89 anos, 2018: 13,3%</title></path>
+<text class="t1" x="252.18451741222535" y="340.5" font-size="12">13,3%</text>
+<path class="a1" d="M160,348h98.20970991981864a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-98.20970991981864z"><title>85 a 89 anos, 2022: 15,7%</title></path>
+<text class="t1" x="268.20970991981864" y="360.5" font-size="12">15,7%</text>
+<path class="a2" d="M160,368h154.04818684863608a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-154.04818684863608z"><title>85 a 89 anos, 2026: 24,3%</title></path>
+<text class="t1" x="324.0481868486361" y="380.5" font-size="12">24,3%</text>
+<text class="t1" x="150" y="437" font-size="13" text-anchor="end">90 a 94 anos</text>
+<path class="a0" d="M160,404h27.786174735179344a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-27.786174735179344z"><title>90 a 94 anos, 2018: 4,9%</title></path>
+<text class="t1" x="197.78617473517934" y="416.5" font-size="12">4,9%</text>
+<path class="a1" d="M160,424h39.79886595759666a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-39.79886595759666z"><title>90 a 94 anos, 2022: 6,7%</title></path>
+<text class="t1" x="209.79886595759666" y="436.5" font-size="12">6,7%</text>
+<path class="a2" d="M160,444h83.57874554916461a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-83.57874554916461z"><title>90 a 94 anos, 2026: 13,5%</title></path>
+<text class="t1" x="253.5787455491646" y="456.5" font-size="12">13,5%</text>
+<text class="t1" x="150" y="513" font-size="13" text-anchor="end">95 a 99 anos</text>
+<path class="a0" d="M160,480h8.129590870034576a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-8.129590870034576z"><title>95 a 99 anos, 2018: 1,9%</title></path>
+<text class="t1" x="178.12959087003458" y="492.5" font-size="12">1,9%</text>
+<path class="a1" d="M160,500h6.572355438040887a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-6.572355438040887z"><title>95 a 99 anos, 2022: 1,6%</title></path>
+<text class="t1" x="176.5723554380409" y="512.5" font-size="12">1,6%</text>
+<path class="a2" d="M160,520h24.266485928527374a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-24.266485928527374z"><title>95 a 99 anos, 2026: 4,3%</title></path>
+<text class="t1" x="194.26648592852737" y="532.5" font-size="12">4,3%</text>
+<text class="t1" x="150" y="589" font-size="13" text-anchor="end">100 anos ou mais</text>
+<path class="a0" d="M160,556h21.083277814790137a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-21.083277814790137z"><title>100 anos ou mais, 2018: 3,9%</title></path>
+<text class="t1" x="191.08327781479014" y="568.5" font-size="12">3,9%</text>
+<path class="a1" d="M160,576h1.9065263386318065a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-1.9065263386318065z"><title>100 anos ou mais, 2022: 0,91%</title></path>
+<text class="t1" x="171.9065263386318" y="588.5" font-size="12">0,91%</text>
+<path class="a2" d="M160,596h0.670326904425508a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-0.670326904425508z"><title>100 anos ou mais, 2026: 0,72%</title></path>
+<text class="t1" x="170.6703269044255" y="608.5" font-size="12">0,72%</text>
+<text class="t2" x="420" y="652" font-size="12.5" text-anchor="middle">Taxa de comparecimento: votantes ÷ eleitores aptos da faixa (%)</text>
+<text class="t2" x="20" y="674" font-size="12">A idade é a do dia da eleição. Depois dos 70 anos o voto é facultativo.</text>
+<text class="t2" x="20" y="692" font-size="11">Fonte: perfil de comparecimento e abstenção do TSE, 1º turno de cada ano, Brasil sem o exterior.</text>
+</svg>
