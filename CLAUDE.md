@@ -66,3 +66,4 @@ CHANGELOG per PR/release, not per task. See `.rulebook/specs/orchestration.md`.
 - Só entra número 100% correto: universo completo (todas as seções, todas as UFs), conferido nos arquivos oficiais, com script que o reproduz.
 - Fica fora: estimativa estatística, amostra, "cerca de", número de terceiros não conferido (imprensa, pesquisas) e conta feita sobre suposição.
 - O que ainda não está completo entra só como **Pendente**, sem número. Os detalhes ficam em docs/analysis/.
+- Premissa do André (29/10/2026): o relatório final tem dados bem detalhados (tabelas por UF, por turno, por caso, com o caminho para refazer) e gráficos, em linguagem simples que qualquer pessoa entenda. Cada gráfico tem título que diz o que ele mostra, eixos com unidade, legenda, uma frase "como ler" e os dados por trás (CSV/JSON versionado e script que o gera). Termo técnico sempre explicado na primeira vez, com analogia.
