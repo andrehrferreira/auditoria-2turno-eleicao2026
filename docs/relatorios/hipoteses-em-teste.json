@@ -1,5 +1,5 @@
 {
-  "data": "29/10/2026",
+  "data": "30/10/2026",
   "titulo": "Hipóteses em teste",
   "subtitulo": "Auditoria independente das eleições gerais de 2026 (1º e 2º turno)",
   "aviso": "Os números, os status e os textos mudam conforme os testes avançam e passam pela revisão cética. Nenhuma hipótese de fraude foi sustentada até agora, e também não é possível afirmar que não houve fraude: cada hipótese diz o que o seu teste não enxerga. Brecha humana é risco, não prova.",
@@ -28,17 +28,20 @@
         "Frente separada, sem dado pessoal no relatório: cruzar títulos com registros de óbito."
       ],
       "sabe": [
-        "O cadastro tem pelo menos 148.553 títulos de 100 anos ou mais sem pessoa correspondente no Censo 2022. É um piso: o número real só pode ser maior.",
-        "No 1º turno, compareceram 2.141 dos 298.239 aptos de 100 anos ou mais (0,72%), pela contagem oficial do TSE. Não houve uso sistemático desses títulos no 1º turno."
+        "O cadastro tem 297.977 eleitores de 100 anos ou mais com domicílio no Brasil. O Censo 2022 contou 149.424 pessoas de 96 anos ou mais, a geração que chega aos 100 em 2026.",
+        "Mesmo supondo que ninguém dessa geração morreu e que o Censo contou todos, sobram pelo menos 94.985 títulos de 100+ sem pessoa correspondente, para qualquer data de 2026; 148.553 se o TSE conta a idade até o fim de julho de 2026 (a data não está documentada). São pisos: as mortes desde 2022 só os aumentam.",
+        "92,0% dos eleitores de 100+ não têm digital cadastrada: a urna os libera só com o número do título e o ano de nascimento.",
+        "No 1º turno, compareceram 2.141 dos 298.239 aptos de 100 anos ou mais (0,72%), pela contagem oficial do TSE; nos 1.068 municípios com mais títulos de 100+ do que moradores de 96+, 0,26%. Não houve uso sistemático desses títulos no 1º turno."
       ],
       "falta": [
-        "2º turno: o TSE não publica o comparecimento por idade; pedido pela Lei de Acesso à Informação.",
-        "Cancelamentos de título por óbito, por município (pedido pela LAI).",
+        "2º turno: o TSE não publica o comparecimento por idade; pedido pela Lei de Acesso à Informação. Os testes indiretos não enxergam uso pequeno nem concentrado em poucas seções.",
+        "Cancelamentos de título por óbito, por município (pedido pela LAI), e a data em que o TSE calcula a idade no cadastro.",
+        "Revisão cética do teste zona a zona com o comparecimento oficial por idade do 1º turno.",
         "Ler o diário das urnas nos municípios com comparecimento alto de eleitores de 100 anos ou mais."
       ],
-      "alternativas": "Óbito depois do fechamento do cadastro; atraso dos cartórios em comunicar óbitos; pessoa viva que mora em outro lugar.",
-      "readme_sabe": "≥ 148.553 títulos de 100+ sem pessoa no Censo; 1º turno: 0,72% dos 100+ votaram (TSE)",
-      "readme_proximo": "Comparecimento por idade no 2º turno e óbitos por município (LAI); diários dos municípios destacados"
+      "alternativas": "Óbito depois do fechamento do cadastro; atraso dos cartórios em comunicar óbitos; pessoa viva que mora em outro lugar; Censo que deixou de contar idosos.",
+      "readme_sabe": "≥ 94.985 títulos de 100+ sem pessoa no Censo (148.553 se a idade é contada até julho); 1º turno: 0,72% dos 100+ votaram (TSE)",
+      "readme_proximo": "Comparecimento por idade no 2º turno e óbitos por município (LAI); revisão do teste por zona do 1º turno"
     },
     {
       "id": "H02",
@@ -49,11 +52,12 @@
         "Procurar seções e municípios fora do padrão, por modelo de urna, e conferir no diário da urna o caminho de cada liberação."
       ],
       "sabe": [
-        "Em 16.011 seções do 2º turno, o boletim registra mais liberados \"sem biometria\" do que o cadastro permite: 36.340 eleitores a mais, 0,03% dos votos. Em nenhuma seção votou mais gente do que os aptos.",
+        "Em 16.011 das 497.508 seções do 2º turno em que a comparação é possível, o boletim registra mais liberados \"sem biometria\" do que o cadastro permite: 36.340 eleitores a mais, 0,03% dos votos. Em nenhuma seção votou mais gente do que os aptos.",
         "Nas 378 seções com excesso de 10 ou mais, 84,8% desses atendimentos mostram a foto do eleitor na tela, sem pedido de digital. Sem eles, o excesso cai de 5.560 para 54: o arquivo da urna tinha a foto e não a digital."
       ],
       "falta": [
         "Medir a marca da foto nas 16.011 seções, e não só nas 378.",
+        "O resíduo que a foto não explica, sobretudo numa zona de Indaiatuba (SP).",
         "Refazer o 1º turno com todas as UFs.",
         "Número oficial de eleitores com digital carregada na urna, por seção (LAI)."
       ],
@@ -70,18 +74,20 @@
         "Conferir se cada voto do boletim tem o seu registro no diário da urna."
       ],
       "sabe": [
-        "Presidente, 2º turno: igual em todas as 499.205 seções com boletim de Presidente. Nenhum voto somado, tirado ou trocado.",
-        "Presidente, 1º turno: igual em todas as 499.206 seções, nas 28 UFs.",
-        "2º turno: 50 votos, em 3 seções que usaram urna de contingência, estão no boletim sem linha de voto no diário publicado."
+        "2º turno: Presidente igual ao oficial em todas as 499.205 seções com boletim de Presidente; Governador igual por município e zona (1.026 pares). Nenhum voto somado, tirado ou trocado.",
+        "1º turno, todos os cargos (28 UFs, 499.207 seções com boletim): 0 divergência seção a seção em aptos, comparecimento, nominais, brancos, nulos e legenda; Presidente igual candidato a candidato em 499.206 seções; os 109 totais por estado e cargo fecham.",
+        "A única diferença é de classificação: 250 números de candidato e 4 legendas (630.541 votos) contados como nulo técnico, que fecham voto a voto. No governo do RJ, os 274.411 votos do nº 10 nesse grupo são mais que os 147.771 que tirariam a maioria do eleito no 1º turno.",
+        "Votos do boletim sem a linha \"voto computado\" no diário: 54 em 6 seções no 2º turno e 159 em 9 no 1º. Sem nenhuma linha, 49 e 152, em 5 seções com urna reserva, em que outra urna gravou o próprio diário por cima. Os boletins dessas seções estão assinados e as assinaturas conferem."
       ],
       "falta": [
-        "Governador, senador e deputados, por município e zona.",
-        "Tabela final, seção por seção, dos votos sem rastro no diário (os auditores chegaram a contagens diferentes; em revisão cética).",
-        "Votos sem rastro no diário no 1º turno (em revisão cética)."
+        "2º turno: comparecimento, brancos, nulos e votos de legenda contra o resultado oficial.",
+        "Situação e data da decisão que excluiu o nº 10 ao governo do RJ e os demais números contados como nulo técnico.",
+        "Qual urna gravou 15 votos de uma seção de SP no 1º turno; atas e diários das urnas originais das seções com votos sem rastro.",
+        "Consulta popular de PE; voto por candidato e por seção nos cargos que não são Presidente (não está no arquivo de dados abertos lido)."
       ],
-      "alternativas": "Seções não totalizadas; urna de contingência cujo diário não veio no pacote; Sistema de Apuração.",
-      "readme_sabe": "Presidente igual ao oficial nas 499.205 (2º t.) e 499.206 (1º t.) seções; 50 votos sem rastro no diário em 3 seções",
-      "readme_proximo": "Demais cargos; tabela final dos votos sem rastro no diário (revisão cética 20 e 25)"
+      "alternativas": "Seções não totalizadas; urna de contingência cujo diário não veio no pacote; Sistema de Apuração; candidatura excluída (nulo técnico).",
+      "readme_sabe": "Igual ao oficial: Presidente nas 499.205 seções (2º t.) e todos os cargos no 1º t.; 630.541 votos como nulo técnico, que pesaram no governo do RJ",
+      "readme_proximo": "Demais campos do 2º turno; decisão sobre o nº 10 no RJ; urna que gravou 15 votos em SP no 1º turno"
     },
     {
       "id": "H04",
@@ -93,17 +99,18 @@
         "Conferir a cadeia interna de hashes do boletim e a versão do programa em cada urna."
       ],
       "sabe": [
+        "2º turno: assinaturas dos 499.207 pacotes conferidas, 0 falha; todos assinados por urna com carteira digital de uma das três autoridades do TSE. Um único bit alterado de propósito é rejeitado nos cinco tipos de pacote.",
+        "1º turno: assinaturas dos 499.207 pacotes conferidas, 0 falha de arquivo. Os 37.440 certificados de urnas de 2013 e 2015 com bytes zero a mais passam quando cortados no lugar certo. Único caso fora do padrão: um boletim impresso de MG publicado fora da lista lacrada.",
         "Impressões digitais refeitas em 1.996.828 arquivos por turno, nas 499.207 seções, com 0 falhas.",
-        "Assinaturas: 0 falhas nas 2.270 seções do Acre e em 2 seções do ES."
+        "As urnas do 2º turno registram uma só versão de programa (10.23.0.0). Em 162 seções, a urna anotou ao ligar que a conferência de um arquivo do próprio sistema falhou; em nenhuma delas recebeu voto sem desligar e ligar de novo."
       ],
       "falta": [
-        "Assinaturas no país inteiro.",
-        "Uma seção do RJ com diário corrompido: conferir a assinatura desse diário.",
-        "Verificação do programa na inicialização de cada urna (em revisão cética)."
+        "Contagem de todas as inicializações de votação e das etapas de cada uma, refeita por um segundo programa.",
+        "Certificado vencido da AC URNA e conferência da validade pela totalização (H25)."
       ],
-      "alternativas": "Limite que não muda: um dos lacres usa um método secreto do governo (CEPESC), e o programa da urna por dentro só é conferido pelo Teste de Integridade.",
-      "readme_sabe": "Hashes de 1.996.828 arquivos por turno, 0 falhas; assinaturas 0 falhas no AC e em 2 seções do ES",
-      "readme_proximo": "Assinaturas no país inteiro; diário corrompido no RJ; versão do programa (revisão cética 21 e 24)"
+      "alternativas": "Limite que não muda: um dos lacres usa um método secreto do governo (CEPESC), e o programa da urna por dentro só é conferido pelo Teste de Integridade e pela inspeção do código. Um programa alterado e assinado com a chave oficial passaria neste teste.",
+      "readme_sabe": "Assinaturas dos 499.207 pacotes conferidas nos dois turnos, 0 falha de arquivo; hashes de 1.996.828 arquivos por turno, 0 falhas",
+      "readme_proximo": "Inicializações das urnas refeitas por um segundo programa; certificado da AC URNA (H25)"
     },
     {
       "id": "H05",
@@ -116,41 +123,47 @@
         "Comparar as seções com comparecimento muito alto com as da mesma zona."
       ],
       "sabe": [
-        "No 2º turno, a urna deu o aviso \"já votou\" 113.979 vezes, em 73.246 das 499.177 seções com voto. Uma seção do ES teve 388 avisos para 275 votos.",
-        "Do 1º para o 2º turno, o comparecimento subiu 2.920.461 eleitores (Brasil sem o exterior). Desse aumento, 601.543 (20,6%) entraram sem digital.",
-        "Nas 639 seções com comparecimento acima de 95%, a liberação depois de digital que falhou é igual à da própria zona."
+        "No 2º turno, a urna deu o aviso \"já votou\" 113.979 vezes, em 73.246 das 499.178 seções com diário de votação.",
+        "Das 8.632.431 liberações à mão do 2º turno, 2.791.394 ficaram no diário sem nenhum mesário ligado a elas. No exterior, todos os 380.612 votantes foram liberados pelo ano de nascimento, sem digital.",
+        "Do 1º para o 2º turno, o comparecimento subiu 2.920.461 eleitores nas mesmas seções (Brasil sem o exterior). Desse aumento, 601.543 (20,6%) entraram sem digital.",
+        "No teste escolhido antes de rodar (27 UFs, dentro de cada município), o Brasil não passa do limite e só SP passa, a favor do 22. Mas o resultado muda de lado conforme a característica da seção levada em conta (idade: a favor do 13; escolaridade: a favor do 22): o teste não decide.",
+        "Nas 639 seções com comparecimento de 95% ou mais, a liberação depois de digital que falhou é igual à da própria zona (7,58% contra 7,77%).",
+        "97 seções liberaram à mão metade ou mais dos votantes, todas com urnas de 2013 ou 2015."
       ],
       "falta": [
-        "Rajadas e uso da urna para consultar quem ainda não votou, no país inteiro, incluindo as seções atendidas por urna reserva.",
-        "Refazer com as 28 UFs o teste dos eleitores a mais (hoje parcial, sem SP, TO e exterior).",
-        "Inspeção das 97 seções que liberaram à mão metade ou mais dos votantes."
+        "Rajadas de liberação e uso da urna para consultar quem ainda não votou, no país inteiro (testes da H15 e da H17, ainda fora da perícia).",
+        "Que tamanho de inserção o teste enxerga, e a explicação dos sinais de SP (a favor do 22) e do PR (a favor do 13).",
+        "Inspeção das urnas das 97 seções de liberação em massa."
       ],
-      "alternativas": "Mesário redigitando o título de quem acabou de votar; eleitor que voltou; fila de idosos; leitor com defeito. Pelo princípio 8, nenhuma delas conta como controle.",
-      "readme_sabe": "113.979 avisos \"já votou\" em 73.246 seções; 601.543 do aumento de comparecimento entraram sem digital",
-      "readme_proximo": "Rajadas e consultas no país inteiro; teste com as 28 UFs; inspeção das 97 seções de liberação em massa"
+      "alternativas": "Mesário redigitando o título de quem acabou de votar; eleitor que voltou; fila de idosos; leitor com defeito; perfil da seção. Pelo princípio 8, nenhuma delas conta como controle.",
+      "readme_sabe": "113.979 avisos \"já votou\" em 73.246 seções; o teste do eleitor a mais sem digital não decide (muda de lado com o perfil da seção)",
+      "readme_proximo": "Rajadas e consultas (H15, H17); sinais de SP e PR; inspeção das 97 seções de liberação em massa"
     },
     {
       "id": "H06",
-      "titulo": "A prorrogação do horário de votação favoreceu um lado",
+      "titulo": "A prorrogação do horário de votação favoreceu um lado; na apuração, os boletins foram liberados de forma controlada",
       "status": "em teste",
       "como": [
         "Contar os votos depois das 17h de Brasília em cada seção, com o fuso de cada município.",
         "Comparar com o 1º turno e com as seções da mesma zona.",
-        "Ler no diário os votos dados depois de o mesário declarar que todos já tinham votado."
+        "Ler no diário os votos dados depois de o mesário declarar que todos já tinham votado.",
+        "Comparar a hora de emissão de cada boletim pela urna com a hora de registro pelo TSE e de entrada na totalização."
       ],
       "sabe": [
-        "No 2º turno, 34.330 votos foram dados depois das 17h de Brasília (0,027% dos votos), em 29.854 seções; 1.993 depois das 18h e 11 depois das 19h.",
+        "No 2º turno, 34.330 votos foram dados depois das 17h de Brasília (0,027% dos votos), em 29.854 seções; 1.993 depois das 18h e 11 depois das 19h. 6.352 seções encerraram às 19h ou depois.",
         "Mesmo que todos fossem de um lado só, seriam menos de 1% da diferença final entre os candidatos.",
-        "A decisão do STF (minuta publicada pela imprensa) mandava prorrogar até as 19h \"em todas as seções de todo o Brasil\"."
+        "A decisão do STF (minuta publicada pela imprensa) mandava prorrogar até as 19h \"em todas as seções de todo o Brasil\".",
+        "Apuração: às 19h, 98,64% dos boletins do Brasil já tinham sido emitidos pelas urnas, e o TSE tinha registrado 0,38% das seções. De 17:10 a 19:03:37 o TSE não registrou nenhum boletim com voto; depois registrou em lotes, com vazão limitada, até 21:09. Registrado, cada boletim entrou na totalização em 24 segundos (mediana). A ordem não muda o total, que é a soma dos boletins."
       ],
       "falta": [
         "Versão assinada da decisão e ofício do TSE que a cumpriu.",
-        "Medir por que as seções com voto tardio votam um pouco diferente das demais da zona: perfil da seção ou efeito real.",
+        "Onde os boletins esperaram entre 17:10 e 19:03 e se a ordem de registro dependeu do voto das seções (depende de registros que o TSE não publicou).",
+        "Comparação, na mesma zona, entre a quantidade de voto tardio e a parcela do 13.",
         "Votos depois da declaração de \"todos votaram\": contagem final."
       ],
-      "alternativas": "Fila legítima (não conta como controle pelo princípio 8); fuso horário.",
-      "readme_sabe": "34.330 votos após 17h de Brasília (0,027%), menos de 1% da margem",
-      "readme_proximo": "Decisão assinada e ofício do TSE; diferença de voto das seções tardias; votos após \"todos votaram\""
+      "alternativas": "Fila legítima (não conta como controle pelo princípio 8); fuso horário; registro em lotes por limite de vazão do sistema do TSE.",
+      "readme_sabe": "34.330 votos após 17h de Brasília (0,027%), menos de 1% da margem; boletins registrados em lotes a partir de 19:03:37",
+      "readme_proximo": "Decisão assinada e ofício do TSE; onde os boletins esperaram e se a ordem de registro dependeu do voto"
     },
     {
       "id": "H07",
@@ -161,15 +174,14 @@
       ],
       "sabe": [
         "Todo modelo de urna usado no Brasil lê digital: as urnas de 2013 liberaram 82,2% dos eleitores pela digital. A premissa da hipótese é falsa.",
-        "Nas urnas antigas a digital falha mais e a mesa libera mais à mão (+4,3 pontos na urna de 2013, na mesma zona). Isso alarga a brecha humana."
+        "Nas urnas antigas a digital falha mais e a mesa libera mais à mão (+4,3 pontos na urna de 2013 e +3,2 na de 2015, na mesma zona). A liberação por ano de nascimento quase não muda com o modelo. Isso alarga a brecha humana."
       ],
       "falta": [
-        "Por que as urnas antigas estão onde estão (logística ou escolha).",
-        "Trocas de urna concentradas em zonas com urna antiga (em revisão cética)."
+        "Por que as urnas antigas estão onde estão (logística ou escolha)."
       ],
       "alternativas": "Logística do parque de urnas; cobertura biométrica do cadastro.",
       "readme_sabe": "Todo modelo lê digital (UE2013: 82,2% pela digital); a urna antiga libera mais à mão",
-      "readme_proximo": "Alocação das urnas antigas; trocas de urna por zona"
+      "readme_proximo": "Critério de alocação das urnas antigas (LAI)"
     },
     {
       "id": "H08",
@@ -180,33 +192,40 @@
         "Conferir se cada voto teve o ciclo completo de eleitor: número digitado, liberação e confirmação."
       ],
       "sabe": [
-        "Fora de 3 seções que a ferramenta da auditoria leu errado, o menor intervalo entre dois votos no país é de 16 segundos."
+        "Fora de 3 seções que a ferramenta da auditoria leu errado, o menor intervalo entre dois votos no país é de 16 segundos.",
+        "Todo voto do boletim tem a linha \"voto computado\" no diário da própria seção, exceto 54 votos em 6 seções no 2º turno e 159 em 9 no 1º. Em nenhuma seção o diário tem mais votos que o boletim."
       ],
       "falta": [
-        "Confirmar o ciclo completo de eleitor em todos os votos, depois que os perfis dos diários forem refeitos com a leitura corrigida."
+        "Menor intervalo real das 3 seções lidas errado, depois da correção da leitura.",
+        "Confirmar o ciclo completo de eleitor em todos os votos (o teste da H16 faz isso e ainda não foi levado à perícia)."
       ],
       "alternativas": "Resolução de 1 segundo do relógio; eleitor rápido; voto em branco.",
-      "readme_sabe": "Menor intervalo entre dois votos no país: 16 segundos",
-      "readme_proximo": "Ciclo completo de eleitor em todos os votos, com os perfis refeitos"
+      "readme_sabe": "Menor intervalo entre dois votos no país: 16 segundos; o diário nunca tem mais votos que o boletim",
+      "readme_proximo": "Ciclo completo de eleitor em todos os votos (H16); as 3 seções com leitura a corrigir"
     },
     {
       "id": "H09",
       "titulo": "Os arquivos públicos permitem descobrir em quem uma pessoa votou",
       "status": "aberta",
       "como": [
-        "Ver se o registro dos votos sai na ordem em que os eleitores votaram, em todas as seções.",
-        "Testar seções pequenas, onde a ordem ou o horário poderiam ligar voto a eleitor."
+        "Ver se o registro dos votos sai na ordem em que os eleitores votaram, em todas as seções e nos dois turnos.",
+        "Testar seções pequenas e unânimes, onde a ordem ou o horário poderiam ligar voto a eleitor.",
+        "Procurar números com formato de título de eleitor em todas as linhas de todos os diários."
       ],
       "sabe": [
+        "O registro dos votos não guarda a ordem de votação: 539.788 de 539.788 listas da urna no 2º turno e 2.490.766 de 2.490.766 no 1º estão em ordem de tipo e de número digitado.",
+        "Exceção, em listas que não são geradas pela urna: 2 seções de MG com cédula no 1º turno, em que a ordem é a de digitação das cédulas (a cédula não tem nome, e o voto para Presidente não segue essa ordem).",
+        "Nenhuma seção teve só 1 votante. 30 seções no 2º turno e 17 no 1º votaram todas no mesmo candidato a Presidente.",
+        "Achado: quando o mesário suspende um eleitor que demora na cabine, o diário público grava o número digitado. No 1º turno, 55.483 dessas linhas trazem 31.764 números com formato de título que não são de nenhum mesário, presidente ou servidor registrado; no 2º turno, 5.564 linhas e 3.801 números.",
         "A urna gera sete arquivos que não estão publicados (entre eles, as imagens de digitais)."
       ],
       "falta": [
-        "Ordem do registro dos votos no país inteiro.",
-        "Análise das seções pequenas."
+        "De quem são os números gravados na suspensão (pergunta ao TSE). Hipótese forte para o número recusado: é o título do próprio eleitor suspenso, o que o ligaria ao voto nulo dos cargos que não confirmou, não a voto em candidato.",
+        "Refazer a busca de um número de título em formas codificadas."
       ],
-      "alternativas": "—",
-      "readme_sabe": "Sete arquivos gerados pela urna não são publicados",
-      "readme_proximo": "Ordem do registro dos votos no país inteiro; seções pequenas"
+      "alternativas": "O número pode ser de outra pessoa sem papel registrado na urna (por exemplo, o presidente da mesa), e não do eleitor.",
+      "readme_sabe": "A lista de votos não guarda a ordem de votação nos dois turnos; o diário publica números com formato de título na suspensão do eleitor",
+      "readme_proximo": "Perguntar ao TSE de quem são os números da suspensão; refazer a busca de título codificado"
     },
     {
       "id": "H10",
@@ -216,11 +235,13 @@
         "Somar, no país, por município e por seção, os votos disponíveis: eliminados, queda de brancos e nulos e aumento de comparecimento."
       ],
       "sabe": [
-        "A conta fecha: o 13 ganhou 10.376.694 votos e o 22, 3.721.538. Os dois somam exatamente o disponível, 14.098.232 votos. Nenhum município passa do limite.",
-        "Essa conta sempre fecha quando os votos somam o comparecimento. Por isso ela não prova ausência de fraude: uma troca de votos do 22 para o 13 abaixo de 6,2% dos votos do 22 passaria sem alarme."
+        "A conta fecha: o 13 ganhou 10.376.694 votos e o 22, 3.721.538. Os dois somam exatamente o disponível, 14.098.232 votos (eliminados 9.321.993, queda de brancos e nulos 1.816.000, aumento de comparecimento 2.960.239). Nenhum dos 5.757 municípios passa do limite.",
+        "O 13 ficou com 73,6% do disponível; em 2018 o maior finalista ficou com 64,8% e em 2022 com 69,8%.",
+        "Essa conta sempre fecha quando os votos somam o comparecimento. Por isso ela não prova ausência de fraude: uma troca de votos do 22 para o 13 só reduziria o ganho do 22, e a conta não limita o tamanho dela."
       ],
       "falta": [
-        "Novo teste derivado: a queda de brancos e nulos entre os turnos (1.816.000 votos), seção a seção e contra o registro dos votos.",
+        "Novo teste derivado: a queda de brancos e nulos entre os turnos, seção a seção e contra o registro dos votos.",
+        "MA, AM e TO: a perda do 22 exige troca de eleitores do 22 para o 13 ou eleitores diferentes em cada turno; não testado.",
         "Linha de base com eleições anteriores por seção."
       ],
       "alternativas": "Votos dos eliminados, queda da abstenção e de brancos e nulos.",
@@ -232,19 +253,23 @@
       "titulo": "O mesmo cartão de memória usado em mais de uma urna, ou resultado trocado no caminho",
       "status": "em teste",
       "como": [
-        "Conferir os números de série das mídias e da urna em cada seção e procurar repetição entre seções.",
+        "Conferir os números de série das mídias e da urna em cada seção e procurar repetição entre seções, nos dois turnos.",
         "Medir as trocas de urna (urna reserva) e as recuperações de dados por zona."
       ],
       "sabe": [
-        "Acre, 2º turno: nenhuma mídia de resultado, de votação ou urna repetida entre as 2.270 seções."
+        "Nenhum cartão de votação, urna ou código de carga aparece no boletim de duas seções do mesmo município ou da mesma zona, nos dois turnos. Os cartões com o mesmo número (29 pares no 2º turno, 30 no 1º) estão todos em municípios diferentes, como o acaso prevê.",
+        "Nenhuma urna escreveu no diário de duas seções ao mesmo tempo.",
+        "O número de série da mídia de resultado não identifica o cartão (1.566 seções com o mesmo número para cartões gerados de uma vez), sem efeito no resultado, que é assinado pela urna.",
+        "No 2º turno, 5.714 seções votaram com urna reserva (2.818 trocas novas). A urna de 2013 foi trocada entre os turnos em 34,9 de cada mil seções, e a de 2022 em 2,7. Em 5 seções a urna foi carregada na manhã da própria votação."
       ],
       "falta": [
-        "Números de série no país inteiro.",
-        "Trocas de urna concentradas em algumas zonas e urnas carregadas no próprio dia da votação (em revisão cética)."
+        "Motivo da troca de urnas entre as zonas 1 e 2 de Aracaju (pedido ao TRE-SE).",
+        "Carga no dia da votação no 1º turno.",
+        "Caminho até a totalização além das assinaturas: os registros de transmissão só são entregues a entidades fiscalizadoras."
       ],
-      "alternativas": "A mídia de carga é usada em lote na preparação: uma mídia carrega várias urnas.",
-      "readme_sabe": "Acre: nenhuma mídia ou urna repetida",
-      "readme_proximo": "Números de série no país; trocas de urna e cargas no dia (revisão cética 24)"
+      "alternativas": "A mídia de carga é usada em lote na preparação: uma mídia carrega várias urnas. Número de série gerado de um jeito pouco variado em alguns computadores de preparação.",
+      "readme_sabe": "Nenhum cartão, urna ou código de carga repetido no mesmo município ou zona, nos dois turnos",
+      "readme_proximo": "Trocas em Aracaju (TRE-SE); carga no dia no 1º turno; registros de transmissão"
     },
     {
       "id": "H12",
@@ -278,13 +303,255 @@
         "Só 1 seção do Brasil votou 100% sem digital, e não virou. O ganho do 13 entre os turnos teve o mesmo tamanho em todas as faixas de liberação sem digital (de 1,9 a 2,9 pontos)."
       ],
       "falta": [
-        "A mesma conta com a liberação contada no diário (mesário identificado), depois que os perfis forem refeitos.",
+        "A mesma conta com a liberação contada no diário (mesário identificado), depois que a leitura dos diários for refeita.",
         "Exame nominal das seções de CE, PB e PE apontadas pelos modelos.",
-        "Revisão cética da comparação por faixa (em andamento)."
+        "Refazer com as 28 UFs um dos métodos estatísticos."
       ],
       "alternativas": "O voto é secreto: só se cerca ou estima. Perfil da região (o Nordeste vota mais no 13 com ou sem digital); urna antiga; fraude igual nos dois turnos, que some na diferença.",
       "readme_sabe": "Nordeste: 3,41% a 99,93% dos 4,27 mi liberados podem ter votado no 13; o pior caso no Brasil inteiro inverteria o resultado; virada igual em todas as faixas",
-      "readme_proximo": "Conta com a liberação do diário; seções de CE, PB e PE; revisão cética da virada (parecer 23)"
+      "readme_proximo": "Conta com a liberação do diário; seções de CE, PB e PE; método por zona com as 28 UFs"
+    },
+    {
+      "id": "H14",
+      "titulo": "Urnas trocadas por urna reserva no 2º turno teriam sido manipuladas",
+      "status": "em teste",
+      "como": [
+        "Comparar, na mesma seção, a mudança do 1º para o 2º turno (comparecimento, parcela do 13, brancos e nulos) nas seções com troca e nas sem troca da mesma zona.",
+        "Comparar a reserva usada nos dois turnos com as outras seções do mesmo local de votação.",
+        "Procurar no diário e no pacote da reserva os sinais que uma adulteração deixaria: verificação falhada, lacre quebrado, outra versão de programa, erro de assinatura."
+      ],
+      "sabe": [
+        "No 2º turno, 5.714 seções votaram com urna reserva: 2.818 trocas novas, 2.893 com a mesma reserva do 1º turno e 3 com a própria urna recarregada como reserva.",
+        "Nas trocas novas, a parcela do 13 mudou entre os turnos como nas seções sem troca da mesma zona: −0,05 ponto, intervalo de −0,12 a +0,03, que inclui o zero. Nenhuma UF, modelo de urna, zona ou seção fica fora do esperado depois da correção para muitos testes.",
+        "Mesmo que todos os 742.671 votos do 13 nas seções com reserva fossem do 22, o 13 ainda venceria por 2.944.849.",
+        "No diário das reservas não aparece nenhum dos sinais que uma adulteração sem a assinatura do TSE, ou uma verificação pulada, deixaria.",
+        "Lacuna de controle: em 125 trocas novas a reserva tinha sido carregada para outra zona do mesmo estado. A urna aceitou e registrou a zona da carga: falta bloqueio, não rastro."
+      ],
+      "falta": [
+        "Motivo da troca de urnas entre as zonas 1 e 2 de Aracaju, registrada no diário em 17/10 e 19/10 (pedido ao TRE-SE).",
+        "Reservas que liberaram quase todos os eleitores sem digital: atas e registro de manutenção do leitor.",
+        "Causa do comparecimento menor das reservas herdadas no 1º turno (varredura dos diários do 1º turno).",
+        "Tamanho mínimo de desvio que o teste enxerga."
+      ],
+      "alternativas": "As urnas antigas, as mais trocadas, ficam em lugares de perfil diferente; troca planejada por manutenção; variação normal entre turnos. O teste não enxerga programa adulterado e assinado com a chave oficial, nem o mesmo desvio nos dois turnos numa zona inteira.",
+      "readme_sabe": "5.714 seções com reserva; nas trocas novas, voto igual ao das vizinhas no que o teste vê; mesmo todos do 22, o 13 venceria",
+      "readme_proximo": "Trocas em Aracaju (TRE-SE); reservas quase sem digital (atas)"
+    },
+    {
+      "id": "H15",
+      "titulo": "Votos no lugar de ausentes, liberados em bloco pelo mesmo mesário, sem digital, no fim do dia",
+      "status": "em teste",
+      "como": [
+        "Procurar no diário de cada urna, nos dois turnos, rajadas de liberação sem digital pelo mesmo mesário, em ritmo regular demais para uma fila.",
+        "Comparar com a mesma seção e o mesmo mesário no 1º turno, com a hora do dia e com o aumento de comparecimento entre os turnos."
+      ],
+      "sabe": [],
+      "falta": [
+        "Levar à perícia o teste feito nos dois turnos. Ele não achou sinal, e a revisão cética estreitou o alcance: a regra só enxerga a liberação com mesário registrado, que é a menor parte dos votos sem digital.",
+        "Bloco pequeno, disfarçado no ritmo da fila ou igual nos dois turnos: o teste não vê; fechar exige o caderno de votação (LAI)."
+      ],
+      "alternativas": "Fila real no fim do dia; idoso cuja digital falha; mobilização real; leitor de digital falhando por um período. Pelo princípio 8, nenhuma delas conta como controle.",
+      "readme_sabe": "Teste nos dois turnos sem sinal; a revisão cética estreitou o alcance; ainda fora da perícia",
+      "readme_proximo": "Levar à perícia; caderno de votação (LAI) para blocos pequenos ou disfarçados"
+    },
+    {
+      "id": "H16",
+      "titulo": "Voto sem eleitor liberado, ou eleitor liberado sem desfecho registrado no diário da urna",
+      "status": "em teste",
+      "como": [
+        "Refazer cada atendimento no diário, nos dois turnos: liberação, depois voto confirmado em cada cargo, suspensão ou cancelamento.",
+        "No 1º turno, comparar o registro dos votos com o boletim cargo a cargo e procurar boletins inteiros repetidos entre seções."
+      ],
+      "sabe": [],
+      "falta": [
+        "Levar à perícia o teste, refeito pela revisão cética com programa próprio nos dois turnos: nenhum atendimento sem desfecho, nenhum voto sem liberação, registro dos votos igual ao boletim em todos os cargos do 1º turno e nenhum boletim repetido entre seções.",
+        "Atendimentos em que o eleitor confirmou todos os cargos e a urna foi desligada pela chave sem gravar o voto: seguem na H17."
+      ],
+      "alternativas": "Urna de contingência, reinício, diário incompleto, cartão trocado. Limite: um programa adulterado que grava sequências coerentes não aparece neste teste.",
+      "readme_sabe": "Teste nos dois turnos sem atendimento fora da sequência, sustentado pela revisão cética; ainda fora da perícia",
+      "readme_proximo": "Levar à perícia; votos confirmados e não gravados seguem na H17"
+    },
+    {
+      "id": "H17",
+      "titulo": "Votos suprimidos ou roubados na mesa: eleitor suspenso ou cancelado de propósito, ou \"já votou\" para quem estava presente",
+      "status": "em teste",
+      "como": [
+        "Medir, por atendimento iniciado, as suspensões e os cancelamentos, e se ficam concentrados num mesário.",
+        "Ver se o aviso \"já votou\" vem logo depois de um voto liberado sem digital, separando a consulta periódica de quem ainda não votou.",
+        "Usar o perfil da seção e as falhas técnicas como controle."
+      ],
+      "sabe": [],
+      "falta": [
+        "Levar à perícia o teste feito nos dois turnos: supressão sem sinal; a ligação entre voto sem digital e \"já votou\" é pequena, aparece nos dois turnos e é menor no 2º (sustentada pela revisão cética).",
+        "Uma seção do PR com o padrão nos dois turnos: conferir o caderno de votação (LAI).",
+        "Atendimentos em que o eleitor confirmou todos os cargos e a urna foi desligada pela chave sem gravar o voto (vindos da H16): o eleitor voltou e votou?"
+      ],
+      "alternativas": "Desistência; urna travada; título digitado errado; consulta de quem ainda falta votar.",
+      "readme_sabe": "Teste sem sinal de supressão; ligação pequena entre voto sem digital e \"já votou\", menor no 2º turno; ainda fora da perícia",
+      "readme_proximo": "Caderno de votação de uma seção do PR; votos confirmados e não gravados (urna desligada)"
+    },
+    {
+      "id": "H18",
+      "titulo": "Votos inseridos por igual num município inteiro, um ponto cego dos testes por seção",
+      "status": "aberta",
+      "como": [
+        "Por município: virada do 1º para o 2º turno e quanto as seções do município diferem entre si (inserção por igual deixa virada alta e pouca diferença entre seções).",
+        "Comparar com o voto dos outros cargos no 1º turno e listar os municípios para auditoria de campo."
+      ],
+      "sabe": [],
+      "falta": [
+        "Todo o teste (hipótese registrada em 30/10/2026)."
+      ],
+      "alternativas": "Máquina política municipal legal; conclusão tirada de médias que não vale para cada eleitor.",
+      "readme_sabe": "—",
+      "readme_proximo": "Virada e variação entre seções por município, contra os outros cargos"
+    },
+    {
+      "id": "H19",
+      "titulo": "Falha de digital provocada de propósito nas seções escolhidas",
+      "status": "aberta",
+      "como": [
+        "Medir, pelas tentativas de digital no diário, a falha do leitor em cada seção nos dois turnos.",
+        "Ver se a falha que muda entre os turnos acompanha o voto, dentro do mesmo local e do mesmo modelo de urna."
+      ],
+      "sabe": [],
+      "falta": [
+        "Todo o teste (hipótese registrada em 30/10/2026). Parte da medida da falha do leitor já foi feita para a H05 e ainda não foi levada à perícia."
+      ],
+      "alternativas": "Leitor gasto; idade; trabalho manual; umidade; diferença de definição entre boletim e cadastro (H02).",
+      "readme_sabe": "—",
+      "readme_proximo": "Falha do leitor por seção entre os turnos, contra o voto no mesmo local"
+    },
+    {
+      "id": "H20",
+      "titulo": "Relógio ou ordem dos eventos da urna adulterados",
+      "status": "aberta",
+      "como": [
+        "Conferir em cada urna a ordem zerésima, abertura e primeiro eleitor.",
+        "Procurar eventos fora de ordem e horários deslocados, com o fuso de cada município, usando o registro de recebimento do TSE como limite externo."
+      ],
+      "sabe": [],
+      "falta": [
+        "Todo o teste (hipótese registrada em 30/10/2026)."
+      ],
+      "alternativas": "Erro de fuso (como em urnas de MT no 1º turno, com relógio em hora de Brasília); hora digitada errada na carga.",
+      "readme_sabe": "—",
+      "readme_proximo": "Ordem zerésima, abertura e primeiro eleitor; eventos fora de ordem"
+    },
+    {
+      "id": "H21",
+      "titulo": "Compra de voto conferida pelo registro dos votos: um número nulo raro usado como senha",
+      "status": "aberta",
+      "como": [
+        "Contar a frequência de cada número nulo por cargo, seção e turno.",
+        "Procurar números raros no país, concentrados em poucas zonas e que crescem no 2º turno, descontando erros de tecla comuns e números de candidatos."
+      ],
+      "sabe": [],
+      "falta": [
+        "Todo o teste (hipótese registrada em 30/10/2026)."
+      ],
+      "alternativas": "Erro de tecla; número de candidato local; campanha de voto nulo.",
+      "readme_sabe": "—",
+      "readme_proximo": "Números nulos raros e concentrados, por cargo, seção e turno"
+    },
+    {
+      "id": "H22",
+      "titulo": "Exterior e urnas de fluxo especial com comparecimento ou ritmo fora do normal",
+      "status": "aberta",
+      "como": [
+        "Por país e por seção: mudança de comparecimento e de voto do 1º para o 2º turno e ritmo das liberações.",
+        "Comparar com 2022."
+      ],
+      "sabe": [
+        "No exterior, todos os 380.612 votantes do 2º turno foram liberados pelo ano de nascimento, sem digital (H05)."
+      ],
+      "falta": [
+        "Todo o teste (hipótese registrada em 30/10/2026).",
+        "Regra que desliga a digital no exterior (LAI)."
+      ],
+      "alternativas": "Perfil e mobilização próprios; poucos eleitores por país.",
+      "readme_sabe": "Exterior: 100% dos 380.612 votantes do 2º turno liberados sem digital",
+      "readme_proximo": "Comparecimento, voto e ritmo por país entre os turnos; base de 2022"
+    },
+    {
+      "id": "H23",
+      "titulo": "Urna carregada de novo, ou carregada fora da cerimônia oficial",
+      "status": "aberta",
+      "como": [
+        "Procurar urnas com mais de uma carga sem erro antes, e cargas fora do bloco da zona.",
+        "Ver se essas urnas mostram desvio de voto e conferir com o calendário e as atas dos TREs."
+      ],
+      "sabe": [
+        "Em 5 seções do 2º turno a urna foi carregada na manhã da própria votação, com a conferência das assinaturas da carga registrada com sucesso (H11)."
+      ],
+      "falta": [
+        "Todo o teste (hipótese registrada em 30/10/2026).",
+        "Carga no dia da votação no 1º turno; atas das cargas."
+      ],
+      "alternativas": "Recarga legítima por defeito, registrada em ata (a ata é feita por pessoas e não conta como controle, princípio 8).",
+      "readme_sabe": "5 urnas carregadas na manhã do 2º turno, com a carga conferida",
+      "readme_proximo": "Urnas com mais de uma carga ou carga fora do bloco da zona; atas dos TREs"
+    },
+    {
+      "id": "H24",
+      "titulo": "Eleitores em trânsito e com atributos especiais (preso, militar, servidor da Justiça Eleitoral, deficiência visual) usados para inflar seções",
+      "status": "aberta",
+      "como": [
+        "Comparar seções do mesmo local com e sem eleitor em trânsito.",
+        "Contar os atributos por seção nos dois turnos; só dar alarme quando houver também outra anomalia de operação."
+      ],
+      "sabe": [],
+      "falta": [
+        "Todo o teste (hipótese registrada em 30/10/2026)."
+      ],
+      "alternativas": "Voto em trânsito legal; seções especiais (presídio, quartel); instituições.",
+      "readme_sabe": "—",
+      "readme_proximo": "Seções com e sem trânsito no mesmo local; atributos por seção entre os turnos"
+    },
+    {
+      "id": "H25",
+      "titulo": "O certificado do cartório digital das urnas antigas (AC URNA) venceu antes da eleição; um sistema alterado poderia assinar com chave aceita, e a totalização não conferiria a validade",
+      "status": "em teste",
+      "como": [
+        "Ler a carteira digital (certificado) de cada urna nos dois turnos: datas, cartório emissor, número de série e repetições.",
+        "Comparar os votos das urnas antigas (2013 e 2015, da AC URNA) com os das novas, no mesmo local e na mesma zona, no nível e na mudança entre os turnos.",
+        "Comparar os votos das seções com carteira emitida depois do vencimento com os das vizinhas."
+      ],
+      "sabe": [
+        "O certificado público da AC URNA vale de 22/07/2011 a 18/07/2026: venceu antes dos dois turnos. As carteiras das próprias urnas estavam dentro da validade.",
+        "A chave da AC URNA carimbou 54 carteiras de urna com início de validade entre 20/07 e 19/10/2026, todas apontando para o certificado vencido. Essas urnas votaram em 53 seções no 2º turno e em 45 no 1º; duas foram carimbadas entre os turnos.",
+        "Nenhuma chave, número de série ou urna repetida entre as 503.525 carteiras de urna dos dois turnos. As assinaturas das urnas antigas conferem nos dois turnos.",
+        "Com o certificado publicado, o verificador usual recusa as 99.957 seções do 2º turno com urna antiga. Os votos delas estão no resultado oficial: nas 99.955 com voto para Presidente, o boletim é igual ao oficial.",
+        "Nas 53 seções com carteira tardia, a parcela do 13 mudou entre os turnos como nas vizinhas do mesmo local (+0,13 ponto; 13 votos). Nenhum dos 12 testes combinados antes acha diferença entre urnas antigas e novas (eles cobrem as 516 seções de urna antiga que dividem o local com urna nova).",
+        "Tamanho do risco, não sinal de fraude: no 2º turno, 20,28% dos votos válidos passaram por essas urnas."
+      ],
+      "falta": [
+        "Resposta do TSE ao pedido pela LAI: se a totalização confere a assinatura e a validade, com qual certificado; emissões da AC URNA em 2026; lista de revogação, política e raízes; guarda da chave entre 18/07 e 25/10.",
+        "Se foram emitidas mais carteiras depois do vencimento: entre o primeiro e o último número de série tardio cabem 946 números (Hipótese).",
+        "Programa alterado e assinado com a chave verdadeira: não testável nos arquivos públicos."
+      ],
+      "alternativas": "Cartório renovado com a mesma chave (não publicado e não conferível nos arquivos); urnas antigas em lugares de perfil político diferente; validade conferida pelo TSE com outra cadeia ou pela data da emissão da carteira.",
+      "readme_sabe": "Certificado da AC URNA vencido em 18/07/2026; 54 carteiras de urna carimbadas depois; votos dessas seções iguais aos das vizinhas",
+      "readme_proximo": "Resposta do TSE pela LAI (conferência na totalização, emissões, guarda da chave)"
+    },
+    {
+      "id": "H26",
+      "titulo": "Zonas com virada para o 13 do 1º para o 2º turno muito acima do que o voto da própria zona no 1º turno explica, concentradas numa região, num modelo de urna ou num horário",
+      "status": "em teste",
+      "como": [
+        "Em todas as zonas: virada da diferença entre o 13 e o 22 do 1º para o 2º turno, e virada além do esperado pelos votos de cada eliminado, brancos e nulos e abstenção do 1º turno.",
+        "Corte fixado antes de olhar: zona fora da curva só com chance muito baixa de ser acaso, corrigida para muitos testes, e diferença de 2 pontos ou mais, nos dois sentidos.",
+        "Separar por região e UF, por modelo de urna dentro da zona e por horário de votação, 1º × 2º turno."
+      ],
+      "sabe": [],
+      "falta": [
+        "Revisão cética da triagem, feita em todas as zonas, antes de levar qualquer resultado à perícia.",
+        "Examinar seção a seção as zonas que a triagem marcar fora da curva.",
+        "Linha de base de 2018 e 2022; conciliar os votos depois das 17h com a H06."
+      ],
+      "alternativas": "Votos de eliminados com força regional; abstenção diferente entre os turnos; zona pequena; padrão de 2018 e 2022; prorrogação até as 19h e fuso (H06).",
+      "readme_sabe": "Triagem de todas as zonas feita; aguarda revisão cética",
+      "readme_proximo": "Revisão cética; zonas fora da curva seção a seção; linha de base 2018 e 2022"
     }
   ],
   "fila": [
@@ -293,20 +560,12 @@
       "texto": "Do 1º para o 2º turno, os brancos e nulos caíram 1.816.000 votos, e nenhum controle técnico cobre essa parte. Teste previsto: como a queda se distribui por seção, se acompanha o ganho do 13 e se o registro dos votos confirma o boletim."
     },
     {
-      "titulo": "Urnas carregadas no dia da votação e trocas de urna",
-      "texto": "Algumas urnas receberam a carga no próprio dia da votação, e algumas zonas concentram trocas de urna. O achado está em revisão cética; o teste segue para as atas e os diários das urnas originais."
-    },
-    {
-      "titulo": "Votos sem rastro no diário no 1º turno",
-      "texto": "O matemático forense achou seções do 1º turno com votos no boletim sem linha no diário publicado. O achado está em revisão cética, junto com a tabela final do 2º turno."
-    },
-    {
-      "titulo": "Demais cargos",
-      "texto": "Governador, senador e deputados: soma das urnas × resultado oficial, por município e zona, nos dois turnos."
-    },
-    {
       "titulo": "Linha de base de eleições anteriores",
-      "texto": "Comparar, nas mesmas seções, o comportamento de 2022 (comparecimento, brancos e nulos, liberação sem digital), para separar o que é novo em 2026 do que já acontecia."
+      "texto": "Comparar, nas mesmas seções, o comportamento de 2018 e 2022 (comparecimento, brancos e nulos, liberação sem digital, virada por zona), para separar o que é novo em 2026 do que já acontecia. Serve à H10 e à H26."
+    },
+    {
+      "titulo": "Concentração de votos em seções",
+      "texto": "A análise estatística apontou seções com votação muito concentrada num candidato. O achado ainda não foi refeito nem revisado; o teste segue para a revisão cética antes de qualquer número."
     }
   ],
   "lai": [
@@ -315,12 +574,24 @@
     "Comparecimento por idade no 2º turno e cancelamentos de título por óbito, por município.",
     "Regra que desliga a digital no exterior.",
     "Critério de distribuição dos modelos de urna.",
-    "Atas e diários das urnas originais nas seções com votos sem rastro no diário e com carga no dia da votação."
+    "Atas e diários das urnas originais nas seções com votos sem rastro no diário e com carga no dia da votação.",
+    "De quem são os números com formato de título gravados no diário quando o mesário suspende o eleitor, e a regra técnica da suspensão.",
+    "Registros de transmissão e da fila do TSE: onde os boletins esperaram entre 17:10 e 19:03 do 2º turno.",
+    "Motivo da troca de urnas entre as zonas 1 e 2 de Aracaju (TRE-SE).",
+    "Caderno de votação das seções com sinal de liberação em bloco ou de \"já votou\" depois de voto sem digital.",
+    "AC URNA: se a totalização, ou o receptor que vem antes dela, confere a assinatura de cada boletim e a cadeia do certificado da urna; com qual programa; se confere a data de validade e em que data de referência.",
+    "AC URNA: o certificado do cartório cadastrado como confiável em 04/10 e em 25/10/2026; se houve renovação, o certificado renovado, a data e a ata da cerimônia.",
+    "AC URNA: a relação de todos os certificados de urna emitidos em 2026 (série, urna, data, motivo), com os revogados, incluindo toda a faixa de números de série emitidos depois do vencimento.",
+    "AC URNA: lista de certificados revogados, declaração de práticas de certificação e os certificados das autoridades raiz (AC RAIZ UE, AC RAIZ UE v2 e AC URNA v2).",
+    "AC URNA: onde fica guardada a chave privada, em que equipamento, quem tem acesso e o registro de uso dela entre 18/07 e 25/10/2026.",
+    "AC URNA: se existe autoridade certificadora de teste separada da de produção e se a de produção emitiu algum certificado de teste.",
+    "Se a totalização confere o certificado de cada urna contra a lista de urnas esperadas por seção, inclusive as reservas."
   ],
   "limites": [
     "Nenhum arquivo público diz em quem um eleitor votou. O voto de quem foi liberado sem digital só pode ser cercado ou estimado.",
     "Os arquivos não mostram quem estava na cabine. A brecha humana (liberação sem digital) é risco, não prova de fraude.",
     "Vários testes não enxergam fraude pequena, espalhada, igual nos dois turnos ou concentrada em poucas seções. Cada hipótese diz o que o seu teste não vê.",
-    "O programa da urna por dentro só é conferido pelo Teste de Integridade e pela verificação das assinaturas."
+    "O programa da urna por dentro não se confere nos arquivos públicos: um programa alterado e assinado com a chave oficial escreveria arquivos normais. Isso depende de controles fora deles, como a inspeção do código e o Teste de Integridade.",
+    "O caminho da urna até a totalização só é coberto pelas assinaturas: os registros de transmissão não são públicos."
   ]
 }
