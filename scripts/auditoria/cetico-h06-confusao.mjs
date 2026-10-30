@@ -6,6 +6,7 @@
 // Só lê a cópia de leitura do banco (abrirLeitura) e fuso-municipio.csv do autor.
 // Uso: node scripts/auditoria/cetico-h06-confusao.mjs
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { difRelogioPorSecao, difSecao } from './relogio-fora-do-fuso.mjs';
 import path from 'node:path';
 import { DIR_DADOS } from '../../src/config.js';
 import { abrirLeitura } from '../../src/banco-leitura.js';
@@ -24,9 +25,10 @@ console.error(`banco: ${fonte}`);
 
 const S = new Map();
 for (const turno of [2, 1]) {
+  const relogio = difRelogioPorSecao(turno); // seções com relógio fora da hora do município (linha-do-tempo/07)
   for (const r of db.prepare(`SELECT p.uf, p.municipio, p.zona, p.secao, json_extract(p.dados, '$.log.votosPorHoraLocal') AS ph, p.votos_computados AS votos
     FROM perfil_log p WHERE p.turno = ? AND p.uf <> 'zz'`).iterate(turno)) {
-    const d = fuso.get(`${r.uf}/${r.municipio}`);
+    const d = difSecao(relogio, r.uf, r.municipio, r.zona, r.secao, fuso.get(`${r.uf}/${r.municipio}`));
     if (d === null || d === undefined || !r.ph) continue;
     const k = `${r.uf}/${r.municipio}/${r.zona}/${r.secao}`;
     const s = S.get(k) ?? { uf: r.uf, mun: r.municipio, zona: r.zona };

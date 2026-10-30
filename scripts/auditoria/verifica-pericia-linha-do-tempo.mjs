@@ -2,7 +2,8 @@
 // Caminho próprio, sem ler as saídas de tempo-*.mjs:
 //  - 2º turno: BU da tabela `secao` e perfil do log da tabela `perfil_log` (cópia de leitura, abrirLeitura());
 //  - 1º turno: perfis completos em data/parsed/1t/perfil/<uf>.jsonl (28 UFs; o banco ainda não tem todas);
-//  - fuso de cada município = moda da hora LOCAL da abertura do BU − 8 (conferido contra a moda do "Urna pronta").
+//  - fuso de cada município = moda da hora LOCAL da abertura do BU − 8 (conferido contra a moda do "Urna pronta"); as seções
+//    com relógio fora da hora do município usam a diferença da própria seção (relogio-fora-do-fuso.mjs, linha-do-tempo/07).
 // Só leitura. Uso: node scripts/auditoria/verifica-pericia-linha-do-tempo.mjs
 // Saída: data/parsed/auditoria/verifica-pericia/linha-do-tempo.json
 import { createReadStream } from 'node:fs';
@@ -11,6 +12,7 @@ import path from 'node:path';
 import { createInterface } from 'node:readline';
 import { DIR_DADOS, UFS } from '../../src/config.js';
 import { abrirLeitura } from '../../src/banco-leitura.js';
+import { difRelogioPorSecao, difSecao } from './relogio-fora-do-fuso.mjs';
 
 const SAIDA = path.join(DIR_DADOS, 'parsed', 'auditoria', 'verifica-pericia');
 await mkdir(SAIDA, { recursive: true });
@@ -54,7 +56,8 @@ function fusos(lista, abertura, pronta) {
 function inc2(map, k) { map.set(k, (map.get(k) ?? 0) + 1); }
 const F2 = fusos(secoes, (s) => seg(s.abertura), (s) => s.pronta);
 const fuso2 = F2.f;
-const dif = (s) => (s.uf === 'zz' ? null : fuso2.get(`${s.uf}/${s.mun}`));
+const relogio2 = difRelogioPorSecao(2);
+const dif = (s) => (s.uf === 'zz' ? null : difSecao(relogio2, s.uf, s.mun, s.zona, s.secao, fuso2.get(`${s.uf}/${s.mun}`)));
 const fz = { municipiosBuDifereLog: F2.difere, porUfFuso: {} };
 for (const [k, d] of fuso2) if (d !== 0) { const uf = k.slice(0, 2); inc(fz.porUfFuso, `${uf} ${d}`); }
 const am2 = [...fuso2].filter(([k, d]) => k.startsWith('am/') && d === -2).map(([k]) => k);
@@ -231,7 +234,8 @@ for (const uf of UFS) {
   }
 }
 const F1 = fusos(s1, (s) => s.abertura, (s) => s.pronta);
-const dif1 = (s) => (s.uf === 'zz' ? null : F1.f.get(`${s.uf}/${s.mun}`));
+const relogio1 = difRelogioPorSecao(1);
+const dif1 = (s) => (s.uf === 'zz' ? null : difSecao(relogio1, s.uf, s.mun, s.zona, s.secao, F1.f.get(`${s.uf}/${s.mun}`)));
 const t1 = { secoes: s1.length, ufs: [...new Set(s1.map((s) => s.uf))].length, fusoDifere2t: [...F1.f].filter(([k, d]) => fuso2.has(k) && fuso2.get(k) !== d).length, v17: 0, v18: 0, s17: 0, votos: 0, enc10min: {} };
 const nac1 = s1.filter((s) => s.uf !== 'zz' && s.h);
 for (const s of nac1) {

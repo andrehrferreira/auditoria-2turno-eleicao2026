@@ -13,6 +13,7 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { DIR_DADOS } from '../../src/config.js';
 import { abrirLeitura } from '../../src/banco-leitura.js';
+import { difRelogioPorSecao, difSecao } from './relogio-fora-do-fuso.mjs';
 
 const dirTempo = path.join(DIR_DADOS, 'parsed', 'auditoria', 'tempo', '2t');
 const destino = path.join(DIR_DADOS, 'parsed', 'auditoria', 'cetico');
@@ -32,8 +33,9 @@ const R = { geradoEm: new Date().toISOString(), fonte, turnosNoBanco: db.prepare
 function checarFuso(turno, data) {
   const dataRec = `${data.slice(8, 10)}/${data.slice(5, 7)}/${data.slice(0, 4)}`;
   const porDif = {}, porMun = new Map();
-  for (const s of db.prepare(`SELECT uf, municipio, encerramento, recebido_tse FROM secao WHERE turno = ? AND situacao = 'completa' AND uf <> 'zz' AND encerramento IS NOT NULL AND recebido_tse IS NOT NULL`).iterate(turno)) {
-    const d = fuso.get(`${s.uf}/${s.municipio}`);
+  const relogio = difRelogioPorSecao(turno); // seções com relógio fora da hora do município (linha-do-tempo/07)
+  for (const s of db.prepare(`SELECT uf, municipio, zona, secao, encerramento, recebido_tse FROM secao WHERE turno = ? AND situacao = 'completa' AND uf <> 'zz' AND encerramento IS NOT NULL AND recebido_tse IS NOT NULL`).iterate(turno)) {
+    const d = difSecao(relogio, s.uf, s.municipio, s.zona, s.secao, fuso.get(`${s.uf}/${s.municipio}`));
     if (d === null || d === undefined || !s.encerramento.startsWith(data) || !s.recebido_tse.startsWith(dataRec)) continue;
     const encBsb = segDt(s.encerramento) - d * 3600;
     const gap = (segRec(s.recebido_tse) - encBsb) / 60; // minutos

@@ -2,21 +2,17 @@
 // H06: votos depois das 17h de Brasília, por turno e UF, a partir dos perfis.
 // Abertura = 08:00 de Brasília em todo o país; a hora local de abertura mais comum no município dá o fuso
 // (mesma regra de src/analises.js). Limite de 17:00 de Brasília = abertura local + 9 h.
-// Exceção: seções com o relógio da urna fora da hora do município (data/parsed/auditoria/tempo/relogio-fora-do-fuso.csv,
-// scripts/auditoria/tempo-relogio-fuso.mjs, docs/analysis/linha-do-tempo/07) usam a hora do relógio da tabela.
+// Exceção: seções com o relógio da urna fora da hora do município (scripts/auditoria/relogio-fora-do-fuso.mjs,
+// docs/analysis/linha-do-tempo/07) usam a diferença da própria seção.
 import { createReadStream } from 'node:fs';
-import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { createInterface } from 'node:readline';
+import { chaveSecao, difRelogioPorSecao } from './auditoria/relogio-fora-do-fuso.mjs';
 
 const [raiz, turno, ...ufs] = process.argv.slice(2);
 const FAIXAS = [0, 15, 30, 60, 90, 120]; // minutos depois das 17:00 de Brasília
 const total = { secoes: 0, votos: 0, secoesApos: FAIXAS.map(() => 0), votosApos18h: 0, votosApos17h: 0, votosAntes8h: 0, secoesRelogioCorrigido: 0 };
-const relogio = new Map(); // "uf/municipio/zona/secao" → hora do relógio da urna que corresponde às 08:00 de Brasília
-for (const l of (await readFile(path.join(raiz, 'data/parsed/auditoria/tempo/relogio-fora-do-fuso.csv'), 'utf8')).split(/\r?\n/).slice(1)) {
-  const c = l.split(',');
-  if (l && c[0] === turno) relogio.set(`${c[1]}/${c[2]}/${c[3]}/${c[4]}`, Number(c[5]));
-}
+const relogio = difRelogioPorSecao(turno); // chave da seção → diferença relógio − Brasília (h)
 const porUf = {};
 for (const uf of ufs) {
   const linhas = [];
@@ -25,7 +21,7 @@ for (const uf of ufs) {
       if (!l.trim()) continue;
       const p = JSON.parse(l);
       if (p.bu?.urna?.tipoUrna !== 1 || p.log?.urnaPronta == null || p.log?.ultimoVoto == null) continue;
-      linhas.push({ m: p.municipio, chave: `${p.uf}/${p.municipio}/${p.zona}/${p.secao}`, pronta: p.log.urnaPronta, ultimo: p.log.ultimoVoto, porHora: p.log.votosPorHoraLocal, votos: p.log.votosComputados });
+      linhas.push({ m: p.municipio, chave: chaveSecao(p.uf, p.municipio, p.zona, p.secao), pronta: p.log.urnaPronta, ultimo: p.log.ultimoVoto, porHora: p.log.votosPorHoraLocal, votos: p.log.votosComputados });
     }
   } catch (e) { if (e.code === 'ENOENT') continue; throw e; }
   const horas = new Map();
@@ -37,7 +33,7 @@ for (const uf of ufs) {
   const abertura = new Map([...horas].map(([m, c]) => [m, [...c].sort((a, b) => b[1] - a[1])[0][0]]));
   const u = (porUf[uf] = { secoes: 0, apos30min: 0, apos60min: 0, votosApos17h: 0, votosApos18h: 0 });
   for (const s of linhas) {
-    const ab = relogio.get(s.chave) ?? abertura.get(s.m);
+    const ab = relogio.has(s.chave) ? 8 + relogio.get(s.chave) : abertura.get(s.m);
     if (relogio.has(s.chave)) total.secoesRelogioCorrigido++;
     const limite = (ab + 9) * 3600;
     const atraso = (s.ultimo - limite) / 60;

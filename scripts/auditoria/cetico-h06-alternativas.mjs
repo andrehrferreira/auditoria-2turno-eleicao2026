@@ -13,6 +13,7 @@ import path from 'node:path';
 import { createInterface } from 'node:readline';
 import { DIR_DADOS } from '../../src/config.js';
 import { abrirLeitura } from '../../src/banco-leitura.js';
+import { difRelogioPorSecao, difSecao } from './relogio-fora-do-fuso.mjs';
 
 const dirAutor = path.join(DIR_DADOS, 'parsed', 'auditoria', 'tempo', '2t');
 const dirSaida = path.join(DIR_DADOS, 'parsed', 'auditoria', 'cetico');
@@ -169,9 +170,10 @@ res.D_maiorEfeitoCompativel = {
 const mun19 = new Map();
 for (const s of S.values()) if (s.encBsb >= 19 * 3600) mun19.set(`${s.uf}/${s.mun}`, (mun19.get(`${s.uf}/${s.mun}`) ?? 0) + 1);
 const enc1 = new Map();
+const relogio1 = difRelogioPorSecao(1); // seções com relógio fora da hora do município (linha-do-tempo/07)
 for (const r of db.prepare(`SELECT uf, municipio, zona, secao, encerramento FROM secao WHERE turno = 1 AND uf <> 'zz' AND situacao = 'completa'`).iterate()) {
   const k = `${r.uf}/${r.municipio}`;
-  const d = fuso.get(k);
+  const d = difSecao(relogio1, r.uf, r.municipio, r.zona, r.secao, fuso.get(k));
   if (d === null || d === undefined || !r.encerramento) continue;
   const e = seg(r.encerramento) - d * 3600;
   const m = enc1.get(k) ?? { secoes: 0, h1900_1909: 0, h19mais: 0, h18_1859: 0, h1730_1759: 0 };
@@ -184,8 +186,8 @@ for (const r of db.prepare(`SELECT uf, municipio, zona, secao, encerramento FROM
 }
 // Distribuição nacional do encerramento por 10 min a partir das 18h, nos dois turnos (UFs do 1º turno no banco)
 const hist = (it) => { const h = {}; for (const e of it) if (e >= 18 * 3600) { const b10 = Math.floor(e / 600) * 10; const k = `${String(Math.floor(b10 / 60)).padStart(2, '0')}:${String(b10 % 60).padStart(2, '0')}`; h[k] = (h[k] ?? 0) + 1; } return Object.fromEntries(Object.entries(h).sort()); };
-const enc1lista = db.prepare(`SELECT uf, municipio, encerramento FROM secao WHERE turno = 1 AND uf <> 'zz' AND situacao = 'completa'`).all()
-  .map((r) => { const d = fuso.get(`${r.uf}/${r.municipio}`); return d === null || d === undefined || !r.encerramento ? null : seg(r.encerramento) - d * 3600; }).filter((e) => e !== null);
+const enc1lista = db.prepare(`SELECT uf, municipio, zona, secao, encerramento FROM secao WHERE turno = 1 AND uf <> 'zz' AND situacao = 'completa'`).all()
+  .map((r) => { const d = difSecao(relogio1, r.uf, r.municipio, r.zona, r.secao, fuso.get(`${r.uf}/${r.municipio}`)); return d === null || d === undefined || !r.encerramento ? null : seg(r.encerramento) - d * 3600; }).filter((e) => e !== null);
 const set1 = new Set(ufs1t);
 res.E_degrau19h = {
   ufs1t,

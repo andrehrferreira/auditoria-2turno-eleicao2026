@@ -11,6 +11,7 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { DIR_DADOS } from '../../src/config.js';
 import { abrirLeitura } from '../../src/banco-leitura.js';
+import { difRelogioPorSecao, difSecao } from './relogio-fora-do-fuso.mjs';
 
 const SAIDA = path.join(DIR_DADOS, 'parsed', 'auditoria', 'cetico');
 await mkdir(SAIDA, { recursive: true });
@@ -24,7 +25,7 @@ function secoesTurno(turno) {
       p.votos_computados AS votos, json_extract(p.dados, '$.log.votosPorHoraLocal') AS h
     FROM secao s LEFT JOIN perfil_log p ON p.turno = s.turno AND p.uf = s.uf AND p.municipio = s.municipio AND p.zona = s.zona
       AND p.secao = s.secao AND p.hash = s.hash
-    WHERE s.turno = ? AND s.situacao = 'completa'`).all(turno);
+    WHERE s.turno = ? AND s.situacao = 'completa'`).all(turno).map((r) => ({ ...r, turno }));
 }
 // Fuso próprio: moda da hora local da abertura do BU por município, menos 8 (exterior fica sem fuso)
 function fusoPorAbertura(secoes) {
@@ -102,12 +103,15 @@ r.comparacaoPorSecaoComAutor = { secoesAutor: autor.size, iguais, soMeu, soAutor
 const s1 = secoesTurno(1);
 const fuso1 = fusoPorAbertura(s1);
 const ufs1 = new Set(s1.map((s) => s.uf));
+// Seções com relógio fora da hora do município usam a diferença da própria seção (linha-do-tempo/07)
+const relogioPorTurno = { 1: difRelogioPorSecao(1), 2: difRelogioPorSecao(2) };
+const difDe = (s, dMun) => difSecao(relogioPorTurno[s.turno], s.uf, s.municipio, s.zona, s.secao, dMun);
 function bins(secoes, fuso) {
   const b = {};
   let n = 0;
   for (const s of secoes) {
     if (!ufs1.has(s.uf) || !s.encerramento) continue;
-    const d = fuso.get(`${s.uf}/${s.municipio}`);
+    const d = difDe(s, fuso.get(`${s.uf}/${s.municipio}`));
     if (d === null || d === undefined) continue;
     n++;
     const t = hms(s.encerramento) - d * 3600;
@@ -123,7 +127,7 @@ function binsMun(secoes, fuso) {
   for (const [k, nome] of Object.entries(MUN)) {
     const l = secoes.filter((s) => `${s.uf}/${s.municipio}` === k && s.encerramento);
     const d = fuso.get(k) ?? 0;
-    const t = l.map((s) => hms(s.encerramento) - d * 3600);
+    const t = l.map((s) => hms(s.encerramento) - difDe(s, d) * 3600);
     o[nome] = { secoes: l.length, ate1730: t.filter((x) => x < 17.5 * 3600).length, de1730a1859: t.filter((x) => x >= 17.5 * 3600 && x < 19 * 3600).length,
       de1900a1909: t.filter((x) => x >= 19 * 3600 && x < 19 * 3600 + 600).length, apos1910: t.filter((x) => x >= 19 * 3600 + 600).length };
   }

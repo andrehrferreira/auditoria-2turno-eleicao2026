@@ -15,15 +15,17 @@
 //   - seção com A = +1 h na mesma zona e turno de uma seção com R e A = +1 h (mesma carga, mesmo ato do operador).
 // Candidatos (Hipótese, sem correção): A = +1 h sem R na zona; ou assinatura D com ajuste ≈ 0 numa zona e turno em que 3 ou
 // mais seções tiveram ajuste de -1 h (urnas da leva com relógio interno 1 h adiantado; quem não corrigiu ficou +1 h).
-// Entradas: data/parsed/auditoria/chegada-bu/secoes.csv (estatistico-chegada-bu-dados.mjs), tempo/2t/fuso-municipio.csv
-// (tempo-perfil.mjs), perfis dos dois turnos, logs completos das seções lidas (exportarSecao, caminho exato).
-// Saída: data/parsed/auditoria/tempo/relogio-fora-do-fuso.csv (lido por scripts/h06-votos-apos-17h.mjs) e
+// Entradas: recebimento de data/parsed/auditoria/chegada-bu/secoes.csv (estatistico-chegada-bu-dados.mjs), emissão do BU da
+// tabela `secao` (cópia de leitura), tempo/2t/fuso-municipio.csv (tempo-perfil.mjs), perfis dos dois turnos, logs completos
+// das seções lidas (exportarSecao, caminho exato).
+// Saída: data/parsed/auditoria/tempo/relogio-fora-do-fuso.csv (lido pelos scripts via relogio-fora-do-fuso.mjs) e
 //        data/parsed/auditoria/tempo/relogio-fora-do-fuso.json (resumo e todas as seções lidas).
 // Uso: node scripts/auditoria/tempo-relogio-fuso.mjs   (~3 min)
 import { createReadStream } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { createInterface } from 'node:readline';
+import { abrirLeitura } from '../../src/banco-leitura.js';
 import { DIR_DADOS, UFS } from '../../src/config.js';
 import { exportarSecao } from '../../src/exportar.js';
 
@@ -38,14 +40,27 @@ for (const l of (await readFile(path.join(SAIDA, '2t', 'fuso-municipio.csv'), 'u
   const c = l.split(',');
   if (l && c[6] !== '') fuso.set(`${c[0]}/${c[1]}`, Number(c[6]));
 }
+// Emissão do BU convertida pelo fuso do MUNICÍPIO (o fim1_br do secoes.csv já sai corrigido por esta tabela).
+const norm = (uf, m, z, s) => `${uf}/${Number(m)}/${Number(z)}/${Number(s)}`;
+const emissao = { 1: new Map(), 2: new Map() };
+{
+  const { db } = await abrirLeitura();
+  for (const t of [1, 2]) {
+    for (const r of db.prepare('SELECT uf, municipio, zona, secao, emissao FROM secao WHERE turno = ?').iterate(t)) {
+      const f = fuso.get(`${r.uf}/${String(r.municipio).padStart(5, '0')}`);
+      if (r.emissao && f !== undefined) emissao[t].set(norm(r.uf, r.municipio, r.zona, r.secao), msIso(r.emissao) - f * 3600e3);
+    }
+  }
+  db.close();
+}
 const linhas = (await readFile(path.join(DIR_DADOS, 'parsed', 'auditoria', 'chegada-bu', 'secoes.csv'), 'utf8')).split('\n');
 const ci = Object.fromEntries(linhas[0].split(',').map((c, k) => [c, k]));
 const folga = { 1: new Map(), 2: new Map() };
 for (const l of linhas.slice(1)) {
   if (!l) continue;
   const c = l.split(',');
-  for (const [t, f, r] of [[1, 'fim1_br', 'receb1_br'], [2, 'fim_br', 'receb_br']]) {
-    const a = msIso(c[ci[f]]), b = msIso(c[ci[r]]);
+  for (const [t, r] of [[1, 'receb1_br'], [2, 'receb_br']]) {
+    const a = emissao[t].get(norm(c[0], c[1], c[2], c[3])) ?? null, b = msIso(c[ci[r]]);
     if (a !== null && b !== null) folga[t].set(chave(c[0], c[1], c[2], c[3]), (b - a) / 60000);
   }
 }

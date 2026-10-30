@@ -8,6 +8,7 @@ import path from 'node:path';
 import { createInterface } from 'node:readline';
 import { parseArgs } from 'node:util';
 import { DIR_DADOS, UFS } from '../../src/config.js';
+import { difRelogioPorSecao, difSecao } from './relogio-fora-do-fuso.mjs';
 
 const { values } = parseArgs({ options: { turno: { type: 'string', default: '2' }, uf: { type: 'string' } } });
 const turno = values.turno;
@@ -87,7 +88,9 @@ for (const uf of ufs) {
 }
 
 // ---- 3. Votos depois das 17h de Brasília ----
-const dif = (s) => fusoMun.get(`${s.uf}/${s.mun}`);
+// Seções com relógio fora da hora do município usam a diferença da própria seção (linha-do-tempo/07)
+const relogio = difRelogioPorSecao(turno);
+const dif = (s) => difSecao(relogio, s.uf, s.mun, s.zona, s.secao, fusoMun.get(`${s.uf}/${s.mun}`));
 const limite = (s, horaBrasilia) => (horaBrasilia + dif(s)) * 3600; // em segundos no relógio local
 const nac = { secoes: 0, comLog: 0, votos: 0, votos17: 0, votos18: 0, votos19: 0, votos20: 0, secoes17: 0, secoes18: 0, secoes19: 0, votosAntes8: 0, secoesAntes8: 0 };
 const ultimoAposMin = [];

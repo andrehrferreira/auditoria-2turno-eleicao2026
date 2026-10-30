@@ -127,12 +127,85 @@ O log foi lido em todas as seções das zonas com R e em todas as seções com a
   - o rastro seria a mesa tentar encerrar 1 h antes (`Encerramento só pode ser solicitado após as 17:00:00`, às 16h no relógio) ou a urna ficar pronta só às 09h reais;
   - fecha com uma varredura dos logs completos (todas as seções, dois turnos), procurando ajustes digitados de −1 h e tentativas de encerramento das 16h às 17h. Não foi feita aqui: é cerca de 1 milhão de logs;
   - das 966 seções com log lido, 15 fora de RS 88994/0131 e fora das listas acima tiveram ajuste final de 45 min ou mais (de −403 a +120 min; 3 deles perto de −1 h, no AM). Nenhuma tem R. São acertos de relógio interno errado ou relógio atrasado não detectável, e ficam no pendente acima.
-- **Pendente (outros scripts com a mesma régua):** usam o fuso do município para o 1º turno e não leem `relogio-fora-do-fuso.csv`:
-  - `estatistico-chegada-bu-dados.mjs` (`fim1_br`, doc 06: os 60 "recebidos antes da emissão" do 1º turno são estes casos e a deriva);
-  - `t15-linha-do-tempo-1t-excesso.mjs` e `verifica-pericia-linha-do-tempo*.mjs` (tópico 03 da perícia);
-  - `cetico-h06-*.mjs`, `tempo-extensao.mjs`, `tempo-logs-tardios.mjs` e `encerramento-x-voto.mjs`.
+- **Resolvido (30/10/2026): outros scripts com a mesma régua.** Todos agora leem a tabela. Os números estão em "Propagação aos outros scripts", abaixo.
 
-  O efeito máximo é o das 81 seções acima: 2.192 votos depois das 17h e 856 depois das 18h, contando urnas reserva. Recalcular antes de publicar qualquer número do 1º turno por horário.
+## Propagação aos outros scripts (30/10/2026)
+
+### O que mudou nos scripts
+
+- **Módulo único:** `scripts/auditoria/relogio-fora-do-fuso.mjs`.
+  - `difRelogioPorSecao(turno)` lê `relogio-fora-do-fuso.csv` e dá, por seção, a diferença entre o relógio da urna e Brasília.
+  - `difSecao(mapa, uf, município, zona, seção, difDoMunicípio)` devolve essa diferença quando a seção está na tabela; senão, a do município.
+  - Sem a tabela, o script para com erro: não volta em silêncio à régua antiga.
+- **Scripts que usam o módulo:**
+  - `h06-votos-apos-17h.mjs`, que antes lia o CSV direto;
+  - `verifica-pericia-linha-do-tempo.mjs` e `t15-linha-do-tempo-1t-excesso.mjs`;
+  - `estatistico-chegada-bu-dados.mjs` (`fim1_br`/`fim_br`);
+  - `cetico-h06-dados-turnos.mjs`, `cetico-h06-confusao.mjs`, `cetico-h06-dados-banco.mjs`, `cetico-h06-alternativas.mjs` (parte E) e `cetico-h06-reproducao.mjs` (degrau das 19h);
+  - `tempo-perfil.mjs`.
+- **Sem mudança:** só usam horários do 2º turno, que não tem seção corrigida.
+  - `tempo-extensao.mjs`, `tempo-logs-tardios.mjs` e `encerramento-x-voto.mjs`;
+  - `cetico-h06-relogio`, `-reproducao-did`, `-reproducao-did-tardios`, `-consolidacao-*`, `-dados-logs`, `-alternativas-logs` e `-reproducao-logs*`;
+  - `verifica-pericia-linha-do-tempo-bruto.mjs` (lê o log bruto de uma seção, sem fuso).
+- **`tempo-relogio-fuso.mjs`** passou a converter a emissão do BU pela tabela `secao` do banco e pelo fuso do **município**. Antes usava o `fim1_br` do `secoes.csv`, que agora já sai corrigido e apagaria a própria prova. Rodado de novo: a tabela saiu idêntica (as mesmas 81 seções).
+
+### Como medi o efeito
+
+Cada script foi rodado duas vezes sobre os mesmos dados: a versão anterior (cópia temporária, já apagada) e a corrigida. A diferença entre as duas é só o efeito da correção de fuso. Os scripts da chegada dos BUs foram comparados com as saídas de 30/10, geradas com a mesma cópia do banco.
+
+### Números antes → depois (1º turno)
+
+| Número | Onde é citado | Script / campo | Antes | Depois |
+|---|---|---|---|---|
+| Votos depois das 17h de Brasília, todas as urnas | perícia 03, item 6 | `verifica-pericia-linha-do-tempo` `turno1.v17` (e `cetico-h06-dados-turnos` `votos17`) | **3.725.552** | **3.723.360** |
+| Votos depois das 18h, todas as urnas | perícia 03, item 6 | idem `v18` | **779.835** | **778.979** |
+| Seções com voto depois das 17h | `verifica`, `cetico-h06-dados-turnos` | `s17` / `secoes17` | 221.938 | 221.919 |
+| Votos depois das 17h / 18h, só urnas da seção | `verifica` | `v17_soUrnaDaSecao` / `v18_soUrnaDaSecao` | 3.672.386 / 762.805 | 3.670.221 / 761.950 |
+| Votos depois das 17h / 18h, só urnas da seção, com o exterior em hora local (H06) | H06 | `h06-votos-apos-17h` | 3.674.571 / 762.904 | 3.672.406 / 762.049 (já no commit b604849) |
+| Encerramentos de 18h50 a 18h59 | perícia 03, item 7 | `enc10min` 18:50 | **2.872** | **2.863** |
+| Encerramentos de 19h00 a 19h09 | perícia 03, item 7 | `enc10min` 19:00 | **2.170** | **2.162** |
+| Encerramentos de 19h10 a 19h19 | perícia 03, item 7 | `enc10min` 19:10 | **1.600** | **1.595** |
+| Recebidas antes da emissão | doc 06 ("60 casos") | `secoes.csv`; `28-chegada-bu.json` `b6_mt` | **60** (53 em MT, 2 no AM, 1 no RS e 4 por deriva) | **4**, todas por deriva de relógio: MA 07404/0069/0295 (−0,9 min), PA 04057/0016/0010 (−0,6), PB 19810/0016/0195 (−2,5) e PR 75353/0174/0427 (−0,1) |
+| Emissão → recebimento, mínimo | `chegada-bu/resumo.json` | `recebMenosFim_min_1t.p0` | −54,5 min | −2,5 min |
+| Emissão → recebimento, mediana | doc 06, tabela b | `p50` | 88,0 min | 88,0 min (sem mudança) |
+| BUs do Brasil emitidos até 17h30 / 18h / 19h | `resumo.json` (`t1_emitidas_pct_brasil`) | `a_cobertura` | 81,49% / 90,83% / 98,18% | 81,50% / 90,84% / 98,19% |
+| Encerramentos às 19h ou depois | `cetico-h06-dados-turnos` | `enc19` | 8.366 | 8.349 |
+| Encerramentos de 18h30 a 18h59 | `cetico-h06-dados-turnos` | `enc1830a1859` | 11.472 | 11.446 |
+| MT: votos depois das 17h / 18h; encerramentos às 19h ou depois | `cetico-h06-dados-turnos` | `porUf.mt` | 59.978 / 6.145; 58 | 57.861 / 5.346; 42 |
+| Placebo do 1º turno, voto tardio × % do 13, dentro da zona | parecer cético 11 | `h06-confusao` `placebo_t1_tardio1_zona` | +0,900 pp (z 15,29) | +0,898 pp (z 14,20) |
+| Idem, zona e tamanho | parecer 11 | `placebo_t1_tardio1_zonaETamanho` | +1,848 pp (z 39,08) | +1,846 pp (z 42,06) |
+| Idem, 2º turno com o tardio do 1º | parecer 11 | `placebo_t2_tardio1_zona` | +1,046 pp (z 18,14) | +1,044 pp (z 18,49) |
+| Regressão do parecer 28, 1º turno, local × p22 + fim | parecer 28 | `b4_regressoes.t1_local_p22_fim(_secao_aptos)` | b = 0,3708; 0,5843 (z 1,04) | b = 0,3724; 0,5859 (z 1,05) |
+
+- As outras faixas do histograma de encerramento por 10 min mudam no máximo 20 seções; está no JSON de cada script.
+- O degrau das 19h do 1º turno nos scripts céticos (`h06-alternativas` parte E e `h06-reproducao` `degrau19h.turno1`) muda nas mesmas faixas e pelos mesmos valores.
+
+### Fatos
+
+- **Fato:** −2.192 votos depois das 17h e −856 depois das 18h, contando urnas reserva. É exatamente o efeito das 81 seções calculado acima. As diferenças entre os dois números da perícia e os da H06 (exterior e urnas reserva) continuam as mesmas.
+- **Fato, sem mudança:**
+  - as 7 seções com linhas repetidas do tópico 03 (`t15`): 186 votos depois das 17h e 118 depois das 18h;
+  - o 2º turno inteiro: `tempo-perfil.mjs --turno 2` refeito, com saídas idênticas byte a byte, salvo a data de geração do `resumo.json`. Os números 34.330 e 1.993 se mantêm;
+  - o `secoes-tardias.csv` cético;
+  - a coluna `fim_br` (2º turno) do `secoes.csv`. Mudaram só 81 valores de `fim1_br`.
+- **Fato (limite de outro script, não corrigido aqui):** a parte A de `cetico-h06-dados-banco.mjs` (fuso × recebimento) não mede o 1º turno. O banco tem `recebido_tse` do 1º turno em 1 seção só. Por isso a saída não mudou. A conferência equivalente no 1º turno é o critério R deste doc, com o arquivo de dados abertos.
+
+### Comandos
+
+```bash
+node scripts/auditoria/tempo-relogio-fuso.mjs
+node --max-old-space-size=8192 scripts/auditoria/estatistico-chegada-bu-dados.mjs
+node --max-old-space-size=8192 scripts/auditoria/estatistico-chegada-bu.mjs
+node --max-old-space-size=8192 scripts/auditoria/cetico-chegada-bu.mjs
+node scripts/auditoria/verifica-pericia-linha-do-tempo.mjs
+node scripts/auditoria/t15-linha-do-tempo-1t-excesso.mjs
+node scripts/auditoria/cetico-h06-dados-turnos.mjs
+node scripts/auditoria/cetico-h06-confusao.mjs
+node scripts/auditoria/cetico-h06-dados-banco.mjs
+node scripts/auditoria/cetico-h06-alternativas.mjs
+node scripts/auditoria/cetico-h06-reproducao.mjs
+node scripts/auditoria/tempo-perfil.mjs --turno 2
+```
 
 ## Recomendações
 

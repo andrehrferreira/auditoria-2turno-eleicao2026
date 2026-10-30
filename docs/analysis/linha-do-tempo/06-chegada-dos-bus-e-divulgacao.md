@@ -181,7 +181,7 @@ Sugestão para o gráfico: eixo x com a hora (`por-minuto.csv`) e três linhas a
 - **Sem votos 13/22:** 43 seções, todas do exterior.
 - **Recebimento antes da emissão:** 8 seções do 2º turno (7 no PA e 1 no PR), por menos de 1 minuto, explicadas pelo relógio da urna adiantado.
   - Conferido no bruto: PA 04057/0016/0023 tem emissão às 17:06:05 no relógio da urna e `recebidoTSE` às 17:05:13.
-  - No 1º turno são 60 casos, 53 deles em MT 90069 (diferença de até 54 min). **Pendente:** fuso dessa seção no 1º turno.
+  - No 1º turno eram 60 casos; com a correção de fuso ([doc 07](07-fuso-mt-1turno.md): 81 seções com relógio 1 h adiantado), sobram 4, todos de poucos minutos (MA 07404/0069/0295, PA 04057/0016/0010, PB 19810/0016/0195, PR 75353/0174/0427).
 
 ## Limites
 
@@ -200,7 +200,7 @@ Sugestão para o gráfico: eixo x com a hora (`por-minuto.csv`) e três linhas a
 ## Pendente
 
 - O que o site de resultados mostrou entre 19:00 e 19:15, sem número até haver histórico oficial.
-- Os 60 casos do 1º turno com recebimento antes da emissão (MT 90069).
+- ~~Os 60 casos do 1º turno com recebimento antes da emissão (MT 90069).~~ Resolvido pelo doc 07: sobram 4 casos de poucos minutos.
 
 ## Reprodução
 

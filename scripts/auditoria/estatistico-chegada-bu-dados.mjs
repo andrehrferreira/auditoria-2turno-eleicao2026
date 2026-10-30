@@ -2,7 +2,8 @@
 // (Presidente) com os três horários de cada turno, todos em hora de Brasília:
 //   fim   = emissão do BU (relógio local da urna, tabela `secao` do banco) − diferença do fuso do município
 //           (data/parsed/auditoria/tempo/2t/fuso-municipio.csv; sem horário de verão nos dois turnos). Exterior: sem
-//           fuso conhecido → vazio.
+//           fuso conhecido → vazio. Seções com relógio fora da hora do município usam a diferença da própria seção
+//           (relogio-fora-do-fuso.mjs, docs/analysis/linha-do-tempo/07; 81 seções no 1º turno).
 //   receb = DT_RECEBIMENTO_BU_HOR_TSE do detalhe_votacao_secao (dados abertos do TSE; "HOR_TSE" = Brasília).
 //   tot   = DT_PRIM_TOT_PARCIAL_HOR_TSE do mesmo arquivo (primeira entrada da seção na totalização).
 //   aux_* = dr/hr dos hashes do aux.json do 2º turno (estatistico-chegada-bu-aux.mjs), só para conferência.
@@ -15,6 +16,7 @@ import path from 'node:path';
 import { abrirLeitura } from '../../src/banco-leitura.js';
 import { DIR_DADOS } from '../../src/config.js';
 import { lerEntrada, listarEntradas } from '../../src/zip.js';
+import { difRelogioPorSecao, difSecao } from './relogio-fora-do-fuso.mjs';
 
 const SAIDA = path.join(DIR_DADOS, 'parsed', 'auditoria', 'chegada-bu');
 const chave = (uf, m, z, s) => `${uf.toLowerCase()}/${Number(m)}/${Number(z)}/${Number(s)}`;
@@ -90,6 +92,7 @@ for (const l of (await readFile(path.join(SAIDA, 'aux-horarios.csv'), 'utf8')).s
 }
 
 // 4. Junta. Universo = seções do banco no 2º turno (499.248). Cada falta é contada.
+const relogio = { 1: difRelogioPorSecao(1), 2: difRelogioPorSecao(2) };
 const cont = { secoesBanco: secoes.length, semDetalhe2t: 0, semDetalhe1t: 0, semVoto2t: 0, semVoto1t: 0, semFuso: 0, semEmissao2t: 0, semEmissao1t: 0, detalheSemBanco: 0 };
 const linhas = [];
 const vistas = new Set();
@@ -106,8 +109,9 @@ for (const s of secoes) {
   const e1 = emissao1.get(k);
   if (!s.emissao) cont.semEmissao2t++;
   if (!e1) cont.semEmissao1t++;
-  const fim2 = s.emissao && dif !== undefined ? msIso(s.emissao) - dif * 3600e3 : null;
-  const fim1 = e1 && dif !== undefined ? msIso(e1) - dif * 3600e3 : null;
+  const dif2 = difSecao(relogio[2], s.uf, s.municipio, s.zona, s.secao, dif), dif1 = difSecao(relogio[1], s.uf, s.municipio, s.zona, s.secao, dif);
+  const fim2 = s.emissao && dif2 !== undefined ? msIso(s.emissao) - dif2 * 3600e3 : null;
+  const fim1 = e1 && dif1 !== undefined ? msIso(e1) - dif1 * 3600e3 : null;
   linhas.push([s.uf, s.municipio, s.zona, s.secao, s.tipo_urna ?? '', fmt(fim2), fmt(d2?.receb), fmt(d2?.tot),
     fmt(a?.primeiro), fmt(a?.ultimo), a?.n ?? '', a?.st ?? '', d2?.aptos ?? '', d2?.comp ?? '', v2?.v13 ?? '', v2?.v22 ?? '',
     d2?.local ?? '', d2?.origem ?? '', fmt(fim1), fmt(d1?.receb), fmt(d1?.tot), d1?.comp ?? '', v1?.v13 ?? '', v1?.v22 ?? ''].join(','));

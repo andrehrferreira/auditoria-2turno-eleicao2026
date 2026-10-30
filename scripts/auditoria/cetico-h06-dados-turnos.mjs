@@ -8,6 +8,7 @@ import { mkdir, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { createInterface } from 'node:readline';
 import { DIR_DADOS } from '../../src/config.js';
+import { difRelogioPorSecao, difSecao } from './relogio-fora-do-fuso.mjs';
 
 const destino = path.join(DIR_DADOS, 'parsed', 'auditoria', 'cetico');
 const seg = (dt) => Number(dt.slice(9, 11)) * 3600 + Number(dt.slice(11, 13)) * 60 + Number(dt.slice(13, 15));
@@ -24,7 +25,7 @@ for (const turno of [1, 2]) {
       if (!linha) continue;
       const p = JSON.parse(linha);
       const cargos = p.bu.eleicoes.reduce((n, e) => n + e.cargos.length, 0);
-      secoes.push({ uf, mun: p.municipio, enc: p.bu.dataHoraEncerramento, pronta: p.log?.urnaPronta ?? null, porHora: p.log?.votosPorHoraLocal ?? null, votos: p.log?.votosComputados ?? 0, comp: p.bu.qtdEleitoresCompareceram, cargos });
+      secoes.push({ uf, mun: p.municipio, zona: p.zona, secao: p.secao, enc: p.bu.dataHoraEncerramento, pronta: p.log?.urnaPronta ?? null, porHora: p.log?.votosPorHoraLocal ?? null, votos: p.log?.votosComputados ?? 0, comp: p.bu.qtdEleitoresCompareceram, cargos });
     }
     console.error(`${turno}t ${uf} ${secoes.length}`);
   }
@@ -35,8 +36,9 @@ for (const turno of [1, 2]) {
   const T = { secoes: secoes.length, comLogEFuso: 0, votos: 0, votos17: 0, votos18: 0, secoes17: 0, enc19: 0, enc1900a1909: 0, enc1830a1859: 0, cargosMedio: 0, porUf: {}, histEnc10min_bsb: {}, fusoNaoZero: {} };
   for (const [k, d] of fuso) if (d !== 0) T.fusoNaoZero[d] = (T.fusoNaoZero[d] ?? 0) + 1;
   const pm = porMunTurno[turno] = {};
+  const relogio = difRelogioPorSecao(turno); // seções com relógio fora da hora do município (linha-do-tempo/07)
   for (const s of secoes) {
-    const d = fuso.get(`${s.uf}/${s.mun}`);
+    const d = difSecao(relogio, s.uf, s.mun, s.zona, s.secao, fuso.get(`${s.uf}/${s.mun}`));
     const u = T.porUf[s.uf] ??= { secoes: 0, votos: 0, votos17: 0, votos18: 0, enc19: 0, cargos: 0 };
     u.secoes++; u.cargos += s.cargos; T.cargosMedio += s.cargos;
     if (d === undefined || !s.porHora || s.pronta === null) continue;
