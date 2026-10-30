@@ -16,9 +16,10 @@ import { lerEntrada, listarEntradas } from '../../src/zip.js';
 //      votação lidos nos logs ("Serial da MV:") e registra se o RED informou "Detectado Urna de Votação sem MV".
 //   2. Grupos de MR repetida no turno (casos.jsonl, repeticao_mr): para cada seção do grupo, computador, usuário e
 //      data/hora de geração da MR lidos no log. Mesma geração em todas = cópia de uma MR só.
-// Saída: data/parsed/auditoria/integridade/<t>t/casos-especiais.json
+// Entrada: secoes.jsonl e casos.jsonl de integridade-resumo.mjs (<t>t, ou --dir; no 1º turno, 1t-identificadores).
+// Saída: <dir>/casos-especiais.json
 //
-// Uso: node scripts/auditoria/integridade-casos-especiais.mjs --turno 2
+// Uso: node scripts/auditoria/integridade-casos-especiais.mjs --turno 2 [--dir <pasta>]
 
 const SAIDA = path.join(DIR_DADOS, 'parsed', 'auditoria', 'integridade');
 const DIA = { 1: '04/10/2026', 2: '25/10/2026' };
@@ -58,9 +59,9 @@ async function logsDaSecao(base, k) {
 const colunas = (texto) => texto.split('\n').map((l) => l.replace(/\r$/, '').split('\t')).filter((c) => c.length >= 5);
 
 async function principal() {
-  const { values } = parseArgs({ options: { turno: { type: 'string', default: '2' } } });
+  const { values } = parseArgs({ options: { turno: { type: 'string', default: '2' }, dir: { type: 'string' } } });
   const turno = Number(values.turno);
-  const dir = path.join(SAIDA, `${turno}t`);
+  const dir = values.dir ?? path.join(SAIDA, `${turno}t`);
   const base = path.join(DIR_DADOS, 'raw', `${turno}t`, 'urnas');
   const secoes = new Map();
   for await (const l of createInterface({ input: createReadStream(path.join(dir, 'secoes.jsonl')), crlfDelay: Infinity })) {
