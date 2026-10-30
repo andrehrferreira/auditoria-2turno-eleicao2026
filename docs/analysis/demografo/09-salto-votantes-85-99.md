@@ -72,36 +72,58 @@ Para 2026, a população de cada idade foi tirada do Censo 2022 quatro anos mais
 | UFs que não limparam (as outras 17) | 190.162 → 317.266 (**+67%**) | −0,3% | 12,8% → 18,8% | +54,1% |
 
 - **Fato:** o salto aparece em **todas** as UFs, de +50% (MS) a +114% (AP). A tabela completa está em `salto-85-99-uf.tsv`.
-- **Fato:** o salto é **maior onde o cadastro foi limpo e tem biometria**. A correlação, entre UFs, da parcela sem biometria dos 90–99 com a subida dos votantes 85–99 é de **−0,80**, ponderada pelos votantes de 2022.
+- **Fato:** o salto é **maior onde o cadastro foi limpo e tem biometria**. A correlação, entre UFs, da parcela sem biometria dos 90–99 com a subida dos votantes 85–99 é de **−0,80**, ponderada pelos votantes de 85–99 de 2022.
   - As UFs com mais títulos antigos sem biometria subiram menos: RJ +56%, SP +61%, MG +63%, RS +60% (88%, 77%, 77% e 60% dos aptos de 90–99 sem biometria).
   - As UFs com quase todos os idosos com biometria subiram mais: CE +103%, PA +106%, PI +102%, TO +102%, AP +114%.
+- **Fato, o que a correlação mede (parecer cético 43):** ela é sobretudo geografia (Sul/Sudeste × Norte/Nordeste), não cadastro.
+
+  | Correlação entre UFs: sem biometria 90–99 × subida dos votantes | 2022 (1º t.) → 2026 (1º t.) | 2022, 1º → 2º turno (cadastro parado) |
+  |---|---:|---:|
+  | 25–59 anos (sem estoque de título de morto que pese) | **−0,74** | +0,38 |
+  | 60–64 | **−0,83** | +0,20 |
+  | 65–69 | −0,74 | −0,28 |
+  | 70–74 | +0,11 | +0,27 |
+  | 75–79 | +0,03 | +0,40 |
+  | 80–84 | −0,32 | +0,29 |
+  | **85–99** | **−0,80** | **+0,28** |
+
+  - A mesma correlação, do mesmo tamanho, aparece entre 25 e 69 anos.
+  - Com o cadastro parado (do 1º para o 2º turno de 2022, nenhum título entra ou sai), ela muda de sinal: +0,28.
+  - Ela acompanha a conjuntura regional de cada eleição. **Só vale na forma fraca: o salto não se concentra onde estão os títulos sem biometria.** Ela não prova que não houve uso de títulos.
 - **Fato:** nenhuma UF chega perto de a população acabar. A maior razão votantes ÷ vivos estimados de 85–99 em 2026 é a do DF (32,7%); a menor, a de AL (12,5%).
 
 ### Por município (Fato)
 
 - 5.347 municípios subiram e 147 caíram. O aumento total, de 193.240 votantes, é espalhado: os 10 municípios que mais subiram (as capitais grandes) somam 18% dele, os 100 maiores 37%, os 1.000 maiores 69%.
-- Por quinto de municípios, pela parcela sem biometria dos 90–99:
+- Por grupo de municípios, pela parcela sem biometria dos 90–99, com faixas fixas.
+  - A versão anterior usava quintos. O 1º e o 2º empatavam em 0%, e qual município caía em qual quinto dependia da ordem de leitura do arquivo; o "+103%" do 1º quinto era artefato desse empate (parecer cético 43). Os dois foram juntados.
+  - 70–74 e 25–59 entram como controle.
 
-| Quinto | Sem biometria 90–99 | Votantes 85–99, 2022 → 2026 |
-|---|---|---|
-| 1º | 0% | 21.994 → 44.634 (+103%) |
-| 2º | 0% a 0,9% | 29.385 → 49.826 (+70%) |
-| 3º | 0,9% a 5,1% | 70.771 → 127.095 (+80%) |
-| 4º | 5,2% a 27% | 46.400 → 80.460 (+73%) |
-| 5º | 27% a 100% | 98.543 → 158.309 (**+61%**, o menor) |
+| Sem biometria 90–99 no município | Municípios | Votantes 85–99, 2022 → 2026 | Votantes 70–74 | Votantes 25–59 |
+|---|---:|---|---:|---:|
+| até 0,9% | 2.227 | 51.379 → 94.460 (+83,8%) | +33,4% | +1,7% |
+| 0,9% a 5,1% | 1.114 | 70.771 → 127.095 (+79,6%) | +34,2% | −0,1% |
+| 5,1% a 27% | 1.107 | 46.283 → 80.288 (+73,5%) | +33,2% | −2,2% |
+| 27% ou mais | 1.121 | 98.660 → 158.481 (**+60,6%**) | +33,0% | −4,2% |
+
+- **Fato:** o gradiente vai de +84% a +61%. O controle de 70–74 sobe igual em todos os grupos (+33% a +34%). O de 25–59 tem gradiente na mesma direção (de +1,7% a −4,2%), sinal de que parte da diferença é regional.
 
 ### Por zona (Fato)
 
 - 6.082 zonas têm a mesma chave (UF/município/zona) em 2022 e em 2026. Nelas, os votantes de 85–99 subiram 72%.
-- Comparecimento de 90–99 por parcela sem biometria dos 90–99 da zona (2026), com as mesmas zonas em 2022:
+- As 6 faixas, pela parcela sem biometria dos 90–99 da zona (perfil de 2026), só com as zonas que existem nos dois anos. A comparação vale em **número de votantes**. A taxa mistura a limpeza do cadastro (queda dos aptos) com o comparecimento.
 
-| Sem biometria 90–99 na zona | Zonas | Taxa 2022 | Taxa 2026 |
-|---|---:|---:|---:|
-| 0–10% | 4.070 | 7,8% | 15,9% |
-| 70–90% | 560 | 4,9% | 8,3% |
-| 90–100% | 636 | 2,3% | 4,3% |
+| Sem biometria 90–99 na zona | Zonas | Aptos 90–99, 2022 → 2026 | Votantes 90–99, 2022 → 2026 | Votantes 85–99 | Votantes 70–79 (controle) | Taxa 90–99, 2022 → 2026 |
+|---|---:|---|---|---:|---:|---|
+| 0–10% | 4.055 | 368.706 → 351.520 (−4,7%) | 28.915 → 56.048 (+93,8%) | +80,7% | +39,8% | 7,8% → 15,9% |
+| 10–30% | 693 | 186.627 → 44.949 (**−75,9%**) | 6.490 → 11.306 (+74,2%) | +71,0% | +40,6% | 3,5% → 25,2% |
+| 30–50% | 69 | 7.577 → 2.362 (**−68,8%**) | 328 → 547 (+66,8%) | +67,8% | +39,5% | 4,3% → 23,2% |
+| 50–70% | 70 | 7.199 → 7.593 (+5,5%) | 382 → 705 (+84,6%) | +64,8% | +34,7% | 5,3% → 9,3% |
+| 70–90% | 558 | 258.352 → 243.599 (−5,7%) | 12.694 → 20.320 (+60,1%) | +53,1% | +33,3% | 4,9% → 8,3% |
+| 90–100% | 635 | 373.827 → 349.709 (−6,5%) | 8.428 → 15.040 (+78,5%) | +70,1% | +45,0% | 2,3% → 4,3% |
 
-- **Fato:** a taxa praticamente dobrou tanto nas zonas com idosos quase todos com biometria quanto nas zonas com idosos quase todos sem biometria. Nas zonas sem biometria, a taxa de 2026 (4,3%) continua quatro vezes menor do que nas zonas com biometria. Não há concentração do salto onde estão os títulos sem biometria.
+- **Fato:** em número de votantes, os 90–99 subiram de 60% a 94% em todas as faixas de zona, sem ordem. A faixa de 90–100% sem biometria (+78,5%) sobe mais do que a de 70–90% (+60,1%). **Não há concentração do salto nas zonas de idosos sem biometria.**
+- **Fato:** nas faixas de 10–30% e 30–50%, a taxa multiplicou por 5 a 7 porque os aptos de 90–99 caíram três quartos (limpeza do cadastro nessas zonas). Os votantes subiram como nas outras faixas. Por isso a taxa não serve para esta comparação.
 
 ## (d) Efeito de idade ou efeito de cadastro? (Fato e Hipótese)
 
@@ -111,10 +133,11 @@ O que cada explicação prevê, e o que os dados mostram:
 |---|---|---|---|
 | Faixas 70–84 (pouco título de morto) | quase sem subida | subida | **sobem tanto quanto 85–99** (+7,8 a +10,5 pontos) |
 | Faixa 100+ (quase só título sem pessoa) | maior subida | quase nada | **não sobe** (de 0,91% para 0,72%) |
-| Onde há mais título antigo sem biometria | maior subida | subida parecida ou menor | **menor subida** (correlação −0,80 entre UFs; 5º quinto de municípios +61% contra +103% no 1º) |
-| Votantes contra população viva | podem passar da população | sempre abaixo | **sempre abaixo**, 0 município acima do teto |
+| Onde há mais título antigo **sem** biometria | maior subida | subida parecida ou menor | **não maior** (municípios de +84% a +61%; zonas sem ordem). A correlação de −0,80 entre UFs se repete em 25–69 anos e muda de sinal com o cadastro parado: mede geografia |
+| Votantes contra população viva | podem passar da população | sempre abaixo | **sempre abaixo**, 0 município acima do teto. Teste de poder baixo: só pegaria uso maior do que a população inteira de uma idade |
 
-- **Fato:** os quatro testes apontam no mesmo sentido. O salto de 85–99 é parte de uma subida geral do comparecimento dos idosos, de 70 anos para cima, e não um sinal de cadastro.
+- **Fato, referência com o cadastro parado (parecer cético 43):** do 1º para o 2º turno de 2022, nenhum título entrou ou saiu. Mesmo assim, os votantes subiram mais quanto mais velha a faixa: 25–59 ×1,00; 70–74 ×1,07; 80–84 ×1,17; 85–89 ×1,23; 90–94 ×1,28; 95–99 ×1,34. Uma subida maior nas faixas mais velhas é o que a mobilização produz, sem mudança de cadastro.
+- **Fato:** o salto de 85–99 faz parte de uma subida geral do comparecimento dos idosos, de 70 anos para cima, e não se concentra onde estão os títulos **sem** biometria. O canal do título **com** biometria liberado pelo mesário não foi testado (ver o limite abaixo).
 - **Hipótese (causa da subida dos idosos, não conferida):** mudança de comportamento dos eleitores de 70+ em 2026, por mobilização de campanha, transporte no dia da eleição, saúde ou outra razão. Há também um efeito de coorte (geração nascida na mesma época): quem chega aos 70 hoje votou a vida inteira com voto obrigatório e mais escolaridade. Mas a coorte sozinha não explica tudo. Seguindo a mesma geração, a queda de comparecimento de uma eleição para a seguinte foi menor de 2022 para 2026 do que de 2018 para 2022: quem tinha 80–84 caiu 8,4 pontos ao chegar a 85–89 em 2022, e só 2,7 pontos em 2026. **Pendente:** separar coorte e conjuntura com mais eleições e conferir a mudança de regras ou serviços de transporte entre 2022 e 2026.
 
 ## (e) Biometria dos idosos que votaram (Fato e Pendente)
@@ -136,7 +159,8 @@ O arquivo oficial de comparecimento não separa por biometria, e o diário da ur
 **Explicações que não envolvem fraude, conferidas (Fato):**
 - O salto existe e está no universo completo.
 - Há gente viva de sobra para os votantes de 85–99, no país, em toda UF e em todo município, contra o teto do Censo sem mortes.
-- O salto é geral entre os idosos (de 70–74 a 95–99), não aparece em 100+, e é **menor** onde os títulos antigos sem biometria se concentram.
+- O salto é geral entre os idosos (de 70–74 a 95–99), não aparece em 100+ e não se concentra onde estão os títulos antigos sem biometria. A forma forte ("a correlação refuta o uso") não se sustenta: a correlação mede sobretudo geografia.
+- A régua não mudou (parecer cético 43). O total por idade bate com o total por seção em 2018, 2022 e 2026, e os aptos por faixa do comparecimento são iguais aos do perfil do eleitorado em todas as 6.106 zonas de 2026.
 
 **Hipótese:**
 - A causa da subida do comparecimento dos idosos em 2026 (comportamento, mobilização, transporte, coorte).
@@ -147,7 +171,13 @@ O arquivo oficial de comparecimento não separa por biometria, e o diário da ur
 - A habilitação por biometria ou liberação manual por idade (LAI).
 
 **Não permite afirmar:**
-- Que nenhum título de pessoa morta foi usado. O teste descarta uso **em massa** e concentrado nos títulos sem biometria, que é o que produziria o salto. Não descarta uso pequeno e espalhado, nem os 12.004 + 970 + 157 votos mínimos sem biometria, que continuam sem explicação individual.
+- Que nenhum título de pessoa morta foi usado.
+- **O que "descarta uso em massa" quer dizer, e o limite:**
+  - O exame mostra que **a maior parte do salto** não vem de títulos **sem** biometria. Não descarta uso pequeno e espalhado, nem explica os 12.004 + 970 + 157 votos mínimos sem biometria.
+  - **Não cobre o título de pessoa morta COM biometria cadastrada liberado pelo mesário** ("dado digitado confere", com a digital do mesário no diário). Esse caminho existe onde o cadastro foi revisado (Norte e Nordeste), para quem morreu depois da revisão e ainda não teve o título cancelado.
+  - **O salto é maior justamente nas UFs com biometria**, o que é compatível com esse canal e não o refuta.
+  - O diário da urna não registra a idade, e a tentativa ecológica do parecer 43 não teve poder.
+  - **Pendente (LAI), o teste que decide:** votantes de 80+ por tipo de habilitação (digital do próprio eleitor, ano de nascimento, liberação pelo mesário), por zona, em 2022 e 2026; e títulos cancelados por óbito depois do fechamento do cadastro, com a data e se houve voto.
 - Sobre 2026 em relação a 2022: o salto mostra que 2022 é uma linha de base fraca para o comportamento dos idosos. Comparar o 2º turno de 2026 com 2022 (doc 08) serve só como contexto.
 
 ## Reproduzir

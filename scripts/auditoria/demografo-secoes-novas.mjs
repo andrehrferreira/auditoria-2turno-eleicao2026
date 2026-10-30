@@ -17,7 +17,8 @@
 // demografo-perfil.mjs (data/parsed/auditoria/demografo/perfil/*.tsv).
 //   5. cauda: seções com 95% ou mais observadas × esperadas por binomial com a taxa das antigas do mesmo local;
 //   6. controle de tamanho (faixas de 25 aptos, parecer 41) e proxy de recência (parcela de 16–20 anos no cadastro).
-// Saídas: data/parsed/auditoria/demografo/novas-{resumo.json,locais-2t.tsv,ge95-2t.tsv}
+//   7. dependência do corte (90/95/98%) e as seções com 98% ou mais, uma a uma (parecer 43).
+// Saídas: data/parsed/auditoria/demografo/novas-{resumo.json,locais-2t.tsv,ge95-2t.tsv,ge98-2t.json}
 // Uso: node --max-old-space-size=6000 scripts/auditoria/demografo-secoes-novas.mjs
 import { readFileSync, readdirSync } from 'node:fs';
 import { writeFile } from 'node:fs/promises';
@@ -115,7 +116,7 @@ const classeNome = (n) => (/ALDEIA|IND[IÍ]GENA|\bTI\b|POVO /.test(n) ? 'indíge
   for await (const c of linhasBrutas(zip, e)) {
     if (!col) { col = Object.fromEntries(c.map((n, i) => [n, i])); continue; }
     const m = tipoLocal[c[col.NR_TURNO]]; if (!m) continue;
-    m.set(K(c[col.SG_UF], c[col.CD_MUNICIPIO], c[col.NR_ZONA], c[col.NR_SECAO]), { tipo: c[col.DS_TIPO_LOCAL], classe: classeNome(c[col.NM_LOCAL_VOTACAO].normalize('NFC').toUpperCase()), localidade: c[col.DS_SITU_LOCALIDADE] });
+    m.set(K(c[col.SG_UF], c[col.CD_MUNICIPIO], c[col.NR_ZONA], c[col.NR_SECAO]), { nome: c[col.NM_LOCAL_VOTACAO], bairro: c[col.NM_BAIRRO], munNome: c[col.NM_MUNICIPIO], situLocalidade: c[col.DS_SITU_LOCALIDADE], tipo: c[col.DS_TIPO_LOCAL], classe: classeNome(c[col.NM_LOCAL_VOTACAO].normalize('NFC').toUpperCase()), localidade: c[col.DS_SITU_LOCALIDADE] });
   }
 }
 
@@ -221,12 +222,12 @@ R.fontes.ceft2022xDetalhe2022 = { soNoCeft: soCeft, soNoDetalhe: soDet };
 const SH = ['f16_17', 'f70_79', 'f80_89', 'f90_99', 'f100'];
 // Padronização indireta da cauda de 95% ou mais: para cada estrato, a taxa das ANTIGAS; esperado nas novas = soma dessas
 // taxas. Estrato sem nenhuma antiga fica sem base (contado à parte). Tamanho em faixas de 25 aptos (parecer 41).
-function padroniza(novas, antigas, estrato) {
+function padroniza(novas, antigas, estrato, lim = 0.95) {
   const T = new Map();
-  for (const x of antigas) { const e = estrato(x); const v = T.get(e) ?? T.set(e, [0, 0]).get(e); v[0]++; if (x.comp / x.aptos >= 0.95) v[1]++; }
+  for (const x of antigas) { const e = estrato(x); const v = T.get(e) ?? T.set(e, [0, 0]).get(e); v[0]++; if (x.comp / x.aptos >= lim) v[1]++; }
   let obs = 0; let esp = 0; let semBase = 0; let semBaseGe95 = 0;
   for (const x of novas) {
-    const ge = x.comp / x.aptos >= 0.95; if (ge) obs++;
+    const ge = x.comp / x.aptos >= lim; if (ge) obs++;
     const v = T.get(estrato(x));
     if (!v) { semBase++; if (ge) semBaseGe95++; continue; }
     esp += v[1] / v[0];
@@ -357,6 +358,38 @@ for (const t of [1, 2]) {
     tamanhoJovensSemBio: padroniza(N, A, (x) => `${tam25(x)}|${jovem(x)}|${x.perfil ? Math.min(3, Math.ceil(20 * (x.perfil.total - x.perfil.biometria) / Math.max(1, x.perfil.total))) : 's'}`),
   };
   r.porParcelaJovem = Object.fromEntries(['<5%', '5-10%', '10-20%', '20%+', 'sem perfil'].map((b) => { const n = N.filter((x) => jovem(x) === b); const a = A.filter((x) => jovem(x) === b); const g = (z) => z.filter((x) => x.comp / x.aptos >= 0.95).length; return [b, { novas: n.length, novasGe95: g(n), pctNovas: pct(g(n), n.length), antigas: a.length, antigasGe95: g(a), pctAntigas: pct(g(a), a.length), taxaNovas: pct(n.reduce((s, x) => s + x.comp, 0), n.reduce((s, x) => s + x.aptos, 0)), taxaAntigas: pct(a.reduce((s, x) => s + x.comp, 0), a.reduce((s, x) => s + x.aptos, 0)) }]; }));
+  // dependência do corte (parecer 43): 90%, 95%, 98%
+  const tj = (x) => `${tam25(x)}|${jovem(x)}`;
+  r.porLimiar = Object.fromEntries([0.9, 0.95, 0.98].map((lim) => [String(lim), { tamanho: padroniza(N, A, tam25, lim), tamanhoEJovens: padroniza(N, A, tj, lim), tamanhoEJovensSemTTE: padroniza(sTTE(N), sTTE(A), tj, lim) }]));
+  // as seções com 98% ou mais, uma a uma (2º turno): novas e, para contraste, antigas
+  if (t === 2) {
+    const qS = db.prepare('SELECT sem_biometria, por_biometria, por_biografia, abertura, encerramento, modelo_urna, tipo_urna, tipo_arquivo FROM secao WHERE turno = 2 AND uf = ? AND municipio = ? AND zona = ? AND secao = ?');
+    const qL = db.prepare('SELECT votos_computados, habilitados_biometria, ano_nascimento_sem_biometria, dado_pessoal_confere, habilitados_pelo_mesario, ja_votou, eleitor_nao_encontrado, suspensos_pelo_mesario, reinicios_durante_votacao, maior_rajada_sem_biometria_10min, sem_biometria_ultima_hora, intervalo_minimo_entre_votos, tempo_minimo_habilitacao_voto, primeiro_voto_s, ultimo_voto_s, mesarios_registrados FROM perfil_log WHERE turno = 2 AND uf = ? AND municipio = ? AND zona = ? AND secao = ?');
+    const detalhe = (x) => {
+      const [u, m, z, sc] = x.k.split('/'); const P = x.perfil; const loc = porLocal.get(x.local); const tl = tipoLocal[2].get(x.k) ?? {};
+      const outrasAnt = loc.a.filter((y) => y.k !== x.k); const ap = outrasAnt.reduce((q, y) => q + y.aptos, 0); const cp = outrasAnt.reduce((q, y) => q + y.comp, 0);
+      const t1 = S[1].get(x.k);
+      return { secao: x.k, nova: x.nova, municipio: tl.munNome, local: x.local, nomeLocal: tl.nome, bairro: tl.bairro, tipoLocal: tl.tipo, classePeloNome: tl.classe, localidade: tl.situLocalidade,
+        aptos: x.aptos, comparecimento: x.comp, taxa: pct(x.comp, x.aptos), aptosTte: x.tte, agregada: x.agregada,
+        taxa1t: t1 && t1.aptos ? pct(t1.comp, t1.aptos) : null, secoesNoLocal: { novas: loc.n.length, antigas: loc.a.length }, taxaOutrasAntigasDoLocal: ap ? pct(cp, ap) : null,
+        cadastro: P ? { total: P.total, semBioPct: pct(P.total - P.biometria, P.total), jovens16_20Pct: pct(P.f16_17 + (P.f18_20 ?? 0), P.total), f70maisPct: pct(P.f70_79 + P.f80_89 + P.f90_99 + P.f100, P.total) } : null,
+        liberadosSemDigitalPct: pct(x.comp - (x.bio ?? 0), x.comp), bu: qS.get(u, m, z, sc), diario: qL.all(u, m, z, sc) };
+    };
+    const ge98 = todas.filter((x) => x.comp / x.aptos >= 0.98);
+    const lN = ge98.filter((x) => x.nova).map(detalhe); const lA = ge98.filter((x) => !x.nova).map(detalhe);
+    const resumo = (L) => {
+      const c = (f) => L.reduce((m, o) => { const k = f(o); m[k] = (m[k] ?? 0) + 1; return m; }, {});
+      const sum = (f) => L.reduce((q, o) => q + (f(o) ?? 0), 0);
+      return { secoes: L.length, comTTE: L.filter((o) => o.aptosTte > 0).length, maioriaTTE: L.filter((o) => o.aptosTte / o.aptos > 0.5).length, porUF: c((o) => o.secao.slice(0, 2)), porTipoLocal: c((o) => o.tipoLocal), porClasseNome: c((o) => o.classePeloNome), porLocalidade: c((o) => o.localidade),
+        aptosMediana: L.map((o) => o.aptos).sort((a, b) => a - b)[Math.floor(L.length / 2)], comAntigasNoLocal: L.filter((o) => o.secoesNoLocal.antigas > 0).length,
+        acima95No1t: L.filter((o) => o.taxa1t !== null && o.taxa1t >= 95).length, semBioZero: L.filter((o) => o.cadastro && o.cadastro.semBioPct === 0).length,
+        comparecimento: sum((o) => o.comparecimento), liberadosSemDigital: sum((o) => o.comparecimento - (o.bu?.por_biometria ?? 0)), semBiometriaCadastradaBU: sum((o) => o.bu?.sem_biometria), porAnoNascimentoBU: sum((o) => o.bu?.por_biografia),
+        mesarioDiario: sum((o) => o.diario[0]?.habilitados_pelo_mesario), dadoPessoalConfere: sum((o) => o.diario[0]?.dado_pessoal_confere), anoNascSemBioDiario: sum((o) => o.diario[0]?.ano_nascimento_sem_biometria),
+        mesmoLocalQueOutraGe98: L.filter((o) => L.some((q) => q !== o && q.local === o.local)).length, mesmaZonaQueOutraGe98: L.filter((o) => L.some((q) => q !== o && q.secao.split('/').slice(0, 3).join('/') === o.secao.split('/').slice(0, 3).join('/'))).length };
+    };
+    r.ge98 = { novas: resumo(lN), antigas: resumo(lA) };
+    await writeFile(path.join(OUT, 'novas-ge98-2t.json'), JSON.stringify({ novas: lN, antigas: lA }, null, 1));
+  }
   if (t === 2) await writeFile(path.join(OUT, 'novas-ge95-2t.tsv'), `k\tnova\taptos\tcomp\ttte\ttaxa_antigas_local\tsem_bio\n${lista95.map((o) => [o.k, o.nova ? 1 : 0, o.aptos, o.comp, o.tte, o.taxaAntigasDoLocal, o.semBio].join('\t')).join('\n')}\n`);
   R[`${t}t`] = r;
   log(`turno ${t} ok`);

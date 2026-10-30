@@ -140,7 +140,63 @@ A seção nova é menor, e seção pequena oscila mais, como uma moeda jogada 50
 
 - **Fato:** **40% das seções novas** (16.109) têm 20% ou mais de eleitores de 16–20 anos; entre as antigas, 0,3%. A seção nova é, em boa parte, uma seção de eleitores recém-alistados.
 - **Fato:** com o mesmo grau de juventude, a nova ainda passa de 95% muitas vezes mais que a antiga (por exemplo, 1,50% contra 0,076% na faixa de 10–20%). Controlando tamanho **e** juventude, a razão fica em 5,3 (2º turno, 80,1 esperadas) e 4,2 sem TTE (46,3 esperadas). Somando a parcela sem biometria ao estrato, fica em 4,8 (65,1 esperadas; 6.459 novas e 120 de 95%+ caem em estratos sem nenhuma antiga).
+- **Ressalva (parecer cético 43):** no estrato de 20% ou mais de jovens, a comparação repousa em 1.447 antigas com 3 casos. "A juventude não explica" vale onde há antigas com que comparar.
 - **Leitura:** a juventude, como medida de recência, não explica o excesso. Isso **não** testa a recência de fato, porque o eleitor que se transfere de cidade também é "recente" e pode ter qualquer idade. **Pendente:** a data da última operação no cadastro (alistamento, transferência, revisão), agregada por seção, via LAI.
+
+### 5c. O excesso depende do corte; as 56 seções novas com 98% ou mais, uma a uma
+
+**Dependência do corte (Fato, reproduz o parecer cético 43).** Mesma padronização (tamanho em faixas de 25 aptos + parcela de 16–20 anos), mudando só o limiar:
+
+| 2º turno | Observadas | Esperadas | Razão | Sem TTE: obs. / esp. / razão |
+|---|---:|---:|---:|---|
+| 90% ou mais | 3.180 | 1.899,8 | **1,7** | 1.362 / 1.086,5 / 1,2 |
+| 95% ou mais | 433 | 80,1 | **5,3** | 194 / 46,3 / 4,2 |
+| 98% ou mais | 56 | 2,0 | **27,9** | 35 / 1,6 / 21,3 |
+
+1º turno: 1,8, 9,6 e 21,4.
+
+- **Fato:** "cerca de 5 vezes" é uma propriedade do corte de 95%, não do fenômeno. O que existe é uma cauda extrema muito mais pesada nas novas. A 98% ou mais são 56 novas contra 10 antigas (de 458.438).
+
+**As 56 novas com 98% ou mais no 2º turno (Fato, conferidas uma a uma).**
+- **Fontes:** BU e diário pelo banco (`secao`, `perfil_log`), local pelo `eleitorado_local_votacao_2026`, cadastro pelo perfil por seção. Lista completa em `data/parsed/auditoria/demografo/novas-ge98-2t.json`, com as 10 antigas para contraste.
+- **Onde ficam:**
+  - **Nordeste**: CE 9, PE 8, BA 6, MA 5, PB 3, SE 3, AL 2, PI 2, RN 2, que somam 40 de 56. Mais MG 5, PA 3, TO 2 e 1 em AM, GO, MS, MT, RS e SP.
+  - Na maioria, em localidades rurais ou de comunidade, pelo nome do local:
+    - escolas indígenas: Porto Real do Colégio/AL, Fernando Falcão/MA, Confresa/MT, Caarapó/MS e duas em Tocantinópolis/TO;
+    - uma escola quilombola (Cantanhede/MA) e uma de assentamento (Pindobaçu/BA);
+    - associações de moradores e de pequenos agricultores, sítios e comunidades: Juazeiro/BA, Santana do Acaraú/CE, Acopiara/CE, Nova Olinda/CE, Silves/AM, Rio Pardo de Minas/MG, Aracati/CE.
+  - As urbanas são poucas: Recife, Paulista (2), Caruaru, Porto Alegre e São Paulo, em escolas e faculdades.
+- **Tipo oficial do local:** 55 convencionais e 1 de "preso provisório". Esta é uma unidade socioeducativa em Vitória da Conquista/BA, com os 53 aptos em TTE e 100% de comparecimento.
+- **Tamanho:** mediana de 109 aptos (de 26 a 359).
+- **Local novo:**
+  - **42 das 56 estão num local sem nenhuma seção antiga**: local criado depois de 2022, ou só com seções novas.
+  - Nas 14 que dividem o local com antigas, as antigas do mesmo local votaram de 73,5% a 97,0%. Os locais de Confresa (97,0%), Tocantinópolis (95,7%) e Fernando Falcão (91,7%) já votam alto.
+- **Estáveis nos dois turnos:** 46 das 56 também passaram de 95% no 1º turno. Não é um evento de um turno só.
+- **Cadastro:**
+  - 50 das 56 não têm nenhum eleitor sem biometria;
+  - a parcela de jovens de 16–20 anos é alta em muitas (acima de 40% em 7);
+  - a de 70+ é baixa (mediana perto de 4%).
+- **TTE:**
+  - 21 têm eleitores em TTE. Em 17 delas são de 1 a 3 eleitores, perfil de mesário ou apoio que vota onde trabalha;
+  - as outras quatro: Caarapó (5), Recife (9), São Paulo (16) e a unidade socioeducativa (53, a única com maioria TTE).
+- **Liberação sem digital:**
+  - 602 dos 6.879 votantes (8,8%): 37 de eleitores sem biometria cadastrada e 565 por "dado digitado confere" (eleitor com biometria cadastrada, liberado sem a digital dele). O diário registra 374 habilitações com o mesário;
+  - para comparação, 12,8% nas antigas do país e 17,3% (288 de 1.660) nas 10 antigas com 98% ou mais;
+  - nenhuma rajada passa de 4 liberações sem biometria em 10 minutos, e o menor intervalo entre dois votos é de 25 segundos ou mais em todas.
+- **O que têm em comum:** seção pequena, nova, num local novo, com cadastro todo biométrico, eleitorado jovem e comparecimento alto e estável nos dois turnos, em comunidade rural ou indígena do Nordeste. **Não têm em comum** local, zona ou carga: nenhuma divide o local com outra das 56, só 2 dividem a zona (as duas escolas indígenas de Tocantinópolis, zona 0009).
+- **As 5 com liberação sem digital acima de 20%**, para quem cuida da H07 conferir no diário:
+
+  | Seção | Município | Liberados sem digital |
+  |---|---|---|
+  | CE 13056/0060/0283 | Acopiara | 17 de 62 (27,4%) |
+  | PI 10324/0016/0187 | Lagoa Alegre | 25 de 100 (25,0%) |
+  | MG 48194/0180/0200 | Mato Verde | 14 de 59 (23,7%) |
+  | CE 14850/0053/0148 | Nova Olinda | 17 de 77 (22,1%) |
+  | CE 15989/0055/0160 | Deputado Irapuan Pinheiro | 27 de 127 (21,3%) |
+
+  Em quatro, a maior parte é de eleitor com biometria cadastrada liberado por dado digitado (17 de 17, 18 de 25, 15 de 17, 25 de 27). Em Mato Verde, é metade: 7 por dado digitado e 7 sem biometria cadastrada.
+- **Hipótese (que não envolve fraude):** são seções criadas para levar a urna a comunidades rurais, indígenas e quilombolas pequenas e coesas, onde o comparecimento costuma ser muito alto. Isso é coerente com o local novo, o tamanho pequeno, o cadastro 100% biométrico e a estabilidade entre turnos. Não foi conferido com o motivo oficial de criação de cada seção. **Pendente (LAI):** o ato de criação de cada uma, com o motivo.
+- **Limite:** nada nesta lista vê voto feito com o título de outra pessoa. A liberação por dado digitado, de eleitor com biometria cadastrada, é exatamente o canal que fica com a H07.
 
 ### 6. Linha de base histórica: o mesmo fenômeno em 2022 (Fato)
 
@@ -311,4 +367,5 @@ Saídas em `data/parsed/auditoria/demografo/`:
 - `novas-resumo.json`: frentes 1 a 6, por turno;
 - `novas-locais-2t.tsv`: os 19.375 locais mistos, com 2022 e 2026;
 - `novas-ge95-2t.tsv`: seções com 95% ou mais em locais com base, com a taxa das antigas do local;
+- `novas-ge98-2t.json`: as 56 novas e as 10 antigas com 98% ou mais no 2º turno, uma a uma (local, tipo, cadastro, BU e diário);
 - `turnos-idade-2022.json` e `turnos-idade-2026.json`: comparecimento por idade, por UF, nos municípios citados e zona a zona entre turnos.

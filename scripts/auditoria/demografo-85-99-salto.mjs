@@ -35,7 +35,7 @@ function banda(c) {
   return m[c] ?? 'invalida';
 }
 const BANDAS = ['16-17', '18-24', '25-59', '60-64', '65-69', '70-74', '75-79', '80-84', '85-89', '90-94', '95-99', '100+', 'invalida'];
-const ALVO = ['75-79', '80-84', '85-89', '90-94', '95-99', '100+'];
+const ALVO = ['25-59', '70-74', '75-79', '80-84', '85-89', '90-94', '95-99', '100+']; // 25–59 e 70–74 são controles (parecer 43)
 
 // ---------- (a) perfil de comparecimento, 4 eleições
 const br = new Map(); const uf = new Map(); const mun = new Map(); const zona = new Map(); const meta = {};
@@ -150,7 +150,18 @@ for (const u of UFS) {
 }
 for (const G of Object.values(grupos)) Object.assign(G, { deltaVotantesPct: pct(G.v26 - G.v22, G.v22), deltaAptosPct: pct(G.a26 - G.a22, G.a22), votantesSobrePop2022: pct(G.v22, G.p22), votantesSobreVivos2026: pct(G.v26, G.vivos), deltaVotantes75_84Pct: pct(G.v7584_26 - G.v7584_22, G.v7584_22) });
 R.ufPorLimpeza = grupos;
-// Δ% por UF × sem biometria 90–99 (correlação de Pearson, ponderada pelos votantes de 2022)
+// Δ% por UF × sem biometria 90–99 (correlação de Pearson, ponderada pelos votantes de 85–99 de 2022), por faixa de idade,
+// e a mesma conta com o cadastro fixo: 2022, 1º → 2º turno (parecer 43: a correlação mede sobretudo geografia)
+{
+  const corrUf = (bs, a, b) => {
+    const xs = UFS.map((u) => { const v0 = somaB(uf, `${a}|${u}`, bs)[1]; const v1 = somaB(uf, `${b}|${u}`, bs)[1]; return [R.uf[u].semBio90_99, 100 * (v1 - v0) / v0, R.uf[u].votantes2022]; });
+    const W = xs.reduce((q, x) => q + x[2], 0); const mx = xs.reduce((q, x) => q + x[2] * x[0], 0) / W; const my = xs.reduce((q, x) => q + x[2] * x[1], 0) / W;
+    const cov = xs.reduce((q, x) => q + x[2] * (x[0] - mx) * (x[1] - my), 0); const vx = xs.reduce((q, x) => q + x[2] * (x[0] - mx) ** 2, 0); const vy = xs.reduce((q, x) => q + x[2] * (x[1] - my) ** 2, 0);
+    return +(cov / Math.sqrt(vx * vy)).toFixed(3);
+  };
+  const F = { '25-59': ['25-59'], '60-64': ['60-64'], '65-69': ['65-69'], '70-74': ['70-74'], '75-79': ['75-79'], '80-84': ['80-84'], '85-99': ['85-89', '90-94', '95-99'] };
+  R.correlacaoUfPorFaixa = { '2022-1t_para_2026-1t': Object.fromEntries(Object.entries(F).map(([k, bs]) => [k, corrUf(bs, '2022|1', '2026|1')])), '2022-1t_para_2022-2t_cadastroFixo': Object.fromEntries(Object.entries(F).map(([k, bs]) => [k, corrUf(bs, '2022|1', '2022|2')])) };
+}
 {
   const xs = UFS.map((u) => [R.uf[u].semBio90_99, R.uf[u].deltaVotantesPct, R.uf[u].votantes2022]);
   const W = xs.reduce((s, x) => s + x[2], 0); const mx = xs.reduce((s, x) => s + x[2] * x[0], 0) / W; const my = xs.reduce((s, x) => s + x[2] * x[1], 0) / W;
@@ -187,12 +198,17 @@ const totalDelta = deltas.reduce((s, x) => s + x.d, 0);
 const acum = (n) => deltas.slice(0, n).reduce((s, x) => s + x.d, 0);
 // quantis de sem biometria 90–99 do município (ponderados pelo nº de municípios)
 const comSb = deltas.filter((x) => x.semBio !== null).sort((x, y) => x.semBio - y.semBio);
+const somaMunB = (a, ano, bs) => a.reduce((q, x) => q + somaB(mun, `${ano}|${x.km}`, bs)[1], 0);
+const gruposMun = [['até 0,9%', (v) => v <= 0.915], ['0,9% a 5,1%', (v) => v > 0.915 && v <= 5.13], ['5,1% a 27%', (v) => v > 5.13 && v < 27.27], ['27% ou mais', (v) => v >= 27.27]].map(([nome, f]) => {
+  const a = comSb.filter((x) => f(x.semBio)); const d = (bs) => { const v0 = somaMunB(a, 2022, bs); const v1 = somaMunB(a, 2026, bs); return { votantes2022: v0, votantes2026: v1, deltaPct: pct(v1 - v0, v0) }; };
+  return { grupo: nome, municipios: a.length, '85-99': d(['85-89', '90-94', '95-99']), '70-74': d(['70-74']), '25-59': d(['25-59']) };
+});
 const quintis = [0, 1, 2, 3, 4].map((q) => { const a = comSb.slice(Math.floor(q * comSb.length / 5), Math.floor((q + 1) * comSb.length / 5)); const v22 = a.reduce((s, x) => s + x.v22, 0); const v26 = a.reduce((s, x) => s + x.v26, 0); return { municipios: a.length, semBio90_99De: a[0]?.semBio, semBio90_99Ate: a.at(-1)?.semBio, votantes2022: v22, votantes2026: v26, deltaPct: pct(v26 - v22, v22) }; });
 R.municipios = { municipios: chavesMun.size, semCodigoIbge: semIbge, votantes2026AcimaDoTetoCenso: acimaTeto, excessoSomado: excessoTeto, casosAcimaDoTeto: casosTeto.sort((a, b) => (b.votantes2026 - b.teto) - (a.votantes2026 - a.teto)).slice(0, 30),
   deltaTotal: totalDelta, municipiosQueSubiram: deltas.filter((x) => x.d > 0).length, municipiosQueCairam: deltas.filter((x) => x.d < 0).length,
   parcelaDoAumentoNos10Maiores: pct(acum(10), totalDelta), parcelaNos100Maiores: pct(acum(100), totalDelta), parcelaNos1000Maiores: pct(acum(1000), totalDelta),
   maioresAumentos: deltas.slice(0, 15).map((x) => ({ municipio: `${ibgeDe.get(x.km)?.nome}/${x.km.split('|')[0]}`, votantes2022: x.v22, votantes2026: x.v26, semBio90_99: x.semBio })),
-  quintisSemBio90_99: quintis };
+  gruposSemBio90_99: gruposMun, quintisSemBio90_99_naoUsar: quintis };
 
 // ---------- (c, e) zona: mesma chave em 2022 e 2026; limite inferior de votantes sem biometria (2026)
 const zonas26 = new Set([...zona.keys()].filter((k) => k.startsWith('2026|')).map((k) => k.split('|').slice(1, 4).join('|')));
@@ -209,13 +225,18 @@ for (const z of zonas26) {
   if (v9099 > com9099) { minSem9099 += v9099 - com9099; zonasSem9099++; }
   const sb = pf[4] ? pf[5] / pf[4] : null; if (sb === null) continue;
   const bin = sb < 0.1 ? '0-10%' : sb < 0.3 ? '10-30%' : sb < 0.5 ? '30-50%' : sb < 0.7 ? '50-70%' : sb < 0.9 ? '70-90%' : '90-100%';
-  const a9099 = somaB(zona, `2026|${z}`, ['90-94', '95-99']); const b = binsZona.get(bin) ?? binsZona.set(bin, { zonas: 0, aptos: 0, votantes: 0, aptos22: 0, votantes22: 0, zonasPar: 0 }).get(bin);
-  b.zonas++; b.aptos += a9099[0]; b.votantes += a9099[1];
-  if (zonas22.has(z)) { const x = somaB(zona, `2022|${z}`, ['90-94', '95-99']); b.aptos22 += x[0]; b.votantes22 += x[1]; b.zonasPar++; }
+  if (!zonas22.has(z)) continue; // só zonas com a mesma chave nos dois anos
+  const b = binsZona.get(bin) ?? binsZona.set(bin, { zonas: 0, aptos90_99_2022: 0, aptos90_99_2026: 0, votantes90_99_2022: 0, votantes90_99_2026: 0, votantes85_99_2022: 0, votantes85_99_2026: 0, votantes70_79_2022: 0, votantes70_79_2026: 0 }).get(bin);
+  b.zonas++;
+  for (const [ano, suf] of [[2022, '2022'], [2026, '2026']]) {
+    const x = somaB(zona, `${ano}|${z}`, ['90-94', '95-99']); b[`aptos90_99_${suf}`] += x[0]; b[`votantes90_99_${suf}`] += x[1];
+    b[`votantes85_99_${suf}`] += somaB(zona, `${ano}|${z}`, ['85-89', '90-94', '95-99'])[1];
+    b[`votantes70_79_${suf}`] += somaB(zona, `${ano}|${z}`, ['70-74', '75-79'])[1];
+  }
 }
 R.zonas = { zonas2026: zonas26.size, zonas2022: zonas22.size, mesmaChaveNosDois: pares, votantes85_99NasZonasPar2022: pv22, votantes85_99NasZonasPar2026: pv26, deltaPctZonasPar: pct(pv26 - pv22, pv22), zonasSemPerfil: semPerfil,
   limiteInferiorSemBiometria2026: { '80-89': { votantes: minSem8089, zonas: zonasSem8089 }, '90-99': { votantes: minSem9099, zonas: zonasSem9099 }, nota: 'max(0, votantes oficiais da faixa − aptos COM biometria da faixa no perfil por seção), zona a zona, 1º turno de 2026' },
-  comparecimento90_99PorSemBioDaZona: Object.fromEntries(['0-10%', '10-30%', '30-50%', '50-70%', '70-90%', '90-100%'].map((k) => { const b = binsZona.get(k); return [k, b ? { ...b, taxa2026: pct(b.votantes, b.aptos), taxa2022MesmasZonas: pct(b.votantes22, b.aptos22) } : null]; })) };
+  zonasParPorSemBio90_99: Object.fromEntries(['0-10%', '10-30%', '30-50%', '50-70%', '70-90%', '90-100%'].map((k) => { const b = binsZona.get(k); return [k, b ? { ...b, deltaAptos90_99Pct: pct(b.aptos90_99_2026 - b.aptos90_99_2022, b.aptos90_99_2022), deltaVotantes90_99Pct: pct(b.votantes90_99_2026 - b.votantes90_99_2022, b.votantes90_99_2022), deltaVotantes85_99Pct: pct(b.votantes85_99_2026 - b.votantes85_99_2022, b.votantes85_99_2022), deltaVotantes70_79Pct: pct(b.votantes70_79_2026 - b.votantes70_79_2022, b.votantes70_79_2022), taxa90_99_2022: pct(b.votantes90_99_2022, b.aptos90_99_2022), taxa90_99_2026: pct(b.votantes90_99_2026, b.aptos90_99_2026) } : null]; })) };
 
 await writeFile(path.join(OUT, 'salto-85-99-resumo.json'), JSON.stringify(R, null, 1));
 await writeFile(path.join(OUT, 'salto-85-99-uf.tsv'), `${ufTsv.join('\n')}\n`);
