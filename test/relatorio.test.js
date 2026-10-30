@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
-import { readFile, readdir } from 'node:fs/promises';
+import { spawnSync } from 'node:child_process';
+import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
-import { spawnSync } from 'node:child_process';
-import { mkdir, writeFile } from 'node:fs/promises';
 import {
-  baseGithub,
+  EXCECOES_PROCESSO,
+  RE_PROCESSO,
+  acharReferenciasDeProcesso,
   embutirSvg,
   escoparCss,
   filtrarGlossario,
@@ -164,35 +165,168 @@ test('SVG embutido: classes e ids prefixados, sem tema escuro, largura fluida', 
   assert.equal(escoparCss('@media print{.a{x:1}}', 'p'), '@media print{#p .p-a{x:1}}');
 });
 
-test('endereço do GitHub a partir do remoto', () => {
-  assert.equal(baseGithub('git@github.com:fulano/repo.git'), 'https://github.com/fulano/repo');
-  assert.equal(baseGithub('https://github.com/fulano/repo'), 'https://github.com/fulano/repo');
-  assert.equal(baseGithub('https://gitlab.com/x/y.git'), null);
-});
-
 test('navegador: variável RELATORIO_NAVEGADOR tem prioridade; nada achado devolve null', async (t) => {
   const dir = await diretorioTemporario(t);
   const falso = path.join(dir, 'meu-chrome');
-  await import('node:fs/promises').then((fs) => fs.writeFile(falso, ''));
+  await writeFile(falso, '');
   assert.equal(localizarNavegador({ RELATORIO_NAVEGADOR: falso, PATH: '' }, 'linux'), falso);
   assert.equal(localizarNavegador({ PATH: dir }, 'linux'), null);
 });
 
-test('gera o relatório HTML completo e autocontido a partir de docs/pericia', async (t) => {
+// ------------------------------------------------------------------ pasta de perícia de exemplo
+// Os testes do documento usam uma perícia pequena numa pasta temporária, e não docs/pericia,
+// cujo texto muda a cada revisão.
+
+const README_FIXO = `# Relatório de perícia: exemplo
+
+> [!WARNING]
+> **Relatório em elaboração.** Nada aqui é conclusão final.
+
+Toda afirmação traz um destes rótulos:
+
+- **Fato**: conferido nos arquivos oficiais.
+- **Hipótese**: possibilidade ainda não comprovada.
+- **Pendente**: o que ainda falta conferir.
+
+## Tópicos
+
+| # | Tópico |
+|---|---|
+| 0 | [Coleta](00-coleta.md) |
+| 1 | [Integridade](01-integridade.md) |
+
+**Registro de evidências:** o livro de registro do processo.
+
+## Glossário
+
+| Termo | Em palavras simples |
+|---|---|
+| **Hash** | A impressão digital de um arquivo |
+| **Autoridade certificadora (AC)** | O cartório digital do TSE |
+| **Coorte** | Um grupo de pessoas |
+`;
+
+const TOPICOS_FIXOS = {
+  '00-coleta.md':
+    '# 0. Coleta\n\n## A pergunta\n\n**Fato:** todas as seções, conferidas pela lista oficial de cada uma (aux.json). ' +
+    'Ver [limites](01-integridade.md#limites) e os [dados do gráfico](graficos/dados/g.csv).\n',
+  '01-integridade.md': '# 1. Integridade\n\n## Limites\n\n![Gráfico de exemplo](graficos/g.svg)\n\n**Pendente:** 1º turno.\n',
+};
+
+const SVG_FIXO =
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" width="100" height="50"><style>.b{fill:#2a78d6}</style>\n' +
+  '<rect class="b" width="40" height="20"/>\n<text x="1" y="45">Fonte: arquivos oficiais do TSE</text>\n</svg>';
+
+async function montarPericia(base, { readme = README_FIXO, topicos = {}, svg = SVG_FIXO } = {}) {
+  const pericia = path.join(base, 'pericia');
+  await mkdir(path.join(pericia, 'graficos'), { recursive: true });
+  await mkdir(path.join(pericia, 'temas'), { recursive: true });
+  await writeFile(path.join(pericia, 'README.md'), readme);
+  for (const [nome, md] of Object.entries({ ...TOPICOS_FIXOS, ...topicos })) await writeFile(path.join(pericia, nome), md);
+  await writeFile(path.join(pericia, 'graficos', 'g.svg'), svg);
+  return pericia;
+}
+
+const semRegistro = () => {};
+
+test('gera o relatório completo autocontido: tópicos, glossário, links internos, sem anexo do registro', async (t) => {
   const dir = await diretorioTemporario(t);
-  const r = await gerar({ saida: dir, registrar: () => {} });
+  const pericia = await montarPericia(dir);
+  const r = await gerar({ pericia, saida: path.join(dir, 'saida'), registrar: semRegistro });
   const doc = await readFile(r.htmlAbs, 'utf8');
   assert.match(doc, /^<!doctype html>\n<html lang="pt-BR">/);
   assert.match(doc, /<h1 class="capa-titulo">Relatório de perícia<\/h1>/);
   assert.match(doc, /<nav class="sumario"/);
-  for (let n = 0; n <= 10; n++) assert.match(doc, new RegExp(`<section class="topico" id="t${String(n).padStart(2, '0')}">`));
-  assert.match(doc, /id="anexo-a"[\s\S]*Glossário[\s\S]*id="anexo-b"/);
-  assert.match(doc, /@page p-t05\{@top-right\{content:"5 · /);
-  // nada externo: sem <script>, sem <link>, imagens embutidas
-  assert.doesNotMatch(doc, /<script|<link |<img src="(?!data:)/);
-  // links entre tópicos viram âncoras internas
-  assert.match(doc, /href="#t01"/);
-  assert.equal(r.total.imagens, (doc.match(/<figure class="grafico"/g) ?? []).length);
+  assert.match(doc, /<section class="topico" id="t00">[\s\S]*<section class="topico" id="t01">/);
+  assert.match(doc, /@page p-t00\{@top-right\{content:"0 · Coleta"\}\}/);
+  // 1. sem o anexo do registro de evidências (nem o parágrafo do README), só o glossário
+  assert.match(doc, /<section class="anexo" id="anexo-a">[\s\S]*Glossário/);
+  assert.doesNotMatch(doc, /anexo-b|Anexo B|Registro de evidências|livro de registro/);
+  // links: tópico → âncora interna; dado de gráfico → só o texto
+  assert.match(doc, /<a href="#t01-limites">limites<\/a>/);
+  assert.match(doc, /<span class="link-sem-destino">dados do gráfico<\/span>/);
+  assert.match(doc, /href="#t00"/);
+  assert.equal(r.total.imagens, 1);
+  // nada externo
+  assert.doesNotMatch(doc, /<script|<link |<img src="(?!data:)|github\.com/);
+  // 4. versão sem caminho nem nota de alterações
+  assert.doesNotMatch(doc, /alterações|docs\/pericia/);
+  assert.match(doc, /@page\{@bottom-left\{content:"Versão [^"·]+ · gerado em \d{2}\/\d{2}\/\d{4}"\}\}/);
+});
+
+test('link para fora do relatório (análises, hipóteses, registro) faz a geração falhar com arquivo e linha', async (t) => {
+  const dir = await diretorioTemporario(t);
+  const pericia = await montarPericia(dir, {
+    topicos: {
+      '00-coleta.md': '# 0. Coleta\n\n## A pergunta\n\nVer a [análise](../analysis/x/01.md) e o [registro](../hipoteses.md).\n',
+    },
+    readme: README_FIXO.replace('Toda afirmação', 'O [registro](evidencias/README.md) fica à parte.\n\nToda afirmação'),
+  });
+  await assert.rejects(gerar({ pericia, saida: dir, registrar: semRegistro }), (e) => {
+    assert.match(e.message, /links para arquivos que não fazem parte do relatório/);
+    assert.match(e.message, /00-coleta\.md:5: link para fora do relatório: \.\.\/analysis\/x\/01\.md/);
+    assert.match(e.message, /00-coleta\.md:5: link para fora do relatório: \.\.\/hipoteses\.md/);
+    assert.match(e.message, /README\.md:6: link para fora do relatório: evidencias\/README\.md/);
+    return true;
+  });
+});
+
+test('referências do processo: regex, exceções e linhas', () => {
+  const positivos = [
+    'sustentado no parecer cético 24',
+    'Pareceres céticos 25 e 26',
+    'o revisor cético refez',
+    'o redator escreveu',
+    'Auditor C mediu',
+    'revisado pelo Astra, Grok e Kimi',
+    'rode verifica-pericia.mjs',
+    'saída em resumo.json e cadeia.jsonl',
+    'ver docs/analysis/x',
+    'em scripts/auditoria',
+    'em data/parsed',
+    'src/lacres.js',
+    'npm run relatorio',
+    'node scripts/x',
+  ];
+  for (const p of positivos) assert.equal(acharReferenciasDeProcesso([p]).length > 0, true, p);
+  const negativos = [
+    'a lista oficial de cada seção (aux.json)',
+    'o auditor pediu',
+    'a data de emissão',
+    'redatora? não: redação do boletim',
+    'Figura 5.1',
+    'Versão abc1234 · gerado em 30/10/2026',
+  ];
+  for (const n of negativos) assert.deepEqual(acharReferenciasDeProcesso([n]), [], n);
+  assert.deepEqual(
+    acharReferenciasDeProcesso(['ok', 'ver docs/x e aux.json']).map((a) => [a.linha, a.achado]),
+    [[2, 'docs/']],
+  );
+  assert.ok(RE_PROCESSO.flags.includes('g'));
+  assert.equal(EXCECOES_PROCESSO.length, 1);
+});
+
+test('texto com referência do processo (no .md ou no gráfico) faz a geração falhar com arquivo e linha', async (t) => {
+  const dir = await diretorioTemporario(t);
+  const pericia = await montarPericia(dir, {
+    topicos: {
+      '00-coleta.md': '# 0. Coleta\n\n## A pergunta\n\n**Fato:** sustentado no parecer cético 24.\n\n```\nnode scripts/auditoria/x.mjs\n```\n',
+    },
+    svg: SVG_FIXO.replace('Fonte: arquivos oficiais do TSE', 'Fonte: docs/analysis/x.md'),
+  });
+  await assert.rejects(gerar({ pericia, saida: dir, registrar: semRegistro }), (e) => {
+    assert.match(e.message, /referências do processo da auditoria/);
+    assert.match(e.message, /00-coleta\.md:5: "parecer cético"/);
+    assert.match(e.message, /00-coleta\.md:8: "node scripts"/);
+    assert.match(e.message, /00-coleta\.md:8: "\.mjs"/);
+    assert.match(e.message, /g\.svg:3: "docs\/" no texto do gráfico/);
+    return true;
+  });
+  // destino de link e endereço de imagem não são texto visível: não acusam
+  const ok = await montarPericia(path.join(dir, 'ok'), {
+    topicos: { '00-coleta.md': '# 0. Coleta\n\n[Integridade](01-integridade.md)\n' },
+  });
+  await gerar({ pericia: ok, saida: path.join(dir, 'ok', 'saida'), registrar: semRegistro });
 });
 
 // ------------------------------------------------------------------ relatórios temáticos
@@ -225,14 +359,8 @@ test('glossário do tema: só os termos usados; sigla exige maiúsculas; nada us
 });
 
 async function montarTema(base, md) {
-  const temas = path.join(base, 'pericia', 'temas');
-  await mkdir(temas, { recursive: true });
-  await mkdir(path.join(base, 'pericia', 'graficos'), { recursive: true });
-  await writeFile(
-    path.join(base, 'pericia', 'graficos', 'g.svg'),
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" width="100" height="50"><style>.b{fill:#2a78d6}</style><rect class="b" width="40" height="20"/></svg>',
-  );
-  const arquivo = path.join(temas, 'certificado-exemplo.md');
+  const pericia = await montarPericia(base);
+  const arquivo = path.join(pericia, 'temas', 'certificado-exemplo.md');
   await writeFile(arquivo, md);
   return arquivo;
 }
@@ -243,7 +371,7 @@ const TEMA = `# Certificado vencido da autoridade
 
 ## A pergunta
 
-O certificado da **AC** venceu? Ver o [tópico 1](../01-integridade-e-estrutura-dos-arquivos.md#limites) e os [limites](../07-limites-da-pericia.md).
+O certificado da **AC** venceu? Ver o [tópico 1](../01-integridade.md#limites) e a [coleta](../00-coleta.md).
 
 ## Resposta curta
 
@@ -255,19 +383,13 @@ O certificado da **AC** venceu? Ver o [tópico 1](../01-integridade-e-estrutura-
 | Pacotes | 499.207 |
 
 ![Gráfico de exemplo](../graficos/g.svg)
-
-## Como repetir
-
-\`\`\`
-node src/lacres.js <pasta da seção>
-\`\`\`
 `;
 
-test('relatório temático: capa com o H1, frente, numeração 1/1.1, links ao completo, glossário filtrado e anexos', async (t) => {
+test('relatório temático: capa com o H1, frente, numeração 1/1.1, nota de tópico do completo, glossário filtrado', async (t) => {
   const dir = await diretorioTemporario(t);
   const arquivo = await montarTema(dir, TEMA);
   const saida = path.join(dir, 'saida');
-  const r = await gerarTema({ arquivo, saida, registrar: () => {} });
+  const r = await gerarTema({ arquivo, saida, registrar: semRegistro });
   assert.equal(r.htmlAbs, path.join(saida, 'certificado-exemplo.html'));
   const doc = await readFile(r.htmlAbs, 'utf8');
   assert.match(doc, /<title>Relatório de perícia — Certificado vencido da autoridade<\/title>/);
@@ -278,27 +400,31 @@ test('relatório temático: capa com o H1, frente, numeração 1/1.1, links ao c
   assert.match(doc, /<h1 id="tema-certificado-vencido-da-autoridade" class="titulo-topico"><span class="num" data-ger>1<\/span>/);
   assert.match(doc, /<h2 id="tema-resposta-curta"><span class="num" data-ger>1\.2<\/span>/);
   assert.match(doc, /Figura 1\.1<\/figcaption><svg/);
-  // tópicos do relatório completo: link ao arquivo (ou texto) e nota
-  assert.match(doc, />tópico 1<\/(a|span)><span class="ref-completo" data-ger> \(no relatório completo\)<\/span>/);
-  assert.match(doc, />limites<\/(a|span)><span class="ref-completo" data-ger> \(ver tópico 7 do relatório completo\)<\/span>/);
-  assert.doesNotMatch(doc, /href="#t0\d/);
-  // o tema não traz o quadro de tópicos nem os tópicos do completo
-  assert.doesNotMatch(doc, /id="topicos"|class="topico" id="t0/);
-  // glossário com os termos do tema (hash, AC, seção), sem os outros
-  const glossario = doc.slice(doc.indexOf('id="anexo-a"'), doc.indexOf('id="anexo-b"'));
+  // tópicos do relatório completo: só o texto e a nota, sem endereço
+  assert.match(doc, /<span class="link-sem-destino">tópico 1<\/span><span class="ref-completo" data-ger> \(no relatório completo\)<\/span>/);
+  assert.match(doc, /<span class="link-sem-destino">coleta<\/span><span class="ref-completo" data-ger> \(ver tópico 0 do relatório completo\)<\/span>/);
+  assert.doesNotMatch(doc, /href="#t0\d|github\.com|id="topicos"|class="topico" id="t0|anexo-b|Registro de evidências/);
+  const glossario = doc.slice(doc.indexOf('id="anexo-a"'));
   assert.match(glossario, /<strong>Hash<\/strong>/);
   assert.match(glossario, /Autoridade certificadora \(AC\)/);
   assert.doesNotMatch(glossario, /Coorte/);
-  assert.match(doc, /<section class="anexo" id="anexo-b">[\s\S]*Como conferir/);
   assert.equal(r.total.imagens, 1);
+});
+
+test('relatório temático: link para fora e referência do processo também falham', async (t) => {
+  const dir = await diretorioTemporario(t);
+  const fora = await montarTema(dir, '# Tema\n\nVer a [análise](../../analysis/x.md).\n');
+  await assert.rejects(gerarTema({ arquivo: fora, saida: dir, registrar: semRegistro }), /certificado-exemplo\.md:3: link para fora do relatório/);
+  const processo = await montarTema(dir, '# Tema\n\nConferido pelo Grok.\n');
+  await assert.rejects(gerarTema({ arquivo: processo, saida: dir, registrar: semRegistro }), /certificado-exemplo\.md:3: "Grok"/);
 });
 
 test('relatório temático: exige exatamente um título "# "', async (t) => {
   const dir = await diretorioTemporario(t);
   const sem = await montarTema(dir, '## Só subtítulo\n\ntexto');
-  await assert.rejects(gerarTema({ arquivo: sem, saida: dir, registrar: () => {} }), /exatamente um título/);
+  await assert.rejects(gerarTema({ arquivo: sem, saida: dir, registrar: semRegistro }), /exatamente um título/);
   const dois = await montarTema(dir, '# Um\n\n# Dois\n');
-  await assert.rejects(gerarTema({ arquivo: dois, saida: dir, registrar: () => {} }), /tem 2/);
+  await assert.rejects(gerarTema({ arquivo: dois, saida: dir, registrar: semRegistro }), /tem 2/);
 });
 
 test('gerar todos os temas: pasta vazia ou ausente só avisa; com temas gera cada um', async (t) => {
@@ -307,7 +433,7 @@ test('gerar todos os temas: pasta vazia ou ausente só avisa; com temas gera cad
   assert.deepEqual(await gerarTemas({ dir: path.join(dir, 'nao-existe'), saida: dir, registrar: (m) => msgs.push(m) }), []);
   assert.match(msgs[0], /Nenhum tema em .*: nada a gerar\./);
   const arquivo = await montarTema(dir, TEMA);
-  const r = await gerarTemas({ dir: path.dirname(arquivo), saida: path.join(dir, 'saida'), registrar: () => {} });
+  const r = await gerarTemas({ dir: path.dirname(arquivo), saida: path.join(dir, 'saida'), registrar: semRegistro });
   assert.equal(r.length, 1);
   assert.match(await readFile(r[0].htmlAbs, 'utf8'), /Certificado vencido da autoridade/);
 });
@@ -323,13 +449,14 @@ test('linha de comando: --tema sem arquivo sai com erro de uso', () => {
 
 test('resumo executivo presente: logo depois da capa, antes de "Como ler", no sumário, links internos e conferido', async (t) => {
   const dir = await diretorioTemporario(t);
+  const pericia = await montarPericia(dir);
   const resumo = path.join(dir, 'resumo.md');
   await writeFile(
     resumo,
-    '# Resumo executivo\n\n1. **499.207 pacotes, 0 falha.** **Fato:** lacres conferem. [→ tópico 1](01-integridade-e-estrutura-dos-arquivos.md)\n' +
-      '2. **Pendente:** 1º turno. [→ tópico 5](05-soma-dos-boletins.md)\n',
+    '# Resumo executivo\n\n1. **499.207 pacotes, 0 falha.** **Fato:** lacres conferem. [→ tópico 1](01-integridade.md)\n' +
+      '2. **Pendente:** 1º turno. [→ tópico 0](00-coleta.md)\n',
   );
-  const r = await gerar({ saida: path.join(dir, 'saida'), resumo, registrar: () => {} });
+  const r = await gerar({ pericia, resumo, saida: path.join(dir, 'saida'), registrar: semRegistro });
   const doc = await readFile(r.htmlAbs, 'utf8');
   const capa = doc.indexOf('<section class="capa"');
   const sec = doc.indexOf('<section class="frente resumo" id="resumo">');
@@ -338,7 +465,7 @@ test('resumo executivo presente: logo depois da capa, antes de "Como ler", no su
   assert.match(doc, /#resumo\{page:p-resumo\}\n@page p-resumo\{@top-right\{content:"Resumo executivo"\}\}/);
   assert.match(doc, /<h1 id="resumo-resumo-executivo" class="titulo-secao">Resumo executivo<\/h1>/);
   assert.match(doc, /<a href="#t01">→ tópico 1<\/a>/);
-  assert.match(doc, /<a href="#t05">→ tópico 5<\/a>/);
+  assert.match(doc, /<a href="#t00">→ tópico 0<\/a>/);
   assert.match(doc, /<span class="rotulo">Fato<\/span>/);
   const sumario = doc.slice(doc.indexOf('<nav class="sumario"'), doc.indexOf('</nav>'));
   assert.ok(sumario.indexOf('href="#resumo"') < sumario.indexOf('href="#como-ler"'));
@@ -346,7 +473,7 @@ test('resumo executivo presente: logo depois da capa, antes de "Como ler", no su
 
   // sem título "# ": o gerador dá o nome, que não entra na conferência
   await writeFile(resumo, '- **Fato:** item.\n');
-  const r2 = await gerar({ saida: path.join(dir, 'saida2'), resumo, registrar: () => {} });
+  const r2 = await gerar({ pericia, resumo, saida: path.join(dir, 'saida2'), registrar: semRegistro });
   const doc2 = await readFile(r2.htmlAbs, 'utf8');
   assert.match(doc2, /<section class="frente resumo" id="resumo">\n<h1 class="titulo-secao" data-ger>Resumo executivo<\/h1>/);
   assert.match(doc2, /<li class="sum-1 sum-frente"><a href="#resumo"><span class="num"><\/span><span class="texto">Resumo executivo<\/span>/);
@@ -354,11 +481,14 @@ test('resumo executivo presente: logo depois da capa, antes de "Como ler", no su
 
 test('resumo executivo ausente: o relatório começa por "Como ler"; temas nunca levam o resumo', async (t) => {
   const dir = await diretorioTemporario(t);
-  const r = await gerar({ saida: dir, resumo: path.join(dir, 'nao-existe.md'), registrar: () => {} });
+  const pericia = await montarPericia(dir);
+  const r = await gerar({ pericia, saida: path.join(dir, 'saida'), registrar: semRegistro });
   const doc = await readFile(r.htmlAbs, 'utf8');
   assert.doesNotMatch(doc, /id="resumo"|href="#resumo"/);
   assert.match(doc, /<ol class="sum">\n<li class="sum-1 sum-frente"><a href="#como-ler">/);
-  const arquivo = await montarTema(dir, TEMA);
-  const tema = await gerarTema({ arquivo, saida: path.join(dir, 'tema'), registrar: () => {} });
+  await writeFile(path.join(pericia, 'resumo.md'), '# Resumo executivo\n\n- **Fato:** item.\n');
+  const arquivo = path.join(pericia, 'temas', 'certificado-exemplo.md');
+  await writeFile(arquivo, TEMA);
+  const tema = await gerarTema({ arquivo, saida: path.join(dir, 'tema'), registrar: semRegistro });
   assert.doesNotMatch(await readFile(tema.htmlAbs, 'utf8'), /id="resumo"|Resumo executivo/);
 });

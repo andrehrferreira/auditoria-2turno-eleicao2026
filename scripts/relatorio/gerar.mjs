@@ -25,7 +25,6 @@ import {
 
 const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const PERICIA = path.join(RAIZ, 'docs', 'pericia');
-const EVIDENCIAS = path.join(PERICIA, 'evidencias');
 const SAIDA = path.join(RAIZ, 'docs', 'relatorio');
 const TEMAS = path.join(PERICIA, 'temas');
 const TITULO_CURTO = 'Relatório de perícia · Urnas 2026';
@@ -45,10 +44,48 @@ function git(args) {
   }
 }
 
-/** Endereço web do repositório (GitHub), para os links a arquivos que não estão no relatório. */
-export function baseGithub(remoto) {
-  const m = /github\.com[:/]([^/]+)\/(.+?)(?:\.git)?\/?$/.exec(remoto ?? '');
-  return m ? `https://github.com/${m[1]}/${m[2]}` : null;
+// ------------------------------------------------------------------ independência do processo
+//
+// O relatório é um documento independente do processo da auditoria: sem nomes de
+// revisores, redatores ou modelos, sem caminhos de arquivo, scripts ou comandos.
+
+/** Referências de processo proibidas no texto renderizado (inclusive no texto dos gráficos). */
+export const RE_PROCESSO =
+  /[Pp]arecer(?:es)? c[eé]ticos?|[Rr]evisor c[eé]tico|\b[Rr]edator\b|\bAuditor [A-E]\b|\bAstra\b|\bGrok\b|\bKimi\b|\.mjs\b|\.jsonl?\b|\bdocs\/|\bscripts\/|\bdata\/|\bsrc\/|npm run|node scripts/g;
+
+/** Exceções legítimas, retiradas da linha antes da busca. */
+export const EXCECOES_PROCESSO = [
+  /\baux\.json\b/g, // nome do arquivo público do TSE com a lista oficial de cada seção
+];
+
+/** Procura referências de processo em linhas de texto; devolve [{ linha, trecho, achado }]. */
+export function acharReferenciasDeProcesso(linhas) {
+  const achados = [];
+  linhas.forEach((original, i) => {
+    let l = original;
+    for (const ex of EXCECOES_PROCESSO) l = l.replace(ex, (m) => ' '.repeat(m.length));
+    for (const m of l.matchAll(RE_PROCESSO)) {
+      const trecho = original.slice(Math.max(0, m.index - 40), m.index + m[0].length + 40).trim();
+      achados.push({ linha: i + 1, achado: m[0], trecho });
+    }
+  });
+  return achados;
+}
+
+/** Linhas do markdown como o leitor as vê: sem destinos de link e sem imagens. */
+function linhasVisiveis(md) {
+  return md
+    .split('\n')
+    .map((l) => l.replace(/!\[(?:[^\]\\]|\\.)*\]\([^)]*\)/g, ' ').replace(/\]\((?:[^()\s]|\([^()\s]*\))*(?:\s+"[^"]*")?\)/g, ']'));
+}
+
+/** Linhas com o texto visível de um SVG (conteúdo dos elementos <text>). */
+function linhasDeSvg(svg) {
+  return svg.split('\n').map((l) =>
+    [...l.matchAll(/<text\b[^>]*>([\s\S]*?)<\/text>/g)]
+      .map((m) => m[1].replace(/<[^>]+>/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&'))
+      .join(' '),
+  );
 }
 
 // ------------------------------------------------------------------ gráficos SVG
@@ -192,14 +229,14 @@ const ROTULO_HTML = (palavra) => `<span class="rotulo">${escaparHtml(palavra)}</
  * Lê as fontes e devolve as peças: cada uma é um trecho de markdown de um arquivo,
  * com o papel que tem no documento. A conferência é feita peça a peça.
  */
-async function lerFontes({ resumo = path.join(PERICIA, 'resumo.md') } = {}) {
-  const nomes = (await readdir(PERICIA)).filter((n) => /^\d{2}-.+\.md$/.test(n)).sort();
+async function lerFontes({ pericia = PERICIA, resumo = path.join(pericia, 'resumo.md') } = {}) {
+  const nomes = (await readdir(pericia)).filter((n) => /^\d{2}-.+\.md$/.test(n)).sort();
   const topicos = [];
   for (const nome of nomes) {
-    const arquivo = path.join(PERICIA, nome);
-    topicos.push({ numero: Number.parseInt(nome, 10), arquivo, md: await readFile(arquivo, 'utf8') });
+    const arquivo = path.join(pericia, nome);
+    topicos.push({ numero: Number.parseInt(nome, 10), arquivo, md: (await readFile(arquivo, 'utf8')).replace(/\r\n?/g, '\n') });
   }
-  const leia = path.join(PERICIA, 'README.md');
+  const leia = path.join(pericia, 'README.md');
   const readme = (await readFile(leia, 'utf8')).replace(/\r\n?/g, '\n');
   const linhas = readme.split('\n');
   const achar = (re, nome) => {
@@ -228,54 +265,56 @@ async function lerFontes({ resumo = path.join(PERICIA, 'resumo.md') } = {}) {
   if (remontado !== readme) throw new Error('README dividido de forma incompleta (alguma linha ficou de fora)');
   if (partes.antes.trim()) throw new Error('docs/pericia/README.md: há texto antes do título');
 
-  const evArquivo = path.join(EVIDENCIAS, 'README.md');
-  const ev = (await readFile(evArquivo, 'utf8')).replace(/\r\n?/g, '\n');
-  const evLinhas = ev.split('\n');
-  const iEvTitulo = evLinhas.findIndex((l) => /^# /.test(l));
-  if (iEvTitulo < 0) throw new Error('docs/pericia/evidencias/README.md: sem título (# )');
+  // o parágrafo "Registro de evidências" do README não entra: o relatório não traz o registro do processo
   const resumoMd = existsSync(resumo) ? (await readFile(resumo, 'utf8')).replace(/\r\n?/g, '\n') : null;
   return {
     topicos,
     resumo: resumoMd === null ? null : { arquivo: resumo, md: resumoMd },
-    readme: { arquivo: leia, partes, temAviso: /^> \[!WARNING\]/m.test(partes.comoLer) },
-    evidencias: {
-      arquivo: evArquivo,
-      titulo: evLinhas.slice(0, iEvTitulo + 1).join('\n'),
-      resto: evLinhas.slice(iEvTitulo + 1).join('\n'),
+    readme: {
+      arquivo: leia,
+      partes,
+      // linha (base 0) em que cada parte começa no arquivo, para as mensagens de erro
+      inicio: { comoLer: iTitulo + 1, topicos: iTopicos, glossario: iGlossario },
+      temAviso: /^> \[!WARNING\]/m.test(partes.comoLer),
     },
   };
 }
 
 /** Peças em ordem de documento. `dir` é a pasta do arquivo, para resolver links relativos. */
 function pecas(fontes) {
-  const { readme, evidencias } = fontes;
+  const { readme } = fontes;
   const lista = [];
   if (fontes.resumo) {
-    lista.push({ chave: 'resumo', fonte: fontes.resumo.arquivo, md: fontes.resumo.md, prefixo: 'resumo-', papel: 'resumo' });
+    lista.push({ chave: 'resumo', fonte: fontes.resumo.arquivo, md: fontes.resumo.md, prefixo: 'resumo-', papel: 'resumo', linha0: 0 });
   }
   lista.push(
-    { chave: 'como-ler', fonte: readme.arquivo, md: readme.partes.comoLer, prefixo: 'leia-', papel: 'frente' },
-    { chave: 'topicos', fonte: readme.arquivo, md: readme.partes.topicos, prefixo: 'leia-', papel: 'frente-titulada' },
+    { chave: 'como-ler', fonte: readme.arquivo, md: readme.partes.comoLer, prefixo: 'leia-', papel: 'frente', linha0: readme.inicio.comoLer },
+    {
+      chave: 'topicos',
+      fonte: readme.arquivo,
+      md: readme.partes.topicos,
+      prefixo: 'leia-',
+      papel: 'frente-titulada',
+      linha0: readme.inicio.topicos,
+    },
   );
   for (const t of fontes.topicos) {
     const id = `t${String(t.numero).padStart(2, '0')}`;
-    lista.push({ chave: id, fonte: t.arquivo, md: t.md, prefixo: `${id}-`, papel: 'topico', numero: t.numero });
+    lista.push({ chave: id, fonte: t.arquivo, md: t.md, prefixo: `${id}-`, papel: 'topico', numero: t.numero, linha0: 0 });
   }
-  lista.push({ chave: 'anexo-a', fonte: readme.arquivo, md: readme.partes.glossario, prefixo: 'leia-', papel: 'anexo', letra: 'A' });
-  lista.push({ chave: 'anexo-b', fonte: evidencias.arquivo, md: evidencias.titulo, prefixo: 'ev-', papel: 'anexo', letra: 'B' });
-  if (readme.partes.registro.trim()) {
-    lista.push({ chave: 'anexo-b', fonte: readme.arquivo, md: readme.partes.registro, prefixo: 'leia-', papel: 'anexo-texto', letra: 'B' });
-  }
-  lista.push({ chave: 'anexo-b', fonte: evidencias.arquivo, md: evidencias.resto, prefixo: 'ev-', papel: 'anexo-texto', letra: 'B' });
+  lista.push(pecaGlossario(readme, readme.partes.glossario));
   return lista;
 }
 
-/** Id do alvo de um link a outro arquivo do relatório. */
-function idDoArquivo(rel) {
-  const m = /^docs\/pericia\/(\d{2})-[^/]+\.md$/.exec(rel);
+function pecaGlossario(readme, md) {
+  return { chave: 'anexo-a', fonte: readme.arquivo, md, prefixo: 'leia-', papel: 'anexo', letra: 'A', linha0: readme.inicio.glossario };
+}
+
+/** Id do alvo de um link a outro arquivo do relatório (`nome` relativo à pasta da perícia). */
+function idDoArquivo(nome) {
+  const m = /^(\d{2})-[^/]+\.md$/.exec(nome);
   if (m) return { id: `t${m[1]}`, prefixo: `t${m[1]}-` };
-  if (rel === 'docs/pericia/README.md') return { id: 'como-ler', prefixo: 'leia-' };
-  if (rel === 'docs/pericia/evidencias/README.md') return { id: 'anexo-b', prefixo: 'ev-' };
+  if (nome === 'README.md') return { id: 'como-ler', prefixo: 'leia-' };
   return null;
 }
 
@@ -290,33 +329,31 @@ function montarConversor({ peca, estado, ancoras, avisos, contexto }) {
       return ancoras.has(id) ? `#${id}` : `#${peca.chave}`;
     }
     const abs = path.resolve(dir, decodeURIComponent(caminho));
+    // nome relativo à pasta da perícia; o resumo fica ao lado dos tópicos
+    const base = peca.papel === 'resumo' ? dir : contexto.pericia;
+    const nome = path.relative(base, abs).split(path.sep).join('/');
     if (contexto.tema) {
       // relatório temático: os tópicos do relatório completo não estão no documento
-      const nome = path.relative(contexto.tema.raiz, abs).split(path.sep).join('/');
       const m = /^(\d{2})-[^/]+\.md$/.exec(nome);
       if (m) {
-        const url = contexto.github ? `${contexto.github}/blob/${contexto.commit || 'main'}/docs/pericia/${encodeURI(nome)}` : null;
         const n = Number(m[1]);
         const jaDiz = new RegExp(`t[óo]pico\\s+${n}(?!\\d)`, 'i').test(textoDoLink);
         const nota = `<span class="ref-completo" data-ger> (${jaDiz ? 'no' : `ver tópico ${n} do`} relatório completo)</span>`;
-        return { href: url && frag ? `${url}#${encodeURIComponent(frag)}` : url, depois: nota };
+        return { href: null, depois: nota };
       }
     }
-    let rel = relRepo(abs);
-    // o resumo fica ao lado dos tópicos: "NN-*.md" é sempre um tópico do relatório
-    const vizinho = path.relative(dir, abs).split(path.sep).join('/');
-    if (peca.papel === 'resumo' && /^\d{2}-[^/]+\.md$/.test(vizinho)) rel = `docs/pericia/${vizinho}`;
-    const alvo = idDoArquivo(rel);
+    const alvo = idDoArquivo(nome);
     if (alvo) {
       if (!frag) return `#${alvo.id}`;
       if (ancoras.has(alvo.prefixo + frag)) return `#${alvo.prefixo}${frag}`;
       avisos.add(`${relRepo(peca.fonte)}: âncora inexistente "${destino}" (o link aponta para o início do tópico)`);
       return `#${alvo.id}`;
     }
-    if (!contexto.github) return null;
-    const pasta = caminho.endsWith('/') || (existsSync(abs) && statSync(abs).isDirectory());
-    const url = `${contexto.github}/${pasta ? 'tree' : 'blob'}/${contexto.commit || 'main'}/${encodeURI(rel)}`;
-    return frag ? `${url}#${encodeURIComponent(frag)}` : url;
+    // gráficos e seus dados: o gráfico já está no documento; fica só o texto do link
+    if (/^graficos\//.test(nome)) return null;
+    // qualquer outro arquivo é do processo da auditoria e não pode sair no relatório
+    estado.foraDoRelatorio.push({ peca, destino });
+    return null;
   };
   const imagem = ({ src, alt }) => {
     const abs = path.resolve(dir, decodeURIComponent(src));
@@ -324,6 +361,7 @@ function montarConversor({ peca, estado, ancoras, avisos, contexto }) {
     estado.figuras++;
     const prefixo = `g${estado.figuras}`;
     const conteudo = contexto.lerArquivo(abs);
+    if (abs.endsWith('.svg')) estado.svgs.set(abs, conteudo.toString('utf8'));
     const corpo = abs.endsWith('.svg')
       ? embutirSvg(conteudo.toString('utf8'), prefixo, alt)
       : `<img src="data:image/${path.extname(abs).slice(1)};base64,${conteudo.toString('base64')}" alt="${escaparHtml(alt)}">`;
@@ -363,11 +401,6 @@ function montarConversor({ peca, estado, ancoras, avisos, contexto }) {
       estado.tituloTopico = `Anexo ${peca.letra} · ${plano}`;
       return `<p class="sobretitulo" data-ger>Anexo ${peca.letra}</p><h1 id="${id}" class="titulo-secao">${html}</h1>`;
     }
-    if (peca.papel === 'anexo-texto' && nivel === 2) {
-      const num = `${peca.letra}.${++estado.h2}`;
-      estado.sumario.push({ nivel: 2, id, num, html });
-      return `<h2 id="${id}"><span class="num" data-ger>${num}</span> ${html}</h2>`;
-    }
     return `<h${nivel} id="${id}">${html}</h${nivel}>`;
   };
   return { prefixoId: peca.prefixo, ids: estado.ids, link, imagem, figura: imagem, titulo, rotulo: ROTULO_HTML };
@@ -389,7 +422,16 @@ function converterTudo(lista, contexto) {
   }
   // passo 2: conversão de verdade
   const avisos = new Set();
-  const estado = { ids: new Set(), figuras: 0, figurasTopico: 0, h2: 0, sumario: [], tituloTopico: '' };
+  const estado = {
+    ids: new Set(),
+    figuras: 0,
+    figurasTopico: 0,
+    h2: 0,
+    sumario: [],
+    tituloTopico: '',
+    svgs: new Map(),
+    foraDoRelatorio: [],
+  };
   let chaveAtual = null;
   const saidas = [];
   for (const peca of lista) {
@@ -407,7 +449,43 @@ function converterTudo(lista, contexto) {
   if (lista.some((p) => p.papel === 'resumo') && !estado.sumario.some((e) => e.id === 'resumo')) {
     estado.sumario.unshift({ nivel: 1, id: 'resumo', num: '', html: TITULO_RESUMO });
   }
-  return { saidas, sumario: estado.sumario, avisos: [...avisos] };
+  if (estado.foraDoRelatorio.length) {
+    const msgs = estado.foraDoRelatorio.map(({ peca, destino }) => {
+      const i = peca.md.split('\n').findIndex((l) => l.includes(`](${destino}`));
+      return `${relRepo(peca.fonte)}:${linhaNoArquivo(peca, i, contexto)}: link para fora do relatório: ${destino}`;
+    });
+    throw new Error(
+      `links para arquivos que não fazem parte do relatório (análises, registro de hipóteses, scripts, dados); ` +
+        `tire o link ou troque por um tópico:\n- ${msgs.join('\n- ')}`,
+    );
+  }
+  return { saidas, sumario: estado.sumario, svgs: estado.svgs, avisos: [...avisos] };
+}
+
+/** Número da linha (base 1) no arquivo de origem para a linha `i` (base 0) de uma peça. */
+function linhaNoArquivo(peca, i, contexto) {
+  if (i < 0) return peca.linha0 + 1;
+  const alvo = peca.md.split('\n')[i];
+  const linhas = contexto.lerArquivo(peca.fonte).toString('utf8').replace(/\r\n?/g, '\n').split('\n');
+  if (linhas[peca.linha0 + i] === alvo) return peca.linha0 + i + 1;
+  const k = linhas.indexOf(alvo, peca.linha0); // peça filtrada (glossário do tema)
+  return (k >= 0 ? k : peca.linha0 + i) + 1;
+}
+
+/** Confere que o texto renderizado (markdown e gráficos) não traz referências do processo. */
+export function conferirProcesso(saidas, svgs, contexto) {
+  const problemas = [];
+  for (const p of saidas) {
+    for (const a of acharReferenciasDeProcesso(linhasVisiveis(p.md))) {
+      problemas.push(`${relRepo(p.fonte)}:${linhaNoArquivo(p, a.linha - 1, contexto)}: "${a.achado}" em "${a.trecho}"`);
+    }
+  }
+  for (const [arquivo, svg] of svgs) {
+    for (const a of acharReferenciasDeProcesso(linhasDeSvg(svg))) {
+      problemas.push(`${relRepo(arquivo)}:${a.linha}: "${a.achado}" no texto do gráfico: "${a.trecho}"`);
+    }
+  }
+  return problemas;
 }
 
 /** Confere, peça a peça, que estrutura e palavras do markdown estão no HTML. */
@@ -746,30 +824,27 @@ export function filtrarGlossario(mdGlossario, textoTema) {
 
 // ------------------------------------------------------------------ principal
 
-function contextoGit() {
-  const commit = git(['rev-parse', '--short', 'HEAD']);
-  const alterado = git(['status', '--porcelain', '--', 'docs/pericia']) !== '';
-  const versaoCurta = commit || 'sem git';
+function contextoGit(pericia) {
+  const versaoCurta = git(['rev-parse', '--short', 'HEAD']) || 'sem git';
   return {
-    contexto: {
-      github: baseGithub(git(['remote', 'get-url', 'origin'])),
-      commit: git(['rev-parse', 'HEAD']),
-      lerArquivo: (abs) => readFileSync(abs),
-    },
-    meta: {
-      data: dataPtBr(new Date()),
-      versaoCurta,
-      versao: `${versaoCurta}${alterado ? ' (com alterações ainda não registradas em docs/pericia)' : ''}`,
-    },
+    contexto: { pericia, lerArquivo: (abs) => readFileSync(abs) },
+    meta: { data: dataPtBr(new Date()), versaoCurta, versao: versaoCurta },
   };
 }
 
 /** Converte, confere, monta e grava um documento (e o PDF, se pedido). */
 async function produzir({ lista, contexto, meta, temAviso, capa, saida, nome, pdf, registrar }) {
-  const { saidas, sumario, avisos } = converterTudo(lista, contexto);
+  const { saidas, sumario, svgs, avisos } = converterTudo(lista, contexto);
   const { problemas, total } = conferir(saidas);
   if (problemas.length) {
     throw new Error(`a conferência markdown × HTML falhou:\n- ${problemas.join('\n- ')}`);
+  }
+  const processo = conferirProcesso(saidas, svgs, contexto);
+  if (processo.length) {
+    throw new Error(
+      'o texto do relatório traz referências do processo da auditoria (revisores, modelos, caminhos, scripts, comandos); ' +
+        `o relatório é um documento independente:\n- ${processo.join('\n- ')}`,
+    );
   }
   const html = montarHtml({ saidas, sumario, meta, temAviso, capa });
   for (const s of saidas) {
@@ -800,9 +875,9 @@ async function produzir({ lista, contexto, meta, temAviso, capa, saida, nome, pd
 }
 
 /** Relatório completo: docs/pericia/NN-*.md. */
-export async function gerar({ pdf = false, saida = SAIDA, registrar = console.log, resumo } = {}) {
-  const fontes = await lerFontes({ resumo });
-  const { contexto, meta } = contextoGit();
+export async function gerar({ pdf = false, saida = SAIDA, registrar = console.log, pericia = PERICIA, resumo } = {}) {
+  const fontes = await lerFontes({ pericia, resumo });
+  const { contexto, meta } = contextoGit(pericia);
   return produzir({
     lista: pecas(fontes),
     contexto,
@@ -816,35 +891,23 @@ export async function gerar({ pdf = false, saida = SAIDA, registrar = console.lo
   });
 }
 
-/** Relatório temático: um arquivo de docs/pericia/temas/, com a mesma frente e os mesmos anexos. */
+/** Relatório temático: um arquivo de docs/pericia/temas/, com a mesma frente e o glossário. */
 export async function gerarTema({ arquivo, pdf = false, saida = path.join(SAIDA, 'temas'), registrar = console.log }) {
   const abs = path.resolve(arquivo);
   const md = (await readFile(abs, 'utf8')).replace(/\r\n?/g, '\n');
   const { titulos } = converter(md, { link: () => '#', imagem: () => '', figura: () => '' });
   const h1 = titulos.filter((t) => t.nivel === 1);
   if (h1.length !== 1) throw new Error(`${arquivo}: o tema precisa de exatamente um título "# " (tem ${h1.length})`);
-  const fontes = await lerFontes();
-  const { contexto, meta } = contextoGit();
-  // links ../NN-*.md apontam para o relatório completo, que fica na pasta acima de temas/
-  contexto.tema = { raiz: path.dirname(path.dirname(abs)) };
-  const { readme, evidencias } = fontes;
+  // o tema fica em <perícia>/temas/: o README e os tópicos do relatório completo estão na pasta acima
+  const pericia = path.dirname(path.dirname(abs));
+  const { readme } = await lerFontes({ pericia });
+  const { contexto, meta } = contextoGit(pericia);
+  contexto.tema = true;
   const lista = [
-    { chave: 'como-ler', fonte: readme.arquivo, md: readme.partes.comoLer, prefixo: 'leia-', papel: 'frente' },
-    { chave: 'tema', fonte: abs, md, prefixo: 'tema-', papel: 'topico', numero: 1 },
-    {
-      chave: 'anexo-a',
-      fonte: readme.arquivo,
-      md: filtrarGlossario(readme.partes.glossario, md),
-      prefixo: 'leia-',
-      papel: 'anexo',
-      letra: 'A',
-    },
-    { chave: 'anexo-b', fonte: evidencias.arquivo, md: evidencias.titulo, prefixo: 'ev-', papel: 'anexo', letra: 'B' },
+    { chave: 'como-ler', fonte: readme.arquivo, md: readme.partes.comoLer, prefixo: 'leia-', papel: 'frente', linha0: readme.inicio.comoLer },
+    { chave: 'tema', fonte: abs, md, prefixo: 'tema-', papel: 'topico', numero: 1, linha0: 0 },
+    pecaGlossario(readme, filtrarGlossario(readme.partes.glossario, md)),
   ];
-  if (readme.partes.registro.trim()) {
-    lista.push({ chave: 'anexo-b', fonte: readme.arquivo, md: readme.partes.registro, prefixo: 'leia-', papel: 'anexo-texto', letra: 'B' });
-  }
-  lista.push({ chave: 'anexo-b', fonte: evidencias.arquivo, md: evidencias.resto, prefixo: 'ev-', papel: 'anexo-texto', letra: 'B' });
   const titulo = h1[0].plano.replace(/^\d+\.\s+/, '');
   return produzir({
     lista,
