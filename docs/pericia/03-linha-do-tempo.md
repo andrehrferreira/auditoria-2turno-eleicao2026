@@ -8,6 +8,8 @@ O que a urna fez desde a preparação até o encerramento, e em que horário? Ho
 
 Os itens 1 a 11 deste tópico ainda não passaram pela revisão independente, aquela que tenta derrubar cada conclusão. Por isso, em 29/10/2026, cada número desses itens foi **recalculado de forma independente**, sobre o universo completo, por programas próprios desta auditoria. Esses programas leem os boletins e os diários de todas as seções, e os do 1º turno completo, sem usar os resultados da análise original. Os casos citados como exemplo foram conferidos no diário original da urna. Só ficou no texto o número que bateu. Os números que não puderam ser refeitos foram retirados e aparecem como **"Pendente: em verificação"**.
 
+**Item 6 (votos depois das 17h), atualizado em 30/10/2026:** os totais de votos depois das 17h e das 18h, nos dois turnos, foram refeitos com as correções de relógio que a revisão independente do relógio da urna confirmou ([tópico 14](14-outras-formas-de-fraude.md), item 8). A conta refeita, sem essas correções, chega exatamente aos totais anteriores.
+
 **Item 12 (a apuração na noite do 2º turno), atualizado em 30/10/2026:** este item passou pela revisão independente, que o confirmou com ressalvas. A revisão refez as contas da análise original e chegou exatamente aos mesmos resultados. O texto usa só a versão confirmada pela revisão. Os números foram contados de novo, seção a seção, por uma terceira conta, que confere minuto a minuto a recontagem com a conta original (0 diferença) e com a da revisão.
 
 ## Resposta curta
@@ -18,9 +20,9 @@ Tudo abaixo vale para o **2º turno (25/10/2026)**, salvo quando o texto diz "1�
 |---|---|---|
 | Alguma urna abriu ou recebeu voto antes das 8h de Brasília? | Nenhuma | **Fato** |
 | Alguma urna encerrou antes das 17h de Brasília? | Nenhuma. A urna tem uma trava que impede o encerramento antes das 17h | **Fato** |
-| Houve voto depois das 17h de Brasília? | Sim: 34.330 votos (0,027% do total) em 29.854 seções. A urna **não tem trava** para isso: quem decide até quando entra eleitor é o mesário | **Fato** |
+| Houve voto depois das 17h de Brasília? | Sim: 34.315 votos (0,027% do total). A urna **não tem trava** para isso: quem decide até quando entra eleitor é o mesário | **Fato** |
 | Houve seções que ficaram abertas até 19h? | Sim: 6.352 seções encerraram às 19h ou depois. A própria urna não exigia isso | **Fato** |
-| Os votos depois das 17h mudaram o resultado? | Não. Mesmo se fossem todos de um lado só, seriam 0,77% da diferença entre os dois candidatos (34.330 de 4.430.191) | **Fato** |
+| Os votos depois das 17h mudaram o resultado? | Não. Mesmo se fossem todos de um lado só, seriam 0,77% da diferença entre os dois candidatos (34.315 de 4.430.191) | **Fato** |
 | Houve voto em ritmo impossível para uma pessoa? | Não. Lidos os diários de todas as urnas, cada urna separada, o menor intervalo entre dois votos seguidos é de 16 segundos | **Fato** |
 | O mesário seguiu as regras de horário? | Não se pode afirmar. Há seções em que o mesário declarou à urna que "todas as pessoas presentes já votaram" e depois disso ainda houve voto. Quantas são: **Pendente: em verificação** | **Fato** (o registro existe); a contagem e o motivo são **Pendentes** |
 | Às 19h os boletins já existiam, mas o TSE os liberou aos poucos? (item 12) | Às 19h, 98,64% dos boletins do Brasil já tinham sido emitidos pelas urnas, e o TSE tinha registrado como recebidos 1.909 (0,38% das 499.248 seções). De 17:10 a 19:03:37 o TSE não registrou nenhum boletim com voto; depois, registrou em lotes e com vazão limitada até 21:09. Onde os boletins esperaram, e se a ordem de liberação dependeu do voto das seções: **Pendente** | **Fato** (horários e contagens); **Pendente** (onde esperaram e a ordem) |
@@ -117,15 +119,26 @@ Para votar, cada eleitor passa por um ciclo: o mesário digita o título, a urna
 | | Votos | Seções |
 |---|---|---|
 | Total de votos no diário | 127.854.844 | 497.896 |
-| Depois das 17h | 34.330 (0,027%) | 29.854 (6,0%) |
+| Depois das 17h | 34.315 (0,027%) | 29.854 (6,0%) (conta anterior à correção de relógio; ver abaixo) |
 | Depois das 18h | 1.993 | 1.667 |
 | Depois das 19h | 11 | 11 |
+
+**Fato (correção de relógio, 30/10/2026).** O exame do relógio da urna, confirmado pela revisão independente, achou mais urnas com o relógio 1 hora fora da hora certa, adiantado ou atrasado. A correção mudou poucas dezenas de votos nas contas deste item:
+
+| | Antes da correção | Depois da correção |
+|---|---:|---:|
+| 1º turno, votos depois das 17h | 3.723.360 | 3.723.325 |
+| 1º turno, votos depois das 18h | 778.979 | 778.954 |
+| 2º turno, votos depois das 17h | 34.330 | 34.315 |
+| 2º turno, votos depois das 18h | 1.993 | 1.993 |
+
+As seções corrigidas, com o que o diário mostra em cada uma, estão no [tópico 14](14-outras-formas-de-fraude.md), item 8. No 2º turno, toda a diferença (15 votos) vem de uma seção de Goiás, GO 92274/0119/0049, cujo relógio estava 1 hora adiantado: os 15 votos que o relógio dela marcou depois das 17h foram dados antes das 17h reais. **Pendente:** as demais medidas dos itens 6 a 9 (número de seções, percentuais por UF, horário do último voto, tabela do item 8 e comparações do item 9) ainda são da conta anterior à correção, em que essa seção contava 15 votos depois das 17h; refazê-las com a correção.
 
 **Fato.** O boletim dessas seções soma 127.854.363 eleitores. A diferença de 481 vem das 9 seções do item 10 em que o diário lido não bate com o boletim; nenhuma delas tem voto depois das 17h, então as três linhas de baixo não são afetadas.
 
 - **Fato.** Por UF, os votos depois das 17h vão de 0,010% (SC) a 0,056% (RO) do total. Depois das 18h, concentram-se em RJ (883), SP (641), BA (287), PE (113) e PB (41).
 - **Fato.** Nas seções com voto tardio, o último voto veio, na mediana, 1,25 minuto depois das 17h. Em 99% delas, até 102 minutos depois. O mais tarde, 126 minutos depois.
-- **Fato.** Comparação com o 1º turno (04/10), sem prorrogação, contada da mesma forma em todas as 497.897 seções do Brasil: 3.723.360 votos depois das 17h e 778.979 depois das 18h, contra 34.330 e 1.993 no 2º turno. Em 7 seções, o diário lido do 1º turno tem mais votos que o boletim, por causa de linhas repetidas pela leitura. Conferido no diário original: sem as repetições, essas 7 seções têm os mesmos 186 votos depois das 17h e 118 depois das 18h. Nenhuma repetição é de depois das 17h, e os totais acima não mudam.
+- **Fato.** Comparação com o 1º turno (04/10), sem prorrogação, contada da mesma forma em todas as 497.897 seções do Brasil: 3.723.325 votos depois das 17h e 778.954 depois das 18h, contra 34.315 e 1.993 no 2º turno (já com a correção de relógio acima). Em 7 seções, o diário lido do 1º turno tem mais votos que o boletim, por causa de linhas repetidas pela leitura. Conferido no diário original: sem as repetições, essas 7 seções têm os mesmos 186 votos depois das 17h e 118 depois das 18h. Nenhuma repetição é de depois das 17h, e os totais acima não mudam.
 - **Hipótese.** O 1º turno tinha mais cargos, o que alonga a fila.
 
 ### 7. Seções abertas até 19h
@@ -147,7 +160,7 @@ Quem estava na fila às 17h é atendido em sequência. Se a urna fica parada por
 | 17h30 a 18h59 | 1.260 | 387 | 647 | 133 |
 | 19h ou depois | 6.352 | 3.013 | 4.492 | 1.860 |
 
-**Fato.**
+**Fato**, na conta anterior à correção de relógio do item 6: a soma da coluna de votos depois das 17h é 34.330. Com a correção, a seção de Goiás deixa de ter voto depois das 17h; a nova divisão por grupo está **Pendente**.
 
 - **Pendente: em verificação.** Quantos votos vieram depois de a urna ficar parada 10 ou 30 minutos, e como esses votos foram liberados (digital, ano de nascimento ou liberação manual). Esses números dependem de reler os diários segundo a segundo e ainda não foram refeitos de forma independente.
 - **Fato (exemplos conferidos no diário original).** Há seções em que o mesário respondeu "SIM" a "Todas as pessoas presentes já votaram?" e ainda houve voto depois. Em AL 28614/0021/0410, a resposta "SIM" veio às 17h00min20s, o encerramento foi abortado às 17h01min01s, um eleitor foi identificado às 17h01min17s, liberado pela digital, e votou às 17h01min37s; o mesário respondeu "SIM" de novo e encerrou às 17h02. Em BA 36854/0180/0147, o último voto antes das 17h foi às 16h30, e o eleitor seguinte foi atendido às 18h25. **Pendente: em verificação** em quantas seções houve voto depois do "SIM".
@@ -162,7 +175,7 @@ Não é possível saber em quem cada eleitor tardio votou: o registro dos votos 
 - **Fato.** Correlação, dentro da zona, entre a parcela de votos tardios da seção e o percentual do 13: +0,013, em 497.830 seções. Isto é, praticamente nenhuma relação.
 - **Fato.** Locais que foram até 19h, comparados com locais que encerraram às 17h na mesma zona: −0,47 ponto percentual para o 13, em 83 zonas. Por UF: RJ −0,03; SP −0,39; BA −1,25; PE −0,32; PB −2,97.
 - **Fato.** Descontando o que cada seção já mostrava no 1º turno (com o 1º turno completo, todas as UFs), a diferença entre os locais que foram até 19h e os vizinhos fica em 0,00 ponto percentual, nas mesmas 83 zonas.
-- **Fato.** Escala: a diferença nacional para presidente é de 4.430.191 votos (13: 64.256.232; 22: 59.826.041, soma dos boletins, tópico 5). Todos os votos depois das 17h somam 34.330. Mesmo que fossem todos de um lado, seriam 0,77% dessa diferença.
+- **Fato.** Escala: a diferença nacional para presidente é de 4.430.191 votos (13: 64.256.232; 22: 59.826.041, soma dos boletins, tópico 5). Todos os votos depois das 17h somam 34.315. Mesmo que fossem todos de um lado, seriam 0,77% dessa diferença.
 - Conclusão do item: **Fato.** A hipótese H06, de que a extensão do horário favoreceu um lado a ponto de mudar o resultado, não se sustenta: as diferenças entre seções são pequenas e mudam de sinal conforme a comparação, a dos locais que foram até 19h desaparece quando se desconta o 1º turno, e o volume é pequeno demais para mudar o resultado nacional.
 
 ### 10. Encerramento e emissão do boletim
@@ -272,6 +285,7 @@ Nenhum arquivo público tem a hora em que o boletim saiu da seção ou do ponto 
 - **O fuso sai do próprio dado.** Todas as 2.270 seções do Acre ficaram prontas às 6h locais e as 10 de Fernando de Noronha às 9h locais, o que bate com o fuso conhecido desses lugares. **Fato.**
 - **A recontagem da apuração bate com a conta original, minuto a minuto (item 12).** A recontagem própria deste relatório conta de novo, seção a seção, os boletins emitidos, registrados e somados em cada um dos 601 minutos de 17:00 às 03:00, nos dois turnos, e compara com a contagem por minuto da análise original: 0 diferença. Os marcos da versão confirmada (98,64%, 1.909, 5.651 em 19 segundos, 99,78%, mediana de 24 segundos, paradas) são conferidos um a um, também contra a conta da revisão independente. **Fato.**
 - **O teste de registro acha o registro quando ele existe.** No 1º turno, sem prorrogação, a mesma conta mostra o registro começando logo depois das 17h e 60,81% das seções registradas antes das 19h. **Fato.**
+- **A conta corrigida parte da conta anterior.** O cálculo que aplica as correções de relógio do item 6, rodado sem elas, chega exatamente aos totais anteriores (3.723.360 e 778.979 no 1º turno; 34.330 e 1.993 no 2º). A diferença entre as duas versões vem só das seções corrigidas. **Fato.**
 - **A trava das 17h deixa rastro.** A mensagem "Encerramento só pode ser solicitado após as 17:00:00 horas" aparece no diário quando alguém tenta encerrar antes (ex.: AL 27081/0053/0162, às 9h45). **Fato.**
 
 ## O que este resultado prova e o que não prova
@@ -285,10 +299,10 @@ Nenhum arquivo público tem a hora em que o boletim saiu da seção ou do ponto 
 
 ## Limites
 
-- **Exterior fora dos testes de horário.** As 1.310 seções do exterior não entram porque falta a tabela de fuso por país. No relógio local, o exterior teve 417 votos depois das 17h, em 252 seções. **Fato.**
+- **Exterior fora dos testes de horário.** As 1.310 seções do exterior não entram porque falta a tabela de fuso por país. Pelo relógio das próprias urnas, o exterior teve 417 votos depois das 17h, em 252 seções. **Fato.** Em 3 seções de Lisboa, no 2º turno, o relógio da urna estava 1 hora adiantado: a urna ficou ligada durante a madrugada em que acabou o horário de verão europeu e não atrasou o relógio ([tópico 14](14-outras-formas-de-fraude.md), item 8). Os 87 votos que o relógio delas marcou depois das 17h foram dados às 16h reais. Pela hora local real, o exterior teve 330 votos depois das 17h. **Fato.**
 - **Erro de leitura em 3 seções.** O programa desta auditoria junta no mesmo diário cópias repetidas da urna original (2 seções) e o diário de outra seção que veio no mesmo pacote (1 seção). Afeta 3 seções no 2º turno e não afeta o boletim. **Pendente:** correção do programa de leitura e nova leitura de todos os diários.
 - **Ciclos com 2 cargos.** Não medidos no universo completo (item 5).
-- **Contagens de votos tardios.** Uma contagem anterior desta auditoria, feita por outro caminho, dá 34.066 votos depois das 17h e 1.960 depois das 18h no 2º turno. A diferença para 34.330 está explicada: aquela conta usa só seções cujo boletim saiu da urna da própria seção e inclui o exterior pelo relógio local (398 votos). Sem o exterior, ela dá 33.668; os 662 votos que faltam para 34.330 estão em seções cujo boletim saiu de urna de reserva. Dos 417 votos tardios do exterior, os 398 estão em 239 seções com a urna da própria seção, e os outros 19, em 13 seções atendidas por urna de reserva. **Fato.**
+- **Contagens de votos tardios.** Uma contagem anterior desta auditoria, feita por outro caminho, dá 34.066 votos depois das 17h e 1.960 depois das 18h no 2º turno. A diferença para 34.330 (a conta deste tópico antes da correção de relógio do item 6) está explicada: aquela conta usa só seções cujo boletim saiu da urna da própria seção e inclui o exterior pelo relógio local (398 votos). Sem o exterior, ela dá 33.668; os 662 votos que faltam para 34.330 estão em seções cujo boletim saiu de urna de reserva. Dos 417 votos tardios do exterior, os 398 estão em 239 seções com a urna da própria seção, e os outros 19, em 13 seções atendidas por urna de reserva. A correção de relógio do item 6 tira 15 votos da seção de Goiás e leva o total deste tópico a 34.315. **Fato.**
 - **Sigilo do voto.** Não dá para saber em quem votou o eleitor tardio, só comparar seções.
 - **Hora de envio do boletim (item 12).** Os arquivos públicos têm a hora de emissão, de registro e de totalização, mas não a hora em que o boletim saiu da seção ou do ponto de transmissão. **Fato.**
 - **Relógio de urnas de MT no 1º turno.** A revisão independente do item 12 achou sinais de que, no 1º turno, o relógio das urnas de três municípios de MT (90069, 90905 e 90921) estava na hora de Brasília, e não na local. **Fato (corrigido em 30/10/2026):** em 81 seções do 1º turno, o relógio da urna estava 1 hora adiantado em relação à hora do município. Em 80 delas, o operador digitou a hora de Brasília ao preparar a urna, num lugar 1 hora atrás de Brasília: as 78 seções da zona 0053 de MT (municípios 90069, 90905 e 90921) e 2 de AM 02615/0005 (seções 0119 e 0120). Na outra, RS 88994/0131/0008, o relógio interno da urna já estava 1 hora à frente e ninguém o acertou na preparação. As contas dos itens 6 e 7 já usam a hora certa dessas seções. A trava de abertura conta no relógio da própria urna: em MT, ela libera a votação às 7h do relógio, que são 8h de Brasília quando o relógio está na hora local. Com o relógio na hora de Brasília, ela liberou a votação às 7h de Brasília, e 3 votos foram dados antes das 8h de Brasília, todos na zona 0053 de MT. A trava é um controle técnico, mas a hora que ela usa é digitada por uma pessoa.

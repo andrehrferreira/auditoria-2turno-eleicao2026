@@ -1,10 +1,10 @@
-# 14. Outras formas de fraude testadas: cidade inteira, voto nulo combinado, exterior, recarga da urna, eleitores em trânsito, resultado trocado no caminho e falha da digital provocada
+# 14. Outras formas de fraude testadas: cidade inteira, voto nulo combinado, exterior, recarga da urna, eleitores em trânsito, resultado trocado no caminho, falha da digital provocada e relógio da urna
 
-> **Situação:** escrito em 30/10/2026. Reúne sete hipóteses do [quadro das hipóteses](10-quadro-das-hipoteses.md): H18 (mudança igual em todas as urnas de uma cidade), H21 (voto nulo usado como "senha" de compra de voto), H22 (exterior e seções apuradas em cédula), H23 (recarga e carga da urna fora do previsto), H24 (eleitores em trânsito), H27 (resultado trocado no caminho e seções fantasmas) e, acrescentada na mesma data, H19 (falha da digital provocada para abrir a liberação à mão). As sete passaram por uma segunda verificação independente, que refez as contas com programas próprios sobre todas as seções e procurou explicações que a primeira análise não tinha considerado. Ela confirmou os números e corrigiu o alcance de cada teste: H18, H22, H23, H24 e H27 sustentadas, com ressalvas que este texto já usa; na H21, o resultado do 2º turno é um fato do teste, mas o teste não tinha como encontrar o esquema no voto para Presidente. Na H19, ela confirmou as contagens até a unidade, mostrou que a medida antes chamada "falha da digital do mesário" é, na verdade, a liberação autorizada por um dedo que não é de mesário cadastrado, contou as liberações feitas sem nenhum dedo lido e não confirmou o único resultado fora do padrão, no Sudeste. O texto usa só as afirmações que resistiram a essa verificação, e cada seção diz o que o teste não enxerga.
+> **Situação:** escrito em 30/10/2026. Reúne sete hipóteses do [quadro das hipóteses](10-quadro-das-hipoteses.md): H18 (mudança igual em todas as urnas de uma cidade), H21 (voto nulo usado como "senha" de compra de voto), H22 (exterior e seções apuradas em cédula), H23 (recarga e carga da urna fora do previsto), H24 (eleitores em trânsito), H27 (resultado trocado no caminho e seções fantasmas) e, acrescentadas na mesma data, H19 (falha da digital provocada para abrir a liberação à mão) e H20 (relógio da urna e ordem dos acontecimentos no diário). As oito passaram por uma segunda verificação independente, que refez as contas com programas próprios sobre todas as seções e procurou explicações que a primeira análise não tinha considerado. Ela confirmou os números e corrigiu o alcance de cada teste: H18, H22, H23, H24 e H27 sustentadas, com ressalvas que este texto já usa; na H21, o resultado do 2º turno é um fato do teste, mas o teste não tinha como encontrar o esquema no voto para Presidente. Na H19, ela confirmou as contagens até a unidade, mostrou que a medida antes chamada "falha da digital do mesário" é, na verdade, a liberação autorizada por um dedo que não é de mesário cadastrado, contou as liberações feitas sem nenhum dedo lido e não confirmou o único resultado fora do padrão, no Sudeste. Na H20, ela refez a leitura de todos os diários, confirmou a ordem dos acontecimentos e o relógio, delimitou o que o teste alcança, achou a trava que impede acertar a hora depois da zerésima e mais urnas com o relógio 1 hora fora da hora certa, e mostrou que um relógio atrasado pode ser achado pelo começo do dia. O texto usa só as afirmações que resistiram a essa verificação, e cada seção diz o que o teste não enxerga.
 
 ## A pergunta
 
-Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, arquivos alterados, liberação de eleitor sem digital, troca de urna. Este tópico testa sete formas mais difíceis de ver, pensadas para escapar desses testes:
+Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, arquivos alterados, liberação de eleitor sem digital, troca de urna. Este tópico testa oito formas mais difíceis de ver, pensadas para escapar desses testes:
 
 1. **H18:** mudar um pouco o resultado de **todas** as urnas de uma cidade, por igual, para que nenhuma urna destoe das vizinhas.
 2. **H21:** combinar com o eleitor comprado um **número sem candidato** (voto nulo) e conferir depois, nos arquivos públicos, se ele apareceu na seção.
@@ -13,6 +13,7 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 5. **H24:** usar os **eleitores em trânsito** (quem vota fora da própria seção) para inflar seções.
 6. **H27:** **trocar o resultado de uma seção no caminho** até o TSE por outro, assinado por outra urna, ou contar o resultado de uma **seção que não existe**.
 7. **H19:** **provocar a falha da digital** numa seção escolhida, para que a mesa libere os eleitores à mão e, por esse caminho, ponha votos no lugar de quem não foi votar.
+8. **H20:** **mexer no relógio da urna ou na ordem do diário** para esconder votos dados antes da abertura ou depois do encerramento, ou deslocar a votação inteira de uma seção em 1 hora, digitando a hora errada na preparação da urna.
 
 ## Resposta curta
 
@@ -23,6 +24,7 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 - **Fato (H24):** em todas as seções dos dois turnos, os eleitores aptos são a soma dos eleitores da seção e dos em trânsito, e o total do país foi o mesmo nos dois turnos: 158.745.079. Nas seções com 10 ou mais eleitores em trânsito, a parte dos votos liberados sem digital foi **menor** que nas outras seções do mesmo local, ao contrário do que um uso fraudulento do trânsito deixaria (item 5).
 - **Fato (H27):** em todas as seções com urna dos dois turnos, o resultado foi assinado pela própria urna que ele diz ter votado, menos nas 17 seções em que os votos foram recuperados por outra urna (recuperação de dados), em que assinou uma urna de reserva registrada para a região. Nenhuma seção fantasma. Em 45 seções, o registro da urna só chegou ao TSE no dia da votação; no 2º turno, quase sempre junto com o próprio resultado (item 6).
 - **Fato (H19):** a urna sempre exigiu as quatro tentativas de digital antes da liberação à mão: das 16.974.711 liberações à mão dos dois turnos, só 3 tiveram menos. Mas uma tentativa pode terminar sem dedo nenhum, e 172.318 liberações no 1º turno e 212.171 no 2º foram feitas sem que o leitor lesse dedo nenhum. E o dedo que autoriza a liberação pode ser de qualquer pessoa. Isso é **risco**, não prova. A falha da digital ficou praticamente igual nos dois turnos (7,07% e 7,16%) e não acompanhou a mudança do voto; o único resultado fora do padrão, no Sudeste, não se confirma (item 7).
+- **Fato (H20):** nos diários de todas as urnas dos dois turnos, nenhum voto aparece antes da zerésima (o relatório de urna vazia) ou da abertura, nenhum depois do encerramento, e nenhum boletim antes do último voto. O relógio nunca voltou entre dois votos seguidos da mesma urna. Depois da zerésima, a urna recusa acertar a hora e grava a recusa: 33 recusas em 20 urnas, nenhum acerto feito. Foram achadas urnas com o relógio 1 hora adiantado (RJ, GO, PR e 3 seções de Lisboa) ou atrasado (PR), sem voto antes das 8h reais; corrigidas, a conta dos votos depois das 17h mudou poucas dezenas de votos. O teste não alcança os votos que estão no boletim sem linha no diário, e a fórmula do código que fecha cada linha do diário não é pública (item 8).
 - **Não se pode afirmar:** que nenhuma dessas formas de fraude foi usada em escala pequena, espalhada ou de um jeito que os arquivos públicos não registram. Cada item diz o que o teste não enxerga.
 
 ## Termos usados neste tópico
@@ -50,6 +52,12 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 - **Mesário cadastrado:** o mesário que registrou a própria digital e o título na urna da seção. Quando o dedo que autoriza a liberação é de um mesário cadastrado, o diário anota que aquele mesário habilitou o eleitor.
 - **Dedo sem dono:** o dedo que autoriza a liberação e não é de mesário cadastrado. A urna grava a digital desse dedo como nova ou a reconhece como uma digital já gravada no mesmo dia, sem ligar a ninguém.
 - **Vizinhas:** as outras seções do mesmo prédio de votação, com o mesmo modelo de urna.
+- **Zerésima:** o relatório que a urna imprime antes de abrir a votação, mostrando que não há nenhum voto gravado nela. Como mostrar a todos a caixa vazia antes de começar a recolher as cédulas.
+- **Abertura ("urna pronta"):** o momento em que a urna passa a aceitar votos. Fica anotado no diário.
+- **Relógio da urna:** a hora que a urna escreve em cada linha do diário. Ela é digitada por uma pessoa na preparação (carga) e pode ser acertada depois, com um aplicativo próprio da urna, o **ajuste de hora**.
+- **Trava de horário:** regra que a própria urna aplica pelo seu relógio: só imprime a zerésima a partir das 7h, só aceita votos a partir das 8h e só deixa encerrar a partir das 17h (horas de Brasília, somada a diferença do fuso do lugar). Como uma fechadura com timer: abre na hora marcada no timer, esteja o timer certo ou não.
+- **Relógio que volta:** uma linha do diário com hora menor que a da linha anterior da mesma urna.
+- **Código de cada linha do diário:** um código de 16 letras e números ao fim de cada linha do diário, calculado pela urna.
 
 ## Como foi feito
 
@@ -62,6 +70,7 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 5. **H24:** as contas de eleitores aptos, em trânsito e de outro estado, seção por seção; a liberação sem digital nas seções com muitos eleitores em trânsito, comparada com as outras seções do mesmo local de votação.
 6. **H27:** para cada pacote, quem assinou, e se a urna e a carga do boletim estão na lista prévia e na lista final; cada caso fora das listas foi aberto no diário original; os pacotes de recuperação de dados; as seções com resultado contra o cadastro de locais e o resultado oficial.
 7. **H19:** nos diários de todas as urnas das 497.897 seções do Brasil, nos dois turnos (o exterior não usa digital): cada pedido de digital, cada tentativa e como ela terminou (dedo lido ou tempo esgotado), cada liberação à mão e quem a autorizou (mesário cadastrado ou dedo sem dono). Depois, a falha de cada seção foi comparada com a dela mesma no outro turno e com a das vizinhas, e a mudança da falha, com a mudança do voto. As seções que mais pesaram no único resultado fora do padrão foram lidas uma a uma no diário original, nos dois turnos.
+8. **H20:** os diários de todas as urnas das 499.248 seções de cada turno, lidos inteiros nos pacotes originais, cada urna separada, na ordem em que as linhas foram gravadas e também pela hora de cada linha. A segunda verificação independente fez a sua própria leitura, com regras diferentes para escolher entre cópias do mesmo diário, e testou também as cópias com votos que a cópia escolhida não tem. Foram procurados: voto fora da ordem zerésima → abertura → votos → encerramento → boletim; relógio que volta e o motivo escrito ao lado; acerto de hora depois da zerésima; urnas com o dia inteiro deslocado em relação às vizinhas do mesmo local; e boletins que o TSE registrou como recebidos antes da hora em que a urna os emitiu. Os casos foram lidos no diário original.
 
 ## O que foi encontrado
 
@@ -139,6 +148,7 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 **Como ler:** é a tabela acima em barras. Cada barra é uma hora do dia, no horário do país da seção. A barra azul, para cima do zero, quer dizer que o 2º turno teve mais votos que o 1º naquela hora; a laranja, para baixo, que teve menos. O número junto de cada barra é a diferença. A maior barra azul é a das 8 h; da 14 h em diante, as barras são laranja e pequenas. O aumento do comparecimento, de 341.766 para 381.443, aparece nas barras da manhã, e não numa onda no fim do dia.
 
 - **Fato (o relógio das urnas estava na hora local):** a Europa, Israel e o Líbano saíram do horário de verão na madrugada do dia do 2º turno. Se o relógio das urnas não tivesse acompanhado a mudança, o horário em que os mesários se registraram antes da abertura, medido pelo relógio da urna, teria saltado 1 hora nesses países e não nos outros. Ele mudou o mesmo tanto nas 585 seções dos países que mudaram de horário e nas 685 dos demais, com diferença de poucos minutos entre os dois grupos. Por isso a comparação por hora é válida.
+- **Fato (exceção, item 8):** em 3 seções de Lisboa, a urna ficou ligada durante a madrugada em que o horário de verão acabou e seguiu com o relógio 1 hora adiantado no 2º turno. A tabela e o gráfico acima contam pela hora do relógio de cada urna: os 87 votos dessas 3 seções que aparecem na coluna das 17 h foram dados às 16 h reais. Nenhum voto delas ficou fora das 8 h às 17 h reais. **Pendente:** refazer a tabela e o gráfico pela hora real dessas 3 seções.
 - **Fato (seções em cédula):** no 2º turno, cada um dos 29 resultados apurados em cédula foi recebido pelo TSE pelo menos 160 minutos depois do fim da votação no próprio posto, pelo relógio do servidor do TSE. No 1º turno, a base não tem a hora de recebimento desses resultados (**Pendente**).
 
 **O que o teste não enxerga.**
@@ -332,6 +342,100 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 - Quem pôs o dedo. O diário mostra que alguém pôs um dedo (ou que ninguém pôs), mas não quem; quando o dedo não é de mesário cadastrado, não há nome.
 - Uma mudança pequena: o tamanho mínimo que o teste de voto enxerga é estimativa e fica fora deste relatório.
 
+### 8. Relógio da urna e ordem dos acontecimentos no diário (H20)
+
+**A suspeita.** Quem quisesse pôr votos fora do horário poderia tentar escondê-los no relógio da urna: votos antes da abertura ou depois do encerramento, com a hora mexida; linhas do diário reescritas ou fora de ordem; ou a votação inteira de uma seção deslocada em 1 hora, com a hora digitada errada na preparação. Se isso tivesse sido feito, apareceriam votos fora da ordem certa, relógio voltando sem motivo escrito, hora acertada durante a votação ou seções com o dia inteiro deslocado em relação às vizinhas.
+
+**A ordem dos acontecimentos dentro da urna.** A urna anota num diário cada coisa que acontece, com data e hora. A ordem certa é sempre a mesma: primeiro a zerésima, depois a abertura, depois os votos, depois o encerramento e, por fim, o boletim com o resultado. Essa ordem foi conferida em todos os diários dos dois turnos, uma linha depois da outra, e também pelo relógio.
+
+| Diários de todas as urnas | 1º turno | 2º turno |
+|---|---:|---:|
+| Votos lidos no diário | 125.274.062 | 128.235.189 |
+| Votos que estão só numa segunda cópia do diário da mesma urna, testados à parte | 267 (5 seções) | 0 |
+| Votos antes da zerésima | 0 | 0 |
+| Votos antes da abertura | 0 | 0 |
+| Votos depois do encerramento | 0 | 0 |
+| Boletins gerados antes do último voto | 0 | 0 |
+| Zerésima impressa depois da abertura | 0 | 0 |
+| Seções com duas urnas recebendo votos ao mesmo tempo, pelo relógio | 2 (relógio errado, abaixo) | 0 |
+| Votos do boletim sem linha no diário (sem hora para conferir) | 159 (9 seções) | 54 (6 seções) |
+| Seções sem nenhuma zerésima no diário publicado | 2 | 1 |
+
+**Como ler:** as linhas com 0 são as inversões de ordem procuradas, contadas pela ordem das linhas e também pelo relógio; nenhuma apareceu. As duas últimas linhas mostram o que o teste não alcança.
+
+- **Fato (revisado):** nenhum voto aparece antes da zerésima nem depois do encerramento, e nenhum boletim foi gerado antes do último voto, nos dois turnos. Isso vale também para os 267 votos do 1º turno que estão só numa segunda cópia do diário da mesma urna (por exemplo, quando um arquivo guarda a tarde e outro guarda a manhã): cada uma dessas cópias foi conferida na sua própria ordem.
+- **Fato (revisado):** as 2 seções do 1º turno em que duas urnas parecem receber votos ao mesmo tempo, RJ 60011/0214/0024 e PR 74713/0078/0261, são urnas originais com o relógio 1 hora adiantado (tabela abaixo). Pela hora real, a original votou primeiro e a reserva depois.
+- **Fato (revisado, alcance):** o teste só alcança os votos que têm linha no diário. Os 159 votos do 1º turno e os 54 do 2º que estão no boletim sem linha no diário não têm hora para conferir; a causa de cada caso está no [tópico 2](02-coerencia-entre-arquivos.md). E em 3 seções o diário publicado não tem nenhuma zerésima: BA 39934/0183/0175 e SP 71072/0002/0035 (1º turno) e MA 08893/0047/0609 (2º turno). Nelas, os votos com linha foram conferidos contra a abertura, e não contra a zerésima, e a manhã da seção não tem diário no pacote publicado.
+
+**O relógio nunca andou para trás entre dois votos.**
+
+- **Fato (revisado):** em todos os pares de votos seguidos da mesma urna, nos dois turnos, a hora do segundo nunca é menor que a do primeiro.
+- **Fato (revisado):** o relógio da urna volta às vezes, mas sempre por um motivo que fica escrito no diário: alguém acertou a hora na preparação; a bateria do relógio acabou e a urna voltou a uma data padrão (como 1º de janeiro); ou, no exterior, a urna foi religada e reaplicou o horário de verão do país. É como um relógio de cozinha que, quando falta luz, volta a marcar meia-noite: dá para ver no diário quando isso aconteceu. Nenhum recuo do relógio ficou sem motivo escrito.
+
+**Ninguém consegue mudar a hora da urna depois da zerésima.**
+
+| Depois da zerésima | 1º turno | 2º turno |
+|---|---:|---:|
+| Acertos de hora feitos | 0 | 0 |
+| Tentativas de acerto recusadas pela urna, gravadas no diário | 23 (em 14 urnas) | 10 (em 6 urnas) |
+
+- **Fato (revisado):** a urna tem uma trava: depois de imprimir a zerésima, ela recusa o aplicativo de ajuste de hora e grava a recusa, com a mensagem de que o ajuste "não pode ser executado após a impressão da zerésima". Nos dois turnos, a urna recusou 33 tentativas, em 20 urnas, e nenhum acerto foi feito depois da zerésima. É controle técnico com rastro, no sentido da regra de controle (princípio 8): a urna trava sozinha e registra.
+- **Fato (revisado):** a única mudança de hora depois da zerésima é automática e fica registrada: no exterior, quando a urna é religada, o relógio interno volta 1 hora e a urna soma de novo o horário de verão do país.
+- **Fato (revisado):** as tentativas recusadas são úteis: mostram onde alguém da mesa percebeu que o relógio estava errado. Foi assim nas urnas originais da zona 0214 do RJ (tabela abaixo) e em urnas originais da BA e do MA com o relógio atrasado, trocadas pela reserva antes de receber qualquer voto.
+
+**As travas de horário contam no relógio da própria urna (risco).**
+
+- **Fato:** a urna só imprime a zerésima a partir das 7h, só aceita votos a partir das 8h e só deixa encerrar a partir das 17h. Mas essas travas contam no relógio da própria urna, e a hora da urna é digitada por uma pessoa na preparação. Se a hora digitada estiver errada, a trava funciona na hora errada.
+- **Risco (princípio 8):** a trava é técnica, mas a hora que ela usa depende de uma pessoa. O exame abaixo procura as urnas em que isso aconteceu.
+
+**Relógios errados encontrados (Fato, revisado; casos lidos no diário original).**
+
+| Seção (UF município/zona/seção) | Turno | Relógio | O que o diário mostra | Votos fora do horário real |
+|---|---|---|---|---|
+| RJ 60011/0214/0279 | 1º | 1 h adiantado | Hora digitada 1 hora à frente na preparação de 22/09; corrigida na manhã do 2º turno, antes da zerésima | Nenhum antes das 8h reais. 15 votos que o relógio marcou depois das 17h foram dados antes das 17h reais |
+| RJ 60011/0214/0022, 0023 e 0024 (urnas originais) | 1º | 1 h adiantado | Mesma preparação de 22/09, na mesma zona. A mesa tentou acertar a hora depois da zerésima, e a urna recusou. As três foram trocadas por reserva com o relógio certo: a 0022 e a 0023 não receberam voto; a 0024 recebeu 5 | Nenhum |
+| PR 74713/0078/0261 (urna original) | 1º | 1 h adiantado | Hora digitada 58 minutos à frente na preparação. Recebeu 166 votos e foi trocada à tarde por reserva com o relógio certo | Nenhum |
+| GO 92274/0119/0049 | 1º e 2º | 1 h adiantado | Hora digitada 59 minutos à frente na preparação de 21/09, sem nenhum outro acerto até o fim do 2º turno. Nos dois turnos, a mesa esperou a hora certa: nenhum voto na hora das 8h do relógio, que eram 7h reais | Nenhum antes das 8h reais. Depois das 17h: no 1º turno, 61 votos pelo relógio e 25 pela hora real; no 2º, 15 pelo relógio e nenhum pela hora real |
+| PR 74357/0050/0033 | 1º | 1 h atrasado | Hora digitada 59 minutos atrás na preparação. No dia, a urna foi ligada cedo e esperou a trava: zerésima, abertura e encerramento exatamente na trava do relógio (7h01, 8h00 e 17h01). Corrigida em 15/10 com mais 59 minutos; no 2º turno, normal | Abriu às 9h reais. Nenhum voto antes das 8h reais. 16 votos dados entre 17h e 17h21 reais, que o relógio marcou como das 16h |
+| GO 93734/0133/0062 | 1º | 30 min atrasado | Hora digitada 30 minutos atrás na preparação. Zerésima e abertura na trava do relógio | Abriu às 8h30 reais. Nenhum |
+| Lisboa, seções 3649, 3705 e 3785 (exterior) | 2º | 1 h adiantado | A urna foi ligada na véspera, 24/10, e ficou ligada a noite inteira. Quando o horário de verão de Portugal acabou, às 2h de 25/10, ela não atrasou o relógio | Duas ficaram prontas antes das 8h reais (7h46 e 7h50), mas o primeiro voto das três foi às 8h00 ou depois. Nenhum voto fora das 8h às 17h reais. Os 87 votos que o relógio marcou na hora das 17h foram dados às 16h reais |
+
+**Como ler:** "adiantado" quer dizer que o relógio da urna marcava mais do que a hora real; "atrasado", menos. A coluna "Relógio" diz quanto. A última coluna diz o que muda quando se usa a hora real em vez da hora do relógio.
+
+- **Fato (revisado):** um relógio atrasado também se acha, pelo começo do dia. O mesário chega pela hora da parede, liga a urna, e ela o faz esperar a trava da zerésima: a urna fica ligada cedo, e a zerésima e a abertura saem exatamente na hora da trava. Foi assim que se achou a seção PR 74357/0050/0033. Com o relógio 1 hora atrasado, a trava das 17h segura o encerramento até as 18h reais, e por isso o fim do dia, sozinho, parece normal.
+- **Fato (revisado):** na seção PR 74357/0050/0033, o voto da seção em relação ao resto do mesmo local de votação foi o mesmo nos dois turnos, com o relógio errado e com o relógio certo: 50,0% para o 13 contra 43,4% no resto do local no 1º turno, e 53,1% contra 46,9% no 2º. A diferença vem da seção, não do relógio.
+- **Hipótese:** relógio 1 hora atrasado em BA 34134/0171/0166, no 2º turno. A urna, usada nessa seção pela primeira vez no 2º turno, foi ligada cedo, esperou a trava da zerésima e abriu exatamente na trava das 8h; no meio da manhã, a mesa tentou acertar a hora, e a urna recusou; à tarde, a mesa tentou encerrar três vezes antes das 17h do relógio, e a urna recusou. Se a hipótese estiver certa, ela abriu às 9h reais e o último voto foi antes das 17h reais. Não é Fato porque não há correção posterior nem prova de fora do diário.
+- **Hipótese:** relógio 1 hora adiantado em SP 71072/0280/0913 (nos dois turnos) e em RS 88994/0131/0007 (1º turno). O dia inteiro dessas seções fica 1 hora depois do das vizinhas, mas o diário não tem acerto de hora cheia que prove o relógio errado. Também pode ser atraso real da seção.
+
+**Efeito na conta dos votos depois das 17h (Fato, revisado).** Com a hora real das seções da tabela acima, a conta do [tópico 3](03-linha-do-tempo.md), item 6, muda poucas dezenas de votos:
+
+| | Antes da correção | Depois da correção |
+|---|---:|---:|
+| 1º turno, votos depois das 17h de Brasília | 3.723.360 | 3.723.325 |
+| 1º turno, votos depois das 18h | 778.979 | 778.954 |
+| 2º turno, votos depois das 17h | 34.330 | 34.315 |
+| 2º turno, votos depois das 18h | 1.993 | 1.993 |
+| Exterior, 2º turno, votos depois das 17h pela hora local | 417 | 330 |
+
+**Como ler:** as quatro primeiras linhas são do Brasil, sem o exterior. No 1º turno, a correção tira 15 votos da seção RJ 0279 e 36 da GO 0049 e acrescenta os 16 da PR 74357/0050/0033 (−35 no total); no 2º turno, tira os 15 da GO 0049. A última linha é a de Lisboa (−87). As hipóteses acima ficam fora da conta.
+
+**A hora de chegada ao TSE.**
+
+- **Fato (revisado):** o TSE anota a hora em que registrou cada boletim, e nenhum boletim pode chegar antes de ser feito. Com a correção de relógio das 81 seções do 1º turno descrita no [tópico 3](03-linha-do-tempo.md) (Limites), só 4 boletins no 1º turno e 8 no 2º aparecem registrados antes da hora em que a urna os emitiu, todos por no máximo 2 minutos e meio. São relógios de urna alguns minutos à frente do relógio do TSE, e não horas.
+- **Limite:** no 2º turno, o TSE registrou quase todos os boletins depois das 19h ([tópico 3](03-linha-do-tempo.md), item 12). Por isso essa conferência de fora quase não serve, no 2º turno, para achar um relógio atrasado.
+
+**O código de cada linha do diário (limite, não indício).**
+
+- **Fato (revisado):** cada linha do diário termina com um código de 16 letras e números, que parece amarrar a linha à anterior, como os elos de uma corrente. A fórmula desse código não é pública. Foram testadas, nas primeiras linhas do diário de cada uma de duas seções, 8.786 combinações com resumos criptográficos conhecidos (as "impressões digitais" do glossário) e 1.692 com somas de verificação de 64 bits, um tipo mais simples de código: nenhuma reproduz o código.
+- **Limite:** isso **não é sinal de fraude**. Quer dizer que quem está de fora não consegue conferir o diário linha a linha.
+- **Fato:** o diário inteiro é conferido de outro jeito. Ele é um dos arquivos lacrados pela própria urna ao fim do dia, e o lacre foi conferido nos 499.207 pacotes de cada turno, sem nenhuma falha ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)). Isso prova que o diário publicado é exatamente o que a urna fechou. Não prova que as horas escritas estavam certas, porque a hora é a do relógio da urna. E não protege contra uma urna com programa adulterado que escrevesse e assinasse um diário falso ([tópico 7](07-limites-da-pericia.md)).
+
+**O que o teste não enxerga.**
+
+- A hora dos votos que estão no boletim sem linha no diário (159 no 1º turno e 54 no 2º) e as manhãs das 3 seções sem zerésima no diário publicado.
+- Um relógio errado que não mudou entre os turnos, numa seção em que a mesa também chegou na hora errada e seguiu o relógio da urna o dia inteiro. Isso não deixa rastro nos arquivos públicos; só a ata da seção ou uma hora registrada fora da urna resolvem.
+- A ordem das linhas do diário conferida pelo código de cada linha, enquanto a fórmula não for pública.
+
 ## Prova de que o teste funciona (contraprova)
 
 - **Fato (H18):** num teste de laboratório, votos trocados de propósito numa cidade isolada foram marcados pelo teste na maioria das vezes quando a mudança era grande, e raramente quando era pequena. É o que o teste promete: ele vê a mudança grande numa cidade, não a pequena nem a espalhada (o tamanho exato é estimativa e fica fora). O mesmo teste de laboratório mostrou o ponto cego: a mudança feita num estado inteiro quase não marcou cidades.
@@ -342,6 +446,8 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 - **Pendente (H24):** não houve teste com dados alterados de propósito para mostrar que as contas de aptos e de trânsito acusariam uma alteração.
 - **Fato (H19):** a contagem das tentativas acusa o que procura: ela achou as 3 liberações à mão com menos de quatro tentativas e as liberações sem nenhum dedo lido. A soma das liberações à mão por essa contagem é igual, até a unidade, à de uma leitura anterior de todos os diários feita por outro programa (8.342.240 e 8.632.471). E a comparação entre os turnos acusa mudança forte quando ela existe: foi ela que achou as seções em que a falha mudou muito, muitas delas com a urna trocada, onde o leitor muda junto com a urna.
 - **Pendente (H19):** o menor efeito no voto que o teste enxerga só existe como estimativa, que fica fora deste relatório.
+- **Fato (H20):** o teste acusa quando há o que acusar. Foi ele que achou as 2 seções do 1º turno com duas urnas votando ao mesmo tempo pelo relógio, as urnas com relógio adiantado e atrasado, as 33 recusas de acerto de hora e os 4 e 8 boletins registrados minutos antes da emissão, cada caso lido no diário original. A leitura dos votos no diário dá o mesmo total de uma leitura anterior de todos os diários, feita por outro programa (125.274.062 e 128.235.189), e a segunda verificação independente, com regras próprias, achou os 267 votos que estavam só numa segunda cópia do diário e os conferiu.
+- **Fato (H20, conta dos votos depois das 17h):** o cálculo que aplica as correções de relógio, rodado sem elas, chega exatamente aos totais anteriores (3.723.360 e 778.979 no 1º turno; 34.330 e 1.993 no 2º; 417 no exterior).
 
 ## Limites (o que não se pode afirmar)
 
@@ -351,6 +457,7 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 4. **O programa da urna.** Nenhum teste deste tópico enxerga um programa adulterado e assinado com a chave oficial, que grava diário e resultado normais ([tópico 7](07-limites-da-pericia.md)).
 5. **Atributos do eleitor.** Preso, militar, servidor da Justiça Eleitoral e deficiência visual não estão nos arquivos públicos por seção.
 6. **Quem autorizou a liberação à mão.** Quando o dedo que autoriza não é de mesário cadastrado, o diário não diz de quem é. E a liberação sem nenhum dedo lido não deixa digital de ninguém (H19).
+7. **A hora certa da urna.** A ordem dos acontecimentos só vale para os votos com linha no diário. A hora escrita é a do relógio da urna, digitada por uma pessoa; um relógio errado que não mudou entre os turnos, com a mesa seguindo a mesma hora errada, não deixa rastro. E, sem a fórmula do código de cada linha, ninguém de fora confere o diário linha a linha (H20).
 
 ## Pendentes (sem número, salvo onde indicado)
 
@@ -361,6 +468,7 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 - **H24:** o balanço entre saídas e chegadas de eleitores em trânsito, que depende do cadastro usado na carga.
 - **H27:** a lista das seções sorteadas para o Teste de Integridade, por TRE, nos dois turnos; o comparecimento das seções em 2022, para comparar as seções novas.
 - **H19:** conferência no local (ata da mesa, manutenção da urna e quem autorizou as liberações) das seções com leitor intermitente, das seções com autorização em série por dedo sem dono e das seções com muitas liberações sem nenhum dedo lido; o teste das seções que são as únicas do seu prédio com aquele modelo de urna; a contagem, seção a seção, das liberações sem nenhum dedo lido.
+- **H20:** as atas das seções com relógio errado ou suspeito e das preparações em que a hora foi digitada errada; a confirmação ou não das hipóteses de BA 34134/0171/0166, SP 71072/0280/0913 e RS 88994/0131/0007; as medidas por seção do [tópico 3](03-linha-do-tempo.md), itens 6 a 9, refeitas com a correção de relógio; a tabela do exterior hora a hora (item 3) pela hora real das 3 seções de Lisboa.
 
 ## Pedidos ao TSE e aos TREs
 
@@ -374,13 +482,17 @@ Os outros tópicos testam as formas mais conhecidas de fraude: soma das urnas, a
 - **Regra da autorização da liberação à mão:** por que a urna aceita o dedo de qualquer pessoa para autorizar, sem identificar o mesário, e se a urna reserva recebe o cadastro dos mesários da seção (H19).
 - **Tentativa sem dedo lido:** por que a tentativa que termina com o tempo esgotado conta como uma das quatro, e qual é o tempo de cada tentativa (H19).
 - **Atas das seções para conferência no local (H19):** pedidas ao TSE; a lista das seções vai no pedido separado, fora deste relatório.
+- **Atas das seções com relógio errado ou suspeito (H20):** PR 74357/0050/0033 (1º turno), BA 34134/0171/0166 (2º turno) e SP 71072/0280/0913 (dois turnos); e as atas das preparações de 22/09 na zona 0214 do RJ, de 26/09 na zona 0078 do PR e de 21/09 na zona 0119 de GO.
+- **Especificações (H20):** a fórmula do código de cada linha do diário; as travas de horário (zerésima, abertura e encerramento) em cada fuso; e o relógio da urna (de onde vem a hora, a bateria e o horário de verão no exterior).
 
 ## Próximos passos
 
 - [x] H18, H21, H22, H23, H24 e H27 medidas em todas as seções, com segunda verificação independente.
 - [x] H19 medida em todas as seções do Brasil, nos dois turnos, com segunda verificação independente.
+- [x] H20 medida nos diários de todas as urnas dos dois turnos, com segunda verificação independente; correção de relógio aplicada à conta dos votos depois das 17h.
 - [ ] **Pendente.** Pedidos de atas e de listas acima.
 - [ ] **Pendente.** H19: conferência no local das seções listadas no pedido; teste das seções sem vizinha do mesmo modelo; liberações sem nenhum dedo lido, seção a seção.
 - [ ] **Pendente.** Verificação local das 19 cidades da H18 e dos números da H21 sem explicação.
 - [ ] **Pendente.** Refazer o comparecimento das seções com recarga entre os turnos (H23).
 - [ ] **Pendente.** Comparar as seções novas com 2022 (H27).
+- [ ] **Pendente.** H20: atas e especificações pedidas acima; refazer as medidas por seção do tópico 3 com a correção de relógio.

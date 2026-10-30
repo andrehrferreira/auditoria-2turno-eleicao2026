@@ -85,10 +85,10 @@ Para cada seção, a conta é: votos do finalista no 2º turno, menos tudo o que
 
 - **A decisão (Pendente):** o único texto lido é uma minuta publicada pela imprensa, não a versão assinada; por isso o conteúdo abaixo não é Fato. Pela minuta, trata-se de liminar do STF na Reclamação 101.673/BA (pedido da coligação de Lula contra os municípios de Salvador, Feira de Santana e Lauro de Freitas, por falta de transporte público), que determina "prorrogação por duas horas, até as 19h, horário de Brasília, do encerramento do recebimento dos votos em todas as seções de todo o Brasil, cabendo ao TSE dar cumprimento". O documento lido é a "Minuta_ Decisão Liminar" publicada pelo Poder360.
 - **Votos dados depois das 17h de Brasília no 2º turno, por duas contas independentes com recortes diferentes:**
-  - 34.330 votos: Brasil sem o exterior, contando também as urnas reserva (contingência);
+  - 34.315 votos: Brasil sem o exterior, contando também as urnas reserva (contingência), já com a correção de uma seção de Goiás cujo relógio estava 1 hora adiantado ([tópico 3](03-linha-do-tempo.md), item 6);
   - 34.066 votos: só as urnas da própria seção, com o exterior pelo relógio local. Sem o exterior, 33.668.
-  - A diferença vem das urnas reserva e do exterior. Depois das 18h: 1.993 e 1.960.
-- **Tamanho em relação ao resultado:** mesmo que os 34.330 votos fossem todos para um só candidato, seriam 0,77% da diferença de 4.430.191 votos.
+  - A diferença vem das urnas reserva, do exterior e da correção de relógio, que a segunda conta não tem. Depois das 18h: 1.993 e 1.960.
+- **Tamanho em relação ao resultado:** mesmo que os 34.315 votos fossem todos para um só candidato, seriam 0,77% da diferença de 4.430.191 votos.
 - **Pendente:** versão assinada da decisão no portal do STF e horário do ofício do TSE aos TREs.
 
 ## 5. Eleitores registrados como "sem biometria cadastrada" acima do cadastro (Fato, revisado por segunda verificação independente)
