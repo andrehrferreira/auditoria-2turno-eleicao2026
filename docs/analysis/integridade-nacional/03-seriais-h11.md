@@ -63,15 +63,30 @@ Para cada seção do grupo, o script lê no log o bloco da leitura da MR: comput
 
 ### Mesma urna em mais de uma seção, contando a contingência
 
-O log aninhado guarda o log da urna original substituída numa contingência.
+O log aninhado guarda o log da urna original substituída numa contingência (a cópia que estava no cartão de votação), ou o log anterior da mesma urna, arquivado quando ela é recarregada ([doc 07](07-autoverificacao-no-log.md)).
+
+Comandos: `node scripts/auditoria/integridade-urnas-reaproveitadas.mjs --turno 2` → `urnas-reaproveitadas.json`; `node scripts/auditoria/integridade-sobreposicao-bruto.mjs --turno 2` (3 s) → `sobreposicao-bruto.json`.
 
 - **Fato:** 360 urnas aparecem em mais de uma seção no 2º turno, contando o log aninhado. O padrão principal (271 urnas) é este: a urna aparece como original substituída (log aninhado) numa seção, e em outra é a urna do BU que votou em 25/10.
   - Exemplo: AC 01015/0002/0093. O log da urna 2264191 termina em 15/10; a reserva 2293878 assumiu com o mesmo cartão de votação (MV `D0AD8444`).
   - A urna 2264191 recebeu log novo a partir de 24/10 e votou na seção 0088.
-- **Fato:** nenhuma urna registrou atividade em 25/10 em duas seções diferentes. A única exceção é a seção RED do ES ([doc 04](04-coerencia-identificadores.md)), em que o mesmo log foi copiado nos pacotes da 0085 e da 0112.
+- **Fato:** nenhuma urna registrou atividade em 25/10 em duas seções diferentes. A única exceção são 2 urnas da seção RED do ES ([doc 04](04-coerencia-identificadores.md)), em que os mesmos logs foram copiados nos pacotes da 0085 e da 0112.
+- **Fato:** nenhuma urna escreveu log em duas seções ao mesmo tempo.
+  - Pela primeira e pela última linha de cada log, 92 urnas têm períodos que se cruzam em duas seções. Conferidas uma a uma no log bruto:
+
+    | Resultado no bruto | Urnas |
+    |---|---|
+    | Mesmo log em dois pacotes: na janela comum, um lado não tem nenhuma linha que o outro não tenha (no mínimo 24 linhas iguais por par) | 87 |
+    | Relógio acertado na carga: as linhas anteriores a "Data e hora atualizada" têm a data errada do relógio interno | 4 |
+    | Linha isolada com o número da urna corrompido (RJ 60011/0008/0061, log com bits apagados) | 1 |
+    | Escrita simultânea em duas seções | 0 |
+
+  - Como o mesmo log vai parar em dois pacotes, no caso da urna 2391275 (BA 38490/0011): ela falhou na seção 0594 em 04/10 às 07:50, e o cartão de votação (MV `B10A2CB2`) foi para a reserva levando a cópia do log até 07:53 (996 linhas). Em 15/10 a urna foi recarregada como reserva e assumiu a seção 0486 em 25/10. O log antigo foi arquivado dentro dela e saiu no pacote da 0486 com 1.050 linhas. O código de carga é o mesmo nos dois.
+  - Exemplo de relógio acertado: PA 04839/0100/0251. A carga começa às "27/09 19:30" do relógio interno, e o operador digita **21/10/2026 10:33**. A urna tinha sido usada na seção 0055 até 04/10. O mesmo ocorre em MT 90670/0039/0376 (relógio em 15/09, data digitada 24/10).
+  - Linha corrompida: no log aninhado do RJ 60011/0008/0061 (1º turno, guardado no pacote do 2º), a linha "Tecla ildevida presqimnada" traz a urna `01760981`. A urna do BU é a `01760983`. O mesmo log tem também `01740981` (92 linhas) e `01560983` (4 linhas): todas são o número `01760983` com o bit 0x02 apagado em algum dígito (3→1, 6→4, 7→5). A `01760981` verdadeira é a urna do BU do MS 91014/0004/0077.
 - **Leitura:** a urna substituída numa seção (no 1º turno ou antes do 2º) foi reaproveitada em outra. É coerente com o fluxo de contingência e não aparece no teste de urna repetida do BU, que dá 0.
 
 ## Pendente
 
 - Entre turnos: mesma urna na mesma seção, quantas trocaram e por quê (contingência, reaproveitamento); FV, FC e código de carga; MR (o log do 1º turno não registra o serial da MR, só o tamanho dela: Fato no AC).
-- Repetir no 1º turno.
+- Repetir no 1º turno (seriais e mesma urna em mais de uma seção).
