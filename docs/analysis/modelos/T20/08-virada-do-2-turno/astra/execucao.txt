@@ -1,0 +1,1 @@
+ok   cx/gpt-6-astra: docs\analysis\modelos\T20\08-virada-do-2-turno\astra\astra.md

@@ -8,7 +8,7 @@ Os arquivos que o TSE publica na internet são exatamente os que a urna gerou no
 
 **Fato (2º turno, país inteiro e exterior, com revisão independente): sim.** Os pacotes das 499.207 seções com urna foram conferidos um a um. Em nenhum o arquivo mudou depois de assinado, e todos foram assinados por uma urna com "carteira de identidade" digital (certificado) emitida por uma das três autoridades do TSE para urnas. Resultado: **499.207 pacotes, 0 falha**. Mudar um único voto, ou um único sinal de um lacre, é detectado (seção "Prova de que o teste funciona").
 
-**1º turno (Fato, 30/10/2026):** 499.207 pacotes com as assinaturas conferidas, 0 falha de arquivo (ver "Assinaturas do 1º turno", abaixo). As impressões digitais dos arquivos do 1º turno já foram refeitas em todas as seções ([tópico 0](00-coleta-completa.md)).
+**1º turno (Fato, 30/10/2026):** 499.207 pacotes com as assinaturas conferidas: nenhum arquivo alterado depois de assinado. Um pacote, de MG, traz um arquivo publicado fora da lista lacrada (o boletim impresso), o que, pelo critério do 2º turno, conta como falha (ver "1º turno", abaixo). As impressões digitais dos arquivos do 1º turno já foram refeitas em todas as seções ([tópico 0](00-coleta-completa.md)).
 
 **Fato (2º turno):** ao ligar, a urna confere as assinaturas do próprio programa e anota o resultado no diário. Em 162 seções a urna anotou que uma dessas conferências falhou. Em nenhum desses casos a urna recebeu voto sem antes ser desligada e ligada de novo (seção "O que a urna anota sobre o próprio programa").
 
@@ -71,7 +71,7 @@ Os degraus 1 e 2 mostram que **nada mudou entre a nota fiscal e o arquivo baixad
 | 4 | A carteira estava dentro da validade no dia da eleição | Válida de 2022 a 2036 | **Fato** |
 | — | Lacre do software do TSE (método CEPESC) | Não verificável | **Limite** |
 
-O programa de conferência de lacres desta perícia faz 25 dessas conferências nesta seção (2 da carteira de identidade, 2 da lista da urna, 4 impressões digitais de arquivo, 11 lacres de arquivo e 6 da corrente do boletim), todas com resultado positivo, refeitas em 29/10/2026 nos dois turnos; a mesma contagem, 25 de 25, vale para a seção 364 da mesma zona, citada no tópico 4. As outras linhas da tabela (código do portal, tamanhos, lista do software e número da urna no boletim e no diário) são conferidas à parte, por programas separados, também com resultado positivo.
+O programa de conferência de lacres desta perícia faz 25 dessas conferências nesta seção (2 da carteira de identidade: assinatura da autoridade e validade; 2 da lista da urna: impressão digital e lacre; 4 impressões digitais de arquivo; 11 lacres de arquivo; e 6 da corrente do boletim, 3 por eleição: os elos recalculados, o último elo e o lacre dele), todas com resultado positivo, refeitas em 29/10/2026 nos dois turnos; a mesma contagem, 25 de 25, vale para a seção 364 da mesma zona, citada no tópico 4. As outras linhas da tabela (código do portal, tamanhos, lista do software e número da urna no boletim e no diário) são conferidas à parte, por programas separados, também com resultado positivo.
 
 ## O que foi conferido no país inteiro (2º turno)
 
@@ -146,7 +146,7 @@ A tabela por UF vem da conferência de todos os pacotes; o total e a separação
 
 - O que sobra depois da carteira é só zero, nos 37.457.
 - O corte muda só a forma de ler. A lista assinada e as assinaturas foram usadas byte a byte, sem alteração, e os 37.457 passaram por todas as conferências da tabela acima. Nenhum pacote oficial ficou sem conferência.
-- A sobra acompanha a carteira da urna, não o pacote: a mesma urna mostra a mesma sobra nos dois turnos.
+- A sobra acompanha a carteira da urna, não o pacote: a mesma urna mostra a mesma sobra nos dois turnos. No 1º turno são 37.440 pacotes (abaixo): o conjunto de pacotes de urnas antigas não é o mesmo nos dois turnos (99.957 no 2º turno e 99.985 no 1º; [relatório temático](temas/certificado-ac-urna.md)).
 - A seção do CE (zona 55, seção 160), deixada pendente no [tópico 9](09-padroes-estatisticos.md), é um desses pacotes, e passa depois do corte.
 - **Hipótese:** a urna grava a carteira num espaço de tamanho fixo. O tamanho da assinatura da carteira varia um pouco de urna para urna, e o que falta é completado com zeros.
 - Há também carteiras com **2** zeros a mais, que o leitor aceita sem avisar. A assinatura delas é conferida normalmente, e o teste de adulteração abaixo passou numa delas. Não é falha de segurança. Mas o programa deveria registrar essa sobra, e a correção foi recomendada na revisão independente. A quantidade desses casos não entra aqui, porque o programa não a registra hoje.
@@ -175,12 +175,12 @@ Foram lidos os diários de todas as 499.207 seções do 2º turno (leitura confe
 - As 499.207 urnas do 2º turno registram a mesma versão de programa, 10.23.0.0, no boletim e em todo o diário.
 - Em **162 seções**, a urna anotou "ERRO" em alguma etapa dessa conferência: 181 anotações, entre 18/09 e 25/10/2026. 41 dessas anotações são da véspera ou do dia de uma das votações.
 - **Em nenhum desses casos a urna recebeu voto na mesma inicialização.** Na revisão independente, o diário original de cada uma das 181 anotações foi aberto e, entre o erro e o desligamento seguinte, havia: 0 "urna pronta para receber votos" e 0 "voto computado".
-- Em 134 dessas seções, a mesma urna recebeu votos depois, numa nova inicialização, sem que o programa tivesse sido instalado de novo. Contando cada seção, urna e dia uma só vez: **31.892 votos em 127 seções no dia do 2º turno** e **24.422 votos em 103 seções no dia do 1º turno**. Esses votos estão nos boletins dessas seções, que passaram na conferência de assinaturas acima.
+- Em 134 dessas seções, a mesma urna recebeu votos depois, numa nova inicialização, sem que o programa tivesse sido instalado de novo. São as 128 anotações de "mesma urna religada" da tabela abaixo (em 125 seções) e 10 anotações de urnas que votaram depois do erro e só mais tarde foram trocadas por reserva (contadas na tabela em "urna trocada"). Contando cada seção, urna e dia uma só vez: **31.892 votos em 127 seções no dia do 2º turno** e **24.422 votos em 103 seções no dia do 1º turno**. Esses votos estão nos boletins dessas seções, que passaram na conferência de assinaturas acima.
 - Quando o erro é num programa interno da urna, a mensagem anotada manda desligar a urna e instalar o programa de novo. O diário mostra que, nesses casos, a urna foi desligada, ligada de novo, passou na mesma etapa e votou normalmente, sem nova instalação.
 - **842 seções** do 2º turno têm no diário ao menos uma mensagem de erro sobre assinatura ou integridade. Dessas, 162 são as que têm a falha registrada numa etapa da conferência do programa (acima). As demais são mensagens de outros tipos, por exemplo falha de leitura de um cartão de memória, ou cartão de resultado com assinatura que não confere, quando a urna pede outro cartão. Os dois números foram contados na revisão independente.
 - Em 26 urnas que trocaram o cartão de votação (o cartão de memória onde a urna grava os votos) no próprio dia, a conferência daquela inicialização não incluiu o arquivo da seção no cartão novo.
 
-**Fato (1º turno, varredura própria dos pacotes do 1º turno):** 146 anotações de "ERRO" em 128 seções, 22 delas na véspera ou no dia (03 e 04/10). Em nenhuma a urna recebeu voto na mesma inicialização. Depois do erro, 103 seções votaram em nova inicialização: 24.422 votos em 04/10, o mesmo número medido pelos pacotes do 2º turno. As duas varreduras conferem entre si.
+**Fato (1º turno, varredura própria dos pacotes do 1º turno):** 146 anotações de "ERRO" em 128 seções, 22 delas na véspera ou no dia (03 e 04/10). Em nenhuma a urna recebeu voto na mesma inicialização. Depois do erro, 103 seções votaram em nova inicialização (as 99 anotações de "mesma urna religada", em 97 seções, e 7 de urnas que votaram e só depois foram trocadas): 24.422 votos em 04/10, o mesmo número medido pelos pacotes do 2º turno. As duas varreduras conferem entre si.
 
 **O que não se pode afirmar:**
 
@@ -244,7 +244,7 @@ Casos concretos, conferidos no diário original: SP 71072/0353/0853, erro num pr
 
 ## 1º turno
 
-**Fato (30/10/2026).** No 1º turno, as assinaturas dos 499.207 pacotes também foram conferidas, sem nenhuma falha de arquivo. Em 37.440 deles (urnas de 2013 e 2015) o certificado tem bytes zero a mais no fim; conferidos com o certificado cortado no lugar certo, os 37.440 passam. Uma recontagem independente, com programa próprio, chegou aos mesmos números, e a revisão independente do 2º turno tinha previsto os 37.440. O único caso fora do padrão é o já conhecido boletim impresso de MG 50075/0047/0041, publicado fora da lista lacrada.
+**Fato (30/10/2026).** No 1º turno, as assinaturas dos 499.207 pacotes também foram conferidas: nenhum arquivo foi alterado depois de assinado e nenhuma assinatura falhou. Em 37.440 deles (urnas de 2013 e 2015) o certificado tem bytes zero a mais no fim; conferidos com o certificado cortado no lugar certo, os 37.440 passam. Uma recontagem independente, com programa próprio, chegou aos mesmos números, e a revisão independente do 2º turno tinha previsto os 37.440. Há um caso fora do padrão: o boletim impresso de MG 50075/0047/0041, publicado fora da lista lacrada. Pelo critério do 2º turno (tabela acima), "arquivo fora da lista lacrada" conta como falha; no 1º turno, portanto, são 0 arquivos alterados e 1 pacote com arquivo sem lacre.
 
 - **Fato.** No pacote do 1º turno da seção MG 50075/0047/0041 (apuração mista, com o Sistema de Apuração), o boletim impresso foi publicado sem estar na lista lacrada. **Pendente:** conferir se o conteúdo dele bate com o boletim assinado.
 - **Limite do 1º turno:** o TSE não publica, para o 1º turno, o arquivo que indica qual pacote foi totalizado em cada seção. O pacote é identificado pela etiqueta (impressão digital do pacote de lacres), e isso não prova, sozinho, que o pacote no disco é o que o TSE totalizou.
@@ -287,7 +287,7 @@ Fonte dos arquivos: `resultados.tse.jus.br`, baixados em 29/10/2026, com registr
 
 - [x] Rodar a conferência dos lacres em todas as seções do país, 2º turno.
 - [x] Conferir urnas de modelo antigo (2013/2015), que usam o método ECDSA: 99.957 pacotes do 2º turno, 0 falha.
-- [x] Conferência dos lacres do 1º turno no país inteiro: 499.207 pacotes, 0 falha de arquivo (30/10/2026).
+- [x] Conferência dos lacres do 1º turno no país inteiro: 499.207 pacotes, 0 arquivo alterado; 1 pacote (MG 50075/0047/0041) com o boletim impresso fora da lista lacrada (30/10/2026).
 - [ ] **Pendente.** Conferir se o boletim impresso de MG 50075/0047/0041 (1º turno), publicado fora da lista lacrada, bate com o boletim assinado.
 - [ ] **Pendente.** Corrigir o leitor para registrar a sobra de zeros de todas as carteiras.
 - [ ] **Pendente.** Refazer a contagem de inicializações de votação e de etapas com um segundo programa.

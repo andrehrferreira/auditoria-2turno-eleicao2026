@@ -1,0 +1,1 @@
+ok   cx/gpt-6-astra: docs\analysis\modelos\T20\04-liberacao-dos-eleitores\astra\astra.md

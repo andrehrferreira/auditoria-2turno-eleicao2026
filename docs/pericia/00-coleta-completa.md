@@ -6,11 +6,11 @@ A perícia examinou os arquivos de **todas** as urnas do país, nos dois turnos,
 
 ## Resposta curta
 
-**Fato:** sim, de todas. A lista oficial de seções do TSE tem, em cada turno (04/10 e 25/10/2026), **499.248 seções principais** (as que não votam na urna de outra seção), no país e no exterior. Os arquivos das 499.207 que tiveram urna foram baixados e conferidos um a um. As outras 41 não tiveram urna, segundo o próprio TSE.
+**Fato:** sim, de todas. A lista oficial de seções do TSE tem, em cada turno (04/10 e 25/10/2026), **499.248 seções principais** (as que não votam na urna de outra seção), no país e no exterior. Destas, 41 não tiveram urna instalada, segundo o próprio TSE. Os arquivos das outras 499.207 foram baixados e conferidos um a um: quase todas usaram urna eletrônica, e 31 no 1º turno (2 delas, em MG, só em parte) e 29 no 2º votaram em cédula de papel, apurada depois num sistema próprio (ver **Casos especiais**).
 
 | | 1º turno | 2º turno |
 |---|---|---|
-| Seções com arquivos completos e íntegros | 499.207 | 499.207 |
+| Seções com arquivos completos e íntegros (conferidos contra a "nota fiscal" que acompanha os arquivos; ver **Limites**) | 499.207 | 499.207 |
 | Seções sem urna instalada, segundo o próprio TSE (todas no exterior) | 41 | 41 |
 | **Total da lista oficial** | **499.248 de 499.248** | **499.248 de 499.248** |
 | Seções "agregadas" (votam na urna de outra seção) cobertas | 17.931 de 17.931 | 17.931 de 17.931 |
@@ -28,7 +28,7 @@ Os pacotes por estado foram usados por inteiro. O endereço de cada seção foi 
 
 ## Como se sabe que cada arquivo está inteiro
 
-Cada urna grava uma "nota fiscal" (o pacote de lacres, ver o [tópico 1](01-integridade-e-estrutura-dos-arquivos.md)) com a impressão digital de cada arquivo. Para cada uma das 499.207 seções com urna, nos dois turnos:
+Cada urna grava uma "nota fiscal" (o pacote de lacres, ver o [tópico 1](01-integridade-e-estrutura-dos-arquivos.md)) com a impressão digital de cada arquivo. Para cada uma das 499.207 seções com arquivos, nos dois turnos:
 
 - a impressão digital da própria nota fiscal foi refeita; onde a lista oficial da seção já chegou, ela foi comparada com o código que o TSE publica para a seção (ver **Limites**);
 - a impressão digital de cada arquivo (boletim, registro dos votos, diário e boletim impresso) foi refeita e comparada com a anotada na nota fiscal. São 4 arquivos por seção, 1.996.828 por turno.

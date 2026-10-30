@@ -1,0 +1,1 @@
+ok   xai/grok-4.6: docs\analysis\modelos\T20\03-linha-do-tempo-parte1\grok\grok.md

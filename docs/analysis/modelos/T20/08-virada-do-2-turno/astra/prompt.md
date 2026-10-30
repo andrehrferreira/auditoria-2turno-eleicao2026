@@ -1,0 +1,186 @@
+Você é revisor independente de uma auditoria das eleições brasileiras de 2026 (1º turno 04/10, 2º turno 25/10; Presidente: 13 = Lula, 22 = Flávio Bolsonaro). O relatório de perícia (docs/pericia/) é para leigos e tem uma regra dura: **só entra número 100% correto**, do universo completo (todas as seções, todas as UFs), conferido nos arquivos oficiais do TSE e reproduzível por script. Estimativa, amostra, "cerca de", número de terceiros não conferido e conta feita sobre suposição devem ficar FORA ou aparecer só como "Pendente", sem número.
+
+Universo do 2º turno: 499.248 seções, 499.207 com pacote completo, 499.205 com voto para Presidente. Você não tem acesso aos dados nem pode rodar código: revise o que dá para revisar só com o texto.
+
+## Sua tarefa
+
+Revise **cada número** do tópico abaixo. Procure:
+
+1. **Conta errada:** somas, diferenças, porcentagens, razões e totais que não fecham com os próprios números do texto (refaça as contas).
+2. **Denominador ou universo trocado:** porcentagem calculada sobre base diferente da declarada; número que diz ser do país mas parece de parte das UFs; mistura de 1º e 2º turno.
+3. **Contradição interna:** o mesmo dado com valores diferentes em lugares diferentes do tópico, ou diferente da tabela nacional de referência anexada.
+4. **Violação da regra dos 100%:** número estimado, amostral, arredondado ("cerca de", "~", "aproximadamente"), parcial (só algumas UFs), de terceiros, ou conclusão que o número não sustenta.
+5. **Afirmação mais forte que a evidência** (nos dois sentidos: falso alarme de fraude ou falsa absolvição).
+
+## Formato da resposta (markdown)
+
+Uma tabela com: | # | Trecho exato (cite) | Problema (tipo 1–5) | Conta refeita ou explicação | Gravidade (alta/média/baixa) |
+Depois, uma linha "Números conferidos sem problema: N" e uma lista curta dos números que você conseguiu conferir aritmeticamente e batem.
+Não invente números que não estão no texto. Se não houver problema, diga isso explicitamente. Seja específico: um achado vago não serve.
+
+
+## Resumo executivo do relatório (só como referência de números; não revise aqui)
+
+# Resumo: os principais achados
+
+> Situação em 30/10/2026; o relatório está em elaboração. Este resumo não traz número novo: cada número está escrito igual no tópico indicado (→), com a explicação, as tabelas, os gráficos e o caminho para refazer a conta.
+
+Rótulos: **Fato** é conferido nos arquivos oficiais de todas as seções, com script que refaz a conta. **Hipótese** é possível, mas não comprovado. **Pendente** ainda não foi conferido e fica sem número.
+
+## Em poucas palavras
+
+Nos arquivos públicos das urnas do 1º turno (04/10/2026) e do 2º turno (25/10/2026), nenhum teste encontrou sinal de fraude no resultado: a soma das urnas é igual ao resultado oficial, e nenhum arquivo dos dois turnos foi alterado depois de a urna o assinar. Os testes também acharam pontos fracos: a liberação de eleitores sem digital depende só de pessoas, um certificado de segurança venceu antes da eleição, e o diário público das urnas traz números de título de eleitor. E há perguntas que esses arquivos não respondem, como quem estava na cabine e se o programa da urna era o auditado. Por isso, esta perícia não afirma que houve fraude, nem que não houve.
+
+## O que foi examinado
+
+**Fato:** todas as urnas. A lista oficial tem 499.248 seções (grupos de eleitores que votam na mesma urna) em cada turno; os arquivos das 499.207 que tiveram urna foram conferidos um a um, e as outras 41, no exterior, não tiveram urna, segundo o TSE. → [tópico 0](00-coleta-completa.md)
+
+De cada urna saem o **boletim de urna** (o placar da seção), o **registro digital do voto** (a lista dos votos, um por um, sem nome) e o **diário da urna** (que anota com hora tudo o que a urna fez). Abaixo, 13 e 22 são os dois candidatos a Presidente no 2º turno; o 13 venceu por 4.430.191 votos.
+
+## Os principais achados
+
+### O que foi conferido e bate
+
+**1. A soma das urnas é igual ao resultado oficial.** **Fato.** 2º turno, Presidente: 0 diferença em 499.205 seções, conferidas uma a uma. 1º turno, todos os cargos: 0 divergência nas 499.207 seções com boletim. Nenhuma seção do 2º turno teve mais votantes que eleitores aptos. → [tópico 5](05-soma-dos-boletins.md), [tópico 2](02-coerencia-entre-arquivos.md)
+
+**2. Os arquivos dos dois turnos não foram alterados depois de assinados.** **Fato.** A urna assina seus arquivos com uma assinatura digital, um lacre eletrônico que denuncia qualquer mudança posterior. 499.207 pacotes conferidos, 0 falha; arquivos adulterados de propósito foram rejeitados, o que mo…
+
+## Tópico em revisão: 08-virada-do-2-turno.md
+
+# 8. A virada do 2º turno: o que os números oficiais mostram
+
+> **Regra deste tópico:** só entram números conferidos no universo completo e reproduzidos de forma independente, por parecer do revisor cético ou por duas contas que batem. O que ainda não cumpre essa regra está em "Pendente", **sem número**. As análises em andamento ficam em [../analysis/modelos/T14/sintese.md](../analysis/modelos/T14/sintese.md). Revisado em 29/10/2026.
+
+## A pergunta
+
+No 1º turno (4/10/2026), Flávio Bolsonaro teve 2.224.965 votos a mais que Lula. No 2º turno (25/10/2026), Lula venceu por 4.430.191. Os números oficiais mostram alguma impossibilidade nessa virada?
+
+## Resposta curta
+
+- **Fato:** o ganho dos dois finalistas no 2º turno fecha exatamente com o que estava disponível no 1º (14.098.232 votos).
+- **Fato:** nos dois turnos, em todas as seções, a urna registrou exatamente tantos votos para presidente quantos eleitores votaram.
+- **Fato:** nos dois turnos, a soma dos boletins de todas as urnas é igual ao resultado oficial, candidato por candidato.
+- **Fato:** em 499.194 das 499.205 seções, os números não exigem que nenhum eleitor tenha trocado um finalista pelo outro. Nas outras 11, a troca mínima exigida soma 20 eleitores para Lula e 24 para Flávio.
+- **Pendente:** os testes que procuram troca de votos dentro da urna, voto no lugar de eleitor ausente e padrão técnico ainda estão em revisão e não entram aqui.
+- **Este tópico não afirma que não houve fraude.** Ele mostra só o que está conferido.
+
+## 1. Os números oficiais da virada (Fato)
+
+Fonte: dados abertos oficiais do TSE (`detalhe_votacao_secao` e `votacao_candidato_munzona`).
+
+Nos **dois turnos**, os votos de presidente foram conferidos também pela soma dos boletins de urna:
+- **1º turno:** igual ao resultado oficial por seção (`votacao_secao`), em todas as 3.800.511 combinações de seção e candidato, inclusive brancos e nulos, nas 499.206 seções (`scripts/bu-x-oficial-1t-presidente.mjs`);
+- **2º turno:** igual nas 499.205 seções ([tópico 5](05-soma-dos-boletins.md)).
+
+| | 1º turno | 2º turno | Diferença |
+|---|---|---|---|
+| Eleitores aptos | 158.745.502 | 158.745.502 | 0 |
+| Compareceram | 125.275.835 | 128.236.074 | +2.960.239 |
+| Brancos | 2.300.798 | 1.430.496 | −870.302 |
+| Nulos | 3.669.003 | 2.723.305 | −945.698 |
+| Lula (13) | 53.879.538 | 64.256.232 | +10.376.694 |
+| Flávio Bolsonaro (22) | 56.104.503 | 59.826.041 | +3.721.538 |
+| Demais candidatos (eliminados) | 9.321.993 | — | — |
+
+**A conta fecha exatamente:**
+- Os dois finalistas ganharam juntos **14.098.232** votos.
+- O que estava disponível soma **14.098.232**: votos dos eliminados (9.321.993), aumento do comparecimento (2.960.239) e queda de brancos e nulos (1.816.000).
+- **Cuidado com um arquivo do TSE:** o `votacao_candidato_munzona` não traz os 5.246 votos do candidato de número 28 no 1º turno. Eles estão nos boletins de urna e no resultado oficial por seção. Quem usar só esse arquivo vai achar 9.316.747 votos de eliminados e uma conta que não fecha por 5.246.
+
+## 2. Comparação com 2018 e 2022 (Fato, números reproduzidos pelo cético)
+
+Fonte: [cientista-politico/04](../analysis/cientista-politico/04-linha-de-base-historica.md); números reproduzidos por três scripts independentes no [parecer 14 do cético](../analysis/cetico-revisor/14-linha-de-base-2018-2022.md).
+
+| Eleição | Finalista que mais cresceu | Parte do disponível que ele levou | Variação dos votos nominais do 1º para o 2º turno |
+|---|---|---|---|
+| 2018 | Haddad (13) | 64,8% | −2,1% |
+| 2022 | Bolsonaro (22) | 69,8% | +0,3% |
+| 2026 | Lula (13) | 73,6% | +4,0% |
+
+| Eleição | UFs em que o outro finalista perdeu votos do 1º para o 2º turno |
+|---|---|
+| 2018 | nenhuma |
+| 2022 | Lula: AC (−7.456), AM (−14.693), AP (−7.464), RR (−1.632) |
+| 2026 | Flávio: AC (−15.092), AP (−13.604), RR (−11.647), MA (−9.069), AM (−1.519), TO (−1.405) |
+
+Segundo o parecer 14, essas comparações **não servem como prova contra manipulação**: elas não teriam detectado uma troca de votos capaz de virar o resultado.
+
+## 3. Votos × votantes em cada urna (Fato, duas contas independentes)
+
+Em **todas as seções com boletim de presidente**, a soma dos votos (candidatos, brancos e nulos) é igual ao número de eleitores que votaram para presidente: **499.206 no 1º turno e 499.205 no 2º**.
+
+- Conta 1: perfis tirados de cada boletim (`src/comparar-turnos.js`), nas 499.176 seções comparadas entre os turnos.
+- Conta 2: banco de dados carregado dos boletins, comparando a soma dos votos com o comparecimento da eleição de presidente.
+- **Cuidado de leitura:** nas 29 seções do exterior apuradas pelo Sistema de Apuração, em cada turno, e em 2 seções de MG no 1º turno, o campo geral de comparecimento do boletim vem zerado. O que vale é o comparecimento da eleição de presidente.
+
+## 3b. Alguma urna só fecha se eleitor de um finalista tiver ido para o outro? (Fato, duas contas independentes)
+
+Para cada seção, a conta é: votos do finalista no 2º turno, menos tudo o que ele poderia ter recebido sem ninguém trocar de lado. "Tudo" soma os votos dele no 1º turno, os votos dos eliminados, os brancos, os nulos, quem não votou no 1º turno e os eleitores novos da seção. Se ainda sobrar voto, a diferença só fecha com eleitor que votou no outro finalista no 1º turno.
+
+| Finalista | Seções em que sobra voto | Eleitores que precisam ter vindo do outro finalista |
+|---|---|---|
+| Lula (13) | 10 | 20 (de 1 a 5 por seção) |
+| Flávio Bolsonaro (22) | 1 (PI 11878/0028/0099) | 24 |
+
+- As duas contas dão **as mesmas 11 seções e os mesmos números**:
+  - perfis, em 499.176 seções (`src/comparar-turnos.js`);
+  - banco, em 499.205 seções (`scripts/troca-obrigatoria-banco.mjs`).
+- **As 10 seções do Lula:** AL 28754/0049/0135, AM 02755/0022/0070, BA 39659/0041/0400, MA 09555/0078/0296, MG 40282/0063/0194, MG 40690/0016/0347, PA 04073/0021/0296, PA 04472/0004/0580, PE 23876/0021/0149 e SP 71072/0325/0685.
+- Trocar de candidato entre os turnos é permitido. A conta mostra só **o mínimo** de trocas que os números exigem. Ela não mede quantos eleitores trocaram de fato, porque o voto é secreto.
+
+## 4. Prorrogação do horário de votação (Fato)
+
+- **A decisão:** liminar do STF na Reclamação 101.673/BA (pedido da coligação de Lula contra os municípios de Salvador, Feira de Santana e Lauro de Freitas, por falta de transporte público). O texto determina "prorrogação por duas horas, até as 19h, horário de Brasília, do encerramento do recebimento dos votos em todas as seções de todo o Brasil, cabendo ao TSE dar cumprimento". O arquivo lido é a "Minuta_ Decisão Liminar" publicada pelo Poder360 (`data/raw/stf/rcl-101673-zanin-25out26.pdf`), não a versão assinada.
+- **Votos dados depois das 17h de Brasília no 2º turno, por duas contas independentes com recortes diferentes:**
+  - 34.330 votos (Auditor C, [linha-do-tempo/02](../analysis/linha-do-tempo/02-votos-apos-17h.md)): Brasil sem o exterior, contando também as urnas reserva (contingência);
+  - 34.066 votos (`scripts/h06-votos-apos-17h.mjs`): só as urnas da própria seção, com o exterior pelo relógio local. Sem o exterior, 33.668.
+  - A diferença vem das urnas reserva e do exterior. Depois das 18h: 1.993 e 1.960.
+- **Tamanho em relação ao resultado:** mesmo que os 34.330 votos fossem todos para um só candidato, seriam 0,77% da diferença de 4.430.191 votos.
+- **Pendente:** versão assinada da decisão no portal do STF e horário do ofício do TSE aos TREs.
+
+## 5. Eleitores registrados como "sem biometria cadastrada" acima do cadastro (Fato, revisado pelo cético)
+
+Fonte: [parecer 01 do cético](../analysis/cetico-revisor/01-b1a-sem-biometria-acima-do-cadastro.md), números reproduzidos por dois caminhos.
+
+- Em 16.011 das 497.508 seções do Brasil em que a medida é possível no 2º turno, o boletim registra mais eleitores "sem biometria cadastrada" do que o cadastro público tem. O excesso soma 36.340 eleitores.
+- **Ficam fora da medida** (497.508 + 1.281 + 389 + 29 = 499.207 seções):
+  - as 1.310 seções do exterior, porque o boletim não traz esse detalhe ou não registra comparecimento;
+  - 389 seções do Brasil que não constam do cadastro público de 14/07/2026. **Pendente:** a medida nessas 389.
+- Nenhuma dessas seções tem mais votantes do que eleitores aptos.
+- **Medido só nas 378 seções com excesso de 10 ou mais:** a diferença é de definição. O arquivo da urna tinha a foto desses eleitores, mas não a digital, e o cadastro público os conta como "com biometria". Contando como "sem biometria" só quem também não tem foto, o excesso dessas seções cai de 5.560 para 54. **Pendente:** a mesma medida nas demais seções.
+- **Risco que continua, pela premissa de não confiar em pessoas:** esses eleitores foram liberados só com título, ano de nascimento e a conferência da foto pelo mesário, que é humana e não deixa rastro.
+
+## 5b. Votantes a mais no 2º turno, com e sem digital (Fato, mesmo número dos tópicos 4, 7 e 10)
+
+- **Nas 499.176 seções comparadas,** o comparecimento subiu 2.960.096 do 1º para o 2º turno.
+- **No Brasil sem o exterior,** subiu 2.920.461. Desse aumento, **601.543 (20,6%) entraram sem digital**: eleitor sem biometria cadastrada ou liberação manual pelo mesário.
+- Como os votantes foram liberados está no [tópico 4](04-liberacao-dos-eleitores.md).
+
+## 6. Perda de votos do Flávio em seções onde o comparecimento não caiu (Fato, revisado pelo cético)
+
+Fonte: [parecer 05 do cético](../analysis/cetico-revisor/05-h10-crescimento-cabe-no-disponivel.md).
+
+- **Onde acontece:** em 26 das 27 UFs e no exterior (só o AP não tem caso), há seções em que Flávio perdeu votos sem que o número de votantes caísse. São 38.235 seções, somando −126.408 votos ([revisão T15](../analysis/modelos/T15/08-virada-do-2-turno/), `scripts/auditoria/t15-08-virada.mjs`).
+- **Nas três UFs onde ele também perdeu votos no total** (tabela do item 2), a perda nessas seções soma **MA 10.652, AM 2.841 e TO 1.778**.
+- **Explicações possíveis:** matematicamente, isso só acontece se eleitores trocaram o 22 pelo 13, ou por branco ou nulo, ou se eleitores do Flávio deixaram de votar e foram substituídos por outros eleitores.
+- **Pendente:** qual dessas explicações, e a mesma conta nas demais UFs.
+
+## Pendente (sem número até haver reprodução independente)
+
+| Teste | Para que serve | Situação |
+|---|---|---|
+| Comparação de cada seção com as vizinhas, 1º × 2º turno | Apontar seções fora do padrão | 1 conta feita (`src/comparar-turnos.js`); em revisão |
+| Para onde foram os votos dos eliminados | Estimar a divisão entre os finalistas | estimativa estatística: não entra no relatório |
+| Troca de votos pela urna × voto dos eliminados | Separar as duas explicações pela proporção | [parecer 16](../analysis/cetico-revisor/16-topico-8-virada.md): só descarta troca uniforme proporcional aos votos do 22 |
+| Resultado por modelo de urna e por dia de preparação | Procurar padrão técnico | parecer 16: sustentado com ressalvas |
+| Curva da apuração | Ver se a forma da curva é explicada pela ordem de chegada das cidades | parecer 16: sustentado com ressalvas; **não serve como contraprova** contra votos alterados |
+| Teste de Integridade (urnas conferidas com cédulas de papel) | Controle externo contra troca de votos pelo programa da urna | há só declarações de "sem divergência" do TSE, do TRE-SP e do TRE-AL; o resultado do teste com biometria não foi obtido |
+| Pesquisas de véspera | Comparação externa à urna | números da imprensa: não entram no relatório |
+| Assinaturas digitais de todos os boletins | Provar que cada arquivo saiu de uma urna oficial e não foi alterado | verificação nacional em andamento |
+
+## Limites (o que este tópico não prova)
+
+1. **Quem votou.** Os arquivos mostram como o eleitor foi liberado (com digital ou sem), não quem estava na cabine.
+2. **O programa da urna por dentro.** Boletim, registro de votos e diário da urna saem do mesmo programa. Uma troca de votos igual em todas as urnas deixaria esses arquivos coerentes entre si. O controle contra isso é externo à urna (Teste de Integridade), e ele está em Pendente.
+3. **Estimativas.** Taxas de "para onde foi o voto" não são dados: o voto é secreto. Por isso ficam fora deste relatório.
+4. **Fraude do mesmo tamanho nos dois turnos.** Os testes deste tópico comparam o 1º com o 2º turno. Uma alteração que tivesse o mesmo tamanho nos dois turnos e na mesma seção se cancelaria na comparação e não apareceria aqui. O que cobre esse caso são os testes de um turno só: assinaturas, Teste de Integridade e coerência entre os arquivos (tópicos 1 e 2).

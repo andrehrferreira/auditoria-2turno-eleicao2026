@@ -1,0 +1,1 @@
+ok   xai/grok-4.6: docs\analysis\modelos\T20\07-limites-da-pericia\grok\grok.md

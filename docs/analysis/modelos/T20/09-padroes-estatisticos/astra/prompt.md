@@ -1,0 +1,289 @@
+Você é revisor independente de uma auditoria das eleições brasileiras de 2026 (1º turno 04/10, 2º turno 25/10; Presidente: 13 = Lula, 22 = Flávio Bolsonaro). O relatório de perícia (docs/pericia/) é para leigos e tem uma regra dura: **só entra número 100% correto**, do universo completo (todas as seções, todas as UFs), conferido nos arquivos oficiais do TSE e reproduzível por script. Estimativa, amostra, "cerca de", número de terceiros não conferido e conta feita sobre suposição devem ficar FORA ou aparecer só como "Pendente", sem número.
+
+Universo do 2º turno: 499.248 seções, 499.207 com pacote completo, 499.205 com voto para Presidente. Você não tem acesso aos dados nem pode rodar código: revise o que dá para revisar só com o texto.
+
+## Sua tarefa
+
+Revise **cada número** do tópico abaixo. Procure:
+
+1. **Conta errada:** somas, diferenças, porcentagens, razões e totais que não fecham com os próprios números do texto (refaça as contas).
+2. **Denominador ou universo trocado:** porcentagem calculada sobre base diferente da declarada; número que diz ser do país mas parece de parte das UFs; mistura de 1º e 2º turno.
+3. **Contradição interna:** o mesmo dado com valores diferentes em lugares diferentes do tópico, ou diferente da tabela nacional de referência anexada.
+4. **Violação da regra dos 100%:** número estimado, amostral, arredondado ("cerca de", "~", "aproximadamente"), parcial (só algumas UFs), de terceiros, ou conclusão que o número não sustenta.
+5. **Afirmação mais forte que a evidência** (nos dois sentidos: falso alarme de fraude ou falsa absolvição).
+
+## Formato da resposta (markdown)
+
+Uma tabela com: | # | Trecho exato (cite) | Problema (tipo 1–5) | Conta refeita ou explicação | Gravidade (alta/média/baixa) |
+Depois, uma linha "Números conferidos sem problema: N" e uma lista curta dos números que você conseguiu conferir aritmeticamente e batem.
+Não invente números que não estão no texto. Se não houver problema, diga isso explicitamente. Seja específico: um achado vago não serve.
+
+
+## Resumo executivo do relatório (só como referência de números; não revise aqui)
+
+# Resumo: os principais achados
+
+> Situação em 30/10/2026; o relatório está em elaboração. Este resumo não traz número novo: cada número está escrito igual no tópico indicado (→), com a explicação, as tabelas, os gráficos e o caminho para refazer a conta.
+
+Rótulos: **Fato** é conferido nos arquivos oficiais de todas as seções, com script que refaz a conta. **Hipótese** é possível, mas não comprovado. **Pendente** ainda não foi conferido e fica sem número.
+
+## Em poucas palavras
+
+Nos arquivos públicos das urnas do 1º turno (04/10/2026) e do 2º turno (25/10/2026), nenhum teste encontrou sinal de fraude no resultado: a soma das urnas é igual ao resultado oficial, e nenhum arquivo dos dois turnos foi alterado depois de a urna o assinar. Os testes também acharam pontos fracos: a liberação de eleitores sem digital depende só de pessoas, um certificado de segurança venceu antes da eleição, e o diário público das urnas traz números de título de eleitor. E há perguntas que esses arquivos não respondem, como quem estava na cabine e se o programa da urna era o auditado. Por isso, esta perícia não afirma que houve fraude, nem que não houve.
+
+## O que foi examinado
+
+**Fato:** todas as urnas. A lista oficial tem 499.248 seções (grupos de eleitores que votam na mesma urna) em cada turno; os arquivos das 499.207 que tiveram urna foram conferidos um a um, e as outras 41, no exterior, não tiveram urna, segundo o TSE. → [tópico 0](00-coleta-completa.md)
+
+De cada urna saem o **boletim de urna** (o placar da seção), o **registro digital do voto** (a lista dos votos, um por um, sem nome) e o **diário da urna** (que anota com hora tudo o que a urna fez). Abaixo, 13 e 22 são os dois candidatos a Presidente no 2º turno; o 13 venceu por 4.430.191 votos.
+
+## Os principais achados
+
+### O que foi conferido e bate
+
+**1. A soma das urnas é igual ao resultado oficial.** **Fato.** 2º turno, Presidente: 0 diferença em 499.205 seções, conferidas uma a uma. 1º turno, todos os cargos: 0 divergência nas 499.207 seções com boletim. Nenhuma seção do 2º turno teve mais votantes que eleitores aptos. → [tópico 5](05-soma-dos-boletins.md), [tópico 2](02-coerencia-entre-arquivos.md)
+
+**2. Os arquivos dos dois turnos não foram alterados depois de assinados.** **Fato.** A urna assina seus arquivos com uma assinatura digital, um lacre eletrônico que denuncia qualquer mudança posterior. 499.207 pacotes conferidos, 0 falha; arquivos adulterados de propósito foram rejeitados, o que mo…
+
+## Tópico em revisão: 09-padroes-estatisticos.md
+
+# 9. Padrões estatísticos de fraude
+
+> **Situação:** escrito em 29/10/2026 a partir de `docs/analysis/forense-estatistica/01` a `07`. Ainda não há parecer do revisor cético sobre este tópico (`docs/analysis/cetico-revisor/`). Por isso, **só ficou no texto o número que foi recalculado de forma independente**, do universo completo, por `node scripts/auditoria/verifica-pericia-09-padroes.mjs` (cópia de leitura do banco e arquivos públicos brutos do TSE) e por `node scripts/auditoria/verifica-pericia-09-conferencia.mjs` (arquivos das urnas). Os números que dependem de simulação (permutação, contagens honestas simuladas) ou do desconto do perfil dos eleitores ainda não foram recalculados. Eles foram retirados e aparecem como **Pendente: em verificação**. O 2º turno cobre o país inteiro. O 1º turno, usado como comparação, também cobre as 28 UFs (499.206 seções com voto para Presidente; cópia de leitura de 29/10/2026, 10:50; números do 1º turno refeitos por `node --max-old-space-size=4096 scripts/auditoria/t15-padroes-estatisticos.mjs`).
+
+## A pergunta
+
+Os resultados de Presidente mostram as marcas estatísticas que fraudes grandes costumam deixar? As três marcas mais conhecidas são:
+
+- **enchimento de urna:** alguém acrescenta votos falsos, e a seção aparece com comparecimento perto de 100% e quase todos os votos para um só candidato;
+- **números inventados:** alguém escreve o resultado à mão, e os algarismos ficam com um padrão que contagens reais não têm;
+- **números redondos:** quem inventa resultado tende a escolher 100, 150, 200 votos, ou 60%, 75%.
+
+## Resposta curta
+
+| Pergunta | Resposta (2º turno, Presidente, 499.205 seções) | Rótulo |
+|---|---|---|
+| Há a marca de enchimento de urna? | Não aparece. Nenhuma seção tem comparecimento acima de 100%. Não há um segundo grupo de seções em "100% de comparecimento com 100% para um candidato". Dentro de cada zona, comparecimento e voto quase não andam juntos (correlação −0,078 para o 13). | **Fato** |
+| Há marca de número inventado? | O último algarismo difere de "todos iguais" em 17 de 56 testes, e o 2º algarismo difere da lei de Benford em 52 de 56. Essas duas referências não são a certa para votos por seção (ver Teste 3). A comparação com contagens honestas simuladas, que é a que decide, está **Pendente: em verificação**. | **Fato** (contagens); a conclusão está pendente |
+| Há excesso de números redondos? | Não, nas contagens de votos do 13, do 22 e no comparecimento. Nos percentuais redondos, **Pendente: em verificação**. | **Fato** (contagens) |
+| Há algo fora do padrão? | Sim: há mais seções com 90% a 100% dos votos para o 13 (Lula) do que o modelo prevê (6.899 contra 4.664). O excesso, comparado ao esperado, é maior em aldeias, quilombos e presídios, mas em número de seções a maior parte dele está em seções classificadas como "comuns". Essas seções já davam votação parecida ao mesmo candidato no 1º turno: 6.875 das 6.899 já tinham 80% ou mais para o 13. Se o excesso some quando se leva em conta o perfil dos eleitores: **Pendente: em verificação**. | **Fato** (contagem); a explicação é **Hipótese** |
+| Isso prova que não houve fraude? | Não. Estes métodos só enxergam fraude grande o bastante para mudar o desenho dos números no país. Fraude pequena e espalhada por muitas seções, ou feita de forma proporcional ao voto de cada lugar, pode passar por eles sem ser vista (o tamanho que eles enxergam ainda não foi medido). | **Fato** (é um limite dos métodos) |
+
+**O que isto prova:** os números do 2º turno não têm a marca de enchimento de urna nem excesso de contagens redondas que estes métodos detectam. A marca de números inventados ainda depende da comparação com contagens simuladas, que está pendente.
+
+**O que isto não prova:** que nenhum voto foi fraudado. Também não prova que cada seção fora do padrão é honesta: elas têm explicação provável, mas não foram investigadas uma a uma.
+
+## Que dados foram usados
+
+- **Fato.** 2º turno, Presidente: todas as 499.205 seções com voto, tiradas do banco da auditoria, que guarda o boletim de cada urna. Somam 64.256.232 votos para o 13 e 59.826.041 para o 22 (recalculado na cópia de leitura de 29/10/2026). A comparação com o resultado oficial seção por seção está no tópico [5](05-soma-dos-boletins.md). Script do autor: `node scripts/auditoria/forense-base.mjs 2`.
+- **Perfil dos eleitores de cada seção:** idade, escolaridade, eleitores indígenas e quilombolas, tirados do arquivo público do TSE "perfil do eleitor por seção" (gerado em 14/07/2026, publicado em 17/07/2026). **Fato:** o perfil casa com 498.818 das 499.205 seções. As outras 387 ficam sem esse ajuste.
+- **Tipo de local de votação:** aldeia, quilombo, presídio, exterior ou comum, pelo nome do local, pelo tipo de local do cadastro do TSE e pela parcela de eleitores indígenas ou quilombolas da seção (metade ou mais). **Fato:** muitos locais em aldeia não têm "aldeia" no nome, e a raça/cor vem "não informada" para muitos eleitores. Então o grupo "comum" ainda contém aldeias, comunidades ribeirinhas, quilombos e assentamentos.
+- **1º turno, para comparação: completo.** As 28 UFs (26 estados, DF e exterior), com 499.206 seções com voto para Presidente, do mesmo banco (cópia de leitura de 29/10/2026, 10:50).
+
+## Como cada teste funciona, em palavras simples
+
+Todos os testes seguem a mesma ideia: primeiro se calcula **o que seria esperado numa eleição honesta** com seções do tamanho e do perfil das brasileiras (isso se chama **modelo sem fraude**, ou modelo de referência). Depois se compara com o que as urnas registraram. Diferença grande é um **sinal** a examinar, não uma prova.
+
+### Teste 1. Seções com quase todos os votos para um candidato
+
+Conta quantas seções deram 90% ou mais, e 100%, dos votos válidos a um candidato. O esperado vem do comportamento das outras seções da mesma zona eleitoral. O modelo usado admite que seções vizinhas variam entre si (um bairro vota diferente do outro); em estatística ele se chama **beta-binomial**. Uma seção é marcada como "surpreendente" quando a chance de aquele resultado sair por acaso é menor que 1 em 20 milhões. O limite é tão baixo porque são testadas 499.205 seções, e com tantas tentativas algum resultado raro sempre aparece.
+
+### Teste 2. O "gráfico de Klimek" (impressão digital do enchimento de urna)
+
+Em 2012, Klimek e colegas publicaram um método (revista *PNAS*) que hoje é o mais usado para procurar enchimento de urna. Cada seção vira um ponto num gráfico:
+
+- na horizontal, o **comparecimento** da seção (quantos dos eleitores aptos votaram);
+- na vertical, a **parcela do candidato** naquela seção.
+
+Numa eleição sem enchimento, os pontos formam uma nuvem só. Quando há enchimento, aparece uma "mancha" separada no canto de cima à direita: seções com comparecimento perto de 100% e quase 100% para um candidato, porque quem enche a urna aumenta as duas coisas ao mesmo tempo. Foi assim que o método mostrou problemas em eleições da Rússia e de Uganda.
+
+O teste também mede se, **dentro da mesma zona**, as seções que comparecem mais votam mais num candidato. Essa ligação se mede pela **correlação** (um número de −1 a +1: perto de 0 quer dizer que as duas coisas não andam juntas; perto de +1, que sobem juntas). Para saber quanto seria normal, o teste embaralha o comparecimento entre as seções da mesma zona, o que apaga qualquer ligação real e mostra quanto sai só por acaso (isso se chama **permutação**).
+
+### Teste 3. Os algarismos dos votos
+
+Quem inventa números à mão escolhe algarismos de um jeito que contagens reais não produzem. O teste olha:
+
+- **o último algarismo** dos votos de cada candidato, quando ele teve 100 votos ou mais na seção. Numa contagem real, ele deveria sair de 0 a 9 de forma quase igual;
+- **o segundo algarismo**, comparado com a lei de Benford (abaixo) e com o modelo sem fraude.
+
+Cada comparação é feita por UF e por candidato (56 comparações no 2º turno: 28 UFs, contando o exterior, vezes 2 candidatos). Como são muitas, usa-se uma correção (método de **Holm**) que evita chamar de anomalia o que é só acaso por causa do número de tentativas.
+
+**Por que a lei de Benford no 1º algarismo não serve aqui.** A lei de Benford diz que, em muitos conjuntos de números reais, o primeiro algarismo é "1" em cerca de 30% dos casos, e "9" em menos de 5%. Ela vale quando os números se espalham por várias ordens de grandeza (unidades, dezenas, milhares, milhões). Votos por seção não fazem isso: os de um candidato numa seção vão de 0 a 502 no 2º turno, porque a seção tem esse tamanho. Então o primeiro algarismo depende do tamanho das seções e da força do candidato, e não de a contagem ser honesta.
+
+- **Fato.** No Brasil, para o 13, a distância entre o 1º algarismo dos votos reais e a lei de Benford é muito grande (χ² = 297.064).
+- **Pendente: em verificação.** A demonstração de que votos simulados **sem fraude** também são reprovados por Benford no 1º algarismo. Enquanto isso, este teste não é usado como prova de nada neste relatório, nem a favor nem contra.
+
+### Teste 4. Seções muito diferentes da sua zona
+
+Para cada seção, mede quantas vezes ela está longe do "típico" da sua zona, em parcela de cada candidato e em comparecimento. Esse afastamento chama-se **escore z**. Foi usado um z que não se deixa puxar pelos próprios valores extremos (z **robusto**), só em zonas com 10 seções ou mais. z de 5 ou mais é muito raro: por uma curva normal, daria menos de uma seção no país inteiro. Depois a conta é refeita **descontando o perfil dos eleitores** da seção (idade, escolaridade, indígenas, quilombolas), para ver o que sobra.
+
+### Teste 5. Números redondos
+
+Conta quantas seções têm votos em múltiplos de 10, 50 e 100, e percentuais em múltiplos de 5% (como 60%, 65%, 70%). O esperado para "200 votos" é a média de quantas seções têm 198, 199, 201 e 202. Para os percentuais, cada seção é sorteada de novo várias vezes com o mesmo tamanho e a mesma parcela, para saber quantos percentuais redondos aparecem por acaso (método de Kobak, Shpilkin e Pshenichnikov, 2016).
+
+### Teste 6. Para que lado pendem as anomalias
+
+Para cada tipo de anomalia, conta quantas favorecem o 13 e quantas o 22, e compara com o que o modelo de cada teste esperava.
+
+## O que foi encontrado (2º turno, Presidente, país inteiro)
+
+### Enchimento de urna (gráfico de Klimek)
+
+- **Fato.** Comparecimento por seção: a mediana do comparecimento por seção foi 81,5% (81,52%; 248.899 das 499.205 seções ficaram abaixo de 81,5%). **Nenhuma seção passou de 100%.** 12 seções tiveram exatamente 100%, todas pequenas (de 26 a 163 eleitores aptos). 639 tiveram 95% ou mais. Fonte: `node scripts/auditoria/forense-klimek.mjs 2` → `data/parsed/auditoria/forense/klimek-2t.json`; gráfico em `klimek-2t-13.svg`.
+- **Fato.** Os pontos formam uma nuvem única, com o centro em 80% a 84% de comparecimento (156.259 seções nessa faixa). **Não há uma segunda mancha** em 100% de comparecimento com 100% para um candidato.
+- **Fato.** Comparando cada seção com a média da sua zona, nas 499.205 seções, a correlação entre comparecimento e parcela do 13 é **−0,078**. Para o 22, é +0,078. Os dois números estão perto de zero: comparecimento e voto quase não andam juntos. Com o perfil dos eleitores descontado: **Pendente: em verificação**.
+- **Fato.** Contando zona a zona (2.640 zonas com 20 seções ou mais), as zonas em que a correlação passa de 0,5 (as duas coisas sobem juntas com força) são 20 a favor do 13 e 69 a favor do 22. A correlação do 22 dentro das zonas, por UF, é maior em SC (+0,255), PR (+0,250), RS (+0,241), GO (+0,190) e MS (+0,185); a do 13, em RR (+0,254).
+  - **Hipótese:** em zonas urbanas, bairros de renda maior comparecem mais e votam mais no 22. O cadastro não informa renda, então esse efeito não foi descontado. **Pendente:** refazer com renda do Censo por setor.
+- **Fato. Há uma cauda pequena de comparecimento alto com voto forte no 13.** 1.214 seções (0,24% do total) tiveram 94% ou mais de comparecimento. Nas 66 com 98% a 100% de comparecimento, o 13 teve em média 79,7% dos votos. No canto "95% ou mais de comparecimento e 95% ou mais para o candidato" há 64 seções do 13 e 2 do 22. Quantas o acaso daria (permutação): **Pendente: em verificação**. Das 64 do 13: 34 em aldeia, 2 em quilombo, 1 em presídio e 27 classificadas como "comuns".
+  - **Fato.** A parcela do 13 também é maior nas seções de comparecimento **baixo** (59,3% em média na faixa de 50% a 60%). Isso indica que a cauda reflete diferenças entre regiões, e não só o comparecimento.
+  - **Hipótese:** o excesso no canto vem de aldeias e comunidades pequenas, onde o eleitorado é estável, quase todos votam e o voto é parecido. **Pendente:** conferir se as 27 seções "comuns" do canto ficam em terras indígenas ou quilombos, e comparar com as mesmas seções em 2022.
+
+### Números inventados (algarismos)
+
+| Teste | Quantos acusam diferença (de 56, já corrigido por Holm) | Leitura |
+|---|---|---|
+| Último algarismo × "todos iguais" | 17 | Diferença pequena (o 0 aparece em 10,5% e o 9 em 9,6% dos casos, para o 13). **Hipótese:** vem de haver mais seções pequenas que grandes; a confirmação depende da linha abaixo |
+| Último algarismo × modelo sem fraude | **Pendente: em verificação** | É o teste que decide se há sinal de número inventado |
+| 2º algarismo × lei de Benford | 52 | Benford não é a referência certa para votos por seção |
+| 2º algarismo × modelo sem fraude | **Pendente: em verificação** | — |
+
+Fonte: `node scripts/auditoria/forense-digitos.mjs 2` → `data/parsed/auditoria/forense/digitos-2t.json`. Rótulo: **Fato** (as contagens 17 e 52).
+
+- **Pendente: em verificação.** Quantos testes do 2º algarismo acusam diferença em relação ao modelo sem fraude, em quais UFs e de que tamanho. Só depois disso se pode discutir a causa.
+
+### Números redondos
+
+| | Múltiplos de 10 (observado / esperado) | Múltiplos de 100 (observado / esperado) |
+|---|---|---|
+| Votos do 13 | 50.046 / 49.917 | 5.566 / 5.532 |
+| Votos do 22 | 49.741 / 49.676 | 4.273 / 4.274 |
+| Comparecimento | 50.007 / 49.962 | 5.189 / 5.311 |
+
+Fonte: `node scripts/auditoria/forense-redondos.mjs 2` → `data/parsed/auditoria/forense/redondos-2t.json`.
+
+- **Fato.** Nenhum excesso de contagens redondas para os dois candidatos nem para o comparecimento. Nos múltiplos de 10, 50 e 100, as diferenças entre observado e esperado estão dentro do que o acaso produz (escore z entre −1,7 e +0,7).
+- **Pendente: em verificação.** Percentuais redondos (múltiplos de 5%): o esperado vem de sorteio e ainda não foi recalculado.
+- **Fato.** Brancos e nulos aparecem com **menos** múltiplos de 10 que o esperado. Isso vem do método: são números pequenos, e a média dos vizinhos exagera o esperado nesse trecho. Não é sinal de nada.
+
+### Seções com 90% a 100% dos votos para um candidato
+
+| | 90% a 95% | 95% a 99% | 99% a 100% | 100% | Total com 90% ou mais |
+|---|---|---|---|---|---|
+| 13, observado | 5.150 | 1.545 | 98 | 106 | 6.899 |
+| 13, esperado pelo modelo | 4.038,9 | 600,7 | 16,6 | 8,0 | 4.664,2 |
+| 22, observado | 343 | 34 | 3 | 4 | 384 |
+| 22, esperado pelo modelo | 506,7 | 97,3 | 7,0 | 4,1 | 615,1 |
+
+Fonte: `node scripts/auditoria/forense-a3a4.mjs 2` → `data/parsed/auditoria/forense/a3a4-2t.json` e `a3a4-2t-secoes.csv`.
+
+- **Fato.** O 13 tem mais seções com 90% ou mais do que o modelo espera (6.899 contra 4.664). O 22 tem menos (384 contra 615).
+- **Fato. Onde está o excesso do 13:**
+
+  | Tipo de local | Observado | Esperado | Vezes o esperado |
+  |---|---|---|---|
+  | Aldeia | 517 | 64,2 | 8,1 |
+  | Quilombo | 103 | 15,8 | 6,5 |
+  | Presídio (presos provisórios) | 39 | 3,6 | 10,8 |
+  | Comum | 6.153 | 4.476,9 | — |
+  | Temporário / exterior | 73 / 14 | 54,1 / 49,7 | — |
+
+  O excesso é proporcionalmente maior em aldeias, quilombos e presídios. Em número de seções, porém, 1.676,1 das 2.234,8 seções a mais (observado menos esperado) estão no grupo "comum", que ainda contém comunidades não identificadas pelo nome (ver "Que dados foram usados"). As 106 seções com 100% para o 13 estão em: aldeia 52, comum 45, quilombo 7, presídio 2. Em quais municípios ficam as seções "comuns" com mais excesso, e qual o perfil deles: **Pendente: em verificação**.
+- **Fato.** Não é efeito de seção minúscula: as 110 seções com 100% (106 do 13 e 4 do 22) têm, no meio da lista, 122,5 votos válidos. Só 19 têm menos de 50 votos. A maior tem 354 votos.
+- **Fato.** As 4 seções com 100% para o 22 ficam em Arroio do Padre-RS, Cândido Godói-RS, Chaves-PA e Jacareacanga-PA.
+- **Fato.** Seções "surpreendentes" (chance menor que 1 em 20 milhões pelo modelo): 125 do 13 e 7 do 22.
+
+### Seções muito diferentes da sua zona
+
+| | Muito acima da zona (z ≥ 5), sem desconto | Com o perfil dos eleitores descontado |
+|---|---|---|
+| Parcela do 13 | 715 | **Pendente: em verificação** |
+| Parcela do 22 | 135 | **Pendente: em verificação** |
+
+Fonte: `node scripts/auditoria/forense-zscore.mjs 2` → `data/parsed/auditoria/forense/zscore-2t.json` e `zscore-2t-cauda.csv`.
+
+- **Fato.** Sem desconto, os casos extremos pendem para o 13 (715 contra 135). Das 715: 243 em aldeia, 89 em presídio, 6 em quilombo, 3 em local temporário e 374 "comuns".
+- **Pendente: em verificação.** Quanto sobra para cada candidato depois de descontar o perfil dos eleitores, e quais seções ficam no topo da lista. Um script do revisor cético (`scripts/auditoria/cetico-forense-reproducao-zctrl.mjs`) aponta um problema no código do autor: seções sem perfil entram no cálculo da mediana da zona. Ainda não há valor conferido.
+- **Fato.** Comparecimento muito acima da zona: 40 seções, com 37 a 315 eleitores aptos. 35 delas foram vencidas pelo 13 e 5 pelo 22; pela proporção de seções vencidas por cada um na mesma zona, o esperado era 26,4 e 13,6. São 40 seções num universo de 499.205. Se o perfil dos eleitores explica essa diferença: **Pendente: em verificação**.
+- **Fato.** Comparecimento muito **abaixo** da zona: 597 seções. **Hipótese:** cadastro com eleitores que mudaram ou morreram e continuam aptos. Isso não tem a ver com enchimento de urna, e sim com o tópico [6](06-titulos-de-falecidos.md).
+
+### Para que lado pendem as anomalias
+
+- **Fato.** As anomalias de **concentração** (100%, 90% ou mais) favorecem o 13 bem acima do esperado pelo modelo. No canto de Klimek também há mais seções do 13 (64 contra 2), mas o esperado está pendente. A de **correlação dentro da zona** favorece o 22 (69 zonas contra 20). Os casos extremos **com o perfil dos eleitores descontado**: **Pendente: em verificação**. Fonte: `node scripts/auditoria/forense-assimetria.mjs 2` → `assimetria-2t.json`.
+
+## Comparação com o 1º turno
+
+O 1º turno cobre as 28 UFs (499.206 seções com voto para Presidente). Os números abaixo foram refeitos no 1º turno completo por `node --max-old-space-size=4096 scripts/auditoria/t15-padroes-estatisticos.mjs` → `data/parsed/auditoria/t15/09-padroes-estatisticos.json`.
+
+- **Fato.** Nenhuma seção do 1º turno teve comparecimento acima de 100% (15 com exatamente 100%, de 21 a 168 eleitores aptos). Os testes de algarismos contra o modelo sem fraude no 1º turno: **Pendente: em verificação**.
+- **Fato.** O excesso de seções com 90% ou mais para o 13 já existia no 1º turno, com 11 adversários: no país inteiro, o observado foi 1,89 vez o esperado no 1º turno (3.686 contra 1.947,7) e 1,48 vez no 2º (6.899 contra 4.664,2). Ou seja, o excesso **diminuiu** no 2º turno.
+- **Fato.** As 110 seções com 100% no 2º turno (106 do 13 e 4 do 22) **todas** já davam 90% ou mais ao mesmo candidato no 1º turno. Das 6.899 seções do 13 com 90% ou mais, 6.875 já tinham 80% ou mais no 1º. Das 384 do 22, 381. Só 3 (todas do 13) subiram 20 pontos ou mais entre os turnos.
+- **Fato.** No 1º turno, os votos do 22 em múltiplos de 10 aparecem um pouco mais que o esperado (50.247 contra 49.762, escore z +2,2), com excesso em 20 das 28 UFs (contando o exterior). Nos múltiplos de 50 e 100 do 1º turno não há excesso (z +0,5 e −0,2). No 2º turno isso não se repete (49.741 contra 49.676, z +0,3).
+  - **Hipótese (fraca):** acaso ou efeito do método dos vizinhos numa distribuição de outro formato. Não dá para descartar. **Pendente:** refazer com o esperado por sorteio em vez dos vizinhos.
+
+## Seções conferidas no arquivo da urna
+
+Os testes acima usam o banco da auditoria. Para confirmar que os números extremos são os que a urna gravou, 25 seções extremas do 2º turno foram abertas no arquivo original da urna (`node scripts/auditoria/forense-conferir.mjs 2 <seção>` → `conferencia-2t.json`; refeito por `node scripts/auditoria/verifica-pericia-09-conferencia.mjs`). Isso **confirma** casos; não gera número da auditoria (princípio 9).
+
+- **Fato.** Nas 25 seções, o boletim do arquivo é igual ao do banco. Em 24, todos os lacres digitais conferem (0 falha). Exemplos: seção de aldeia em Confresa-MT (zona 28, seção 200): 309 de 315 aptos votaram, 309 votos no 13; Arroio do Padre-RS (zona 34, seção 433): 116 votos no 22 e 2 brancos. Entre elas estão as 12 seções com 100% de comparecimento: em 11 o voto se dividiu entre os candidatos (por exemplo, Caraúbas-RN, zona 36, seção 69: 134 para o 13 e 25 para o 22); em 1 (TO, zona 9, seção 184) os 59 votos válidos foram todos para o 13.
+- **Fato** ([parecer 24](../analysis/cetico-revisor/24-integridade-h04-h11.md), item 2). Na seção do CE (zona 55, seção 160), o programa de conferência deste tópico para com erro ao ler o certificado dessa urna (modelo UE2015). O boletim dela confere com o banco. Ela é um dos 37.457 pacotes de urnas antigas com zeros a mais no fim do certificado: com esses zeros ignorados na leitura, passa em todas as conferências de lacre (22 conferências, 0 falha; `data/parsed/auditoria/integridade/2t/reverificacao.jsonl`, de `node scripts/auditoria/integridade-reverificar.mjs --turno 2`; [tópico 1](01-integridade-e-estrutura-dos-arquivos.md#urnas-antigas-carteira-gravada-com-zeros-a-mais)).
+
+## Um caso para examinar
+
+**Hipótese.** Seção em local de aldeia em Ipixuna-AM (zona 45, seção 63).
+
+- **Fato.** 1º turno: 13 = 135, 22 = 61, comparecimento 227. 2º turno: 13 = 167, **22 = 2**, comparecimento 197. Eleitores aptos: 335 nos dois turnos. Lacres sem falha nos dois turnos. Nos dois turnos a seção usou urna de reserva.
+- **Hipótese:** mudança de voto em bloco da comunidade entre os turnos, **ou** algo a investigar. O 22 perdeu 59 votos e o comparecimento caiu 30.
+- **Fato:** o diário da urna foi lido nos dois turnos no [tópico 3](03-linha-do-tempo.md), item 11. No 1º turno, a urna original parou por bateria e a reserva fechou a votação, com 81 dos 227 votos depois das 17h de Brasília. No 2º turno, a seção usou desde a abertura a urna que tinha sido a reserva do 1º turno, sem troca no dia, e encerrou às 17h02 de Brasília. **Pendente:** os avisos de "eleitor já votou" e de quem é a digital nas liberações manuais. Este teste sozinho não decide.
+
+## Verificação dos próprios testes (contraprova incompleta)
+
+- **Pendente: em verificação.** Se o modelo sem fraude reproduz o comportamento dos votos reais no último algarismo (as 17 diferenças contra "todos iguais" deveriam sumir na comparação com o modelo), e se Benford no 1º algarismo reprova o modelo sem fraude.
+- **Fato.** Os testes acusam diferenças quando elas existem nos dados: apontaram o excesso de concentração do 13 nas aldeias, as zonas do Sul com correlação alta para o 22 e o excesso de múltiplos de 10 do 22 no 1º turno (28 UFs, z +2,2). Isso mostra que eles reagem a padrões presentes nos dados. Não mostra que acusariam uma fraude: isso depende do teste com fraude simulada, ainda não feito.
+- **Fato.** As simulações dos scripts do autor usam semente fixa: rodar os scripts de novo dá os mesmos números. Isso garante repetição, não correção; a conferência independente delas está pendente.
+- **Pendente.** **Não foi feito o teste com fraude simulada** (inserir de propósito, em dados honestos, um enchimento de urna ou números inventados de tamanho conhecido, e ver a partir de que tamanho cada teste acusa). Sem isso, não se sabe o tamanho mínimo de fraude que estes testes conseguiriam ver nos dados brasileiros. A chance de um teste acusar uma fraude de tamanho conhecido se chama **poder do teste** (ver glossário); o menor tamanho que ele acusa com boa chance é o **efeito mínimo detectável**.
+
+## Limites
+
+- **Fato (limite dos métodos).** Estes testes procuram fraude **grande o bastante para mudar o desenho dos números**. Como o teste com fraude simulada não foi feito, não há garantia de que eles detectem:
+  - alteração pequena e espalhada por muitas seções;
+  - alteração feita por sistema de forma proporcional ao voto de cada seção (ela tende a preservar o formato das distribuições e os algarismos);
+  - votos de terceiros liberados sem biometria em proporção ao voto local. Esse voto entra no boletim e no resultado oficial como qualquer outro, e não deixa marca estatística.
+- **Risco (princípio 8).** A liberação de eleitor sem biometria depende do mesário, que digita o número do título e o ano de nascimento. Isso é uma brecha que depende só de comportamento humano, e estes testes estatísticos não conseguem dizer se ela foi usada. Ela é examinada pelo diário da urna nas hipóteses H02 e H05 e no tópico 4.
+- **Hipótese não medida.** A explicação benigna para a concentração do 13 em aldeias e comunidades é o **voto em bloco** de comunidades pequenas e homogêneas. Esta mesma explicação não exclui pressão sobre o voto dentro da comunidade, que nenhum arquivo público mede.
+- **Fato.** A classificação dos locais (aldeia, quilombo) deixa de fora comunidades cujo nome não indica isso. Então parte das seções "comuns" com excesso pode ser de comunidades. Isso não foi medido.
+- **Fato.** O modelo de referência usa uma única medida de variação por zona. Em zonas que misturam cidade e aldeia, ele espera menos casos extremos do que seria normal. Isso exagera o "excesso" medido, para os dois candidatos.
+- **Fato.** Anomalia estatística, onde existe, também não prova fraude. Ausência de anomalia não prova honestidade.
+- **Fato.** Só foi testado o cargo de Presidente. Governador (2º turno em 6 UFs: AC, AM, DF, ES, RN e TO, pelos boletins no banco) não foi testado.
+
+## Como repetir
+
+```
+node scripts/auditoria/forense-base.mjs 2 && node scripts/auditoria/forense-base.mjs 1
+node scripts/auditoria/forense-eleitorado.mjs perfil && node scripts/auditoria/forense-eleitorado.mjs local
+for t in 2 1; do
+  for s in a3a4 klimek digitos zscore redondos; do node scripts/auditoria/forense-$s.mjs $t; done
+  node scripts/auditoria/forense-assimetria.mjs $t
+done
+node scripts/auditoria/forense-conferir.mjs 2 <uf/município/zona/seção> ...
+```
+
+Conferência independente dos números deste tópico (não usa os scripts nem os arquivos intermediários do autor):
+
+```
+node --max-old-space-size=8192 scripts/auditoria/verifica-pericia-09-padroes.mjs
+node scripts/auditoria/verifica-pericia-09-conferencia.mjs
+```
+
+Saídas em `data/parsed/auditoria/forense/` (autor) e `data/parsed/auditoria/verifica-pericia/` (conferência). Detalhes técnicos em [../analysis/forense-estatistica/](../analysis/forense-estatistica/01-dados-e-metodo.md).
+
+## Próximos passos
+
+1. **Pendente:** parecer do revisor cético sobre todos os itens deste tópico.
+2. **Pendente:** recalcular de forma independente os números que dependem de simulação (permutação do canto de Klimek, algarismos contra o modelo sem fraude, Benford no modelo sem fraude, percentuais redondos) e os que descontam o perfil dos eleitores (correlação, z robusto, comparecimento muito alto), depois de corrigido o problema de código do z com perfil.
+3. **Pendente:** refazer todos os testes com o 1º turno completo e comparar seção a seção com o 2º.
+4. **Pendente:** comparar com o 2º turno de 2022 nas mesmas seções, principalmente as 110 seções com 100% e a cauda de comparecimento alto. Se o padrão já existia em 2022, é um padrão que se repete entre eleições (isso mostra persistência, não a causa); se for novo, vira item de investigação.
+5. **Pendente:** teste com fraude simulada, para medir o tamanho mínimo de fraude que cada teste detecta.
+6. **Pendente:** na seção de Ipixuna-AM (zona 45, seção 63), os avisos de "eleitor já votou" e de quem é a digital nas liberações manuais. Os diários dos dois turnos já foram lidos no [tópico 3](03-linha-do-tempo.md), item 11.
+7. **Feito** (parecer 24): o lacre da seção do CE (zona 55, seção 160) confere depois de ignorar os zeros a mais no certificado. Falta corrigir a leitura em `src/lacres.js`, usado por `verifica-pericia-09-conferencia.mjs`, que ainda para nessa seção (**Pendente**, recomendação do parecer 24).
+8. **Pendente:** descontar renda (Censo por setor) nas zonas do Sul com correlação alta para o 22, e classificar aldeias e quilombos por coordenada geográfica.
+9. **Pendente:** rodar os mesmos testes para Governador.

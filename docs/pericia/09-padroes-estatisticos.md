@@ -14,10 +14,10 @@ Os resultados de Presidente mostram as marcas estatísticas que fraudes grandes 
 
 | Pergunta | Resposta (2º turno, Presidente, 499.205 seções) | Rótulo |
 |---|---|---|
-| Há a marca de enchimento de urna? | Não aparece. Nenhuma seção tem comparecimento acima de 100%. Não há um segundo grupo de seções em "100% de comparecimento com 100% para um candidato". Dentro de cada zona, comparecimento e voto quase não andam juntos (correlação −0,078 para o 13). | **Fato** |
-| Há marca de número inventado? | O último algarismo difere de "todos iguais" em 17 de 56 testes, e o 2º algarismo difere da lei de Benford em 52 de 56. Essas duas referências não são a certa para votos por seção (ver Teste 3). A comparação com contagens honestas simuladas, que é a que decide, está **Pendente: em verificação**. | **Fato** (contagens); a conclusão está pendente |
+| Há a marca de enchimento de urna? | A marca clássica não aparece. Nenhuma seção tem comparecimento acima de 100%. Não há um segundo grupo de seções em "100% de comparecimento com 100% para um candidato". Dentro de cada zona, comparecimento e voto quase não andam juntos (correlação −0,078 para o 13). Isso não exclui enchimento pequeno ou espalhado: o tamanho mínimo que estes testes veem ainda não foi medido (**Pendente**). | **Fato** |
+| Há marca de número inventado? | O último algarismo difere de "todos iguais" em 17 de 56 testes, e o 2º algarismo difere da lei de Benford em 52 de 56. Essas duas referências não são a certa para votos por seção (ver Teste 3). A comparação com contagens honestas simuladas, que é a referência adequada, está **Pendente: em verificação**. | **Fato** (contagens); a conclusão está pendente |
 | Há excesso de números redondos? | Não, nas contagens de votos do 13, do 22 e no comparecimento. Nos percentuais redondos, **Pendente: em verificação**. | **Fato** (contagens) |
-| Há algo fora do padrão? | Sim: há mais seções com 90% a 100% dos votos para o 13 (Lula) do que o modelo prevê (6.899 contra 4.664). O excesso, comparado ao esperado, é maior em aldeias, quilombos e presídios, mas em número de seções a maior parte dele está em seções classificadas como "comuns". Essas seções já davam votação parecida ao mesmo candidato no 1º turno: 6.875 das 6.899 já tinham 80% ou mais para o 13. Se o excesso some quando se leva em conta o perfil dos eleitores: **Pendente: em verificação**. | **Fato** (contagem); a explicação é **Hipótese** |
+| Há algo fora do padrão? | Sim: há mais seções com 90% a 100% dos votos para o 13 (Lula) do que o modelo prevê (6.899 contra 4.664,2). O excesso, comparado ao esperado, é maior em aldeias, quilombos e presídios, mas em número de seções a maior parte dele está em seções classificadas como "comuns". Essas seções já davam votação parecida ao mesmo candidato no 1º turno: 6.875 das 6.899 já tinham 80% ou mais para o 13. Se o excesso some quando se leva em conta o perfil dos eleitores: **Pendente: em verificação**. | **Fato** (contagem); a explicação é **Hipótese** |
 | Isso prova que não houve fraude? | Não. Estes métodos só enxergam fraude grande o bastante para mudar o desenho dos números no país. Fraude pequena e espalhada por muitas seções, ou feita de forma proporcional ao voto de cada lugar, pode passar por eles sem ser vista (o tamanho que eles enxergam ainda não foi medido). | **Fato** (é um limite dos métodos) |
 
 **O que isto prova:** os números do 2º turno não têm a marca de enchimento de urna nem excesso de contagens redondas que estes métodos detectam. A marca de números inventados ainda depende da comparação com contagens simuladas, que está pendente.
@@ -54,19 +54,19 @@ O teste também mede se, **dentro da mesma zona**, as seções que comparecem ma
 
 Quem inventa números à mão escolhe algarismos de um jeito que contagens reais não produzem. O teste olha:
 
-- **o último algarismo** dos votos de cada candidato, quando ele teve 100 votos ou mais na seção. Numa contagem real, ele deveria sair de 0 a 9 de forma quase igual;
+- **o último algarismo** dos votos de cada candidato, quando ele teve 100 votos ou mais na seção. A referência simples é que ele saia de 0 a 9 de forma quase igual; para votos por seção, essa referência é só aproximada, e a adequada é a das contagens honestas simuladas;
 - **o segundo algarismo**, comparado com a lei de Benford (abaixo) e com o modelo sem fraude.
 
 Cada comparação é feita por UF e por candidato (56 comparações no 2º turno: 28 UFs, contando o exterior, vezes 2 candidatos). Como são muitas, usa-se uma correção (método de **Holm**) que evita chamar de anomalia o que é só acaso por causa do número de tentativas.
 
-**Por que a lei de Benford no 1º algarismo não serve aqui.** A lei de Benford diz que, em muitos conjuntos de números reais, o primeiro algarismo é "1" em cerca de 30% dos casos, e "9" em menos de 5%. Ela vale quando os números se espalham por várias ordens de grandeza (unidades, dezenas, milhares, milhões). Votos por seção não fazem isso: os de um candidato numa seção vão de 0 a 502 no 2º turno, porque a seção tem esse tamanho. Então o primeiro algarismo depende do tamanho das seções e da força do candidato, e não de a contagem ser honesta.
+**Por que a lei de Benford no 1º algarismo não serve aqui.** A lei de Benford diz que, em muitos conjuntos de números reais, o primeiro algarismo é "1" em 30,1% dos casos, e "9" em menos de 5%. Ela vale quando os números se espalham por várias ordens de grandeza (unidades, dezenas, milhares, milhões). Votos por seção não fazem isso: os de um candidato numa seção vão de 0 a 502 no 2º turno, porque a seção tem esse tamanho. Então o primeiro algarismo depende do tamanho das seções e da força do candidato, e não de a contagem ser honesta.
 
 - **Fato.** No Brasil, para o 13, a distância entre o 1º algarismo dos votos reais e a lei de Benford é muito grande (χ² = 297.064).
 - **Pendente: em verificação.** A demonstração de que votos simulados **sem fraude** também são reprovados por Benford no 1º algarismo. Enquanto isso, este teste não é usado como prova de nada neste relatório, nem a favor nem contra.
 
 ### Teste 4. Seções muito diferentes da sua zona
 
-Para cada seção, mede quantas vezes ela está longe do "típico" da sua zona, em parcela de cada candidato e em comparecimento. Esse afastamento chama-se **escore z**. Foi usado um z que não se deixa puxar pelos próprios valores extremos (z **robusto**), só em zonas com 10 seções ou mais. z de 5 ou mais é muito raro: por uma curva normal, daria menos de uma seção no país inteiro. Depois a conta é refeita **descontando o perfil dos eleitores** da seção (idade, escolaridade, indígenas, quilombolas), para ver o que sobra.
+Para cada seção, mede quantas vezes ela está longe do "típico" da sua zona, em parcela de cada candidato e em comparecimento. Esse afastamento chama-se **escore z**. Foi usado um z que não se deixa puxar pelos próprios valores extremos (z **robusto**), só em zonas com 10 seções ou mais. z de 5 ou mais é muito raro: se os afastamentos seguissem uma curva normal, daria menos de uma seção no país inteiro. Votos reais costumam ter mais casos extremos que a curva normal, então essa conta serve de régua, não de probabilidade. Depois a conta é refeita **descontando o perfil dos eleitores** da seção (idade, escolaridade, indígenas, quilombolas), para ver o que sobra.
 
 ### Teste 5. Números redondos
 
@@ -86,7 +86,7 @@ Para cada tipo de anomalia, conta quantas favorecem o 13 e quantas o 22, e compa
 - **Fato.** Contando zona a zona (2.640 zonas com 20 seções ou mais), as zonas em que a correlação passa de 0,5 (as duas coisas sobem juntas com força) são 20 a favor do 13 e 69 a favor do 22. A correlação do 22 dentro das zonas, por UF, é maior em SC (+0,255), PR (+0,250), RS (+0,241), GO (+0,190) e MS (+0,185); a do 13, em RR (+0,254).
   - **Hipótese:** em zonas urbanas, bairros de renda maior comparecem mais e votam mais no 22. O cadastro não informa renda, então esse efeito não foi descontado. **Pendente:** refazer com renda do Censo por setor.
 - **Fato. Há uma cauda pequena de comparecimento alto com voto forte no 13.** 1.214 seções (0,24% do total) tiveram 94% ou mais de comparecimento. Nas 66 com 98% a 100% de comparecimento, o 13 teve em média 79,7% dos votos. No canto "95% ou mais de comparecimento e 95% ou mais para o candidato" há 64 seções do 13 e 2 do 22. Quantas o acaso daria (permutação): **Pendente: em verificação**. Das 64 do 13: 34 em aldeia, 2 em quilombo, 1 em presídio e 27 classificadas como "comuns".
-  - **Fato.** A parcela do 13 também é maior nas seções de comparecimento **baixo** (59,3% em média na faixa de 50% a 60%). Isso indica que a cauda reflete diferenças entre regiões, e não só o comparecimento.
+  - **Fato.** A parcela do 13 também é maior nas seções de comparecimento **baixo** (59,3% em média na faixa de 50% a 60%). **Hipótese:** a cauda reflete diferenças entre regiões, e não só o comparecimento (a divisão por região não foi medida).
   - **Hipótese:** o excesso no canto vem de aldeias e comunidades pequenas, onde o eleitorado é estável, quase todos votam e o voto é parecido. **Pendente:** conferir se as 27 seções "comuns" do canto ficam em terras indígenas ou quilombos, e comparar com as mesmas seções em 2022.
 
 ### Números inventados (algarismos)
@@ -110,9 +110,9 @@ Rótulo: **Fato** (as contagens 17 e 52).
 | Votos do 22 | 49.741 / 49.676 | 4.273 / 4.274 |
 | Comparecimento | 50.007 / 49.962 | 5.189 / 5.311 |
 
-- **Fato.** Nenhum excesso de contagens redondas para os dois candidatos nem para o comparecimento. Nos múltiplos de 10, 50 e 100, as diferenças entre observado e esperado estão dentro do que o acaso produz (escore z entre −1,7 e +0,7).
+- **Fato.** Nenhum excesso de contagens redondas além do que o acaso produz, para os dois candidatos e para o comparecimento. Nos múltiplos de 10, 50 e 100, as diferenças entre observado e esperado ficam com escore z entre −1,7 e +0,7 (a tabela mostra os múltiplos de 10 e de 100).
 - **Pendente: em verificação.** Percentuais redondos (múltiplos de 5%): o esperado vem de sorteio e ainda não foi recalculado.
-- **Fato.** Brancos e nulos aparecem com **menos** múltiplos de 10 que o esperado. Isso vem do método: são números pequenos, e a média dos vizinhos exagera o esperado nesse trecho. Não é sinal de nada.
+- **Fato.** Brancos e nulos aparecem com **menos** múltiplos de 10 que o esperado. **Hipótese:** isso vem do método, porque são números pequenos, e a média dos vizinhos exagera o esperado nesse trecho. Como é falta, e não excesso, de números redondos, isso não é, por si, sinal de fraude.
 
 ### Seções com 90% a 100% dos votos para um candidato
 
@@ -123,7 +123,7 @@ Rótulo: **Fato** (as contagens 17 e 52).
 | 22, observado | 343 | 34 | 3 | 4 | 384 |
 | 22, esperado pelo modelo | 506,7 | 97,3 | 7,0 | 4,1 | 615,1 |
 
-- **Fato.** O 13 tem mais seções com 90% ou mais do que o modelo espera (6.899 contra 4.664). O 22 tem menos (384 contra 615).
+- **Fato.** O 13 tem mais seções com 90% ou mais do que o modelo espera (6.899 contra 4.664,2). O 22 tem menos (384 contra 615,1).
 - **Fato. Onde está o excesso do 13:**
 
   | Tipo de local | Observado | Esperado | Vezes o esperado |
@@ -160,7 +160,7 @@ Rótulo: **Fato** (as contagens 17 e 52).
 O 1º turno cobre as 28 UFs (499.206 seções com voto para Presidente). Os números abaixo foram refeitos no 1º turno completo, numa revisão posterior.
 
 - **Fato.** Nenhuma seção do 1º turno teve comparecimento acima de 100% (15 com exatamente 100%, de 21 a 168 eleitores aptos). Os testes de algarismos contra o modelo sem fraude no 1º turno: **Pendente: em verificação**.
-- **Fato.** O excesso de seções com 90% ou mais para o 13 já existia no 1º turno, com 11 adversários: no país inteiro, o observado foi 1,89 vez o esperado no 1º turno (3.686 contra 1.947,7) e 1,48 vez no 2º (6.899 contra 4.664,2). Ou seja, o excesso **diminuiu** no 2º turno.
+- **Fato.** O excesso de seções com 90% ou mais para o 13 já existia no 1º turno, com 11 adversários: no país inteiro, o observado foi 1,89 vez o esperado no 1º turno (3.686 contra 1.947,7) e 1,48 vez no 2º (6.899 contra 4.664,2). Ou seja, o excesso **relativo** (observado dividido pelo esperado) **diminuiu** no 2º turno. Em número de seções acima do esperado, ele subiu: de 1.738,3 no 1º turno para 2.234,8 no 2º.
 - **Fato.** As 110 seções com 100% no 2º turno (106 do 13 e 4 do 22) **todas** já davam 90% ou mais ao mesmo candidato no 1º turno. Das 6.899 seções do 13 com 90% ou mais, 6.875 já tinham 80% ou mais no 1º. Das 384 do 22, 381. Só 3 (todas do 13) subiram 20 pontos ou mais entre os turnos.
 - **Fato.** No 1º turno, os votos do 22 em múltiplos de 10 aparecem um pouco mais que o esperado (50.247 contra 49.762, escore z +2,2), com excesso em 20 das 28 UFs (contando o exterior). Nos múltiplos de 50 e 100 do 1º turno não há excesso (z +0,5 e −0,2). No 2º turno isso não se repete (49.741 contra 49.676, z +0,3).
   - **Hipótese (fraca):** acaso ou efeito do método dos vizinhos numa distribuição de outro formato. Não dá para descartar. **Pendente:** refazer com o esperado por sorteio em vez dos vizinhos.
@@ -192,11 +192,11 @@ Os testes acima usam o banco da auditoria. Para confirmar que os números extrem
 - **Fato (limite dos métodos).** Estes testes procuram fraude **grande o bastante para mudar o desenho dos números**. Como o teste com fraude simulada não foi feito, não há garantia de que eles detectem:
   - alteração pequena e espalhada por muitas seções;
   - alteração feita por sistema de forma proporcional ao voto de cada seção (ela tende a preservar o formato das distribuições e os algarismos);
-  - votos de terceiros liberados sem biometria em proporção ao voto local. Esse voto entra no boletim e no resultado oficial como qualquer outro, e não deixa marca estatística.
+  - votos de terceiros liberados sem biometria em proporção ao voto local. Esse voto entra no boletim e no resultado oficial como qualquer outro, e pode não deixar marca que estes testes vejam.
 - **Risco (princípio 8).** A liberação de eleitor sem biometria depende do mesário, que digita o número do título e o ano de nascimento. Isso é uma brecha que depende só de comportamento humano, e estes testes estatísticos não conseguem dizer se ela foi usada. Ela é examinada pelo diário da urna nas hipóteses H02 e H05 e no tópico 4.
 - **Hipótese não medida.** A explicação benigna para a concentração do 13 em aldeias e comunidades é o **voto em bloco** de comunidades pequenas e homogêneas. Esta mesma explicação não exclui pressão sobre o voto dentro da comunidade, que nenhum arquivo público mede.
 - **Fato.** A classificação dos locais (aldeia, quilombo) deixa de fora comunidades cujo nome não indica isso. Então parte das seções "comuns" com excesso pode ser de comunidades. Isso não foi medido.
-- **Fato.** O modelo de referência usa uma única medida de variação por zona. Em zonas que misturam cidade e aldeia, ele espera menos casos extremos do que seria normal. Isso exagera o "excesso" medido, para os dois candidatos.
+- **Fato.** O modelo de referência usa uma única medida de variação por zona. **Hipótese:** em zonas que misturam cidade e aldeia, ele espera menos casos extremos do que seria normal, e isso exagera o "excesso" medido, para os dois candidatos. A direção e o tamanho desse efeito não foram medidos.
 - **Fato.** Anomalia estatística, onde existe, também não prova fraude. Ausência de anomalia não prova honestidade.
 - **Fato.** Só foi testado o cargo de Presidente. Governador (2º turno em 6 UFs: AC, AM, DF, ES, RN e TO, pelos boletins no banco) não foi testado.
 
@@ -204,7 +204,7 @@ Os testes acima usam o banco da auditoria. Para confirmar que os números extrem
 
 1. **Pendente:** segunda verificação independente (a que tenta derrubar cada achado) sobre todos os itens deste tópico.
 2. **Pendente:** recalcular de forma independente os números que dependem de simulação (permutação do canto de Klimek, algarismos contra o modelo sem fraude, Benford no modelo sem fraude, percentuais redondos) e os que descontam o perfil dos eleitores (correlação, z robusto, comparecimento muito alto), depois de corrigido o problema de código do z com perfil.
-3. **Pendente:** refazer todos os testes com o 1º turno completo e comparar seção a seção com o 2º.
+3. **Pendente:** refazer com o 1º turno completo os testes que ainda não foram refeitos nele (algarismos contra o modelo sem fraude, permutação, desconto do perfil) e comparar seção a seção com o 2º.
 4. **Pendente:** comparar com o 2º turno de 2022 nas mesmas seções, principalmente as 110 seções com 100% e a cauda de comparecimento alto. Se o padrão já existia em 2022, é um padrão que se repete entre eleições (isso mostra persistência, não a causa); se for novo, vira item de investigação.
 5. **Pendente:** teste com fraude simulada, para medir o tamanho mínimo de fraude que cada teste detecta.
 6. **Pendente:** na seção de Ipixuna-AM (zona 45, seção 63), os avisos de "eleitor já votou" e de quem é a digital nas liberações manuais. Os diários dos dois turnos já foram lidos no [tópico 3](03-linha-do-tempo.md), item 11.

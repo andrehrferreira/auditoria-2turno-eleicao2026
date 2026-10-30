@@ -13,7 +13,7 @@ O voto é secreto: ninguém pode saber em quem uma pessoa votou. Para cada urna,
 - **Fato (limite de publicar por seção):** nenhuma seção teve só 1 votante. Mas 30 seções no 2º turno (3.100 eleitores) e 17 no 1º (1.107) votaram todas no mesmo candidato a presidente. Nelas, quem sabe quem compareceu sabe como cada um votou, inclusive o mesário que é eleitor da própria seção, se ele votou ali. Isso é consequência de publicar o resultado seção por seção, não falha da urna.
 - **Fato (achado):** quando o mesário interrompe a votação de um eleitor que demora na cabine (a "suspensão"), a urna grava no diário público o número digitado para autorizar a interrupção. No dia do 1º turno, **55.483 linhas** trazem um número com formato válido de título de eleitor (**31.764 números diferentes**) que não é de nenhum mesário, presidente de mesa ou servidor registrado em qualquer urna do país, nos dois turnos. No dia do 2º turno, **5.564 linhas (3.801 números)**. Cada número aparece numa única seção (no 1º turno, um deles em 2), dentro do atendimento de um eleitor, com data e hora. Um número de título é dado pessoal, e ele está num arquivo que qualquer pessoa baixa.
 - **Fato:** a mensagem de encerramento da votação também traz números de título que não são de mesário registrado em nenhuma urna do país no mesmo turno: 5.688 linhas no 1º turno e 1.750 no dia do 2º turno, fora do atendimento de eleitores. O mais provável é o presidente da mesa sem registro na urna (Hipótese).
-- **Hipótese (forte para o número que a urna recusa):** o número gravado na suspensão é o título do próprio eleitor que estava na cabine. **Confirmar é Pendente:** exige a lista de eleitores da seção ou a regra técnica da urna, que não são públicas. A pergunta foi encaminhada ao TSE.
+- **Hipótese (forte para o número que a urna recusa):** o número gravado na suspensão é o título do próprio eleitor que estava na cabine. **Confirmar é Pendente:** exige a lista de eleitores da seção ou a regra técnica da urna, que não são públicas. A pergunta está na lista de perguntas ao TSE.
 - **Hipótese (o que isso permitiria):** se o número for o do eleitor suspenso, o diário público liga aquele eleitor ao horário em que esteve na cabine e, quando a suspensão termina com "voto nulo por suspensão", ao voto nulo que a urna atribuiu nos cargos que ele não confirmou. **Não revela voto válido em candidato:** os cargos que ele confirmou antes da suspensão ficam misturados na lista ordenada do RDV.
 - **Não se pode afirmar:** que o sigilo está garantido contra qualquer método. Sete arquivos que a urna grava não são publicados, o método que encadeia as linhas do diário não é público, e a busca deste tópico só enxerga o número escrito por extenso (ver Limites).
 
@@ -38,7 +38,7 @@ O voto é secreto: ninguém pode saber em quem uma pessoa votou. Para cada urna,
 1. **Ordem dos votos.** Para cada lista do RDV (um cargo de uma seção), o programa confere se cada voto vem antes do seguinte pela regra (tipo do voto, número digitado). Se a lista estivesse na ordem de chegada dos eleitores, ela sairia desarrumada por esse critério.
 2. **Cédulas de MG.** A segunda verificação comparou, posição por posição, as listas de cargos diferentes da mesma seção, para ver se a posição 1 de deputado federal e a posição 1 de deputado estadual são a mesma cédula.
 3. **Seções pequenas.** Soma dos votos do RDV por seção e cargo: quantos votaram e quantos candidatos diferentes receberam voto.
-4. **Números no diário.** Em cada linha de todos os diários, o programa procura sequências de 10 ou mais dígitos dentro da mensagem e confere se têm formato de título (ou de CPF). Cada número é classificado pelo papel que o diário lhe dá naquela urna e, se não tiver papel ali, cruzado com todos os títulos de mesário do país (1.992.260 nos diários do 1º turno e 2.074.207 nos do 2º), com os servidores e com os presidentes que encerraram cada urna, nos dois turnos.
+4. **Números no diário.** Em cada linha de todos os diários, o programa procura sequências de 10 a 12 dígitos dentro da mensagem e confere se têm formato de título (ou de CPF). Cada número é classificado pelo papel que o diário lhe dá naquela urna e, se não tiver papel ali, cruzado com todos os títulos de mesário do país (1.992.260 nos diários do 1º turno e 2.074.207 nos do 2º), com os servidores e com os presidentes que encerraram cada urna, nos dois turnos.
 
 ## O que foi encontrado
 
@@ -95,7 +95,7 @@ Publicar o resultado por seção revela o voto de quem votou numa seção onde t
 | Governador | 2 (85) | 4 (509) |
 | Deputado federal | 1 (297) | não há |
 | Deputado estadual, senador, deputado distrital | 0 | não há |
-| Seções com algum cargo unânime | 20 | 33 |
+| Seções com algum cargo unânime | 20 | 33 (uma seção do AM, 02216/0021/0096, é unânime para Presidente e para Governador) |
 | … delas, com mesário que o diário registra como eleitor da própria seção | 18 | 31 |
 
 Por UF (seções, entre parênteses os eleitores):
@@ -154,7 +154,7 @@ Fonte: contagem da segunda verificação independente.
 
 **Para o número que a urna aceita ("válido") sem papel: o dono não é conhecido.** Não é de mesário, servidor nem presidente; cada número aparece numa só seção e muda a cada suspensão. Se a urna recusa o título de quem está na cabine (sinal 3), esse número **não** é o do eleitor suspenso. Pode ser de outra pessoa da fila, de um acompanhante ou de um membro da mesa sem registro. Os arquivos não dizem.
 
-**Pendente:** confirmar de quem são os números. Os caminhos são a lista de eleitores da seção (não pública) ou a regra técnica da suspensão (não publicada). A auditoria não usou a base privada para isso. Perguntas encaminhadas ao TSE: (1) que títulos a urna aceita para suspender, e por que recusa o título de um mesário registrado? (2) o número gravado em "Título [número] é inválido para suspender" pode ser o do eleitor na cabine? (3) por que o diário grava o número digitado, e não só o resultado?
+**Pendente:** confirmar de quem são os números. Os caminhos são a lista de eleitores da seção (não pública) ou a regra técnica da suspensão (não publicada). A auditoria não usou a base privada para isso. Perguntas a enviar ao TSE: (1) que títulos a urna aceita para suspender, e por que recusa o título de um mesário registrado? (2) o número gravado em "Título [número] é inválido para suspender" pode ser o do eleitor na cabine? (3) por que o diário grava o número digitado, e não só o resultado?
 
 ### 6. O que isso permite, e o que não permite
 
@@ -177,7 +177,7 @@ Só têm número com formato de título as mensagens de mesário (registro, digi
 
 ## Prova de que o teste funciona (contraprova)
 
-- **Fato (a conferência de ordem acusa desordem quando ela existe):** o mesmo teste que dá 100% nas listas da urna acusou as 9 listas de cédula de MG que estão na ordem de digitação.
+- **Fato (a conferência de ordem acusa desordem quando ela existe):** o mesmo teste que dá 100% nas listas da urna acusou as 13 listas fora de ordem de MG: as 9 de cédula, que estão na ordem de digitação, e as 4 copiadas do boletim.
 - **Fato (teste com um voto cuja hora se conhece):** o "voto nulo por suspensão" é o único voto cuja hora o diário revela. Se o RDV seguisse a ordem de votação, a posição desse voto no RDV seria a mesma posição do eleitor no diário em todos os casos. No 1º turno, das 135.770 linhas de nulo por suspensão no dia, 84.075 podem ser comparadas (cargo de uma escolha, um só diário com votos, contagem igual): a posição coincide em 431 (0,51%). No 2º turno, 1 de 619. Isso é coincidência de posição, não ordem de votação.
 - **Fato (o dígito verificador está certo):** todos os títulos de mesário do país passam na conta: 3.748.505 de 3.748.505 linhas "Mesário [título] registrado" nos diários do 1º turno e 7.542.425 de 7.542.425 nos do 2º (que trazem também o 1º turno das urnas reaproveitadas). Uma conta errada reprovaria parte deles. Dois programas escritos à parte concordam em todas as contagens comparadas.
 - **Fato (o cruzamento de papéis acha quem tem papel):** na mensagem "Mesário [título] habilitou o eleitor", que não entrou na montagem da lista de mesários, o número é de mesário registrado na urna em 10.949.368 de 10.949.380 linhas (diários do 2º turno, todos os períodos). As 12 restantes são de um mesário cujo registro ficou num diário não publicado.
@@ -208,7 +208,7 @@ Não gravar no diário o número digitado na suspensão nem no encerramento. Gra
 
 ## Próximos passos
 
-- [x] Ordem do RDV, cédulas de MG, seções unânimes e números no diário, nos dois turnos, com segunda verificação independente.
+- [x] Ordem do RDV, cédulas de MG, seções unânimes e números de título nas mensagens de suspensão e de encerramento, nos dois turnos, com segunda verificação independente (os itens abertos estão em "Pendentes").
 - [ ] **Pendente.** Enviar ao TSE as três perguntas do item 5 sobre a suspensão.
 - [ ] **Pendente.** Segunda verificação independente do canal do voto nulo com número próprio e das características do eleitor no diário.
 - [ ] **Pendente.** Conferir as sequências com dígito verificador de CPF na mensagem de encerramento.

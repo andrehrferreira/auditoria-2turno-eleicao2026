@@ -9,8 +9,8 @@ Pedido do auditor (29/10/2026): as urnas trocadas por urna reserva no 2º turno 
 ## Resposta curta
 
 - **Fato:** no 2º turno, **5.714 seções** votaram com urna reserva. Em **2.818** a reserva era uma urna diferente da que a seção usou no 1º turno (troca nova). Em **2.893** a reserva já tinha sido usada pela seção no 1º turno e ficou para o 2º (reserva herdada). Em 3, a própria urna da seção foi recarregada como reserva.
-- **Fato (votos, 2.818 trocas novas):** do 1º para o 2º turno, essas seções mudaram do mesmo jeito que as seções sem troca da mesma zona: no comparecimento, na parcela do 13 entre os votos do 13 e do 22, e em brancos + nulos. Na parcela do 13, a diferença foi de −0,05 ponto percentual, com intervalo de 95% de −0,12 a +0,03. Em votos: 335 a menos para o 13, com intervalo de 860 a menos a 190 a mais, num total de 708.479 votos em 13 + 22 nessas seções.
-- **Fato (votos, 2.893 reservas herdadas):** no 2º turno, a parcela do 13 nelas foi igual à das outras seções do mesmo local de votação: −0,06 ponto, intervalo de −0,21 a +0,09. O comparecimento foi igual ao das vizinhas no 2º turno e 0,75 ponto menor no 1º.
+- **Fato (votos, 2.818 trocas novas):** do 1º para o 2º turno, essas seções não tiveram diferença detectável em relação às seções sem troca da mesma zona: no comparecimento, na parcela do 13 entre os votos do 13 e do 22, e em brancos + nulos. Na parcela do 13, a diferença foi de −0,05 ponto percentual, com intervalo de 95% de −0,12 a +0,03, que inclui o zero (708.479 votos em 13 + 22 nessas seções). "Não detectável" não quer dizer "provado igual" (item 2).
+- **Fato (votos, reservas herdadas):** nas 2.730 das 2.893 herdadas que têm outra seção no mesmo local de votação (as outras 163 não têm com quem comparar), a parcela do 13 no 2º turno não teve diferença detectável em relação às vizinhas: −0,06 ponto, intervalo de −0,21 a +0,09. O comparecimento também não, no 2º turno; no 1º, foi 0,75 ponto menor.
 - **Fato (escala):** nas 5.714 seções com reserva, o 13 teve **742.671 votos**. A diferença oficial entre os dois candidatos foi de 4.430.191 votos. Mesmo que todos esses 742.671 votos tivessem sido tirados do 22, o 13 ainda venceria por **2.944.849**. Isso limita o tamanho do que a troca de urnas poderia ter feito; não prova que nada foi feito.
 - **Fato (rastro técnico):** no diário da urna reserva das 2.818 seções não aparece nenhum dos sinais que uma adulteração **sem a assinatura do TSE**, ou uma verificação de assinatura pulada, deixaria: 0 inicialização para votar com etapa de verificação falhada, 0 pacote com lacre quebrado, a mesma versão de programa do resto do país, e mensagens de erro de assinatura na mesma taxa das urnas comuns.
 - **Fato (Aracaju):** a concentração de trocas nas zonas 1 e 2 de Aracaju (SE) aparece no diário das reservas como uma troca de urnas entre as duas zonas, registrada em 17/10 e 19/10.
@@ -32,7 +32,7 @@ Pedido do auditor (29/10/2026): as urnas trocadas por urna reserva no 2º turno 
 
 Duas frentes, ambas refeitas pela segunda verificação independente. Fonte dos votos: o boletim de urna (BU) de Presidente de cada seção, nos dois turnos, na cópia de leitura do banco de 29/10/2026. A soma dos boletins é igual ao resultado oficial nos dois turnos ([tópico 5](05-soma-dos-boletins.md)). Fonte do rastro: o diário (log) de todas as urnas do 2º turno, incluindo o diário da urna substituída que vem dentro do pacote da reserva, e os lacres ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)).
 
-**Universo (Fato):** 499.176 seções têm boletim de urna nos dois turnos. Ficam fora 72: 41 do exterior sem arquivo (seções não instaladas) e 31 do Sistema de Apuração (cédula de papel). Nenhuma seção do universo mudou de local de votação nem foi agregada a outra entre os turnos.
+**Universo (Fato):** 499.176 seções têm boletim de urna nos dois turnos. Ficam fora 72: 41 do exterior sem arquivo (seções não instaladas) e 31 do Sistema de Apuração (cédula de papel) no 1º turno. Todas as 5.714 seções que votaram com urna reserva no 2º turno estão dentro do universo. Nenhuma seção do universo mudou de local de votação nem foi agregada a outra entre os turnos.
 
 **Grupos (Fato).** O tipo de troca sai do boletim (tipo e número da urna nos dois turnos):
 
@@ -59,7 +59,7 @@ A outra forma de dividir, pela atividade da urna original no dia 25/10, classifi
 
 **Teste 2, votos das reservas herdadas.** A diferença-em-diferenças tem um ponto cego: se a mesma urna tivesse o mesmo desvio nos dois turnos, o desvio sumiria na subtração. É exatamente o caso das herdadas. Por isso a segunda verificação acrescentou outro teste: o **nível** de cada turno (não a variação) contra as outras seções do **mesmo local de votação**, que votam no mesmo prédio. Entram 2.730 das 2.893 herdadas; as outras 163 estão em locais sem outra seção.
 
-**Teste 3, rastro técnico.** Cada sinal que uma adulteração deixaria nos arquivos públicos (lista abaixo) virou uma marca sim/não por seção, comparada entre as trocas novas, as seções sem troca e as reservas herdadas. As herdadas servem de régua para "ser reserva": uma reserva é carregada de um jeito diferente da urna de seção, e o que aparece nelas também é efeito do procedimento normal, não da troca do 2º turno. Neste teste, o grupo sem troca tem 491.489 seções: além da mesma urna, exige o mesmo código de carga nos dois turnos, o que tira 354 urnas recarregadas.
+**Teste 3, rastro técnico.** Cada sinal que uma adulteração deixaria nos arquivos públicos (lista abaixo) virou uma marca sim/não por seção, comparada entre as trocas novas, as seções sem troca e as reservas herdadas. As herdadas servem de régua para "ser reserva": uma reserva é carregada de um jeito diferente da urna de seção, e o que aparece nelas não vem da troca do 2º turno (Hipótese de trabalho: que seja efeito do procedimento normal; um problema comum a todas as reservas apareceria igual nos dois grupos). Neste teste, o grupo sem troca tem 491.489 seções: além da mesma urna, exige o mesmo código de carga nos dois turnos, o que tira 354 urnas recarregadas.
 
 ## O que foi encontrado
 
@@ -104,24 +104,25 @@ Presidente, soma do boletim de cada grupo. As somas foram refeitas seção a se�
 
 **Como ler:** cada linha é um grupo de seções. O ponto azul é a parcela do 13 no 1º turno; o laranja, no 2º turno, nas mesmas seções. O que importa é o comprimento da linha entre os dois pontos, escrito à direita: quanto o 13 cresceu. Os três grupos começam em lugares diferentes, porque as seções que trocaram de urna ficam em lugares de perfil um pouco diferente, mas crescem quase o mesmo tanto (2,80 pontos sem troca, 2,77 na troca nova e 2,84 na herdada). O gráfico mostra a soma de cada grupo; o teste compara cada seção com a sua própria zona, e por isso o número do teste (abaixo) não é exatamente a distância entre as linhas do gráfico.
 
-### 2. O teste das trocas novas: mudaram como as vizinhas (Fato)
+### 2. O teste das trocas novas: nenhuma diferença detectável em relação às vizinhas (Fato)
 
-**Fato:** comparadas com as seções sem troca da mesma zona, as 2.818 seções com troca nova mudaram do 1º para o 2º turno do mesmo jeito no comparecimento, na parcela do 13 e em brancos + nulos.
+**Fato:** comparadas com as seções sem troca da mesma zona, as 2.818 seções com troca nova não tiveram diferença detectável na mudança do 1º para o 2º turno no comparecimento, na parcela do 13 e em brancos + nulos.
 
-- **Parcela do 13:** −0,05 ponto percentual, intervalo de 95% de −0,12 a +0,03. Em votos: 335 a menos para o 13, com intervalo de 860 a menos a 190 a mais, num total de 708.479 votos em 13 + 22 nessas seções. O sinal é contra o 13 (ele cresceu um pouco menos nas trocadas), e o intervalo contém o zero.
+- **Parcela do 13:** −0,05 ponto percentual, intervalo de 95% de −0,12 a +0,03, num total de 708.479 votos em 13 + 22 nessas seções. O sinal é contra o 13 (ele cresceu um pouco menos nas trocadas), e o intervalo contém o zero.
 - **Comparecimento e brancos + nulos:** os intervalos também contêm o zero, e nenhum passa na correção para os três testes.
 - **Fato:** a segunda verificação refez a conta numa cópia isolada e obteve o mesmo resultado, também pelo sorteio. Nenhuma UF (28, contando o exterior), nenhum modelo de urna, nenhuma zona e nenhuma seção com troca fica fora do esperado depois da correção para muitos testes. Isso vale também para as duas zonas de Aracaju (item 5).
 - **Fato:** as 57 seções citadas como as mais fora da curva foram conferidas no boletim original dos dois turnos: 0 divergência com o banco.
 - **Pendente (sem número):** o tamanho mínimo de desvio que este teste enxergaria é uma estimativa e fica fora deste relatório. Abaixo desse tamanho, o resultado é "não detectado", não "provado ausente".
 
-### 3. As reservas herdadas: igual às vizinhas do mesmo local (Fato)
+### 3. As reservas herdadas: sem diferença detectável em relação às vizinhas do mesmo local (Fato)
 
 **Fato:** 2.893 seções usaram nos dois turnos a mesma urna reserva.
 
-- No 2º turno, a parcela do 13 nelas foi igual à das outras seções do mesmo local de votação: −0,06 ponto, intervalo de −0,21 a +0,09.
-- O comparecimento delas foi igual ao das vizinhas no 2º turno e **0,75 ponto menor no 1º turno**.
+- O teste entra com 2.730 das 2.893; as outras 163 estão em locais sem outra seção para comparar.
+- No 2º turno, a parcela do 13 nelas não teve diferença detectável em relação às outras seções do mesmo local de votação: −0,06 ponto, intervalo de −0,21 a +0,09.
+- O comparecimento delas também não, no 2º turno; no 1º turno, foi **0,75 ponto menor**.
 
-O que isso quer dizer: a mesma reserva, nos dois turnos, não deu ao 13 uma parcela diferente da das urnas do mesmo prédio. Na comparação de variação (teste 1), o comparecimento das herdadas subiu mais que o da zona. O teste do nível mostra por quê: no 1º turno, essas seções tiveram menos eleitores que as vizinhas; no 2º turno, ficaram iguais. Não há eleitor a mais no 2º turno.
+O que isso quer dizer: a mesma reserva, nos dois turnos, não deu ao 13 uma parcela diferente da das urnas do mesmo prédio. Na comparação de variação (teste 1), o comparecimento das herdadas subiu mais que o da zona. O teste do nível mostra por quê: no 1º turno, essas seções tiveram menos eleitores que as vizinhas; no 2º turno, não ficaram acima das vizinhas. O teste não mostra eleitor a mais nelas no 2º turno.
 
 - **Hipótese:** a falha de urna no dia do 1º turno causou fila ou interrupção e fez parte dos eleitores desistir naquele dia.
 - **Pendente (sem número):** a causa da queda de comparecimento no 1º turno. Falta a varredura dos diários do 1º turno, com a hora e a duração de cada falha.
@@ -136,12 +137,14 @@ O que isso quer dizer: a mesma reserva, nos dois turnos, não deu ao 13 uma parc
 | Votos do 22 nessas seções | 694.314 |
 | Votos do 13 no Brasil, 2º turno (resultado oficial) | 64.256.232 |
 | Votos do 22 no Brasil, 2º turno (resultado oficial) | 59.826.041 |
+
+Os totais do Brasil incluem 29 seções que ficam fora do universo deste tópico (27 do exterior apuradas em cédula, com votos, e 2 de MG que no 1º turno votaram em parte em cédula). Elas têm 770 votos do 13 e 666 do 22: é a diferença entre a soma dos seis grupos da tabela do item 1 e o total do Brasil.
 | Diferença oficial | 4.430.191 |
 | Diferença no pior caso: todos os 742.671 votos do 13 nessas seções seriam, na verdade, do 22 | **2.944.849** |
 
 A conta do pior caso: cada voto que passa do 13 para o 22 tira 1 voto de um e dá 1 ao outro, e por isso a diferença cai 2 votos. 4.430.191 − 2 × 742.671 = 4.430.191 − 1.485.342 = 2.944.849. Os votos das 5.714 seções foram somados do boletim de cada seção, e os totais do Brasil vêm do resultado oficial publicado pelo TSE.
 
-- **Pode-se afirmar:** a troca de urnas por reserva, sozinha, não poderia ter decidido a eleição de Presidente, mesmo no caso extremo de todos os votos do 13 nessas urnas serem falsos.
+- **Pode-se afirmar:** a troca de urnas por reserva, sozinha, não poderia ter decidido a eleição de Presidente pela troca de votos do 22 para o 13, mesmo no caso extremo de todos os votos do 13 nessas urnas serem, na verdade, do 22. A conta não trata de eleitor apagado (quem votou e não foi contado), que nenhum arquivo público mostra.
 - **Não se pode afirmar:** que nenhum voto dessas urnas foi manipulado. A conta limita o tamanho possível do efeito; não diz que ele é zero.
 
 ### 5. Aracaju: a troca entre as zonas 1 e 2 está no diário (Fato)
@@ -184,8 +187,8 @@ A carga de cada urna grava, no diário, o município e a zona para os quais ela 
 
 - **Fato:** as 125 trocas novas com reserva de outra zona são 78 trocas feitas entre os turnos (9,2% das 848) e 47 feitas no dia (2,4% das 1.968). Somadas às 45 herdadas, são 170 seções. Todas são do mesmo estado da seção: nenhuma reserva veio de outra UF. Das 125, 89 receberam reserva de outra zona da mesma cidade e 36 de outro município. O maior bloco é o de Aracaju (item 5).
 - **Fato (o que fica registrado):** depois de ler o cartão de votos da seção, a reserva passa a gravar a zona e a seção desse cartão. Em SE 31054/0001/0130, a zona 0002 passa a 0001 (trecho acima). Em AM 02550/0032/0848, "Seção Eleitoral: 0000" passa a "Seção Eleitoral: 0848". A zona da carga fica no diário, e o código de carga e o histórico de cargas ficam no boletim. Foi por esse rastro que a auditoria achou as 170.
-- **Fato (a reserva de outra zona funcionou como reserva da própria zona):** nessas 125 reservas, 11,2% dos votos saíram sem digital (3.222 de 28.884). Nas mesmas seções, no 1º turno, com a urna original, foram 12,4% (4.120 de 33.287). Nas demais reservas das trocas novas, 15,3% (83.754 de 546.478). Nenhuma das 125 passou de 50% sem digital. Se a carga de outra zona não tivesse as digitais dos eleitores da seção, a liberação sem digital teria disparado, e não disparou.
-- **Fato (votos):** os votos dessas 125 seções variaram como os da zona, sem diferença que resista à correção para muitos testes.
+- **Fato (liberação sem digital nas reservas de outra zona):** nessas 125 reservas, 11,2% dos votos que a própria reserva recebeu saíram sem digital (3.222 de 28.884). Nas mesmas seções, no 1º turno, com a urna original, foram 12,4% (4.120 de 33.287). Nas demais reservas das trocas novas, 15,3% (83.754 de 546.478). Nenhuma das 125 passou de 50% sem digital. Se a carga de outra zona não tivesse as digitais dos eleitores da seção, nenhum deles poderia ser liberado pela digital, e quase todos teriam de ser liberados sem ela; não foi o que aconteceu. Isso indica que a reserva de outra zona funcionou como reserva da própria zona.
+- **Fato (votos):** os votos dessas 125 seções não tiveram, em relação à zona, diferença que resista à correção para muitos testes.
 - **Hipótese:** o cadastro dos eleitores da seção chega à reserva pelo cartão de votos, ou a carga da reserva cobre mais que a zona. O diário não diz qual das duas.
 - **Lacuna de controle (Fato nos 170 casos aceitos):** a contingência não **bloqueia** reserva carregada para outra zona; só a **registra**. Não se pode afirmar que "nada impede" a troca: uma tentativa recusada não deixaria pacote publicado, e por isso não se sabe, por exemplo, se a urna recusaria reserva de outro estado.
 - **Risco (regra desta auditoria: o que depende só de pessoas não conta como controle):** quem decide usar uma reserva de outra zona é uma pessoa. O controle que conta é o rastro técnico, e ele existe.
@@ -211,7 +214,7 @@ O que se procurou é o que um programa adulterado **sem** a assinatura do TSE, o
 
 ![Sinais no diário e no pacote: urna reserva × urna comum, 2º turno](graficos/h14-rastro-sinais.svg)
 
-**Como ler:** para cada sinal, as três barras mostram a parte das seções de cada grupo em que ele aparece: troca nova (azul), reserva herdada (laranja) e seções sem troca (cinza). Barras de 0% não aparecem, mas o número está escrito. Se a reserva tivesse sido adulterada sem a assinatura oficial, a barra azul ficaria acima das outras em algum sinal; ela fica no mesmo nível.
+**Como ler:** para cada sinal, as três barras mostram a parte das seções de cada grupo em que ele aparece: troca nova (azul), reserva herdada (laranja) e seções sem troca (cinza). Barras de 0% não aparecem, mas o número está escrito. Uma adulteração da reserva sem a assinatura oficial deixaria pelo menos um destes sinais, e a barra azul ficaria acima das outras; ela fica no mesmo nível. Adulteração com a assinatura oficial não deixa esses sinais (ver Limites).
 
 - **Fato:** a mensagem de erro de assinatura aparece no diário da reserva em 6 seções. Pela taxa das urnas de seção do mesmo estado e do mesmo modelo, eram esperadas 6,56. Nas 6, conferidas no arquivo original, a reserva votou depois numa inicialização com as 34 etapas de verificação em SUCESSO.
 - **Fato:** o relógio que volta sem ajuste aparece no diário da reserva em 114 seções, contra 116,08 esperadas pela mesma régua.
@@ -222,7 +225,7 @@ O que se procurou é o que um programa adulterado **sem** a assinatura do TSE, o
 
 ## Prova de que o teste funciona (contraprova)
 
-- **Fato (os sinais do diário disparam quando há o que mostrar):** a mensagem de erro de assinatura aparece em **31** seções de troca nova quando se olha qualquer diário do pacote, contra 6,56 esperadas. O excesso está no diário da **urna substituída**, que vem no mesmo pacote: ela falhou, e por isso foi trocada. No diário da reserva, a taxa volta ao normal (6 × 6,56). O mesmo indicador que fica no normal na reserva acusa a urna com defeito.
+- **Fato (os sinais do diário disparam quando há o que mostrar):** a mensagem de erro de assinatura aparece em **31** seções de troca nova quando se olha qualquer diário do pacote, e em 6 quando se olha só o diário da reserva. A diferença está no diário da **urna substituída**, que vem no mesmo pacote: ela registrou o erro antes de ser trocada. **Hipótese:** o erro foi o motivo da troca (o motivo não está nos arquivos). Só o diário da reserva tem régua própria: 6 contra 6,56 esperadas. O mesmo indicador que fica no normal na reserva acusa a urna com defeito.
 - **Fato (o rastro da carga acha o que está lá):** foi pela zona gravada na carga que a auditoria achou as 125 + 45 reservas de outra zona e a troca de Aracaju, e cada caso conferido no arquivo original bateu.
 - **Fato (o teste de votos vê efeito no comparecimento):** a mesma comparação que não acha nada nas trocas novas achou a diferença de comparecimento das reservas herdadas no 1º turno (item 3), confirmada pelo teste de nível.
 - **Pendente:** não há contraprova para a **parcela do 13**. Nenhum grupo de seções com desvio conhecido no voto foi usado para mostrar que o teste o acusaria.
