@@ -49,8 +49,8 @@ Atualizado em 30/10/2026. O painel `coleta-tse` do Claude Code lê esta tabela: 
 | 4. Análises | A3/A4 e forense estatística | em andamento | Parecer 13: sem marca de fraude concentrada; os testes não veem fraude espalhada ou proporcional |
 | 4. Análises | Aumento de comparecimento entre turnos | em andamento | Estatístico concluído; em revisão cética (parecer 22) |
 | 5. Relatório | Perícia em linguagem simples | em andamento | Resumo executivo e tópicos 00 a 12; revisão geral (T20) e consenso T22 aplicados; texto independente do processo |
-| 5. Relatório | Relatório completo (PDF assinado) | em andamento | [docs/relatorio/relatorio.pdf](docs/relatorio/relatorio.pdf); nova versão assinada depois do consenso T22 |
-| 5. Relatório | Relatório temático: certificado vencido da AC URNA (PDF assinado) | em andamento | [docs/relatorio/temas/certificado-ac-urna.pdf](docs/relatorio/temas/certificado-ac-urna.pdf), com as planilhas das urnas embutidas; nova versão com o pedido ao TSE a gerar |
+| 5. Relatório | Relatório completo (PDF assinado) | em andamento | [docs/relatorio/relatorio.pdf](docs/relatorio/relatorio.pdf), 176 páginas, assinado em 30/10 com a revisão geral e o consenso T22 |
+| 5. Relatório | Relatório temático: certificado vencido da AC URNA (PDF assinado) | em andamento | [docs/relatorio/temas/certificado-ac-urna.pdf](docs/relatorio/temas/certificado-ac-urna.pdf), 30 páginas, assinado, com o pedido ao TSE no início e as planilhas das urnas embutidas |
 | 5. Relatório | Relatório das hipóteses em teste (PDF) | concluída | [docs/relatorios/hipoteses-em-teste.pdf](docs/relatorios/hipoteses-em-teste.pdf), H01 a H26, retrato de 30/10 |
 <!-- andamento:fim -->
 
@@ -148,12 +148,11 @@ Os dados ficam em `data/` (fora do git): `raw/<t>t/zip` (zips do TSE), `raw/<t>t
 
 ## Próximos passos
 
-1. Gerar e assinar a nova versão do relatório completo e do temático da AC URNA (com o pedido ao TSE).
-2. Enviar ao TSE o pedido de esclarecimento sobre a AC URNA e os demais pedidos pela Lei de Acesso à Informação (lista no [relatório de hipóteses](docs/relatorios/hipoteses-em-teste.pdf)).
-3. Revisão cética da H26 (virada por zona); testar H18 e H21 a H24.
-4. Perfis por seção refeitos nas 28 UFs e recarga do banco; refazer o que depende do diário da urna (H08 e H13 com a liberação do log).
-5. Demais campos do 2º turno: soma das urnas × resultado oficial (H03).
-6. Entrada de H15, H16 e H17 na perícia e anexo de tabelas de dados no relatório.
+1. Enviar ao TSE o pedido de esclarecimento sobre a AC URNA e os demais pedidos pela Lei de Acesso à Informação (lista no [relatório de hipóteses](docs/relatorios/hipoteses-em-teste.pdf)).
+2. Revisão cética da H26 (virada por zona); testar H18 e H21 a H24.
+3. Perfis por seção refeitos nas 28 UFs e recarga do banco; refazer o que depende do diário da urna (H08 e H13 com a liberação do log).
+4. Demais campos do 2º turno: soma das urnas × resultado oficial (H03).
+5. Entrada de H15, H16 e H17 na perícia e anexo de tabelas de dados no relatório.
 
 O histórico das entregas está no [CHANGELOG](CHANGELOG.md).
 
