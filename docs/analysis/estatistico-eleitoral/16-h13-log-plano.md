@@ -241,3 +241,46 @@ O [doc 23](23-h13-v2-2022.md) leu MG como **próprio de 2026**, mas com um subst
 **Relatados sem teste:** a mesma regressão com a parcela do 13 no 1º turno e x_V2 do 1º turno (regressão à média), nos dois anos; o coeficiente de e_V3m nos dois anos (o achado exploratório de MG no doc 22); parcela de cada via nos votos, por ano e turno.
 
 **Recursos:** no máximo 2 processos Node pesados; rede só para o TSE e só MG; um pedido por vez. O diário traz o título do mesário: nenhum título é gravado (na saída, só contagens; no doc, números com formato de título viram #).
+
+## Adendo 6 de 31/10/2026: teste direto no Sul (PR, SC e RS) com os diários de urna de 2022 (registrado antes de ler qualquer diário de 2022 dessas UFs e antes de rodar)
+
+O [doc 24](24-h13-v2-mg-2022-diario.md) fez o teste direto em MG. O [parecer cético 48](../cetico-revisor/48-h13-v2-mg-2022.md) mostrou três coisas que este adendo incorpora:
+
+- o boletim de 2022 confere a V2 sem diário (tags `[1]` e `[2]` do `.bu`);
+- "do mesmo tamanho" vai além do que os dados mostram: o teste da diferença tem pouco poder;
+- é preciso comparar populações comparáveis, repesando 2022 pela fração sem biometria de 2026.
+
+Com autorização do André, a rede fica liberada para os arquivos de urna de **PR, SC e RS, 2022, 1º e 2º turno**. O resultado vai no doc 26.
+
+**Arquivos:** `bu_imgbu_logjez_rdv_vscmr_2022_<t>t_<UF>.zip` da CDN do TSE (`cdn.tse.jus.br/estatistica/sead/eleicoes/eleicoes2022/arqurnatot`), conferidos no catálogo oficial (`data/manifest/2022/catalogo-pr-sc-rs.json`). Um pedido por vez, com pausa de 30 s entre os arquivos. URL, ETag, Last-Modified, tamanho e SHA-256 em `data/manifest/2022/zips.jsonl` e em `26-arquivos-baixados.csv`. Integridade como no adendo 5: CRC de cada entrada, SHA-512 de cada arquivo da seção contra o `.vsc` da própria seção, e seções do zip contra as seções da UF com comparecimento no `detalhe_votacao_secao_2022` (só `_BR.csv`).
+
+**Leitura do diário:** a do adendo 5, sem mudança: a mesma tabela de tradução do doc 24, o mesmo ciclo (`processarFluxo`), a união das cópias e a mesma prioridade das vias. Antes do modelo, a contagem de todas as mensagens do dia de cada UF é comparada com a de MG. Se uma marca de via tiver outro texto no Sul, a troca é documentada no doc 26 antes de rodar o modelo; a decisão usa só o texto e a contagem das mensagens, nunca o voto.
+
+**Conferência das vias contra o boletim de 2022 (como no parecer 48),** por seção e turno, sem diário: V3 = `[1]`; V2 = comparecimento − `[2]`; V1 = `[2]` − `[1]`; votos = comparecimento do presidente. Critério fixado agora: numa UF, a V2 do diário fica **confirmada** se for igual à do boletim em pelo menos 99% das seções de cada turno e a soma das diferenças absolutas não passar de 0,1% da soma da V2. Se não ficar, o teste roda assim mesmo e a leitura daquela UF leva a marca "medida não confirmada".
+
+**Medida e modelo: os do doc 22 (adendo 3) e do doc 24, iguais nos dois anos.** e_v = (votos da via no 2º turno − no 1º) ÷ eleitores da seção no perfil do eleitorado do mesmo ano; Δc = (votos do diário no 2º − no 1º) ÷ eleitores. ΔY ~ e_V2 + e_V3m + e_V3s + Δc + fração sem biometria no cadastro, 60+, 16–24, escolaridade baixa, superior, log do eleitorado e um indicador por modelo de urna presente (o mais recente é a base). Efeito fixo de local de votação do 2º turno, peso 13 + 22 do 2º turno, erro CR1 por local. As mesmas exclusões do adendo 5, com contagem. 2026 é refeito com o mesmo script; espera-se reproduzir o doc 22 no Sul (+8,38) e no RS (+9,66). PR e SC sozinhos aparecem aqui pela primeira vez.
+
+**Unidades:** PR, SC, RS e Sul (as três juntas). O Sul contém as outras: os testes não são independentes, e a correção abaixo os trata como separados mesmo assim.
+
+**Testes, por unidade:**
+
+- T1: coeficiente de e_V2 em 2022, bicaudal.
+- T2: diferença 2026 − 2022, com os erros dos dois anos tratados como independentes.
+- T3: coeficiente de e_V2 em 2022 **repesado** pela distribuição de sem biometria de 2026: o peso de cada seção de 2022 é multiplicado, na sua faixa de 5 pontos de sem biometria no cadastro, pela razão entre a parte do peso de 2026 e a de 2022 naquela faixa. Faixas sem seções num dos anos saem dos dois (suporte comum). É a variante P do parecer 48.
+- T4: diferença entre 2026, no mesmo suporte comum, e 2022 repesado.
+- **16 testes** (4 unidades × 4). Bonferroni a 5%: |z| ≥ 2,96.
+- **Poder:** para cada teste, o efeito que ele veria com 80%, (2,96 + 0,84) × erro. As diferenças vão sempre com o intervalo de 95%.
+
+**Leitura (fixada agora), por unidade:**
+
+- Se o e_V2 de 2026 na unidade tiver z < 2, a leitura é **"sem sinal de 2026 para comparar"**, e os testes vão só como descrição.
+- **Não é novidade de 2026, também na população comparável:** T1 e T3 positivos e passam; T2 e T4 não passam.
+- **Não é novidade de 2026; na população comparável, inconclusivo:** T1 positivo e passa; T3 não passa; T4 não passa.
+- **Existia em 2022, maior em 2026:** T1 positivo e passa; T2 e T4 positivos e passam.
+- **Próprio de 2026:** T1 e T3 com |z| < 2; T2 e T4 positivos e passam; e o efeito que T1 veria com 80% não passa do coeficiente de 2026.
+- **Inconclusivo:** qualquer outro caso.
+- **Vocabulário:** não se escreve "estrutural" nem "do mesmo tamanho". Quando T2 e T4 não passam, escreve-se "compatível com o mesmo tamanho", com o intervalo da diferença e o efeito que o teste veria.
+
+**Relatados sem teste:** a regressão com a parcela do 13 no 1º turno e x_V2 do 1º turno (regressão à média); e_V3m e e_V3s nos dois anos; 2022 com a V2 do boletim no lugar da V2 do diário; uma inclinação de e_V2 por faixa de sem biometria (menos de 15%, 15% a 30%, 30% a 50%, 50% ou mais), como no parecer 48; a parcela de cada via nos votos e a fração sem biometria média, por ano e turno.
+
+**Recursos:** no máximo 2 processos Node pesados; rede só para o TSE e só PR, SC e RS; um pedido por vez. O diário traz o título do mesário: nenhum título é gravado (na saída, só contagens; no doc, números com formato de título viram #). Sem varrer `data/raw` com `find`.

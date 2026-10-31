@@ -1,0 +1,50 @@
+{
+  "conjunto": "resultados-2022-arquivos-transmitidos-para-totalizacao",
+  "titulo": "Resultados 2022 - Arquivos transmitidos para totalização",
+  "recursos": 56,
+  "modificado": "2024-10-15T17:34:27.871408",
+  "consultadoEm": "2026-10-31T06:05:30.023Z",
+  "urlConsulta": "https://dadosabertos.tse.jus.br/api/3/action/package_show?id=resultados-2022-arquivos-transmitidos-para-totalizacao",
+  "pr": {
+    "1t": {
+      "nome": "PR - Arquivos transmitidos para totalização - Primeiro turno - 06.10.2022",
+      "url": "https://cdn.tse.jus.br/estatistica/sead/eleicoes/eleicoes2022/arqurnatot/bu_imgbu_logjez_rdv_vscmr_2022_1t_PR.zip",
+      "criado": "2022-10-06T17:53:39.652232",
+      "hashNoCatalogo": null
+    },
+    "2t": {
+      "nome": "PR - Arquivos transmitidos para totalização - Segundo turno - 02.11.2022",
+      "url": "https://cdn.tse.jus.br/estatistica/sead/eleicoes/eleicoes2022/arqurnatot/bu_imgbu_logjez_rdv_vscmr_2022_2t_PR.zip",
+      "criado": "2022-11-02T21:50:55.848801",
+      "hashNoCatalogo": null
+    }
+  },
+  "sc": {
+    "1t": {
+      "nome": "SC - Arquivos transmitidos para totalização - Primeiro turno - 06.10.2022",
+      "url": "https://cdn.tse.jus.br/estatistica/sead/eleicoes/eleicoes2022/arqurnatot/bu_imgbu_logjez_rdv_vscmr_2022_1t_SC.zip",
+      "criado": "2022-10-06T17:54:49.307462",
+      "hashNoCatalogo": null
+    },
+    "2t": {
+      "nome": "SC - Arquivos transmitidos para totalização - Segundo turno - 02.11.2022",
+      "url": "https://cdn.tse.jus.br/estatistica/sead/eleicoes/eleicoes2022/arqurnatot/bu_imgbu_logjez_rdv_vscmr_2022_2t_SC.zip",
+      "criado": "2022-11-02T21:52:41.535385",
+      "hashNoCatalogo": null
+    }
+  },
+  "rs": {
+    "1t": {
+      "nome": "RS - Arquivos transmitidos para totalização - Primeiro turno - 06.10.2022",
+      "url": "https://cdn.tse.jus.br/estatistica/sead/eleicoes/eleicoes2022/arqurnatot/bu_imgbu_logjez_rdv_vscmr_2022_1t_RS.zip",
+      "criado": "2022-10-06T17:54:39.336690",
+      "hashNoCatalogo": null
+    },
+    "2t": {
+      "nome": "RS - Arquivos transmitidos para totalização - Segundo turno - 02.11.2022",
+      "url": "https://cdn.tse.jus.br/estatistica/sead/eleicoes/eleicoes2022/arqurnatot/bu_imgbu_logjez_rdv_vscmr_2022_2t_RS.zip",
+      "criado": "2022-11-02T21:52:30.189545",
+      "hashNoCatalogo": null
+    }
+  }
+}

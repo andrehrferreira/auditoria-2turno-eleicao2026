@@ -1,0 +1,27 @@
+{
+ "uf": "pr",
+ "turno": 1,
+ "pleito": "406",
+ "situacoes": {
+  "completa": 25721
+ },
+ "tiposPorSecao": {
+  "bu,imgbu,logjez,rdv,vscmr": 25720,
+  "busa,imgbusa,logsajez,rdv,vscsa": 1
+ },
+ "manifestos": {
+  "vscmr": 25720,
+  "vscsa": 1
+ },
+ "falhas": [],
+ "secoesNoZip": 25721,
+ "extras": 1,
+ "detalhe": {
+  "secoes": 25721,
+  "comComparecimento": 25721
+ },
+ "detalheSemZip": [],
+ "zipSemDetalhe": [],
+ "ok": true,
+ "conferidoEm": "2026-10-31T06:21:10.178Z"
+}

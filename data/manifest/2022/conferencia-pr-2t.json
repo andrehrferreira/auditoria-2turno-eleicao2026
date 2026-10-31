@@ -1,0 +1,25 @@
+{
+ "uf": "pr",
+ "turno": 2,
+ "pleito": "407",
+ "situacoes": {
+  "completa": 25721
+ },
+ "tiposPorSecao": {
+  "bu,imgbu,logjez,rdv,vscmr": 25721
+ },
+ "manifestos": {
+  "vscmr": 25721
+ },
+ "falhas": [],
+ "secoesNoZip": 25721,
+ "extras": 1,
+ "detalhe": {
+  "secoes": 25721,
+  "comComparecimento": 25721
+ },
+ "detalheSemZip": [],
+ "zipSemDetalhe": [],
+ "ok": true,
+ "conferidoEm": "2026-10-31T06:36:36.568Z"
+}

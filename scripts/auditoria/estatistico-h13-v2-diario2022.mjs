@@ -1,5 +1,5 @@
-// Estatístico eleitoral, H13 sinal V2, adendo 5 de 30/10/2026 ao plano 16 (resultado no doc 24): vias de liberação por
-// seção nos diários de urna de MG, 2022, 1º e 2º turno, lidos direto do zip por UF (coleta-2022-mg.mjs).
+// Estatístico eleitoral, H13 sinal V2: vias de liberação por seção nos diários de urna de 2022, 1º e 2º turno, lidos direto
+// do zip por UF (coleta-2022-mg.mjs). MG: adendo 5 de 30/10/2026 ao plano 16 (doc 24); PR, SC e RS: adendo 6 (doc 26).
 //
 // Leitura igual à de estatistico-h08-varredura.mjs (mesmas funções: fluxosDoTexto, juntarCopias com união das cópias,
 // processarFluxo). O que muda em 2022:
@@ -9,21 +9,23 @@
 // Também conta todas as mensagens do dia (números trocados por N; números com 8 dígitos ou mais por #), para documentar
 // as diferenças de formato. Nenhum título é gravado: só contagens.
 //
-// Uso: node scripts/auditoria/estatistico-h13-v2-diario2022.mjs --turno 1|2 [--limite n]
-// Saída: data/parsed/auditoria/estatistico/h13-v2/diario2022/<t>t.jsonl (uma linha por seção) e <t>t.mensagens.json;
-//        com os dois turnos prontos, --juntar grava h13-v2/secoes-mg-2022-diario.csv
+// Uso: node scripts/auditoria/estatistico-h13-v2-diario2022.mjs [--uf mg|pr|sc|rs] --turno 1|2 [--limite n]
+// Saída: data/parsed/auditoria/estatistico/h13-v2/diario2022/<t>t.jsonl (MG) ou <uf>-<t>t.jsonl (uma linha por seção) e
+//        o .mensagens.json correspondente; com os dois turnos prontos, --juntar grava h13-v2/secoes-<uf>-2022-diario.csv
 import { createWriteStream, existsSync } from 'node:fs';
 import { mkdir, open, readFile, rename, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
 import { DIR_DADOS } from '../../src/config.js';
 import { lerEntrada, listarEntradas } from '../../src/zip.js';
-import { TURNOS_2022, caminhoZip2022, secoesDoZip } from './coleta-2022-mg.mjs';
+import { TURNOS_2022, UFS_2022, caminhoZip2022, secoesDoZip } from './coleta-2022-mg.mjs';
 import { fluxosDoTexto, juntarCopias, processarFluxo } from './estatistico-h08-varredura.mjs';
 import { eh7z, lerArquivos7z } from './leitor-7z.mjs';
 
 const SAIDA = path.join(DIR_DADOS, 'parsed', 'auditoria', 'estatistico', 'h13-v2');
 const DIR = path.join(SAIDA, 'diario2022');
+/** Nome dos arquivos de saída por UF e turno: MG mantém os do doc 24. */
+export const baseDiario2022 = (uf, t) => path.join(DIR, uf === 'mg' ? `${t}t` : `${uf}-${t}t`);
 
 // Mensagem de 2022 → mensagem de 2026 com o mesmo papel no ciclo do eleitor (doc 24, seção 2).
 export const TRADUCAO = [
@@ -63,22 +65,22 @@ export async function textos7z(buf, prof = 0) {
 
 const novoHist = () => ({ A: {}, B: {}, C: {}, D: {}, passos: {}, tiposHabilitacao: {}, confirmacoesPorCiclo: {} });
 
-async function turno(t, limite) {
+async function turno(uf, t, limite) {
   const { pleito, data: dia } = TURNOS_2022[t];
   await mkdir(DIR, { recursive: true });
-  const handle = await open(caminhoZip2022(t), 'r');
+  const handle = await open(caminhoZip2022(t, uf), 'r');
   const mensagens = new Map();
   const hist = novoHist();
   let n = 0, erros = 0;
-  const arq = path.join(DIR, `${t}t.jsonl`);
+  const arq = `${baseDiario2022(uf, t)}.jsonl`;
   const saida = createWriteStream(`${arq}.tmp`);
   const inicio = Date.now();
   try {
-    const { grupos } = await secoesDoZip(handle, pleito);
+    const { grupos } = await secoesDoZip(handle, pleito, uf);
     const ids = [...grupos.keys()].sort().slice(0, limite ?? undefined);
     for (const id of ids) {
       const [, municipio, zona, secao] = id.split('/');
-      const sec = { uf: 'mg', municipio, zona, secao, textos: 0, linhasOutraSecao: 0, linhasForaDaCopia: 0, linhasTraduzidas: 0, votos: 0,
+      const sec = { uf, municipio, zona, secao, textos: 0, linhasOutraSecao: 0, linhasForaDaCopia: 0, linhasTraduzidas: 0, votos: 0,
         vias: { v1: 0, v2: 0, v3m: 0, v3s: 0, outra: 0 }, semIdentificador: 0, minA: null, minB: {}, minC: {}, lf1: [], fluxos: 0, semCiclo: 0, duplicadas: 0 };
       try {
         const copias = new Map();
@@ -116,7 +118,7 @@ async function turno(t, limite) {
         erros++;
       }
       saida.write(`${JSON.stringify(sec)}\n`);
-      if (++n % 2000 === 0) console.log(`[${t}t] ${n}/${ids.length} seções · ${erros} erro(s) · ${((Date.now() - inicio) / 60000).toFixed(1)} min`);
+      if (++n % 2000 === 0) console.log(`[${uf} ${t}t] ${n}/${ids.length} seções · ${erros} erro(s) · ${((Date.now() - inicio) / 60000).toFixed(1)} min`);
     }
   } finally {
     await handle.close();
@@ -124,17 +126,17 @@ async function turno(t, limite) {
   }
   await rename(`${arq}.tmp`, arq);
   const ordenadas = Object.fromEntries([...mensagens].sort((a, b) => b[1] - a[1]));
-  await writeFile(path.join(DIR, `${t}t.mensagens.json`), `${JSON.stringify({ turno: t, dia, secoes: n, erros, tiposHabilitacao: hist.tiposHabilitacao, confirmacoesPorCiclo: hist.confirmacoesPorCiclo, mensagens: ordenadas }, null, 1)}\n`);
-  console.log(`RESUMO ${t}t: ${n} seções, ${erros} erro(s), ${((Date.now() - inicio) / 60000).toFixed(1)} min`);
+  await writeFile(`${baseDiario2022(uf, t)}.mensagens.json`, `${JSON.stringify({ uf, turno: t, dia, secoes: n, erros, tiposHabilitacao: hist.tiposHabilitacao, confirmacoesPorCiclo: hist.confirmacoesPorCiclo, mensagens: ordenadas }, null, 1)}\n`);
+  console.log(`RESUMO ${uf} ${t}t: ${n} seções, ${erros} erro(s), ${((Date.now() - inicio) / 60000).toFixed(1)} min`);
 }
 
-async function juntar() {
+async function juntar(uf) {
   const por = new Map();
   for (const t of [1, 2]) {
-    for (const l of (await readFile(path.join(DIR, `${t}t.jsonl`), 'utf8')).split('\n')) {
+    for (const l of (await readFile(`${baseDiario2022(uf, t)}.jsonl`, 'utf8')).split('\n')) {
       if (!l) continue;
       const x = JSON.parse(l);
-      const id = `mg/${x.municipio}/${x.zona}/${x.secao}`;
+      const id = `${uf}/${x.municipio}/${x.zona}/${x.secao}`;
       const o = por.get(id) ?? {};
       o[t] = x;
       por.set(id, o);
@@ -144,17 +146,19 @@ async function juntar() {
   const cab = ['id', ...[1, 2].flatMap((t) => C.map((c) => `${c}_${t}`))];
   const val = (x, c) => (!x ? '' : c in x.vias ? x.vias[c] : c === 'erro' ? (x.erro ? 1 : 0) : x[c]);
   const linhas = [...por].sort(([a], [b]) => a.localeCompare(b)).map(([id, o]) => [id, ...[1, 2].flatMap((t) => C.map((c) => val(o[t], c)))].join(';'));
-  await writeFile(path.join(SAIDA, 'secoes-mg-2022-diario.csv'), `${[cab.join(';'), ...linhas].join('\n')}\n`);
-  console.log(`secoes-mg-2022-diario.csv: ${linhas.length} seções`);
+  await writeFile(path.join(SAIDA, `secoes-${uf}-2022-diario.csv`), `${[cab.join(';'), ...linhas].join('\n')}\n`);
+  console.log(`secoes-${uf}-2022-diario.csv: ${linhas.length} seções`);
 }
 
 if (import.meta.filename === path.resolve(process.argv[1] ?? '')) {
-  const { values } = parseArgs({ options: { turno: { type: 'string' }, limite: { type: 'string' }, juntar: { type: 'boolean' } } });
-  if (values.juntar) await juntar();
+  const { values } = parseArgs({ options: { uf: { type: 'string', default: 'mg' }, turno: { type: 'string' }, limite: { type: 'string' }, juntar: { type: 'boolean' } } });
+  const uf = values.uf.toLowerCase();
+  if (!UFS_2022.includes(uf)) throw new Error(`--uf fora das autorizadas (${UFS_2022.join(', ')})`);
+  if (values.juntar) await juntar(uf);
   else {
     const t = Number(values.turno);
     if (!TURNOS_2022[t]) throw new Error('--turno 1 ou 2');
-    if (!existsSync(caminhoZip2022(t))) throw new Error(`zip ausente: ${caminhoZip2022(t)}`);
-    await turno(t, values.limite ? Number(values.limite) : null);
+    if (!existsSync(caminhoZip2022(t, uf))) throw new Error(`zip ausente: ${caminhoZip2022(t, uf)}`);
+    await turno(uf, t, values.limite ? Number(values.limite) : null);
   }
 }
