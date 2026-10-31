@@ -108,3 +108,10 @@ unzip -Z1 data/raw/2t/zip/<pacote da UF>.zip | grep -E "(jufa\.dat|imgze\.dat|-h
 
 - "revisão cética de H03 ... H06 (a apuração já tem o parecer 28) ... H09 tem o parecer 29" → "conferência independente ...".
 - H13: "depois que os perfis dos logs forem regerados" → "depois que a leitura dos diários for refeita".
+
+## Atualização de 31/10/2026 (Campinápolis, contraprova H03, ressalva H26)
+
+- Resposta curta, ressalva do horário: [parecer 34](../cetico-revisor/34-h26-virada-zonas.md), veredito 4b e §C. Sem coeficiente nem z (consenso: nenhum número de teste estatístico no relatório).
+- H01, linha e seção (Campinápolis e seção 0094): [parecer 49](../cetico-revisor/49-campinapolis-contraprovas.md), item 1. Números e comandos no rastreio do tópico 6, "Um município que pede exame".
+- H03, linha e seção (contraprova do 2º turno): parecer 49, item 2a. Comandos no rastreio do tópico 5.
+- Próximos passos: sai "a contraprova própria das comparações por zona, município, estado e com os totais da noite" (feita); entram os pedidos de Campinápolis na linha da LAI.

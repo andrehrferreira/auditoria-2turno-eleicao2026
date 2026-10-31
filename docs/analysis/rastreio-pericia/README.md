@@ -60,3 +60,11 @@ A coluna "Situação" passou a ter uma frase curta para o leitor. O texto anteri
 | tema AC URNA | Versão final (30/10/2026), H25, pelos pareceres céticos 24 e 33. Validade dos três cartórios; 99.957 e 99.985 pacotes da AC URNA, 0 falha; zeros a mais (37.457 e 37.440) e a proporção prevista pela matemática; tabela por UF; contraprova. Achado: 54 carteiras de urna com início de validade entre 20/07 e 19/10/2026, carimbadas pela chave da AC URNA e apontando para o certificado vencido (53 seções no 2º turno, 45 no 1º; duas entre os turnos), com a tabela por dia; datas reais por inferência forte, não prova; série crescente com saltos (946 números; Hipótese de mais emissões); sistema emissor configurado com o certificado vencido (Hipótese forte); regra usual × modelo de cadeia (99.904 aceitos, 53 recusados); 99.955 seções iguais ao oficial; votos das seções tardias +0,13 ponto (13 votos), 12 testes combinados antes sem resultado (0,5% das seções), comparações largas exploratórias. Raciocínio ponto a ponto; 5 perguntas ao TSE com a faixa de séries. 2 gráficos (grafico-h25.mjs; dados conferidos por grafico-h25-dados.mjs). Pendentes: resposta do TSE, lista de revogação e política da AC URNA. |
 
 Observação: a situação antiga do tópico 5 listava "assinaturas do 1º turno" entre os Pendentes. A nova frase não a repete, porque o tópico 1 já traz as assinaturas do 1º turno como Fato (30/10/2026). Ponto levado ao coordenador.
+
+## Coluna "Situação", atualização de 31/10/2026
+
+- Tópico 2: contraprova de C1 e C2 nos dois turnos, [parecer 49](../cetico-revisor/49-campinapolis-contraprovas.md), item 2b.
+- Tópico 5: contraprova do 2º turno por zona, município, estado e totais da noite, parecer 49, item 2a.
+- Tópico 6: gráfico da onda (`grafico-h01-onda.mjs`, commit 3cb8843) e Campinápolis, parecer 49, item 1.
+- Tópico 7: limites da H26, [parecer 34](../cetico-revisor/34-h26-virada-zonas.md).
+- Tópico 10: H01 com Campinápolis, H03 com a contraprova, ressalva do horário (H26) na resposta curta.

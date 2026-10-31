@@ -46,3 +46,36 @@
 
 - Comparação com as vizinhas: `src/comparar-turnos.js`.
 - Troca pela urna × voto dos eliminados, resultado por modelo de urna, curva da apuração: `docs/analysis/cetico-revisor/16-topico-8-virada.md` (parecer 16).
+
+## 7. A virada zona por zona (H26), acrescentado em 31/10/2026
+
+- Achado: [virada-zonas/01-plano.md](../virada-zonas/01-plano.md) e [virada-zonas/02-resultado.md](../virada-zonas/02-resultado.md), script `scripts/auditoria/virada-zonas.mjs` (commit 6d1175a).
+- Revisão: [parecer 34](../cetico-revisor/34-h26-virada-zonas.md). Vereditos: 1 (corte do plano) sustentado com ressalvas; 2 (virada geral) sustentado; 2b (pesos de transferência) rebaixado a Hipótese; 3 (modelo de urna) sustentado com ressalvas; 4a (picos) sustentado; 4b (voto tardio "virou menos") refutado como leitura; 5a/5b (cauda do 13) sustentado com ressalvas; 6 (pré-registro) ressalva. Fora do parecer: linha de base 2018/2022 ([03](../virada-zonas/03-linha-de-base.md)) e as 4 zonas do 22 seção a seção ([04](../virada-zonas/04-casos.md)), que ficaram Pendentes no texto.
+- "Segunda verificação independente" = parecer 34 (código próprio a partir do banco, sem `pares-banco.csv`).
+- Números e fonte:
+
+| Número no texto | Fonte |
+|---|---|
+| 499.207 seções, 2.641 zonas, 0 divergência com o oficial por seção | parecer 34, resposta curta; `cetico-34-h26-secoes.mjs` |
+| Margens −1,86 e +3,57; virada +5,44; 2.224.965, 4.430.191 e 6.655.156 votos | parecer 34, veredito 2; `cetico-34-h26-reproduz.mjs` |
+| 2.626 e 15 zonas; RS 0129 −1,47; 128 e 0; 7,77; 127; percentis 0,51 / 5,09 / 9,08 | parecer 34, veredito 2 |
+| 0 zonas para o 13; 4 para o 22 (MA 0032, SP 0002, CE 0020, BA 0105); de 0 a 9 e de 3 a 8 nas variantes | parecer 34, veredito 1 e §B |
+| 132 de 504 pesos fora de [0, 1] | parecer 34, veredito 2b e §D |
+| 22 zonas mais perto do corte; 82,15% / 10,50% / 7,35% contra 78,63% / 11,62% / 9,75%; 99.232 eleitores | parecer 34, veredito 5b e §D (`cetico-34-h26-reproduz.mjs`, `cauda`). O autor não tem script desses números (recomendação 3 do parecer) |
+| BU × diário pela digital: 497.884 e 497.890 de 497.897 seções | parecer 34, §D (consulta `secao` × `perfil_log`) |
+| RJ 0075: comparecimento −1.255 | parecer 34, §D |
+| Modelo de urna sem diferença (contraste por zona) | parecer 34, §E; `cetico-34-h26-modelo.mjs` |
+| Horário: associação positiva do voto tardio do 2º turno, nas 5 regiões, com controles | parecer 34, §C; `cetico-34-h26-horario.mjs`. Os coeficientes, z e os "~12.900 votos" ficaram fora do relatório (estatística) |
+| 34.315 votos depois das 17h; 0,77% | item 4 do tópico 8 (tópico 3; correção de relógio). O parecer 34 cita 34.330 (contagem antes da correção de relógio) |
+| Alcance por simulação (zona, várias zonas, capitais, UF, proporcional ao 13) | parecer 34, §A; `cetico-34-h26-poder.mjs`. Os tamanhos (4,6 p.p., 1.639 votos, Fortaleza ~78 mil etc.) ficaram fora do relatório |
+
+```
+node --max-old-space-size=12288 scripts/auditoria/cetico-34-h26-secoes.mjs     # ~1,5 min: extração do banco + conferência com voto_oficial + horas
+node --max-old-space-size=8192  scripts/auditoria/cetico-34-h26-reproduz.mjs   # ~5 s: corte, virada geral, réguas, [0,1], cauda, modelo
+node --max-old-space-size=8192  scripts/auditoria/cetico-34-h26-poder.mjs      # ~2,5 min: simulação de inserção
+node --max-old-space-size=8192  scripts/auditoria/cetico-34-h26-horario.mjs    # ~10 s: horário separado por turno, controles, poder, picos
+node --max-old-space-size=8192  scripts/auditoria/cetico-34-h26-modelo.mjs     # ~5 s: contraste por modelo com efeito fixo de zona
+node scripts/auditoria/virada-zonas.mjs                                        # autor
+```
+
+Saídas em `data/parsed/auditoria/cetico-revisor/34-h26-*` e `data/parsed/auditoria/virada-zonas/`.

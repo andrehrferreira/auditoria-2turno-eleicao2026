@@ -153,3 +153,17 @@ Saídas do autor em `data/parsed/auditoria/contagem/` (`coerencia-*`, `log-pacot
 - "(o `consulta_cand_2026` traz '#NE' na situação)" → "(o cadastro oficial de candidaturas [...])".
 - "(os dados das 28 UFs já estão na cópia de leitura de 29/10/2026). O C2 do 1º turno já foi feito no país inteiro (parecer 25)": cópia de leitura do banco; parecer 25.
 - "[x] Identificação da urna e dos cartões nos dois turnos, com revisão cética (parecer 24)": parecer 24.
+
+## Contraprova de C1 e C2 nos dois turnos (31/10/2026)
+
+- A parte "C1 e C2 (nos dois turnos)" do Pendente da contraprova virou Fato; C3 a C6 no 2º turno, a eleição estadual e o trânsito do 1º turno continuam Pendentes (parecer 49, item 2b).
+- Achado: [matematico-forense/13](../matematico-forense/13-contraprova-c1-c2.md), script `scripts/auditoria/matematico-c1c2-contraprova.mjs --contraprova`.
+- Revisão: [parecer 49](../cetico-revisor/49-campinapolis-contraprovas.md), item 2b, **sustentado com ressalvas**. "Segunda verificação independente" = parecer 49 ("18 alterações, 18 acusadas exatamente como previsto; 0 acusações fora das seções alteradas. PASSOU"; `resumo.txt` e `acusacoes.csv` idênticos).
+- Alterações por turno (AC, zona 0009 de 01007, seções 0001 a 0009): A1, A2, A3, A3b (C1); A4, A5, A6 (C2); A6b (eleitor coerente, só C2); A4b (cópia idêntica, controle, não acusada). No texto: "16 que mudam um número" = 8 × 2; "2 que só copiam uma linha idêntica" = A4b × 2.
+- Rodada normal: 2.270 seções do AC em cada turno; comparecimento = computados (488.330 no 1º turno e 453.654 no 2º); 0 seção diferente do `perfil_log`.
+- "A conta C2 usada aqui é o mesmo programa usado no país inteiro" = `contarPacote` (`cetico-vsr25-universo.mjs`) e `juntarLogs` + `perfilLog` (`src/perfil-secoes.js`). "A C1 é uma cópia do programa do país" = cópia de `matematico-h16-rdv-bu.mjs` (1º turno) e `contagem-coerencia.mjs` (2º turno); a única diferença (junção dos tipos "branco…") não muda nada, porque `voto_rdv` só tem o tipo `branco`.
+
+```
+node scripts/auditoria/matematico-c1c2-contraprova.mjs --contraprova                       # ~3 min, código de saída 0
+node scripts/sql.mjs "select turno, tipo_voto, sum(quantidade) from voto_rdv group by 1,2"   # ~6 min: tipos do RDV
+```

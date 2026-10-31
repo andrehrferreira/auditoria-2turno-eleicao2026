@@ -21,3 +21,9 @@
 
 
 Os demais números do resumo são cópia dos tópicos; os pareceres e scripts de cada um estão no rastreio do tópico correspondente.
+
+## Atualização de 31/10/2026
+
+- Achado 1: frase da contraprova (2º turno por zona, município, estado e totais da noite; boletim, lista de votos e diário do AC nos dois turnos): [parecer 49](../cetico-revisor/49-campinapolis-contraprovas.md), itens 2a e 2b.
+- Achado 12: Campinápolis (MT): parecer 49, item 1.
+- Pendências e perguntas: ata da seção 0094 (TRE-MT) e os três pedidos numéricos de Campinápolis: parecer 49, §1.4 e textos para leigos.

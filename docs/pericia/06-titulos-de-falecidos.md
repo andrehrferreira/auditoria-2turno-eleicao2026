@@ -14,6 +14,7 @@ O cadastro de eleitores de 2026 tem títulos de pessoas que já morreram? E algu
 | Por onde um título de falecido poderia ser usado? | Pelo eleitor sem biometria cadastrada, que a urna libera só com o ano de nascimento. 92% dos títulos de 100+ estão nesse grupo. | **Fato** |
 | Por que os eleitores de 100+ saltaram de 39.026 em 2018 para 184.330 em 2022? | A forma de contar não mudou. Uma geração de títulos que já estava no cadastro em 2018, na faixa de 95 a 99 anos, passou dos 100 em 2022. Quando ela chega a uma faixa, a faixa ganha muitos títulos e quase nenhum votante: de 2018 para 2022, a de 100+ ganhou 145.304 títulos e 169 votantes. É falha de limpeza do cadastro, não prova de voto (Parte 5). | **Fato** (as contagens e a forma de contar), **Hipótese** (a ligação com o recadastramento com digital) e **Pendente** (cancelamentos por óbito e calendário do recadastramento, pedidos ao TSE) |
 | Por que os votantes de 85 a 99 anos quase dobraram de 2022 para 2026? | O aumento faz parte de uma subida do comparecimento de todos os eleitores de 70 anos ou mais. Não aparece nos de 100+, fica abaixo da população do Censo em todos os municípios e não se concentra nos títulos sem digital. Não exclui uso pequeno e espalhado, nem o uso de título com digital liberado à mão pelo mesário, que não foi testado (Parte 4). | **Fato** (o aumento e onde ele está), **Hipótese** (a causa) e **Pendente** (a forma de liberação dos idosos) |
+| Por que, em Campinápolis (MT), tantos eleitores de 100+ votam? | 32 dos 224 eleitores de 100+ votaram no 1º turno (14,3%): 20 indígenas Xavante com digital cadastrada e 12 sem digital cadastrada. Os diários de todas as urnas da zona não mostram liberação em massa sem digital. O Censo contou no máximo 79 pessoas que poderiam ter 100+ em 2026, contra 224 títulos; o exagero de idade no documento não fecha essa diferença. Numa seção da cidade, a urna recusou 10 vezes, entre 12h58 e 13h09, um título que "já votou"; a ata foi recomendada (ver "Um município que pede exame"). | **Fato** (as contagens e os diários), **Hipótese** (as causas e as três leituras da seção 0094) e **Pendente** (pedidos 8 e 9 da LAI) |
 
 Nenhum CPF foi usado nesta parte da perícia. Tudo vem de números públicos por seção, zona ou município.
 
@@ -408,6 +409,12 @@ O número de eleitores aptos com 100 anos ou mais passou de 39.026 em 2018 para 
 
 Fonte: perfil de comparecimento e abstenção do TSE, 1º turno de cada ano, Brasil sem o exterior. **Como ler:** acompanhe a onda pela diagonal, de cima para baixo e da esquerda para a direita. Em 2018 a faixa de 95 a 99 anos tinha 272.334 eleitores, contra 72.726 em 2014. Quatro anos depois, em 2022, a mesma geração já estava na faixa de 100 ou mais, que pulou de 39.026 para 184.330.
 
+O gráfico abaixo mostra a mesma tabela em barras.
+
+![Eleitores aptos de 95 a 99 e de 100 anos ou mais, e quantos votaram, 1º turno](graficos/h01-onda-95-mais.svg)
+
+**Como ler:** há um painel para cada faixa de idade, com uma linha por ano. A barra azul conta os títulos aptos da faixa no cadastro; a laranja, quantos deles foram votar, e o número ao lado de cada barra dá o valor. As duas cores estão na mesma escala, e por isso a laranja quase não se vê. A seta segue a mesma geração: em 2018 ela enche a faixa de 95 a 99 anos e, em 2022, chega à de 100 ou mais, que ganha 145.304 títulos e só 169 votantes. Os títulos cresceram; os votantes, quase nada.
+
 **A faixa que recebe a onda ganha títulos, e não votantes (Fato, sem usar o Censo).**
 
 | Passagem | Títulos a mais | Votantes a mais |
@@ -482,6 +489,155 @@ Fonte: perfil de comparecimento e abstenção do TSE, eleitores aptos de 100 ano
 - **Pendente:** quando cada município passou pelo recadastramento com digital, para testar a **Hipótese** de que o estoque ficou onde não houve recadastramento (pedido 7).
 - **Pendente:** os títulos de 95 anos ou mais pelo ano da última atividade (voto, justificativa ou atualização), para saber há quanto tempo estão parados (pedido 7).
 - **Pendente:** a data em que o TSE conta a idade (pedido 4) e uma versão dos arquivos de 2018 e 2022 publicada antes de 2025, para comparar.
+
+## Um município que pede exame: Campinápolis (MT)
+
+### A pergunta desta parte
+
+Em Campinápolis, no Mato Grosso, a parte dos eleitores de 100 anos ou mais que foi votar é muito maior que no resto do país. Quem são esses eleitores? Os diários das urnas mostram algum sinal de que títulos foram usados por outra pessoa?
+
+### Resposta curta
+
+- **Fato:** Campinápolis tem 224 eleitores aptos com 100 anos ou mais. No 1º turno, 32 deles votaram, isto é, 14,3%. No país, essa taxa foi de 0,72% (Parte 2).
+- **Fato:** dos 32, 20 são eleitores que se declaram indígenas Xavante, todos com digital cadastrada, e 12 são eleitores sem digital cadastrada e sem raça/cor informada.
+- **Fato:** o Censo 2022 também conta centenários demais em Campinápolis (mais pessoas com 100 anos ou mais do que com 95 a 99). **Hipótese:** sinal de idade exagerada no documento.
+- **Fato:** o cadastro tem 224 eleitores de 100+, e o Censo contou no máximo 79 pessoas que poderiam ter essa idade em 2026, supondo que nenhuma morreu. **Hipótese:** o exagero de idade não fecha essa diferença. A causa é **Pendente**.
+- **Fato:** os diários de todas as urnas do município e dos dois vizinhos da mesma zona, nos dois turnos, não mostram liberação em massa sem digital, nem no fim do dia.
+- **Fato:** numa seção da cidade, a 0094, a urna recusou 10 vezes entre 12h58 e 13h09, no 2º turno, um título com a mensagem "o eleitor identificado já votou". Nenhum voto saiu dessas tentativas. Há três leituras possíveis, e a mais grave não pode ser separada das outras com os arquivos públicos (**Hipótese**). **Recomendação:** pedir a ata dessa seção.
+- **Não se pode afirmar** que os 12 eleitores de 100+ sem digital eram eles mesmos: o diário da urna não grava a idade nem o título de quem foi liberado.
+
+### Como foi feito
+
+- **Fontes:** o arquivo oficial do TSE de comparecimento por idade de 2026 e de 2022 (o mesmo das Partes 2, 4 e 5), que separa os eleitores também pela **raça/cor** declarada no cadastro; o perfil do eleitorado por seção de julho de 2026, com a biometria e o local de votação; o Censo 2022 do IBGE, com a idade ano a ano; e os diários e boletins de todas as urnas da zona eleitoral 0026 de MT, que reúne Campinápolis e os municípios vizinhos de Nova Xavantina e Novo São Joaquim.
+- **Diários:** foram lidos inteiros os diários das 38 urnas de Campinápolis e das 70 urnas dos dois vizinhos, em cada turno (216 seções × turno ao todo). Em cada um, contou-se cada voto e a forma como o eleitor foi liberado, a hora de cada liberação, as sequências de liberações sem digital e as recusas da urna.
+- **Coorte:** a mesma conta de geração da Parte 1, feita só para o município: quem tem 100 anos ou mais em 2026 tinha pelo menos 95 anos no Censo de 2022.
+- **Segunda verificação independente:** refez a contagem dos diários por outro caminho (linha a linha, e não pelo começo de cada atendimento), conferiu cada número contra o boletim da urna, releu os arquivos do TSE e do IBGE pelos nomes das colunas e abriu no arquivo original o diário da seção 0094. Chegou aos mesmos números. Ela também acrescentou a conta de coorte e as ressalvas que estão nesta parte.
+
+Neste trecho, **liberação pelo ano de nascimento** é a do eleitor sem digital cadastrada: o mesário digita o ano de nascimento, e a urna o compara com o cadastro (Parte 3). **Dado confere** é a liberação do eleitor que tem digital cadastrada, mas cuja digital não foi reconhecida: a mesa digita dados do eleitor e o libera à mão.
+
+### O que foi encontrado
+
+**Quem são os 32 eleitores de 100+ que votaram (Fato).**
+
+| Eleitores de 100+ em Campinápolis, 1º turno de 2026 | Aptos | Com digital cadastrada | Votaram |
+|---|---:|---:|---:|
+| Indígenas Xavante | 30 | 30 | 20 |
+| Raça/cor não informada | 192 | 0 | 12 |
+| Outra raça/cor | 2 | 2 | 0 |
+| **Total** | **224** | **32** | **32** |
+
+Fonte: comparecimento por idade e raça/cor do TSE, 1º turno de 2026, e perfil do eleitorado por seção de julho de 2026. **Como ler:** a última coluna soma os 32 votantes de 100+ do município. Os 20 indígenas que votaram têm digital **no cadastro**; isso não quer dizer que votaram pela digital (ver abaixo).
+
+Quem não tem digital cadastrada vota depois que o mesário digita o ano de nascimento e a urna confere esse ano com o cadastro. Nenhuma digital é conferida. É como uma porta que abre com uma senha que muita gente sabe. Quem tem digital cadastrada também pode ser liberado pelo mesário quando a digital falha, o que é comum em idosos. O diário da urna não grava a idade de quem foi liberado, e por isso não dá para saber se os 20 idosos Xavante votaram pela própria digital ou foram liberados à mão. Pela regra de controle desta perícia, a liberação feita pelo mesário não conta como conferência de identidade.
+
+**O Censo também conta centenários demais (Fato).** O Censo de 2022 contou em Campinápolis 42 moradores com 100 anos ou mais, 37 com 95 a 99 anos e 52 com 90 a 94. Numa população com idades certas isso não acontece: depois dos 90 anos morre muita gente a cada ano, e cada faixa de idade é menor que a anterior. No Brasil, para cada 100 pessoas de 95 a 99 anos há 23 com 100 ou mais. Em Campinápolis há 114.
+
+**Hipótese:** isso é sinal de idade exagerada no documento. Em aldeias, a data de nascimento costuma ser estimada no registro, e a pessoa fica "mais velha" no papel. Isso explicaria por que há idosos Xavante vivos, com digital, que votam muito.
+
+**Mas o cadastro tem muito mais centenários que o Censo (Fato).**
+
+| Campinápolis | Pessoas ou títulos |
+|---|---:|
+| Censo 2022, 96 anos ou mais (96: 10; 97: 6; 98: 7; 99: 10; 100 ou mais: 42) | 75 |
+| Censo 2022, 95 anos | 4 |
+| **Teto: pessoas que podiam ter 100+ em 2026, sem nenhuma morte em quatro anos** | **79** |
+| **Eleitores aptos de 100+ no cadastro de 2026** | **224** |
+
+Fonte: Censo 2022 do IBGE, idade ano a ano, e perfil do eleitorado de 2026. **Como ler:** a linha de 79 é um teto. A população real dessa geração em 2026 só pode ser menor, porque parte dela morreu desde 2022. Mesmo assim, o cadastro tem 224. A comparação município a município tem o limite da Parte 1: o título fica onde a pessoa se alistou, e o Censo conta onde ela mora.
+
+**Hipótese:** o exagero de idade não fecha essa diferença. O Censo anotou a data de nascimento de quase todos os seus centenários, e uma data exagerada no documento tende a aparecer tanto no Censo quanto no cadastro. A diferença só sumiria se o Censo tivesse anotado idades mais novas que as do documento. As explicações que sobram são: títulos de pessoas que morreram ou se mudaram e não tiveram o título cancelado (a própria pergunta deste tópico); eleitores que votam em Campinápolis mas moram em outro município, por exemplo numa aldeia da mesma terra indígena do outro lado da divisa; pessoas que o Censo não encontrou; ou idade diferente nos dois documentos. Nenhuma foi testada, e quanto pesa cada uma não dá para saber com os arquivos públicos (**Pendente**).
+
+**Onde Campinápolis destoa, e onde não (Fato).** Comparando, no mesmo ano de 2022, os eleitores aptos do cadastro com a população do Censo:
+
+| 2022 | Aptos no cadastro | Pessoas no Censo | Aptos por pessoa |
+|---|---:|---:|---:|
+| Campinápolis, 100 anos ou mais | 144 | 42 | 3,4 |
+| MT, 100 anos ou mais | 1.576 | 492 | 3,2 |
+| Campinápolis, 90 a 94 anos | 145 | 52 | 2,8 |
+| MT, 90 a 94 anos | 6.991 | 5.513 | 1,27 |
+
+Fonte: comparecimento por idade do TSE, 1º turno de 2022, e Censo 2022. **Como ler:** na faixa de 100 ou mais, Campinápolis fica perto do resto de MT. Na faixa de 90 a 94, Campinápolis tem 2,8 títulos para cada morador dessa idade, e MT, 1,27.
+
+Isso tem uma consequência. Os eleitores de 100+ sem raça/cor informada votam na mesma proporção que os de 90 a 99 da mesma cidade. Isso combina com "são, de fato, pessoas mais novas", mas combina igualmente com "todas as faixas de idosos da cidade têm títulos sem dono vivo". Nenhuma das duas leituras foi testada (**Hipótese**).
+
+**Nem todos esses títulos estão nas aldeias (Fato).** Dos 192 títulos de 100+ sem digital, 108 estão em escolas de aldeia, onde de 79% a 97% dos eleitores se declaram indígenas, e 84 estão em quatro escolas da cidade, onde só de 2% a 15% se declaram indígenas (30, 29, 19 e 6 títulos em cada uma). O exagero de idade em documento de aldeia explica mal esses 84.
+
+**Os diários das urnas não mostram uso em massa (Fato).** Somando as seções de cada município em cada turno (3 municípios × 2 turnos), o número de votos, de liberações pela digital, pelo ano de nascimento e por dado confere contado nos diários é igual ao dos boletins das urnas, nos seis casos.
+
+| Liberações em Campinápolis | 1º turno | 2º turno |
+|---|---:|---:|
+| Votos | 8.377 | 8.497 |
+| Pela digital | 7.029 | 7.069 |
+| Pelo ano de nascimento (sem digital cadastrada) | 747 | 785 |
+| Por dado confere, com mesário identificado no diário | 227 | 350 |
+| Por dado confere, sem mesário identificado | 374 | 293 |
+| Recusas "o eleitor identificado já votou" | 15 | 29 |
+
+Fonte: diários e boletins das 38 urnas de Campinápolis, conferidos linha a linha por uma segunda verificação independente. **Como ler:** as quatro formas de liberação somam os votos de cada turno. As liberações pelo ano de nascimento quase não mudaram entre os turnos.
+
+- **Ao longo do dia:** a parte dos votos sem digital fica entre 14% e 18% em quase todas as horas. Campinápolis tem mais votos sem digital que os vizinhos porque tem mais eleitores sem digital no cadastro: 20,8% dos aptos, contra 6,0% e 12,0%.
+- **Em sequência:** nenhuma urna liberou mais de 6 eleitores sem digital em 10 minutos, nem mais de 5 seguidos. Nos vizinhos, os máximos foram 5 e 4.
+- **Depois do horário, 1º turno:** em MT, a votação vai até as 16h da hora local (17h de Brasília), e o relógio da urna marca a hora local. Seis seções de Campinápolis tiveram voto depois das 17h da urna, mais de uma hora depois do encerramento: 0197 (91 votos, o último às 19h54), 0207 (56), 0199 (21), 0198 (15), 0203 (12) e 0159 (1). Em Nova Xavantina, duas: 0037 (15) e 0039 (48). Em Campinápolis, das 16h em diante, 79 dos 544 votos foram sem digital (14,5%), menos que no dia inteiro (16,1%). **Hipótese:** fila de eleitores que já esperavam na hora do encerramento, no 1º turno, que tem mais cargos para digitar. Pela regra de controle, "só votou quem estava na fila" é procedimento de pessoas e não conta como controle; o que os dados mostram é que, no fim do dia, a parte sem digital não subiu. A questão do horário de encerramento é a do [tópico 3](03-linha-do-tempo.md).
+
+**Seção 0094 da zona 0026, 2º turno: tentativas recusadas (Fato).** É uma seção de uma escola da cidade, a seção urbana com mais títulos de 100+ sem digital (11), no local de votação com mais liberações pelo ano de nascimento do município. A urna abriu às 07:00:01 e encerrou às 16:01 (hora local). Teve 246 votos: 206 pela digital, 29 pelo ano de nascimento e 11 por dado confere. O diário mostra, no início da tarde:
+
+| Hora (local) | O que o diário registra |
+|---|---|
+| 12:56:28 | último voto antes da série (dado confere) |
+| 12:58:38 e 12:58:54 | título digitado → "o eleitor identificado já votou" (2 vezes) |
+| 12:59:16 e 12:59:32 | CPF digitado → "eleitor não encontrado" (2 vezes) |
+| de 12:59:52 a 13:03:40 | título digitado → "já votou" (6 vezes) |
+| 13:04:47 | voto, eleitor liberado pela digital |
+| 13:05:23 | título digitado → "já votou" |
+| 13:07:30 | voto, eleitor liberado pela digital |
+| 13:08:59 | título digitado → "já votou" |
+| 13:09:31 | CPF digitado → "eleitor não encontrado" |
+| 13:18:36 e 13:23 | mais 2 "já votou" (12 no dia) |
+
+Fonte: diário original da urna da seção, aberto por uma segunda verificação independente. **Como ler:** entre 12:58 e 13:09, a urna recusou 10 vezes um título com "já votou" e 3 vezes um CPF que não era da seção. No meio, só 2 pessoas votaram, as duas pela digital. Nenhum voto saiu de uma tentativa recusada: a trava da urna funcionou.
+
+- **Fato:** no 1º turno, a seção 0094 não teve nenhuma recusa "já votou".
+- **Fato:** no país, no 2º turno, 179 das 499.177 seções com voto tiveram 12 ou mais recusas "já votou", e 245 tiveram 10 ou mais; o máximo numa seção foi 388. A 0094 não é caso único pelo total do dia. **Pendente:** quantas dessas seções concentram as recusas em poucos minutos, como a 0094; isso não foi medido. **Hipótese:** parte delas é urna que reiniciou e recusa quem já tinha votado antes da queda ([tópico 2](02-coerencia-entre-arquivos.md)).
+- **Fato:** o diário não grava o número digitado. Não se sabe se foi o mesmo título várias vezes ou títulos diferentes.
+
+**Hipótese:** há três leituras possíveis:
+
+- eleitores que já tinham votado voltando à mesa, ou alguém conferindo uma lista de quem já votou;
+- alguém tentando votar com títulos já usados, e a trava da urna barrou;
+- eleitores chegando para votar e descobrindo que outra pessoa já tinha votado no lugar deles. Seria rastro de voto dado no lugar de outra pessoa **antes** das 12:58.
+
+A terceira é a mais grave, e os arquivos públicos não permitem separá-la das outras. Só a ata da seção (com as reclamações registradas) e a lista de quem votou, que não é pública, ajudariam.
+
+**Recomendação:** pedir ao TRE-MT a ata da seção 0094 da zona 0026, do 2º turno, com as ocorrências e as reclamações registradas, e perguntar:
+
+- se algum eleitor disse que não tinha votado, ou pediu impugnação;
+- quem digitou os títulos entre 12:58 e 13:09;
+- por que três CPFs de fora da seção foram tentados.
+
+A ata é relato de pessoas e, sozinha, não prova nada. Uma reclamação de eleitor que "já tinha votado" sem ter ido votar seria indício a favor da terceira leitura; a falta dela não descarta essa leitura. **Recomendação** complementar: pedir ao TSE, só em contagem e sem dados pessoais, quantos dos títulos recusados nessa seção tinham votado antes, e por qual forma de liberação (digital, ano de nascimento ou mesário). Os dois pedidos estão na lista da LAI, abaixo (pedidos 8 e 9).
+
+### Prova de que o teste funciona (contraprova)
+
+- **Dois caminhos, os mesmos números (Fato).** A segunda verificação contou os diários linha a linha, por um caminho diferente do da primeira análise, e chegou aos mesmos números em Campinápolis e nos vizinhos, nos dois turnos, coluna a coluna.
+- **Diário = boletim (Fato).** As contagens dos diários das 216 combinações de seção e turno, somadas por município e turno, foram conferidas contra os boletins: votos, liberações pela digital, pelo ano de nascimento e por dado confere são iguais nas seis combinações de município e turno. Se a leitura dos diários perdesse ou duplicasse liberações, essa conferência acusaria.
+- **Nenhuma seção ficou de fora (Fato).** Foram lidos todos os diários de cada pacote da zona, inclusive os guardados dentro de outros, sem descartar nenhuma seção.
+- **As explicações sem fraude foram testadas uma a uma (Fato):** erro de leitura dos diários (testado: três contas iguais); liberação em massa no fim do dia (testado: a parte sem digital por hora é plana e cai depois das 16h); rajadas fora do normal (testado: no máximo 6 em 10 minutos, perto dos vizinhos). O exagero de idade foi **suposto**, e não testado: combina com o Censo, mas não explica os 224 títulos contra o teto de 79 nem os 84 títulos da cidade.
+
+### O que não se pode afirmar com este exame
+
+- **Que os 12 votos de 100+ sem digital foram das próprias pessoas.** O diário da urna não grava a idade nem o título de quem foi liberado. Por isso não se sabe em que seções esses 12 votaram, nem se foram eles mesmos. Um uso pequeno, de até 12 títulos espalhados por 38 urnas, não aparece em nenhuma medida de ritmo.
+- **Que os 20 idosos Xavante votaram pela própria digital.** Eles têm digital no cadastro; a forma de liberação de cada um não é pública.
+- **Por que o cadastro tem 224 centenários contra um teto de 79 no Censo.** Títulos de mortos ou de quem se mudou, eleitores que moram em outro município, falha do Censo nas aldeias e idade diferente nos dois documentos não foram testados. O dia e o mês de nascimento não são públicos.
+- **O que aconteceu na seção 0094.** A trava da urna funcionou, mas as recusas podem ter três causas, e os arquivos públicos não separam a mais grave das outras.
+- Esta perícia não aceita "o mesário conferiu o documento" como controle.
+
+### Pendente
+
+- **Pendente:** quantos dos 224 títulos de 100+ têm nascimento em 1º de janeiro (pedido 8, abaixo). **Hipótese:** é a data que costuma ser posta quando só se sabe o ano de nascimento, e muitos casos assim indicariam data estimada.
+- **Pendente:** em que seções votaram os 12 eleitores de 100+ sem digital (pedido 8).
+- **Pendente:** quantos dos 224 títulos têm óbito registrado em cartório (pedido 8).
+- **Pendente:** a ata da seção 0094 do 2º turno e a contagem de como votaram antes os títulos recusados ali (pedido 9).
+- **Pendente:** em quantas das seções do país com muitas recusas "já votou" elas se concentram em poucos minutos.
 
 ## Um fenômeno vizinho que não é o mesmo: municípios com mais eleitores do que moradores
 
@@ -559,6 +715,8 @@ Fonte: resultado por seção e perfil do eleitorado do TSE, 2º turno de 2026. *
 5. Ao TSE: a publicação do arquivo de comparecimento por idade (perfil de comparecimento e abstenção) do 2º turno.
 6. Ao TSE: por zona, os votantes de 80 anos ou mais por forma de liberação na urna (digital do próprio eleitor, ano de nascimento, liberação pelo mesário), em 2022 e em 2026 (Parte 4).
 7. Ao TSE: quantos títulos foram cancelados por óbito em cada ano, de 2014 a 2026, por estado, e quantos em cancelamentos em massa; o calendário do recadastramento com digital por município; e, por município, os títulos de 95 anos ou mais pelo ano da última atividade (voto, justificativa ou atualização) (Parte 5).
+8. Ao TSE, só em números e sem dados pessoais, sobre os 224 títulos de 100+ de Campinápolis (MT): quantos têm nascimento em 1º de janeiro; em que seções votaram, no 1º turno, os 12 eleitores de 100+ sem digital cadastrada; e quantos desses títulos têm óbito registrado em cartório ("Um município que pede exame").
+9. Ao TRE-MT: a ata da seção 0094 da zona 0026, do 2º turno, com as ocorrências e as reclamações registradas, e as respostas às três perguntas de "Um município que pede exame". Ao TSE, só em contagem: quantos dos títulos recusados com "já votou" nessa seção tinham votado antes, e por qual forma de liberação.
 
 ## Pendente
 
@@ -566,6 +724,7 @@ Fonte: resultado por seção e perfil do eleitorado do TSE, 2º turno de 2026. *
 - **Forma de liberação dos idosos e títulos cancelados por óbito com voto em 2026:** dependem dos pedidos 2 e 6 acima (Parte 4).
 - **Causa do estoque de títulos de 95+ e 100+:** cancelamentos por óbito por ano, calendário do recadastramento com digital e títulos sem atividade dependem do pedido 7; a data em que o TSE conta a idade, do pedido 4 (Parte 5).
 - **Seções novas:** a causa do excesso de seções novas com 95% ou mais em 2026 (data de alistamento e motivo da criação pedidos ao TSE).
+- **Campinápolis (MT):** a causa dos 224 títulos de 100+ contra um teto de 79 no Censo, de quem foram os 12 votos de 100+ sem digital e o que aconteceu na seção 0094 do 2º turno (pedidos 8 e 9).
 - **Comparecimento × mortes recentes por município** e **variação entre turnos nos grupos que costumam faltar.** Ainda não passaram pela revisão independente.
 - **2º turno por idade:** refazer a medida direta quando o TSE publicar o arquivo.
 - **Diário das urnas nos lugares apontados:** horário e sequência das liberações por ano de nascimento em Arame, Icatu e Pirapemas (MA), Redentora (RS), Florianópolis (SC), Pilão Arcado (BA) e nas zonas do excesso de "sem biometria".
@@ -575,7 +734,7 @@ Fonte: resultado por seção e perfil do eleitorado do TSE, 2º turno de 2026. *
 
 ## Como os números foram conferidos
 
-Os números deste tópico vêm de duas fontes. A maior parte passou pela revisão independente, que leu de novo os arquivos brutos do TSE e do IBGE com outro programa e chegou aos mesmos valores. Os números que a revisão não refez (biometria por faixa de idade, tabela por estado, proporção de homens, os casos RJ 0005/0001 e Indaiatuba 0211/0438, e a medida nas 378 seções) foram recontados por uma conferência própria deste tópico, sobre todas as seções do perfil do eleitorado. Os números da Parte 4, da Parte 5 e das seções novas foram refeitos por uma segunda verificação independente, por outro caminho, sobre todas as zonas e seções, e coincidem até a unidade. Esta parte corresponde à hipótese H01 do quadro das hipóteses (tópico 10).
+Os números deste tópico vêm de duas fontes. A maior parte passou pela revisão independente, que leu de novo os arquivos brutos do TSE e do IBGE com outro programa e chegou aos mesmos valores. Os números que a revisão não refez (biometria por faixa de idade, tabela por estado, proporção de homens, os casos RJ 0005/0001 e Indaiatuba 0211/0438, e a medida nas 378 seções) foram recontados por uma conferência própria deste tópico, sobre todas as seções do perfil do eleitorado. Os números da Parte 4, da Parte 5 e das seções novas foram refeitos por uma segunda verificação independente, por outro caminho, sobre todas as zonas e seções, e coincidem até a unidade. Os de Campinápolis foram refeitos por uma segunda verificação independente, que contou de novo, linha a linha, os diários de todas as urnas da zona eleitoral nos dois turnos, conferiu-os contra os boletins e releu os arquivos do TSE e do IBGE. Esta parte corresponde à hipótese H01 do quadro das hipóteses (tópico 10).
 
 ## Próximos passos
 
@@ -588,4 +747,6 @@ Os números deste tópico vêm de duas fontes. A maior parte passou pela revisã
 - [ ] Refazer o piso de votos sem digital com o perfil do eleitorado de 2022, para saber se ele cresceu
 - [x] Conferir uma a uma as 56 seções novas com 98% ou mais de comparecimento no 2º turno
 - [ ] Examinar o diário das urnas nos lugares e zonas apontados (horário e sequência das liberações por ano de nascimento)
+- [x] Examinar o diário de todas as urnas de Campinápolis (MT) e dos dois municípios vizinhos da mesma zona, nos dois turnos, depois da revisão independente
+- [ ] Pedir ao TRE-MT a ata da seção 0094 da zona 0026 (2º turno) e ao TSE os números dos pedidos 8 e 9
 - [ ] Registrar as verificações deste tópico no livro de evidências da auditoria

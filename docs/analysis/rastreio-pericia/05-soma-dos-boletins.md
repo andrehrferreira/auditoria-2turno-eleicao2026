@@ -86,3 +86,22 @@ Saídas: `data/parsed/auditoria/matematico/h03-1t-*` (fechamento, omitidos, efei
 ## Próximos passos
 
 - 2º turno, demais campos contra o oficial, com revisão cética: [coerência 01](../coerencia-contagem/01-bu-x-oficial.md).
+
+## Contraprova do 2º turno por zona, município, estado e totais da noite (31/10/2026)
+
+- O Pendente "As comparações do 2º turno por zona, por município, por estado e com os totais da noite da eleição ainda não têm uma contraprova própria" virou Fato.
+- Achado: seção "Contraprova" de [matematico-forense/11](../matematico-forense/11-h03-2t-demais-campos.md) (commit `b6d7bfe`), script `scripts/auditoria/matematico-h03-2t-agregados.mjs --contraprova`.
+- Revisão: [parecer 49](../cetico-revisor/49-campinapolis-contraprovas.md), item 2a, **sustentado**. "Segunda verificação independente" = parecer 49 (saídas `-contraprova-{divulgacao,candidatos}.csv` idênticas às gravadas).
+- Alterações K1 a K6 (texto em palavras simples):
+  - K1: nº 13, AC 01392, zona 0001 −1 e zona 0009 +1 → zona 2; município, UF e país 0;
+  - K2: nº 22, AC 01007/0009 −1 e 01015/0002 +1 → zona 2, município 2, UF 0, país 0;
+  - K3: Governador DF, nº 11, 97012/0001 +1 → zona, município e UF 1 cada; divulgação DF `vnom`, `vv`, `tv` e candidato 11;
+  - K4: Governador TO, nº 99, 73008/0007 +1 → "só no BU" em zona, município e UF; divulgação TO `vnt`, `tvn`, `tv`;
+  - K5: Governador AC, +1 branco → divulgação AC `vb` e `tv`;
+  - K6: Governador ES, +1 apto → divulgação ES `esi`, `te`, `a`.
+- Ressalva do parecer levada ao texto como "Limite": o ramo "só no oficial" não é exercitado (código simétrico ao "só no BU", exercitado em K4).
+- Resultado real (0 divergência em 12.584 + 1.026 pares de zona, 11.514 + 938 de município, 56 + 12 de UF e 7 totais): parecer 40.
+
+```
+node scripts/auditoria/matematico-h03-2t-agregados.mjs --contraprova   # ~2 min; regrava data/parsed/auditoria/matematico/*-contraprova-*
+```

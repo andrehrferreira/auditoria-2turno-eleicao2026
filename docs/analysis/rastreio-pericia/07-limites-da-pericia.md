@@ -97,3 +97,10 @@ node scripts/auditoria/contagem-a7.mjs --turno 2                             # c
 ## Próximos passos
 
 - Lacres do 2º turno: parecer 24.
+
+## Tabela 2, linha "Virada de cada zona além do esperado" (31/10/2026)
+
+- Fonte: [parecer 34](../cetico-revisor/34-h26-virada-zonas.md), §A (poder: zona, várias zonas, capitais, UF, inserção proporcional ao 13), §B (dependência do método; ICC entre zonas), §C (horário: associação positiva do voto tardio do 2º turno; o teste do autor não tinha poder), §D (biometria afasta só o caminho do mesário), §E (modelo de urna), veredito 6 (critério e resultado no mesmo commit). Recomendação 7 do parecer: o relatório não pode dizer que a triagem mostra ausência de inserção espalhada nem que o horário tardio desfavoreceu o 13.
+- Fortaleza: parecer 34, §A.3 (5 p.p. em todas as 17 zonas, 0 acendem); o número de votos inseridos ficou fora (estimativa de simulação).
+- Bullet novo em "Prova de que os limites foram medidos": parecer 34, §A e §C (poder do teste Δ com k votos no fim do dia).
+- Comandos: ver o rastreio do tópico 8, item 7.
