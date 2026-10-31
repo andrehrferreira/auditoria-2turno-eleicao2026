@@ -122,3 +122,49 @@ Detalhes técnicos: [../biometria-mesarios/](../biometria-mesarios/01-metodo-e-d
 - Item 6.1 refeito com todas as UFs: parecer 27.
 - Varredura das rajadas de "já votou": [../biometria-mesarios/03-rajadas-ja-votou.md](../biometria-mesarios/03-rajadas-ja-votou.md).
 - Seções do PR e reclassificação por falha do leitor: parecer 27, recomendação 7.
+
+## Atualização de 31/10/2026 (item 6.4, sinal V2 no Sul e no RS comparado com 2022)
+
+- Revisão: [parecer 51](../cetico-revisor/51-v2-sul-2022.md), sobre o [estatístico 26](../estatistico-eleitoral/26-h13-v2-sul-2022-diario.md) e o adendo 6 do [plano 16](../estatistico-eleitoral/16-h13-log-plano.md). Vereditos: itens 1, 2, 3 e 6 **sustentados**; itens 4 e 5 **sustentados com ressalvas**; item 7 **Fato** no bruto. O texto para leigos é o do item 9 do parecer, com os ajustes abaixo. "Segunda verificação independente" = parecer 51 (7-Zip oficial, classificador próprio de vias, leitura do `.bu` por tag e do BU impresso, regressão própria).
+- Registro que faltava neste índice (texto já no tópico desde 30/10/2026): o parágrafo "Minas Gerais: o padrão já aparecia em 2022" vem do [parecer 48](../cetico-revisor/48-h13-v2-mg-2022.md) (32,4% e 11,5%: §"Para o redator", item 4, `cetico-48-bu2022.mjs`); o sinal fora do Nordeste e os 452.147 / 3.978.044, do [parecer 46](../cetico-revisor/46-h13-v2-fora-nordeste.md) (`cetico-46-pior-caso.mjs`).
+
+| Número ou frase no texto | Fonte |
+|---|---|
+| 69.164 seções por turno (PR 25.721, SC 16.242, RS 27.201), todas completas contra o `.vsc` da seção | estatístico 26, §1 (`conferencia-<uf>-<t>t.json`); parecer 51, itens 1 e 2 |
+| "diário bate com o boletim em quase todas as seções; diferença quase sempre de 1 ou 2" | parecer 51, item 2 (`vias.json`): V2 igual em 98,75% a 99,84% das seções por UF e turno; fora das 5 de diário curto, o diário conta 1 a 4 a mais, nunca menos (1 exceção em SC) |
+| 5 seções com diário que não cobre o dia; 4 com falha ou troca de urna | parecer 51, item 7 (PR 75833/0043/0074 e 77275/0167/0100; RS 88013/0002/0199 e 88013/0114/0336 no 1º turno; RS 87912/0060/0322 nos dois turnos) |
+| "Em 2022 aparece a mesma ligação... não é novidade de 2026" (Sul e RS) | parecer 51, itens 3 e 4 (T1 positivo e acima do corte no Sul e no RS); nenhum coeficiente, z ou intervalo no texto (consenso T22) |
+| "não tem precisão para dizer se cresceu, nem se é o mesmo fenômeno" | parecer 51, item 4.3 (T2 e T4 sem poder) e veredito 4 |
+| Sul 10,1% (2022) e 4,6% (2026); RS 12,5% e 8,1% | parecer 51, item 9: Sul 2022 1.863.145 ÷ 18.373.519 nas 69.162 seções com `.bu` da urna (comparecimento − tag `[2]`, 2º turno); Sul 2026 861.228 ÷ 18.711.280 em todas as 72.015 seções (`sem_biometria` do boletim, parecer 46, "Magnitude"); RS 864.312 ÷ 6.930.603 e 559.431 ÷ 6.889.638. Pelo diário, as proporções arredondadas são as mesmas (estatístico 26, §2) |
+| "já eram poucas em 2022 as seções com mais da metade sem digital" | parecer 51, item 5.1 (peso de 2022 acima de 50% sem biometria: 6,9% no Sul, contra 55% em MG) |
+| "resultado de 2022 vai na mesma direção, mas não chega à régua do teste" (seções com proporção parecida) | parecer 51, itens 4.4 e 5.1 (T3 repesado: z abaixo do corte nos dois caminhos; empate no limite, não indício de diferença) |
+| PR e SC sozinhos sem padrão claro em 2026 | parecer 51, item 4.1 (z de 2026 abaixo de 2) e item 6 |
+| Pendente: seção do RS com diário sem votação nem falha; casos assim em 2026 | parecer 51, item 7 e "Para o coordenador" (RS 87912/0060/0322; começar pelas 2 seções de 2026 do RS com "diário diferente do BU" no painel do estatístico 26) |
+| Fonte: 2 seções do 2º turno fora da proporção de 2022 (SC e RS) | estatístico 26, §1 (seções do Sistema de Apuração, `vscsa`); parecer 51, item 9 |
+
+Ajustes em relação ao texto pronto do item 9 do parecer:
+
+- "por falha ou troca de urna" passou a valer só para 4 das 5 seções: a quinta (RS 87912/0060/0322) não tem marca de falha (parecer 51, item 7), e entrou como **Pendente**.
+- Saíram "No Rio Grande do Sul, o tamanho é parecido com o de 2026" e "No Sul como um todo, o de 2022 é um pouco menor": são comparações de tamanho do teste, e o pedido do coordenador deixou fora o "do mesmo tamanho"; a analogia da balança ficou num item próprio de limite.
+- "não passa a régua fixada antes de rodar" virou "não chega à régua do teste": o parecer 51, item 4.2, diz que o registro prévio do adendo 6 não é verificável (entrou no mesmo commit que o resultado).
+- "as seções de 2022 já eram parecidas com as de 2026 nessa proporção" virou "já eram poucas em 2022 as seções com mais da metade sem digital", para não parecer contradizer 10,1% contra 4,6% (parecer 51, item 5.1).
+- Fica fora (parecer 51, item 9): coeficientes, z, intervalos, "veria", faixas, "do mesmo tamanho", "estrutural", "mais próximo do mesmo padrão", a V2 do diário do PR como número, as hipóteses sobre a tag `[2]` e a identificação das 5 seções de 2022.
+
+Comandos (parecer 51 e estatístico 26):
+
+```
+node scripts/auditoria/coleta-2022-mg.mjs --uf pr --turno 1 --etapas conferir       # 69.164 por turno: idem para cada UF e turno
+node scripts/auditoria/estatistico-h13-v2-diario2022.mjs --uf pr --turno 1          # vias do diário, idem para cada UF e turno; --juntar
+node scripts/auditoria/estatistico-h13-v2-bu2022.mjs --uf pr                        # diário × boletim de 2022, idem sc e rs
+node --max-old-space-size=12000 scripts/auditoria/estatistico-h13-v2-sul2022-analise.mjs   # modelo do autor
+node scripts/auditoria/cetico-51-bruto.mjs --amostra 40 --divergentes 15 \
+  --extra pr/75833/0043/0074,pr/77275/0167/0100,rs/87912/0060/0322,rs/88013/0002/0199,rs/88013/0114/0336 --tmp <dir>
+node scripts/auditoria/cetico-51-caso.mjs --secao rs/87912/0060/0322 --turno 1 --tmp <dir>   # idem turno 2 e as outras 4
+node scripts/auditoria/cetico-51-vias.mjs                                          # vias × boletim no universo; somaV2bu do 2º turno = numeradores de 2022
+node --max-old-space-size=8000 scripts/auditoria/cetico-51-modelo.mjs              # regressão própria (2022 e 2026)
+node --max-old-space-size=8000 scripts/auditoria/cetico-46-dados.mjs               # V2 de 2026 pelo boletim (861.228; 559.431)
+```
+
+Saídas: `data/parsed/auditoria/cetico/51/` (`bruto.json`, `vias.json`, `modelo.json`).
+
+Conferência do redator (31/10/2026), só leitura: somando `comp` e `comp − compBio` do 2º turno em `data/parsed/auditoria/estatistico/h13-v2/sul2022/bu2022-{pr,sc,rs}.csv` saem 69.162 seções, 18.373.519 votantes e 1.863.145 sem biometria no Sul; no RS, 27.200, 6.930.603 e 864.312. Bate com o parecer 51, item 9.

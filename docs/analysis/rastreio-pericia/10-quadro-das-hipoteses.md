@@ -122,3 +122,11 @@ unzip -Z1 data/raw/2t/zip/<pacote da UF>.zip | grep -E "(jufa\.dat|imgze\.dat|-h
 - "Sustentado com ressalvas (seções novas: a leitura 'a diferença de 2022 desapareceu' foi corrigida)": parecer 50, item 1 (ressalva 1a) e "Correção ao relatório atual".
 - Saiu do Pendente da H27 "a comparação das seções novas com 2022" (feita); entraram os pendentes do parecer 50: operações no cadastro por seção, transferências e município de origem, ato e motivo da criação, TTE por seção em 2022 e comparecimento de 2024.
 - Números e comandos no rastreio do tópico 6, "Atualização de 31/10/2026: seções novas de 2022 até 2026 (H27)". Nenhuma estimativa (esperados, excessos, razões, decomposição) entrou.
+
+## Atualização de 31/10/2026 (H13, comparação com 2022 em MG e no Sul)
+
+- Cabeçalho, linha H13 do quadro (resultado e coluna de conferência), seção H13 (novo **Fato (revisado)** da comparação com 2022, novo **Limite**, "Pode-se afirmar" e "Não se pode afirmar") e Próximos passos (novo Pendente da seção do RS): [parecer 51](../cetico-revisor/51-v2-sul-2022.md), sobre o [estatístico 26](../estatistico-eleitoral/26-h13-v2-sul-2022-diario.md), e, para MG, [parecer 48](../cetico-revisor/48-h13-v2-mg-2022.md), sobre o estatístico 24. A parte de MG já estava no tópico 4 desde 30/10/2026 e faltava no quadro.
+- "já aparecia em 2022 sustentado em MG e no Sul": parecer 48 (MG, "não é novidade de 2026", corrigida a leitura "estrutural, do mesmo tamanho") e parecer 51, veredito 4 (Sul e RS, "já existia em 2022"; "cresceu?" e "mesmo fenômeno?" inconclusivos).
+- 69.164 seções por turno no Sul; 32,4% / 11,5% (MG); 10,1% / 4,6% (Sul); 12,5% / 8,1% (RS): fontes e comandos no rastreio do tópico 4, "Atualização de 31/10/2026 (item 6.4, sinal V2 no Sul e no RS comparado com 2022)".
+- O Pendente "teste com plano registrado antes de rodar ... que separe o perfil de quem voltou a votar de voto no lugar de ausente" ficou (parecer 51, item 9, "manter o Pendente geral").
+- Nenhum coeficiente, z, intervalo ou faixa entrou (consenso T22).

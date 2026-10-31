@@ -28,3 +28,7 @@ Os demais números do resumo são cópia dos tópicos; os pareceres e scripts de
 - Achado 12: Campinápolis (MT): parecer 49, item 1.
 - Pendências e perguntas: ata da seção 0094 (TRE-MT) e os três pedidos numéricos de Campinápolis: parecer 49, §1.4 e textos para leigos.
 - Achado 13 (seções novas): [parecer 50](../cetico-revisor/50-secoes-novas-2022-2026.md); números copiados do tópico 6, "Outro fenômeno vizinho" (fontes no rastreio do tópico 6). Pendências e perguntas ao TSE: parecer 50, "Pendente".
+
+## Atualização de 31/10/2026 (H13, Sul e RS em 2022)
+
+- O resumo não muda: ele não cita o sinal V2 fora do Nordeste (achado 7 fala só do tamanho da porta e do teste do item 6.1, que não decide), nem a falta da comparação no Sul. Conferido em `docs/pericia/resumo.md` na data. A comparação com 2022 está no tópico 4, item 6.4, e no tópico 10, H13 ([parecer 51](../cetico-revisor/51-v2-sul-2022.md); fontes no rastreio do tópico 4).
