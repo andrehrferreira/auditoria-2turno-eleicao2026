@@ -2,6 +2,22 @@
 
 Entregas da auditoria, por data. Os números são os dos commits citados; o estado atual de cada hipótese está em [docs/hipoteses.md](docs/hipoteses.md) e o andamento no [README](README.md#andamento).
 
+## 31/10/2026
+
+### Análises e revisões
+
+- H26 (virada para o 13 por zona) levada à perícia: virada geral, o 13 melhorou em 2.626 das 2.641 zonas, sem zona fora da curva estável (3d7daa2).
+- H01: salto dos aptos de 100+ de 2018 para 2022 explicado como estoque antigo sem limpeza (tópico 6, Parte 5) e gráfico da onda dos 95+ de 2014 a 2026 (3d7daa2, 3cb8843).
+- Campinápolis (MT), revisão cética 49: diários sem liberação em massa; 224 títulos de 100+ contra no máximo 79 pessoas no Censo; seção 0094 com 12 recusas de "já votou" e pedido da ata ao TRE-MT; errata com o DF de 2022 (96d156b, 4ae2457, c35cb50, 8efbf96).
+- H03: contraprovas do 2º turno por zona, município, estado e total da noite, e C1/C2 nos dois turnos, viram Fato nos tópicos 5 e 2 (96d156b, c35cb50).
+- H27, seções novas: perfil por seção de 2022 das 28 UFs, coorte de 2022 seguida até 2026 (demógrafo 11) e revisão cética 50 com a leitura corrigida; nos tópicos 6, 14 e 10, com rastreio do tópico 14 (d873ef6, 19ae528, 32e0130).
+- Tópicos 7 e 10: limites da H26 e ressalva sobre o voto do fim do dia (c35cb50).
+
+### Relatórios
+
+- Relatório completo regerado e assinado: 294 páginas, 22 gráficos, Anexo B com 21 tabelas (5d47e5d).
+- README, CHANGELOG e relatório das hipóteses em teste com o retrato de 31/10.
+
 ## 30/10/2026
 
 ### Relatórios

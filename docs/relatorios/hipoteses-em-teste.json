@@ -1,5 +1,5 @@
 {
-  "data": "30/10/2026",
+  "data": "31/10/2026",
   "titulo": "Hipóteses em teste",
   "subtitulo": "Auditoria independente das eleições gerais de 2026 (1º e 2º turno)",
   "aviso": "Os números, os status e os textos mudam conforme os testes avançam e passam pela revisão cética. Nenhuma hipótese de fraude foi sustentada até agora, e também não é possível afirmar que não houve fraude: cada hipótese diz o que o seu teste não enxerga. Brecha humana é risco, não prova.",
@@ -34,19 +34,20 @@
         "No 1º turno, compareceram 2.141 dos 298.239 aptos de 100 anos ou mais (0,72%), pela contagem oficial do TSE; nos 1.068 municípios com mais títulos de 100+ do que moradores de 96+, 0,26%. Não houve uso sistemático desses títulos no 1º turno.",
         "O estoque de títulos de 100+ não é de 2026: os aptos de 100 anos ou mais eram 39.026 em 2018, 184.330 em 2022 e 297.977 em 2026, e os votantes dessa idade no 1º turno foram 1.506, 1.675 e 2.141 (3,9%, 0,91% e 0,72% dos aptos). O cadastro cresceu; quem vota nessa idade, quase nada.",
         "No 1º turno, os votantes de 85 a 99 anos passaram de 267.098 (2022) para 460.338 (2026), com os aptos dessas idades parecidos ou em queda. O aumento começa aos 70 anos (de 70 a 74, de 3.586.278 para 4.785.687 votantes) e já vinha de 2018 para 2022 (de 70 a 74 anos, de 55,3% para 61,1% de comparecimento); não aparece em 100+, fica abaixo da população do Censo da mesma geração em todos os 5.570 municípios e é menor nos estados onde está a maioria dos títulos sem digital.",
-        "Somando zona por zona, pelo menos 12.004 votos de eleitores de 80 a 89 anos, 970 de 90 a 99 e 157 de 100+ vieram de títulos sem digital cadastrada no 1º turno. Os arquivos públicos não dizem se são de idosos vivos sem digital ou de alguém usando o título de outra pessoa."
+        "Somando zona por zona, pelo menos 12.004 votos de eleitores de 80 a 89 anos, 970 de 90 a 99 e 157 de 100+ vieram de títulos sem digital cadastrada no 1º turno. Os arquivos públicos não dizem se são de idosos vivos sem digital ou de alguém usando o título de outra pessoa.",
+        "O salto dos aptos de 100+ de 2018 para 2022 não é mudança na forma de contar: a mesma geração passa de faixa em faixa (95 a 99 anos em 2018, 100+ em 2022) e, a cada quatro anos, ganha mais de 100 mil títulos e menos de 500 votantes. É falha de limpeza do cadastro, não prova de voto. Conferido por uma segunda verificação independente.",
+        "Campinápolis (MT): 224 eleitores de 100+, dos quais 32 votaram no 1º turno (14,3%). Os diários das 108 urnas do município e dos vizinhos da zona conferem com o boletim, sem liberação em massa. O Censo 2022 contou no máximo 79 pessoas que podem ter 100+ em 2026; o exagero de idade de idosos indígenas explica o Censo alto, mas não a diferença para o cadastro (Hipótese). Em 100+ o município não destoa do Brasil nem de MT; em 90 a 94 anos, destoa (2,8 títulos por morador do Censo, contra 1,27)."
       ],
       "falta": [
         "2º turno: o TSE não publica o comparecimento por idade (pedido ao TSE). Os testes indiretos não enxergam uso pequeno nem concentrado em poucas seções.",
         "Votantes de 80 anos ou mais por forma de liberação na urna, em 2022 e 2026 (pedido ao TSE): o caminho do título com digital liberado à mão pelo mesário não foi testado.",
         "Cancelamentos de título por óbito, por município, e títulos cancelados por óbito com voto em 2026; data em que o TSE calcula a idade no cadastro (pedidos ao TSE).",
-        "Causa do salto dos aptos de 100+ de 2018 para 2022: o exame aponta títulos antigos sem pessoa que passaram dos 100 anos onde não houve revisão biométrica, e não mudança de método do arquivo. Passou pela conferência independente, com ressalvas, e falta levar à perícia.",
-        "Campinápolis (MT), município com comparecimento alto de eleitores de 100+: a maior parte desses votantes tem digital no cadastro, e os diários da zona não mostram liberação em massa (Hipótese: idade exagerada no documento de idosos indígenas). Aguarda a conferência independente; a ata de uma seção com \"já votou\" em série fica a pedir ao TRE-MT.",
-        "A causa da subida dos votantes idosos em 2026 (Hipótese: mobilização, transporte, geração)."
+        "A causa da subida dos votantes idosos em 2026 (Hipótese: mobilização, transporte, geração).",
+        "Campinápolis (MT): títulos de 100+ com nascimento em 1º de janeiro, seções onde votaram os 12 sem digital e títulos com óbito em cartório (pedido ao TSE); ata da seção 0094 da zona 26 no 2º turno, com 12 recusas de \"já votou\" (pedido ao TRE-MT)."
       ],
       "alternativas": "Óbito depois do fechamento do cadastro; atraso dos cartórios em comunicar óbitos; pessoa viva que mora em outro lugar; Censo que deixou de contar idosos.",
-      "readme_sabe": "Cadastro com mais eleitores de 100+ (297.977) do que o Censo permite, estoque que vem de 2018 (39.026) e 2022 (184.330); 1º turno: 0,72% dos 100+ votaram (TSE); votantes de 85–99 de 267.098 para 460.338, parte da subida geral dos 70+",
-      "readme_proximo": "Resposta do TSE: comparecimento por idade no 2º turno, óbitos com voto e votantes de 80+ por forma de liberação; levar à perícia o salto de 2018 para 2022 e Campinápolis (MT)"
+      "readme_sabe": "Cadastro com mais eleitores de 100+ (297.977) do que o Censo permite, estoque que vem de 2018 (39.026) e 2022 (184.330); 1º turno: 0,72% dos 100+ votaram (TSE); votantes de 85–99 de 267.098 para 460.338, parte da subida geral dos 70+; salto de 2018 para 2022 é estoque antigo sem limpeza; Campinápolis (MT) sem liberação em massa",
+      "readme_proximo": "Resposta do TSE: comparecimento por idade no 2º turno, óbitos com voto e votantes de 80+ por forma de liberação; Campinápolis (MT) e ata da seção 0094 (TRE-MT)"
     },
     {
       "id": "H02",
@@ -84,17 +85,18 @@
         "1º turno, todos os cargos (28 UFs, 499.207 seções com boletim): 0 divergência seção a seção em aptos, comparecimento, nominais, brancos, nulos e legenda; Presidente igual candidato a candidato em 499.206 seções; os 109 totais por estado e cargo fecham. As contas internas do boletim (C3 a C6) fecham em 2.490.805 combinações de seção e cargo, 0 falha.",
         "A única diferença é de classificação: 250 números de candidato e 4 legendas (630.541 votos) contados como nulo técnico, que fecham voto a voto. No governo do RJ, os 274.411 votos do nº 10 nesse grupo são mais que os 147.771 que tirariam a maioria do eleito no 1º turno.",
         "Votos do boletim sem a linha \"voto computado\" no diário: 54 em 6 seções no 2º turno e 159 em 9 no 1º. Sem nenhuma linha, 49 e 152, em 5 seções com urna reserva, em que outra urna gravou o próprio diário por cima. Os boletins dessas seções estão assinados e as assinaturas conferem.",
-        "Risco (princípio 8): nas seções apuradas em cédula, os votos não têm registro eletrônico de quem foi liberado: 789 votos em 29 seções do exterior e 40 em 2 seções de MG, no 1º turno."
+        "Risco (princípio 8): nas seções apuradas em cédula, os votos não têm registro eletrônico de quem foi liberado: 789 votos em 29 seções do exterior e 40 em 2 seções de MG, no 1º turno.",
+        "Contraprovas feitas e conferidas por uma segunda verificação independente: no 2º turno, seis números alterados de propósito foram acusados só nos níveis certos (zona, município, estado e total da noite); nos dois turnos, 16 alterações no boletim, no registro dos votos e no diário foram acusadas na seção e na conta certas, e nada fora delas."
       ],
       "falta": [
         "Situação e data da decisão que excluiu o nº 10 ao governo do RJ e os demais números contados como nulo técnico (consulta aos processos de registro).",
-        "Contraprova própria, com alteração feita de propósito, para as comparações do 2º turno por zona, município, estado e com os totais da noite, e para as contas C3 a C6 do 2º turno.",
+        "Contraprova própria, com alteração feita de propósito, para as contas C3 a C6 do 2º turno, a conta da eleição estadual e a dos eleitores em trânsito do 1º turno.",
         "Qual urna gravou 15 votos de uma seção de SP no 1º turno; atas e diários das urnas originais das seções com votos sem rastro (pedido ao TSE).",
         "Consultas populares (as do 2º turno não têm resultado oficial para comparar; PE no 1º); voto por candidato e por seção nos cargos que não são Presidente (não está no arquivo de dados abertos lido)."
       ],
       "alternativas": "Seções não totalizadas; urna de contingência cujo diário não veio no pacote; Sistema de Apuração; candidatura excluída (nulo técnico).",
-      "readme_sabe": "Igual ao oficial: todos os campos de Presidente (499.207 seções) e de Governador (39.739) no 2º t., conferido também pelo boletim impresso, e todos os cargos no 1º t.; contas internas do boletim do 1º t. sem falha; 630.541 votos como nulo técnico, que pesaram no governo do RJ",
-      "readme_proximo": "Contraprova por zona, município e estado; decisão sobre o nº 10 no RJ; consultas populares; atas e diários das seções com votos sem rastro (pedido ao TSE)"
+      "readme_sabe": "Igual ao oficial: todos os campos de Presidente (499.207 seções) e de Governador (39.739) no 2º t., conferido também pelo boletim impresso, e todos os cargos no 1º t.; contas internas do boletim do 1º t. sem falha; 630.541 votos como nulo técnico, que pesaram no governo do RJ; contraprovas por zona, município, estado e C1/C2 feitas",
+      "readme_proximo": "Contraprova de C3–C6 do 2º turno; decisão sobre o nº 10 no RJ; consultas populares; atas e diários das seções com votos sem rastro (pedido ao TSE)"
     },
     {
       "id": "H04",
@@ -623,15 +625,18 @@
         "Corte fixado antes de olhar: zona fora da curva só com chance muito baixa de ser acaso, corrigida para muitos testes, e diferença de 2 pontos ou mais, nos dois sentidos.",
         "Separar por região e UF, por modelo de urna dentro da zona e por horário de votação, 1º × 2º turno."
       ],
-      "sabe": [],
+      "sabe": [
+        "Do 1º para o 2º turno, a diferença entre o 13 e o 22 nos votos nominais foi de −1,86 para +3,57 pontos percentuais, uma virada de 5,44 pontos. O 13 melhorou em 2.626 das 2.641 zonas; 128 zonas passaram do 22 para o 13 e nenhuma ao contrário. A virada é geral, não concentrada.",
+        "Pelo método fixado antes de olhar, nenhuma zona ficou fora da curva do lado do 13 e 4 do lado do 22; com outras escolhas de método, de 0 a 9 do lado do 13. A lista muda com o método, o que mostra que nenhuma zona se destaca de forma estável. Conferido por uma segunda verificação independente.",
+        "Limite: o teste não exclui inserção espalhada nem proporcional ao voto no 13; o voto do fim do dia tem associação pequena com mais virada para o 13, ainda sem explicação."
+      ],
       "falta": [
-        "Levar à perícia a triagem de todas as zonas, já revisada pela revisão cética (sustentada com ressalvas), com o alcance que ela declara.",
-        "Examinar seção a seção as zonas que a triagem marcar fora da curva.",
-        "Linha de base de 2018 e 2022; conciliar os votos depois das 17h com a H06."
+        "Examinar seção a seção as zonas mais perto do corte.",
+        "Linha de base de 2018 e 2022; tabela por região conferida; explicar a associação do voto do fim do dia."
       ],
       "alternativas": "Votos de eliminados com força regional; abstenção diferente entre os turnos; zona pequena; padrão de 2018 e 2022; prorrogação até as 19h e fuso (H06).",
-      "readme_sabe": "Triagem de todas as zonas feita e revisada pela revisão cética; ainda fora da perícia",
-      "readme_proximo": "Levar à perícia; zonas fora da curva seção a seção; linha de base 2018 e 2022"
+      "readme_sabe": "Virada geral (13 melhorou em 2.626 de 2.641 zonas), sem zona fora da curva estável; na perícia, tópico 8",
+      "readme_proximo": "Zonas perto do corte seção a seção; linha de base 2018 e 2022; voto do fim do dia"
     },
     {
       "id": "H27",
@@ -649,18 +654,19 @@
         "Em 45 seções (17 no 1º turno e 28 no 2º), o registro da urna só chegou ao TSE no dia da votação; no 2º turno, em 25 das 28, junto com o resultado. As urnas foram preparadas antes do dia e abriram no início da votação, e os votos não destoam das vizinhas. O registro no dia acontece em toda eleição e em 2026 foi menos frequente: 194 seções no 1º turno de 2022, 82 em 2024, 26 no 1º turno de 2026 e 35 no 2º.",
         "Nenhuma seção fantasma: toda seção com resultado está no cadastro de locais e no resultado oficial, e nenhuma teve mais votantes do que eleitores.",
         "Seções novas: no 2º turno, 433 das 40.740 seções que não existiam em 2022 tiveram comparecimento de 95% ou mais, contra 206 das 458.438 antigas; com seções do mesmo tamanho e perfil, a diferença diminui, mas não some. As 56 novas com 98% ou mais, conferidas uma a uma, ficam em comunidades rurais, indígenas e quilombolas pequenas, com cadastro todo com digital; nada nos pacotes aponta troca.",
-        "Nas 5 seções de SE com troca sem marca, a urna do 2º turno tem no diário um dia de votação de 04/10 que não virou resultado (Hipótese: Teste de Integridade do 1º turno)."
+        "Nas 5 seções de SE com troca sem marca, a urna do 2º turno tem no diário um dia de votação de 04/10 que não virou resultado (Hipótese: Teste de Integridade do 1º turno).",
+        "Seções novas seguidas no tempo: as 118 seções criadas em 2022 que tiveram 95% ou mais de comparecimento caíram de 96,1% para 89,3% em 2026, mais que as antigas na mesma faixa (95,8% para 92,2%); o comparecimento muito alto diminuiu muito em quatro anos, mas não sumiu nas seções em prédio novo. Em 2026 ele fica onde a seção nova junta um grupo novo de eleitores (prédio novo, cadastro todo com digital). Nessas seções, a liberação pelo mesário sem digital foi de 6,38% dos votantes, contra 9,24% nas antigas com 95%+: não há uso em massa desse caminho. Conferido por uma segunda verificação independente."
       ],
       "falta": [
         "Origem das 2 urnas da BA, zona 71, que não constam de nenhuma lista prévia, e por que as urnas do 1º turno dessas seções foram trocadas (pedido ao TSE).",
         "Regra da totalização para resultado que chega sem registro da urna (pedido ao TSE).",
         "Lista de sorteio do Teste de Integridade, por TRE, a começar pelo TRE-SE (pedido ao TSE).",
-        "Por que há mais seções novas com comparecimento muito alto em 2026 do que em 2022: data e motivo da criação das seções novas e data de alistamento dos eleitores delas (pedido ao TSE); comparecimento dessas seções em 2022, que não está na base.",
+        "Por que as seções novas reúnem eleitores que votam mais (Hipóteses: operação recente no cadastro; transferência irregular de domicílio, com eleitor vivo votando com a própria digital): alistamentos, transferências e revisões por seção, motivo de criação de cada seção e eleitores em trânsito por seção em 2022 (pedido ao TSE).",
         "Limite: não enxerga registro válido gerado por quem tem acesso à preparação ou à transmissão, nem programa adulterado e assinado com a chave oficial."
       ],
       "alternativas": "Computador do Sistema de Apuração no exterior (assina várias seções apuradas em cédula); Recuperador de Dados legítimo em urna com defeito; urnas de reserva (H14); seção nova por mudança de local.",
-      "readme_sabe": "Todo resultado assinado pela própria urna, menos 17 recuperações de dados (4.090 votos) assinadas por reserva da lista prévia; 0 seção fantasma; 56 seções novas com 98%+ conferidas uma a uma",
-      "readme_proximo": "Origem das 2 urnas da BA zona 71, regra da totalização, sorteio do Teste de Integridade e origem das seções novas (pedido ao TSE); seções novas × 2022"
+      "readme_sabe": "Todo resultado assinado pela própria urna, menos 17 recuperações de dados (4.090 votos) assinadas por reserva da lista prévia; 0 seção fantasma; 56 seções novas com 98%+ conferidas uma a uma; seções novas seguidas de 2022 a 2026, sem uso em massa da liberação sem digital",
+      "readme_proximo": "Origem das 2 urnas da BA zona 71, regra da totalização, sorteio do Teste de Integridade e operações no cadastro por seção nova (pedido ao TSE)"
     }
   ],
   "fila": [
