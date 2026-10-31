@@ -2,7 +2,8 @@
 // segurança (Campinápolis, MT, H01), lendo os arquivos públicos direto do zip, com colunas pelo nome do cabeçalho.
 //  1. perfil_eleitor_secao_2026_MT: Campinápolis (98655), zona 26: aptos e biometria; 100+ por raça/cor; seções com
 //     100+ sem biometria.
-//  2. perfil_comparecimento_abstencao_2026 (27 UFs + ZZ; o _BRASIL.csv é pulado para não contar duas vezes):
+//  2. perfil_comparecimento_abstencao_2026 (27 UFs + ZZ; do _BRASIL.csv só as UFs sem arquivo próprio, para não contar
+//     duas vezes; em 2022 o zip não tem arquivo do DF nem do ZZ, que só existem no _BRASIL.csv — errata do parecer 49):
 //     Campinápolis 90+ por faixa × raça/cor × grupo indígena (aptos, comparecimento); Brasil 100+ por grupo de raça/cor.
 //  3. perfil_comparecimento_abstencao_2022 (mesmo cuidado): Campinápolis 90+ nos dois turnos; Brasil e MT 90+ no 1º turno.
 //  4. Censo 2022 (IBGE, SIDRA 9514, já guardado em data/raw/externos/ibge): Campinápolis por idade simples de 90 a 99 e
@@ -65,9 +66,17 @@ const show = (titulo, o) => { console.log(titulo); for (const [k, [a, b]] of Obj
 for (const ano of [2026, 2022]) {
   const zip = path.join(DA, 'perfil_comparecimento_abstencao', `perfil_comparecimento_abstencao_${ano}.zip`);
   const camp = {}; const br = {};
-  for (const csv of await listar(zip)) {
-    if (/_BRASIL\.csv$/i.test(csv)) continue;
+  // O _BRASIL.csv repete as linhas dos arquivos por UF, mas em 2022 o zip não tem arquivo do DF nem do exterior (ZZ):
+  // essas UFs só estão no _BRASIL.csv. Lê os arquivos por UF e, do _BRASIL.csv, só as UFs sem arquivo próprio.
+  const entradas = await listar(zip);
+  const comArquivo = new Set(entradas.map((n) => /_([A-Z]{2})\.csv$/i.exec(n)?.[1]?.toUpperCase()).filter((u) => u && u !== 'BR'));
+  const doBrasil = entradas.filter((n) => /_BRASIL\.csv$/i.test(n));
+  console.log(`\n    ${ano}: ${comArquivo.size} arquivos por UF; UFs lidas do _BRASIL.csv: as que não estão em [${[...comArquivo].sort().join(',')}]`);
+  const lidasDoBrasil = new Set();
+  for (const csv of [...entradas.filter((n) => !doBrasil.includes(n)), ...doBrasil]) {
+    const ehBrasil = doBrasil.includes(csv);
     await ler(zip, csv, (l) => l.includes('"9') || l.includes('"100 anos'), (g) => {
+      if (ehBrasil) { if (comArquivo.has(g('SG_UF'))) return; lidasDoBrasil.add(g('SG_UF')); }
       const fx = g('DS_FAIXA_ETARIA');
       if (!/^(90 a 94|95 a 99|100 anos)/.test(fx)) return;
       const a = Number(g('QT_APTOS')); const c = Number(g('QT_COMPARECIMENTO')); const t = g('NR_TURNO');
@@ -78,6 +87,7 @@ for (const ano of [2026, 2022]) {
       if (ano === 2022) { add(br, `${uf === 'ZZ' ? 'exterior' : 'Brasil (27 UFs)'} | ${fx}`, a, c); if (uf === 'MT') add(br, `MT | ${fx}`, a, c); }
     });
   }
+  console.log(`    UFs que vieram só do _BRASIL.csv: ${[...lidasDoBrasil].sort().join(',') || 'nenhuma'}`);
   show(`\n[${ano === 2026 ? 2 : 3}] Comparecimento ${ano}, Campinápolis zona 26, 90+ — aptos | comparecimento`, camp);
   show(`    ${ano === 2026 ? '100+ por grupo de raça/cor' : '90+ por faixa'}, 1º turno — aptos | comparecimento`, br);
 }

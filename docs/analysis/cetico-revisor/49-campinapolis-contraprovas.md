@@ -68,10 +68,10 @@ Não recontado, só lido no código: o "mesmo mesário, seguidas" (depende do ap
 | Coorte máxima em 2026 (sem nenhuma morte em 4 anos) | **79** | soma |
 | Aptos de 100+ no cadastro de 2026 | **224** | perfil por seção e perfil de comparecimento |
 | Mesmo ano do Censo: aptos de 100+ em 2022 | 144 (vs. 42 no Censo, 3,4 vezes) | comparecimento 2022 |
-| Brasil 2022: aptos de 100+ / Censo 100+ | 184.113 / 37.814 (4,9 vezes) | idem |
+| Brasil 2022 (27 UFs, sem exterior): aptos de 100+ / Censo 100+ | 184.330 / 37.814 (4,9 vezes) | idem (corrigido, ver errata) |
 | MT 2022: aptos de 100+ / Censo 100+ | 1.576 / 492 (3,2 vezes) | idem |
 | Campinápolis 2022, 90 a 94: aptos / Censo | 145 / 52 (2,8 vezes) | idem |
-| Brasil e MT 2022, 90 a 94: aptos / Censo | 733.738 / 579.729 (1,27) e 6.991 / 5.513 (1,27) | idem |
+| Brasil e MT 2022, 90 a 94: aptos / Censo | 738.244 / 579.729 (1,27) e 6.991 / 5.513 (1,27) | idem (Brasil corrigido, ver errata) |
 
 - **Fato.** O cadastro de 2026 tem 224 títulos de 100+. O Censo dá no máximo 79 pessoas que podiam ter essa idade, e isso supondo que ninguém morreu desde 2022.
 - **O exagero não fecha essa diferença (Hipótese forte).** 40 dos 42 centenários do Censo declararam data de nascimento, que, segundo o doc, vem do documento. Se o documento exagera a idade, o exagero tende a entrar no Censo e no cadastro ao mesmo tempo, e a diferença entre os dois continua de pé. Só não seria assim se o Censo tivesse recebido idades mais novas que as do documento.
@@ -287,6 +287,36 @@ Rodada normal (doc 13), conferida no `resumo.txt`, 2.270 seções do AC em cada 
 > **Pendente.** Ainda não têm contraprova própria, com alteração feita de propósito: no 2º turno, as contas de soma por cargo, de eleitores aptos, de liberação e de votantes por eleição; no 1º turno, a conta da eleição estadual (o mesmo número de votantes em todos os cargos) e a dos eleitores em trânsito.
 
 ---
+
+## Errata (31/10/2026, a pedido do coordenador)
+
+**Erro.** Na primeira versão, os totais do Brasil em 2022 no R2 eram 184.113 aptos de 100+ e 733.738 de 90 a 94. O tópico 6 e o parecer 44 trazem 184.330 e 738.244.
+
+**Causa.**
+- O zip `perfil_comparecimento_abstencao_2022.zip` tem 26 arquivos por UF e **não tem arquivo do DF nem do exterior (ZZ)**. Essas duas UFs só aparecem no `_BRASIL.csv`.
+- O `cetico-49-cadastro.mjs` pulava o `_BRASIL.csv` inteiro, para não contar duas vezes, e com isso deixava o DF de fora. O exterior não entrava de qualquer jeito, porque o recorte é das 27 UFs.
+- A diferença no 100+ é 217, exatamente o DF de 2022. A conferência feita antes no shell (awk) tinha o mesmo defeito, porque também lia só os arquivos `_XX.csv`.
+- No zip de 2026 há arquivo do DF e do ZZ, e nenhuma UF depende do `_BRASIL.csv`. Por isso os números de 2026 deste parecer e o `seguranca-campinapolis-perfil.mjs` do doc 12 não são afetados.
+
+**Correção.** O script agora lê os arquivos por UF e, do `_BRASIL.csv`, só as linhas de UF sem arquivo próprio. Ele imprime quais UFs vieram de lá: em 2022, DF e ZZ; em 2026, nenhuma.
+
+**Números corrigidos, Brasil, 27 UFs, 2022, 1º turno:**
+
+| Faixa | Aptos | Comparecimento |
+|---|---:|---:|
+| 100+ | 184.330 | 1.675 |
+| 95 a 99 | 466.703 | 7.591 |
+| 90 a 94 | 738.244 | 49.745 |
+
+O exterior de 2022 fica à parte: 108, 237 e 517 aptos.
+
+**Razões refeitas:**
+- Brasil, 100+: 184.330 / 37.814 = 4,87, isto é, **4,9**. Não muda.
+- Brasil, 90 a 94: 738.244 / 579.729 = 1,273, isto é, **1,27**. Não muda.
+- MT tem arquivo próprio e não foi afetado: 3,2 no 100+ (1.576 / 492) e 1,27 no 90 a 94 (6.991 / 5.513).
+- Campinápolis também não foi afetada: 3,4 e 2,8.
+
+**Conclusão do R2 mantida.** No 100+, Campinápolis (3,4) não destoa: fica abaixo do Brasil (4,9) e perto de MT (3,2). No 90 a 94 destoa: 2,8 contra 1,27 no Brasil e em MT. Os textos para leigos não usavam esses números e não mudam.
 
 ## Reprodução deste parecer
 
