@@ -11,11 +11,12 @@ Entregas da auditoria, por data. Os números são os dos commits citados; o esta
 - Campinápolis (MT), revisão cética 49: diários sem liberação em massa; 224 títulos de 100+ contra no máximo 79 pessoas no Censo; seção 0094 com 12 recusas de "já votou" e pedido da ata ao TRE-MT; errata com o DF de 2022 (96d156b, 4ae2457, c35cb50, 8efbf96).
 - H03: contraprovas do 2º turno por zona, município, estado e total da noite, e C1/C2 nos dois turnos, viram Fato nos tópicos 5 e 2 (96d156b, c35cb50).
 - H27, seções novas: perfil por seção de 2022 das 28 UFs, coorte de 2022 seguida até 2026 (demógrafo 11) e revisão cética 50 com a leitura corrigida; nos tópicos 6, 14 e 10, com rastreio do tópico 14 (d873ef6, 19ae528, 32e0130).
+- H13: diários de urna de 2022 do PR, SC e RS (25 GB, 69.164 seções por turno, conferidos): no Sul e no RS o sinal V2 já aparecia em 2022, como em MG; se cresceu em 2026, inconclusivo (94ae9ce, b342b9e); nos tópicos 4 e 10.
 - Tópicos 7 e 10: limites da H26 e ressalva sobre o voto do fim do dia (c35cb50).
 
 ### Relatórios
 
-- Relatório completo regerado e assinado: 294 páginas, 22 gráficos, Anexo B com 21 tabelas (5d47e5d).
+- Relatório completo regerado e assinado: 294 páginas, 22 gráficos, Anexo B com 21 tabelas (5d47e5d); depois com o Sul de 2022, 295 páginas.
 - README, CHANGELOG e relatório das hipóteses em teste com o retrato de 31/10.
 
 ## 30/10/2026

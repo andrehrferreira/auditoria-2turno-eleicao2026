@@ -315,19 +315,20 @@
         "Pela liberação contada no diário: 5.841.108 eleitores foram liberados à mão por um mesário identificado no 2º turno (sem o exterior). No pior caso, a margem de 4.430.191 a favor do 13 iria a 1.401.371 a favor do 22; só com os 1.795.037 do Nordeste, o 13 ainda venceria por 2.636.659. Isso mede o tamanho da porta, não prova uso.",
         "No Nordeste, as seções que liberaram mais sem digital não votaram mais no 13 do que as do mesmo prédio, nem no 2º turno nem no ganho entre os turnos. A comparação não enxerga fraude que atinja só uma pequena parte desses eleitores. No Centro-Oeste, a ligação existe, mas já estava no 1º turno.",
         "Fora do Nordeste (Hipótese, em análise): no Sul e em MG, onde mais eleitores foram liberados pelo ano de nascimento no 2º turno, o 13 cresceu um pouco mais que nas vizinhas do mesmo prédio. Não há marca de inserção pela mesa (horário, sequência, concentração, diários das seções que mais pesam). Mesmo que todos os 452.147 votos a mais desse grupo fossem falsos e do 13, ele venceria por 3.978.044.",
-        "Em MG, o mesmo padrão aparece em 2022, nos diários de urna de todas as seções: não é novidade de 2026. Em 2022 o grupo sem digital era outro (32,4% dos votantes do 2º turno de MG, contra 11,5% em 2026), e uma fraude que copiasse um padrão antigo também não seria vista.",
+        "Em MG, o mesmo padrão aparece em 2022, nos diários de urna de 2022 publicados: não é novidade de 2026. Em 2022 o grupo sem digital era outro (32,4% dos votantes do 2º turno de MG, contra 11,5% em 2026), e uma fraude que copiasse um padrão antigo também não seria vista.",
+        "No Sul e no RS, o mesmo padrão também aparece em 2022, nos diários de urna publicados do PR, de SC e do RS (69.164 seções em cada turno, conferidas com o boletim): não é novidade de 2026. Se ele cresceu em 2026, ou se é o mesmo fenômeno nos dois anos, os dados não dizem. PR e SC, cada um sozinho, não têm padrão claro em 2026 para comparar. Conferido por uma segunda verificação independente.",
         "Só 1 seção do Brasil votou 100% sem digital, e não virou. O ganho do 13 entre os turnos teve o mesmo tamanho em todas as faixas de liberação sem digital (de 1,9 a 2,9 pontos)."
       ],
       "falta": [
-        "Sul e RS: o mesmo teste de 2022 com os diários de urna do PR, de SC e do RS (a baixar e ler).",
         "Um teste com plano registrado antes de rodar que separe o perfil de quem voltou a votar no 2º turno de voto no lugar de ausente.",
         "A ligação \"mais gente votou no 2º turno, mais voto no 13\" foi refeita: existe também em 2022 e vem na mesma medida de eleitores pela digital e sem digital (mobilização). Falta a conferência independente desse novo cálculo.",
         "Exame nominal das seções de CE, PB e PE apontadas pelos modelos.",
-        "Refazer com as 28 UFs um dos métodos estatísticos."
+        "Refazer com as 28 UFs um dos métodos estatísticos.",
+        "Uma seção do RS tem boletim normal em 2022, mas o diário publicado não tem votos nem marca de falha (lacuna de rastro): procurar casos assim em 2026."
       ],
       "alternativas": "O voto é secreto: só se cerca ou estima. Perfil da região (o Nordeste vota mais no 13 com ou sem digital); urna antiga; fraude igual nos dois turnos, que some na diferença.",
-      "readme_sabe": "Nordeste: 3,41% a 99,93% dos 4.269.379 liberados podem ter votado no 13, e seções do mesmo prédio não mostram voto a mais no 13; pelo diário, o pior caso com os 5.841.108 liberados à mão inverteria o resultado; sinal no Sul e em MG sem marca de inserção, já presente em MG em 2022",
-      "readme_proximo": "Diários de 2022 do PR, SC e RS (sinal no Sul); plano que separe perfil de quem voltou de voto no lugar de ausente; seções de CE, PB e PE"
+      "readme_sabe": "Nordeste: 3,41% a 99,93% dos 4.269.379 liberados podem ter votado no 13, e seções do mesmo prédio não mostram voto a mais no 13; pelo diário, o pior caso com os 5.841.108 liberados à mão inverteria o resultado; sinal no Sul e em MG sem marca de inserção, já presente em 2022 em MG, no Sul e no RS",
+      "readme_proximo": "Plano que separe perfil de quem voltou de voto no lugar de ausente; seções de CE, PB e PE; diário sem votos (RS 2022) em 2026"
     },
     {
       "id": "H14",
