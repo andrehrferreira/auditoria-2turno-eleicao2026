@@ -32,6 +32,15 @@ Entregas da auditoria, por data. Os números são os dos commits citados; o esta
 - Consenso T22: os números de teste estatístico e o percentual hipotético do RJ (49,270%) saem do relatório; fica "o teste não encontrou diferença" (8648723, 2af0164, ea77a0e).
 - Temático da AC URNA com a busca por carteiras de teste ou fora do padrão e com as respostas unânimes do consenso T23 (8b548dd, a5d7fdf). Relatório completo (176 páginas) e temático (34 páginas) regerados e assinados (33f8ca2, 20a4315, fcf7911).
 - README com o andamento de 30/10, os relatórios assinados e a forma de conferir a assinatura; CHANGELOG; licença MIT (2ac1127, a03a5a3, 1cbb9ae). Relatório das hipóteses em teste com H01 a H26 (3b1dacd) e depois H27 (a55b0bb).
+- Cinco gráficos novos (idosos por faixa, desfechos das liberações, exterior por hora, listas urna × carga, Governador por UF), com os dados no Anexo B; tópico 6 com as 56 seções novas conferidas (78f2f2b).
+- Tópicos da perícia atualizados depois das revisões céticas:
+  - 4 e 10, H08 (ninguém votou rápido demais) e H13 com a liberação contada no diário; tópicos 3 e 7 sem o "fora 3 seções" (949d1da);
+  - 4, sinal fora do Nordeste sem marca de inserção; no pior caso (452.147 votos) o 13 ainda vence por 3.978.044 (086e4d4); comparação de MG com 2022 (0f7ae0f);
+  - 14, H19: falha igual entre os turnos e sem efeito no voto; risco da liberação sem dedo lido e autorizada por qualquer dedo (e60c8db);
+  - 14, H20: ordem dos eventos, trava do ajuste de hora e relógios errados; votos depois das 17h corrigidos nos tópicos 3, 7, 8 e 10 (3213031);
+  - 3 e 14, contagens por seção e exterior hora a hora com a correção de relógio de Goiás e de Lisboa (a1be6f8).
+- Relatório completo regerado e assinado: 243 páginas, 20 gráficos e Anexo B com 19 tabelas (fbfb45a, 4c90183); depois 264 páginas, com H08, H13, H19, H20, H01 (idosos e 100+), H03 do 2º turno e as correções de relógio (4a44d77).
+- Pedido ao TSE com 45 itens em 10 temas: tema novo sobre a liberação quando a digital não é reconhecida (itens 43 a 45), e o 39-A renumerado como item 40 (e60c8db).
 
 ### Hipóteses e testes
 
@@ -39,7 +48,10 @@ Entregas da auditoria, por data. Os números são os dos commits citados; o esta
   - os votantes de 85 a 99 anos quase dobraram de 2022 para 2026, no 1º turno (f29756e);
   - seções novas × 2022 e linha de base de 2022; o 2º turno segue sem dado do TSE (f1abd4b);
   - o salto dos 85–99 é parte da subida geral dos 70+, não aparece em 100+ e fica abaixo da população viva (4ac218d);
-  - sustentado pela revisão cética 43, com a ressalva de que o título de falecido com digital liberado pelo mesário não foi testado; correções com grupos fixos de município e zonas em votantes (c844c62, cf16f64).
+  - sustentado pela revisão cética 43, com a ressalva de que o título de falecido com digital liberado pelo mesário não foi testado; correções com grupos fixos de município e zonas em votantes (c844c62, cf16f64);
+  - salto dos aptos de 100+ de 2018 para 2022: estoque antigo de títulos sem pessoa chegando aos 100 anos onde não houve revisão biométrica; não é mudança de método (346a152);
+  - revisão cética 44, sustentado com ressalvas (não vira voto; a decomposição é estimativa), com as correções no documento de análise (e98043d, 8f71823);
+  - Campinápolis (MT): 20 dos 32 votantes de 100+ são idosos indígenas com digital; diários sem liberação em massa; idade exagerada no documento indígena como Hipótese (4d460f8).
 - **H03:**
   - 2º turno: demais campos e Governador iguais ao oficial (538.946 pares, 0 divergência); 1º turno: contas C3 a C6 sem violação (f33f835);
   - sustentado pela revisão cética 40, refeito pelo boletim impresso; 40 votos de cédula em MG sem rastro de liberação (ab9b4ce);
@@ -55,6 +67,13 @@ Entregas da auditoria, por data. Os números são os dos commits citados; o esta
 - **H08 e H13** (354da39):
   - H08: ciclo completo de eleitor em todos os diários dos dois turnos, sem violação do limite físico;
   - H13: com a liberação contada no diário, nenhuma associação com mais voto no 13 no Nordeste; sinal aberto fora do Nordeste.
+  - Revisão cética 42: H08 sustentado; H13 com o cerco aritmético e o Nordeste sustentados e o sinal V2 forte só no Sul, em MG e no RS; votos sem diário do 1º turno corrigidos para 159 em 9 seções (826d4fb).
+- **H13, sinal V2 fora do Nordeste:**
+  - sem marca de inserção pela mesa (horário, sequência, concentração, bruto das 20 seções que mais pesam); idade não explica (6311912);
+  - Sul, MG e RS: real e difuso; escolaridade, estado civil e foto não explicam; leitor com união das cópias do diário (0919250);
+  - revisão cética 46: real, pequeno e difuso, sem explicação política por seção; no pior caso não muda o resultado (db54183);
+  - comparação com 2022 pelo substituto, que não serve no Sul e no RS (3f4fc2b); teste direto com os diários de urna de MG de 2022 e leitor de 7z para o formato de 2022 (dc56b6a);
+  - revisão cética 48: em MG o padrão não é novidade de 2026, sem ser "do mesmo tamanho" (0f7ae0f); comparecimento × ganho do 13 nas duas eleições, mais forte em 2022 e igual pela digital e sem digital (3559fe7); adendo que retira o achado do comparecimento (7209ffe).
 - **H09:** sigilo do voto nos arquivos públicos, universo completo dos dois turnos (947e17d, afc1d42).
 - **H14:**
   - urnas trocadas por reserva, 1º × 2º turno na mesma seção. Sem anomalia nos votos e sem marca de software adulterado (fa3fc15, 6a801e0, 9fef264);
@@ -66,6 +85,13 @@ Entregas da auditoria, por data. Os números são os dos commits citados; o esta
   - H18 e H21: 0 município com resultado fixado; 0 número nulo usado como senha no 2º turno (9c84c74). Revisão cética 37: pontos cegos maiores que os declarados; Goiatins explicado pela eleição suplementar (340f57a, 5d8e522).
   - H22: exterior e urnas de fluxo especial sem anomalia de processo; mobilização de 2º turno pela manhã (bbcc8bf, c8ae149). Correções da revisão cética 37 na hora dos BUs de cédula (301f782).
   - H23 e H24: recarga e carga fora da cerimônia, trânsito e atributos, 0 violação de invariante (3740299). Revisão cética 39: 23 recargas sem motivo e 17 BUs no 2º turno; grupos de trânsito disjuntos (da3fab3, 2e1b8cf). Diários sem a linha final da carga explicados pela urna desligada pela chave (6275c50, 14b46db).
+- **H19:**
+  - falha de digital induzida: sem sinal nacional; saltos locais são mais quedas e urnas trocadas; sinal frágil no Sudeste (63bdf91);
+  - revisão cética 45: o sinal do Sudeste some medido contra a própria seção; liberação à mão sem digital lida e autorizada por qualquer dedo é risco; correções no documento de análise (32b24c9, a5cf744);
+  - segunda contagem independente das liberações por dedos lidos, igual seção a seção (172.318 e 212.171 sem dedo lido) (cf0df3d).
+- **H20:**
+  - relógio e ordem dos eventos: 0 violação de ordem nos dois turnos; retrocessos do relógio explicados; seções com relógio 1 h adiantado (660d1c1);
+  - revisão cética 47: ordem e retrocessos sustentados; relógio atrasado detectável pelo começo do dia; Lisboa com horário de verão; a urna recusa ajuste de hora depois da zerésima (8a58fee).
 - **H25:**
   - urnas UE2013/UE2015 ligadas à AC URNA, cujo certificado venceu em 18/07/2026 (3f41f88);
   - a AC URNA emitiu 54 certificados de urna depois de vencer (5d27ff8, 7059eb1);
@@ -89,6 +115,7 @@ Entregas da auditoria, por data. Os números são os dos commits citados; o esta
 - Retomada da verificação de assinaturas: ignora linha cortada no `.jsonl` e grava antes de marcar como feito (a73cc77).
 - Leitura do detalhe dos erros de assinatura (SAVD) amarrada ao pacote, com o campo arquivo e a linha cortada (4993198).
 - CI removido do repositório (b89cc04).
+- H06 e H20: votos depois das 17h refeitos com as correções da revisão cética 47 (relógio atrasado, Lisboa, trava de ajuste): 2º turno de 34.330 para 34.315, 1º turno −35 (676093d).
 
 ## 29/10/2026
 
