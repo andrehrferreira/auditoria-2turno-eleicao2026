@@ -27,3 +27,4 @@ Os demais números do resumo são cópia dos tópicos; os pareceres e scripts de
 - Achado 1: frase da contraprova (2º turno por zona, município, estado e totais da noite; boletim, lista de votos e diário do AC nos dois turnos): [parecer 49](../cetico-revisor/49-campinapolis-contraprovas.md), itens 2a e 2b.
 - Achado 12: Campinápolis (MT): parecer 49, item 1.
 - Pendências e perguntas: ata da seção 0094 (TRE-MT) e os três pedidos numéricos de Campinápolis: parecer 49, §1.4 e textos para leigos.
+- Achado 13 (seções novas): [parecer 50](../cetico-revisor/50-secoes-novas-2022-2026.md); números copiados do tópico 6, "Outro fenômeno vizinho" (fontes no rastreio do tópico 6). Pendências e perguntas ao TSE: parecer 50, "Pendente".

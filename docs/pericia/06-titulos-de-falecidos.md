@@ -14,6 +14,7 @@ O cadastro de eleitores de 2026 tem títulos de pessoas que já morreram? E algu
 | Por onde um título de falecido poderia ser usado? | Pelo eleitor sem biometria cadastrada, que a urna libera só com o ano de nascimento. 92% dos títulos de 100+ estão nesse grupo. | **Fato** |
 | Por que os eleitores de 100+ saltaram de 39.026 em 2018 para 184.330 em 2022? | A forma de contar não mudou. Uma geração de títulos que já estava no cadastro em 2018, na faixa de 95 a 99 anos, passou dos 100 em 2022. Quando ela chega a uma faixa, a faixa ganha muitos títulos e quase nenhum votante: de 2018 para 2022, a de 100+ ganhou 145.304 títulos e 169 votantes. É falha de limpeza do cadastro, não prova de voto (Parte 5). | **Fato** (as contagens e a forma de contar), **Hipótese** (a ligação com o recadastramento com digital) e **Pendente** (cancelamentos por óbito e calendário do recadastramento, pedidos ao TSE) |
 | Por que os votantes de 85 a 99 anos quase dobraram de 2022 para 2026? | O aumento faz parte de uma subida do comparecimento de todos os eleitores de 70 anos ou mais. Não aparece nos de 100+, fica abaixo da população do Censo em todos os municípios e não se concentra nos títulos sem digital. Não exclui uso pequeno e espalhado, nem o uso de título com digital liberado à mão pelo mesário, que não foi testado (Parte 4). | **Fato** (o aumento e onde ele está), **Hipótese** (a causa) e **Pendente** (a forma de liberação dos idosos) |
+| As seções novas com comparecimento muito alto são sinal de título de falecido? | Os testes não ligam essas seções a títulos de falecidos. Em 2026, 433 das 40.740 seções novas passaram de 95% de comparecimento no 2º turno, contra 206 das 458.438 antigas. 385 dessas 433 têm o cadastro todo com biometria e, nas 433, a liberação pelo mesário sem a digital (6,38% dos votantes) foi menor que nas antigas muito altas (9,24%). As seções que eram novas em 2022, acompanhadas até 2026, passaram de 95% no 2º turno quase na mesma proporção que as antigas; nas que ficavam num local de votação novo, a diferença diminuiu muito, mas não sumiu. A causa não está nos arquivos: a chegada recente de eleitores ao cartório e a transferência irregular de títulos deixam os mesmos sinais (ver "Outro fenômeno vizinho"). | **Fato** (as contagens), **Hipótese** (as causas) e **Pendente** (pedido 10 da LAI) |
 | Por que, em Campinápolis (MT), tantos eleitores de 100+ votam? | 32 dos 224 eleitores de 100+ votaram no 1º turno (14,3%): 20 indígenas Xavante com digital cadastrada e 12 sem digital cadastrada. Os diários de todas as urnas da zona não mostram liberação em massa sem digital. O Censo contou no máximo 79 pessoas que poderiam ter 100+ em 2026, contra 224 títulos; o exagero de idade no documento não fecha essa diferença. Numa seção da cidade, a urna recusou 10 vezes, entre 12h58 e 13h09, um título que "já votou"; a ata foi recomendada (ver "Um município que pede exame"). | **Fato** (as contagens e os diários), **Hipótese** (as causas e as três leituras da seção 0094) e **Pendente** (pedidos 8 e 9 da LAI) |
 
 Nenhum CPF foi usado nesta parte da perícia. Tudo vem de números públicos por seção, zona ou município.
@@ -676,7 +677,7 @@ A seção nova costuma ser menor, e seção pequena varia mais, como uma moeda j
 | De 5% a 10% | 6.868 | 70 | 137.497 | 82 |
 | De 10% a 20% | 7.929 | 119 | 22.376 | 17 |
 | 20% ou mais | 16.109 | 205 | 1.447 | 3 |
-| Sem dado de idade no perfil | 296 | 25 | 93 | 4 |
+| Seção só de eleitores em trânsito (nenhum eleitor no cadastro da seção) | 296 | 25 | 93 | 4 |
 | **Total** | **40.740** | **433** | **458.438** | **206** |
 
 Fonte: resultado por seção e perfil do eleitorado do TSE, 2º turno de 2026. **Como ler:** compare as duas colunas "com 95% ou mais" dentro de cada linha. Entre as seções com 10% a 20% de eleitores jovens, por exemplo, foram 119 de 7.929 novas contra 17 de 22.376 antigas. Na linha de 20% ou mais quase não há seção antiga para comparar (1.447, só 3 delas com 95% ou mais): ali a comparação tem pouca base.
@@ -689,11 +690,143 @@ Fonte: resultado por seção e perfil do eleitorado do TSE, 2º turno de 2026. *
 | 95% ou mais | 433 | 206 |
 | 98% ou mais | 56 | 10 |
 
-**Fato:** no mesmo prédio de votação, a seção nova vota em média um pouco **menos** que as antigas, e as antigas desses prédios votaram em 2026 como em 2022. Esse mesmo excesso de seções novas muito altas já aconteceu em 2022, em escala menor, e desapareceu nos anos seguintes.
+**Fato (as 56 seções com 98% ou mais, conferidas uma a uma por uma segunda verificação independente):** as 56 seções novas com 98% ou mais de comparecimento no 2º turno foram examinadas uma a uma (local de votação, eleitores em trânsito, liberação sem digital e diário da urna). Ficam em comunidades rurais, indígenas e quilombolas pequenas, 42 delas num local de votação sem nenhuma seção antiga, com cadastro todo com digital em 50 delas e comparecimento alto também no 1º turno em 46; nenhuma divide o local com outra, e nada no diário aponta troca.
 
-**Pendente:** por que o excesso de 2026 é maior, e se ele vem de a seção nova reunir eleitores que se cadastraram ou se mudaram há pouco tempo. Esse teste depende da data de alistamento ou transferência dos eleitores de cada seção, que só a Justiça Eleitoral tem. As 56 seções novas com 98% ou mais foram conferidas uma a uma (local de votação, eleitores em trânsito, liberação sem digital e diário da urna) (**Fato**, conferido por uma segunda verificação independente): ficam em comunidades rurais, indígenas e quilombolas pequenas, 42 delas num local de votação sem nenhuma seção antiga, com cadastro todo com digital em 50 delas e comparecimento alto também no 1º turno em 46; nenhuma divide o local com outra, e nada no diário aponta troca. O motivo da criação dessas seções foi pedido ao TSE (**Pendente**).
+### As seções novas de 2022, acompanhadas até 2026
 
-**O que isso não permite dizer:** o exame mede cadastro e comparecimento, e não diz se algum voto foi irregular. Nenhum destes testes vê voto dado com o título de outra pessoa.
+Para saber se o comparecimento muito alto das seções novas se mantém com o tempo, as seções que eram novas em 2022 foram acompanhadas até 2026, pelo mesmo número. Para 2022, **seção nova** é a que não existia em 2018 nem em 2020 (para o DF e o exterior, que não votam em eleição municipal, só em 2018). As tabelas contam todas as seções do país.
+
+**Fato:**
+
+| | 2º turno: novas de 2022 | 2º turno: antigas de 2022 | 1º turno: novas de 2022 | 1º turno: antigas de 2022 |
+|---|---:|---:|---:|---:|
+| Seções em 2022 | 85.893 | 386.182 | 85.893 | 386.182 |
+| Com 95% ou mais de comparecimento em 2022 | 118 | 114 | 168 | 94 |
+| As mesmas seções que ainda existem em 2026 | 81.749 | 379.447 | 81.749 | 379.445 |
+| Delas, com 95% ou mais em 2026 | 41 | 171 | 41 | 80 |
+
+Fonte: resultado por seção do TSE de 2018, 2020 e 2022 (Presidente) e boletins de urna de 2026. **Como ler:** no 2º turno de 2022, passaram de 95% 0,14% das seções novas (118 de 85.893) e 0,03% das antigas (114 de 386.182). Em 2026, as mesmas seções passaram de 95% quase na mesma proporção: 0,050% das que eram novas (41 de 81.749) e 0,045% das antigas (171 de 379.447). No 1º turno, a distância também encolheu, mas menos: de 0,20% contra 0,02% em 2022 para 0,050% contra 0,021% em 2026.
+
+**Fato (a queda das seções que passaram de 95% em 2022):**
+
+| 2º turno | Seções que ainda existem em 2026 | Comparecimento somado em 2022 | Em 2026 | Eleitores aptos por seção, em média, 2022 → 2026 |
+|---|---:|---:|---:|---:|
+| Novas de 2022 com 95% ou mais em 2022 | 112 de 118 | 96,1% | 89,3% | 173 → 239 |
+| Antigas com 95% ou mais em 2022 | 111 de 114 | 95,8% | 92,2% | 203 → 217 |
+
+No 1º turno, as 143 novas (das 168) foram de 96,2% para 87,7%, e as 92 antigas (das 94), de 95,9% para 91,8%.
+
+**Como ler:** toda seção que fica muito acima da média numa eleição tende a ficar mais perto da média na seguinte. É a **volta à média**: como o aluno que tirou a nota máxima numa prova e tira um pouco menos na próxima, sem ter piorado. A seção nova caiu mais que a antiga. Isso também aparece abaixo de 95%: as 2.640 seções novas que tinham entre 90% e 95% em 2022 perderam, em média, 3,9 pontos percentuais até 2026, contra 1,7 das 5.256 antigas do mesmo nível. E a seção nova muito alta cresceu mais: foi de 173 para 239 eleitores em média, e a antiga, de 203 para 217. Com a entrada de eleitores comuns, o grupo do começo se diluiu. **Fato:** quanto mais alta a seção nova estava em 2022, mais ela caiu até 2026, e caiu mais que a antiga do mesmo nível.
+
+**Mas a queda não foi completa (Fato).** Em 2022, as seções novas muito altas estavam sobretudo nas instaladas num **local de votação novo** (o prédio onde se vota, em geral uma escola, cujo número não existia na eleição geral anterior): no 2º turno, 62 das 4.585 seções assim passaram de 95% (1,35%); no 1º turno, 100 de 4.603. Em 2026, 16 das 4.302 que ainda existem passaram de 95% no 2º turno (0,37%) e 21 de 4.330 no 1º turno (0,48%), contra 0,045% e 0,021% das antigas. Mesmo comparando com seções antigas do mesmo tamanho, elas ainda passam de 95% mais vezes, sobretudo no 1º turno. A diferença dessas seções **diminuiu muito em quatro anos, mas não sumiu**.
+
+### Onde ficam as seções novas muito altas
+
+Aqui, **local novo** é o local de votação cujo número não existia na eleição geral anterior (2018 para as seções de 2022; 2022 para as de 2026). Um prédio antigo que mudou de número conta como novo. **Zona nova** é a zona eleitoral cujo número não existia.
+
+**Fato:**
+
+| 2º turno | Seções em 2022 | Com 95%+ em 2022 | Seções em 2026 | Com 95%+ em 2026 |
+|---|---:|---:|---:|---:|
+| Nova, em local novo | 4.585 | 62 | 10.816 | 247 |
+| Nova, em local que já existia | 80.247 | 55 | 27.719 | 184 |
+| Nova, em zona eleitoral nova | 1.061 | 1 | 2.205 | 2 |
+| Antiga | 386.182 | 114 | 458.438 | 206 |
+
+| 1º turno | Seções em 2022 | Com 95%+ em 2022 | Seções em 2026 | Com 95%+ em 2026 |
+|---|---:|---:|---:|---:|
+| Nova, em local novo | 4.603 | 100 | 10.816 | 258 |
+| Nova, em local que já existia | 80.229 | 67 | 27.719 | 187 |
+| Nova, em zona eleitoral nova | 1.061 | 1 | 2.205 | 3 |
+| Antiga | 386.182 | 94 | 458.436 | 111 |
+
+Fonte: resultado por seção do TSE de 2018 e 2022 (Presidente) e boletins de urna de 2026. **Como ler:** no 2º turno de 2022, a seção nova num local que já existia passou de 95% tanto quanto a antiga do mesmo tamanho (no 1º turno, um pouco mais). Em 2026, ela passa bem mais: 184 de 27.719 (0,66%) contra 206 de 458.438 antigas (0,045%). Essa é a principal mudança de uma eleição para a outra. A outra é que em 2026 há mais que o dobro de seções novas em local novo (10.816 contra 4.585). O número de seções de algumas linhas muda um pouco entre os turnos (por exemplo, 4.603 e 4.585 seções novas em local novo em 2022), porque cada turno é contado no seu próprio arquivo; a causa dessa pequena diferença não foi examinada.
+
+**Fato (locais que mudaram de número):** em 2026, 14.481 seções **antigas** estão num local cujo número não existia em 2022; em 2022, eram 3.398 em relação a 2018. **Hipótese:** parte dos "locais novos" de 2026 é prédio antigo com número novo, e não prédio novo. Quanto, não foi medido (**Pendente**).
+
+### Eleitores em trânsito
+
+Quem pede para votar fora da sua seção, o **eleitor em trânsito**, quase sempre vai votar, porque pediu.
+
+**Fato:** em 2026, das 433 seções novas que passaram de 95% no 2º turno, 239 tinham pelo menos um eleitor em trânsito. Destas, 25 eram seções só de trânsito, sem nenhum eleitor do cadastro do local, por exemplo em Recife e em João Pessoa. São as 296 seções novas da linha "seção só de eleitores em trânsito" da tabela por idade, acima.
+
+| 2º turno de 2026 | Seções novas | Novas com 95%+ | Seções antigas | Antigas com 95%+ |
+|---|---:|---:|---:|---:|
+| Sem eleitor em trânsito | 24.080 | 194 | 324.346 | 158 |
+| De 1 a 3 eleitores em trânsito | 12.746 | 132 | 113.639 | 42 |
+| 4 ou mais eleitores em trânsito | 3.914 | 107 | 20.453 | 6 |
+| **Total** | **40.740** | **433** | **458.438** | **206** |
+
+| 1º turno de 2026 | Seções novas | Novas com 95%+ | Seções antigas | Antigas com 95%+ |
+|---|---:|---:|---:|---:|
+| Sem eleitor em trânsito | 24.036 | 227 | 323.933 | 85 |
+| De 1 a 3 eleitores em trânsito | 12.756 | 134 | 113.788 | 21 |
+| 4 ou mais eleitores em trânsito | 3.948 | 87 | 20.715 | 5 |
+| **Total** | **40.740** | **448** | **458.436** | **111** |
+
+Fonte: boletins de urna de 2026, que trazem os eleitores em trânsito de cada seção. **Como ler:** o eleitor em trânsito explica uma parte grande das seções novas muito altas, mas não todas. Mesmo sem nenhum eleitor em trânsito, a seção nova passa de 95% mais vezes que a antiga (no 2º turno, 194 de 24.080, ou 0,81%, contra 158 de 324.346, ou 0,049%), e a diferença continua quando se comparam seções do mesmo tamanho, também nos locais que já existiam. O arquivo de 2022 não informa o eleitor em trânsito por seção. Por isso não se sabe quanto da diferença entre 2022 e 2026 vem dele (**Pendente**).
+
+### Cadastro todo com biometria
+
+**Fato:**
+
+| Cadastro da seção (perfil do eleitorado de 2026) | Seções novas | Novas com 95%+, 1º turno | Novas com 95%+, 2º turno | Seções antigas | Antigas com 95%+, 1º turno | Antigas com 95%+, 2º turno |
+|---|---:|---:|---:|---:|---:|---:|
+| Todos os eleitores com biometria | 16.917 | 390 | 385 | 23.456 | 18 | 34 |
+| Algum eleitor sem biometria | 23.527 | 28 | 23 | 434.889 (1º turno: 434.887) | 90 | 168 |
+| Só eleitores em trânsito | 296 | 30 | 25 | 93 | 3 | 4 |
+
+**Como ler:** das 16.917 seções novas em que todos os eleitores do cadastro constam com biometria, 385 passaram de 95% no 2º turno (2,3%). Das 23.456 antigas assim, 34 passaram (0,14%). Nas seções novas em que algum eleitor não tem biometria, quase nenhuma passou de 95%: 23 de 23.527. No cadastro público, "com biometria" inclui quem tem só a foto, sem a digital (Parte 3, acima, e [tópico 8](08-virada-do-2-turno.md)).
+
+### A liberação pelo mesário sem a digital nessas seções
+
+Quando a digital de um eleitor que tem biometria cadastrada não é reconhecida, o mesário pode liberá-lo pelos dados do documento. Se o comparecimento a mais dessas seções viesse de eleitores liberados assim, essa via subiria nelas.
+
+**Fato:** ela não subiu.
+
+| Seções | Turno | Seções | Votantes | Liberados pelo mesário sem a digital | Parte dos votantes |
+|---|---|---:|---:|---:|---:|
+| Novas com 95% ou mais | 2º | 433 | 69.999 | 4.468 | 6,38% |
+| Antigas com 95% ou mais | 2º | 206 | 40.771 | 3.768 | 9,24% |
+| Demais seções | 2º | 498.539 | 128.124.473 | 8.624.252 | 6,73% |
+| Novas com 95% ou mais | 1º | 448 | 64.951 | 4.338 | 6,68% |
+| Antigas com 95% ou mais | 1º | 111 | 18.145 | 1.834 | 10,11% |
+| Demais seções | 1º | 498.617 | 125.191.391 | 8.336.077 | 6,66% |
+
+Fonte: boletins de urna de 2026. **Como ler:** no 2º turno, nas seções novas muito altas, 6,38 de cada 100 votantes foram liberados pelo mesário sem a digital. É menos do que nas antigas muito altas e quase o mesmo que nas demais seções do país. No 1º turno, o desenho é o mesmo. As seções apuradas em cédula e as sem arquivo de urna ficam fora. Isso afasta o uso **em massa** dessa via nessas seções. Não afasta um uso pequeno, nem a irregularidade de cadastro descrita abaixo, em que o próprio eleitor vota com a própria digital.
+
+### O cadastro de 2022 e o de 2026
+
+**Fato:** o perfil do eleitorado de 2022 soma 156.454.011 eleitores, o mesmo total dos eleitores aptos no resultado por seção de 2022. Os eleitores sem biometria eram 24,48% do cadastro em 2022 e 10,99% em 2026. Em 2022, 2.116.421 dos 2.116.781 eleitores de 16 e 17 anos (99,98%) estavam sem biometria. Por isso, em 2022, "cadastro todo com biometria" não marcava o eleitor recém-alistado, e a medida da tabela acima não tem equivalente em 2022.
+
+### Possíveis explicações (nenhuma comprovada)
+
+- **Hipótese (sem fraude):** a seção nova de 2026 reúne, em boa parte, eleitores que acabaram de passar pelo cartório: quem tirou o primeiro título, quem mudou de endereço e quem fez a biometria. Isso combina com o que se vê: seção mais jovem, cadastro todo com biometria, local que ganhou moradores e queda do comparecimento muito alto com o tempo. Não foi conferido com a data em que cada eleitor passou pelo cartório.
+- **Hipótese (irregularidade no cadastro, não testada):** os mesmos sinais aparecem se eleitores que não moram no lugar forem transferidos para lá em grupo e levados para votar. É o que se chama **transferência irregular de domicílio eleitoral**: mudar o título para uma cidade onde a pessoa não mora. Cada um tem a própria digital e vota com ela. Não seria fraude na urna nem voto de pessoa morta, mas seria uma irregularidade no cadastro. A comprovação de endereço no cartório é feita por pessoas e não deixa rastro técnico nos arquivos públicos; pela regra desta perícia, ela não conta como controle. Os dados públicos não separam essa leitura da anterior.
+- **Hipótese (eleitores em trânsito):** parte do aumento de 2022 para 2026 pode vir de mais eleitores em trânsito em seções novas, inclusive em seções criadas só para eles. É procedimento previsto, mas o peso dele em 2022 não pode ser medido com os arquivos públicos.
+- **Hipótese (pandemia):** o alistamento feito a distância durante a pandemia não coletava a digital, o que explicaria por que quase nenhum jovem tinha biometria no cadastro de 2022. Isso é contexto de fora dos arquivos e não foi conferido neles.
+
+### Prova de que a conta funciona (contraprova)
+
+- **Fato:** a comparação entre as seções novas e as antigas, em 2022 e em 2026, foi refeita por uma segunda verificação independente, que leu de novo os arquivos do TSE com outro programa e chegou aos mesmos números.
+- **Fato:** o comparecimento de 2026 foi tirado de duas fontes, o resultado por seção dos dados abertos do TSE e os boletins de urna. Nas 499.176 seções do 1º turno e nas 499.178 do 2º que estão nas duas, os aptos e o comparecimento são iguais em todas.
+- **Fato:** o perfil do eleitorado e o resultado por seção de 2022, dois arquivos diferentes do TSE, dão o mesmo total de eleitores (156.454.011). Nenhuma linha dos arquivos lidos ficou mal formada ou repetida.
+- **Fato:** casos conferidos no arquivo bruto: PI 12335/0068/0092 (Belém do Piauí), nova em 2022 num local novo, com 95 aptos e 94 votantes no 2º turno de 2022 e 136 aptos e 132 votantes no 2º turno de 2026; PB 20516/0076/0448 (João Pessoa), seção só de trânsito, com 393 aptos, todos em trânsito, e 375 votantes no 2º turno de 2026.
+
+### O que isso não permite dizer
+
+- O exame mede cadastro e comparecimento. Ele não diz se algum voto foi irregular, nem quem votou. Nenhum destes testes vê voto dado com o título de outra pessoa.
+- Ele não diz **por que** a seção nova comparece mais. A queda com o tempo mostra que o efeito é passageiro, e só em parte; não separa causa sem fraude de causa irregular.
+- O exame compara grupos de seções, não eleitores.
+- O resultado depende do corte escolhido: a diferença entre novas e antigas cresce com o corte (tabela de 90%, 95% e 98%, acima).
+
+### Pendente
+
+- **Pendente:** quantos eleitores de cada seção nova fizeram alistamento, transferência ou revisão no cadastro nos 12 meses antes do fechamento, e de que município vieram os transferidos (pedido 10, abaixo). É o único teste direto da explicação pela chegada recente ao cartório.
+- **Pendente:** o ato e o motivo da criação de cada seção nova com 95% ou mais, e a regra que distribui as inscrições novas entre as seções do local (pedido 10).
+- **Pendente:** o número de eleitores em trânsito por seção em 2022 (pedido 10).
+- **Pendente:** o comparecimento de 2024 (eleição municipal) das seções novas de 2022, para saber em quanto tempo a diferença cai. O arquivo é público e ainda não foi lido.
+- **Pendente:** comparar o crescimento do eleitorado de 2022 para 2026 com a população estimada pelo IBGE, nos municípios das seções novas com 95% ou mais.
 
 ## Limites desta parte da perícia
 
@@ -711,6 +844,7 @@ Fonte: resultado por seção e perfil do eleitorado do TSE, 2º turno de 2026. *
 - Se cada título de 100+ tem óbito registrado no Sistema Nacional de Informações de Registro Civil (SIRC).
 - Quais títulos de 100+ tiveram comparecimento registrado em cada turno, pelo caderno de votação.
 - Por que eleitores que o perfil público dá como "com biometria" estavam sem digital no arquivo da urna: coleta pendente, digital rejeitada ou outra causa.
+- Se os eleitores das seções novas com comparecimento muito alto moram onde votam: quando e de onde chegaram ao cadastro da seção.
 
 ## Pedidos sugeridos pela Lei de Acesso à Informação (LAI)
 
@@ -725,13 +859,14 @@ Fonte: resultado por seção e perfil do eleitorado do TSE, 2º turno de 2026. *
 7. Ao TSE: quantos títulos foram cancelados por óbito em cada ano, de 2014 a 2026, por estado, e quantos em cancelamentos em massa; o calendário do recadastramento com digital por município; e, por município, os títulos de 95 anos ou mais pelo ano da última atividade (voto, justificativa ou atualização) (Parte 5).
 8. Ao TSE, só em números e sem dados pessoais, sobre os 224 títulos de 100+ de Campinápolis (MT): quantos têm nascimento em 1º de janeiro; em que seções votaram, no 1º turno, os 12 eleitores de 100+ sem digital cadastrada; e quantos desses títulos têm óbito registrado em cartório ("Um município que pede exame").
 9. Ao TRE-MT: a ata da seção 0094 da zona 0026, do 2º turno, com as ocorrências e as reclamações registradas, e as respostas às três perguntas de "Um município que pede exame". Ao TSE, só em contagem: quantos dos títulos recusados com "já votou" nessa seção tinham votado antes, e por qual forma de liberação.
+10. Ao TSE, só em números e sem dados pessoais, sobre as seções novas ("Outro fenômeno vizinho"): para cada seção nova de 2026 com 95% ou mais de comparecimento e para as seções antigas dos mesmos locais, quantos eleitores fizeram alistamento, transferência ou revisão do cadastro em cada mês dos 12 meses antes do fechamento do cadastro, e de que município vieram os transferidos; o ato e o motivo da criação de cada uma dessas seções novas, e a regra que distribui as inscrições novas entre as seções de um local; e o número de eleitores em trânsito por seção em 2022.
 
 ## Pendente
 
 - **Comparecimento oficial dos idosos por município e por biometria, 1º turno.** A parte que conta os votos que só podem ter vindo de títulos sem digital passou pela revisão independente e está na Parte 4. A busca de municípios e zonas onde votaram mais centenários do que seria possível ainda não entra com número.
 - **Forma de liberação dos idosos e títulos cancelados por óbito com voto em 2026:** dependem dos pedidos 2 e 6 acima (Parte 4).
 - **Causa do estoque de títulos de 95+ e 100+:** cancelamentos por óbito por ano, calendário do recadastramento com digital e títulos sem atividade dependem do pedido 7; a data em que o TSE conta a idade, do pedido 4 (Parte 5).
-- **Seções novas:** a causa do excesso de seções novas com 95% ou mais em 2026 (data de alistamento e motivo da criação pedidos ao TSE).
+- **Seções novas:** a causa de haver mais seções novas com 95% ou mais em 2026 do que em 2022; a data das operações no cadastro por seção, o motivo da criação das seções, as transferências por seção e o eleitor em trânsito por seção em 2022 (pedido 10); o comparecimento de 2024 das seções novas de 2022.
 - **Campinápolis (MT):** a causa dos 224 títulos de 100+ contra um teto de 79 no Censo, de quem foram os 12 votos de 100+ sem digital e o que aconteceu na seção 0094 do 2º turno (pedidos 8 e 9).
 - **Comparecimento × mortes recentes por município** e **variação entre turnos nos grupos que costumam faltar.** Ainda não passaram pela revisão independente.
 - **2º turno por idade:** refazer a medida direta quando o TSE publicar o arquivo.
@@ -742,7 +877,7 @@ Fonte: resultado por seção e perfil do eleitorado do TSE, 2º turno de 2026. *
 
 ## Como os números foram conferidos
 
-Os números deste tópico vêm de duas fontes. A maior parte passou pela revisão independente, que leu de novo os arquivos brutos do TSE e do IBGE com outro programa e chegou aos mesmos valores. Os números que a revisão não refez (biometria por faixa de idade, tabela por estado, proporção de homens, os casos RJ 0005/0001 e Indaiatuba 0211/0438, e a medida nas 378 seções) foram recontados por uma conferência própria deste tópico, sobre todas as seções do perfil do eleitorado. Os números da Parte 4, da Parte 5 e das seções novas foram refeitos por uma segunda verificação independente, por outro caminho, sobre todas as zonas e seções, e coincidem até a unidade. Os de Campinápolis foram refeitos por uma segunda verificação independente, que contou de novo, linha a linha, os diários de todas as urnas da zona eleitoral nos dois turnos, conferiu-os contra os boletins e releu os arquivos do TSE e do IBGE. Esta parte corresponde à hipótese H01 do quadro das hipóteses (tópico 10).
+Os números deste tópico vêm de duas fontes. A maior parte passou pela revisão independente, que leu de novo os arquivos brutos do TSE e do IBGE com outro programa e chegou aos mesmos valores. Os números que a revisão não refez (biometria por faixa de idade, tabela por estado, proporção de homens, os casos RJ 0005/0001 e Indaiatuba 0211/0438, e a medida nas 378 seções) foram recontados por uma conferência própria deste tópico, sobre todas as seções do perfil do eleitorado. Os números da Parte 4, da Parte 5 e das seções novas foram refeitos por uma segunda verificação independente, por outro caminho, sobre todas as zonas e seções, e coincidem até a unidade. Nas seções novas, isso inclui o acompanhamento das seções novas de 2022 até 2026, a divisão por local de votação, por eleitor em trânsito e por biometria do cadastro, e a liberação pelo mesário sem a digital; a mesma verificação corrigiu a leitura anterior de que a diferença de 2022 tinha desaparecido. Os de Campinápolis foram refeitos por uma segunda verificação independente, que contou de novo, linha a linha, os diários de todas as urnas da zona eleitoral nos dois turnos, conferiu-os contra os boletins e releu os arquivos do TSE e do IBGE. Esta parte corresponde à hipótese H01 do quadro das hipóteses (tópico 10).
 
 ## Próximos passos
 
@@ -754,6 +889,9 @@ Os números deste tópico vêm de duas fontes. A maior parte passou pela revisã
 - [ ] Incluir a busca de municípios e zonas com mais centenários votando do que seria possível, depois da revisão independente
 - [ ] Refazer o piso de votos sem digital com o perfil do eleitorado de 2022, para saber se ele cresceu
 - [x] Conferir uma a uma as 56 seções novas com 98% ou mais de comparecimento no 2º turno
+- [x] Acompanhar as seções novas de 2022 até 2026 e medir a liberação pelo mesário sem a digital nas seções novas muito altas, depois da revisão independente
+- [ ] Ler o comparecimento de 2024 das seções novas de 2022
+- [ ] Testar a explicação pela chegada recente ao cartório e a transferência irregular, quando o TSE responder ao pedido 10
 - [ ] Examinar o diário das urnas nos lugares e zonas apontados (horário e sequência das liberações por ano de nascimento)
 - [x] Examinar o diário de todas as urnas de Campinápolis (MT) e dos dois municípios vizinhos da mesma zona, nos dois turnos, depois da revisão independente
 - [ ] Pedir ao TRE-MT a ata da seção 0094 da zona 0026 (2º turno) e ao TSE os números dos pedidos 8 e 9

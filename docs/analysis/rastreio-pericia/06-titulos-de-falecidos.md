@@ -117,6 +117,55 @@ Saídas: `data/parsed/auditoria/demografo/salto-85-99-*` e `data/parsed/auditori
 node --max-old-space-size=6000 scripts/auditoria/cetico-43-novas.mjs   # tamanho, juventude, limiar, 56 seções
 ```
 
+### Atualização de 31/10/2026: seções novas de 2022 até 2026 (H27)
+
+- Achado: [demografo/11](../demografo/11-secoes-novas-2022-2026.md), scripts `scripts/auditoria/demografo-novas-2022-{baixar,perfil,analise,biometria-idade}.mjs`.
+- Revisão: [parecer 50](../cetico-revisor/50-secoes-novas-2022-2026.md). "Segunda verificação independente" nesta parte = parecer 50 (scripts próprios `cetico-50-{perfil,novas,cruzamento}.mjs`, que não leem saída do demógrafo; separador de CSV que respeita aspas; colunas pelo nome).
+- Correção levada ao texto (parecer 50, item 1a e "Correção ao relatório atual"): "esse mesmo excesso ... desapareceu nos anos seguintes" → "diminuiu muito em quatro anos, mas não sumiu" nas seções em local novo.
+- Parágrafo retirado por pedido do parecer 50 ("substitui o parágrafo 'no mesmo prédio de votação...'"): "no mesmo prédio de votação, a seção nova vota em média um pouco menos que as antigas, e as antigas desses prédios votaram em 2026 como em 2022" (vinha do demógrafo 08 e do parecer 43). O Fato das 56 seções com 98%+ (parecer 43, §5c) ficou, em parágrafo próprio.
+- Linha da tabela por idade "Sem dado de idade no perfil" (296 / 25 / 93 / 4) → "Seção só de eleitores em trânsito": parecer 50, item 6 (as 296 novas sem perfil são exatamente as 296 só de trânsito) e `cruzamento-resumo.json`, `transito.2026_2t.porTipo` ("nova | só TTE" 296/25; "antiga | só TTE" 93/4).
+- Ficou fora (Estimativa, parecer 50, "Fica fora do relatório"): esperados e excessos (+54,3, −19,8, +213,5, +128,3, +342,5), razões (6,8; 1,65; 4,6; 7,4 etc.), chance de 3,8% e de 2 em 100 milhões, decomposição dos cerca de 288 (72 / 89 / 127, e 123 / 38 na ordem inversa), os 2,2 pontos a mais, o modelo de volta à média (−3,48 / −4,25), a régua "aptos − cadastro" de TTE (2,5× × 0,96×), o 0,71 vez de liberação esperada, os controles 5,4 / 4,3 / 4,1. Entram só como frase sem número: "mesmo comparando com seções antigas do mesmo tamanho, elas ainda passam de 95% mais vezes" e "a diferença continua quando se comparam seções do mesmo tamanho".
+- Hipóteses do texto: recência (parecer 50, item 10, "só como Hipótese"); transferência irregular de domicílio (item 10, "não testada"); peso das seções de trânsito (item 5.3, "explicação que fica aberta"); pandemia (item 9, "Hipótese (contexto)").
+- Números e fonte de cada um (saídas em `data/parsed/auditoria/cetico-revisor/50/`):
+
+| Número no texto | Fonte |
+|---|---|
+| Coorte 2º turno: 85.893 / 386.182 seções; 118 / 114 com 95%+; 81.749 / 379.447 com par; 41 / 171 com 95%+ em 2026 | `novas-resumo.json`, `A_2t_bu2026` (`novas`, `antigas`, `ge95em2026`); 118/114 em `excesso2022.total.obs` e `contagens.2t.2022`; parecer 50, texto para leigos |
+| Coorte 1º turno: 168 / 94 com 95%+ em 2022; 81.749 / 379.445 com par; 41 / 80 com 95%+ em 2026 | `novas-resumo.json`, `A_1t_bu2026` (`novasGe95.secoes`, `antigasGe95.secoes`, `novas.comPar`, `antigas.comPar`, `ge95em2026`) |
+| 0,14% / 0,03%; 0,050% / 0,045%; 0,20% / 0,02%; 0,050% / 0,021% | divisões dos números acima |
+| 112 de 118: 96,1% → 89,3%; 111 de 114: 95,8% → 92,2%; aptos 173 → 239 e 203 → 217 | `A_2t_bu2026.novasGe95` e `.antigasGe95` (`taxa2022`, `taxa2026` = soma de votantes ÷ soma de aptos das seções com par; `aptos2022`, `aptos2026`) |
+| 1º turno: 143 de 168: 96,2% → 87,7%; 92 de 94: 95,9% → 91,8% | `A_1t_bu2026.novasGe95` e `.antigasGe95` |
+| 2.640 novas de 90–95%: −3,9 pontos; 5.256 antigas: −1,7 (média por seção) | `A_2t_bu2026.deltaPorFaixa2022["90-95"]` (−3,87; −1,71); parecer 50, item 2, "Fato" |
+| Local novo de 2022: 62 de 4.585 (1,35%) no 2º turno; 100 de 4.603 no 1º | `contagens.2t.2022["nova | local novo"]` e `contagens.1t.2022` |
+| Em 2026: 16 de 4.302 (0,37%) no 2º turno; 21 de 4.330 (0,48%) no 1º | `A_2t_bu2026.excesso2026mesmasPorLocal2022["local novo"]` (novas 4.302, obs 16) e `A_1t_bu2026...` (4.330, 21); só as contagens; o `esp` e a razão ficaram fora |
+| Tabelas "Onde ficam" (2º e 1º turno): 4.585/62, 80.247/55, 1.061/1, 386.182/114; 10.816/247, 27.719/184, 2.205/2, 458.438/206; 1º turno 4.603/100, 80.229/67, 1.061/1, 386.182/94; 10.816/258, 27.719/187, 2.205/3, 458.436/111 | `cruzamento-resumo.json`, `contagens.{2t,1t}.{2022,2026}`; antiga = "antiga | local existente" + "antiga | local novo" |
+| 184 de 27.719 (0,66%) × 206 de 458.438 (0,045%) | idem |
+| 14.481 antigas em local de número novo em 2026; 3.398 em 2022 | `contagens.2t.2026["antiga | local novo"]` e `contagens.2t.2022["antiga | local novo"]`; parecer 50, ressalva 3b |
+| 239 de 433 com trânsito; 25 só de trânsito; 296 seções novas só de trânsito | `contagens.2t["2026 TTE"]` (132 + 107); `transito.2026_2t.porTipo["nova | só TTE"]` |
+| Tabelas de trânsito: 2º turno 24.080/194, 12.746/132, 3.914/107; 324.346/158, 113.639/42, 20.453/6; 1º turno 24.036/227, 12.756/134, 3.948/87; 323.933/85, 113.788/21, 20.715/5 | `contagens.{2t,1t}["2026 TTE"]` (TTE exato do BU, `aptos_tte`) |
+| 0,81% × 0,049% sem trânsito | 194/24.080 e 158/324.346 |
+| Biometria: 16.917 novas (390 / 385); 23.527 com algum sem biometria (28 / 23); 296 só trânsito (30 / 25); antigas 23.456 (18 / 34); 434.889, ou 434.887 no 1º turno (90 / 168); 93 (3 / 4); 2,3% e 0,14% | `contagens.{1t,2t}["2026 sem biometria no cadastro"]`; "algum sem biometria" = "0-5%" + "5%+" |
+| Liberação pelo mesário (dado digitado confere), 2º turno: 433 / 69.999 / 4.468 / 6,38%; 206 / 40.771 / 3.768 / 9,24%; demais 498.539 / 128.124.473 / 8.624.252 / 6,73% | percentuais e votantes em `novas-resumo.json`, `B_2t_bu2026.liberacao`; contagens somadas da coluna `dado` de `secoes-2026.tsv` (comando abaixo); "demais" = novas e antigas abaixo de 95% juntas |
+| 1º turno: 448 / 64.951 / 4.338 / 6,68%; 111 / 18.145 / 1.834 / 10,11%; demais 498.617 / 125.191.391 / 8.336.077 / 6,66% | `B_1t_bu2026.liberacao` e a mesma soma no `secoes-2026.tsv` |
+| 156.454.011 eleitores no perfil de 2022 = soma dos aptos do resultado de 2022 | `perfil-resumo-2022.json` (`eleitores`) e `cruzamento-resumo.json`, `regua2022.{1t,2t}.somaAptos`; parecer 50, item 7 |
+| 24,48% e 10,99% sem biometria | `perfil-resumo-{2022,2026}.json` (eleitores − biometria: 38.302.085 e 17.443.923); igual a `demografo/novas-2022-biometria-idade.json` |
+| 2.116.421 de 2.116.781 (99,98%) dos 16–17 anos sem biometria em 2022 | `data/parsed/auditoria/demografo/novas-2022-biometria-idade.json` (`2022.faixas["16-17"]`); parecer 50, item 9 (sustentado; conferido no bruto do AC, 99,88%); conferência nacional independente em 31/10 (`node scripts/auditoria/conferencia-biometria-jovens-2022.mjs`) nos 28 zips do perfil de 2022, colunas pelo nome (`CD_FAIXA_ETARIA` 1600 e 1700, `QT_ELEITORES_BIOMETRIA`): 2.116.421 de 2.116.781, e 18–20 anos 4.556.714 de 7.042.178 (64,71%), total 156.454.011 |
+| 499.176 e 499.178 seções, 0 diferença de aptos e comparecimento (dados abertos × BU) | `novas-resumo.json`, `detalhe2026xBU`; parecer 50, "Conferências de leitura" |
+| PI 12335/0068/0092: 95/94 (2022, 2º t.) e 136/132 (2026, 2º t.); PB 20516/0076/0448: 393 aptos, 393 em trânsito, 375 votantes | parecer 50, "Caso conferido no bruto" e item 5.2 |
+| Pedido 10 da LAI | parecer 50, "Pendente" e texto para leigos (Pendente); recomendação do item 10 (transferências por seção e município de origem) |
+
+```
+node scripts/auditoria/cetico-50-perfil.mjs 2022 2026                       # ~12 min: perfil por seção, 56 zips
+node --max-old-space-size=6000 scripts/auditoria/cetico-50-novas.mjs        # ~1 min: coorte, local, TTE exato, liberação
+node scripts/auditoria/cetico-50-cruzamento.mjs                             # ~1 min: biometria, trânsito, contagens diretas
+awk -F'\t' 'NR>1 { g=($4*100>=95*$3)?"ge95":"lt95"; k=$1"|"$5"|"g; s[k]++; v[k]+=$4; d[k]+=$11 } END { for (k in s) print k, s[k], v[k], d[k] }' data/parsed/auditoria/cetico-revisor/50/secoes-2026.tsv   # contagens da liberação por dado digitado (turno|nova|faixa: seções, votantes, liberados)
+node scripts/auditoria/demografo-novas-2022-biometria-idade.mjs             # autor: sem biometria por idade, 2022 e 2026
+node --max-old-space-size=8000 scripts/auditoria/demografo-novas-2022-analise.mjs   # autor
+node src/exportar.js --uf pi --municipio 12335 --zona 0068 --secao 0092 --turno 2 --log nao --stdout   # caso no bruto
+```
+
+A conta com `awk` foi feita pelo redator só para tirar as contagens absolutas que o parecer 50 dá no texto para leigos (4.468, 3.768, 8.624.252) e as do 1º turno; ela reproduz exatamente os percentuais de `B_{1t,2t}_bu2026.liberacao`.
+
 ## Parte 5 (salto dos eleitores de 100+ de 2018 para 2022), acrescentada em 31/10/2026
 
 - Achado: [demografo/10](../demografo/10-aptos-100-mais-2018-2022.md), scripts `scripts/auditoria/demografo-aptos-100-{serie,analise,baixar-censo2010}.mjs`.

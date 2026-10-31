@@ -68,3 +68,6 @@ Observação: a situação antiga do tópico 5 listava "assinaturas do 1º turno
 - Tópico 6: gráfico da onda (`grafico-h01-onda.mjs`, commit 3cb8843) e Campinápolis, parecer 49, item 1.
 - Tópico 7: limites da H26, [parecer 34](../cetico-revisor/34-h26-virada-zonas.md).
 - Tópico 10: H01 com Campinápolis, H03 com a contraprova, ressalva do horário (H26) na resposta curta.
+- Tópico 6: seções novas de 2022 até 2026 (H27), [parecer 50](../cetico-revisor/50-secoes-novas-2022-2026.md).
+- Tópico 10: H27 com as seções novas, parecer 50.
+- Tópico 14: item 6 (H27) com as seções novas, parecer 50; rastreio novo em [14-outras-formas-de-fraude.md](14-outras-formas-de-fraude.md).

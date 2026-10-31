@@ -115,3 +115,10 @@ unzip -Z1 data/raw/2t/zip/<pacote da UF>.zip | grep -E "(jufa\.dat|imgze\.dat|-h
 - H01, linha e seção (Campinápolis e seção 0094): [parecer 49](../cetico-revisor/49-campinapolis-contraprovas.md), item 1. Números e comandos no rastreio do tópico 6, "Um município que pede exame".
 - H03, linha e seção (contraprova do 2º turno): parecer 49, item 2a. Comandos no rastreio do tópico 5.
 - Próximos passos: sai "a contraprova própria das comparações por zona, município, estado e com os totais da noite" (feita); entram os pedidos de Campinápolis na linha da LAI.
+
+## Atualização de 31/10/2026 (H27, seções novas de 2022 até 2026)
+
+- Cabeçalho, resposta curta (frase das seções novas), linha H27 do quadro, seção H27 (dois Fatos, uma Hipótese, Pendente) e Próximos passos (pedidos da LAI): [parecer 50](../cetico-revisor/50-secoes-novas-2022-2026.md), sobre o [demógrafo 11](../demografo/11-secoes-novas-2022-2026.md).
+- "Sustentado com ressalvas (seções novas: a leitura 'a diferença de 2022 desapareceu' foi corrigida)": parecer 50, item 1 (ressalva 1a) e "Correção ao relatório atual".
+- Saiu do Pendente da H27 "a comparação das seções novas com 2022" (feita); entraram os pendentes do parecer 50: operações no cadastro por seção, transferências e município de origem, ato e motivo da criação, TTE por seção em 2022 e comparecimento de 2024.
+- Números e comandos no rastreio do tópico 6, "Atualização de 31/10/2026: seções novas de 2022 até 2026 (H27)". Nenhuma estimativa (esperados, excessos, razões, decomposição) entrou.
