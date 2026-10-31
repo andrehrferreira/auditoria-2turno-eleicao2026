@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 498" width="760" height="498" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Campinápolis (MT): eleitores de 100 anos ou mais e quantos votaram, ao lado do Censo</title><desc id="desc">32 dos 224 títulos votaram no 1º turno de 2026. O Censo 2022 permite no máximo 79 pessoas dessa geração. Indígenas Xavante: 30 aptos, 20 votaram. Raça/cor não informada: 192 aptos, 12 votaram. Outra raça/cor: 2 aptos, 0 votaram. Total: 224 aptos, 32 votaram. Censo 2022: 75 pessoas com 96 anos ou mais e 4 com 95, teto de 79</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.tb{fill:#ffffff}.tp{fill:#0b0b0b}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}.s2{fill:#1baf7a}.s3{fill:#eda100}.a0{fill:#86b6ef}.a1{fill:#2a78d6}.a2{fill:#104281}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.s0{fill:#3987e5}.s1{fill:#d95926}.s2{fill:#199e70}.s3{fill:#c98500}.a0{fill:#184f95}.a1{fill:#3987e5}.a2{fill:#9ec5f4}}
+</style>
+<rect class="fundo" width="760" height="498" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Campinápolis (MT): eleitores de 100 anos ou mais e quantos votaram, ao lado do Censo</text>
+<text class="t2" x="20" y="52" font-size="13">32 dos 224 títulos votaram no 1º turno de 2026. O Censo 2022 permite no máximo 79 pessoas dessa geração.</text>
+<rect class="s0" x="20" y="66" width="12" height="12" rx="2"/><text class="t1" x="38" y="77" font-size="13">Eleitores aptos</text>
+<rect class="s1" x="158" y="66" width="12" height="12" rx="2"/><text class="t1" x="176" y="77" font-size="13">Votaram</text>
+<rect class="s2" x="238.4" y="66" width="12" height="12" rx="2"/><text class="t1" x="256.4" y="77" font-size="13">Pessoas no Censo 2022</text>
+<line class="grade" x1="200" x2="200" y1="94" y2="352" stroke-width="1"/>
+<text class="t2" x="200" y="368" font-size="12" text-anchor="middle">0</text>
+<line class="grade" x1="294" x2="294" y1="94" y2="352" stroke-width="1"/>
+<text class="t2" x="294" y="368" font-size="12" text-anchor="middle">50</text>
+<line class="grade" x1="388" x2="388" y1="94" y2="352" stroke-width="1"/>
+<text class="t2" x="388" y="368" font-size="12" text-anchor="middle">100</text>
+<line class="grade" x1="482" x2="482" y1="94" y2="352" stroke-width="1"/>
+<text class="t2" x="482" y="368" font-size="12" text-anchor="middle">150</text>
+<line class="grade" x1="576" x2="576" y1="94" y2="352" stroke-width="1"/>
+<text class="t2" x="576" y="368" font-size="12" text-anchor="middle">200</text>
+<line class="grade" x1="670" x2="670" y1="94" y2="352" stroke-width="1"/>
+<text class="t2" x="670" y="368" font-size="12" text-anchor="middle">250</text>
+<line class="eixo" x1="200" x2="200" y1="94" y2="352" stroke-width="1"/>
+<text class="t1" x="20" y="114" font-size="13" font-weight="600">Cadastro de 2026: eleitores aptos de 100 anos ou mais, por raça/cor</text>
+<text class="t1" x="190" y="144" font-size="13" text-anchor="end">Indígenas Xavante</text>
+<path class="s0" d="M200,124h52.39999999999998a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-52.39999999999998z"><title>Indígenas Xavante: 30 aptos</title></path>
+<text class="t1" x="262.4" y="135.5" font-size="12">30</text>
+<path class="s1" d="M200,141h33.599999999999994a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-33.599999999999994z"><title>Indígenas Xavante: 20 votaram</title></path>
+<text class="t1" x="243.6" y="152.5" font-size="12">20</text>
+<text class="t1" x="190" y="187" font-size="13" text-anchor="end">Raça/cor não informada</text>
+<path class="s0" d="M200,167h356.96000000000004a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-356.96000000000004z"><title>Raça/cor não informada: 192 aptos</title></path>
+<text class="t1" x="566.96" y="178.5" font-size="12">192</text>
+<path class="s1" d="M200,184h18.560000000000002a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-18.560000000000002z"><title>Raça/cor não informada: 12 votaram</title></path>
+<text class="t1" x="228.56" y="195.5" font-size="12">12</text>
+<text class="t1" x="190" y="230" font-size="13" text-anchor="end">Outra raça/cor</text>
+<path class="s0" d="M200,210h0a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h0z"><title>Outra raça/cor: 2 aptos</title></path>
+<text class="t1" x="209.76" y="221.5" font-size="12">2</text>
+
+<text class="t1" x="206" y="238.5" font-size="12">0</text>
+<text class="t1" x="20" y="281" font-size="13" font-weight="600">O total do cadastro e o Censo</text>
+<text class="t1" x="190" y="311" font-size="13" text-anchor="end">Cadastro de 2026, 100+</text>
+<path class="s0" d="M200,291h417.12a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-417.12z"><title>Cadastro de 2026, 100+: 224 aptos</title></path>
+<text class="t1" x="627.12" y="302.5" font-size="12">224</text>
+<path class="s1" d="M200,308h56.15999999999997a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-56.15999999999997z"><title>Cadastro de 2026, 100+: 32 votaram</title></path>
+<text class="t1" x="266.15999999999997" y="319.5" font-size="12">32</text>
+<text class="t1" x="190" y="345.5" font-size="13" text-anchor="end">Censo 2022, 95 anos ou mais</text>
+<path class="s2" d="M200,334h144.51999999999998a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-144.51999999999998z"><title>Censo 2022, 95 anos ou mais: 79 pessoas: 75 com 96 anos ou mais + 4 com 95</title></path>
+<text class="t1" x="354.52" y="345.5" font-size="12">79 (75 com 96 anos ou mais + 4 com 95), sem descontar mortes</text>
+<text class="t2" x="435" y="388" font-size="12.5" text-anchor="middle">Títulos de eleitor ou pessoas, na mesma escala</text>
+<text class="t2" x="20" y="414" font-size="12">O número ao lado de cada barra dá o valor. Nenhum dos 192 títulos sem raça/cor informada tem digital cadastrada.</text>
+<text class="t2" x="20" y="432" font-size="12">Como ler: a barra azul conta os títulos de 100 anos ou mais no cadastro; a laranja, quantos deles votaram no 1º turno.</text>
+<text class="t2" x="20" y="450" font-size="12">A barra verde soma quem o Censo 2022 contou com 95 anos ou mais, a geração que pode ter 100 anos ou mais em 2026,</text>
+<text class="t2" x="20" y="468" font-size="12">sem descontar quem morreu desde então: é um teto. Mesmo esse teto, 79, fica abaixo dos 224 títulos.</text>
+<text class="t2" x="20" y="486" font-size="11">Fonte: TSE, comparecimento por idade e raça/cor (1º turno de 2026) e perfil do eleitorado por seção (julho de 2026); IBGE, Censo 2022.</text>
+</svg>

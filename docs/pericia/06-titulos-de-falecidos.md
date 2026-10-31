@@ -545,18 +545,26 @@ Quem não tem digital cadastrada vota depois que o mesário digita o ano de nasc
 
 Fonte: Censo 2022 do IBGE, idade ano a ano, e perfil do eleitorado de 2026. **Como ler:** a linha de 79 é um teto. A população real dessa geração em 2026 só pode ser menor, porque parte dela morreu desde 2022. Mesmo assim, o cadastro tem 224. A comparação município a município tem o limite da Parte 1: o título fica onde a pessoa se alistou, e o Censo conta onde ela mora.
 
+O gráfico abaixo junta as duas tabelas anteriores numa só escala.
+
+![Campinápolis (MT): eleitores de 100 anos ou mais e quantos votaram, ao lado do Censo](graficos/h01-campinapolis.svg)
+
+**Como ler:** no bloco de cima, cada grupo de raça/cor tem duas barras: a azul conta os títulos de 100 anos ou mais no cadastro de 2026; a laranja, quantos deles votaram no 1º turno. Os 192 títulos sem raça/cor informada, nenhum com digital cadastrada, são a maior barra, e deles 12 votaram. No bloco de baixo, a barra verde soma as pessoas que o Censo 2022 contou com 95 anos ou mais (75 com 96 ou mais e 4 com 95), a geração que pode ter 100 anos ou mais em 2026, sem descontar quem morreu desde então. É um teto, e mesmo assim os 79 ficam abaixo dos 224 títulos.
+
 **Hipótese:** o exagero de idade não fecha essa diferença. O Censo anotou a data de nascimento de quase todos os seus centenários, e uma data exagerada no documento tende a aparecer tanto no Censo quanto no cadastro. A diferença só sumiria se o Censo tivesse anotado idades mais novas que as do documento. As explicações que sobram são: títulos de pessoas que morreram ou se mudaram e não tiveram o título cancelado (a própria pergunta deste tópico); eleitores que votam em Campinápolis mas moram em outro município, por exemplo numa aldeia da mesma terra indígena do outro lado da divisa; pessoas que o Censo não encontrou; ou idade diferente nos dois documentos. Nenhuma foi testada, e quanto pesa cada uma não dá para saber com os arquivos públicos (**Pendente**).
 
 **Onde Campinápolis destoa, e onde não (Fato).** Comparando, no mesmo ano de 2022, os eleitores aptos do cadastro com a população do Censo:
 
 | 2022 | Aptos no cadastro | Pessoas no Censo | Aptos por pessoa |
 |---|---:|---:|---:|
-| Campinápolis, 100 anos ou mais | 144 | 42 | 3,4 |
+| Brasil, 100 anos ou mais | 184.330 | 37.814 | 4,9 |
 | MT, 100 anos ou mais | 1.576 | 492 | 3,2 |
-| Campinápolis, 90 a 94 anos | 145 | 52 | 2,8 |
+| Campinápolis, 100 anos ou mais | 144 | 42 | 3,4 |
+| Brasil, 90 a 94 anos | 738.244 | 579.729 | 1,27 |
 | MT, 90 a 94 anos | 6.991 | 5.513 | 1,27 |
+| Campinápolis, 90 a 94 anos | 145 | 52 | 2,8 |
 
-Fonte: comparecimento por idade do TSE, 1º turno de 2022, e Censo 2022. **Como ler:** na faixa de 100 ou mais, Campinápolis fica perto do resto de MT. Na faixa de 90 a 94, Campinápolis tem 2,8 títulos para cada morador dessa idade, e MT, 1,27.
+Fonte: comparecimento por idade do TSE, 1º turno de 2022, Brasil sem o exterior, e Censo 2022. **Como ler:** a última coluna diz quantos títulos o cadastro tinha para cada morador daquela idade contado pelo Censo. Na faixa de 100 ou mais, Campinápolis não destoa: tem 3,4 títulos por morador, perto de MT (3,2) e abaixo do Brasil (4,9). Na faixa de 90 a 94, destoa: tem 2,8 títulos por morador, mais que o dobro do Brasil e de MT (1,27 nos dois).
 
 Isso tem uma consequência. Os eleitores de 100+ sem raça/cor informada votam na mesma proporção que os de 90 a 99 da mesma cidade. Isso combina com "são, de fato, pessoas mais novas", mas combina igualmente com "todas as faixas de idosos da cidade têm títulos sem dono vivo". Nenhuma das duas leituras foi testada (**Hipótese**).
 

@@ -157,6 +157,8 @@ Saídas: `data/parsed/auditoria/cetico-revisor/44-*.json` e `data/parsed/auditor
 - Revisão: [parecer 49](../cetico-revisor/49-campinapolis-contraprovas.md), item 1, **sustentado com ressalvas**. Ressalvas levadas ao texto:
   - R1: "20 idosos com digital" = digital **no cadastro**, não voto pela digital (texto: "têm digital no cadastro; isso não quer dizer que votaram pela digital").
   - R2: coorte de Campinápolis (teto de 79 contra 224) e comparação de 2022 (144/42; 145/52; MT 1.576/492 e 6.991/5.513). O exagero de idade não fecha a diferença (Hipótese).
+  - Tabela "Onde Campinápolis destoa, e onde não" (Brasil sem exterior 184.330/37.814 = 4,9 e 738.244/579.729 = 1,27; MT 3,2 e 1,27; Campinápolis 3,4 e 2,8): errata do parecer 49 (commit 4ae2457), `node scripts/auditoria/cetico-49-cadastro.mjs`.
+  - Gráfico `h01-campinapolis.svg` (224 títulos 100+ por raça/cor, votantes e soma do Censo 75 + 4 = 79): `node scripts/auditoria/grafico-h01-campinapolis.mjs`, que recalcula dos arquivos oficiais e confere com o tópico 6 antes de gravar.
   - R3: 108 títulos em escolas de aldeia e 84 em quatro escolas da cidade (30, 29, 19 e 6). Os nomes das escolas ficaram fora do texto. Corrigida a lista das cinco seções com mais 100+ sem digital: a quinta é a 0094 (11), urbana.
   - R4: votos depois das 17h da urna no 1º turno (seis seções de Campinápolis e duas de Nova Xavantina); parte sem digital de 14,5% depois das 16h contra 16,1% no dia. A leitura "fila" foi posta como Hipótese (princípio 8).
   - R5: seção 0094, com a terceira leitura (eleitor que descobre que alguém votou no lugar dele) e a recomendação da ata com três perguntas.

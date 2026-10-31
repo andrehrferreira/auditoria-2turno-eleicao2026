@@ -177,6 +177,7 @@ export const DADOS_DOS_GRAFICOS = {
   'h03-2t-governador-por-uf.svg': ['h03-2t-governador-por-uf.csv'],
   'h01-comparecimento-idosos.svg': ['h01-comparecimento-idosos.csv'],
   'h01-onda-95-mais.svg': ['h01-onda-95-mais.csv'],
+  'h01-campinapolis.svg': ['h01-campinapolis.csv'],
   'h16-desfechos-liberacoes.svg': ['h16-desfechos-liberacoes.csv'],
   'h22-exterior-votos-por-hora.svg': ['h22-exterior-votos-por-hora.csv'],
   'h27-par-urna-carga-listas.svg': ['h27-par-urna-carga-listas.csv'],
