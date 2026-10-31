@@ -81,6 +81,6 @@
 <path class="a2" d="M160,596h0.670326904425508a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-0.670326904425508z"><title>100 anos ou mais, 2026: 0,72%</title></path>
 <text class="t1" x="170.6703269044255" y="608.5" font-size="12">0,72%</text>
 <text class="t2" x="420" y="652" font-size="12.5" text-anchor="middle">Taxa de comparecimento: votantes ÷ eleitores aptos da faixa (%)</text>
-<text class="t2" x="20" y="674" font-size="12">A idade é a do dia da eleição. Depois dos 70 anos o voto é facultativo.</text>
+<text class="t2" x="20" y="674" font-size="12">A idade é contada numa data fixa ligada à eleição. Depois dos 70 anos o voto é facultativo.</text>
 <text class="t2" x="20" y="692" font-size="11">Fonte: perfil de comparecimento e abstenção do TSE, 1º turno de cada ano, Brasil sem o exterior.</text>
 </svg>

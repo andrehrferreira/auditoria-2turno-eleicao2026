@@ -1,6 +1,6 @@
 # 8. A virada do 2º turno: o que os números oficiais mostram
 
-> **Regra deste tópico:** só entram números conferidos no universo completo e reproduzidos de forma independente, por uma segunda verificação independente ou por duas contas que batem. O que ainda não cumpre essa regra está em "Pendente", **sem número**. As análises em andamento ficam nos documentos de trabalho da auditoria, fora deste relatório. Revisado em 29/10/2026.
+> **Regra deste tópico:** só entram números conferidos no universo completo e reproduzidos de forma independente, por uma segunda verificação independente ou por duas contas que batem. O que ainda não cumpre essa regra está em "Pendente", **sem número**. As análises em andamento ficam nos documentos de trabalho da auditoria, fora deste relatório. Revisado em 29/10/2026; item 7 (a virada zona por zona, H26) acrescentado em 31/10/2026, depois da segunda verificação independente.
 
 ## A pergunta
 
@@ -12,6 +12,7 @@ No 1º turno (4/10/2026), Flávio Bolsonaro teve 2.224.965 votos a mais que Lula
 - **Fato:** nos dois turnos, em todas as seções com voto para presidente (499.206 no 1º turno e 499.205 no 2º), a urna registrou exatamente tantos votos para presidente quantos eleitores votaram.
 - **Fato:** nos dois turnos, a soma dos boletins de todas as urnas é igual ao resultado oficial, candidato por candidato.
 - **Fato:** em 499.194 das 499.205 seções, os números não exigem que nenhum eleitor tenha trocado um finalista pelo outro. Nas outras 11, a troca mínima exigida soma 20 eleitores para Lula e 24 para Flávio.
+- **Fato:** zona por zona, o 13 melhorou a margem em 2.626 das 2.641 zonas. Pelo critério fixado antes, nenhuma zona virou para o 13 além do esperado o bastante para ser apontada; esse teste só vê desvio de vários pontos numa zona, e não vê desvio espalhado por uma capital ou um estado (item 7).
 - **Pendente:** os testes que procuram troca de votos dentro da urna, voto no lugar de eleitor ausente e padrão técnico ainda estão em revisão e não entram aqui.
 - **Este tópico não afirma que não houve fraude.** Ele mostra só o que está conferido.
 
@@ -117,6 +118,124 @@ Fonte: segunda verificação independente.
 - **Nas seis UFs onde ele também perdeu votos no total** (tabela do item 2), a perda nessas seções soma **MA 10.652, AM 2.841, TO 1.778**, AC 148, RR 59 e AP 0. Em MA, AM e TO, a queda do comparecimento não explica a perda total do Flávio; em AC, AP e RR, explica a maior parte.
 - **Explicações possíveis:** matematicamente, isso só acontece se eleitores trocaram o 22 pelo 13, ou por branco ou nulo, ou se eleitores do Flávio deixaram de votar e foram substituídos por outros eleitores.
 - **Pendente:** qual dessas explicações, e o detalhe por UF nas outras 20 UFs e no exterior.
+
+## 7. A virada zona por zona: região, modelo de urna e horário (H26; Fato, revisado por segunda verificação independente)
+
+### A pergunta deste item
+
+Alguma zona eleitoral virou para o 13 muito mais do que o 1º turno dela mesma permitia prever? E as zonas que mais viraram se concentram numa região, num modelo de urna ou num horário de votação? Votos inseridos em poucas zonas apareceriam assim: algumas zonas fora do padrão das outras.
+
+### Resposta curta
+
+- **Fato:** a virada para o 13 aconteceu em quase todo o país. O 13 melhorou a margem em 2.626 das 2.641 zonas eleitorais.
+- **Fato:** pelo critério fixado antes de rodar o teste, nenhuma zona virou para o 13 além do esperado o bastante para ser apontada. Quatro zonas foram apontadas do lado contrário: nelas o 13 cresceu **menos** do que o 1º turno da própria zona fazia esperar.
+- **Fato (o alcance do teste, medido por simulação):** o teste só aponta uma zona quando o desvio é de vários pontos percentuais dos votos dela, e mais nas zonas pequenas. Ele não enxerga um desvio menor do que isso numa zona, nem um desvio espalhado por uma capital inteira ou por um estado inteiro. "Nenhuma zona apontada para o 13" quer dizer só isso.
+- **Fato:** comparando cada modelo de urna com as outras urnas da mesma zona, o teste não encontrou diferença na virada em nenhum dos quatro modelos.
+- **Fato:** dentro da mesma zona, as seções com mais votos no fim do dia do 2º turno viraram um pouco **mais** para o 13, nas cinco regiões. Mesmo que todos os votos dados depois das 17h fossem do 13, seriam menos de 1% da diferença final (item 4). A causa é **Pendente**.
+- **Não se pode afirmar**, com este teste, que não houve inserção de votos espalhada por muitas zonas, nem que o voto do fim do dia desfavoreceu o 13.
+
+### Termos usados neste item
+
+| Termo | Em palavras simples |
+|---|---|
+| **Votos nominais** | Os votos dados a um candidato. Ficam fora os brancos e os nulos |
+| **Margem** | A diferença entre o 13 e o 22, em pontos percentuais dos votos nominais. Margem negativa quer dizer o 22 à frente |
+| **Virada** | A margem do 2º turno menos a margem do 1º. Virada positiva quer dizer que o 13 melhorou |
+| **Esperado** | O que a zona "deveria" dar ao 13 e ao 22 no 2º turno, previsto pelos votos da própria zona no 1º turno: os do 13, os do 22, os de cada eliminado, os brancos e nulos e quem não votou. A regra de previsão é tirada de todas as seções do mesmo estado. Como prever a nota final de cada aluno pelas notas do 1º bimestre, com uma regra tirada da turma inteira: o aluno que fica muito acima da previsão chama a atenção |
+| **Além do esperado** | O que a zona deu ao 13 a mais do que o esperado, descontado o que deu ao 22 a mais do que o esperado, em pontos percentuais dos votos nominais do 2º turno |
+| **Régua** | Para dizer se um desvio é grande, cada zona é comparada com as zonas da mesma região. A régua é a variação típica entre elas, medida de um jeito que poucos casos extremos não distorcem |
+
+### Como foi feito
+
+- **Universo:** as 499.207 seções com boletim dos dois turnos, em 2.641 zonas (as zonas das 27 UFs e o exterior, contado como uma zona só). Os votos do 13 e do 22 de cada seção foram conferidos com o resultado oficial por seção, candidato a candidato, nos dois turnos: 0 divergência.
+- **Virada de cada zona:** a margem do 2º turno menos a do 1º.
+- **Virada além do esperado:** em cada zona, o que sobra depois de tirar o esperado. O critério de corte foi fixado antes de rodar o teste e vale para os dois lados: a zona é apontada se estiver longe demais do meio da sua região pela régua, já com a **correção para muitos testes** (são 2.640 zonas medidas de uma vez), e se o desvio for de pelo menos 2 pontos percentuais.
+- **Modelo de urna:** em cada zona com urnas de mais de um modelo (2013, 2015, 2020 e 2022), a virada das seções de cada modelo foi comparada com a das outras seções da mesma zona.
+- **Horário:** os votos de cada hora, pela hora de Brasília. Em cada seção, a parte dos votos dada no fim do dia (depois das 15h e depois das 17h), em cada turno, foi comparada com a virada da seção, sempre dentro da mesma zona.
+- **Segunda verificação independente:** refez tudo com programa próprio, a partir dos boletins, sem usar os resultados intermediários da primeira análise. Também mediu o alcance do teste: inseriu de propósito votos falsos nos dados reais, refez todas as contas e viu quando o teste apontava a zona.
+
+### O que foi encontrado
+
+**1. A virada foi geral (Fato).**
+
+| Medida | Valor |
+|---|---|
+| Margem no 1º turno | −1,86 ponto percentual (o 22 à frente por 2.224.965 votos) |
+| Margem no 2º turno | +3,57 pontos (o 13 à frente por 4.430.191 votos) |
+| Virada no país | +5,44 pontos (6.655.156 votos de diferença entre as duas margens) |
+| Zonas em que o 13 melhorou a margem | 2.626 de 2.641 |
+| Zonas em que o 22 melhorou a margem | 15. A maior virada para o 22 foi de −1,47 ponto, na zona 0129 do RS (Nova Petrópolis) |
+| Zonas que passaram do 22 para o 13 | 128 |
+| Zonas que passaram do 13 para o 22 | 0 |
+| Virada por zona | Metade das zonas virou mais de +5,09 pontos; 1% das zonas virou menos de +0,51; 99%, menos de +9,08 |
+
+- As 128 zonas que passaram para o 13 tinham o 22 à frente por no máximo 7,77 pontos no 1º turno. Havia 127 zonas com o 22 à frente por menos que a virada do país (5,44 pontos): virar ali é o que um deslocamento geral produz.
+- **Como ler:** isso descreve como a virada se distribuiu. Não é argumento contra uma inserção espalhada por igual, que este teste não enxerga (item 3 abaixo).
+
+**2. Zonas além do esperado (Fato, com o alcance do item 3).**
+
+- **Pelo critério fixado antes:** nenhuma zona apontada do lado do 13. Quatro apontadas do lado do 22, ou seja, com o 13 crescendo menos do que o esperado: MA 0032 (Humberto de Campos), SP 0002 (São Paulo), CE 0020 (Crateús) e BA 0105 (Piatã).
+- **A lista depende do método (Fato).** Com outras escolhas igualmente razoáveis de régua (por estado em vez de por região, por tamanho de zona, em pontos percentuais) ou de cálculo do esperado, aparecem de nenhuma a 9 zonas do lado do 13, quase sempre zonas urbanas de SP, da BA e de PE, e de 3 a 8 do lado do 22. As escolhas não concordam entre si. Isso mostra que a ponta da lista depende do modelo, e não que haja ali uma anomalia escondida.
+- **A régua exagera a raridade nas pontas (Fato).** Ela aponta casos extremos com mais frequência do que o cálculo do corte supõe. Zonas do mesmo município também se parecem: as zonas de Salvador, por exemplo, estão quase todas deslocadas para o mesmo lado. Por isso as 4 zonas do lado do 22 são menos raras do que o critério sugere.
+- **A regra de previsão serve para prever, e não diz para onde foi cada eleitor (Fato).** 132 dos 504 pesos da regra (28 regras, uma por UF e uma para o exterior, × 9 grupos de voto do 1º turno × 2 candidatos) ficam fora do que seria possível numa transferência de eleitores, por exemplo pesos negativos. Um peso negativo não pode ser "parte dos eleitores de um eliminado que foi para o 13".
+- **Pendente:** o exame seção a seção dessas 4 zonas e a comparação de cada zona com 2018 e 2022 ainda não passaram pela segunda verificação independente e não entram aqui.
+
+**As zonas mais perto do corte do lado do 13 (Fato nas contagens; Hipótese na causa).** Nenhuma chegou ao corte. As 22 que mais se afastaram do esperado para o lado do 13 ficam, na maioria, em capitais e regiões metropolitanas: 5 em Salvador e região, 5 em São Paulo e na Baixada Santista, 2 no Rio de Janeiro e 1 em Brasília; as outras ficam em Águas Lindas de Goiás, Petrolina (2), Juazeiro, Campos dos Goytacazes, Ituiutaba, João Monlevade, Santa Cruz do Sul e Viamão.
+
+| Eleitores a mais no 2º turno, por forma de liberação | Nas 22 zonas | Nas demais zonas dos mesmos estados |
+|---|---:|---:|
+| Pela digital | 82,15% | 78,63% |
+| Sem digital cadastrada (título e ano de nascimento) | 10,50% | 11,62% |
+| Com digital cadastrada, liberados pelo ano de nascimento | 7,35% | 9,75% |
+
+Fonte: boletins de urna dos dois turnos (campos de forma de liberação), conferidos por duas contas independentes. Nas 22 zonas, o comparecimento subiu 99.232 eleitores do 1º para o 2º turno. **Como ler:** de cada 100 eleitores a mais nessas 22 zonas, 82 foram liberados pela própria digital; nas outras zonas dos mesmos estados, 79. A parte liberada pela digital registrada no boletim é igual à contada no diário da urna em 497.884 das 497.897 seções do Brasil no 1º turno e em 497.890 seções no 2º.
+
+- **Fato:** numa delas, a zona 0075 do RJ (Campos dos Goytacazes), o comparecimento **caiu** 1.255 eleitores. Ali, "mais gente foi votar" não explica o desvio.
+- **Hipótese:** nas outras, o desvio vem sobretudo da volta de eleitores urbanos às urnas no 2º turno.
+- **Até onde vai esse argumento.** Ele afasta a liberação em massa pelo mesário, porque esse caminho deixaria maior a parte liberada pelo ano de nascimento, e ela é menor nessas zonas. Ele **não** afasta uma manipulação dentro da urna, que escreveria o boletim e o diário do mesmo jeito ([tópico 7](07-limites-da-pericia.md)). E comparecimento acima do resto do estado também é o que uma inserção de votos produziria.
+
+**3. O alcance do teste (Fato, medido por simulação na segunda verificação independente).**
+
+- **Uma zona sozinha:** o teste só a aponta quando o desvio inserido é de vários pontos percentuais dos votos dela. Nas zonas pequenas o desvio precisa ser maior que nas grandes. Se o voto for trocado do 22 para o 13, em vez de acrescentado, cada voto trocado mexe na margem duas vezes (tira do 22 e põe no 13), e o desvio necessário cai pela metade.
+- **Várias zonas do mesmo estado:** quanto mais zonas recebem o desvio, menos delas são apontadas, porque a regra de previsão do estado se move junto.
+- **Uma capital inteira:** a regra de previsão absorve uma parte grande do que se insere. Num teste com Fortaleza, um desvio de vários pontos em todas as zonas da cidade não fez nenhuma ser apontada.
+- **Um estado inteiro, ou uma inserção proporcional ao voto do 13 no 1º turno:** a regra absorve tudo, e nenhuma zona é apontada. Para esses casos é preciso uma régua de fora do próprio estado e da própria eleição, como as eleições anteriores (**Pendente**).
+- Os tamanhos exatos de cada caso são estimativas de simulação e ficam fora deste relatório.
+
+**4. Modelo de urna (Fato).** Comparando, dentro de cada zona com mais de um modelo, as urnas de cada modelo com as outras, o teste não encontrou diferença na virada em nenhum dos quatro modelos (2013, 2015, 2020 e 2022). A primeira versão desse teste somava também as zonas com um modelo só, onde por definição não há diferença, e por isso diluía o desvio; ela foi refeita só com as zonas mistas. O teste não enxerga um desvio igual em todas as urnas de uma zona, de qualquer modelo. O menor desvio que ele enxerga é estimativa estatística e fica fora deste relatório.
+
+**5. Horário (Fato na direção; Pendente na causa).**
+
+- **A hora mais cheia mudou.** No 2º turno, na maioria das zonas, a hora com mais votos foi a primeira, logo depois das 8h de Brasília, e em nenhuma zona foi depois do meio-dia. No 1º turno o pico veio mais tarde. **Hipótese:** no 1º turno o eleitor digita 6 ou 7 cargos e a fila anda devagar; no 2º são 2 cargos, e a fila da manhã acaba cedo. **Pendente:** as contagens de zonas por hora de pico vão ser refeitas com a correção das urnas com relógio 1 hora fora da hora certa ([tópico 3](03-linha-do-tempo.md), item 6) antes de entrar aqui com número.
+- **Fato:** dentro da mesma zona, as seções com uma parte maior dos votos dada no fim do dia do 2º turno (depois das 15h ou depois das 17h) viraram um pouco **mais** para o 13. Isso aparece nas cinco regiões e continua quando se levam em conta o tamanho da seção, a variação do comparecimento e o voto e a abstenção da seção no 1º turno. A parte dos votos dada no fim do dia do **1º** turno também vai junto com mais virada para o 13, o que sugere um efeito do lugar (seções com fila longa), e não só do horário do 2º turno.
+- **O tamanho é pequeno perto do resultado.** O tamanho da associação é estimativa estatística e fica fora deste relatório. O limite exato é este: houve 34.315 votos depois das 17h no 2º turno (item 4), e, mesmo que todos fossem do 13, seriam 0,77% da diferença final.
+- **Uma leitura anterior foi corrigida.** A primeira análise dizia que "a seção que votou mais tarde virou menos para o 13". A segunda verificação mostrou que a conta usada misturava os dois turnos numa diferença só, dominada pelo 1º turno, em que muito mais gente vota no fim do dia, e que, separados os turnos, o sinal é o contrário. Mostrou também que aquela conta não tinha poder: com votos para o 13 inseridos de propósito no fim do dia, ela continuava apontando para o lado errado.
+- **Hipótese (sem fraude):** quem vota tarde no 2º turno é diferente de quem vota cedo (mais jovem, trabalha, depende de transporte), e o aumento do comparecimento a favor do 13 se concentrou nesse grupo. Pela regra de controle desta perícia, essa explicação fica como Hipótese até haver rastro técnico.
+- **Pendente:** cruzar essa associação com os municípios e as seções da prorrogação (item 4) e contar, pelo diário de cada urna, como foram liberados os eleitores que votaram depois das 17h, seção a seção.
+
+### Prova de que o teste funciona (contraprova)
+
+- **Outro caminho, os mesmos números (Fato).** A segunda verificação refez a extração dos boletins, a regra de previsão, a régua, a correção para muitos testes e o corte com programa próprio. Chegou às mesmas 499.207 seções, aos mesmos votos, à mesma regra de previsão em cada estado e às mesmas zonas apontadas (nenhuma do 13 e as mesmas 4 do 22).
+- **O teste acende quando há o que acender (Fato, simulação).** Com votos falsos inseridos numa zona, o teste a aponta a partir de um desvio de vários pontos. Sem nenhuma inserção, a simulação devolve o mesmo resultado dos dados reais. É assim que se sabe o que o teste vê e o que ele não vê (item 3).
+- **O teste de horário errado foi trocado por um que vê (Fato).** A conta antiga não acendia nem com votos inseridos no fim do dia. A conta separada por turno já mostra a associação nos dados reais.
+
+### Limites (o que este item não prova)
+
+1. **Desvio pequeno numa zona.** Uma inserção menor do que vários pontos percentuais dos votos de uma zona não aparece.
+2. **Desvio espalhado.** Inserção por igual numa capital, num estado, ou proporcional ao voto do 13 no 1º turno, é absorvida pela regra de previsão do próprio estado. A comparação com eleições anteriores é **Pendente**.
+3. **Dependência do método.** A lista de zonas da ponta muda com escolhas razoáveis de régua e de cálculo. A régua aponta casos extremos com mais frequência do que o corte supõe, e zonas vizinhas não são independentes. A triagem por município ainda não foi feita.
+4. **Ordem do critério.** O critério de corte foi escrito antes de rodar o teste, mas foi guardado junto com o resultado, no mesmo registro. Não há rastro técnico de que veio antes.
+5. **O argumento da forma de liberação** afasta só a liberação em massa pelo mesário, não a manipulação dentro da urna.
+6. **Exterior:** é uma zona só, sem outras para comparar.
+7. **Os pesos da regra de previsão não são transferência de eleitores.** O voto é secreto, e "para onde foi o voto" não é dado (limite 3, abaixo).
+
+### Pendente deste item
+
+- **Pendente:** a comparação de cada zona com 2018 e 2022 e o exame seção a seção das 4 zonas apontadas do lado do 22.
+- **Pendente:** um olhar nas zonas que só aparecem com outras escolhas de método: GO 0047 (São Domingos), AM 0042 (Atalaia do Norte) e SC 0013 (Florianópolis). São zonas para examinar, não alarmes.
+- **Pendente:** voto do fim do dia × prorrogação e × forma de liberação, seção a seção.
+- **Pendente:** as contagens de zonas por hora de pico com a correção de relógio.
+- **Pendente:** uma rodada nova, com o critério registrado antes de rodar, triagem também por município e uma régua calibrada pelo tamanho da zona.
 
 ## Pendente (sem número até haver reprodução independente)
 

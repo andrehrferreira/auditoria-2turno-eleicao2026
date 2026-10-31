@@ -56,6 +56,6 @@ barras({
   rotuloMarca: (m) => `${m}%`,
   eixo: 'Taxa de comparecimento: votantes ÷ eleitores aptos da faixa (%)',
   margE: 160, margD: 80,
-  notas: ['A idade é a do dia da eleição. Depois dos 70 anos o voto é facultativo.'],
+  notas: ['A idade é contada numa data fixa ligada à eleição. Depois dos 70 anos o voto é facultativo.'],
   fonte: 'Fonte: perfil de comparecimento e abstenção do TSE, 1º turno de cada ano, Brasil sem o exterior.',
 });
