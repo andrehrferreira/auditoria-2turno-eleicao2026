@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 632" width="760" height="632" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Eleitores aptos de 95 a 99 e de 100 anos ou mais, e quantos votaram, 1º turno</title><desc id="desc">Os títulos dessas idades se multiplicaram; os votantes ficaram abaixo de 15 mil por faixa em todo ano. Faixa de 95 a 99 anos: 2014, 72.726 aptos e 4.682 votaram; 2018, 272.334 aptos e 5.082 votaram; 2022, 466.703 aptos e 7.591 votaram; 2026, 337.136 aptos e 14.661 votaram. Faixa de 100 anos ou mais: 2014, 21.271 aptos e 2.528 votaram; 2018, 39.026 aptos e 1.506 votaram; 2022, 184.330 aptos e 1.675 votaram; 2026, 297.977 aptos e 2.141 votaram</desc>
+<style>
+  .fundo{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.tb{fill:#ffffff}.tp{fill:#0b0b0b}.grade{stroke:#e4e3df}.eixo{stroke:#9a9993}
+  .s0{fill:#2a78d6}.s1{fill:#eb6834}.s2{fill:#1baf7a}.s3{fill:#eda100}.a0{fill:#86b6ef}.a1{fill:#2a78d6}.a2{fill:#104281}
+  text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  @media (prefers-color-scheme:dark){.fundo{fill:#1a1a19}.t1{fill:#f0efec}.t2{fill:#c3c2b7}.grade{stroke:#383835}.eixo{stroke:#6d6c66}.s0{fill:#3987e5}.s1{fill:#d95926}.s2{fill:#199e70}.s3{fill:#c98500}.a0{fill:#184f95}.a1{fill:#3987e5}.a2{fill:#9ec5f4}}
+</style>
+<rect class="fundo" width="760" height="632" rx="6"/>
+<text class="t1" x="20" y="30" font-size="17" font-weight="600">Eleitores aptos de 95 a 99 e de 100 anos ou mais, e quantos votaram, 1º turno</text>
+<text class="t2" x="20" y="52" font-size="13">Os títulos dessas idades se multiplicaram; os votantes ficaram abaixo de 15 mil por faixa em todo ano.</text>
+<rect class="s0" x="20" y="66" width="12" height="12" rx="2"/><text class="t1" x="38" y="77" font-size="13">Eleitores aptos</text>
+<rect class="s1" x="158" y="66" width="12" height="12" rx="2"/><text class="t1" x="176" y="77" font-size="13">Votaram</text>
+<line class="grade" x1="150" x2="150" y1="94" y2="486" stroke-width="1"/>
+<text class="t2" x="150" y="502" font-size="12" text-anchor="middle">0</text>
+<line class="grade" x1="248" x2="248" y1="94" y2="486" stroke-width="1"/>
+<text class="t2" x="248" y="502" font-size="12" text-anchor="middle">100.000</text>
+<line class="grade" x1="346" x2="346" y1="94" y2="486" stroke-width="1"/>
+<text class="t2" x="346" y="502" font-size="12" text-anchor="middle">200.000</text>
+<line class="grade" x1="444" x2="444" y1="94" y2="486" stroke-width="1"/>
+<text class="t2" x="444" y="502" font-size="12" text-anchor="middle">300.000</text>
+<line class="grade" x1="542" x2="542" y1="94" y2="486" stroke-width="1"/>
+<text class="t2" x="542" y="502" font-size="12" text-anchor="middle">400.000</text>
+<line class="grade" x1="640" x2="640" y1="94" y2="486" stroke-width="1"/>
+<text class="t2" x="640" y="502" font-size="12" text-anchor="middle">500.000</text>
+<line class="eixo" x1="150" x2="150" y1="94" y2="486" stroke-width="1"/>
+<text class="t1" x="20" y="114" font-size="13" font-weight="600">Faixa de 95 a 99 anos</text>
+<text class="t1" x="140" y="144" font-size="13" text-anchor="end">2014</text>
+<path class="s0" d="M150,124h67.27148a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-67.27148z"><title>95 a 99 anos, 2014: 72.726 aptos, 4.682 votaram</title></path>
+<text class="t1" x="227.27148" y="135.5" font-size="12">72.726</text>
+<path class="s1" d="M150,141h0.5883599999999944a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-0.5883599999999944z"><title>95 a 99 anos, 2014: 72.726 aptos, 4.682 votaram</title></path>
+<text class="t1" x="160.58836" y="152.5" font-size="12">4.682</text>
+<text class="t1" x="140" y="185" font-size="13" text-anchor="end">2018</text>
+<path class="s0" d="M150,165h262.88732a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-262.88732z"><title>95 a 99 anos, 2018: 272.334 aptos, 5.082 votaram</title></path>
+<text class="t1" x="422.88732" y="176.5" font-size="12">272.334</text>
+<path class="s1" d="M150,182h0.9803599999999904a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-0.9803599999999904z"><title>95 a 99 anos, 2018: 272.334 aptos, 5.082 votaram</title></path>
+<text class="t1" x="160.98036" y="193.5" font-size="12">5.082</text>
+<text class="t1" x="140" y="226" font-size="13" text-anchor="end">2022</text>
+<path class="s0" d="M150,206h453.36894000000007a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-453.36894000000007z"><title>95 a 99 anos, 2022: 466.703 aptos, 7.591 votaram</title></path>
+<text class="t1" x="613.3689400000001" y="217.5" font-size="12">466.703</text>
+<path class="s1" d="M150,223h3.4391799999999932a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-3.4391799999999932z"><title>95 a 99 anos, 2022: 466.703 aptos, 7.591 votaram</title></path>
+<text class="t1" x="163.43918" y="234.5" font-size="12">7.591</text>
+<text class="t1" x="140" y="267" font-size="13" text-anchor="end">2026</text>
+<path class="s0" d="M150,247h326.39328a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-326.39328z"><title>95 a 99 anos, 2026: 337.136 aptos, 14.661 votaram</title></path>
+<text class="t1" x="486.39328" y="258.5" font-size="12">337.136</text>
+<path class="s1" d="M150,264h10.36778000000001a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-10.36778000000001z"><title>95 a 99 anos, 2026: 337.136 aptos, 14.661 votaram</title></path>
+<text class="t1" x="170.36778" y="275.5" font-size="12">14.661</text>
+<text class="t1" x="20" y="318" font-size="13" font-weight="600">Faixa de 100 anos ou mais</text>
+<text class="t1" x="140" y="348" font-size="13" text-anchor="end">2014</text>
+<path class="s0" d="M150,328h16.845580000000012a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-16.845580000000012z"><title>100 anos ou mais, 2014: 21.271 aptos, 2.528 votaram</title></path>
+<text class="t1" x="176.84558" y="339.5" font-size="12">21.271</text>
+<path class="s1" d="M150,345h0a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h0z"><title>100 anos ou mais, 2014: 21.271 aptos, 2.528 votaram</title></path>
+<text class="t1" x="158.47744" y="356.5" font-size="12">2.528</text>
+<text class="t1" x="140" y="389" font-size="13" text-anchor="end">2018</text>
+<path class="s0" d="M150,369h34.245479999999986a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-34.245479999999986z"><title>100 anos ou mais, 2018: 39.026 aptos, 1.506 votaram</title></path>
+<text class="t1" x="194.24548" y="380.5" font-size="12">39.026</text>
+<path class="s1" d="M150,386h0a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h0z"><title>100 anos ou mais, 2018: 39.026 aptos, 1.506 votaram</title></path>
+<text class="t1" x="158" y="397.5" font-size="12">1.506</text>
+<text class="t1" x="140" y="430" font-size="13" text-anchor="end">2022</text>
+<path class="s0" d="M150,410h176.64340000000004a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-176.64340000000004z"><title>100 anos ou mais, 2022: 184.330 aptos, 1.675 votaram</title></path>
+<text class="t1" x="336.64340000000004" y="421.5" font-size="12">184.330</text>
+<path class="s1" d="M150,427h0a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h0z"><title>100 anos ou mais, 2022: 184.330 aptos, 1.675 votaram</title></path>
+<text class="t1" x="158" y="438.5" font-size="12">1.675</text>
+<text class="t1" x="140" y="471" font-size="13" text-anchor="end">2026</text>
+<path class="s0" d="M150,451h288.01746a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-288.01746z"><title>100 anos ou mais, 2026: 297.977 aptos, 2.141 votaram</title></path>
+<text class="t1" x="448.01746" y="462.5" font-size="12">297.977</text>
+<path class="s1" d="M150,468h0a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h0z"><title>100 anos ou mais, 2026: 297.977 aptos, 2.141 votaram</title></path>
+<text class="t1" x="158.09818" y="479.5" font-size="12">2.141</text>
+<path class="eixo" d="M476.48732,172H690V417H398.24340000000007" fill="none" stroke-width="1.5" stroke-dasharray="4 3"/>
+<path class="t2" d="M390.24340000000007,417l8,-4.5v9z"/>
+<text class="t2" x="706" y="294.5" font-size="12" text-anchor="middle" transform="rotate(90 706 294.5)">a mesma geração, 4 anos depois</text>
+<text class="t2" x="395" y="522" font-size="12.5" text-anchor="middle">Eleitores (títulos aptos e votantes, na mesma escala)</text>
+<text class="t2" x="20" y="548" font-size="12">Os votantes são tão poucos perto dos aptos que a barra laranja quase não aparece; o número ao lado dá o valor.</text>
+<text class="t2" x="20" y="566" font-size="12">Como ler: a barra azul conta os títulos da faixa no cadastro; a laranja, quantos deles foram votar.</text>
+<text class="t2" x="20" y="584" font-size="12">A seta segue a mesma geração: em 2018 ela enche a faixa de 95 a 99 anos e, em 2022, chega à de 100 ou mais,</text>
+<text class="t2" x="20" y="602" font-size="12">que ganha 145.304 títulos e só 169 votantes. O estoque de títulos cresceu; os votos, quase não.</text>
+<text class="t2" x="20" y="620" font-size="11">Fonte: perfil de comparecimento e abstenção do TSE, 1º turno de 2014, 2018, 2022 e 2026, Brasil sem o exterior.</text>
+</svg>
