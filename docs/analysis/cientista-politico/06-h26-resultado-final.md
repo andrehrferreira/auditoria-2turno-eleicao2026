@@ -65,7 +65,7 @@ Exclusões: o exterior sai dos testes que comparam zonas, como no plano 01 (1.31
 | Onde | Seções extremas | O que se vê |
 |---|---|---|
 | PI 0028, Santo Antônio de Lisboa | 9 | Inclui PI 11878/0028/0099, a seção já estudada pelo parecer cético 07, com t centrado de −8,36. As seções do mesmo local vão todas para o mesmo lado |
-| SP 0002 | 6 | Todas no mesmo local de votação (133 seções), que como um todo fica só −0,78 p.p. |
+| SP 0002 | 6 | Todas no mesmo local de votação (local 1546, 7 seções), que como um todo vira −17,26 p.p. (errata, ver abaixo) |
 | MA 0032 | 2 | Humberto de Campos e Primeira Cruz, com queda de comparecimento (doc 04 dos casos) |
 | Outros | 3 | Posse (GO), Oriximiná (PA) e Vale do Sol (RS) |
 
@@ -246,3 +246,16 @@ node --max-old-space-size=12288 scripts/auditoria/politico-h26-c-tardio.mjs     
 - Saídas em `data/parsed/auditoria/cientista-politico/`: `h26-b-historico.json`, `h26-b-zonas-nivelA.csv`, `h26-b-poder.json`, `h26-b-uniformidade.json`, `h26-a-secoes.json`, `h26-a-zonas.csv`, `h26-c-tardio.json`.
 - Caches: `h26-nivelA-2018.json`, `h26-nivelA-2022.json`, `h26-nivelA-2026.json`, `h26-nivelB-2022.json`.
 - Banco: cópia de leitura `eleicao2026-20261029T105000`. Sementes fixas nos scripts.
+
+## Errata (02/11/2026, coordenador, a partir do parecer cético 53)
+
+`politico-h26-a-secoes.mjs` agrupava o local de votação por UF, município e número do local, sem a zona. Como o número do local se repete entre zonas do mesmo município, 9 dos 30 casos da parte (a) mostravam um "local" errado. A chave passou a incluir a zona e o script foi rodado de novo. Na saída `h26-a-secoes.json`, só mudou a coluna `local` desses 9 casos (e `geradoEm`). Os testes A1 e A2, a decisão da parte (a) e o fato do lado do 22 não usam o local e ficaram iguais.
+
+| Caso | Antes (local sem zona) | Depois (local da zona) |
+|---|---|---|
+| RJ 58190/0075/0068 | local 1325: 12 seções, +10,30 p.p. | 8 seções, todas do mesmo lado, +12,19 p.p. |
+| RJ 58190/0129/0094 | local 1198: 23 seções, 19 do mesmo lado, +4,04 p.p. | 4 seções, todas do mesmo lado, +15,42 p.p. |
+| SC 81051/0013/0193 | local 1295: 24 seções, 16 do mesmo lado, +1,69 p.p. | 20 seções, 14 do mesmo lado, +2,14 p.p. |
+| SP 71072/0002 (6 seções) | local 1546: 133 seções, 65 do mesmo lado, −0,78 p.p. | 7 seções, todas do mesmo lado, −17,26 p.p. |
+
+Em SP 0002, as 6 seções extremas são 6 das 7 do mesmo prédio, e o prédio inteiro virou para o 22. No parecer 53, o comparecimento do local sobe 18,7% entre os turnos, contra +4,6% no resto da zona. Fica como fato a explicar do lado do 22.

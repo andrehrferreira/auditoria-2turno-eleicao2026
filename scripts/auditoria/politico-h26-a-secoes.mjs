@@ -142,12 +142,12 @@ const qOf = db.prepare(`SELECT turno, numero, quantidade FROM voto_oficial WHERE
 const qPl = db.prepare(`SELECT maior_rajada_sem_biometria_10min r, habilitados_pelo_mesario hm, ano_nascimento_sem_biometria anb, dado_pessoal_confere dpc FROM perfil_log
   WHERE turno = 2 AND uf = ? AND municipio = ? AND zona = ? AND secao = ?`);
 const porLocal = new Map();
-for (const s of secoes) { const k = `${s.uf}|${s.municipio}|${s.local2}`; (porLocal.get(k) ?? porLocal.set(k, []).get(k)).push(s); }
+for (const s of secoes) { const k = `${s.uf}|${s.municipio}|${s.zona}|${s.local2}`; (porLocal.get(k) ?? porLocal.set(k, []).get(k)).push(s); }
 const casos = [];
 for (const [s, origem] of listadas) {
   const of = Object.fromEntries(qOf.all(s.uf, s.municipio, s.zona, s.secao).map((o) => [`${o.turno}|${o.numero}`, o.quantidade]));
   const pl = qPl.get(s.uf, s.municipio, s.zona, s.secao) ?? {};
-  const loc = porLocal.get(`${s.uf}|${s.municipio}|${s.local2}`) ?? [];
+  const loc = porLocal.get(`${s.uf}|${s.municipio}|${s.zona}|${s.local2}`) ?? [];
   const locTot = loc.reduce((a, x) => a + x.rl, 0), locNom = loc.reduce((a, x) => a + x.nom2, 0);
   const x22 = s22.get(chaveSec(s.uf, s.municipio, s.zona, s.secao));
   const mg = (v, nomeR) => { const n = Object.entries(v).filter(([nr]) => nr !== '95' && nr !== '96').reduce((a, [, q]) => a + q, 0); return pp((v['13'] ?? 0) - (v[nomeR] ?? 0), n); };
