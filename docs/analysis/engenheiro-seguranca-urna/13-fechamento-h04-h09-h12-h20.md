@@ -396,3 +396,22 @@ node scripts/auditoria/seguranca-fechamento-h20-semlinha.mjs
 # Conferência no bruto (dígitos de 8+ trocados por #)
 node scripts/auditoria/seguranca-fechamento-dump.mjs --turno 2 --secao ba/34134/0171/0166 --urna 01757577 --de 21/10/2026 --ate 21/10/2026
 ```
+
+## Errata (02/11/2026, coordenador, a partir do parecer cético 56)
+
+1. **Classe "mesário eleitor da seção" (H09b).** `seguranca-fechamento-varredura.mjs` usava `msg.includes('é eleitor da seção')`, que também casa com "não é eleitor da seção". A linha foi corrigida. Os números certos são os da varredura independente do parecer 56 (`cetico-56-h09b.mjs`):
+   - aceites de mesário eleitor da seção: 25.206 no 1º turno e 2.167 no 2º, e não 69.771 e 6.454;
+   - pares: 19.245, e não 54.539;
+   - mesário que não é eleitor da seção: 0 recusas contra 44.565 aceites no 1º turno e 0 contra 4.287 no 2º, e não "3 recusas contra 141 aceites".
+
+   A conclusão fica mais forte: o mesário só é recusado quando é eleitor da seção (103 e 6 casos), numa única sessão, e sempre em sessão liberada pelo título.
+2. **"O aceito não é o eleitor da cabine, porque a urna recusaria".** A frase sai. O parecer 56 mostra que a recusa depende de a sessão ter sido liberada pelo título (29,46%, contra 0,02% nas liberadas pelo CPF). Parte dos números aceitos em sessões liberadas pelo CPF é provavelmente o próprio eleitor. Isso fica como Hipótese.
+3. **Desfechos das sessões com número recusado.** "Em quem votaram" está errado: parte das pessoas não votou. Os desfechos no 1º e no 2º turno são:
+   - 6.664 e 786 votaram normalmente;
+   - 6.385 e 77 tiveram voto nulo dado pela urna em algum cargo;
+   - 6.920 e 985 foram liberadas e não votaram.
+
+   Há 1 caso, no 1º turno, em que o voto para Presidente fica conhecido, porque a seção foi unânime (parecer 56).
+4. **Teto da H12.** São 15.884.298 eleitores no 2º turno, e não 8.632.488: faltavam os 7.251.810 sem biometria cadastrada, que também votam sem digital.
+5. **H20, BA 0166.** O teste dá o piso (+54 min); o teto de 60 min vem do parecer 47. A seção abriu de verdade por volta das 08:54. A faixa do PR 74713/0078/0261 admite várias faixas (de −240 a −51 min).
+6. **H04, "segundo programa".** Ele copia a regra de boot do primeiro e usa o mesmo leitor de ZIP, então a concordância só prova que não houve erro de transcrição. A medida independente é a do parecer 56: 0 voto sem verificação completa do programa em 125.275.244 votos no 1º turno e em 128.235.724 no 2º.

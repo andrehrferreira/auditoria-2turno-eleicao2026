@@ -335,7 +335,7 @@ async function processarPacote(dir, id, uf, turno, idx, acc, ctx) {
             s.add(papel);
             if (papel === 'mes') {
               mesarios.add(d12);
-              if (msg.includes('é eleitor da seção')) mesEleitor.add(d12);
+              if (msg.includes('é eleitor da seção') && !msg.includes('não é eleitor da seção')) mesEleitor.add(d12);
             } else if (papel === 'enc') encerr.add(d12);
             else if (papel === 'oper') oper.add(d12);
           }
