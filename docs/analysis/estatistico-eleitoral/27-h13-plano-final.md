@@ -292,3 +292,109 @@ Contagens:
 - Saídas em `data/parsed/auditoria/estatistico/h13-final/`: `testes.csv` (os 192 testes, com β, erro, z ou t, p, Bonferroni, BH, classe e mínimo detectável), `ufs.csv`, `meta.json`, `cerco.csv`, `nominal.json`, `diario-vazio.json`, `conferencias.json`. Nenhum id de mesário nem título.
 - Resultado: `docs/analysis/estatistico-eleitoral/28-h13-resultado-final.md`.
 - **Recursos:** no máximo 2 processos Node pesados; sem rede; sem `find` em `data/raw`; não edito `docs/pericia/` nem `docs/hipoteses.md`; não faço commit.
+
+## Adendo 1 de 02/11/2026: um só denominador, linha de base de 2022 em SP e regra "estável" por via (registrado antes de rodar)
+
+**Por que este adendo existe.** O [parecer cético 54](../cetico-revisor/54-h13-fechamento.md) (commit f1b372e) mostrou que o único teste que levou a H13 a "fato que pede explicação" no [doc 28](28-h13-resultado-final.md) (MG, painel, V3m, +1,93, z 4,15) depende de 14 seções de MG. Nelas, a tabela pública de perfil do eleitorado, gerada em julho de 2026, tem de 1 a 23 eleitores para urnas com 139 a 419 aptos no boletim.
+
+- No painel, a exposição é dividida pelos eleitores do perfil. Nessas seções ela vira um número absurdo (até −1.200% do cadastro) e carrega a alavanca do coeficiente.
+- O risco já estava apontado antes do plano: parecer 48, item 6.2 e variante A, "÷ aptos do BU".
+
+**Quando e por quem a troca foi decidida.**
+
+- O coordenador decidiu a troca **depois** do parecer 54. O parecer já relata o coeficiente de algumas variantes de denominador em MG, no RS e em SP. Vi esses números ao ler o parecer, antes de escrever este adendo.
+- Para que a escolha não dependa do resultado, fica **um único** denominador: o que o parecer 48 indicou antes do plano (variante A), aplicado a todos os testes. Não há escolha entre variantes depois de rodar.
+- As outras variantes do parecer 54 (Q, A2, ÷ comparecimento do 1º turno) não entram nem como teste nem como sensibilidade. O resultado original do doc 28 fica de pé, como está, ao lado do resultado deste adendo.
+
+### (1) Um só denominador: os aptos do próprio boletim de cada turno e ano
+
+Em todos os testes de painel e de nível, em 2026 e em 2022, nada que divida uma contagem vem do perfil do eleitorado. A base passa a ser o boletim de urna (BU) da seção no turno: aptos e comparecimento.
+
+- **Painel (P):**
+  - e_v = L_v,2 ÷ aptos_2 − L_v,1 ÷ aptos_1, para v ∈ {V2, V3m, V3s};
+  - Δc = votos_2 ÷ aptos_2 − votos_1 ÷ aptos_1;
+  - aptos_t são os aptos do BU do turno t:
+    - em 2026, o maior `aptos` da seção em `secao_eleicao` no turno, que é o mesmo campo usado pelo parecer 54;
+    - em 2022, o `QT_APTOS` do `detalhe_votacao_secao_2022` do turno (presidente), que vem do BU.
+  - O parecer 54 dividiu ΔL pelos aptos do 2º turno. Aqui cada turno usa os seus próprios aptos; como os aptos quase não mudam entre os turnos (parecer 48), a diferença deve ser pequena, e ela vai relatada.
+  - O coeficiente de e_v continua sendo a parte própria da via, agora por eleitor apto da seção em cada turno.
+- **Nível (N2 e N1):**
+  - a exposição já tinha denominador do BU: x_v = L_v ÷ votos do diário do turno, e os votos do diário são iguais ao comparecimento do BU, porque as seções em que diferem ficam fora. **Ela não muda.**
+  - **Premissa declarada:** não troco o comparecimento pelos aptos no nível. Isso misturaria o comparecimento na parcela dos votantes por via e mudaria o que o β mede (a diferença entre a parcela do 13 dos liberados pela via e a dos eleitores pela digital, seção 4). Se o coordenador quiser x_v = L_v ÷ aptos no nível, isso precisa ser dito antes do commit deste adendo.
+- **Controle de tamanho, em todos os testes:** o log dos eleitores do perfil passa a ser o **log dos aptos do BU** do turno do desfecho (no painel, do 2º turno).
+- **Controles de composição** (fração sem biometria no cadastro, 60+, 16–24, escolaridade baixa, superior): continuam vindo do perfil do mesmo ano, porque o BU não tem esses dados.
+  - São proporções entre 0 e 1. Não dividem a exposição e não podem explodir.
+  - Nas seções de perfil fora de data, elas são ruidosas. Fica declarado como limite, sem variante.
+- **Onde mais o denominador entra:**
+  - exclusão "sem perfil": continua, porque os controles de composição precisam do perfil;
+  - injeção do mínimo detectável no painel: F votos entram em L_v,2 e em votos_2, e e_v e Δc sobem F ÷ aptos_2;
+  - fórmula M da equivalência no painel: a_s = max(0, e_v,s) × aptos_2,s ÷ votos_2,s;
+  - exame nominal (seção 5): no painel, o resíduo usa o Δc novo, e a "liberação alta" é o decil superior de (e_V2 + e_V3m + e_V3s) com o denominador novo. No nível, só muda o controle de tamanho. A leitura por mesário é refeita com o mesmo leitor, e as estatísticas por seção, sem identificador, ficam gravadas.
+- **Sem aptos no BU** (campo vazio ou zero num dos turnos usados): a seção sai, com contagem.
+
+### (2) Linha de base de 2022 também em SP, e a mesma conta nas outras UFs com diário de 2022
+
+**Arquivos (só leitura; não baixo nada).** Os diários de SP de 2022 foram baixados pela frente das H02/H05:
+
+- `data/raw/2022/{1t,2t}/zip/bu_imgbu_logjez_rdv_vscmr_2022_<t>t_SP.zip`, registrados em `data/manifest/2022/zips.jsonl`;
+- conferência em `data/manifest/2022/conferencia-sp-{1t,2t}.json`.
+
+Ao lado: `votacao_secao_2022_BR.zip`, `detalhe_votacao_secao_2022.zip` e `perfil_eleitor_secao_2022_SP.zip`, já em `data/raw/dadosabertos/`.
+
+**Leitura:**
+
+- a do adendo 5 do plano 16: `estatistico-h13-v2-diario2022.mjs --uf sp`, com a mesma tabela de tradução e o mesmo ciclo;
+- a tabela por seção de 2022 de `estatistico-h13-v2-dados2022.mjs`, com SP incluída;
+- conferência das vias do diário contra o boletim de 2022 de SP, pelo critério do adendo 6 (V2 igual em pelo menos 99% das seções; senão, "medida não confirmada", e o teste roda assim mesmo).
+
+**"SP 2022 pronto"** quer dizer: os dois `conferencia-sp-<t>t.json` existem, com `ok` verdadeiro e 0 falhas, e a leitura do diário de SP termina nos dois turnos. A conferência dos zips já estava assim quando este adendo foi escrito.
+
+**Modelo de 2022:** o mesmo painel de 2026 com o denominador (1), em cada UF com diário de 2022: **MG, PR, SC, RS e SP**.
+
+- e_v e Δc pelos aptos de 2022 de cada turno;
+- controles do perfil de 2022, com o log dos aptos do 2º turno;
+- efeito fixo de local do 2º turno de 2022, peso 13 + 22 do 2º turno, CR1 por local;
+- as exclusões do adendo 5.
+- MG, PR, SC e RS são **refeitos** com o denominador novo; os números de 2022 dos docs 24 e 26 deixam de valer para a classificação.
+
+**Família da linha de base (só para classificar; fora dos 192):** 5 UFs × 3 vias = **15 testes** bicaudais do coeficiente de 2022. Bonferroni a 5%: |z| ≥ 2,935.
+
+**Se SP 2022 não ficar pronto** (zip ausente, conferência com falha, ou leitura que não termina):
+
+- os sinais positivos de SP no painel que passarem são classificados **novos**, pela letra da seção 8 (sem linha de base = novo);
+- a forma final sai pela regra com essa classificação e leva a marca **"provisória: depende da linha de base de 2022 de SP"**;
+- o doc 28 diz ao lado qual seria a forma se SP fosse classificado estável;
+- a família de 2022 cai para 12 testes (|z| ≥ 2,865).
+
+### (3) A regra "estável" é avaliada por via (UF × via)
+
+Fica fixado o que a seção 8 deixava ambíguo (parecer 54, item 3.2):
+
+- **Painel:** um sinal positivo de 2026 na UF u e na via v é **estável** se, na mesma UF e na **mesma via**, o coeficiente de 2022 (modelo (2), denominador (1)) for **positivo e passar** na família de 2022 (|z| ≥ 2,935). Senão é **novo**, incluindo o caso de UF sem diário de 2022.
+- **Nível:** sem mudança; estável se o N1 da mesma UF e via for positivo com z ≥ 2.
+- **μ_BR e μ_NE no painel:** estável se as UFs estáveis **naquela via** somarem mais da metade do peso do estágio 2 naquela via.
+- Ter teste de 2022 na UF não basta: conta só a via.
+
+### (4) Forma final recalculada
+
+Tudo o mais fica como na seção 8:
+
+- os 192 testes (162 de UF, 12 de μ, 6 de δ_NE, 12 do exame nominal), com o mesmo corte p ≤ 2,604 × 10⁻⁴;
+- a ordem das formas;
+- a equivalência (44.302 votos, fórmula M com o a_s novo; a variante pela injeção vai ao lado, como no doc 28);
+- o item (c), que não usa denominador.
+
+O doc 28 ganha a seção **"Adendo 1: resultado"**, sem apagar o resultado original, com a forma final recalculada e com a classificação de cada sinal positivo.
+
+**Conferências antes de ler os testes:**
+
+1. Com o denominador antigo, o script do adendo reproduz exatamente os 192 testes do doc 28.
+2. MG V3m no painel com ÷ aptos fica igual ao do parecer 54 (+1,23, z 1,98, ou a diferença é explicada), e MG 2022 V3m com ÷ aptos igual ao do parecer 48 (−1,24, z −2,51). Os dois usam a mesma definição de aptos, ou a diferença de definição é relatada.
+3. As vias de SP 2022 do diário contra o boletim de 2022.
+4. Busca de números com formato de título nas saídas novas: 0.
+
+**Saídas:** `data/parsed/auditoria/estatistico/h13-final/adendo1/`.
+
+**Scripts:** os mesmos `estatistico-h13-final-*.mjs`, com a opção `--denominador aptos` e a saída em `adendo1/`. O padrão continua sendo o do plano, para reproduzir o doc 28. A linha de base de 2022 vai num script novo, `estatistico-h13-final-2022.mjs`.
+
+**Recursos:** sem rede; no máximo 2 processos Node pesados; os zips de SP 2022 só são lidos.
