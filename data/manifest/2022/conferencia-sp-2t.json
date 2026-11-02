@@ -1,0 +1,25 @@
+{
+ "uf": "sp",
+ "turno": 2,
+ "pleito": "407",
+ "situacoes": {
+  "completa": 101073
+ },
+ "tiposPorSecao": {
+  "bu,imgbu,logjez,rdv,vscmr": 101073
+ },
+ "manifestos": {
+  "vscmr": 101073
+ },
+ "falhas": [],
+ "secoesNoZip": 101073,
+ "extras": 1,
+ "detalhe": {
+  "secoes": 101073,
+  "comComparecimento": 101073
+ },
+ "detalheSemZip": [],
+ "zipSemDetalhe": [],
+ "ok": true,
+ "conferidoEm": "2026-11-02T09:51:42.788Z"
+}
