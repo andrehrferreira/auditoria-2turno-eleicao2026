@@ -6,16 +6,18 @@ O cadastro de eleitores de 2026 tem títulos de pessoas que já morreram? E algu
 
 ## Resposta curta
 
+**Veredito final da hipótese H01 (02/11/2026, só com dados públicos): fato que pede explicação.** Pode mudar o vencedor? Os dados públicos não permitem dizer. O cadastro tem mais eleitores de 100 anos ou mais do que o Censo conta de pessoas com essa idade: são títulos antigos que não foram limpos. No 1º turno quase nenhum deles votou, e nada mostra uso em massa. Os arquivos públicos não dizem se algum título de pessoa falecida, de qualquer idade, foi usado. Este veredito se apoia em achados conferidos por uma segunda verificação independente. O que dependia de resposta do TSE ficou escrito como limite dos dados públicos, com os pedidos como recomendação (lista no fim); **Pendente** fica só para o que ainda pode ser feito com dados públicos.
+
 | Pergunta | Resposta | Rótulo |
 |---|---|---|
-| O cadastro tem títulos de pessoas que provavelmente já morreram? | **O cadastro tem mais eleitores de 100 anos ou mais do que o Censo 2022 contou de pessoas que poderiam ter essa idade em 2026.** São 297.977 eleitores aptos de 100+ com domicílio no Brasil. O Censo contou 149.424 pessoas com 96 anos ou mais e 53.568 com 95 anos. Quantos títulos sobram não entra aqui com número: depende da data em que o TSE conta a idade, que não está documentada, e de conferir quantos idosos o Censo deixou de contar. Qualquer conta exigiria suposições, por exemplo a de que ninguém morreu desde o Censo. | **Fato** (as contagens e a comparação) e **Pendente** (o tamanho do excedente) |
+| O cadastro tem títulos de pessoas que provavelmente já morreram? | **O cadastro tem mais eleitores de 100 anos ou mais do que o Censo 2022 contou de pessoas que poderiam ter essa idade em 2026.** São 297.977 eleitores aptos de 100+ com domicílio no Brasil. O Censo contou 149.424 pessoas com 96 anos ou mais e 53.568 com 95 anos. Quantos títulos sobram não entra aqui com número: depende da data em que o TSE conta a idade, que não está documentada, e de conferir quantos idosos o Censo deixou de contar. Qualquer conta exigiria suposições, por exemplo a de que ninguém morreu desde o Censo. | **Fato** (as contagens e a comparação); o tamanho do excedente os dados públicos não medem sem suposição |
 | Esses títulos foram usados para votar no 1º turno? | Pela contagem oficial do TSE, votaram 0,72% dos eleitores de 100+ anos, e 0,26% nos municípios onde sobram títulos. Isso não mostra uso desses títulos em larga escala. A contagem é do TSE e não pode ser refeita com os arquivos das urnas. | **Fato**, com ressalva |
-| E no 2º turno? | O TSE ainda não publicou a contagem por idade. Os testes indiretos só conseguem ver uso amplo e espalhado por igual nas seções. Uso concentrado em poucas seções, ou espalhado só nas seções com 1 ou 2 eleitores de 100+, não aparece neles, mesmo quando passa de 10% dos títulos de 100+. | **Fato** (o que os testes não veem) e **Pendente** (quanto uso fica descartado) |
+| E no 2º turno? | Os dados públicos não trazem a contagem por idade do 2º turno. Os testes indiretos só conseguem ver uso amplo e espalhado por igual nas seções. Uso concentrado em poucas seções, ou espalhado só nas seções com 1 ou 2 eleitores de 100+, não aparece neles, mesmo quando passa de 10% dos títulos de 100+. | **Fato** (o que os testes não veem); quanto uso fica descartado é estimativa, fora deste relatório |
 | Por onde um título de falecido poderia ser usado? | Pelo eleitor sem biometria cadastrada, que a urna libera só com o ano de nascimento. 92% dos títulos de 100+ estão nesse grupo. | **Fato** |
-| Por que os eleitores de 100+ saltaram de 39.026 em 2018 para 184.330 em 2022? | A forma de contar não mudou. Uma geração de títulos que já estava no cadastro em 2018, na faixa de 95 a 99 anos, passou dos 100 em 2022. Quando ela chega a uma faixa, a faixa ganha muitos títulos e quase nenhum votante: de 2018 para 2022, a de 100+ ganhou 145.304 títulos e 169 votantes. É falha de limpeza do cadastro, não prova de voto (Parte 5). | **Fato** (as contagens e a forma de contar), **Hipótese** (a ligação com o recadastramento com digital) e **Pendente** (cancelamentos por óbito e calendário do recadastramento, pedidos ao TSE) |
-| Por que os votantes de 85 a 99 anos quase dobraram de 2022 para 2026? | O aumento faz parte de uma subida do comparecimento de todos os eleitores de 70 anos ou mais. Não aparece nos de 100+, fica abaixo da população do Censo em todos os municípios e não se concentra nos títulos sem digital. Não exclui uso pequeno e espalhado, nem o uso de título com digital liberado à mão pelo mesário, que não foi testado (Parte 4). | **Fato** (o aumento e onde ele está), **Hipótese** (a causa) e **Pendente** (a forma de liberação dos idosos) |
-| As seções novas com comparecimento muito alto são sinal de título de falecido? | Os testes não ligam essas seções a títulos de falecidos. Em 2026, 433 das 40.740 seções novas passaram de 95% de comparecimento no 2º turno, contra 206 das 458.438 antigas. 385 dessas 433 têm o cadastro todo com biometria e, nas 433, a liberação pelo mesário sem a digital (6,38% dos votantes) foi menor que nas antigas muito altas (9,24%). As seções que eram novas em 2022, acompanhadas até 2026, passaram de 95% no 2º turno quase na mesma proporção que as antigas; nas que ficavam num local de votação novo, a diferença diminuiu muito, mas não sumiu. A causa não está nos arquivos: a chegada recente de eleitores ao cartório e a transferência irregular de títulos deixam os mesmos sinais (ver "Outro fenômeno vizinho"). | **Fato** (as contagens), **Hipótese** (as causas) e **Pendente** (pedido 10 da LAI) |
-| Por que, em Campinápolis (MT), tantos eleitores de 100+ votam? | 32 dos 224 eleitores de 100+ votaram no 1º turno (14,3%): 20 indígenas Xavante com digital cadastrada e 12 sem digital cadastrada. Os diários de todas as urnas da zona não mostram liberação em massa sem digital. O Censo contou no máximo 79 pessoas que poderiam ter 100+ em 2026, contra 224 títulos; o exagero de idade no documento não fecha essa diferença. Numa seção da cidade, a urna recusou 10 vezes, entre 12h58 e 13h09, um título que "já votou"; a ata foi recomendada (ver "Um município que pede exame"). | **Fato** (as contagens e os diários), **Hipótese** (as causas e as três leituras da seção 0094) e **Pendente** (pedidos 8 e 9 da LAI) |
+| Por que os eleitores de 100+ saltaram de 39.026 em 2018 para 184.330 em 2022? | A forma de contar não mudou. Uma geração de títulos que já estava no cadastro em 2018, na faixa de 95 a 99 anos, passou dos 100 em 2022. Quando ela chega a uma faixa, a faixa ganha muitos títulos e quase nenhum votante: de 2018 para 2022, a de 100+ ganhou 145.304 títulos e 169 votantes. É falha de limpeza do cadastro, não prova de voto (Parte 5). | **Fato** (as contagens e a forma de contar) e **Hipótese** (a ligação com o recadastramento com digital); os cancelamentos por óbito e o calendário do recadastramento não estão nos dados públicos |
+| Por que os votantes de 85 a 99 anos quase dobraram de 2022 para 2026? | O aumento faz parte de uma subida do comparecimento de todos os eleitores de 70 anos ou mais. Não aparece nos de 100+, fica abaixo da população do Censo em todos os municípios e não se concentra nos títulos sem digital. Não exclui uso pequeno e espalhado, nem o uso de título com digital liberado à mão pelo mesário, que não foi testado (Parte 4). | **Fato** (o aumento e onde ele está) e **Hipótese** (a causa); a forma de liberação dos idosos não está nos dados públicos |
+| As seções novas com comparecimento muito alto são sinal de título de falecido? | Os testes não ligam essas seções a títulos de falecidos. Em 2026, 433 das 40.740 seções novas passaram de 95% de comparecimento no 2º turno, contra 206 das 458.438 antigas. 385 dessas 433 têm o cadastro todo com biometria e, nas 433, a liberação pelo mesário sem a digital (6,38% dos votantes) foi menor que nas antigas muito altas (9,24%). As seções que eram novas em 2022, acompanhadas até 2026, passaram de 95% no 2º turno quase na mesma proporção que as antigas; nas que ficavam num local de votação novo, a diferença diminuiu muito, mas não sumiu. A causa não está nos arquivos: a chegada recente de eleitores ao cartório e a transferência irregular de títulos deixam os mesmos sinais (ver "Outro fenômeno vizinho"). | **Fato** (as contagens) e **Hipótese** (as causas); os dados que separariam as causas não são públicos (pedido 10, recomendação) |
+| Por que, em Campinápolis (MT), tantos eleitores de 100+ votam? | 32 dos 224 eleitores de 100+ votaram no 1º turno (14,3%): 20 indígenas Xavante com digital cadastrada e 12 sem digital cadastrada. Os diários de todas as urnas da zona não mostram liberação em massa sem digital. O Censo contou no máximo 79 pessoas que poderiam ter 100+ em 2026, contra 224 títulos; o exagero de idade no documento não fecha essa diferença. Numa seção da cidade, a urna recusou 10 vezes, entre 12h58 e 13h09, um título que "já votou"; a ata foi recomendada (ver "Um município que pede exame"). | **Fato** (as contagens e os diários) e **Hipótese** (as causas e as três leituras da seção 0094); os dados que fechariam as causas não são públicos (pedidos 8 e 9, recomendação) |
 
 Nenhum CPF foi usado nesta parte da perícia. Tudo vem de números públicos por seção, zona ou município.
 
@@ -39,7 +41,7 @@ Foram comparadas duas contagens oficiais:
 - **O perfil do eleitorado do TSE** (arquivo oficial do perfil do eleitorado por seção, gerado em 14/07/2026): quantos eleitores há em cada seção, por faixa de idade e com ou sem biometria cadastrada.
 - **O Censo 2022 do IBGE** (tabela 9514): quantas pessoas moravam em cada município, por idade.
 
-Quem tinha 96 anos ou mais no Censo de 2022 (data de referência: fim de julho de 2022) é quem pode ter 100 anos ou mais até o fim de julho de 2026. Se o TSE contar a idade numa data posterior, por exemplo a da eleição, parte de quem tinha 95 anos no Censo também chega a 100+. Esse grupo de pessoas nascidas na mesma época é chamado de **coorte**. Somando à coorte os 53.568 que tinham 95 anos no Censo, ela cobre qualquer data de 2026. A data em que o TSE conta a idade não está documentada (**Pendente**).
+Quem tinha 96 anos ou mais no Censo de 2022 (data de referência: fim de julho de 2022) é quem pode ter 100 anos ou mais até o fim de julho de 2026. Se o TSE contar a idade numa data posterior, por exemplo a da eleição, parte de quem tinha 95 anos no Censo também chega a 100+. Esse grupo de pessoas nascidas na mesma época é chamado de **coorte**. Somando à coorte os 53.568 que tinham 95 anos no Censo, ela cobre qualquer data de 2026. A data em que o TSE conta a idade não está documentada nos dados públicos.
 
 A comparação feita foi: o número de eleitores de 100+ em 2026 é maior ou menor do que essa coorte contada no Censo? Subtrair um do outro daria um tamanho para a diferença, mas esse tamanho dependeria de suposições que não puderam ser conferidas: que ninguém da coorte morreu em quatro anos, que o Censo contou todos os idosos e em que data o TSE conta a idade. Por isso este relatório registra só a comparação, e não o tamanho da diferença.
 
@@ -54,8 +56,8 @@ Depois, aplicou-se a mortalidade medida pelo IBGE (Estatísticas do Registro Civ
 | Pessoas com 96+ anos no Censo 2022 (a coorte que chega a 100+ em 2026) | 149.424 | **Fato** |
 | Pessoas com 95 anos no Censo 2022 | 53.568 | **Fato** |
 | **O cadastro tem mais eleitores de 100+ do que o Censo contou de pessoas que poderiam ter essa idade em 2026** (96+ no Censo, ou 95+ se a idade for contada depois do fim de julho de 2026) | **Sim**, nas duas formas de contar | **Fato** |
-| Tamanho do excedente (quantos títulos de 100+ não têm pessoa correspondente) | sem número: depende da data em que o TSE conta a idade e de conferir quantos idosos o Censo deixou de contar; qualquer conta exigiria suposições, como a de que ninguém morreu | **Pendente** |
-| Coorte ainda viva em 2026 e títulos sem pessoa correspondente, com a mortalidade do IBGE | estimativa de modelo, fora deste relatório | **Pendente** |
+| Tamanho do excedente (quantos títulos de 100+ não têm pessoa correspondente) | sem número: depende da data em que o TSE conta a idade e de conferir quantos idosos o Censo deixou de contar; qualquer conta exigiria suposições, como a de que ninguém morreu | limite dos dados públicos |
+| Coorte ainda viva em 2026 e títulos sem pessoa correspondente, com a mortalidade do IBGE | estimativa de modelo, fora deste relatório | fora deste relatório |
 | Eleitores de 100+ sem biometria cadastrada | 274.143 (92,0% dos 297.977 do Brasil) | **Fato** |
 
 Para comparação, a parcela sem biometria é de 55,4% entre 90 e 99 anos, 27,9% entre 80 e 89 e 9,7% entre 18 e 69, todas sem o exterior (**Fato**, recontado em todas as seções do perfil por uma conferência própria deste tópico).
@@ -84,21 +86,21 @@ Para comparação, a parcela sem biometria é de 55,4% entre 90 e 99 anos, 27,9%
 
 O título de quem morre só é cancelado quando o óbito chega à Justiça Eleitoral. Essa comunicação depende de pessoas: o cartório de registro civil precisa enviar, e o cartório eleitoral precisa processar. Além disso, depois dos 70 anos o voto é facultativo, e faltar à eleição não cancela o título. Um título de quem morreu aos 85 anos pode continuar no cadastro por décadas sem chamar atenção.
 
-Pelo princípio 8 desta perícia, uma etapa feita por pessoas **não conta como controle**. Ela não serve para explicar que "está tudo certo" nem para acusar alguém. Ela é tratada como **risco**: uma brecha que precisa ser testada nos dados para saber se foi usada. A brecha existe: o cadastro tem mais eleitores de 100+ do que o Censo contou de pessoas com idade para isso em 2026. O tamanho dela é **Pendente**, porque depende da data em que o TSE conta a idade e de quantos idosos o Censo deixou de contar (ver a contraprova abaixo). A Parte 2 mostra o que os dados dizem sobre o uso.
+Pelo princípio 8 desta perícia, uma etapa feita por pessoas **não conta como controle**. Ela não serve para explicar que "está tudo certo" nem para acusar alguém. Ela é tratada como **risco**: uma brecha que precisa ser testada nos dados para saber se foi usada. A brecha existe: o cadastro tem mais eleitores de 100+ do que o Censo contou de pessoas com idade para isso em 2026. O tamanho dela não se mede com os dados públicos sem suposição, porque depende da data em que o TSE conta a idade e de quantos idosos o Censo deixou de contar (ver a contraprova abaixo). A Parte 2 mostra o que os dados dizem sobre o uso.
 
 ### Prova de que o teste funciona (contraprova)
 
 - **Reprodução independente.** Uma segunda verificação, independente, leu de novo os arquivos brutos do TSE e do IBGE com outro programa e chegou aos mesmos números: 297.977, 149.424 e 274.143. A soma dos 5.570 municípios dá exatamente os totais do país, e nenhum município ficou sem par entre TSE e IBGE (**Fato**).
-- **E se o Censo tiver deixado de contar idosos?** Quanto mais idosos o Censo tiver deixado de contar, menor é a diferença entre o cadastro e a população. Quantos ele deixou de contar não foi conferido. Por isso o tamanho do excedente fica **Pendente**, sem número.
+- **E se o Censo tiver deixado de contar idosos?** Quanto mais idosos o Censo tiver deixado de contar, menor é a diferença entre o cadastro e a população. Quantos ele deixou de contar não foi conferido. Por isso o tamanho do excedente fica sem número.
 - **E se forem datas de nascimento inválidas?** O cadastro tem um código próprio para data inválida (1.212 eleitores), separado da faixa de 100+ (**Fato**).
-- **E se a idade for calculada em outra data?** A data não está documentada (**Pendente**). Se for posterior ao fim de julho de 2026, parte de quem tinha 95 anos no Censo também chega a 100+. Mesmo somando os 53.568 que tinham 95 anos, o cadastro continua com mais eleitores de 100+ do que o Censo contou de pessoas com idade para isso, em qualquer data de 2026 (**Fato**).
+- **E se a idade for calculada em outra data?** A data não está documentada. Se for posterior ao fim de julho de 2026, parte de quem tinha 95 anos no Censo também chega a 100+. Mesmo somando os 53.568 que tinham 95 anos, o cadastro continua com mais eleitores de 100+ do que o Censo contou de pessoas com idade para isso, em qualquer data de 2026 (**Fato**).
 - **E se forem eleitores que moram no exterior?** O exterior tem 262 eleitores de 100+ e já foi excluído da conta (**Fato**).
 
 ### O que não se pode afirmar com este teste
 
 - **Município a município, a comparação engana.** O título fica onde a pessoa se alistou, e o Censo conta onde ela mora. Em 1.068 municípios há mais eleitores de 100+ do que moradores de 96+, em 4.186 acontece o contrário e em 316 os dois números são iguais. A comparação que vale é a do país inteiro, e não a soma dos municípios com sobra (**Fato**).
 - **A comparação não mostra quem votou nem uso desses títulos.** Ela mede o cadastro, e não o comparecimento. O uso é tratado na Parte 2.
-- **Faixa de 90 a 99 anos.** Pode haver sobra também nessa faixa, mas o resultado muda de sinal conforme as premissas do modelo. Não é achado (**Pendente**).
+- **Faixa de 90 a 99 anos.** Pode haver sobra também nessa faixa, mas o resultado muda de sinal conforme as premissas do modelo. Não é achado.
 
 ## Parte 2. Esses títulos foram usados para votar?
 
@@ -135,12 +137,12 @@ As três linhas somam os 298.239 eleitores de 100+ e os 2.141 que votaram.
 
 ### 2º turno: o que dá e o que não dá para descartar
 
-**Pendente:** o TSE ainda não publicou o arquivo de comparecimento por idade do 2º turno. Sem ele, só restam testes indiretos. Eles comparam o comparecimento das seções que têm muitos títulos de 100+ com o das seções que têm poucos.
+**Limite dos dados públicos:** o arquivo de comparecimento por idade do 2º turno não foi publicado. Sem ele, só restam testes indiretos. Eles comparam o comparecimento das seções que têm muitos títulos de 100+ com o das seções que têm poucos.
 
 | Teste indireto, 2º turno | Descarta | Não descarta |
 |---|---|---|
-| Comparar a mesma seção no 1º e no 2º turno | uso amplo, feito só no 2º turno e espalhado por igual nas seções com eleitores de 100+ | uso pequeno; uso concentrado em poucas seções ou municípios; uso só nas seções com 1 ou 2 eleitores de 100+. O tamanho exato do que o teste descarta é estatístico (**Pendente**) |
-| Comparar seções com mais e menos títulos de 100+ dentro do mesmo município | só uso uniforme muito amplo, bem maior do que o teste anterior vê (**Pendente**: o limite exato é estatístico) | qualquer uso menor |
+| Comparar a mesma seção no 1º e no 2º turno | uso amplo, feito só no 2º turno e espalhado por igual nas seções com eleitores de 100+ | uso pequeno; uso concentrado em poucas seções ou municípios; uso só nas seções com 1 ou 2 eleitores de 100+. O tamanho exato do que o teste descarta é estimativa estatística, fora deste relatório |
+| Comparar seções com mais e menos títulos de 100+ dentro do mesmo município | só uso uniforme muito amplo, bem maior do que o teste anterior vê (o limite exato é estimativa estatística, fora deste relatório) | qualquer uso menor |
 
 Fonte: revisão independente dos testes, com simulações em que votos falsos foram inseridos nos dados para ver se o teste os acharia. **Fato** (o que cada teste consegue e não consegue ver).
 
@@ -192,7 +194,8 @@ Na revisão independente, procurou-se no diário da urna o que acontecia nesses 
 - **Fato:** nenhum dos 7.970 atendimentos sem biometria dessas seções teve pedido de digital. Ou seja, a mesa não "pulou" a digital: a urna foi direto ao ano de nascimento. **Hipótese:** pelo funcionamento da urna descrito acima, isso acontece quando o arquivo de eleitores gravado nela não tem a digital da pessoa. O conteúdo desse arquivo não é público.
 - **Fato:** o perfil público é de 14/07/2026. Nas 378 seções, o diário registra que a mídia da urna (que leva o arquivo de eleitores) foi gerada entre 17 e 27/09/2026; uma delas tem um segundo diário, de mídia gerada em 20/10/2026. São duas fotografias do cadastro em datas diferentes.
 - **Fato:** há também o efeito no sentido inverso, maior e em outras zonas: nas mesmas 497.508 seções, 17.621 com **mais** eleitores liberados por digital do que o perfil diz ter biometria (229.717 eleitores).
-- **Pendente, em verificação:** a mesma medida da foto nas outras seções com excesso (de 1 a 9) e nas seções sem excesso. As revisões independentes a fizeram só em amostras dessas seções, e números de amostra não entram neste relatório. Sem essa medida em todas as seções, não está medido quanto a marca da foto é rara fora das seções com excesso.
+- **Fato (conferido por uma segunda verificação independente, as 16.011 seções com excesso):** feita a mesma medida da foto em todas as seções com excesso, inclusive as de 1 a 9, o excesso cai de 36.340 para 493, em 423 seções.
+- **Pendente, em verificação:** a mesma medida nas seções sem excesso. Sem ela, não está medido quanto a marca da foto é rara fora das seções com excesso.
 
 **Leitura.** Nas seções medidas, o "com biometria" do perfil público não é o mesmo "com digital no arquivo da urna". Esses eleitores têm foto registrada, mas não têm digital utilizável na urna.
 
@@ -271,7 +274,7 @@ O gráfico abaixo mostra a mesma tabela em barras.
 | 2026 | 124.932.569 | 124.934.069 | 1.500 |
 
 - Em todas as linhas dos três arquivos, os aptos são iguais aos votantes mais os que faltaram.
-- A idade é contada numa data fixa ligada à eleição, e não no dia em que o arquivo foi gerado (Parte 5). A data exata o TSE não documenta (**Pendente**). Os nomes das faixas são os mesmos nos três anos.
+- A idade é contada numa data fixa ligada à eleição, e não no dia em que o arquivo foi gerado (Parte 5). A data exata o TSE não documenta. Os nomes das faixas são os mesmos nos três anos.
 - Em 2026, em todas as 6.106 zonas eleitorais, o número de aptos de 70 a 79, de 80 a 89, de 90 a 99 e de 100 anos ou mais no arquivo de comparecimento é exatamente o do perfil do eleitorado publicado em julho (diferença 0): os dois arquivos contam a idade na mesma data. Ninguém "mudou de faixa" por causa de uma troca na forma de contar. E uma troca assim mudaria aptos e votantes juntos, na mesma proporção: não faria a taxa de 85 a 89 anos passar de 15,7% para 24,3%.
 - A transferência de título muda o eleitor de zona, mas não cria votante no país. Nas 6.082 zonas que existem com o mesmo número nos dois anos, os votantes de 85 a 99 anos subiram de 266.644 para 459.207 (+72,2%), o mesmo que no país.
 
@@ -353,12 +356,12 @@ Caso conferido no arquivo bruto: ES, município de código 56995, zona 0053, a z
 - **O teste "votantes abaixo da população" é fraco para uso pequeno.** Ele mostra que havia gente viva de sobra para os votos, mas não detectaria uso de títulos de mortos na casa das dezenas de milhares no país inteiro.
 - **"Os centenários não subiram" é argumento fraco** contra quem evitasse de propósito o grupo de 100 anos ou mais, o mais vigiado. A contagem de pessoas de 100+ no Censo também é pouco confiável, porque muitos idosos declaram idade a mais.
 
-### Pendente
+### O que os dados públicos não alcançam, e o que ainda pode ser feito
 
-- **Pendente:** os votantes de 80 anos ou mais por forma de liberação na urna (digital do próprio eleitor, ano de nascimento, liberação pelo mesário), em 2022 e em 2026. Só o TSE liga o título à forma de liberação; o pedido está entre os pedidos pela LAI, abaixo.
-- **Pendente:** os títulos cancelados por óbito depois do fechamento do cadastro que tiveram voto registrado em 2026 (pedido pela LAI, abaixo).
-- **Pendente:** o mesmo piso de votos sem digital em 2022, para saber se ele cresceu. Depende do perfil do eleitorado por seção de 2022, que ainda não foi lido.
-- **Pendente:** a causa da subida dos idosos em 2026, que continua **Hipótese**.
+- **Limite dos dados públicos:** os votantes de 80 anos ou mais por forma de liberação na urna (digital do próprio eleitor, ano de nascimento, liberação pelo mesário), em 2022 e em 2026. Só o TSE liga o título à forma de liberação (pedido 6, abaixo, como recomendação).
+- **Limite dos dados públicos:** os títulos cancelados por óbito depois do fechamento do cadastro que tiveram voto registrado em 2026 (pedido 2, abaixo).
+- **Pendente (com dados públicos):** o mesmo piso de votos sem digital em 2022, para saber se ele cresceu. Depende do perfil do eleitorado por seção de 2022, que é público e ainda não foi lido.
+- A causa da subida dos idosos em 2026 continua **Hipótese**: os arquivos públicos não a mostram.
 - A mudança dos aptos de 95 a 99 anos e de 100 ou mais de 2018 para 2022 foi examinada à parte, na Parte 5.
 
 ## Parte 5. Por que os eleitores de 100 anos ou mais saltaram de 2018 para 2022
@@ -374,7 +377,7 @@ O número de eleitores aptos com 100 anos ou mais passou de 39.026 em 2018 para 
 - **Fato, sem usar o Censo:** quando a onda chega a uma faixa de idade, a faixa ganha muitos títulos e quase nenhum votante. De 2018 para 2022, a faixa de 100 ou mais ganhou 145.304 títulos e 169 votantes.
 - **Fato:** em 2022, o cadastro tinha mais eleitores de 100 ou mais do que o Censo, feito no mesmo ano, contou de pessoas com 99 anos ou mais.
 - **O que isso quer dizer:** é uma falha de limpeza do cadastro (títulos que deveriam ter sido cancelados e não foram), e não prova de voto. Uso em poucas seções continua possível e é tratado nas Partes 2 e 3.
-- **Pendente:** quantos títulos foram cancelados por morte em cada ano, quando cada município fez o recadastramento com digital e em que data o TSE conta a idade. Só a Justiça Eleitoral pode responder.
+- **Limite dos dados públicos:** quantos títulos foram cancelados por morte em cada ano, quando cada município fez o recadastramento com digital e em que data o TSE conta a idade. Só a Justiça Eleitoral pode responder (recomendação: pedidos 4 e 7, abaixo).
 
 ### Como foi feito
 
@@ -397,7 +400,7 @@ O número de eleitores aptos com 100 anos ou mais passou de 39.026 em 2018 para 
 | 2026: arquivo por idade (13/10/2026) × perfil do eleitorado (14/07/2026) | Iguais em todas as faixas, até a unidade: 297.977 eleitores de 100 ou mais nos dois |
 | Idade inválida | 4.828 (2014), 2.907 (2018), 1.987 (2022) e 1.209 (2026): pouco demais para mover a faixa de 100 ou mais |
 
-**A idade é contada numa data fixa ligada à eleição (Fato).** Os dois arquivos de 2026, gerados com três meses de diferença, têm exatamente os mesmos números em todas as faixas. Se a idade fosse contada no dia em que o arquivo é gerado, três meses de aniversários teriam mudado as faixas. Nos arquivos de 2014, 2018 e 2022, a faixa de 16 e 17 anos está cheia (1.638.469, 1.400.236 e 2.114.946). Se a idade fosse contada em 2025, quando esses arquivos foram gerados de novo, essa faixa estaria vazia. Qual é a data exata, se o dia da eleição ou outro, o TSE não documenta (**Pendente**).
+**A idade é contada numa data fixa ligada à eleição (Fato).** Os dois arquivos de 2026, gerados com três meses de diferença, têm exatamente os mesmos números em todas as faixas. Se a idade fosse contada no dia em que o arquivo é gerado, três meses de aniversários teriam mudado as faixas. Nos arquivos de 2014, 2018 e 2022, a faixa de 16 e 17 anos está cheia (1.638.469, 1.400.236 e 2.114.946). Se a idade fosse contada em 2025, quando esses arquivos foram gerados de novo, essa faixa estaria vazia. Qual é a data exata, se o dia da eleição ou outro, o TSE não documenta.
 
 **Uma onda de títulos que envelhece (Fato).** Pense numa fila em que, a cada quatro anos, todo mundo dá um passo à frente. Os títulos a mais de 2022 não surgiram em 2022: em 2018 a faixa de 95 a 99 anos já estava cheia, e em 2022 a mesma geração passou dos 100.
 
@@ -484,12 +487,10 @@ Fonte: perfil de comparecimento e abstenção do TSE, eleitores aptos de 100 ano
 - **Que a série antiga é a mesma que o TSE publicou na época.** Os arquivos de 2014, 2018 e 2022 lidos aqui foram gerados de novo em 2025. Uma versão de antes de 2025, para comparar, não foi obtida (**Pendente**).
 - **Que nenhum desses títulos foi usado.** A contagem por idade é do TSE e mostra que o grupo, no total, quase não vota. Uso de poucos títulos, em poucas seções, não aparece em totais.
 
-### Pendente
+### O que os dados públicos não alcançam, e o que ainda pode ser feito
 
-- **Pendente:** quantos títulos foram cancelados por óbito em cada ano e em cada estado, de 2014 a 2026 (pedido 7 da LAI, abaixo).
-- **Pendente:** quando cada município passou pelo recadastramento com digital, para testar a **Hipótese** de que o estoque ficou onde não houve recadastramento (pedido 7).
-- **Pendente:** os títulos de 95 anos ou mais pelo ano da última atividade (voto, justificativa ou atualização), para saber há quanto tempo estão parados (pedido 7).
-- **Pendente:** a data em que o TSE conta a idade (pedido 4) e uma versão dos arquivos de 2018 e 2022 publicada antes de 2025, para comparar.
+- **Limite dos dados públicos:** quantos títulos foram cancelados por óbito em cada ano e em cada estado, de 2014 a 2026; quando cada município passou pelo recadastramento com digital, o que testaria a **Hipótese** de que o estoque ficou onde não houve recadastramento; os títulos de 95 anos ou mais pelo ano da última atividade (voto, justificativa ou atualização); e a data em que o TSE conta a idade. Recomendação: pedidos 4 e 7, abaixo.
+- **Pendente (com dados públicos):** uma versão dos arquivos de 2018 e 2022 publicada antes de 2025, para comparar.
 
 ## Um município que pede exame: Campinápolis (MT)
 
@@ -502,7 +503,7 @@ Em Campinápolis, no Mato Grosso, a parte dos eleitores de 100 anos ou mais que 
 - **Fato:** Campinápolis tem 224 eleitores aptos com 100 anos ou mais. No 1º turno, 32 deles votaram, isto é, 14,3%. No país, essa taxa foi de 0,72% (Parte 2).
 - **Fato:** dos 32, 20 são eleitores que se declaram indígenas Xavante, todos com digital cadastrada, e 12 são eleitores sem digital cadastrada e sem raça/cor informada.
 - **Fato:** o Censo 2022 também conta centenários demais em Campinápolis (mais pessoas com 100 anos ou mais do que com 95 a 99). **Hipótese:** sinal de idade exagerada no documento.
-- **Fato:** o cadastro tem 224 eleitores de 100+, e o Censo contou no máximo 79 pessoas que poderiam ter essa idade em 2026, supondo que nenhuma morreu. **Hipótese:** o exagero de idade não fecha essa diferença. A causa é **Pendente**.
+- **Fato:** o cadastro tem 224 eleitores de 100+, e o Censo contou no máximo 79 pessoas que poderiam ter essa idade em 2026, supondo que nenhuma morreu. **Hipótese:** o exagero de idade não fecha essa diferença. A causa não está nos arquivos públicos.
 - **Fato:** os diários de todas as urnas do município e dos dois vizinhos da mesma zona, nos dois turnos, não mostram liberação em massa sem digital, nem no fim do dia.
 - **Fato:** numa seção da cidade, a 0094, a urna recusou 10 vezes entre 12h58 e 13h09, no 2º turno, um título com a mensagem "o eleitor identificado já votou". Nenhum voto saiu dessas tentativas. Há três leituras possíveis, e a mais grave não pode ser separada das outras com os arquivos públicos (**Hipótese**). **Recomendação:** pedir a ata dessa seção.
 - **Não se pode afirmar** que os 12 eleitores de 100+ sem digital eram eles mesmos: o diário da urna não grava a idade nem o título de quem foi liberado.
@@ -552,7 +553,7 @@ O gráfico abaixo junta as duas tabelas anteriores numa só escala.
 
 **Como ler:** no bloco de cima, cada grupo de raça/cor tem duas barras: a azul conta os títulos de 100 anos ou mais no cadastro de 2026; a laranja, quantos deles votaram no 1º turno. Os 192 títulos sem raça/cor informada, nenhum com digital cadastrada, são a maior barra, e deles 12 votaram. No bloco de baixo, a barra verde soma as pessoas que o Censo 2022 contou com 95 anos ou mais (75 com 96 ou mais e 4 com 95), a geração que pode ter 100 anos ou mais em 2026, sem descontar quem morreu desde então. É um teto, e mesmo assim os 79 ficam abaixo dos 224 títulos.
 
-**Hipótese:** o exagero de idade não fecha essa diferença. O Censo anotou a data de nascimento de quase todos os seus centenários, e uma data exagerada no documento tende a aparecer tanto no Censo quanto no cadastro. A diferença só sumiria se o Censo tivesse anotado idades mais novas que as do documento. As explicações que sobram são: títulos de pessoas que morreram ou se mudaram e não tiveram o título cancelado (a própria pergunta deste tópico); eleitores que votam em Campinápolis mas moram em outro município, por exemplo numa aldeia da mesma terra indígena do outro lado da divisa; pessoas que o Censo não encontrou; ou idade diferente nos dois documentos. Nenhuma foi testada, e quanto pesa cada uma não dá para saber com os arquivos públicos (**Pendente**).
+**Hipótese:** o exagero de idade não fecha essa diferença. O Censo anotou a data de nascimento de quase todos os seus centenários, e uma data exagerada no documento tende a aparecer tanto no Censo quanto no cadastro. A diferença só sumiria se o Censo tivesse anotado idades mais novas que as do documento. As explicações que sobram são: títulos de pessoas que morreram ou se mudaram e não tiveram o título cancelado (a própria pergunta deste tópico); eleitores que votam em Campinápolis mas moram em outro município, por exemplo numa aldeia da mesma terra indígena do outro lado da divisa; pessoas que o Censo não encontrou; ou idade diferente nos dois documentos. Nenhuma foi testada, e quanto pesa cada uma não dá para saber com os arquivos públicos.
 
 **Onde Campinápolis destoa, e onde não (Fato).** Comparando, no mesmo ano de 2022, os eleitores aptos do cadastro com a população do Censo:
 
@@ -640,19 +641,16 @@ A ata é relato de pessoas e, sozinha, não prova nada. Uma reclamação de elei
 - **O que aconteceu na seção 0094.** A trava da urna funcionou, mas as recusas podem ter três causas, e os arquivos públicos não separam a mais grave das outras.
 - Esta perícia não aceita "o mesário conferiu o documento" como controle.
 
-### Pendente
+### O que os dados públicos não alcançam, e o que ainda pode ser feito
 
-- **Pendente:** quantos dos 224 títulos de 100+ têm nascimento em 1º de janeiro (pedido 8, abaixo). **Hipótese:** é a data que costuma ser posta quando só se sabe o ano de nascimento, e muitos casos assim indicariam data estimada.
-- **Pendente:** em que seções votaram os 12 eleitores de 100+ sem digital (pedido 8).
-- **Pendente:** quantos dos 224 títulos têm óbito registrado em cartório (pedido 8).
-- **Pendente:** a ata da seção 0094 do 2º turno e a contagem de como votaram antes os títulos recusados ali (pedido 9).
-- **Pendente:** em quantas das seções do país com muitas recusas "já votou" elas se concentram em poucos minutos.
+- **Limite dos dados públicos:** quantos dos 224 títulos de 100+ têm nascimento em 1º de janeiro (**Hipótese:** é a data que costuma ser posta quando só se sabe o ano de nascimento, e muitos casos assim indicariam data estimada); em que seções votaram os 12 eleitores de 100+ sem digital; quantos dos 224 títulos têm óbito registrado em cartório (pedido 8, abaixo); a ata da seção 0094 do 2º turno e a contagem de como votaram antes os títulos recusados ali (pedido 9).
+- **Pendente (com dados públicos):** em quantas das seções do país com muitas recusas "já votou" elas se concentram em poucos minutos.
 
 ## Um fenômeno vizinho que não é o mesmo: municípios com mais eleitores do que moradores
 
 **Fato:** em 2.898 dos 5.570 municípios (52%), o perfil de julho de 2026 tem mais eleitores de 16+ do que moradores de 12+ no Censo 2022. O fenômeno se concentra em municípios pequenos. O percentual muda conforme a definição de idade e o ano da população.
 
-**Fato:** no 2º turno, em 579 municípios votou mais gente do que a população de 12+ de 2022. Agrupando todos os municípios pela razão entre eleitores e moradores, a parcela de votantes liberados pela digital em cada grupo fica a no máximo 0,62 ponto da média do estado, inclusive nos grupos em que há mais eleitores que moradores. **Hipótese:** isso indica pessoas reais, presentes na urna, com título num município diferente de onde moram, e não títulos de falecidos em massa. Quanto os títulos excedentes comparecem é estimativa de modelo e fica fora deste relatório (**Pendente**).
+**Fato:** no 2º turno, em 579 municípios votou mais gente do que a população de 12+ de 2022. Agrupando todos os municípios pela razão entre eleitores e moradores, a parcela de votantes liberados pela digital em cada grupo fica a no máximo 0,62 ponto da média do estado, inclusive nos grupos em que há mais eleitores que moradores. **Hipótese:** isso indica pessoas reais, presentes na urna, com título num município diferente de onde moram, e não títulos de falecidos em massa. Quanto os títulos excedentes comparecem é estimativa de modelo e fica fora deste relatório.
 
 **Hipótese:** a maior parte é migração com título mantido na cidade de origem ou domicílio eleitoral por vínculo familiar ou profissional, que a lei permite. Os dados agregados não separam isso de transferência irregular de títulos. É tema de outro tópico, e não deste.
 
@@ -764,7 +762,7 @@ Quem pede para votar fora da sua seção, o **eleitor em trânsito**, quase semp
 | 4 ou mais eleitores em trânsito | 3.948 | 87 | 20.715 | 5 |
 | **Total** | **40.740** | **448** | **458.436** | **111** |
 
-Fonte: boletins de urna de 2026, que trazem os eleitores em trânsito de cada seção. **Como ler:** o eleitor em trânsito explica uma parte grande das seções novas muito altas, mas não todas. Mesmo sem nenhum eleitor em trânsito, a seção nova passa de 95% mais vezes que a antiga (no 2º turno, 194 de 24.080, ou 0,81%, contra 158 de 324.346, ou 0,049%), e a diferença continua quando se comparam seções do mesmo tamanho, também nos locais que já existiam. O arquivo de 2022 não informa o eleitor em trânsito por seção. Por isso não se sabe quanto da diferença entre 2022 e 2026 vem dele (**Pendente**).
+Fonte: boletins de urna de 2026, que trazem os eleitores em trânsito de cada seção. **Como ler:** o eleitor em trânsito explica uma parte grande das seções novas muito altas, mas não todas. Mesmo sem nenhum eleitor em trânsito, a seção nova passa de 95% mais vezes que a antiga (no 2º turno, 194 de 24.080, ou 0,81%, contra 158 de 324.346, ou 0,049%), e a diferença continua quando se comparam seções do mesmo tamanho, também nos locais que já existiam. O arquivo de 2022 não informa o eleitor em trânsito por seção. Por isso os dados públicos não dizem quanto da diferença entre 2022 e 2026 vem dele.
 
 ### Cadastro todo com biometria
 
@@ -820,11 +818,9 @@ Fonte: boletins de urna de 2026. **Como ler:** no 2º turno, nas seções novas 
 - O exame compara grupos de seções, não eleitores.
 - O resultado depende do corte escolhido: a diferença entre novas e antigas cresce com o corte (tabela de 90%, 95% e 98%, acima).
 
-### Pendente
+### O que os dados públicos não alcançam, e o que ainda pode ser feito
 
-- **Pendente:** quantos eleitores de cada seção nova fizeram alistamento, transferência ou revisão no cadastro nos 12 meses antes do fechamento, e de que município vieram os transferidos (pedido 10, abaixo). É o único teste direto da explicação pela chegada recente ao cartório.
-- **Pendente:** o ato e o motivo da criação de cada seção nova com 95% ou mais, e a regra que distribui as inscrições novas entre as seções do local (pedido 10).
-- **Pendente:** o número de eleitores em trânsito por seção em 2022 (pedido 10).
+- **Limite dos dados públicos:** quantos eleitores de cada seção nova fizeram alistamento, transferência ou revisão no cadastro nos 12 meses antes do fechamento, e de que município vieram os transferidos (é o único teste direto da explicação pela chegada recente ao cartório); o ato e o motivo da criação de cada seção nova com 95% ou mais, e a regra que distribui as inscrições novas entre as seções do local; o número de eleitores em trânsito por seção em 2022. Recomendação: pedido 10, abaixo.
 - **Pendente:** o comparecimento de 2024 (eleição municipal) das seções novas de 2022, para saber em quanto tempo a diferença cai. O arquivo é público e ainda não foi lido.
 - **Pendente:** comparar o crescimento do eleitorado de 2022 para 2026 com a população estimada pelo IBGE, nos municípios das seções novas com 95% ou mais.
 
@@ -833,11 +829,11 @@ Fonte: boletins de urna de 2026. **Como ler:** no 2º turno, nas seções novas 
 1. **Nenhum CPF foi usado.** A frente descrita aqui usa só contagens públicas por seção, zona e município. A frente por CPF (cruzar títulos com registros de óbito) é tratada à parte e não faz parte deste tópico.
 2. **Não é possível dizer que um título específico votou.** O caderno de votação (a lista assinada pelos eleitores na mesa) não é público, e os arquivos da urna não identificam o eleitor que votou (fora o número gravado quando a votação de um eleitor é interrompida, que é **Hipótese**; ver "O que os arquivos permitem saber").
 3. **Não é possível separar falecidos de vivos com a data de nascimento errada**, entre os títulos de 100+ que não votam.
-4. **O 2º turno não tem contagem oficial por idade.** Os testes indiretos só descartam uso amplo e espalhado por igual. Uso concentrado, ou só nas seções com 1 ou 2 eleitores de 100+, não aparece neles. Quanto uso fica descartado é **Pendente**.
+4. **O 2º turno não tem contagem oficial por idade.** Os testes indiretos só descartam uso amplo e espalhado por igual. Uso concentrado, ou só nas seções com 1 ou 2 eleitores de 100+, não aparece neles. Quanto uso fica descartado é estimativa e fica fora deste relatório.
 5. **A contagem oficial do 1º turno é do TSE.** Ela é coerente com os outros arquivos, mas não pode ser conferida de forma independente.
 6. **O que dá para afirmar sobre o caminho sem biometria vale para o uso amplo.** Uso em poucas seções, ou de poucos títulos por seção, não aparece nos testes agregados.
 7. **O aumento dos idosos de 2026 não separa vivos de títulos usados por outra pessoa.** Ele está espalhado por todas as idades de 70 anos para cima e não se concentra nos títulos sem digital, mas o arquivo de comparecimento por idade não diz como cada idoso foi liberado, e o diário da urna não diz a idade (Parte 4).
-8. **Datas a confirmar.** A data do fechamento do cadastro e a data em que o TSE calcula a idade no perfil não estão nos arquivos lidos (**Pendente**). Pela lei eleitoral, o cadastro fecha 150 dias antes da eleição, o que daria 07/05/2026; a data efetiva não foi conferida.
+8. **Datas a confirmar.** A data do fechamento do cadastro e a data em que o TSE calcula a idade no perfil não estão nos arquivos lidos. Pela lei eleitoral, o cadastro fecha 150 dias antes da eleição, o que daria 07/05/2026; a data efetiva não foi conferida.
 
 ## O que só a Justiça Eleitoral consegue verificar
 
@@ -848,7 +844,7 @@ Fonte: boletins de urna de 2026. **Como ler:** no 2º turno, nas seções novas 
 
 ## Pedidos sugeridos pela Lei de Acesso à Informação (LAI)
 
-**Recomendação** (pedidos ainda não feitos):
+**Recomendação** (pedidos ainda não feitos). O veredito deste tópico não depende deles: eles servem para fechar o que os dados públicos não alcançam.
 
 1. Ao TSE: os títulos aptos de 100+ por ano de nascimento e por município, para saber quantos teriam 110, 120 ou 130 anos.
 2. Ao TSE: quantos títulos de 100+ tiveram comparecimento registrado em cada turno de 2026, por município, e quantos títulos foram cancelados por óbito depois de 07/05/2026, indicando os que tiveram voto registrado em 2026.
@@ -861,15 +857,11 @@ Fonte: boletins de urna de 2026. **Como ler:** no 2º turno, nas seções novas 
 9. Ao TRE-MT: a ata da seção 0094 da zona 0026, do 2º turno, com as ocorrências e as reclamações registradas, e as respostas às três perguntas de "Um município que pede exame". Ao TSE, só em contagem: quantos dos títulos recusados com "já votou" nessa seção tinham votado antes, e por qual forma de liberação.
 10. Ao TSE, só em números e sem dados pessoais, sobre as seções novas ("Outro fenômeno vizinho"): para cada seção nova de 2026 com 95% ou mais de comparecimento e para as seções antigas dos mesmos locais, quantos eleitores fizeram alistamento, transferência ou revisão do cadastro em cada mês dos 12 meses antes do fechamento do cadastro, e de que município vieram os transferidos; o ato e o motivo da criação de cada uma dessas seções novas, e a regra que distribui as inscrições novas entre as seções de um local; e o número de eleitores em trânsito por seção em 2022.
 
-## Pendente
+## Pendente (o que ainda pode ser feito com dados públicos)
 
 - **Comparecimento oficial dos idosos por município e por biometria, 1º turno.** A parte que conta os votos que só podem ter vindo de títulos sem digital passou pela revisão independente e está na Parte 4. A busca de municípios e zonas onde votaram mais centenários do que seria possível ainda não entra com número.
-- **Forma de liberação dos idosos e títulos cancelados por óbito com voto em 2026:** dependem dos pedidos 2 e 6 acima (Parte 4).
-- **Causa do estoque de títulos de 95+ e 100+:** cancelamentos por óbito por ano, calendário do recadastramento com digital e títulos sem atividade dependem do pedido 7; a data em que o TSE conta a idade, do pedido 4 (Parte 5).
-- **Seções novas:** a causa de haver mais seções novas com 95% ou mais em 2026 do que em 2022; a data das operações no cadastro por seção, o motivo da criação das seções, as transferências por seção e o eleitor em trânsito por seção em 2022 (pedido 10); o comparecimento de 2024 das seções novas de 2022.
-- **Campinápolis (MT):** a causa dos 224 títulos de 100+ contra um teto de 79 no Censo, de quem foram os 12 votos de 100+ sem digital e o que aconteceu na seção 0094 do 2º turno (pedidos 8 e 9).
+- **Seções novas:** o comparecimento de 2024 das seções novas de 2022.
 - **Comparecimento × mortes recentes por município** e **variação entre turnos nos grupos que costumam faltar.** Ainda não passaram pela revisão independente.
-- **2º turno por idade:** refazer a medida direta quando o TSE publicar o arquivo.
 - **Diário das urnas nos lugares apontados:** horário e sequência das liberações por ano de nascimento em Arame, Icatu e Pirapemas (MA), Redentora (RS), Florianópolis (SC), Pilão Arcado (BA) e nas zonas do excesso de "sem biometria".
 - **Resíduo sem foto de Indaiatuba (SP), zona 0211, seções 0430 a 0444:** medir o tamanho no universo completo e testar a causa.
 - **Marca da foto em todas as seções:** medir a mensagem "Foto do eleitor apresentada" em todas as seções com excesso de 1 a 9 e em todas as seções sem excesso, para saber quantos eleitores estão na situação "foto sem digital" no país.
@@ -881,18 +873,17 @@ Os números deste tópico vêm de duas fontes. A maior parte passou pela revisã
 
 ## Próximos passos
 
-- [ ] Refazer a Parte 2 com o arquivo oficial de comparecimento por idade do 2º turno, quando o TSE publicar
-- [ ] Enviar os pedidos pela LAI listados acima
+- [ ] **Recomendação:** enviar os pedidos pela LAI listados acima e, se o TSE publicar o comparecimento por idade do 2º turno, refazer a Parte 2 com ele
 - [x] Incluir os votos de idosos que só podem ter vindo de títulos sem digital (Parte 4), depois da revisão independente
 - [x] Explicar o salto dos eleitores de 100+ de 2018 para 2022 (Parte 5), depois da revisão independente
-- [ ] Testar a ligação do estoque com o recadastramento com digital, quando o TSE informar o calendário (pedido 7)
+- [ ] **Recomendação:** testar a ligação do estoque com o recadastramento com digital, se o TSE informar o calendário (pedido 7)
 - [ ] Incluir a busca de municípios e zonas com mais centenários votando do que seria possível, depois da revisão independente
 - [ ] Refazer o piso de votos sem digital com o perfil do eleitorado de 2022, para saber se ele cresceu
 - [x] Conferir uma a uma as 56 seções novas com 98% ou mais de comparecimento no 2º turno
 - [x] Acompanhar as seções novas de 2022 até 2026 e medir a liberação pelo mesário sem a digital nas seções novas muito altas, depois da revisão independente
 - [ ] Ler o comparecimento de 2024 das seções novas de 2022
-- [ ] Testar a explicação pela chegada recente ao cartório e a transferência irregular, quando o TSE responder ao pedido 10
+- [ ] **Recomendação:** testar a explicação pela chegada recente ao cartório e a transferência irregular, se o TSE responder ao pedido 10
 - [ ] Examinar o diário das urnas nos lugares e zonas apontados (horário e sequência das liberações por ano de nascimento)
 - [x] Examinar o diário de todas as urnas de Campinápolis (MT) e dos dois municípios vizinhos da mesma zona, nos dois turnos, depois da revisão independente
-- [ ] Pedir ao TRE-MT a ata da seção 0094 da zona 0026 (2º turno) e ao TSE os números dos pedidos 8 e 9
+- [ ] **Recomendação:** pedir ao TRE-MT a ata da seção 0094 da zona 0026 (2º turno) e ao TSE os números dos pedidos 8 e 9
 - [ ] Registrar as verificações deste tópico no livro de evidências da auditoria

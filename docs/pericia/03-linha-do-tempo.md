@@ -12,6 +12,8 @@ Os itens 1 a 11 deste tópico ainda não passaram pela revisão independente, aq
 
 **Item 12 (a apuração na noite do 2º turno), atualizado em 30/10/2026:** este item passou pela revisão independente, que o confirmou com ressalvas. A revisão refez as contas da análise original e chegou exatamente aos mesmos resultados. O texto usa só a versão confirmada pela revisão. Os números foram contados de novo, seção a seção, por uma terceira conta, que confere minuto a minuto a recontagem com a conta original (0 diferença) e com a da revisão.
 
+**Atualização de 02/11/2026 (fechamento só com dados públicos):** as hipóteses deste tópico têm veredito final no [tópico 10](10-quadro-das-hipoteses.md): H06 (horário estendido) **sem sinal nos dados públicos**, H08 (sequência impossível) **refutada** e H20 (relógio e ordem do diário) **fato que pede explicação**, cada uma conferida por uma segunda verificação independente. O relógio da urna reserva da BA 34134/0171/0166, antes Hipótese, passou a Fato (item 3). O que dependia de resposta do TSE ou dos TREs virou limite dos dados públicos, com a recomendação de pedido; **Pendente** fica só para o que ainda pode ser feito com dados públicos.
+
 ## Resposta curta
 
 Tudo abaixo vale para o **2º turno (25/10/2026)**, salvo quando o texto diz "1º turno". Os testes de horário (abertura, encerramento e votos depois das 17h) cobrem 497.896 das 497.897 seções do Brasil com boletim: em 1 seção de SP o diário não foi lido (item 1). As 1.310 seções do exterior ficam fora, porque falta o fuso de cada país (ver "Limites").
@@ -25,7 +27,8 @@ Tudo abaixo vale para o **2º turno (25/10/2026)**, salvo quando o texto diz "1�
 | Os votos depois das 17h mudaram o resultado? | Não. Mesmo se fossem todos de um lado só, seriam 0,77% da diferença entre os dois candidatos (34.315 de 4.430.191) | **Fato** |
 | Houve voto em ritmo impossível para uma pessoa? | Não. Lidos os diários de todas as urnas, cada urna separada, o menor intervalo entre dois votos seguidos é de 16 segundos | **Fato** |
 | O mesário seguiu as regras de horário? | Não se pode afirmar. Há seções em que o mesário declarou à urna que "todas as pessoas presentes já votaram" e depois disso ainda houve voto. Quantas são: **Pendente: em verificação** | **Fato** (o registro existe); a contagem e o motivo são **Pendentes** |
-| Às 19h os boletins já existiam, mas o TSE os liberou aos poucos? (item 12) | Às 19h, 98,64% dos boletins do Brasil já tinham sido emitidos pelas urnas, e o TSE tinha registrado como recebidos 1.909 (0,38% das 499.248 seções). De 17:10 a 19:03:37 o TSE não registrou nenhum boletim com voto; depois, registrou em lotes e com vazão limitada até 21:09. Onde os boletins esperaram, e se a ordem de liberação dependeu do voto das seções: **Pendente** | **Fato** (horários e contagens); **Pendente** (onde esperaram e a ordem) |
+| Às 19h os boletins já existiam, mas o TSE os liberou aos poucos? (item 12) | Às 19h, 98,64% dos boletins do Brasil já tinham sido emitidos pelas urnas, e o TSE tinha registrado como recebidos 1.909 (0,38% das 499.248 seções). De 17:10 a 19:03:37 o TSE não registrou nenhum boletim com voto; depois, registrou em lotes e com vazão limitada até 21:09. A ordem de registro não muda a soma. Onde os boletins esperaram, os dados públicos não mostram; se a ordem dependeu do voto das seções é teste estatístico, fora deste relatório | **Fato** (horários e contagens); limite dos dados públicos (onde esperaram) |
+| Algum relógio de urna estava errado? | Poucos, e nenhum com voto fora do horário real. Na BA 34134/0171/0166, o próprio diário prova que o relógio da urna reserva estava atrasado pelo menos 54 minutos: a seção abriu de verdade às 8h54 ou depois, sem voto criado nem tirado (item 3; [tópico 14](14-outras-formas-de-fraude.md), item 8) | **Fato** |
 
 O resultado mostra **o que a urna registrou e quando**. Não mostra **quem** estava diante da urna, nem se a entrada de eleitores depois das 17h foi autorizada (ver "O que este resultado prova e o que não prova").
 
@@ -86,7 +89,8 @@ Princípio usado (princípio 8 das premissas desta auditoria): uma regra cumprid
 - **Fato.** Nenhuma urna do Brasil ficou pronta antes das 8h de Brasília e nenhuma recebeu voto antes das 8h (o exterior fica fora, item 1). Metade das urnas ficou pronta até 08:00:01, e 99% até 08:05:46.
 - **Fato.** 927 seções ficaram prontas às 8h15 ou depois; 88 às 9h ou depois; 18 às 10h ou depois. A que abriu mais tarde, MG 46477/0134/0295, só foi ligada às 13h00 e ficou pronta às 13h08, com 9 votos de 25 eleitores aptos (conferido no diário original).
 - **Fato.** Em 5 seções o boletim diz que a votação abriu às 08:00:01, mas o diário só mostra a urna pronta de 14 a 42 minutos depois: CE 15296/0011/0258, PE 23370/0035/0045, PE 23515/0054/0003, RJ 60011/0191/0045 e SP 71072/0420/0322. Em PE 23370/0035/0045, o diário original registra bateria crítica às 7h17; a linha seguinte só aparece às 8h06, dizendo que a urna foi ligada às 8h04, e a urna fica pronta às 8h42.
-- **Hipótese.** A urna entrou em votação às 08:00:01, perdeu energia e o fim do diário daquele trecho se perdeu; ou o boletim tira o horário de abertura de outra fonte. **Pendente.**
+- **Hipótese.** A urna entrou em votação às 08:00:01, perdeu energia e o fim do diário daquele trecho se perdeu; ou o boletim tira o horário de abertura de outra fonte. Os dados públicos não separam as duas leituras; a regra que o boletim usa para a hora de abertura não é pública.
+- **Fato (conferido por uma segunda verificação independente).** O horário de abertura gravado no boletim é o do relógio da urna, e não a hora real. Na BA 34134/0171/0166 (2º turno), o boletim diz 08:00:01, mas o relógio da urna reserva estava atrasado pelo menos 54 minutos, o que o próprio diário prova: um cartão de memória só fica numa urna de cada vez, e a reserva guardou, às 10:02:38 do relógio dela, o diário que a urna original tinha escrito nesse cartão até as 10:56:03 do relógio da original, que estava certo. A seção abriu de verdade às 8h54 ou depois: os eleitores esperaram a trava de abertura do relógio atrasado. Nenhum voto foi criado nem tirado. Detalhes no [tópico 14](14-outras-formas-de-fraude.md), item 8.
 
 ### 4. Urna religada durante a votação
 
@@ -94,7 +98,7 @@ Princípio usado (princípio 8 das premissas desta auditoria): uma regra cumprid
 - **Pendente: em verificação.** O total de religamentos, quantos foram pela chave e quantos por queda de energia, os erros que vieram antes e o tempo em que a urna ficou parada. Esses números dependem de reler os diários um a um e ainda não foram refeitos de forma independente.
 - **Fato (conferido no diário original nas 20 seções).** Volta Redonda (RJ 59250), zona 0090: as 20 seções da zona que encerraram depois das 19h tiveram a urna desligada pela chave entre 17h00 e 17h05, sem encerrar a votação. O último voto dessas seções foi antes das 17h (o mais tarde, às 16h59min30s). Em 5 delas o diário registra também um religamento logo depois das 17h, sem voto. Todas só voltaram a ser ligadas entre 19h09 e 19h42, e então encerraram, entre 19h13 e 19h47. Nesse religamento final, 3 estavam na bateria interna e 17 na rede elétrica.
 - **Hipótese.** Em Volta Redonda houve falta de energia no local ou erro de procedimento. Nesse intervalo as urnas ficaram desligadas e sem boletim, e a garantia de que nada mudou depende das assinaturas digitais (tópico 1).
-- **Fato** (conferido por uma segunda verificação independente). Os pacotes dessas 20 seções estão entre os 499.207 pacotes do 2º turno conferidos um a um, com 0 falha de lacre ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)): o boletim, o registro dos votos e o diário não mudaram depois de assinados pela urna. A assinatura não mostra o que aconteceu com a urna enquanto ficou desligada. **Pendente:** pedir ao TRE-RJ a ata da zona 0090.
+- **Fato** (conferido por uma segunda verificação independente). Os pacotes dessas 20 seções estão entre os 499.207 pacotes do 2º turno conferidos um a um, com 0 falha de lacre ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)): o boletim, o registro dos votos e o diário não mudaram depois de assinados pela urna. A assinatura não mostra o que aconteceu com a urna enquanto ficou desligada; a ata da zona 0090, que diria, não é pública (**Recomendação:** pedir ao TRE-RJ).
 
 ### 5. Ritmo dos votos: houve sequência impossível? (hipótese H08)
 
@@ -132,7 +136,7 @@ Para votar, cada eleitor passa por um ciclo: o mesário digita o título, a urna
 | 2º turno, votos depois das 17h | 34.330 | 34.315 |
 | 2º turno, votos depois das 18h | 1.993 | 1.993 |
 
-As seções corrigidas, com o que o diário mostra em cada uma, estão no [tópico 14](14-outras-formas-de-fraude.md), item 8. No 2º turno, toda a diferença (15 votos) vem de uma seção de Goiás, GO 92274/0119/0049, cujo relógio estava 1 hora adiantado: os 15 votos que o relógio dela marcou depois das 17h foram dados antes das 17h reais. As demais medidas dos itens 6 a 9 foram refeitas com a correção (**Fato**): a seção de Goiás sai da contagem de seções com voto depois das 17h (29.854 → 29.853) e passa do grupo que encerrou entre 17h30 e 18h59 para o grupo que encerrou até 17h29, porque o boletim dela encerrou às 18h04 do relógio, 17h04 reais. Os percentuais por UF, o horário do último voto e as comparações do item 9 não mudam.
+As seções corrigidas, com o que o diário mostra em cada uma, estão no [tópico 14](14-outras-formas-de-fraude.md), item 8. O relógio atrasado da BA 34134/0171/0166 (item 3) não muda estes totais: com o atraso dela, nenhum voto passa para depois das 17h reais. No 2º turno, toda a diferença (15 votos) vem de uma seção de Goiás, GO 92274/0119/0049, cujo relógio estava 1 hora adiantado: os 15 votos que o relógio dela marcou depois das 17h foram dados antes das 17h reais. As demais medidas dos itens 6 a 9 foram refeitas com a correção (**Fato**): a seção de Goiás sai da contagem de seções com voto depois das 17h (29.854 → 29.853) e passa do grupo que encerrou entre 17h30 e 18h59 para o grupo que encerrou até 17h29, porque o boletim dela encerrou às 18h04 do relógio, 17h04 reais. Os percentuais por UF, o horário do último voto e as comparações do item 9 não mudam.
 
 **Fato.** O boletim dessas seções soma 127.854.363 eleitores. A diferença de 481 vem das 9 seções do item 10 em que o diário lido não bate com o boletim; nenhuma delas tem voto depois das 17h, então as três linhas de baixo não são afetadas.
 
@@ -148,7 +152,7 @@ As seções corrigidas, com o que o diário mostra em cada uma, estão no [tópi
 - **Fato.** Nessas 6.352 seções houve 4.492 votos depois das 17h, 1.860 depois das 18h e 11 depois das 19h. 3.339 delas não tiveram nenhum voto registrado depois das 17h.
 - **Fato.** No 1º turno, em todas as UFs, não aparece esse degrau. Os encerramentos tardios diminuem aos poucos, como fila: 2.863 seções encerraram entre 18h50 e 18h59, 2.162 entre 19h00 e 19h09 e 1.595 entre 19h10 e 19h19, e alguns seguem até depois das 22h. No 2º turno foram 390, 6.257 e 72 nesses mesmos intervalos.
 - **Fato.** A cópia guardada pela auditoria da decisão do STF na Reclamação 101.673/BA (documento intitulado "Minuta_ Decisão Liminar") determina a prorrogação "até as 19h, horário de Brasília, do encerramento do recebimento dos votos em todas as seções de todo o Brasil, cabendo ao TSE dar cumprimento" (hipótese H06; o mesmo texto está nos tópicos 8 e 10).
-- **Pendente.** A versão assinada da decisão no portal do STF e o ato do TSE ou dos TREs que a aplicou. O diário mostra só o que aconteceu: as urnas ficaram abertas porque quem as operava decidiu assim. A existência do ato não muda esse registro.
+- **Pendente.** A versão assinada da decisão no portal do STF, que é pública. O ato do TSE ou dos TREs que a aplicou não está nos dados públicos. O diário mostra só o que aconteceu: as urnas ficaram abertas porque quem as operava decidiu assim. A existência do ato não muda esse registro.
 
 ### 8. Sinais de eleitores que chegaram depois das 17h (risco humano)
 
@@ -183,7 +187,7 @@ Não é possível saber em quem cada eleitor tardio votou: o registro dos votos 
 - **Fato.** Nenhum boletim tem data de encerramento fora de 25/10. Os 29 boletins de urnas de contingência do exterior não têm data de encerramento.
 - **Fato.** Tempo entre o encerramento e a emissão do boletim, pelos horários do próprio boletim: menos de 5 minutos em 493.502 seções; de 5 a menos de 15 minutos em 4.434; de 15 a menos de 60 minutos em 874; de 1 hora a menos de 2 horas em 358; 2 horas ou mais em 10 (e 29 sem horário de encerramento, as do exterior citadas acima). O maior foi 2h44min45s (RJ 59250/0090/0232, Volta Redonda). Exemplo conferido no diário original, AC 01082/0004/0440: o encerramento foi confirmado às 17h02 de Brasília, os mesários foram registrados logo depois, e a finalização só começou às 19h00, sem nenhum voto no intervalo.
 - **Fato.** 5 seções do Brasil têm boletim, mas o diário lido não tem o início do encerramento no dia: ES 57932/0009/0112, MG 46256/0131/0046, RS 89630/0072/0054, SC 83593/0008/0143 e SP 61654/0014/0250. A ES 57932/0009/0112 é a seção cujo diário apareceu também no pacote da 0085 (item 5); o boletim dela saiu de uma urna de contingência usada só para encerrar.
-- **Hipótese.** Nessas 5, o boletim foi gerado depois de religar a urna ou trocar por outra, e o diário dessa parte ficou em outra mídia. **Pendente.**
+- **Hipótese.** Nessas 5, o boletim foi gerado depois de religar a urna ou trocar por outra, e o diário dessa parte ficou em outra mídia, que não está no pacote publicado; os dados públicos não confirmam.
 - **Fato.** Em 5.712 seções o boletim saiu de urna de reserva que substituiu a da seção (e em mais 2, de urna de reserva usada só para encerrar), e 11.748 pacotes têm mais de um diário. Em 9 de 499.206 seções com diário lido, a contagem de votos do diário difere da do boletim: as 3 do erro de leitura (item 5) e 6 com menos votos no diário que no boletim (BA 34711/0021/0178: −1; BA 35653/0173/0235: −13; MA 08893/0047/0609: −36; PB 21750/0002/0254: −1; PI 11533/0003/0216: −1; RS 89060/0017/0191: −2). As 6 estão explicadas no [tópico 2](02-coerencia-entre-arquivos.md) ("As 10 seções em que o diário não bateu de primeira"; a 10ª seção de lá é a de SP cujo diário não foi lido, item 1). Em BA 34711/0021/0178, PB 21750/0002/0254 e PI 11533/0003/0216, o voto que falta foi confirmado e a urna reiniciou antes de registrar "computado". Em RS 89060/0017/0191, um dos 2 é desse tipo e o outro tem o atendimento só pela metade no diário: a urna caiu no meio do voto ([tópico 2](02-coerencia-entre-arquivos.md), conferido por uma segunda verificação independente). Em BA 35653/0173/0235 e MA 08893/0047/0609, os 13 e os 36 votos não têm rastro porque o diário da urna que os recebeu não está no pacote. Somados ao voto do RS com o atendimento pela metade (49 + 1), são os 50 votos sem rastro no diário que a revisão independente conferiu ([tópico 2](02-coerencia-entre-arquivos.md)).
 
 ### 11. Um caso examinado nos dois turnos: AM, Ipixuna, zona 0045, seção 0063
@@ -195,7 +199,7 @@ A seção, numa aldeia indígena, foi examinada porque o boletim mostra o 22 cai
 - **Fato.** **2º turno:** a urna da seção foi a mesma que serviu de reserva no 1º turno, e não houve troca. Abriu às 6h00 locais (8h de Brasília), foi desligada pela chave às 12h51, religada às 13h23, e encerrou às 15h02 locais (17h02 de Brasília). Nenhum voto depois das 17h de Brasília; 193 dos 197 votos vieram antes das 11h locais.
 - **Fato.** Sem digital (boletim): 55 dos 227 eleitores do 1º turno (24,2%). **Pendente: em verificação** a parcela sem digital entre os votos tardios do 1º turno, a distribuição por hora no 2º turno e de quem é a digital nas liberações manuais.
 - **Fato.** Nenhum intervalo impossível nos dois turnos (mínimo de 73 segundos no 1º e de 40 segundos no 2º).
-- **Hipótese.** O atraso na abertura e a troca da urna (29 minutos e 54 segundos sem voto, das 16h26min22s às 16h56min16s locais) não explicam 3 horas, 53 minutos e 58 segundos de votação depois das 17h de Brasília no 1º turno (das 15h00 às 18h53min58s locais). **Pendente:** a autorização do juiz eleitoral, se houver, na ata da seção ou da zona.
+- **Hipótese.** O atraso na abertura e a troca da urna (29 minutos e 54 segundos sem voto, das 16h26min22s às 16h56min16s locais) não explicam 3 horas, 53 minutos e 58 segundos de votação depois das 17h de Brasília no 1º turno (das 15h00 às 18h53min58s locais). A autorização do juiz eleitoral, se houver, estaria na ata da seção ou da zona, que não é pública (**Recomendação:** pedir).
 - **O que o caso não mostra:** a queda do 22 não pode ser ligada ao horário, porque o registro dos votos não diz em quem cada eleitor votou. O diário mostra só que, no 1º turno, 81 dos 227 votos (35,7%) vieram depois das 17h de Brasília e, no 2º, a votação praticamente terminou às 11h locais.
 
 ### 12. A apuração na noite do 2º turno: os boletins chegaram ao TSE e foram liberados aos poucos? (hipótese H06)
@@ -262,9 +266,9 @@ Nenhum arquivo público tem a hora em que o boletim saiu da seção ou do ponto 
 
 **Como ler:** cada degrau é um minuto, e a altura é quantos boletins o TSE registrou naquele minuto. No 2º turno (linha azul), depois de um começo às 17h05, a linha fica em zero até 19:03, quando aparece o lote de 5.651. Depois ela sobe em degraus, cai a zero na parada de 19:48 a 19:50, fica no teto até 21:09 e despenca às 21:10, quando a fila acaba. No 1º turno (laranja tracejada), o registro começa logo depois das 17h, também em degraus, e tem a parada de 18:01 a 18:07. Os dois gráficos cobrem cada minuto das 17:00 às 03:00 do dia seguinte.
 
-**Hipótese.** A parada de 17:10 a 19:03 está ligada à prorrogação da votação até as 19h (item 7). O ato do TSE que suspendeu o registro e o horário dele não foram conferidos (**Pendente**).
+**Hipótese.** A parada de 17:10 a 19:03 está ligada à prorrogação da votação até as 19h (item 7). O ato do TSE que suspendeu o registro e o horário dele não estão nos dados públicos.
 
-**Pendente (sem número):**
+**O que os dados públicos não alcançam:**
 
 - **Onde os boletins esperaram** entre 17:10 e 19:03, e **em que ordem a fila foi atendida** depois. Isso depende dos registros de transmissão e da fila de recepção do TSE (hora de chegada × hora de registro de cada boletim), que não são públicos.
 - **Se a ordem de registro dependeu do voto das seções**, inclusive a ordem das UFs e de lugares inteiros (locais de votação, zonas, municípios). Os testes estatísticos estão no estudo e na revisão independente e não entram neste relatório.
@@ -295,7 +299,7 @@ Nenhum arquivo público tem a hora em que o boletim saiu da seção ou do ponto 
 - **Não prova** quem estava diante da urna em cada voto. O tempo do ciclo é compatível com um eleitor, mas também com o mesário digitando. Essa pergunta é do tópico 4.
 - **Não prova** que a extensão até 19h foi autorizada. Isso depende de um documento oficial ainda não conferido.
 - **Prova (item 12):** que, às 19h, 98,64% dos boletins do Brasil já tinham sido emitidos e só 0,38% das seções estavam registradas pelo TSE; que o registro de boletins com voto parou de 17:10 a 19:03:37 e voltou em lotes, com vazão limitada; e que, depois de registrado, cada boletim entrou na soma na ordem de registro.
-- **Não prova** onde os boletins esperaram, nem se a ordem em que foram liberados dependeu do voto das seções (item 12, Pendente).
+- **Não prova** onde os boletins esperaram, nem se a ordem em que foram liberados dependeu do voto das seções (item 12; os dados públicos não alcançam o primeiro, e o segundo é teste estatístico, fora deste relatório).
 
 ## Limites
 
@@ -310,12 +314,12 @@ Nenhum arquivo público tem a hora em que o boletim saiu da seção ou do ponto 
 ## Próximos passos
 
 - **Pendente:** revisão independente dos itens 1 a 11 deste tópico. O item 12 já passou por ela.
-- **Pendente (item 12):** pedir ao TSE os registros de transmissão e da fila de recepção (hora de chegada e hora de registro de cada boletim, e a regra de atendimento), o ato que suspendeu o registro depois da decisão do STF e o histórico dos arquivos de resultado publicados durante a apuração.
+- **Recomendação (item 12; registros que não são públicos):** pedir ao TSE os registros de transmissão e da fila de recepção (hora de chegada e hora de registro de cada boletim, e a regra de atendimento), o ato que suspendeu o registro depois da decisão do STF e o histórico dos arquivos de resultado publicados durante a apuração.
 - **Pendente:** refazer, no universo completo, as medidas que dependem de reler cada diário: religamentos por causa e tempo parado, votos depois do "SIM", cancelamentos de encerramento, votos depois de pausa e forma de liberação dos votos tardios.
-- **Pendente:** conferir a versão assinada da decisão judicial no portal do STF e o ato do TSE ou dos TREs que estenderam o horário até 19h, com a lista de locais, e cruzar com os 313 locais inteiros e os 818 mistos.
+- **Pendente:** conferir a versão assinada da decisão judicial no portal do STF. **Recomendação:** pedir o ato do TSE ou dos TREs que estenderam o horário até 19h, com a lista de locais, e cruzar com os 313 locais inteiros e os 818 mistos.
 - **Pendente:** repetir a linha do tempo completa no 1º turno.
 - **Feito** (segunda verificação independente): os lacres das 5 urnas carregadas no dia da eleição e das 20 de Volta Redonda conferem; estão entre os 499.207 pacotes do 2º turno, com 0 falha.
 - **Pendente:** corrigir a leitura dos diários e repetir as contas.
 - **Pendente:** cruzar os votos tardios sem digital com o mesário que liberou e com as rajadas de liberação (tópico 4).
 - **Pendente:** tabela de fuso do exterior, para incluir as 1.310 seções.
-- **Pendente:** atas da seção 0063 de Ipixuna-AM nos dois turnos e da zona 0090 de Volta Redonda-RJ.
+- **Recomendação:** atas da seção 0063 de Ipixuna-AM nos dois turnos, da zona 0090 de Volta Redonda-RJ e da seção BA 34134/0171/0166 do 2º turno (relógio atrasado).
