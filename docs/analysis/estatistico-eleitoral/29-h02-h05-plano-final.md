@@ -448,3 +448,17 @@ Total de testes declarados: cerca de **1 milhão** de testes de seção (triagem
 4. **97 seções:** 69 zonas, 23.050 votantes, 18.452 liberados à mão.
 5. **2022:** número de seções igual ao dos docs 24 e 26.
 6. **Casos:** cada seção citada como extrema conferida no BU bruto.
+
+## Adendo 1 (02/11/2026, escrito antes de baixar e de ler qualquer arquivo de SP de 2022)
+
+O coordenador autorizou o download dos dois zips de SP de 2022 (commit do plano: 45dc471). A B3 se estende a SP sem mudar o método.
+
+- **Leitura do diário e do `.bu` de 2022:** os mesmos scripts do doc 26, com `--uf sp`:
+  - `estatistico-h13-v2-diario2022.mjs --uf sp --turno 1|2` e `--juntar`;
+  - `estatistico-h13-v2-bu2022.mjs --uf sp`.
+  A coleta usa `coleta-2022-mg.mjs --uf sp`, um arquivo por vez. A única mudança no código é pôr `sp` na lista de UFs autorizadas.
+- **Conferência antes do teste:** as seções do zip têm de bater com as de SP no `detalhe_votacao_secao_2022` (etapa `conferir`), e a V2 do diário com a do `.bu`, pelo mesmo critério do doc 26.
+- **Família da B3:** passa de 8 para 10 testes (d₂₀₂₂ e d₂₀₂₆ − d₂₀₂₂ em MG, PR, RS, SC e SP). O corte de Bonferroni sobe de |z| ≥ 2,73 para |z| ≥ 2,81.
+- **Regra para SP:** a mesma do PR, com o sinal trocado. "Já existia em 2022": d₂₀₂₂ do mesmo sinal (a favor do 22), |d₂₀₂₂| ≥ ½ |d₂₀₂₆| e a diferença não passa. "Novo em 2026": a diferença passa a favor do 22. O resto é inconclusivo.
+- **Detector N:** passa a ter 5 UFs (com SP). O corte sobe de |z| ≥ 2,50 para |z| ≥ 2,58.
+- **Conclusão de (b) para SP:** passa a usar B3 como o PR. O caso "B3 não existe" deixa de valer para SP.

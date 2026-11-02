@@ -36,7 +36,7 @@ import { dividirCsv, linhasZip, pad } from './forense-lib.mjs';
 export const TURNOS_2022 = { 1: { pleito: '406', data: '02/10/2022' }, 2: { pleito: '407', data: '30/10/2022' } };
 const URL_ZIPS = 'https://cdn.tse.jus.br/estatistica/sead/eleicoes/eleicoes2022/arqurnatot';
 const URL_CATALOGO = 'https://dadosabertos.tse.jus.br/api/3/action/package_show?id=resultados-2022-arquivos-transmitidos-para-totalizacao';
-export const UFS_2022 = ['mg', 'pr', 'sc', 'rs']; // as autorizadas (MG: doc 24; PR, SC e RS: doc 26)
+export const UFS_2022 = ['mg', 'pr', 'sc', 'rs', 'sp']; // as autorizadas (MG: doc 24; PR, SC e RS: doc 26; SP: doc 29, autorizada pelo coordenador em 02/11/2026)
 export const nomeZip2022 = (t, uf = 'mg') => `bu_imgbu_logjez_rdv_vscmr_2022_${t}t_${uf.toUpperCase()}.zip`;
 export const caminhoZip2022 = (t, uf = 'mg') => path.join(DIR_DADOS, 'raw', '2022', `${t}t`, 'zip', nomeZip2022(t, uf));
 const DIR_MANIFESTO = path.join(DIR_DADOS, 'manifest', '2022');
