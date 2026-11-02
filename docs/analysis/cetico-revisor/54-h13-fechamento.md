@@ -385,3 +385,7 @@ Sorteei 20 seções de SP com semente fixa (54), entre as que estão na tabela d
 
 - os números citados são de universo: 14 seções; 1.502.075 e 559.431 votos; margem de 4.430.191;
 - coeficientes, z, o mínimo detectável (é estimativa) e o peso de 133 mil (amostra do modelo) ficam fora.
+
+## Errata da causa (02/11/2026, coordenador, a partir do parecer 57)
+
+As 14 seções de MG com 1 a 23 eleitores no perfil e de 139 a 419 aptos no BU **não** têm perfil "fora de data". São seções principais de agregadas, e o perfil por seção do TSE traz a principal e a agregada separadas. Exemplo: a 0247 tem 4 eleitores e a agregada 0239 tem 335; a soma, 339, é igual aos aptos. O defeito está nas nossas covariáveis e denominadores, que não somavam as agregadas (16.142 seções principais no país). A correção feita pelo adendo 1 (aptos do BU) é a certa nos dois diagnósticos, e a conclusão deste parecer não muda.
