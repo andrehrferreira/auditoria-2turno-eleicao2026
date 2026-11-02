@@ -65,6 +65,8 @@ Status: `pendente` · `em andamento` · `concluída` · `bloqueada`
 | T18 | Normas e fontes: erro de assinatura na inicialização, códigos SAVD, contingência e RED, carga, relógio, arquivos não publicados, seriais | H04, H11 | Grok | concluída | [parecer](analysis/modelos/T18/parecer.md): sem web, só pedidos de LAI |
 | T19 | Grupo de discussão: novas hipóteses de fraude testáveis com os dados (duas rodadas) | H15–H24 | Astra, Grok, Kimi e Claude | concluída | [síntese](analysis/modelos/T19/sintese.md) |
 | T20 | Revisão geral do relatório de perícia: resumo executivo pelos três; cada tópico por um modelo (formato da T15) | todas | Astra, Grok, Kimi | em andamento | `analysis/modelos/T20/` |
+| T25 | Veredito final de cada hipótese só com dados públicos, sem esperar o TSE (consenso; posição do Claude escrita antes) | H01–H27 | Astra, Grok, Kimi e Claude | em andamento | `analysis/modelos/T25/` |
+| T26 | Revisão de código dos scripts de fechamento (H02–H26) | H02–H26 | Kimi 3 | pendente | `analysis/modelos/T26/` |
 
 ## Critério de conclusão de uma tarefa
 

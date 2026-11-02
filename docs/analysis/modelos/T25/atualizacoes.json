@@ -1,0 +1,127 @@
+{
+  "H02": {
+    "novo": [
+      "Fechamento (plano pré-registrado, doc 30) e revisão independente (parecer 57), no universo dos dois turnos.",
+      "No 2º turno, 16.011 seções têm mais eleitores liberados sem digital do que o cadastro de biometria explica (36.340 eleitores). A foto do eleitor sem digital no arquivo da urna explica 98,64% desse excesso (97,45% numa leitura mais rigorosa). Sobram 493 eleitores em 423 seções, com forma de propriedade do arquivo. No 1º turno o quadro é igual (98,66%).",
+      "Em 159 seções a liberação à mão pelo mesário ficou fora do normal da zona no 2º turno. Das 46 sem explicação técnica, 18 tiveram a urna trocada no próprio dia, 28 já eram altas no 1º turno e 5 tiveram o leitor parado parte do dia. Sobram cerca de 4 seções novas e sem rastro técnico (cerca de 300 liberações).",
+      "Em 3 seções (2 no AM, 1 no PR) o comparecimento também subiu fora do padrão. Numa do AM, 19 dos 21 eleitores a mais vieram por liberação à mão.",
+      "Todo o excesso somado (36.340 + 4.709) é menos de 1% da margem."
+    ],
+    "nao_publico": "Caderno de votação e ata das poucas seções que sobram."
+  },
+  "H03": {
+    "novo": [
+      "Contraprova independente das contas internas do boletim no 2º turno (parecer 52): leitor próprio do boletim, escrito do zero, mais o banco e o boletim impresso, todos iguais em 100% das 499.207 seções. Zero violação na soma dos votos × comparecimento (539.817 seção × cargo, incluindo as consultas), nos aptos × trânsito, nas formas de liberação, no comparecimento entre eleições e em comparecimento ≤ aptos.",
+      "Contraprova com boletins alterados de propósito: as 9 alterações foram acusadas exatamente onde deviam.",
+      "Com isso, todas as contas e contraprovas da H03 dos dois turnos estão feitas. O que resta é o nº 10 no RJ (classificação de 630.541 votos como nulo técnico, já fato) e as consultas populares, que não têm resultado oficial para comparar."
+    ],
+    "nao_publico": "Nenhum para a soma. A coerência interna não prova que a urna gravou o que o eleitor digitou (integridade do programa, H04, H25)."
+  },
+  "H04": {
+    "novo": [
+      "Fechamento (doc 13 do engenheiro) e revisão (parecer 56). A medida independente do revisor liga cada voto à última inicialização da urna: 0 voto sem verificação completa do programa (33 etapas ou mais, todas com sucesso) em 125.275.244 votos do 1º turno e 128.235.724 do 2º.",
+      "72 inicializações fogem da sequência mais comum, e todas tiveram troca da mídia de votação no dia (conferidas no diário).",
+      "Nenhum arquivo publicado foi alterado depois de sair da urna (assinaturas e hashes, já fato)."
+    ],
+    "nao_publico": "Programa adulterado e assinado com a chave oficial não aparece nos arquivos: faltaria conferir o hash dos binários lacrados contra o código-fonte e o resultado do Teste de Integridade."
+  },
+  "H05": {
+    "novo": [
+      "Fechamento (plano pré-registrado, doc 30) e revisão (parecer 57).",
+      "Poder simulado: uma inserção concentrada é vista a partir de 33.993 a 54.650 votos em 1% das seções, 94 a 124 mil em 5%, 199 mil em 20%, 74.619 nos redutos do 13 e 500 mil em zonas inteiras. Nenhuma aparece.",
+      "Ponto cego (revisor): 1 voto a mais em metade das seções (248.805) ou 3 votos em todas (1.492.692) passam sem sinal; uma inserção espalhada por igual não é vista nem com 4,43 milhões.",
+      "O sinal de SP (a favor do 22) some quando se comparam seções do mesmo local de votação. O sinal do PR (a favor do 13) é novo em 2026 (z 3,07) e resistiu a seis leituras benignas testadas com dado público.",
+      "As 97 seções de liberação em massa, lidas no diário: 47 com padrão de leitor ruim, 12 seletivas sem desvio de voto ou de comparecimento, 36 indeterminadas."
+    ],
+    "nao_publico": "Via de habilitação por eleitor e caderno de votação; inspeção física das urnas e dos leitores."
+  },
+  "H09": {
+    "novo": [
+      "Fechamento (doc 13 do engenheiro) e revisão (parecer 56).",
+      "(a) O título não aparece em nenhuma forma codificada (cerca de 50 formas por número) no boletim, no registro dos votos, nas listas lacradas nem no diário: 0 achado acima do acaso, com controles positivos de 100%.",
+      "(b) Pela estrutura do diário, o número gravado quando a mesa interrompe a votação de um eleitor (suspensão) é o título de quem está na cabine. Leituras alternativas (eleitor anterior, seguinte, digitação errada, outra seção) foram refutadas.",
+      "O diário público traz, para 20.062 pessoas no 1º turno e 1.866 no 2º: o número do título, a presença, a hora ao segundo, a forma de liberação e o desfecho (votou, teve voto nulo dado pela urna, saiu sem votar).",
+      "O registro dos votos não guarda a ordem de votação, então o voto não fica ligado ao título. Exceção: 1 caso no 1º turno, numa seção do AM em que todos votaram no mesmo candidato a Presidente."
+    ],
+    "nao_publico": "Regra exata da urna para a suspensão (especificação do TSE)."
+  },
+  "H10": {
+    "novo": [
+      "Fechamento (doc 14 do matemático) e revisão (parecer 55).",
+      "A hipótese diz que o vencedor cresceu mais do que havia de votos disponíveis. Com o disponível do próprio texto (eliminados, aumento do comparecimento e queda de brancos e nulos), o ganho do 13 cabe no disponível em 21 UFs; em 6 (AC, AP, RR, MA, AM, TO) passa por 52.336 votos no total, exatamente a perda líquida do 22 nessas UFs.",
+      "Nessas 6, o ganho só fecha com eleitores que mudaram de lado entre os turnos ou com eleitores diferentes em cada turno; os arquivos não dizem qual (seria preciso a lista de quem votou em cada turno, dado pessoal).",
+      "A queda de brancos e nulos está espalhada (metade da queda vem de 95.625 seções; maior queda numa seção, 42 votos), sem forma de inserção concentrada.",
+      "Troca de voto dentro da urna não tem limite nos dados públicos (ponto cego geral, ligado à integridade do programa)."
+    ],
+    "nao_publico": "Lista de quem votou em cada turno (dado pessoal)."
+  },
+  "H12": {
+    "novo": [
+      "Fechamento (doc 13 do engenheiro) e revisão (parecer 56).",
+      "É fato, pelos catálogos de mensagens dos dois turnos, que a urna não lê nem registra o e-Título: o diário só anota título ou CPF digitado.",
+      "O teto do mecanismo é o número de eleitores que votaram sem a própria digital no 2º turno: 15.884.298. É só o tamanho máximo, não indício.",
+      "A conferência do documento é feita pela mesa (pessoa), o que pela regra do relatório não conta como controle."
+    ],
+    "nao_publico": "Teste de laboratório com e-Títulos de voluntários (ler o QR, alterar um campo, testar o validador sem internet); não depende do TSE."
+  },
+  "H13": {
+    "novo": [
+      "Fechamento (plano pré-registrado, docs 27 e 28, com adendo 1 também registrado antes) e revisões (parecer 54 e o adendo dele).",
+      "Mesmo modelo nas 27 UFs, 192 testes com correção de Bonferroni. Nordeste: nenhuma UF, nem a média do Nordeste, nem os 12 testes de CE, PB e PE passam. O teste não descarta efeitos pequenos (de dezenas a centenas de milhares de votos, conforme a via).",
+      "Fora do Nordeste, só dois sinais a favor do 13 passam: MG e RS, na liberação pelo ano de nascimento. Os dois já existiam em 2022, com o mesmo formato, nas mesmas UFs.",
+      "Um sinal novo de MG (liberação à mão) vinha de erro de denominador (seções agregadas não somadas); corrigido, não passa.",
+      "Mesmo que toda a liberação pelo ano de nascimento do 2º turno em MG e no RS (2.061.506 votos) fosse voto trocado, a margem mudaria em 4.123.012, menos que 4.430.191.",
+      "Nenhum diário de urna sem votos (como o caso do RS em 2022) em 2026, nos dois turnos.",
+      "A leitura literal (a maioria dos liberados votou no 13) não se decide em nenhuma UF, porque o voto é secreto."
+    ],
+    "nao_publico": "Ligar voto a pessoa (caderno de votação, imagens das digitais) para separar composição do eleitorado de inserção com o mesmo formato."
+  },
+  "H17": {
+    "novo": [
+      "Fechamento (doc 14 do matemático) e revisão (parecer 55).",
+      "8.683.417 atendimentos sem desfecho no 2º turno: 5.774.186 título digitado errado, 2.321.187 justificativa de eleitor de outra seção, 586.672 identificador aceito, 1.372 eleitor habilitado.",
+      "Teto de eleitores que podem ter ficado sem votar por algo registrado na mesa: de 47,7% a 83,5% da margem, conforme a leitura; só passa da margem quem conta todo título digitado errado (91,8% deles são redigitados em até 30 segundos).",
+      "Votos confirmados e não gravados: 21 (2º turno) e 118 (1º); nenhum entrou no boletim; se o eleitor voltou não dá para saber.",
+      "O eleitor mandado embora sem nenhum registro no diário não tem teto, salvo a abstenção (30.509.005)."
+    ],
+    "nao_publico": "Caderno de votação."
+  },
+  "H20": {
+    "novo": [
+      "Fechamento (doc 13 do engenheiro) e revisão (parecer 56).",
+      "Fato novo: uma urna da BA estava com o relógio pelo menos 54 minutos atrasado (provado pela ordem de uso de uma mídia física, que só pode estar numa urna de cada vez). Isso atrasou a abertura da seção, mas muda no máximo 1 voto na conta de votos depois das 17h.",
+      "Duas outras seções (SP e RS) com relógio suspeito ficam não decidíveis.",
+      "Os votos sem linha no diário (159 no 1º turno, 54 no 2º) estão no boletim e no registro dos votos assinados, dentro do horário legal."
+    ],
+    "nao_publico": "Diário interno das urnas de 3 seções e atas."
+  },
+  "H23": {
+    "novo": [
+      "Fechamento (doc 14 do matemático) e revisão (parecer 55).",
+      "O comparecimento a mais nas seções com recarga entre os turnos é de +0,115 ponto (568 eleitores em 1.567 seções).",
+      "502 recargas sem motivo escrito no 1º turno, em 275 zonas; 55 delas tiveram mídia gerada de novo, 52 na zona 0094 do PA (dois lotes de mídia refeitos, primeira carga com versão superada).",
+      "Nas seções com recarga, a parcela do 13 cresceu um pouco menos que na zona. Pior caso absurdo (todos os votos do 13 nessas seções como trocados): 150.470 votos, 3,4% da margem."
+    ],
+    "nao_publico": "Atas das recargas."
+  },
+  "H24": {
+    "novo": [
+      "Fechamento (doc 14 do matemático) e revisão (parecer 55), com contraprovas independentes (boletins alterados de propósito, em memória).",
+      "As contas acusam toda alteração do total de aptos; o lacre pega toda alteração feita depois da urna.",
+      "Não acusam: troca entre trânsito e aptos da seção com o mesmo total, a mesma alteração nos dois turnos (só uma das contas acusa), votos apagados dentro da urna, voto trocado e voto no lugar de quem faltou (até 100% dos aptos).",
+      "Todo o trânsito do 2º turno: 584.117 aptos, abaixo da margem."
+    ],
+    "nao_publico": "Cadastro usado na carga (não público); presos, militares, servidores e deficiência visual por seção."
+  },
+  "H26": {
+    "novo": [
+      "Fechamento (plano pré-registrado, doc 06 do cientista político) e revisão (parecer 53).",
+      "Pela régua fixada antes (margem do 13 sobre todos os votos nominais), a virada de 2026 foi mais uniforme entre as zonas do que as de 2018 e 2022: o 13 melhorou em 99,4% das zonas, contra 76,2% e 88,7%. Pela régua mais natural para comparar anos (margem só entre os dois finalistas), 2026 fica no padrão de 2022 (99,05% contra 98,10%).",
+      "Zonas perto do corte, seção a seção: sem sinal do lado do 13. Do lado do 22: 20 seções extremas e 4 zonas concentradas (num colégio de SP, o prédio inteiro virou 17 pontos para o 22 e o comparecimento subiu 18,7%).",
+      "Votos depois das 17h: 84% pela digital; sem sinal de processo.",
+      "A forma observada (virada parecida em todo o país) é também a de uma troca de votos do 22 para o 13 proporcional ao voto do 22, que nenhuma conta sobre o resultado enxerga (ponto cego estrutural; bastariam 2,2 milhões para mudar o vencedor). O mesmo vale para conversão de brancos e nulos em votos do 13.",
+      "Explicação política (Hipótese): mobilização nacional no 2º turno (maior alta de comparecimento e maior queda de brancos e nulos dos três anos)."
+    ],
+    "nao_publico": "Nenhum arquivo de resultado separa mobilização de troca proporcional; isso depende da integridade da urna (H04, H25)."
+  }
+}
