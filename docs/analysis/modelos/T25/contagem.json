@@ -6,7 +6,10 @@
   "kimi": "F/nao",
   "claude": "F/nao",
   "veredito": "F",
-  "resultado": "nao_excluido (empate)"
+  "resultado": "nao_excluido (empate)",
+  "final_veredito": "F",
+  "final_resultado": "nao_excluido",
+  "desempate": "regra da síntese: F sobre S com fato documentado; N sobre S com sinal não separável; nao_excluido no resultado"
  },
  {
   "id": "H02",
@@ -15,7 +18,9 @@
   "kimi": "F/nao",
   "claude": "F/nao",
   "veredito": "F",
-  "resultado": "nao"
+  "resultado": "nao",
+  "final_veredito": "F",
+  "final_resultado": "nao"
  },
  {
   "id": "H03",
@@ -24,7 +29,9 @@
   "kimi": "R/nao",
   "claude": "R/nao",
   "veredito": "R",
-  "resultado": "nao"
+  "resultado": "nao",
+  "final_veredito": "R",
+  "final_resultado": "nao"
  },
  {
   "id": "H04",
@@ -33,7 +40,9 @@
   "kimi": "R/nao",
   "claude": "R/nao",
   "veredito": "R",
-  "resultado": "nao"
+  "resultado": "nao",
+  "final_veredito": "R",
+  "final_resultado": "nao"
  },
  {
   "id": "H05",
@@ -42,7 +51,9 @@
   "kimi": "S/nao_excluido",
   "claude": "N/nao_excluido",
   "veredito": "S",
-  "resultado": "nao_excluido"
+  "resultado": "nao_excluido",
+  "final_veredito": "S",
+  "final_resultado": "nao_excluido"
  },
  {
   "id": "H06",
@@ -51,7 +62,9 @@
   "kimi": "R/nao",
   "claude": "S/nao",
   "veredito": "S",
-  "resultado": "nao"
+  "resultado": "nao",
+  "final_veredito": "S",
+  "final_resultado": "nao"
  },
  {
   "id": "H07",
@@ -60,7 +73,9 @@
   "kimi": "R/nao",
   "claude": "R/nao",
   "veredito": "R",
-  "resultado": "nao"
+  "resultado": "nao",
+  "final_veredito": "R",
+  "final_resultado": "nao"
  },
  {
   "id": "H08",
@@ -69,7 +84,9 @@
   "kimi": "R/nao",
   "claude": "R/nao",
   "veredito": "R",
-  "resultado": "nao"
+  "resultado": "nao",
+  "final_veredito": "R",
+  "final_resultado": "nao"
  },
  {
   "id": "H09",
@@ -78,7 +95,9 @@
   "kimi": "F/nao",
   "claude": "F/nao",
   "veredito": "F",
-  "resultado": "nao"
+  "resultado": "nao",
+  "final_veredito": "F",
+  "final_resultado": "nao"
  },
  {
   "id": "H10",
@@ -87,7 +106,9 @@
   "kimi": "R/nao",
   "claude": "R/nao",
   "veredito": "R",
-  "resultado": "nao"
+  "resultado": "nao",
+  "final_veredito": "R",
+  "final_resultado": "nao"
  },
  {
   "id": "H11",
@@ -96,7 +117,10 @@
   "kimi": "S/nao_excluido",
   "claude": "R/nao",
   "veredito": "S",
-  "resultado": "nao_excluido (empate)"
+  "resultado": "nao_excluido (empate)",
+  "final_veredito": "S",
+  "final_resultado": "nao_excluido",
+  "desempate": "regra da síntese: F sobre S com fato documentado; N sobre S com sinal não separável; nao_excluido no resultado"
  },
  {
   "id": "H12",
@@ -105,7 +129,9 @@
   "kimi": "N/nao_excluido",
   "claude": "N/nao_excluido",
   "veredito": "N",
-  "resultado": "nao_excluido"
+  "resultado": "nao_excluido",
+  "final_veredito": "N",
+  "final_resultado": "nao_excluido"
  },
  {
   "id": "H13",
@@ -114,7 +140,10 @@
   "kimi": "S/nao",
   "claude": "N/nao_excluido",
   "veredito": "N (empate)",
-  "resultado": "nao_excluido"
+  "resultado": "nao_excluido",
+  "final_veredito": "N",
+  "final_resultado": "nao_excluido",
+  "desempate": "regra da síntese: F sobre S com fato documentado; N sobre S com sinal não separável; nao_excluido no resultado"
  },
  {
   "id": "H14",
@@ -123,7 +152,10 @@
   "kimi": "F/nao",
   "claude": "S/nao",
   "veredito": "S (empate)",
-  "resultado": "nao"
+  "resultado": "nao",
+  "final_veredito": "F",
+  "final_resultado": "nao",
+  "desempate": "regra da síntese: F sobre S com fato documentado; N sobre S com sinal não separável; nao_excluido no resultado"
  },
  {
   "id": "H15",
@@ -132,7 +164,9 @@
   "kimi": "S/nao_excluido",
   "claude": "S/nao_excluido",
   "veredito": "S",
-  "resultado": "nao_excluido"
+  "resultado": "nao_excluido",
+  "final_veredito": "S",
+  "final_resultado": "nao_excluido"
  },
  {
   "id": "H16",
@@ -141,7 +175,9 @@
   "kimi": "R/nao",
   "claude": "R/nao",
   "veredito": "R",
-  "resultado": "nao"
+  "resultado": "nao",
+  "final_veredito": "R",
+  "final_resultado": "nao"
  },
  {
   "id": "H17",
@@ -150,7 +186,9 @@
   "kimi": "F/nao_excluido",
   "claude": "S/nao_excluido",
   "veredito": "N",
-  "resultado": "nao_excluido"
+  "resultado": "nao_excluido",
+  "final_veredito": "N",
+  "final_resultado": "nao_excluido"
  },
  {
   "id": "H18",
@@ -159,7 +197,9 @@
   "kimi": "S/nao_excluido",
   "claude": "S/nao_excluido",
   "veredito": "S",
-  "resultado": "nao_excluido"
+  "resultado": "nao_excluido",
+  "final_veredito": "S",
+  "final_resultado": "nao_excluido"
  },
  {
   "id": "H19",
@@ -168,7 +208,10 @@
   "kimi": "F/nao",
   "claude": "S/nao_excluido",
   "veredito": "S (empate)",
-  "resultado": "nao_excluido (empate)"
+  "resultado": "nao_excluido (empate)",
+  "final_veredito": "F",
+  "final_resultado": "nao_excluido",
+  "desempate": "regra da síntese: F sobre S com fato documentado; N sobre S com sinal não separável; nao_excluido no resultado"
  },
  {
   "id": "H20",
@@ -177,7 +220,10 @@
   "kimi": "S/nao",
   "claude": "S/nao",
   "veredito": "S (empate)",
-  "resultado": "nao"
+  "resultado": "nao",
+  "final_veredito": "F",
+  "final_resultado": "nao",
+  "desempate": "regra da síntese: F sobre S com fato documentado; N sobre S com sinal não separável; nao_excluido no resultado"
  },
  {
   "id": "H21",
@@ -186,7 +232,10 @@
   "kimi": "S/nao",
   "claude": "S/nao_excluido",
   "veredito": "S",
-  "resultado": "nao_excluido (empate)"
+  "resultado": "nao_excluido (empate)",
+  "final_veredito": "S",
+  "final_resultado": "nao_excluido",
+  "desempate": "regra da síntese: F sobre S com fato documentado; N sobre S com sinal não separável; nao_excluido no resultado"
  },
  {
   "id": "H22",
@@ -195,7 +244,9 @@
   "kimi": "S/nao",
   "claude": "S/nao",
   "veredito": "S",
-  "resultado": "nao"
+  "resultado": "nao",
+  "final_veredito": "S",
+  "final_resultado": "nao"
  },
  {
   "id": "H23",
@@ -204,7 +255,9 @@
   "kimi": "F/nao",
   "claude": "S/nao",
   "veredito": "F",
-  "resultado": "nao"
+  "resultado": "nao",
+  "final_veredito": "F",
+  "final_resultado": "nao"
  },
  {
   "id": "H24",
@@ -213,7 +266,9 @@
   "kimi": "S/nao",
   "claude": "S/nao",
   "veredito": "S",
-  "resultado": "nao"
+  "resultado": "nao",
+  "final_veredito": "S",
+  "final_resultado": "nao"
  },
  {
   "id": "H25",
@@ -222,7 +277,9 @@
   "kimi": "F/nao",
   "claude": "F/nao_excluido",
   "veredito": "F",
-  "resultado": "nao_excluido"
+  "resultado": "nao_excluido",
+  "final_veredito": "F",
+  "final_resultado": "nao_excluido"
  },
  {
   "id": "H26",
@@ -231,7 +288,9 @@
   "kimi": "S/nao_excluido",
   "claude": "S/nao_excluido",
   "veredito": "S",
-  "resultado": "nao_excluido"
+  "resultado": "nao_excluido",
+  "final_veredito": "S",
+  "final_resultado": "nao_excluido"
  },
  {
   "id": "H27",
@@ -240,6 +299,8 @@
   "kimi": "F/nao",
   "claude": "F/nao",
   "veredito": "F",
-  "resultado": "nao"
+  "resultado": "nao",
+  "final_veredito": "F",
+  "final_resultado": "nao"
  }
 ]
