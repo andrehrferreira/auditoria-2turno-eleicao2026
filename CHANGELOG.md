@@ -2,6 +2,50 @@
 
 Entregas da auditoria, por data. Os números são os dos commits citados; o estado atual de cada hipótese está em [docs/hipoteses.md](docs/hipoteses.md) e o andamento no [README](README.md#andamento).
 
+## 02/11/2026
+
+Decisão do dono: a auditoria fecha só com dados públicos, sem esperar o TSE. Cada hipótese ganhou veredito final.
+
+### Análises e revisões
+
+Cada teste estatístico teve o plano registrado num commit próprio antes de qualquer leitura dos dados. Os planos e adendos ficaram em:
+- da0e969 (H26);
+- 89ede09 (H13) e ed0474c (adendo da H13);
+- 067d1a7 (H14 e H19);
+- 45dc471 (H02 e H05) e 1989f56 (adendo de SP 2022).
+
+Fechamentos, cada um com revisão cética:
+- **H03.** Contraprova independente das contas internas C3 a C7 do 2º turno, com leitor próprio do boletim (parecer 52, 609b6be): 0 violação; a C3 passa a 539.817 com as consultas.
+- **H26.** Zonas perto do corte, linha de base 2018/2022 e voto depois das 17h (a58f6f3).
+  - O parecer 53 (d25efce) mostrou que a uniformidade depende da régua usada.
+  - Erro de código corrigido: o local de votação era agrupado sem a zona (fc4dc96).
+- **H13.** Modelo único nas 27 UFs, exame de CE, PB e PE e busca de diário sem votos (ee296d2).
+  - O parecer 54 (f1b372e) derrubou o sinal novo de MG, que vinha de seções agregadas não somadas.
+  - O adendo recalculou tudo pelos aptos do boletim e com SP 2022 (a1e694a, 6aee350): ficou não decidível.
+- **H10, H17, H23 e H24** (db27f88; parecer 55 e errata, 7e19395).
+- **H04, H09, H12 e H20** (454985b; parecer 56, correção de classe e errata, baaae55). O diário publica o título de quem estava na cabine na suspensão.
+- **H02 e H05.** Diários de 2022 de SP baixados e conferidos, 34 GB (d2d63cd); parecer 57 (e273be9).
+- **H14 e H19** (c50f361; parecer 58, 89d5220).
+
+### Vereditos finais (T25)
+
+Astra, Grok, Kimi e Claude votaram o veredito de cada hipótese. A posição do Claude foi commitada antes das consultas (f184f0d, 16f7c8c, 97cd1f5).
+
+Resultado:
+- **0 confirmada;**
+- **6 refutadas:** H03, H04, H07, H08, H10 e H16;
+- **9 fatos que pedem explicação:** H01, H02, H09, H14, H19, H20, H23, H25 e H27;
+- **9 sem sinal:** H05, H06, H11, H15, H18, H21, H22, H24 e H26;
+- **3 não decidíveis:** H12, H13 e H17.
+
+Nenhuma hipótese tem efeito capaz de mudar o vencedor. Em 12, os dados públicos não permitem limitar o efeito. Os vereditos foram registrados em docs/hipoteses.md (991e222).
+
+### Relatórios
+
+- Perícia com os vereditos finais em todos os tópicos, no resumo e no README da perícia (07fe84d, f90ea7b, 05e53d1). "Depende do TSE" passou a "o que os dados públicos não alcançam"; o pedido ao TSE ficou como recomendação.
+- Relatório das hipóteses com os vereditos finais e o gerador ajustado (0a7d799).
+- Relatório completo regerado e assinado, com 335 páginas.
+
 ## 31/10/2026
 
 ### Análises e revisões
