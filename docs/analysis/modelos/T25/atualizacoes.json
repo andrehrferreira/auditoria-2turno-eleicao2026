@@ -123,5 +123,26 @@
       "Explicação política (Hipótese): mobilização nacional no 2º turno (maior alta de comparecimento e maior queda de brancos e nulos dos três anos)."
     ],
     "nao_publico": "Nenhum arquivo de resultado separa mobilização de troca proporcional; isso depende da integridade da urna (H04, H25)."
+  },
+  "H14": {
+    "novo": [
+      "Fechamento (plano pré-registrado, doc 32) e revisão (parecer 58).",
+      "Nas 5.714 seções com urna reserva no 2º turno, os votos se comportaram como nas seções vizinhas. O teste veria um desvio a partir de cerca de 870 votos nas trocas novas e de cerca de 2.000 nas reservas herdadas do 1º turno (desvio igual nos dois turnos).",
+      "O comparecimento menor das reservas no 1º turno é explicado pela interrupção da votação no dia da troca: quanto mais tempo a seção ficou parada, maior o déficit (de −0,46 ponto com menos de 15 minutos a −1,94 com uma hora ou mais); 7.747 eleitores.",
+      "As 14 reservas que liberaram quase todos sem digital: o leitor lia os dedos, mas a comparação com os mesários registrados na urna original deu escore exatamente 0 em todas as tentativas, desenho de falha técnica (provável incompatibilidade de moldes entre modelos de urna, Hipótese).",
+      "Pela contagem, a H14 não pode mudar o vencedor: mesmo com todos os votos dessas seções para o 22, o 13 venceria."
+    ],
+    "nao_publico": "Ata da mesa e registro de manutenção das reservas; programa adulterado e assinado não aparece nos arquivos."
+  },
+  "H19": {
+    "novo": [
+      "Fechamento (plano pré-registrado, doc 32) e revisão (parecer 58).",
+      "Nas 26.933 seções sozinhas no prédio com aquele modelo de urna: 0 de 24 testes passa.",
+      "Liberações sem nenhum dedo lido: 172.318 (1º turno) e 212.171 (2º). Onde a falha subiu, o voto não pendeu para nenhum lado além do acaso. Um sinal pequeno no Norte (cerca de 900 votos, sobretudo PA) vem sem o comparecimento a mais que um voto no lugar de ausente exigiria e sem aviso de \"já votou\".",
+      "Linha de base de 2022 (MG, PR, SC, RS): nenhum teste de voto passa; onde a falha subiu mais que em 2022, o comparecimento caiu (sinal contrário ao de inserção).",
+      "Fato por seção: 11 seções liberaram muitos eleitores sem nenhuma leitura de dedo. No caso mais forte (ES, 1º turno), 47 de 54 liberações sem dedo lido, todas pelo mesmo mesário, com o leitor funcionando para o dedo do mesário e sem reconhecer nenhum eleitor por 4 horas; o voto ficou na faixa do local.",
+      "Só o total de liberações à mão (8.632.471) passa da margem; nas formas que os testes veem, o limite fica em dezenas de milhares de votos."
+    ],
+    "nao_publico": "Quem pôs o dedo e a ata da mesa (se a falha foi provocada); diários de 2022 das outras 23 UFs (públicos, não baixados)."
   }
 }
