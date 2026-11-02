@@ -378,3 +378,159 @@ O sinal mede isto: onde a liberação manual com mesário identificado caiu do 1
 - **Marca da V3m entre 2022 e 2026:** o texto mudou entre os anos (doc 24, seção 2). O parecer 48 confirmou a diferença pela liberação manual inteira do boletim (−1,23 em 2022 contra +1,70 em 2026), mas a parte só do mesário identificado em 2022 depende da tradução.
 - **Controles:** os dois sinais de MG somem sem os controles do perfil. Um perfil mal medido (sem renda nem urbano/rural por seção) pode criá-los ou escondê-los.
 - **Revisão independente** pendente antes de qualquer uso na perícia.
+
+## Adendo 1: resultado
+
+Adendo 1 ao plano 27, gravado sozinho no **commit ed0474c** antes de rodar. Ele foi escrito depois do [parecer cético 54](../cetico-revisor/54-h13-fechamento.md), que mostrou que o teste MG V3m do painel dependia de 14 seções em que o perfil público do eleitorado (julho de 2026) tem de 1 a 23 eleitores para urnas com 139 a 419 aptos. **O resultado acima fica como está.** Esta seção refaz a conta com as três mudanças do adendo:
+
+1. **Um só denominador, os aptos do BU de cada turno e ano.** No painel, e_v = L_v,2 ÷ aptos_2 − L_v,1 ÷ aptos_1, e Δc igual. Em todos os testes, o controle de tamanho é o log dos aptos. No nível, a exposição continua sendo votos da via ÷ comparecimento do BU (premissa aceita pelo coordenador).
+2. **Linha de base de 2022 refeita com o mesmo denominador em MG, PR, SC, RS e SP** (15 testes, |z| ≥ 2,935).
+3. **Regra "estável" por UF × via.**
+
+A forma final é recalculada pela seção 8, com os mesmos 192 testes e o mesmo corte.
+
+### A1.1 Veredito depois do adendo
+
+**H13: não decidível com dados públicos.**
+
+- **Nordeste: sem sinal.** Nenhuma UF do Nordeste, nem μ_NE, nem os 12 testes de CE, PB e PE. O maior z positivo do Nordeste é 1,80 (PB, V3s, painel). A equivalência não vale (seção A1.4).
+- **Fora do Nordeste, só sinais estáveis:**
+  - MG V2 +5,69 (z 3,71): em 2022, +6,37 (z 5,13);
+  - RS V2 +9,81 (z 3,76): em 2022, +8,83 (z 3,58).
+  - Pela regra, as duas associações já existiam em 2022, na mesma via e com o mesmo denominador.
+- **MG V3m deixa de passar:** +1,25 (z 2,00). Era o único sinal novo, e sumiu com o denominador corrigido.
+- **Rastro (c): ausente.** Nada muda, porque o item (c) não usa denominador.
+- **Por que "não decidível":**
+  - O padrão V2 estável (onde mais eleitores sem digital, liberados pelo ano de nascimento, voltam a votar no 2º turno, o 13 ganha mais) é compatível com duas causas: composição (quem volta a votar sem digital pende mais para o 13) e inserção com o mesmo formato em 2022 e em 2026.
+  - Os testes públicos que separariam as duas já rodaram sem separá-las: hora, sequência, foto, concentração, escolaridade, estado civil, idade e 2022.
+  - Separá-las exige ligar voto a pessoa: caderno de votação assinado, imagens das digitais (`wsqman.jez`) e cadastro com identidade. Nada disso é público, e o voto é secreto.
+- **Peso máximo do sinal estável (Fato, aritmética):** a V2 a mais do 2º turno em MG e no RS soma 133.526 votos (98.706 + 34.820).
+  - Mesmo que todos fossem votos falsos no 13, a margem iria de 4.430.191 para 4.296.665.
+  - Mesmo que todos fossem votos trocados do 22 para o 13, ela iria para 4.163.139.
+  - Pela calibração da injeção (Hipótese de modelo), os coeficientes equivalem a cerca de 21 mil votos (MG 12.691; RS 8.243).
+
+### A1.2 Conferências do adendo
+
+| # | Conferência | Resultado |
+|---|---|---|
+| 1 | Com o denominador do plano, o script do adendo reproduz o doc 28 | Os 180 testes do modelo são iguais aos do doc 28 (diferença máxima 0). A decisão refeita na pasta do plano dá a mesma forma e as mesmas classes |
+| 2 | MG V3m com ÷ aptos contra os pareceres 54 e 48 | 2026: +1,25 (z 2,00), contra +1,23 (z 1,98) no parecer 54. A diferença vem da definição: o parecer dividiu ΔL pelos aptos do 2º turno, e o adendo usa a taxa de cada turno. 2022: −1,24 (z −2,51), igual ao parecer 48 |
+| 2b | Linha de base de 2022 com o denominador do plano contra os docs 24 e 26 | Reproduz: MG V2 +5,94 e V3m −1,21; PR +6,57; SC +2,32; RS +8,72 |
+| 3 | Vias do diário de SP 2022 contra o boletim de 2022 (critério do adendo 6) | V2 igual em 99,44% (1º) e 99,86% (2º) das seções; diferença absoluta de 0,013% e 0,007% da V2. **Confirmada.** V3 igual em 101.066 e 101.068 seções |
+| 3b | Tabela de SP 2022 da frente H02/H05 contra releitura própria do zip | 40 seções sorteadas (semente fixa), 40 de 40 iguais nos dois turnos (votos, V1, V2, V3m e V3s) |
+| 4 | Leitura por mesário de CE, PB e PE | Igual ao `h08` em 55.895 de 55.895 seções nos dois turnos |
+| 5 | Segredo | Busca de 11 a 13 dígitos seguidos (fora de casas decimais) nas saídas do adendo: 0 |
+
+**SP 2022 pronto:** conferência dos zips com `ok` e 0 falhas (101.073 seções por turno) e leitura do diário terminada nos dois turnos. Nada foi baixado por esta frente. Arquivos lidos, com sha256:
+
+| Arquivo | sha256 |
+|---|---|
+| `h13-v2/secoes-sp-2022-diario.csv` | `046a0495…de42f` |
+| `diario2022/sp-1t.jsonl` | `ebe79cb6…85c5e` |
+| `diario2022/sp-2t.jsonl` | `087a4e7b…79257` |
+| `sul2022/bu2022-sp.csv` | `c38ec62f…b67dc` |
+
+Os sha256 completos estão em `adendo1/linha-base-2022.json` (o do CSV) e em `adendo1/conferencias-sp-2022.txt`.
+
+### A1.3 Os testes que passam (192 testes; corte p ≤ 2,604 × 10⁻⁴)
+
+| Teste | Plano (÷ perfil) | Adendo (÷ aptos) | Classe no adendo |
+|---|---|---|---|
+| MG, painel, V2 | +5,68 (z 4,19) | +5,69 (z 3,71) | estável (2022: +6,37, z 5,13) |
+| RS, painel, V2 | +9,66 (z 3,69) | +9,81 (z 3,76) | estável (2022: +8,83, z 3,58) |
+| MG, painel, V3m | **+1,93 (z 4,15), novo** | +1,25 (z 2,00), não passa | — |
+| ES, nível, V2 | −11,89 (−5,38) | −11,74 (−5,29) | contra o 13 |
+| RJ, nível, V2 | −6,96 (−5,26) | −7,05 (−5,33) | contra o 13 |
+| RJ, nível, V3m | −2,90 (−3,65), não passava | −2,91 (−3,66) | contra o 13 (passa por pouco) |
+| SP, nível, V2 / V3m / V3s | −5,15 / −3,59 / −3,27 | −5,04 / −3,61 / −3,28 | contra o 13 |
+
+- **Logo abaixo do corte:** SP V2 painel +5,60 (z 3,56) e RJ V2 painel +7,03 (z 3,26).
+  - Se SP V2 passasse, seria **estável**: em 2022, +6,09 (z 6,34).
+  - O RJ não tem diário de 2022 analisado.
+  - GO V2 painel, que estava em z 3,59 no plano, cai para z 1,24: era artefato do denominador, como o parecer 54 já tinha visto.
+- **Estágio 2:** nenhum dos 18 testes passa.
+  - μ_BR painel V2 +3,81 (t 3,52; p 0,0016); μ_NE painel V2 +0,64 (t 0,38).
+  - δ_NE painel V2 −4,68 (t −2,34): o Nordeste fica abaixo do resto.
+  - No nível, δ_NE V3m +1,32 e V3s +1,67 (t 2,21 e 2,60). Isso já estava no 1º turno e não passa.
+- O Benjamini-Hochberg a 5% aceita 14 dos 192. Os 6 além do Bonferroni são:
+  - GO V2 nível (+8,20);
+  - μ_BR V3m nível (−1,22);
+  - RJ V2 painel (+7,03);
+  - SP V2 painel (+5,60);
+  - μ_BR V2 painel (+3,81);
+  - PB a1 nível (razão 3,46; p 0,0022), que já estava no 1º turno (razão 3,80).
+
+### A1.4 Equivalência e mínimo detectável no Nordeste (÷ aptos)
+
+- **Equivalência: não vale.** Pela fórmula do plano, o limite é infinito (as mesmas 27 seções com 22 = 0). Pela calibração da injeção, os limites superiores de μ_NE, em votos, são:
+
+  | Combinação | Limite em votos | Vale (≤ 44.302)? |
+  |---|---|---|
+  | N2 V2 | 342.396 | não |
+  | N2 V3m | 86.630 | não |
+  | N2 V3s | 59.156 | não |
+  | P V2 | 28.559 | sim |
+  | P V3m | 41.420 | sim |
+  | P V3s | 31.415 | sim |
+
+  Três das seis falham.
+- **Mínimo detectável de μ_NE a favor do 13 (80% de poder, corte de Bonferroni):**
+
+  | Desfecho | V2 | V3m | V3s |
+  |---|---|---|---|
+  | Nível | 45,1% / 746.642 votos | 7,7% / 137.841 | 8,7% / 71.195 |
+  | Painel | 32,6% / 31.378 | 7,1% / 38.566 | 10,6% / 31.915 |
+
+  A favor do 22, o teste é 2 a 3 vezes mais sensível.
+
+### A1.5 Exame nominal de CE, PB e PE (÷ aptos)
+
+**Nenhum dos 12 testes passa.**
+
+| UF | Desfecho | a1: cauda entre as de liberação alta × nas outras | razão | p | a2 |
+|---|---|---|---|---|---|
+| CE | nível | 11 de 2.170 × 68 de 19.499 | 1,46 | 0,16 | 0 de 18 |
+| PB | nível | 10 de 1.070 × 26 de 9.555 | 3,46 | 0,0022 | sem casos |
+| PE | nível | 13 de 2.123 × 54 de 19.041 | 2,17 | 0,014 | 0 de 6 |
+| CE | painel | 6 de 2.165 × 55 de 19.486 | 0,98 | 0,58 | 0 de 18 |
+| PB | painel | 7 de 1.066 × 35 de 9.565 | 1,80 | 0,12 | sem casos |
+| PE | painel | 6 de 2.121 × 45 de 19.027 | 1,20 | 0,41 | 0 de 6 |
+
+- **Linha de base do 1º turno (nível):** CE 2,06 (p 0,030), PB 3,80 (p 0,0007), PE 3,06 (p 0,0004). Como no resultado original, o pouco que aparece em PB e PE no 2º turno já estava no 1º, mais forte, e some no painel.
+- **Triagem:** 5 seções acima do corte no nível (as mesmas da seção 2.3) e 0 no painel.
+- As estatísticas por seção do mesário (sem identificador) ficam em `adendo1/mesario-nominal-{1t,2t}.jsonl`.
+
+### A1.6 O que muda na leitura do resultado original
+
+- **A seção 6 (exploratório sobre MG V3m) perde o objeto.** O "sinal novo" era artefato do denominador em 14 seções (parecer 54, item 1.3).
+  - A assimetria "o sinal vem de onde a V3m caiu" também era do denominador.
+  - A leitura "forma de composição" não se sustenta, e a leitura "inserção no 1º turno" (parecer 54, item 2.3) também fica sem apoio: o N1 de MG V3m é +0,11 (z 0,14).
+- **O veredito "fato que pede explicação" do resultado original** foi a aplicação correta da regra registrada a uma medida com defeito. A forma depois da correção é a do A1.1.
+- **O que continua aberto (exploratório):** em MG, a liberação manual se associa ao ganho do 13 com sinais opostos em 2022 (−1,24) e 2026 (+1,25). A diferença entre os anos fica perto de z 3 (parecer 54: +2,56, z 3,3, com outra variante). Pela regra, isso não é sinal de 2026: o "novo" exige β > 0 em 2026 passando no corte.
+
+### A1.7 Desvios e riscos do adendo
+
+- **Desvios:**
+  - A outra frente juntou a tabela de SP 2022 enquanto o adendo rodava. Usei a tabela juntada, com sha256 gravado. O script também sabe ler os `.jsonl` finais, com a mesma regra do `--juntar`.
+  - `estatistico-h13-v2-dados2022.mjs` ganhou `--ufs` e `--saida`. O padrão não mudou (conferido: as linhas de MG, PR, RS e SC são idênticas byte a byte às de `h13-v2/secoes-2022.csv`).
+  - A decisão do plano foi regravada na pasta do plano com os campos novos. A forma e as classes são as mesmas.
+- **Riscos:**
+  - MG V2 e RS V2 passam por pouco (z 3,71 e 3,76 contra 3,652). Se caíssem abaixo do corte e SP V2 continuasse abaixo, a forma seria "sem sinal nos dados públicos", e não "não decidível".
+  - Os controles de composição ainda vêm do perfil de julho (ruidosos nas seções fora de data). Isso fica declarado, sem variante.
+  - O RJ V2 do painel (z 3,26) não tem linha de base de 2022.
+  - O teste do Nordeste não descarta efeitos de algumas dezenas a centenas de milhares de votos (A1.4).
+  - **Revisão independente** pendente.
+
+### A1.8 Comandos do adendo
+
+```bash
+A=data/parsed/auditoria/estatistico/h13-final/adendo1
+node scripts/auditoria/estatistico-h13-v2-dados2022.mjs --ufs MG,PR,RS,SC,SP --saida $A/secoes-2022.csv
+node --max-old-space-size=16000 scripts/auditoria/estatistico-h13-final-modelo.mjs --saida $A/reproducao        # conferência 1
+node --max-old-space-size=16000 scripts/auditoria/estatistico-h13-final-modelo.mjs --denominador aptos --saida $A
+node --max-old-space-size=12000 scripts/auditoria/estatistico-h13-final-nominal.mjs --denominador aptos --saida $A
+node --max-old-space-size=8000  scripts/auditoria/estatistico-h13-final-2022.mjs                                 # 15 testes de 2022 + conferência de SP
+node scripts/auditoria/estatistico-h13-final-decisao.mjs --dir $A
+```
+
+Saídas em `data/parsed/auditoria/estatistico/h13-final/adendo1/`: `modelo.json`, `ufs.csv`, `cerco.csv`, `nominal.json`, `mesario-nominal-{1t,2t}.jsonl`, `linha-base-2022.json`, `secoes-2022.csv`, `testes.csv`, `decisao.json`, `conferencias-sp-2022.txt` e `reproducao/`.

@@ -155,6 +155,11 @@ export async function carregar(ufs) {
       const t = secoes.get(`${v.uf}/${v.municipio}/${v.zona}/${v.secao}`)?.[`t${turno}`];
       if (t) t[v.numero === 13 ? 'v13' : 'v22'] += v.quantidade;
     }
+    // aptos do BU (adendo 1 do plano 27): maior `aptos` da seção em secao_eleicao no turno (o mesmo campo do parecer 54)
+    for (const a of db.prepare(`SELECT uf, municipio, zona, secao, MAX(aptos) aptos FROM secao_eleicao WHERE turno = ? AND uf IN (${lista}) GROUP BY uf, municipio, zona, secao`).iterate(turno)) {
+      const t = secoes.get(`${a.uf}/${a.municipio}/${a.zona}/${a.secao}`)?.[`t${turno}`];
+      if (t) t.aptos = a.aptos;
+    }
   }
   db.close();
   const ufSet = new Set(ufs);
@@ -186,8 +191,9 @@ const zonaDe = (s) => s.id.split('/').slice(0, 3).join('/');
  * Monta as linhas de um desfecho ('N2', 'N1', 'P') para as seções dadas, com exclusões contadas.
  * Cada linha: { id, uf, g (local), zona, mun, w, y, foc[], ctrl info, s }.
  */
-export function montar(secoes, desfecho, exc = {}, { aceitarDiferente = false } = {}) {
+export function montar(secoes, desfecho, exc = {}, { aceitarDiferente = false, denominador = 'perfil' } = {}) {
   const conta = (m) => { exc[m] = (exc[m] ?? 0) + 1; };
+  const aptos = denominador === 'aptos';
   const out = [];
   for (const s of secoes) {
     const a = s.t2, b = s.t1;
@@ -198,9 +204,12 @@ export function montar(secoes, desfecho, exc = {}, { aceitarDiferente = false } 
       if (!aceitarDiferente && (a.log.votos !== a.comp || b.log.votos !== b.comp)) { conta('diário diferente do BU'); continue; }
       if (a.v13 + a.v22 < 20 || b.v13 + b.v22 < 20) { conta('menos de 20 votos em 13 + 22'); continue; }
       if (!p || !p.eleitores) { conta('sem perfil'); continue; }
+      if (aptos && !(a.aptos > 0 && b.aptos > 0)) { conta('sem aptos no BU'); continue; }
       const el = p.eleitores;
+      // perfil (plano): Δ(votos da via) ÷ eleitores do perfil; aptos (adendo 1): taxa por apto do BU de cada turno
+      const e = aptos ? (k) => a.log[k] / a.aptos - b.log[k] / b.aptos : (k) => (a.log[k] - b.log[k]) / el;
       out.push({ id: s.id, uf: s.uf, g: grupoDe(s, a), zona: zonaDe(s), mun: s.id.split('/').slice(0, 2).join('/'), w: a.v13 + a.v22, y: Yf(a) - Yf(b), modelo: a.modelo, p, s,
-        foc: [(a.log.v2 - b.log.v2) / el, (a.log.v3m - b.log.v3m) / el, (a.log.v3s - b.log.v3s) / el], dC: (a.log.votos - b.log.votos) / el });
+        foc: VIAS.map(e), dC: e('votos'), den2: aptos ? a.aptos : el, logTam: Math.log(aptos ? a.aptos : el) });
     } else {
       const t = desfecho === 'N2' ? a : b;
       if (!t?.comp) { conta('sem a seção no turno'); continue; }
@@ -208,15 +217,16 @@ export function montar(secoes, desfecho, exc = {}, { aceitarDiferente = false } 
       if (!aceitarDiferente && t.log.votos !== t.comp) { conta('diário diferente do BU'); continue; }
       if (t.v13 + t.v22 < 20) { conta('menos de 20 votos em 13 + 22'); continue; }
       if (!p || !p.eleitores) { conta('sem perfil'); continue; }
+      if (aptos && !(t.aptos > 0)) { conta('sem aptos no BU'); continue; }
       out.push({ id: s.id, uf: s.uf, g: grupoDe(s, t), zona: zonaDe(s), mun: s.id.split('/').slice(0, 2).join('/'), w: t.v13 + t.v22, y: Yf(t), modelo: t.modelo, p, s,
-        foc: VIAS.map((v) => t.log[v] / t.log.votos), dC: null });
+        foc: VIAS.map((v) => t.log[v] / t.log.votos), dC: null, logTam: Math.log(aptos ? t.aptos : p.eleitores) });
     }
   }
   return out;
 }
 
 const CTRLN = (base) => ['cadSemBio', 'p60', 'p16a24', 'pBaixa', 'pSup', 'logEle', ...MODELOS.filter((m) => m !== base)];
-export const ctrlDe = (r, base) => { const p = r.p, el = p.eleitores; return [1 - p.biometria / el, p.idade60 / el, p.idade16a24 / el, p.escol_baixa / el, p.superior / el, Math.log(el), ...MODELOS.filter((m) => m !== base).map((m) => (r.modelo === m ? 1 : 0))]; };
+export const ctrlDe = (r, base) => { const p = r.p, el = p.eleitores; return [1 - p.biometria / el, p.idade60 / el, p.idade16a24 / el, p.escol_baixa / el, p.superior / el, r.logTam ?? Math.log(el), ...MODELOS.filter((m) => m !== base).map((m) => (r.modelo === m ? 1 : 0))]; };
 export const baseModelo = (rs) => { const cont = {}; for (const r of rs) cont[r.modelo] = (cont[r.modelo] ?? 0) + 1; return { base: MODELOS.filter((m) => cont[m]).at(-1), cont }; };
 
 /**

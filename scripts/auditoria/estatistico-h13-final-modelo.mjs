@@ -10,11 +10,17 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { abrirLeitura } from '../../src/banco-leitura.js';
+import { parseArgs } from 'node:util';
 import { paraCsv } from './forense-lib.mjs';
 import {
-  SAIDA, UFS27, NE, VIAS, P_BONF, Z_B2, carregar, montar, ajustar, pNormal2, pT2, tCrit,
+  SAIDA as SAIDA_PLANO, UFS27, NE, VIAS, P_BONF, Z_B2, carregar, montar, ajustar, pNormal2, pT2, tCrit,
 } from './estatistico-h13-final-lib.mjs';
 
+// --denominador aptos --saida <dir>: adendo 1 do plano 27 (commit ed0474c); o padrão (perfil) reproduz o doc 28.
+const { values: args } = parseArgs({ options: { denominador: { type: 'string', default: 'perfil' }, saida: { type: 'string' } } });
+const DEN = args.denominador;
+if (!['perfil', 'aptos'].includes(DEN)) throw new Error('--denominador perfil|aptos');
+const SAIDA = args.saida ? path.resolve(args.saida) : SAIDA_PLANO;
 await mkdir(SAIDA, { recursive: true });
 const t0 = Date.now();
 const log = (m) => console.log(`[${((Date.now() - t0) / 1000).toFixed(0)} s] ${m}`);
@@ -66,7 +72,7 @@ function injetar(rs, desfecho, via, f, cand) {
       const F = f * L; base += L;
       const v13 = a.v13 + (cand === 13 ? F : 0), v22 = a.v22 + (cand === 22 ? F : 0);
       ys.push(v13 / (v13 + v22) - b.v13 / (b.v13 + b.v22));
-      const el = r.p.eleitores;
+      const el = r.den2;
       focs.push(r.foc.map((x, i) => (i === iv ? x + F / el : x)));
       dCs.push(r.dC + F / el);
     } else {
@@ -86,7 +92,7 @@ for (const uf of UFS27) {
   est1[uf] = {}; linhasDe[uf] = {};
   for (const d of DESF) {
     const exc = {};
-    const rs = montar(porUf.get(uf), d, exc);
+    const rs = montar(porUf.get(uf), d, exc, { denominador: DEN });
     linhasDe[uf][d] = rs;
     const fit = ajustar(rs, d);
     const o = { N: fit?.N ?? 0, locais: fit?.locais ?? 0, linhas: rs.length, exc, base: fit?.base };
@@ -219,7 +225,7 @@ function votosDe(beta, d, via) {
       const a = r.s.t2;
       const pS = a.v13 / (a.v13 + a.v22);
       const fator = Math.max(2, pS < 1 ? 1 / (1 - pS) : Infinity);
-      const aS = d === 'P' ? Math.max(0, r.foc[iv]) * r.p.eleitores / a.log.votos : r.foc[iv];
+      const aS = d === 'P' ? Math.max(0, r.foc[iv]) * r.den2 / a.log.votos : r.foc[iv];
       soma += aS * r.w * (Number.isFinite(fator) ? fator : 1e9);
     }
   }
@@ -285,7 +291,7 @@ for (const uf of UFS27) {
     const rs = linhasDe[uf][d];
     const pega = (f) => (f ? Object.fromEntries(VIAS.map((v2) => [v2, f[v2]])) : null);
     const excD = {};
-    const rsDif = montar(porUf.get(uf), d, excD, { aceitarDiferente: true });
+    const rsDif = montar(porUf.get(uf), d, excD, { aceitarDiferente: true, denominador: DEN });
     sens[uf][d] = {
       clusterMunicipio: pega(ajustar(rs, d, { cluster: (r) => r.mun })),
       efeitoFixoZona: pega(ajustar(rs, d, { grupo: (r) => r.zona })),
@@ -344,6 +350,6 @@ for (const uf of UFS27) for (const d of DESF) for (const via of VIAS) {
 await writeFile(path.join(SAIDA, 'ufs.csv'), paraCsv(linhasUf, ['uf', 'desfecho', 'via', 'N', 'locais', 'beta', 'se', 'z', 'encolhida', 'exclusoes']));
 await writeFile(path.join(SAIDA, 'cerco.csv'), paraCsv(cerco, ['turno', 'uf', 'grupo', 'secoes', 'liberados', 'minNo13', 'maxNo13', 'pMin', 'pMax', 'leitura']));
 const est2Sem = JSON.parse(JSON.stringify(est2, (k, x) => (k === 'L' ? undefined : x)));
-await writeFile(path.join(SAIDA, 'modelo.json'), JSON.stringify({ geradoEm: new Date().toISOString(), plano: '89ede09', margens, conf1, conf2, conf3, cortes: { P_BONF, Z_B2, tCrit26: T_CRIT[26], tCrit25: T_CRIT[25] },
+await writeFile(path.join(SAIDA, 'modelo.json'), JSON.stringify({ geradoEm: new Date().toISOString(), plano: '89ede09', adendo: DEN === 'aptos' ? 'ed0474c' : null, denominador: DEN, margens, conf1, conf2, conf3, cortes: { P_BONF, Z_B2, tCrit26: T_CRIT[26], tCrit25: T_CRIT[25] },
   est1, est2: est2Sem, equivalencia, ecologica, sens, testes }, null, 1));
 log('fim');

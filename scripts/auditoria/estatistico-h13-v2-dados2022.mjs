@@ -4,15 +4,18 @@
 //     porque o zip repete o presidente em _BRASIL.csv);
 //   eleitores, com biometria, 60+, 16–24, escolaridade baixa (1–3) e superior (8): perfil_eleitor_secao_2022_<UF>.zip.
 // Só contagens; nenhum dado pessoal.
-// Uso: node scripts/auditoria/estatistico-h13-v2-dados2022.mjs
+// Uso: node scripts/auditoria/estatistico-h13-v2-dados2022.mjs [--ufs MG,PR,RS,SC,SP --saida <arquivo.csv>]
+//      (padrão: MG, PR, RS e SC em h13-v2/secoes-2022.csv; o adendo 1 do plano 27 grava as 5 UFs em h13-final/adendo1/)
 // Saída: data/parsed/auditoria/estatistico/h13-v2/secoes-2022.csv
-import { writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { parseArgs } from 'node:util';
 import { DIR_DADOS } from '../../src/config.js';
 import { dividirCsv, linhasZip, pad } from './forense-lib.mjs';
 
 const AB = path.join(DIR_DADOS, 'raw', 'dadosabertos');
-const UFS = new Set(['MG', 'PR', 'RS', 'SC']);
+const { values: args } = parseArgs({ options: { ufs: { type: 'string', default: 'MG,PR,RS,SC' }, saida: { type: 'string' } } });
+const UFS = new Set(args.ufs.toUpperCase().split(','));
 const S = new Map();
 const s = (k) => { let o = S.get(k); if (!o) S.set(k, (o = {})); return o; };
 const add = (o, c, v) => { o[c] = (o[c] ?? 0) + v; };
@@ -62,5 +65,7 @@ for (const uf of UFS) {
 }
 const C = ['v13_1', 'v22_1', 'v13_2', 'v22_2', 'aptos_1', 'comp_1', 'aptos_2', 'comp_2', 'local_2', 'modelo_2', 'localVot_2', 'eleitores', 'biometria', 'idade60', 'idade16a24', 'escol_baixa', 'superior'];
 const out = [`id;${C.join(';')}`, ...[...S].sort().map(([k, o]) => `${k};${C.map((c) => o[c] ?? '').join(';')}`)];
-await writeFile(path.join(DIR_DADOS, 'parsed', 'auditoria', 'estatistico', 'h13-v2', 'secoes-2022.csv'), `${out.join('\n')}\n`);
+const destino = args.saida ? path.resolve(args.saida) : path.join(DIR_DADOS, 'parsed', 'auditoria', 'estatistico', 'h13-v2', 'secoes-2022.csv');
+await mkdir(path.dirname(destino), { recursive: true });
+await writeFile(destino, `${out.join('\n')}\n`);
 console.log(`RESUMO: ${S.size} seções`);

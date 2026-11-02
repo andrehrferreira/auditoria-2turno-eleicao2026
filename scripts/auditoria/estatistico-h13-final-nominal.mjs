@@ -18,11 +18,13 @@ import { parseArgs } from 'node:util';
 import { DIR_DADOS } from '../../src/config.js';
 import { acharArquivo } from '../../src/lacres.js';
 import { fluxosDoTexto, juntarCopias, textos } from './estatistico-h08-varredura.mjs';
-import { SAIDA, VIAS, Z_B1, P_BONF, ajustar, carregar, montar, pNormalSup, bh, zCrit2 } from './estatistico-h13-final-lib.mjs';
+import { SAIDA as SAIDA_PLANO, VIAS, Z_B1, P_BONF, ajustar, carregar, montar, pNormalSup, bh, zCrit2 } from './estatistico-h13-final-lib.mjs';
 
-await mkdir(SAIDA, { recursive: true });
 // --ufs mg --nome nominal-mg: a mesma conta em outra UF, só como EXPLORATÓRIO (fora dos 192 testes do plano).
-const { values: args } = parseArgs({ options: { ufs: { type: 'string', default: 'ce,pb,pe' }, nome: { type: 'string', default: 'nominal' }, turnos: { type: 'string', default: '1,2' } } });
+const { values: args } = parseArgs({ options: { ufs: { type: 'string', default: 'ce,pb,pe' }, nome: { type: 'string', default: 'nominal' }, turnos: { type: 'string', default: '1,2' }, denominador: { type: 'string', default: 'perfil' }, saida: { type: 'string' } } });
+// --denominador aptos --saida <dir>: adendo 1 do plano 27 (commit ed0474c). As estatísticas por seção do mesário (sem identificador) ficam em <saida>/mesario-<nome>-<t>t.jsonl.
+const SAIDA = args.saida ? path.resolve(args.saida) : SAIDA_PLANO;
+await mkdir(SAIDA, { recursive: true });
 const TURNOS = args.turnos.split(',').map(Number);
 const UFS = args.ufs.split(',');
 const EXPLORATORIO = args.ufs !== 'ce,pb,pe';
@@ -120,6 +122,7 @@ for (const turno of TURNOS) {
     if (locais.size > 1) idsLocaisDif++;
     if (new Set([...set].map((s) => s.slice(0, 2))).size > 1) idsUfDif++;
   }
+  await writeFile(path.join(SAIDA, `mesario-${args.nome}-${turno}t.jsonl`), `${[...mes[turno]].map(([id, m]) => JSON.stringify({ id, ...m })).join('\n')}\n`);
   cruzado[turno] = { idsDistintos: idsGlobais.size, idsEmMaisDeUmaSecao: idsMulti, secoesEnvolvidas: secMulti.size, idsEmLocaisDiferentes: idsLocaisDif, idsEmUfsDiferentes: idsUfDif };
   idsGlobais.clear();
   log(`${turno}º turno: conferência 6 ${JSON.stringify(conf6[turno])}; cruzado ${JSON.stringify(cruzado[turno])}`);
@@ -142,7 +145,7 @@ const porUf = new Map(); for (const s of secoes.values()) { const l = porUf.get(
 for (const d of TURNOS.includes(1) ? ['N2', 'P', 'N1'] : ['N2', 'P']) {
   triagemTodas[d] = [];
   for (const uf of UFS) {
-    const rs = montar(porUf.get(uf), d, {});
+    const rs = montar(porUf.get(uf), d, {}, { denominador: args.denominador });
     const fit = ajustar(rs, d, { comVias: false });
     const reg = fit.reg;
     const vals = reg.idx.map((i, k) => reg.resid[k] * Math.sqrt(rs[i].w));
@@ -194,6 +197,6 @@ for (const t of TURNOS) {
     comMesarioMetade: ms.filter((m) => m.parteMax >= 0.5).length, rajadaMax: Math.max(...ms.map((m) => m.maxRajada10min)),
     minIntervalo: Math.min(...ms.map((m) => m.minIntervaloMesmoMesario).filter((x) => x !== null)) };
 }
-await writeFile(path.join(SAIDA, `${args.nome}.json`), JSON.stringify({ plano: '89ede09', exploratorio: EXPLORATORIO, ufs: UFS, conf6, cruzado, desc, testes, linhaBase, triagem, topConc, topRajada, corteUnilateral: Z_B1, P_BONF }, null, 1));
+await writeFile(path.join(SAIDA, `${args.nome}.json`), JSON.stringify({ plano: '89ede09', adendo: args.denominador === 'aptos' ? 'ed0474c' : null, denominador: args.denominador, exploratorio: EXPLORATORIO, ufs: UFS, conf6, cruzado, desc, testes, linhaBase, triagem, topConc, topRajada, corteUnilateral: Z_B1, P_BONF }, null, 1));
 log(`testes: ${JSON.stringify(testes.map((t) => [t.unidade, t.desfecho, t.via, t.p.toExponential(2)]))}`);
 log('fim');
