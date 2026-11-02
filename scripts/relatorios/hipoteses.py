@@ -21,6 +21,8 @@ INICIO, FIM = '<!-- hipoteses:inicio -->', '<!-- hipoteses:fim -->'
 COR_STATUS = {
     'aberta': '#8a6d00', 'em teste': '#1f5fa8', 'refutada': '#2e7d32',
     'sustentada': '#b3261e', 'inconclusiva': '#5f6368',
+    'sem sinal nos dados públicos': '#1f5fa8', 'fato que pede explicação': '#b26a00',
+    'não decidível com dados públicos': '#5f6368', 'confirmada': '#b3261e',
 }
 
 
@@ -33,11 +35,11 @@ def atualizar_readme(d):
         '(universo completo, conferidos); o registro com toda a evidência está em [docs/hipoteses.md](docs/hipoteses.md) '
         'e o quadro em linguagem simples em [docs/pericia/10](docs/pericia/10-quadro-das-hipoteses.md).',
         '',
-        '| # | Suspeita | Status | O que já se sabe | Próximo teste |',
+        '| # | Suspeita | Veredito final | O que se sabe | O que os dados públicos não alcançam |',
         '|---|---|---|---|---|',
     ]
     for h in d['hipoteses']:
-        status = f'**{h["status"]}**' if h['status'] in ('refutada', 'sustentada') else h['status']
+        status = f'**{h["status"]}**' if h['status'] in ('refutada', 'sustentada', 'confirmada', 'fato que pede explicação') else h['status']
         linhas.append(f'| {h["id"]} | {h["titulo"]} | {status} | {h["readme_sabe"]} | {h["readme_proximo"]} |')
     linhas += ['', 'Na fila, ainda sem número de hipótese: ' + '; '.join(f['titulo'].lower() for f in d['fila']) + '.', FIM]
     bloco = '\n'.join(linhas)
@@ -94,7 +96,7 @@ def gerar_pdf(d):
     # capa
     hist += [Spacer(1, 60 * mm), p(d['titulo'], capa_t), Spacer(1, 4 * mm), p(d['subtitulo'], capa_s),
              Spacer(1, 3 * mm), p(f'Retrato de {d["data"]}', capa_s), Spacer(1, 10 * mm)]
-    aviso = Table([[Paragraph('<font name="Corpo-B">Análise em andamento. Nada aqui é conclusão final.</font> '
+    aviso = Table([[Paragraph(f'<font name="Corpo-B">{escape(d.get("aviso_titulo", "Análise em andamento. Nada aqui é conclusão final."))}</font> '
                               + escape(d['aviso']), corpo)]], colWidths=[None])
     aviso.setStyle(TableStyle([('BACKGROUND', (0, 0), (-1, -1), colors.HexColor('#fff4e5')),
                                ('LINEBEFORE', (0, 0), (0, -1), 3, colors.HexColor('#b26a00')),
@@ -105,11 +107,14 @@ def gerar_pdf(d):
     for h in d['hipoteses']:
         resumo[h['status']] = resumo.get(h['status'], 0) + 1
     plural = {'aberta': 'abertas', 'em teste': 'em teste', 'refutada': 'refutadas', 'sustentada': 'sustentadas',
-              'inconclusiva': 'inconclusivas'}
+              'inconclusiva': 'inconclusivas', 'confirmada': 'confirmadas',
+              'sem sinal nos dados públicos': 'sem sinal nos dados públicos',
+              'fato que pede explicação': 'fatos que pedem explicação',
+              'não decidível com dados públicos': 'não decidíveis com dados públicos'}
     hist.append(p(f'{len(d["hipoteses"])} hipóteses registradas: '
                   + ', '.join(f'{v} {k if v == 1 else plural.get(k, k)}' for k, v in resumo.items()) + '.'))
     hist.append(Spacer(1, 3 * mm))
-    hist.append(p('Este relatório lista o que está sendo testado, como, o que já se sabe e o que falta. '
+    hist.append(p('Este relatório lista o que foi testado, como, o que se sabe, o veredito final e o que os dados públicos não alcançam. '
                   'Os números são só os conferidos no relatório de perícia, com o universo completo das seções.', pequeno))
     hist.append(PageBreak())
 
@@ -125,7 +130,7 @@ def gerar_pdf(d):
 
     # quadro
     hist.append(p('Quadro geral', h1))
-    cab = [Paragraph(f'<font name="Corpo-B">{c}</font>', pequeno) for c in ('#', 'Suspeita', 'Status', 'Próximo teste')]
+    cab = [Paragraph(f'<font name="Corpo-B">{c}</font>', pequeno) for c in ('#', 'Suspeita', 'Veredito', 'O que os dados públicos não alcançam')]
     linhas_q = [cab] + [[p(h['id'], pequeno), p(h['titulo'], pequeno), selo(h['status']), p(h['readme_proximo'], pequeno)]
                         for h in d['hipoteses']]
     q = Table(linhas_q, colWidths=[12 * mm, 62 * mm, 24 * mm, None], repeatRows=1)
@@ -142,13 +147,14 @@ def gerar_pdf(d):
             hist.append(HRFlowable(width='100%', thickness=0.5, color=linha, spaceBefore=4, spaceAfter=8))
         cor = COR_STATUS.get(h['status'], '#5f6368')
         cabeca = [p(f'{h["id"]}. {h["titulo"]}', h2),
-                  Paragraph(f'Status: <font name="Corpo-B" color="{cor}">{escape(h["status"])}</font>', corpo),
-                  p('Como será testada', rotulo)] + lista(h['como'][:1])
+                  Paragraph(f'Veredito final: <font name="Corpo-B" color="{cor}">{escape(h["status"])}</font>'
+                            + (f'. Pode mudar o vencedor? {escape(h["efeito"])}' if h.get('efeito') else ''), corpo),
+                  p('Como foi testada', rotulo)] + lista(h['como'][:1])
         hist.append(KeepTogether(cabeca))  # título nunca fica sozinho no pé da página
         hist += lista(h['como'][1:])
         if h['sabe']:
             hist += [p('O que já se sabe (Fato, conferido na perícia)', rotulo)] + lista(h['sabe'])
-        hist += [p('O que falta testar', rotulo)] + lista(h['falta'])
+        hist += [p('O que os dados públicos não alcançam', rotulo)] + lista(h['falta'])
         if h['alternativas'] and h['alternativas'] != '—':
             hist += [p('Explicações alternativas a descartar', rotulo), p(h['alternativas'], pequeno)]
 
@@ -157,7 +163,7 @@ def gerar_pdf(d):
     for f in d['fila']:
         hist.append(KeepTogether([p(f['titulo'], h2), p(f['texto']), Spacer(1, 3 * mm)]))
     hist.append(Spacer(1, 4 * mm))
-    hist.append(p('Pedidos ao TSE pela Lei de Acesso à Informação', h1))
+    hist.append(p('Pedidos ao TSE pela Lei de Acesso à Informação (recomendação; os vereditos não dependem da resposta)', h1))
     hist += lista(d['lai'])
     hist.append(Spacer(1, 4 * mm))
     hist.append(p('Limites que valem para tudo', h1))
@@ -167,7 +173,7 @@ def gerar_pdf(d):
         c.saveState()
         c.setFont('Corpo', 8.5)
         c.setFillColor(suave)
-        c.drawString(18 * mm, 11 * mm, f'{d["titulo"]} · {d["data"]} · análise em andamento, não é conclusão final')
+        c.drawString(18 * mm, 11 * mm, f'{d["titulo"]} · {d["data"]} · {d.get("rodape", "análise em andamento, não é conclusão final")}')
         c.drawRightString(A4[0] - 18 * mm, 11 * mm, f'{doc.page}')
         c.restoreState()
 
