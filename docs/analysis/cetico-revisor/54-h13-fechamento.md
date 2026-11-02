@@ -300,3 +300,88 @@ Reprodução própria (`nivel.json`). Nível, efeito fixo de local do turno, pes
 - **Seções de perfil com 1 a 23 eleitores e 300 ou mais aptos:** a causa (remanejamento depois de julho?) não foi conferida. Fica para a frente das seções novas.
 
 **Não editei** o doc 28, `hipoteses.md` nem `docs/pericia/`. Não fiz commit.
+
+## Adendo 1: revisão
+
+Revisão curta do adendo 1 do plano 27, que o estatístico gravou sozinho no commit ed0474c (só o doc 27 muda), e do resultado nas seções A1.1 a A1.8 do doc 28 (commit a1e694a). As regras são as mesmas de antes: sem rede, nada baixado, nenhum título lido para saída. Os diários e boletins de SP 2022 foram só lidos.
+
+```bash
+node scripts/auditoria/cetico-54-bu2022.mjs --uf rs                     # boletim de 2022 lido por tag (meu decodificador)
+node scripts/auditoria/cetico-54-bu2022.mjs --uf sp
+node --max-old-space-size=16000 scripts/auditoria/cetico-54-adendo.mjs   # painel ÷ aptos de cada turno, MG/RS/SP, 2026 e 2022
+node scripts/auditoria/cetico-54-sp2022.mjs                              # 20 seções de SP 2022 no bruto, dois turnos
+```
+
+Saídas em `data/parsed/auditoria/cetico/54/`: `bu2022-rs.csv`, `bu2022-sp.csv`, `adendo.json` e `sp2022-bruto.json`.
+
+### A1. Reprodução com os aptos do BU (Fato de reprodução; código próprio)
+
+Usei o denominador do adendo: e_v = L_v,2 ÷ aptos_2 − L_v,1 ÷ aptos_1, Δc igual e log dos aptos do 2º turno como controle de tamanho. Os controles de composição vêm do perfil do mesmo ano. O efeito fixo é o do local do 2º turno, o peso é 13 + 22 do 2º turno e o erro é CR1 por local.
+
+| Teste | Doc 28, adendo | Este parecer |
+|---|---|---|
+| MG 2026, V2 | +5,69 (z 3,71) | **+5,692 (z 3,71)**, 49.462 seções |
+| MG 2026, V3m | +1,25 (z 2,00) | **+1,248 (z 2,00)** |
+| RS 2026, V2 | +9,81 (z 3,76) | **+9,808 (z 3,76)**, 24.405 seções |
+| SP 2026, V2 | +5,60 (z 3,56) | **+5,598 (z 3,56)**, 103.276 seções |
+| MG 2022, V2 / V3m | +6,37 (5,13) / −1,24 (−2,51) | +6,370 (5,12) / −1,242 (−2,52), 47.222 seções |
+| RS 2022, V2 | +8,83 (z 3,58) | +8,856 (z 3,60), 23.646 seções |
+| SP 2022, V2 | +6,09 (z 6,34) | +6,080 (z 6,33), 100.630 seções |
+
+- 2026 reproduz exatamente.
+- Em 2022 as diferenças ficam na 2ª casa. A causa é a fonte: tirei aptos, comparecimento, local, 13 e 22 do **boletim** de 2022, lido por mim tag a tag (`cetico-54-bu2022.mjs`, 0 erros: 27.200 seções do RS e 101.071 e 101.073 de SP). O adendo usa o `detalhe_votacao_secao_2022`.
+- A diferença entre o +1,23 do parecer e o +1,25 do adendo vem da definição de aptos, como o doc 28 diz. Na minha variante antiga (ΔL ÷ aptos do 2º turno), a conta do mesmo script dá o valor do parecer (`adendo.json`, chave `parecer54`).
+
+### A2. SP 2022 no bruto (Fato: 20 de 20 nos dois turnos)
+
+Sorteei 20 seções de SP com semente fixa (54), entre as que estão na tabela de 2022 do adendo. Para cada uma, nos dois turnos, fiz três leituras:
+
+- **Diário:**
+  - tirei o `.logjez` do zip oficial e o abri com o **7-Zip oficial**, não com o leitor do repositório, descendo nos `.jez` aninhados;
+  - separei as linhas por urna e pela seção declarada, com união das cópias;
+  - classifiquei as vias sobre as **mensagens originais de 2022**, sem a tabela de tradução.
+- **Boletim:** o `.bu` da seção, lido por tag.
+- **Comparação:** contra as vias de `diario2022/sp-<t>t.jsonl` e os votos e aptos de `adendo1/secoes-2022.csv`, que entram no modelo.
+
+| | 1º turno | 2º turno |
+|---|---|---|
+| Vias do diário (votos, V1, V2, V3m, V3s, outra) iguais às do estatístico | 20 de 20 | 20 de 20 |
+| 13, 22, aptos e comparecimento da tabela iguais aos do boletim | 20 de 20 | 20 de 20 |
+| Votos do diário = comparecimento do boletim | 20 de 20 | 20 de 20 |
+| V2 do diário = comparecimento − comparecimento com biometria (boletim) | 20 de 20 | 20 de 20 |
+| V3 do diário = liberação manual do boletim | 20 de 20 | 20 de 20 |
+
+- **A leitura de SP 2022 está certa.** Junto com a conferência de universo do doc 28 (V2 igual ao boletim em 99,44% e 99,86% das seções), isso cobre a tradução, o leitor e a tabela.
+- E o coeficiente de SP 2022 sai igual com o meu boletim (+6,08, z 6,33).
+
+### A3. A forma "não decidível" pela regra do adendo (sustentado)
+
+- **O registro prévio é verificável.** O commit ed0474c traz só o doc 27, e o resultado vem depois (a1e694a).
+  - O adendo diz que foi escrito depois de ler os números deste parecer.
+  - Ele se protege da escolha a posteriori com **um só** denominador: o do parecer 48, que é anterior ao plano. Ele não escolhe entre as minhas variantes. Isso é aceitável.
+- **Os positivos que passam no corte de 3,652 em 2026** são só MG V2 (3,71) e RS V2 (3,76).
+  - Pela regra por UF × via, os dois são **estáveis**: em 2022, na mesma via e com o mesmo denominador, dão +6,37 (z 5,12) e +8,86 (z 3,60), acima de 2,935.
+  - MG V3m não passa (z 2,00).
+  - Nordeste: sem sinal. Rastro: ausente.
+  - Pela seção 8, a regra 1 não se aplica e a regra 2 se aplica: **não decidível com dados públicos**. Está certo.
+- **Agora a forma é robusta ao denominador, ao contrário de antes.**
+  - Nas variantes do item 6 deste parecer (Q, aptos, A2), os únicos positivos que passam são MG V2, RS V2 e, no A2, SP V2 (z 3,70). SP V2 agora é **estável**: em 2022 dá +6,08, z 6,33.
+  - Nenhuma variante sem o defeito do perfil leva a "fato que pede explicação".
+- **O risco que fica é para baixo, não para cima.** MG V2 e RS V2 passam por pouco. Se caíssem abaixo do corte, a forma seria "sem sinal nos dados públicos". Nos dois casos, nada nos dados públicos aponta liberação sem digital usada para dar votos ao 13.
+- **O peso máximo de 133.526 votos** é da amostra do modelo, e eu o trocaria pelo valor de universo. Somando o aumento da V2 seção a seção, só onde ela subiu, no universo do `h08`, dá **133.653** votos (MG 98.822, RS 34.831).
+  - Os 127 votos de diferença são das seções fora do modelo.
+  - A conclusão não muda. Mais forte: mesmo que **toda** a V2 do 2º turno de MG e do RS (1.502.075 + 559.431 = 2.061.506 votos) fosse voto trocado do 22 para o 13, a margem mudaria em 4.123.012, menos que os 4.430.191.
+
+**Veredito do adendo: sustentado.** As ressalvas são duas:
+
+- o teto em votos deve usar o universo (133.653), e não a amostra do modelo;
+- a forma fica entre "não decidível" e "sem sinal", conforme MG V2 e RS V2, que estão no limite do corte.
+
+### A4. Frase em linguagem simples para o relatório
+
+> **Eleitores liberados sem digital.** A auditoria comparou, prédio a prédio, as seções em que mais eleitores foram liberados sem a digital com as vizinhas do mesmo prédio. Não apareceu, em nenhum estado do Nordeste nem no país como um todo, sinal de que esses eleitores tenham dado ao 13 mais votos do que os que votaram com a digital. Em Minas Gerais e no Rio Grande do Sul aparece um padrão: onde mais eleitores sem digital no cadastro voltaram a votar no 2º turno, o 13 cresceu um pouco mais. O mesmo padrão já existia na eleição de 2022, conferida nos diários de urna daquele ano. Com os dados públicos não dá para saber se isso é o jeito de votar desses eleitores ou outra coisa com o mesmo formato. Para separar uma coisa da outra seria preciso ligar cada voto a uma pessoa, o que o voto secreto impede. Mesmo que todos os eleitores sem digital no cadastro de Minas e do Rio Grande do Sul tivessem tido o voto trocado, a diferença entre os candidatos não mudaria. Uma ligação que tinha aparecido em Minas vinha de um erro na tabela pública de eleitores de 14 seções e sumiu quando a conta passou a usar o número de eleitores do boletim de urna. O teste do Nordeste não consegue descartar desvios pequenos (conferido por uma segunda verificação independente).
+
+**Notas para o redator** (regras da perícia):
+
+- os números citados são de universo: 14 seções; 1.502.075 e 559.431 votos; margem de 4.430.191;
+- coeficientes, z, o mínimo detectável (é estimativa) e o peso de 133 mil (amostra do modelo) ficam fora.
