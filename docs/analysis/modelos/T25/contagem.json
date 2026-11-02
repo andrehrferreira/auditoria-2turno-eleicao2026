@@ -1,0 +1,245 @@
+[
+ {
+  "id": "H01",
+  "astra": "N/nao_excluido",
+  "grok": "S/nao_excluido",
+  "kimi": "F/nao",
+  "claude": "F/nao",
+  "veredito": "F",
+  "resultado": "nao_excluido (empate)"
+ },
+ {
+  "id": "H02",
+  "astra": "F/nao",
+  "grok": "F/nao",
+  "kimi": "F/nao",
+  "claude": "F/nao",
+  "veredito": "F",
+  "resultado": "nao"
+ },
+ {
+  "id": "H03",
+  "astra": "R/nao",
+  "grok": "R/nao",
+  "kimi": "R/nao",
+  "claude": "R/nao",
+  "veredito": "R",
+  "resultado": "nao"
+ },
+ {
+  "id": "H04",
+  "astra": "N/nao_excluido",
+  "grok": "R/nao",
+  "kimi": "R/nao",
+  "claude": "R/nao",
+  "veredito": "R",
+  "resultado": "nao"
+ },
+ {
+  "id": "H05",
+  "astra": "F/nao_excluido",
+  "grok": "S/nao_excluido",
+  "kimi": "S/nao_excluido",
+  "claude": "N/nao_excluido",
+  "veredito": "S",
+  "resultado": "nao_excluido"
+ },
+ {
+  "id": "H06",
+  "astra": "N/nao",
+  "grok": "S/nao",
+  "kimi": "R/nao",
+  "claude": "S/nao",
+  "veredito": "S",
+  "resultado": "nao"
+ },
+ {
+  "id": "H07",
+  "astra": "N/nao_excluido",
+  "grok": "R/nao",
+  "kimi": "R/nao",
+  "claude": "R/nao",
+  "veredito": "R",
+  "resultado": "nao"
+ },
+ {
+  "id": "H08",
+  "astra": "S/nao",
+  "grok": "R/nao",
+  "kimi": "R/nao",
+  "claude": "R/nao",
+  "veredito": "R",
+  "resultado": "nao"
+ },
+ {
+  "id": "H09",
+  "astra": "F/nao_excluido",
+  "grok": "F/nao",
+  "kimi": "F/nao",
+  "claude": "F/nao",
+  "veredito": "F",
+  "resultado": "nao"
+ },
+ {
+  "id": "H10",
+  "astra": "R/nao_excluido",
+  "grok": "R/nao",
+  "kimi": "R/nao",
+  "claude": "R/nao",
+  "veredito": "R",
+  "resultado": "nao"
+ },
+ {
+  "id": "H11",
+  "astra": "N/nao_excluido",
+  "grok": "S/nao",
+  "kimi": "S/nao_excluido",
+  "claude": "R/nao",
+  "veredito": "S",
+  "resultado": "nao_excluido (empate)"
+ },
+ {
+  "id": "H12",
+  "astra": "N/nao_excluido",
+  "grok": "R/nao",
+  "kimi": "N/nao_excluido",
+  "claude": "N/nao_excluido",
+  "veredito": "N",
+  "resultado": "nao_excluido"
+ },
+ {
+  "id": "H13",
+  "astra": "N/nao_excluido",
+  "grok": "S/nao_excluido",
+  "kimi": "S/nao",
+  "claude": "N/nao_excluido",
+  "veredito": "N (empate)",
+  "resultado": "nao_excluido"
+ },
+ {
+  "id": "H14",
+  "astra": "F/nao",
+  "grok": "S/nao",
+  "kimi": "F/nao",
+  "claude": "S/nao",
+  "veredito": "S (empate)",
+  "resultado": "nao"
+ },
+ {
+  "id": "H15",
+  "astra": "N/nao_excluido",
+  "grok": "S/nao_excluido",
+  "kimi": "S/nao_excluido",
+  "claude": "S/nao_excluido",
+  "veredito": "S",
+  "resultado": "nao_excluido"
+ },
+ {
+  "id": "H16",
+  "astra": "R/nao_excluido",
+  "grok": "R/nao",
+  "kimi": "R/nao",
+  "claude": "R/nao",
+  "veredito": "R",
+  "resultado": "nao"
+ },
+ {
+  "id": "H17",
+  "astra": "N/nao_excluido",
+  "grok": "N/nao_excluido",
+  "kimi": "F/nao_excluido",
+  "claude": "S/nao_excluido",
+  "veredito": "N",
+  "resultado": "nao_excluido"
+ },
+ {
+  "id": "H18",
+  "astra": "N/nao_excluido",
+  "grok": "S/nao",
+  "kimi": "S/nao_excluido",
+  "claude": "S/nao_excluido",
+  "veredito": "S",
+  "resultado": "nao_excluido"
+ },
+ {
+  "id": "H19",
+  "astra": "F/nao_excluido",
+  "grok": "S/nao",
+  "kimi": "F/nao",
+  "claude": "S/nao_excluido",
+  "veredito": "S (empate)",
+  "resultado": "nao_excluido (empate)"
+ },
+ {
+  "id": "H20",
+  "astra": "F/nao_excluido",
+  "grok": "F/nao",
+  "kimi": "S/nao",
+  "claude": "S/nao",
+  "veredito": "S (empate)",
+  "resultado": "nao"
+ },
+ {
+  "id": "H21",
+  "astra": "N/nao_excluido",
+  "grok": "R/nao",
+  "kimi": "S/nao",
+  "claude": "S/nao_excluido",
+  "veredito": "S",
+  "resultado": "nao_excluido (empate)"
+ },
+ {
+  "id": "H22",
+  "astra": "N/nao_excluido",
+  "grok": "S/nao",
+  "kimi": "S/nao",
+  "claude": "S/nao",
+  "veredito": "S",
+  "resultado": "nao"
+ },
+ {
+  "id": "H23",
+  "astra": "F/nao",
+  "grok": "F/nao",
+  "kimi": "F/nao",
+  "claude": "S/nao",
+  "veredito": "F",
+  "resultado": "nao"
+ },
+ {
+  "id": "H24",
+  "astra": "N/nao_excluido",
+  "grok": "S/nao",
+  "kimi": "S/nao",
+  "claude": "S/nao",
+  "veredito": "S",
+  "resultado": "nao"
+ },
+ {
+  "id": "H25",
+  "astra": "F/nao_excluido",
+  "grok": "F/nao_excluido",
+  "kimi": "F/nao",
+  "claude": "F/nao_excluido",
+  "veredito": "F",
+  "resultado": "nao_excluido"
+ },
+ {
+  "id": "H26",
+  "astra": "S/nao_excluido",
+  "grok": "S/nao_excluido",
+  "kimi": "S/nao_excluido",
+  "claude": "S/nao_excluido",
+  "veredito": "S",
+  "resultado": "nao_excluido"
+ },
+ {
+  "id": "H27",
+  "astra": "F/nao_excluido",
+  "grok": "F/nao",
+  "kimi": "F/nao",
+  "claude": "F/nao",
+  "veredito": "F",
+  "resultado": "nao"
+ }
+]
