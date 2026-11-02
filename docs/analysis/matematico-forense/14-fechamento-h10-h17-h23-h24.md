@@ -332,3 +332,15 @@ node scripts/auditoria/cetico-h10-bu-bruto.mjs am 02755 0022 0070               
 ```
 
 Saídas em `data/parsed/auditoria/matematico-forense/fechamento/`. Entradas de trabalhos anteriores: `h23-resultado.json` (doc 08), `cetico-revisor/39-h23.json` (parecer 39), `cetico/h16/<t>t/<uf>.json` (parecer 32), `h24-atributos.jsonl` (doc 09).
+
+## Errata (02/11/2026, coordenador, a partir do parecer cético 55)
+
+1. **H10(b), "efeito máximo".** 166.584 é o **mínimo** que exige troca ou eleitores diferentes, e não um máximo. As contagens admitem até 43.630.542 trocas do 22 para o 13 no país. A linha "H10(b) 7,5% da margem" sai das tabelas de efeito máximo: a troca dentro da urna não tem limite nos dados públicos, como já dizia o ponto cego geral.
+   - O veredito "refutada" se mantém por outro motivo. Com o disponível líquido do texto da hipótese, o ganho do 13 só passa do disponível em 6 UFs (AC, AP, RR, MA, AM e TO; 52.336 no total, igual à perda líquida do 22). Não em todos os estados, como a hipótese afirmava.
+2. **H17, teto.** O desconto "seguido de voto em até 180 s" não discrimina: 80,9% dos votos normais também são seguidos de voto em 180 s. Com leituras razoáveis o teto vai de 47,7% a 83,5% da margem. Só passa da margem quem conta todo título digitado errado (91,8% deles são redigitados em até 30 s). O eleitor mandado embora sem registro no diário não tem teto, salvo a abstenção (30.509.005).
+3. **H23(a).** As 2 seções de MG "de cédula" tiveram comparecimento de Presidente de 278 e 281, e não 0. Com o campo certo, as 1.567 seções dão +0,115 ponto (568 eleitores). A conclusão não muda.
+4. **H23(c), zona 0094 do PA.** Não foi o "lote da zona inteira". Foram refeitas as 56 urnas dos 2 primeiros lotes de mídia (seções 0001 a 0061), com mídias geradas de novo em 18/09 e a primeira carga em versão superada. Das 502 sem motivo, 55 tiveram mídia de geração posterior. Pior caso, como troca: 150.470 votos (3,4% da margem).
+5. **H24, ponto cego.** "Alteração do total de aptos" é o que as contas acusam. Ficam fora:
+   - trânsito −3 com aptos da seção +3, que mantém o mesmo total;
+   - a mesma alteração nos dois turnos, que a V4 não acusa (só a V5);
+   - votos apagados dentro da urna.
