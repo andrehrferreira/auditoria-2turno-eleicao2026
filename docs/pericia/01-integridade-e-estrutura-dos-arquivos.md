@@ -12,6 +12,10 @@ Os arquivos que o TSE publica na internet são exatamente os que a urna gerou no
 
 **Fato (2º turno):** ao ligar, a urna confere as assinaturas do próprio programa e anota o resultado no diário. Em 162 seções a urna anotou que uma dessas conferências falhou. Em nenhum desses casos a urna recebeu voto sem antes ser desligada e ligada de novo (seção "O que a urna anota sobre o próprio programa").
 
+**Fato (dois turnos, conferido por uma segunda verificação independente):** nenhum voto foi gravado sem que a urna tivesse feito, desde a última vez que foi ligada, a conferência completa do próprio programa, com todas as etapas em "SUCESSO". Foram examinados todos os votos registrados nos diários: 125.275.244 no 1º turno e 128.235.724 no 2º. Nenhum ficou fora da regra.
+
+**Veredito final sobre a hipótese de arquivos alterados ou gerados fora de urna oficial (H04): refutada** no que os arquivos públicos alcançam. Nenhum arquivo foi mexido depois de sair da urna, todo pacote foi assinado por uma urna com carteira de identidade emitida pelo TSE, e nenhuma urna recebeu voto sem antes conferir o próprio programa. Nessa parte, o efeito sobre a diferença entre os candidatos é zero. Uma variante fica fora do alcance dos arquivos: um programa alterado e assinado com a chave oficial do TSE gravaria "SUCESSO" em todas as etapas e assinaria tudo direito. Ela **não é decidível com dados públicos**, e os arquivos não põem limite ao efeito dela. Só a conferência do programa lacrado contra o código-fonte e o resultado do Teste de Integridade diriam ([tópico 7](07-limites-da-pericia.md)).
+
 A explicação passo a passo usa uma seção de Vila Velha (ES), zona 55, seção 372, 2º turno de 25/10/2026, examinada em detalhe.
 
 Há limites, explicados adiante. Os principais:
@@ -178,7 +182,19 @@ Foram lidos os diários de todas as 499.207 seções do 2º turno (leitura confe
 - Em 134 dessas seções, a mesma urna recebeu votos depois, numa nova inicialização, sem que o programa tivesse sido instalado de novo. São as 128 anotações de "mesma urna religada" da tabela abaixo (em 125 seções) e 10 anotações de urnas que votaram depois do erro e só mais tarde foram trocadas por reserva (contadas na tabela em "urna trocada"). Contando cada seção, urna e dia uma só vez: **31.892 votos em 127 seções no dia do 2º turno** e **24.422 votos em 103 seções no dia do 1º turno**. Esses votos estão nos boletins dessas seções, que passaram na conferência de assinaturas acima.
 - Quando o erro é num programa interno da urna, a mensagem anotada manda desligar a urna e instalar o programa de novo. O diário mostra que, nesses casos, a urna foi desligada, ligada de novo, passou na mesma etapa e votou normalmente, sem nova instalação.
 - **842 seções** do 2º turno têm no diário ao menos uma mensagem de erro sobre assinatura ou integridade. Dessas, 162 são as que têm a falha registrada numa etapa da conferência do programa (acima). As demais são mensagens de outros tipos, por exemplo falha de leitura de um cartão de memória, ou cartão de resultado com assinatura que não confere, quando a urna pede outro cartão. Os dois números foram contados na revisão independente.
-- Em 26 urnas que trocaram o cartão de votação (o cartão de memória onde a urna grava os votos) no próprio dia, a conferência daquela inicialização não incluiu o arquivo da seção no cartão novo.
+- Em 26 urnas que trocaram o cartão de votação (o cartão de memória onde a urna grava os votos) no próprio dia, a conferência daquela inicialização não incluiu o arquivo da seção no cartão novo. No 1º turno, o mesmo aconteceu em 46 inicializações. É sempre a mesma e única etapa que falta, e em todas o diário registra, na mesma inicialização, a troca do cartão de votação ("Contingência de MV executada com sucesso"): o cartão novo chega vazio, a urna confere o resto e copia para ele os arquivos da própria memória interna, que já tinham sido conferidos. **Limite:** esses arquivos copiados não são conferidos de novo naquela inicialização.
+
+**Todo voto teve a conferência completa antes (Fato, dois turnos, conferido por uma segunda verificação independente).** A segunda verificação mediu de um jeito próprio, mais desconfiado: ligou cada voto do dia à última vez em que a mesma urna foi ligada, sem depender de como a primeira análise separava as inicializações, e contou as etapas de conferência desde então.
+
+| | 1º turno | 2º turno |
+|---|---:|---:|
+| Votos registrados nos diários (todos os diários de cada pacote, inclusive os guardados; por isso o total difere um pouco do comparecimento do boletim) | 125.275.244 | 128.235.724 |
+| … sem nenhuma ligação da urna antes | 0 | 0 |
+| … sem nenhuma etapa de conferência desde a última ligação | **0** | **0** |
+| … com alguma etapa sem "SUCESSO" desde a última ligação | **0** | **0** |
+| … com 33 etapas ou mais, todas com "SUCESSO" | todos | todos |
+
+A primeira análise, com duas versões de programa da mesma regra, chegou aos mesmos totais, seção a seção. A segunda verificação também abriu no diário original 6 das 72 inicializações sem a etapa do cartão de votação (3 de cada turno): nas 6, a troca do cartão está registrada, as 33 etapas restantes passaram e não há falha.
 
 **Fato (1º turno, varredura própria dos pacotes do 1º turno):** 146 anotações de "ERRO" em 128 seções, 22 delas na véspera ou no dia (03 e 04/10). Em nenhuma a urna recebeu voto na mesma inicialização. Depois do erro, 103 seções votaram em nova inicialização (as 99 anotações de "mesma urna religada", em 97 seções, e 7 de urnas que votaram e só depois foram trocadas): 24.422 votos em 04/10, o mesmo número medido pelos pacotes do 2º turno. As duas varreduras conferem entre si.
 
@@ -235,10 +251,9 @@ Anotações de erro por UF (nenhuma no AC, no TO e no exterior):
 
 Casos concretos, conferidos no diário original: SP 71072/0353/0853, erro num programa interno às 07:35:08 de 04/10, mesma etapa com SUCESSO às 07:39:15 e urna pronta às 08:00:02; SP 71072/0246/0151, erro às 10:25:46 de 24/10 e SUCESSO às 10:29:21. A lista completa, um evento por linha, e os dados dos gráficos estão no índice técnico.
 
-**Pendente:**
+**Limite:** os arquivos públicos não dizem o que significa cada código de erro anotado. **Recomendação:** perguntar ao TSE. A conclusão acima não depende dessa resposta: em nenhum caso a urna recebeu voto depois de um erro sem antes refazer a conferência inteira com sucesso.
 
-- O significado dos códigos de erro anotados (a pedir ao TSE).
-- A contagem de todas as inicializações de votação e das etapas de cada uma. Ela depende de uma varredura feita por um só programa e fica sem número até ser refeita por um segundo.
+**Fato (com segunda verificação independente):** a medida de todos os votos contra a conferência feita desde a última ligação da urna, que antes estava pendente, está na tabela "Todo voto teve a conferência completa antes", acima.
 
 **Prova de que o teste funciona.** A leitura acha as falhas quando elas existem: são as 181 anotações acima. O teste "nenhum voto na mesma inicialização" também é capaz de acusar: na primeira versão, ele apontou 2 casos (BA 33138/0163/0417 e SP 63096/0038/0169). No diário original, havia um religamento entre o erro e a "urna pronta", que a primeira versão não reconhecia. Corrigido o programa, o resultado foi 0.
 
@@ -269,6 +284,7 @@ Fonte dos arquivos: `resultados.tse.jus.br`, baixados em 29/10/2026, com registr
    - **Fato:** os votos das 53 seções do 2º turno com essas carteiras mudaram entre os turnos como os das vizinhas do mesmo local: +0,13 ponto na parcela do 13, 13 votos ao todo, dentro do acaso.
    - **Fato:** com o certificado publicado, o verificador usual recusa as 99.957 seções do 2º turno com urna antiga, e os votos delas estão no resultado oficial. Os arquivos públicos não mostram se a totalização confere esses certificados, nem com qual certificado da AC URNA.
    - **Risco:** o TSE não publicou um certificado renovado da AC URNA, e as carteiras de julho a outubro ainda apontam para o vencido. Detalhes, gráficos e as perguntas ao TSE estão no relatório temático [O certificado vencido da AC URNA](temas/certificado-ac-urna.md).
+   - **Veredito final sobre o certificado vencido (H25): fato que pede explicação.** O certificado das urnas antigas venceu antes da eleição, e a chave dele ainda carimbou 54 carteiras de urna depois disso. Os votos das seções com essas urnas não diferem dos das vizinhas. Um programa alterado e assinado com essa chave não apareceria nos arquivos, e por isso os dados públicos não permitem limitar o efeito dessa brecha.
 4. **O pacote oficial foi obtido de uma cópia pública**, porque o site do TSE bloqueia download automático. A cópia tem a mesma impressão digital registrada de forma independente por outro projeto de auditoria. Falta baixar o pacote direto do site do TSE, pelo navegador, e comparar.
 5. **O lacre prova quem assinou, não quem a autoridade certificou.** A conferência prova que o arquivo foi assinado por quem tem uma chave certificada por essas três autoridades. Não prova que elas só certificaram urnas verdadeiras. **Fato:** nenhuma das 503.525 carteiras de urna distintas dos dois turnos está fora do molde do seu cartório (os mesmos campos, na mesma ordem, com os mesmos textos), o que exclui a carteira de teste feita sem copiar esse molde, mas não a montada igual a ele com a chave verdadeira do cartório ([relatório temático](temas/certificado-ac-urna.md)).
 6. **Lacre não prova que o voto registrado é o voto que o eleitor quis dar.** O lacre prova que o arquivo não mudou depois que a urna o gerou e que foi gerado por uma urna oficial. O que acontece *dentro* da urna antes disso é assunto de outros tópicos deste relatório. A autoverificação (acima) é anotada pelo próprio programa.
@@ -290,7 +306,7 @@ Fonte dos arquivos: `resultados.tse.jus.br`, baixados em 29/10/2026, com registr
 - [x] Conferência dos lacres do 1º turno no país inteiro: 499.207 pacotes, 0 arquivo alterado; 1 pacote (MG 50075/0047/0041) com o boletim impresso fora da lista lacrada (30/10/2026).
 - [ ] **Pendente.** Conferir se o boletim impresso de MG 50075/0047/0041 (1º turno), publicado fora da lista lacrada, bate com o boletim assinado.
 - [ ] **Pendente.** Corrigir o leitor para registrar a sobra de zeros de todas as carteiras.
-- [ ] **Pendente.** Refazer a contagem de inicializações de votação e de etapas com um segundo programa.
-- [ ] **Pendente.** Pedir ao TSE o certificado vigente da AC URNA e o significado dos códigos de erro da autoverificação.
+- [x] Conferir, com uma segunda verificação independente e uma medida própria, que nenhum voto dos dois turnos foi gravado sem a conferência completa do programa desde a última ligação da urna.
+- [ ] **Recomendação.** Pedir ao TSE o certificado vigente da AC URNA e o significado dos códigos de erro da autoverificação. Os vereditos deste tópico não dependem dessas respostas.
 - [ ] Baixar pelo navegador o pacote oficial e os certificados das autoridades do TSE e comparar com as cópias usadas.
 - [ ] Comparar o pacote consolidado por estado que o TSE publica com os arquivos baixados seção por seção.

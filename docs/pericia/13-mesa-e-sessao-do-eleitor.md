@@ -1,6 +1,6 @@
 # 13. A mesa e o atendimento de cada eleitor: sessões sem fim registrado, votos em bloco e "já votou"
 
-> **Situação:** escrito em 30/10/2026. Reúne três hipóteses do [quadro das hipóteses](10-quadro-das-hipoteses.md): H16 (o atendimento de cada eleitor no diário da urna), H15 (votos em bloco no lugar de ausentes) e H17 (eleitor impedido de votar, ou voto dado no lugar de quem chegou depois). As três passaram por uma segunda verificação independente. Na H16, ela reescreveu a conta com um programa próprio, rodou os dois turnos inteiros e concluiu "sustentado", com duas correções que este texto já usa (item 3 e item 5). Na H15 e na H17, ela refez as contas e chegou aos mesmos números, mas concluiu que os testes estatísticos enxergam menos do que a primeira análise dizia; por isso eles entram aqui como **Pendente**, sem número. O texto usa só as afirmações que resistiram a essa verificação.
+> **Situação:** escrito em 30/10/2026. Reúne três hipóteses do [quadro das hipóteses](10-quadro-das-hipoteses.md): H16 (o atendimento de cada eleitor no diário da urna), H15 (votos em bloco no lugar de ausentes) e H17 (eleitor impedido de votar, ou voto dado no lugar de quem chegou depois). As três passaram por uma segunda verificação independente. Na H16, ela reescreveu a conta com um programa próprio, rodou os dois turnos inteiros e concluiu "sustentado", com duas correções que este texto já usa (item 3 e item 5). Na H15 e na H17, ela refez as contas e chegou aos mesmos números, mas concluiu que os testes estatísticos enxergam menos do que a primeira análise dizia; por isso os números desses testes ficam fora deste relatório. O texto usa só as afirmações que resistiram a essa verificação. **Atualizado em 02/11/2026** com o fechamento das hipóteses só com dados públicos: cada uma das três recebeu um veredito final, e a H17 ganhou a contagem, no país inteiro, dos atendimentos sem desfecho do 2º turno e um teto para a supressão registrada no diário, conferidos por uma segunda verificação independente com programa próprio. Os vereditos usam quatro rótulos: **refutada** (os arquivos mostram que a coisa, como foi descrita, não aconteceu); **sem sinal nos dados públicos** (o teste procurou o rastro e não achou, mas há formas que ele não enxerga); **fato que pede explicação**; e **não decidível com dados públicos** (os arquivos públicos não têm a informação que decidiria).
 
 ## A pergunta
 
@@ -19,9 +19,11 @@ Cada eleitor passa pela mesa e pela urna num atendimento que o diário da urna (
 - **Fato:** o diário nunca tem mais votos do que o boletim. O boletim tem votos sem a linha de voto gravado no diário em 6 seções do 2º turno (54 votos) e em 9 do 1º (159), com a causa já explicada no [tópico 2](02-coerencia-entre-arquivos.md).
 - **Fato:** no 1º turno, a lista de votos (RDV) e o boletim de cada seção, lidos dos arquivos originais, têm os mesmos votos em todos os cargos: **0 diferença em 2.490.805 comparações** (749.120.705 votos). E **nenhuma seção tem o boletim inteiro igual ao de outra** (0 em 68.595.557 pares comparados).
 - **Fato:** das interrupções, só 481 de 1.378 (2º turno) e 1.008 de 5.721 (1º) têm erro ou falta de energia anotados no diário. Nas outras, o diário só mostra que alguém desligou a urna pela chave (615 e 2.844) ou não mostra causa (282 e 1.869). Em **21 atendimentos do 2º turno e 118 do 1º**, o eleitor tinha confirmado todos os cargos, a urna não gravou o voto e foi desligada pela chave: **esses votos não entraram no boletim**. É voto perdido, não voto a mais.
-- **Pendente (H15):** o teste de votos em bloco foi feito em todas as seções dos dois turnos, e as contas foram confirmadas. Mas ele só enxerga um tipo de bloco (votos seguidos, liberados pelo mesmo mesário registrado, num ritmo mais regular que o de uma pessoa) e não enxerga bloco pequeno, bloco intercalado com eleitores reais, nem bloco liberado pelas vias em que a urna não grava quem liberou. Por isso, o resultado fica sem conclusão até o teste ser refeito com o ritmo de uma pessoa.
-- **Fato (H17):** atendimentos que terminaram sem voto, por suspensão ou cancelamento ("atendimentos perdidos"): 805.368 de 139.310.955 no 2º turno e 1.206.250 de 136.390.914 no 1º. Os atendimentos que terminam sem nenhum desfecho anotado ficam fora dessa conta (Pendente).
-- **Pendente (H17):** o teste que compara o "já votou" depois de voto sem digital com o "já votou" depois de voto com digital.
+- **Veredito final da H16 (voto sem eleitor liberado, ou eleitor liberado sem fim registrado): refutada.** Todo voto registrado teve eleitor liberado antes, e todo eleitor liberado teve um fim registrado, nos dois turnos. O efeito dessa hipótese, como foi descrita, é zero.
+- **Veredito final da H15 (votos em bloco no lugar de ausentes): sem sinal nos dados públicos.** O teste de votos em bloco foi feito em todas as seções dos dois turnos e não achou blocos, mas só enxerga blocos bem marcados: votos seguidos, liberados pelo mesmo mesário registrado, num ritmo mais regular que o de uma pessoa. Um voto no lugar de ausente feito aos poucos, intercalado com eleitores reais, igual nos dois turnos ou liberado pelas vias em que a urna não anota quem liberou, não aparece nos arquivos, e para essas formas os dados públicos não permitem limitar o efeito abaixo da diferença entre os candidatos.
+- **Fato (H17):** atendimentos que terminaram sem voto, por suspensão ou cancelamento ("atendimentos perdidos"): 805.368 de 139.310.955 no 2º turno e 1.206.250 de 136.390.914 no 1º. Os atendimentos sem nenhum desfecho anotado, contados à parte no 2º turno, são 8.683.417, e 93% deles são título digitado errado ou justificativa de eleitor de outra seção (item 7).
+- **Fato (H17):** mesmo contando com folga, como eleitor do 22 mandado embora, todo atendimento registrado que não virou voto (fora os erros de digitação corrigidos em seguida e as justificativas), o total fica abaixo da diferença entre os candidatos: 3.698.065, ou 83,5% dela (item 7).
+- **Veredito final da H17 (votos suprimidos ou roubados na mesa): não decidível com dados públicos.** Os registros mostram atendimentos interrompidos e alguns votos não gravados. Não permitem saber se alguém foi mandado embora de propósito sem deixar registro: isso não tem limite nos dados públicos. Só o caderno de votação diria.
 - **Fato (caso para apuração de campo):** na seção PR 78573/0083/0101, no 2º turno, 16 dos 26 votos liberados sem digital foram seguidos, em até 20 segundos, de um "o eleitor identificado já votou"; isso não aconteceu depois de nenhum dos 270 votos pela digital. As 19 liberações manuais do dia foram feitas por digitais que a urna não associou a nenhum mesário registrado. Só a ata e o caderno de votação dizem quem liberou.
 - **Não se pode afirmar:** que o programa da urna era o oficial. Tudo acima prova que os arquivos são coerentes entre si; um programa adulterado que grave diário, lista de votos e boletim coerentes passa em todos esses testes. E o diário não diz de quem é o dedo posto no leitor.
 
@@ -54,7 +56,7 @@ Cada eleitor passa pela mesa e pela urna num atendimento que o diário da urna (
 3. **Lista de votos × boletim no 1º turno (H16).** Para cada seção e cada cargo, os votos de cada candidato, partido, branco e nulo na lista de votos foram comparados com os do boletim. A segunda verificação refez a conta direto dos arquivos originais das 28 UFs, sem passar pelo banco de dados da auditoria.
 4. **Boletim inteiro repetido (H16).** No 1º turno, procurou-se qualquer par de seções com o boletim igual em todos os cargos, comparando seções do mesmo estado e de tamanho parecido, e também no país inteiro.
 5. **Causa das interrupções (H16).** Para cada interrupção, o programa procura no diário uma linha de erro do programa ou do equipamento, ou de falta de energia. O desligamento pela chave fica numa classe à parte.
-6. **Votos em bloco (H15) e "já votou" (H17).** Em cada seção, nos dois turnos, foram medidas as sequências de liberações sem digital, o ritmo delas, o horário e o que acontece no atendimento seguinte a cada voto. Os testes estatísticos estão na análise técnica separada da auditoria e entram aqui como Pendente. Os números que entram são contagens e casos conferidos no arquivo original.
+6. **Votos em bloco (H15) e "já votou" (H17).** Em cada seção, nos dois turnos, foram medidas as sequências de liberações sem digital, o ritmo delas, o horário e o que acontece no atendimento seguinte a cada voto. Os números dos testes estatísticos ficam na análise técnica separada da auditoria; aqui entram o que eles conseguem ver, em palavras, e o veredito final. Os números que entram são contagens e casos conferidos no arquivo original.
 
 **Privacidade.** Os programas não gravam número de título nem de CPF: o título de cada mesário vira um número de ordem dentro da seção (mesário 1, mesário 2). Este relatório não reproduz nenhum número de título.
 
@@ -158,7 +160,7 @@ Fonte: segunda verificação independente, com programa próprio, sobre todos os
 
 ### 2. Os votos de cada cargo batem com o boletim (H16, Fato)
 
-- **2º turno:** em todas as 40.215 combinações de seção e eleição a mais com comparecimento no boletim (39.739 de Governador e 476 de prefeito em eleição suplementar), o número de eleitores que confirmaram esse cargo no diário é igual ao comparecimento dessa eleição no boletim. As 395 combinações de consulta popular não têm comparecimento próprio no boletim e ficaram fora desta conta.
+- **2º turno:** em todas as 40.215 combinações de seção e eleição a mais com comparecimento no boletim (39.739 de Governador e 476 de prefeito em eleição suplementar), o número de eleitores que confirmaram esse cargo no diário é igual ao comparecimento dessa eleição no boletim. As 395 combinações de consulta popular ficaram fora desta conta, que foi feita sem o comparecimento delas. O boletim traz esse comparecimento, e as contas internas do boletim dessas consultas fecham ([tópico 2](02-coerencia-entre-arquivos.md)).
 - **1º turno:** 497.895 de 497.905 combinações batem. As 10 que não batem são as 9 seções do item 1 (votos do boletim sem linha no diário) e a seção RJ 60011/0008/0061, que fecha com a cópia do diário (item 3).
 - **Fato (método):** a segunda verificação contou seção por seção, em todas as seções. A primeira análise tinha contado assim só as seções com algo fora do padrão; o resultado é o mesmo.
 
@@ -210,7 +212,8 @@ Fonte: segunda verificação independente. "Todos os cargos confirmados" quer di
 - **Fato:** "Votação suspensa" é, na prática, a urna desligada pela chave: em 524 das 556 do 2º turno e em 2.445 das 2.613 do 1º, a única causa no diário é a chave. Exemplo conferido no arquivo original: AC 01023/0001/0608, 2º turno; o eleitor é liberado às 10:54:13, às 10:54:30 a urna é desligada pela chave, e ela religa às 10:55, sem erro antes.
 - **Fato:** **em 21 atendimentos do 2º turno e 118 do 1º, o eleitor confirmou todos os cargos, a urna não gravou o voto e a única causa no diário é o desligamento pela chave.** O boletim dessas seções bate com o diário: esses votos não foram contados. Em três casos conferidos um a um no arquivo original (AL 27537/0007/0141, AL 27855/0002/0385 e AL 28339/0013/0118), o Presidente é confirmado, o diário fica parado de 6 a 9 minutos sem voto gravado e sem erro, e depois vem o desligamento pela chave.
   - **Hipótese (técnica):** a urna travou sem anotar erro, e alguém a desligou.
-  - **Risco (princípio 8):** é perda de voto de quem votou, não inflação. Se o eleitor voltou e votou depois, o diário não diz (**Pendente**).
+  - **Risco (princípio 8):** é perda de voto de quem votou, não inflação. Nenhum desses votos entrou no boletim: em todas essas seções, o boletim tem exatamente os votos gravados no diário.
+  - **Limite:** se o eleitor voltou e votou depois, o diário não diz: ele não grava o título nem a digital do eleitor. Ver que o eleitor atendido logo depois da religação foi liberado do mesmo jeito que o interrompido quase não ajuda, porque quase todo mundo vota pela digital. Só o caderno de votação diria.
 - **Fato:** as 39 interrupções do 2º turno e as 202 do 1º em que o diário da urna acaba estão **todas** em seções que votaram com urna reserva. É o fim do diário da urna que falhou, guardado dentro do pacote da reserva. Exemplo: AM 02836/0019/0072, 2º turno; a urna libera o eleitor às 08:24:26, um segundo depois anota "Erro inesperado durante a votação | O voto do eleitor NÃO foi registrado", e a reserva começa às 08:35.
 - **Fato:** entre as interrupções com todos os cargos confirmados (57 no 2º turno e 154 no 1º), em 4 e em 5 o voto entrou no boletim; são as seções do [tópico 2](02-coerencia-entre-arquivos.md) em que a urna caiu antes de gravar a última linha do diário.
 
@@ -223,12 +226,14 @@ Fonte: segunda verificação independente. "Todos os cargos confirmados" quer di
 - **Fato:** nos dias de votação dos dois turnos, em todas as seções do Brasil (497.897, sem o exterior), os diários anotam 16.974.708 votos liberados à mão depois de a digital não ser reconhecida. Em 16.974.705 deles, o diário anota as 4 tentativas de digital antes da liberação; em 3, menos (ainda não conferidos no arquivo original). A urna anota cada liberação manual, mas não diz de quem é o dedo.
 - **Fato:** a parcela de votos sem digital não sobe no fim do dia. Na última hora com voto de cada seção, no 2º turno, foram sem digital 787.713 de 6.229.601 votos (12,64%); nas horas anteriores da mesma seção, 12,69%. No 1º turno, 12,14% na última hora e 12,49% antes.
   - **Ressalva:** o horário não absolve. Quem escolhe ausentes já conhecidos (por exemplo, quem não votou no 1º turno) não precisa esperar o fim do dia.
-- **Pendente (o teste de blocos):** a segunda verificação confirmou as contas do teste, mas concluiu que ele enxerga pouco:
+- **O que o teste de blocos enxerga:** a segunda verificação confirmou as contas do teste, e ele não achou blocos. Mas ela concluiu que ele enxerga pouco:
   - ele só pode acusar um bloco liberado por **mesário registrado**. A maior parte dos votos sem digital vem por vias em que a urna não anota quem liberou: pelo ano de nascimento, ou por liberação manual com digital não ligada a mesário ([tópico 4](04-liberacao-dos-eleitores.md)). Por essas vias o alerta não acende;
   - a capacidade de detecção foi medida com um bloco de ritmo de máquina, mais regular que o de qualquer sequência real encontrada; para o ritmo de uma pessoa, ela não foi medida;
   - bloco pequeno e bloco intercalado com eleitores reais ao longo do dia não são vistos.
 
   Por isso, nenhuma conclusão numérica do teste entra aqui, nem o tamanho máximo de fraude que ele "descartaria". Os números estão na análise técnica separada da auditoria.
+
+**Veredito final da H15: sem sinal nos dados públicos.** O teste não achou votos em bloco no lugar de ausentes, mas só enxerga blocos bem marcados. Um voto no lugar de ausente feito aos poucos não aparece nos arquivos, e para ele os dados públicos não permitem limitar o efeito abaixo da diferença entre os candidatos. O que fecharia é o caderno de votação, que não é público.
 
 **Um caso para apuração de campo: SP 64017/0391/0164 (Fato, boletim e diário originais).** A seção usou a mesma urna (modelo 2013) nos dois turnos.
 
@@ -257,11 +262,27 @@ Fonte: segunda verificação independente. "Todos os cargos confirmados" quer di
 | Parcela | 0,58% | 0,88% |
 
 - "Consulta em sequência" é uma rajada de 3 ou mais "já votou" sem voto entre eles, em que a mesa parece estar conferindo uma lista; esses atendimentos ficam fora da conta.
-- **Ressalva:** os atendimentos que terminam sem nenhum desfecho anotado no diário ficam fora de "perdidos". Nos casos olhados um a um no arquivo original, eles são número digitado errado e justificativa de ausência recebida. **Pendente:** a contagem desses padrões no país inteiro.
+- **Ressalva:** os atendimentos que terminam sem nenhum desfecho anotado no diário ficam fora de "perdidos". Eles foram contados à parte, abaixo.
+
+**Atendimentos sem nenhum desfecho anotado (Fato, 2º turno, conferido por uma segunda verificação independente com programa próprio).** Um atendimento começa quando o mesário digita o título ou o CPF e termina quando ele digita o do próximo eleitor, quando a urna volta à espera ou no fim do dia. Os que terminam sem voto, recusa, cancelamento, "já votou" nem suspensão foram separados pelo que aconteceu dentro deles:
+
+| O que aconteceu dentro do atendimento | 2º turno |
+|---|---:|
+| Título digitado errado (a urna recusou o número) | 5.774.186 |
+| Justificativa de ausência recebida (eleitor de outra seção, que não vota ali) | 2.321.187 |
+| Eleitor identificado, e nada depois (o mesário volta e digita outro), ou digital pedida ou foto mostrada sem liberação, ou urna desligada no meio | 586.672 |
+| Eleitor habilitado, sem voto gravado | 1.372 |
+| **Total sem desfecho** | **8.683.417** |
+| Seções com algum atendimento sem desfecho | 498.669 |
+
+- **Fato:** 93% são título digitado errado ou justificativa de eleitor de outra seção. Nenhum dos dois é um eleitor da seção que ficou sem votar: no primeiro, a urna nem identificou ninguém; no segundo, a pessoa não vota naquela seção.
+- **Fato:** os 1.372 atendimentos com eleitor habilitado e sem voto são as interrupções do item 5 (1.378), contadas por outro caminho.
+- **Hipótese (risco, princípio 8):** "eleitor identificado, e nada depois" é o único grupo grande em que um eleitor da seção foi identificado e o diário não diz o que houve: pode ser o mesário corrigindo a digitação ou um eleitor mandado embora. O diário não separa os dois.
+- **Pendente:** a mesma contagem no 1º turno, que ainda não passou pela segunda verificação.
 - **Ressalva:** o cancelamento não tem autor no diário. Só a suspensão anota quem a autorizou.
 
 **"Já votou" depois de voto sem digital.**
-- **Pendente:** o teste que compara, dentro de cada seção, a frequência do "já votou" logo depois de um voto sem digital e logo depois de um voto pela digital. A segunda verificação confirmou as contas, mas o teste fica fora deste relatório, assim como a lista de seções que ele aponta: o alerta por seção exige saber qual mesário liberou, e na maior parte das seções apontadas o diário não anota mesário na liberação anterior.
+- **Fora deste relatório:** o teste que compara, dentro de cada seção, a frequência do "já votou" logo depois de um voto sem digital e logo depois de um voto pela digital. A segunda verificação confirmou as contas, mas o teste fica fora, assim como a lista de seções que ele aponta: o alerta por seção exige saber qual mesário liberou, e na maior parte das seções apontadas o diário não anota mesário na liberação anterior. O caso abaixo foi conferido no arquivo original.
 
 **O caso PR 78573/0083/0101 (Fato, conferido no diário e no boletim originais).** A seção usou a mesma urna (modelo 2022) nos dois turnos.
 
@@ -280,6 +301,25 @@ Fonte: segunda verificação independente. "Todos os cargos confirmados" quer di
 - **Hipótese (risco):** as liberações foram feitas por alguém que não está registrado como mesário, com uma conferência logo depois de que o voto "entrou". O diário não anota o número digitado, então não diz se o "já votou" é do mesmo eleitor.
 - **Recomendação:** pedir a ata e o caderno de votação dos dois turnos desta seção: quem liberou e a ordem das assinaturas. O padrão aparece nos dois turnos.
 
+**Até onde pode ir a supressão registrada no diário (Fato, 2º turno, conferido por uma segunda verificação independente).** Para dar um teto ao número de eleitores da seção que podem ter ficado sem votar por algo que o diário registra, somam-se, com folga, todos os atendimentos que poderiam ser um eleitor mandado embora, e supõe-se que todos seriam eleitores do 22. Cada eleitor que deixa de votar tira 1 voto, e não 2, da diferença.
+
+| O que entra no teto | Atendimentos |
+|---|---:|
+| Atendimentos perdidos (eleitor suspenso sem votar, ou liberação cancelada) | 805.368 |
+| Sem desfecho, com o eleitor identificado ou habilitado (todos, mesmo os seguidos de um voto) | 588.044 |
+| Título digitado errado sem um voto nos 3 minutos seguintes | 717.672 |
+| Recusas da urna (eleitor não encontrado na seção, ano de nascimento diferente e outras) | 1.492.314 |
+| "Já votou" fora das consultas em sequência | 94.667 |
+| **Teto** | **3.698.065** |
+| **Parte da diferença de 4.430.191 entre os candidatos** | **83,5%** |
+
+- **Como ler:** é uma conta de pior caso, não uma estimativa. Ela conta como eleitor perdido cada um desses atendimentos, mesmo os de eleitor de outra seção recusado pela urna, e mesmo assim fica abaixo da diferença entre os candidatos.
+- **Fato:** o teto só passaria da diferença se contasse como eleitor perdido cada título digitado errado. Mas 5.301.819 dos 5.774.186 títulos digitados errado (91,8%) foram redigitados em até 30 segundos: é a correção de um erro de digitação, não um eleitor mandado embora.
+- **Fato:** o desconto "o atendimento seguinte foi um voto em até 3 minutos" não serve para saber se o eleitor voltou: depois de um voto normal, o atendimento seguinte também é um voto em até 3 minutos em 80,9% dos casos, porque a fila anda.
+- **O que esse teto não cobre:** o eleitor mandado embora sem que o mesário digite nada. Ele não deixa nenhuma linha no diário. O único limite público para isso é a abstenção do 2º turno, 30.509.005 eleitores, maior que a diferença entre os candidatos.
+
+**Veredito final da H17 (votos suprimidos ou roubados na mesa): não decidível com dados públicos.** Os registros mostram atendimentos interrompidos e alguns votos confirmados que não foram gravados (21 no 2º turno e 118 no 1º, item 5). Nada mostra mesários barrando eleitores de um lado: a supressão registrada no diário, contada com folga, fica abaixo da diferença entre os candidatos. Mas os registros não permitem saber se alguém foi mandado embora de propósito sem deixar registro, e para isso os dados públicos não permitem limitar o efeito abaixo da diferença. Só o caderno de votação, onde o eleitor assina, diria quem foi votar e não votou.
+
 ## Prova de que o teste funciona (contraprova)
 
 - **Fato (teste de mutação):** a segunda verificação estragou de propósito, na memória, o diário real de uma seção de cada turno, de 14 jeitos diferentes: apagou o voto gravado de um eleitor, apagou uma liberação, inseriu um atendimento falso, corrompeu uma data, entre outros. A regra da primeira análise acusou 12 das 14 alterações. As duas que passaram são pontos cegos conhecidos (uma linha de voto gravado repetida idêntica, e cópias do diário que discordam entre si); a regra da segunda verificação acusa as duas, e nos dados reais elas dão 0 linha repetida e 1 cópia discordante (MG 44458/0103/0221, no 1º turno: uma cópia perdeu uns 7 minutos de linhas antes de uma queda, e o boletim bate com o diário). "0 sessão órfã" não é sinal de teste cego.
@@ -292,15 +332,14 @@ Fonte: segunda verificação independente. "Todos os cargos confirmados" quer di
 1. **O programa da urna.** Todos esses testes provam que os arquivos são coerentes entre si. Um programa adulterado que grave diário, lista de votos e boletim coerentes passa em todos eles. Isso depende de controles fora dos arquivos públicos ([tópico 7](07-limites-da-pericia.md)).
 2. **De quem é o dedo.** O diário anota que uma digital foi posta no leitor e, às vezes, a que mesário ela pertence. Não anota de quem é o dedo, nem quem estava na cabine.
 3. **Votos em bloco.** O teste não enxerga bloco pequeno, bloco intercalado com eleitores reais, bloco igual nos dois turnos, nem bloco liberado pelas vias em que a urna não anota mesário.
-4. **Atendimentos sem desfecho.** Ficam fora da conta de atendimentos perdidos e não foram contados no país inteiro.
+4. **Atendimentos sem desfecho.** Ficam fora da conta de atendimentos perdidos. No 2º turno foram contados no país inteiro (item 7); no 1º turno, a contagem ainda não passou pela segunda verificação.
 5. **Linhas estragadas.** A busca acha uma linha estragada quando a data fica ilegível e a palavra-chave continua inteira. Uma palavra-chave estragada por bit trocado pode escapar.
 6. **Desligamento pela chave.** O diário diz que alguém desligou a urna, não por quê. Os 21 e 118 votos não gravados são um fato; a causa é Hipótese.
+7. **Eleitor mandado embora sem registro.** Se o mesário não digita nada, o diário não registra nada. Para isso, o único limite público é a abstenção, maior que a diferença entre os candidatos (item 7).
 
 ## Pendentes (sem número)
 
-- **H15:** refazer a medida de capacidade do teste com o ritmo de uma pessoa e com blocos pelo ano de nascimento e por liberação manual sem mesário.
-- **H17:** o teste do "já votou" depois de voto sem digital, e a contagem nacional dos atendimentos sem desfecho.
-- **H17:** nos 615 atendimentos do 2º turno e 2.844 do 1º fechados só pela chave, e em especial nos 21 e 118 com todos os cargos confirmados: o eleitor voltou e votou?
+- **H17:** a contagem dos atendimentos sem desfecho no 1º turno, com segunda verificação.
 - **H16:** conferir urna, preparação e cartão de votos dos 4 pares de seções com o mesmo voto para Presidente e dos 161 com o mesmo voto para Governador, no 1º turno.
 - **H16:** conferir a assinatura do diário do 2º turno da seção RJ 60011/0008/0061, onde estão as cópias do diário do 1º turno, e se a urna com memória que troca bits deveria ter sido usada no 2º turno.
 - **H05:** conferir no arquivo original as 3 liberações manuais com menos de 4 tentativas de digital.
@@ -314,6 +353,6 @@ Pedir a ata e o caderno de votação dos dois turnos das seções PR 78573/0083/
 
 - [x] Atendimento de cada eleitor, votos por cargo, lista de votos × boletim no 1º turno, boletins repetidos e causa das interrupções, nos dois turnos, com segunda verificação independente.
 - [x] Atendimentos perdidos e os casos PR 78573/0083/0101 e SP 64017/0391/0164, conferidos no arquivo original.
-- [ ] **Pendente.** Refazer o teste de votos em bloco com o ritmo de uma pessoa (H15).
-- [ ] **Pendente.** Levar à perícia o teste do "já votou", depois de revisto (H17).
-- [ ] **Pendente.** Pedidos de ata e caderno de votação das duas seções.
+- [x] Vereditos finais da H15, H16 e H17, só com dados públicos (02/11/2026); atendimentos sem desfecho do 2º turno no país inteiro e teto da supressão registrada no diário, com segunda verificação independente.
+- [ ] **Pendente.** Atendimentos sem desfecho do 1º turno, com segunda verificação.
+- [ ] **Recomendação.** Pedidos de ata e caderno de votação das duas seções. Os vereditos deste tópico não dependem das respostas: o que os dados públicos não alcançam (quem estava na seção, se o eleitor interrompido voltou e votou, se alguém foi mandado embora sem registro) está dito em cada item.

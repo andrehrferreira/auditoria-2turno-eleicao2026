@@ -6,7 +6,9 @@ Cada urna grava três registros da mesma votação: o boletim (o placar), o regi
 
 ## Resposta curta
 
-**Fato (2º turno, país inteiro, 499.207 seções com boletim):** o boletim e o registro dos votos são iguais em todas as seções e em todos os cargos (539.815 comparações, 0 diferença). As contas internas do boletim fecham em todas as seções que trazem os campos necessários (as exceções de formato estão listadas abaixo). Nenhuma seção tem mais eleitores votando do que eleitores aptos (com revisão independente).
+**Fato (2º turno, país inteiro, 499.207 seções com boletim):** o boletim e o registro dos votos são iguais em todas as seções e em todos os cargos (539.815 comparações, 0 diferença). As contas internas do boletim fecham em todas as seções e em todos os cargos, inclusive nas consultas populares: 539.817 comparações de soma dos votos × quantos votaram, 0 diferença (as exceções de formato de outras contas estão listadas abaixo). Nenhuma seção tem mais eleitores votando do que eleitores aptos. Tudo isso foi refeito por uma segunda verificação independente, que também alterou boletins de propósito, na memória do computador, e viu cada alteração ser acusada pela conta certa.
+
+**Veredito final sobre a hipótese de que a soma dos boletins difere do resultado oficial (H03): refutada.** As contas internas de cada boletim fecham (este tópico), e a soma dos boletins é igual ao resultado oficial em todos os campos, nos dois turnos ([tópico 5](05-soma-dos-boletins.md)). Nenhum voto foi acrescentado, tirado ou trocado entre o boletim e o resultado publicado: o efeito dessa hipótese sobre a diferença entre os candidatos é zero.
 
 **Fato (dois turnos, com revisão independente):** em todas as seções com urna eletrônica (499.178 no 2º turno e 499.176 no 1º; as do Sistema de Apuração não têm diário de eleitor), o número de votantes do boletim foi comparado com as linhas "O voto do eleitor foi computado" do diário da própria seção. Em nenhuma seção o diário tem mais votos que o boletim. O boletim tem mais votos que o diário em **6 seções do 2º turno (54 votos)** e **9 do 1º turno (159 votos)**:
 
@@ -14,6 +16,10 @@ Cada urna grava três registros da mesma votação: o boletim (o placar), o regi
 - em 2 seções do 2º turno (49 votos) e 3 do 1º (152 votos), todas com urna reserva, o diário da urna que gravou os votos não está no pacote publicado. Os arquivos mostram como ele se perdeu: outra urna foi ligada com o cartão de votos da seção e gravou o próprio diário por cima. Os boletins dessas 5 seções estão assinados, e as assinaturas conferem.
 
 **Fato (dois turnos, com revisão independente):** cada pacote foi gerado pela urna que o boletim diz. O número da urna é o mesmo no boletim, no pacote de lacres e na carteira de identidade digital da urna em todas as seções, menos nas que tiveram o boletim regravado por outra urna (3 no 2º turno, 14 no 1º), que têm a explicação no próprio pacote. Nenhum cartão de votação, nenhuma urna e nenhum código de carga aparece no boletim de duas seções do mesmo município ou da mesma zona. No 2º turno, nenhuma urna escreveu no diário de duas seções ao mesmo tempo (seção "Identificação da urna e dos cartões").
+
+**Veredito final sobre a hipótese de cartão usado em mais de uma urna ou de resultado trocado no caminho (H11): sem sinal nos dados públicos.** Nenhum cartão, urna ou código de carga apareceu em duas seções do mesmo município ou zona, e cada resultado vem assinado pela própria urna. O caminho do resultado da urna até a totalização não é público: os registros de transmissão só são entregues a entidades fiscalizadoras. Por isso, os dados públicos não permitem pôr um limite, abaixo da diferença entre os candidatos, ao que uma troca nesse caminho poderia fazer; o que eles mostram é que nenhum resultado publicado difere do que a urna assinou.
+
+**Como ler os vereditos.** Cada suspeita de fraude examinada nesta perícia recebeu um veredito final, tirado só de arquivos públicos e conferido por uma segunda verificação independente. São quatro: **refutada** (os arquivos mostram que a coisa, como foi descrita, não aconteceu); **sem sinal nos dados públicos** (o teste procurou o rastro que ela deixaria e não achou, mas há formas que o teste não enxerga); **fato que pede explicação** (há um fato comprovado, que só documentos fora dos arquivos públicos explicam); **não decidível com dados públicos** (os arquivos públicos não têm a informação que decidiria). Junto de cada veredito vem o efeito máximo: se ele fica abaixo da diferença de 4.430.191 votos entre os candidatos a Presidente no 2º turno, ou se os dados públicos não permitem limitá-lo.
 
 **Fato (1º turno, país inteiro):** o boletim e o registro dos votos são iguais em todas as seções e em todos os cargos (2.490.805 comparações, 0 diferença), conferido por uma segunda verificação independente ([tópico 13](13-mesa-e-sessao-do-eleitor.md)).
 
@@ -50,7 +56,7 @@ Termos usados abaixo:
 
 ## Como foi feito
 
-Seis comparações, rodadas em todas as seções com boletim que trazem os campos de cada uma (as exclusões, com contagem e motivo, estão em "O que ficou de fora"). Todos os números desta página foram refeitos por uma segunda verificação independente, com programas próprios, a partir dos arquivos originais das urnas, ou foram confirmados por uma revisão independente que tentou derrubá-los.
+As comparações abaixo foram rodadas em todas as seções com boletim que trazem os campos de cada uma (as exclusões, com contagem e motivo, estão em "O que ficou de fora"). Todos os números desta página foram refeitos por uma segunda verificação independente, com programas próprios, a partir dos arquivos originais das urnas, ou foram confirmados por uma revisão independente que tentou derrubá-los.
 
 | # | Comparação | Deve dar |
 |---|---|---|
@@ -59,9 +65,11 @@ Seis comparações, rodadas em todas as seções com boletim que trazem os campo
 | C3 | Total de votos de cada cargo × quantos votaram | igual (senador no 1º turno: o dobro, porque são 2 vagas) |
 | C4 | Aptos × (aptos da seção + aptos em trânsito) | igual |
 | C5 | Liberados com digital + por biografia + sem biometria cadastrada × quantos votaram | igual |
-| C6 | Quantos votaram na seção × quantos votaram em cada eleição (federal e estadual) | igual |
+| C6 | Quantos votaram na seção × quantos votaram na eleição federal (Presidente) | igual |
+| C6b | Quantos votaram na eleição federal × quantos votaram na eleição estadual (Governador), numa eleição local ou numa consulta popular | a outra eleição pode ter menos votantes, mas só até o número de eleitores em trânsito vindos de outro estado, que votam só para Presidente; nunca mais votantes |
+| C7 | Quantos votaram × eleitores aptos, em cada eleição e na seção | quantos votaram não passa dos aptos |
 
-Mais uma: **comparecimento maior que o número de aptos**, que seria impossível (com revisão independente).
+Na eleição estadual, o número de votantes não precisa ser igual ao da federal: o eleitor em trânsito vindo de outro estado vota só para Presidente. Por isso a conta da eleição estadual é a C6b, e não a C6.
 
 ## O que foi encontrado: 2º turno, país inteiro
 
@@ -71,23 +79,38 @@ Mais uma: **comparecimento maior que o número de aptos**, que seria impossível
 |---|---:|---:|
 | C1 boletim × registro dos votos | 539.815 (seção × cargo) | **0** |
 | C2 diário × boletim | 499.178 seções | **10** na primeira leitura; **6** depois da recontagem (abaixo) |
-| C3 soma dos votos × quantos votaram | 539.420 (seção × cargo com comparecimento no boletim) | **0** |
+| C3 soma dos votos × quantos votaram | 539.817 (seção × cargo, todas as seções e todos os cargos, inclusive as eleições locais e as consultas populares) | **0** |
 | C4 aptos = seção + trânsito | 539.817 (seção × eleição; 2 a mais que o C1 porque 2 seções do exterior apuradas em cédula não tiveram nenhum votante: têm aptos, mas nenhum voto) | **0** |
 | C5 formas de liberação × quantos votaram | 497.897 | **0** |
-| C6 comparecimento da seção × por eleição | 499.178 | **0** |
-| Comparecimento > aptos (**com revisão independente**) | 499.207 | **0** |
+| C6 comparecimento da seção × eleição federal | 499.178 | **0** |
+| C6b eleição federal × eleição estadual | 39.739 seções com Governador | **0** |
+| C6b eleição federal × outras eleições locais e consultas populares | 871 (seção × eleição) | **0** |
+| C7 comparecimento ≤ aptos, em cada eleição | 539.817 (seção × eleição) | **0** |
+| C7 comparecimento da seção ≤ aptos | 499.207 | **0** |
 
 Detalhes que mostram que a conta foi feita voto a voto:
 
 - **Fato.** Somando todos os cargos do 2º turno (Presidente, Governador e consultas populares), nulos do boletim: 3.180.769. No registro dos votos: 3.180.131 nulos + 638 nulos após suspensão = 3.180.769.
 - **Fato.** Brancos: 1.662.313 nos dois. Nominais: 133.698.737 nos dois.
+- **Fato (C3, cargo a cargo).** "Votos somados" é a soma de votos em candidato, brancos e nulos do cargo.
+
+  | Eleição e cargo | Seções | Quantos votaram | Votos somados |
+  |---|---:|---:|---:|
+  | Federal, Presidente | 499.207 | 128.236.074 | 128.236.074 |
+  | Estadual, Governador | 39.739 | 10.086.066 | 10.086.066 |
+  | Outras eleições do dia, de escolha única (7 eleições locais) | 476 | 120.790 | 120.790 |
+  | Consultas populares do tipo "consulta" (1 no PR e 2 no MT) | 395 | 98.889 | 98.889 |
+  | **Total** | **539.817** | | |
+
+- **Fato (C6b).** Em 1.818 seções, a eleição federal tem mais votantes que a estadual: são 24.727 eleitores que votaram só para Presidente, os eleitores em trânsito vindos de outro estado. Nas outras eleições locais e consultas populares, o mesmo acontece em 50 seções, com 192 eleitores. Em nenhuma seção a outra eleição tem mais votantes que a federal, nem uma diferença maior que a dos eleitores em trânsito.
+- **Fato (C7).** 14 combinações de seção e eleição, em 12 seções de urna no Brasil, têm comparecimento igual ao número de aptos (100%), e nenhuma passa dele. O comparecimento alto está mais abaixo, em "Comparecimento alto".
 
 O que ficou de fora de alguma comparação, e por quê:
 
 - **Fato.** 41 seções do exterior não foram instaladas: não há urna nem arquivo (423 aptos no resultado oficial, comparecimento 0).
-- **Fato.** 29 seções do exterior usaram o Sistema de Apuração (cédula de papel, 831 votos). Não têm diário de eleitor, então ficam fora do C2. O boletim delas traz 0 no comparecimento da seção (o formato do Sistema de Apuração só preenche o comparecimento de cada eleição), então ficam fora do C6.
+- **Fato.** 29 boletins do exterior saíram do Sistema de Apuração (cédula de papel). Dos 29, 27 têm voto (831 votos ao todo) e 2 não tiveram nenhum votante. Por isso outros tópicos falam em "27 seções do Sistema de Apuração com voto": são as mesmas, sem as 2 vazias. Esses 29 boletins não têm diário de eleitor, então ficam fora do C2. O boletim delas traz 0 no comparecimento da seção (o formato do Sistema de Apuração só preenche o comparecimento de cada eleição), então ficam fora do C6; nelas, o comparecimento é conferido pela C3 e pela C7.
 - **Fato.** 1.310 seções do exterior não têm o detalhamento de como os eleitores foram liberados, e ficam fora do C5.
-- **Fato.** Em 395 seções houve também uma de 3 consultas populares, e o boletim não traz o comparecimento dessas consultas. Os votos delas foram conferidos no C1 (boletim = registro dos votos) e os aptos no C4; ficam fora do C3, que precisa do comparecimento. Por isso o C3 tem 395 comparações a menos que o C1.
+- **Fato (correção).** Em 395 seções houve também uma de 3 consultas populares do tipo "consulta". Uma versão anterior deste tópico dizia que o boletim não traz o comparecimento dessas consultas. **O boletim traz.** A primeira conferência leu o boletim por um caminho (a base de dados da auditoria) que não guardava esse número. A segunda verificação independente leu o boletim direto, refez a conta com ele, e as 395 também fecham (tabela da C3 acima).
 
 ### As 10 seções em que o diário não bateu de primeira
 
@@ -110,7 +133,7 @@ Cada diário do pacote da seção foi recontado em separado, no arquivo original
 
 - **Fato.** Sete das dez eram erro de leitura (diário duplicado, diário de outra seção, diário não aberto) ou voto confirmado pouco antes de a urna reiniciar.
 - **Fato (com revisão independente).** O 2º turno tem 11.748 seções com mais de um diário no pacote. Fora as 3 seções com urna reserva da tabela (MA, BA 35653 e RS), nas outras 11.745 o boletim bate com os votos computados. A revisão independente cruzou também o boletim com o diário nas 499.178 seções com urna eletrônica, e as únicas seções com voto sem a linha "computado" são as 6 da tabela. As 29 do Sistema de Apuração não têm diário: são cédulas de papel, e o boletim delas traz comparecimento 0 na seção.
-- **Fato.** Nas 3 seções de um só diário achadas pelo C2 (BA 34711/0021/0178, PB 21750/0002/0254, PI 11533/0003/0216), o voto confirmado logo antes de a urna reiniciar entrou no boletim. Nas três, o diário mostra a habilitação do eleitor e a confirmação do voto; depois do religamento, a urna responde "O eleitor identificado já votou". **Pendente: em verificação** se há seções em que um voto confirmado antes de a urna cair **não** entrou no boletim, e quantas são. **Hipótese:** depende de a urna ter gravado o voto no cartão antes ou depois da queda. O diário não mostra qual foi.
+- **Fato.** Nas 3 seções de um só diário achadas pelo C2 (BA 34711/0021/0178, PB 21750/0002/0254, PI 11533/0003/0216), o voto confirmado logo antes de a urna reiniciar entrou no boletim. Nas três, o diário mostra a habilitação do eleitor e a confirmação do voto; depois do religamento, a urna responde "O eleitor identificado já votou". **Fato (medido no país inteiro, [tópico 13](13-mesa-e-sessao-do-eleitor.md), item 5):** o contrário também acontece. Nos atendimentos interrompidos em que o eleitor já tinha confirmado todos os cargos (57 no 2º turno e 154 no 1º), o voto entrou no boletim só em 4 e em 5, as seções desta tabela; nos demais, o voto não foi contado. **Hipótese:** depende de a urna ter gravado o voto no cartão antes ou depois da queda. O diário não mostra qual foi.
 
 ### Votos do boletim sem rastro completo no diário (dois turnos)
 
@@ -188,7 +211,7 @@ Duas leituras do risco:
 
 **Fato.** Nos dois turnos, nenhuma outra seção tem voto do boletim sem a linha "computado" no diário. Os votos do boletim sem essa linha somam 54 no 2º turno e 159 no 1º; os sem nenhuma linha do eleitor, 49 e 152. É o que o diário deixa de confirmar; não é um limite para outros tipos de falha.
 
-**Risco (procedimento humano).** Tirar o cartão de uma urna e pôr em outra, e recarregar uma urna no dia da eleição, são feitos por pessoas (mesário, técnico). Esta perícia não conta "o mesário seguiu o procedimento" como controle. O que existe de controle técnico (boletim = registro dos votos, assinaturas, contadores de liberação, e os erros 72 e 17, que bloquearam as urnas com outro cartão em 4 dos 5 casos; na BA 0175 não há linha de erro, e a recusa é inferida) fecha também nessas seções. O que falta é o rastro linha a linha de 49 votos no 2º turno e 152 no 1º. Nos 5 casos, a urna grava o próprio diário na mídia externa **antes** de conferir o cartão, e isso apaga a trilha da urna anterior. **Pendente:** conferir na documentação do TSE se esse é o comportamento previsto.
+**Risco (procedimento humano).** Tirar o cartão de uma urna e pôr em outra, e recarregar uma urna no dia da eleição, são feitos por pessoas (mesário, técnico). Esta perícia não conta "o mesário seguiu o procedimento" como controle. O que existe de controle técnico (boletim = registro dos votos, assinaturas, contadores de liberação, e os erros 72 e 17, que bloquearam as urnas com outro cartão em 4 dos 5 casos; na BA 0175 não há linha de erro, e a recusa é inferida) fecha também nessas seções. O que falta é o rastro linha a linha de 49 votos no 2º turno e 152 no 1º. Nos 5 casos, a urna grava o próprio diário na mídia externa **antes** de conferir o cartão, e isso apaga a trilha da urna anterior. Os arquivos públicos não dizem se esse é o comportamento previsto. **Recomendação:** perguntar ao TSE.
 
 **Fato.** No 2º turno, 5.714 seções usaram urna reserva. As 2 seções com votos sem nenhuma linha no diário (MA e BA) e a RS 89060/0017/0191 estão entre elas.
 
@@ -273,7 +296,7 @@ A revisão independente sustentou estes pontos com ressalvas. O texto abaixo seg
 - **Fato.** Das 639, 388 têm menos de 200 aptos e 251 têm 200 ou mais. **Pendente:** quantas seções com 95% ou mais seriam esperadas, dada a variação do comparecimento entre seções da mesma zona. O número esperado depende do modelo estatístico usado, e por isso fica fora deste relatório.
 - **Hipótese.** A causa do excesso nas seções pequenas (eleitores em trânsito, seções redistribuídas, seções novas) não foi testada.
 - **Fato.** Nessas 639 seções, 8.236 dos 108.628 eleitores com digital cadastrada (7,58%) foram liberados por biografia (digital não reconhecida). **Pendente:** a comparação com a taxa esperada pela própria zona, e o limite que ela daria para votos no lugar de ausentes, dependem de modelo estatístico e ficam fora deste relatório. **Não** testa fraude concentrada em poucas seções, fraude pelo ano de nascimento nem fraude que não passa pela digital.
-- **Fato.** Um filtro inicial aponta 23 seções: comparecimento de 95% ou mais e liberação sem biometria acima da zona, com p binomial < 0,001. **Pendente:** quantas continuam apontadas quando o cálculo leva em conta a variação real entre seções. A resposta depende de modelo estatístico e fica fora deste relatório. A análise desse ponto continua no tópico 4.
+- **Fato.** Um filtro inicial aponta 23 seções: comparecimento de 95% ou mais e liberação sem biometria acima da zona, por um teste estatístico simples, que não leva em conta a variação real entre seções. **Pendente:** quantas continuam apontadas quando o cálculo leva em conta a variação real entre seções. A resposta depende de modelo estatístico e fica fora deste relatório. A análise desse ponto continua no tópico 4.
 
 ## Identificação da urna e dos cartões (dois turnos)
 
@@ -409,7 +432,23 @@ O pacote de uma seção pode trazer, além do diário da urna que votou, o diár
   - **Eleitor inventado de forma coerente:** um votante a mais e um voto nulo a mais em cada cargo, no boletim e no registro dos votos ao mesmo tempo. Todas as contas entre esses dois arquivos passaram, e só a comparação com o diário da urna acusou. É ela que liga o boletim ao que aconteceu na mesa.
   - **Linha copiada idêntica no diário:** não é acusada, de propósito. Alguns pacotes trazem duas cópias do mesmo diário, e cada voto tem de contar uma vez. Pelo mesmo motivo, tirar uma linha de só uma das cópias não seria acusado; no Acre não há pacote com duas cópias, e esse caso não foi exercitado com dado real.
   - **Limite.** Um voto inventado e registrado de forma completa em tudo (boletim, registro dos votos e um ciclo inteiro no diário, da liberação ao voto) passa por essas contas. Contra isso valem as assinaturas dos arquivos e a digital do eleitor. A conta C2 usada aqui é o mesmo programa usado no país inteiro; a C1 é uma cópia do programa do país, que nesses dados dá o mesmo resultado que ele.
-- **Pendente.** Ainda não têm contraprova própria, com alteração feita de propósito: no 2º turno, as contas de soma por cargo, de eleitores aptos, de liberação e de votantes por eleição (C3 a C6); no 1º turno, a conta da eleição estadual (o mesmo número de votantes em todos os cargos) e a dos eleitores em trânsito.
+- **Fato (2º turno, C3 a C7): boletim alterado de propósito.** A segunda verificação independente fez 9 alterações, cada uma numa cópia de um boletim real guardada só na memória do computador, sem mudar nenhum arquivo. O próprio programa escolheu seções em que todas as contas fechavam, e cada alteração foi montada para quebrar só a conta-alvo. A cópia alterada passou pelas mesmas contas usadas no país inteiro. As 9 deram o resultado previsto:
+
+  | Alteração | Onde | Conta que devia acusar | Resultado |
+  |---|---|---|---|
+  | Um voto nulo de Presidente a mais | seção do AC | C3 | acusada: 233 votos somados para 232 votantes |
+  | Um voto em branco a mais numa consulta popular | seção do MT | C3 | acusada: 289 para 288 |
+  | Um eleitor apto da seção a mais, na eleição estadual | seção do AC | C4 | acusada |
+  | Um eleitor liberado pela digital a mais | seção do AC | C5 | acusada |
+  | Um votante a mais na seção e um liberado sem digital a mais (a C5 continua fechando) | seção do AC | C6 | acusada: 233 para 232 |
+  | Um votante a mais na eleição estadual e um nulo de Governador a mais (a C3 continua fechando) | seção do AC | C6b | acusada: a estadual passa a ter 1 votante a mais que a federal |
+  | Aptos da eleição federal iguais aos votantes menos 1, com os aptos da seção ajustados (a C4 continua fechando) | seção de AL | C7, na eleição e na seção | acusada duas vezes |
+  | Um voto a mais num boletim do Sistema de Apuração | seção do exterior | C3 | acusada: 14 para 13 |
+  | Votantes da seção de 0 para 1 num boletim do Sistema de Apuração | seção do exterior | nenhuma: a C6 não olha essas seções, por desenho | nada acusado, como previsto |
+
+  A última linha mostra um limite: nas seções do Sistema de Apuração, o comparecimento é conferido pela C3 e pela C7, e não pela C6.
+- **Pendente.** No 1º turno, a conta da eleição estadual (o mesmo número de votantes em todos os cargos) e a dos eleitores em trânsito ainda não têm contraprova própria, com alteração feita de propósito.
+- **Fato (leitura fiel do boletim, 2º turno).** A segunda verificação leu cada boletim com um leitor próprio, escrito do zero, e comparou com a base de dados da auditoria e com o boletim impresso, campo a campo: 0 diferença nas 499.207 seções. Isso mostra que a leitura está certa, não que a urna registrou o que o eleitor digitou: boletim, boletim impresso e base vêm da mesma urna.
 - **Fato.** Os testes de identificação também acusam quando há diferença: o número da urna diferiu em 3 seções do 2º turno e 14 do 1º, e a comparação de períodos apontou 92 urnas. Cada caso foi aberto no arquivo original e explicado (Recuperador de Dados, diário copiado, relógio, diário de outra urna, linha corrompida). Na primeira versão, 4 desses casos estavam rotulados como "relógio"; no diário original, 2 eram relógio e 2 eram urna que só escreveu no fim do diário de outra. O texto acima já traz a forma corrigida.
 
 ## Limites
@@ -426,17 +465,18 @@ O pacote de uma seção pode trazer, além do diário da urna que votou, o diár
 - [x] Revisão independente da primeira contagem de votos sem diário (50 votos; sustentada com ressalvas).
 - [x] Reconciliação das contagens de votos sem rastro no diário, nos dois turnos, universo completo.
 - [x] Revisão independente dos números de candidato ausentes do resultado por município, 1º turno ([tópico 5](05-soma-dos-boletins.md)).
-- [ ] **Pendente.** Pedir, pela via de fiscalização, o diário interno das urnas que gravaram os votos sem diário (2º turno: MA 08893/0047/0609, urna 01663580; BA 35653/0173/0235, urna 01681986. 1º turno: BA 39934/0183/0175, urna 02424441; RS 89036/0083/0044, urna 01675257; e a urna que abriu a SP 71072/0002/0035 às 09:34:17), o diário interno guardado pela urna 01833178 na recarga em campo, os arquivos de digitais capturadas dessas seções e a ata da mesa.
+- [ ] **Recomendação.** Pedir, pela via de fiscalização, o diário interno das urnas que gravaram os votos sem diário (2º turno: MA 08893/0047/0609, urna 01663580; BA 35653/0173/0235, urna 01681986. 1º turno: BA 39934/0183/0175, urna 02424441; RS 89036/0083/0044, urna 01675257; e a urna que abriu a SP 71072/0002/0035 às 09:34:17), o diário interno guardado pela urna 01833178 na recarga em campo, os arquivos de digitais capturadas dessas seções e a ata da mesa.
 - [ ] **Pendente.** Identificar a urna que gravou os 15 votos da SP 71072/0002/0035 (1º turno) antes das 10:18.
-- [ ] **Pendente.** Conferir na documentação do TSE se a urna deve gravar o próprio diário na mídia externa antes de conferir o cartão de votos (erros 72 e 17).
+- [ ] **Recomendação.** Conferir na documentação do TSE se a urna deve gravar o próprio diário na mídia externa antes de conferir o cartão de votos (erros 72 e 17).
 - [ ] **Pendente.** Comparar a votação dessas 3 seções com a do 1º turno.
 - [ ] **Pendente.** Confirmar a situação dos números ausentes (o cadastro oficial de candidaturas traz "#NE" na situação).
 - [x] 1º turno, país inteiro: C1, C2 e C3 a C6, com segunda verificação independente.
-- [ ] **Pendente.** Medir no país inteiro quantos votos confirmados antes de reinício da urna entraram ou não no boletim (inclusive nas seções com um só diário).
+- [x] Medido no país inteiro quantos votos confirmados antes de a urna parar entraram ou não no boletim ([tópico 13](13-mesa-e-sessao-do-eleitor.md), item 5).
 - [x] Contraprova de C3 a C6 no 1º turno (boletim alterado de propósito na memória).
 - [x] Contraprova de C1 e C2 nos dois turnos (boletim, registro dos votos e diário alterados de propósito na memória, em seções do AC), com segunda verificação independente.
-- [ ] **Pendente.** Contraprova de C3 a C6 no 2º turno e da conta da eleição estadual e dos eleitores em trânsito no 1º turno.
+- [x] Contas internas do boletim do 2º turno refeitas com o boletim lido direto (C3 nas 539.817 combinações, inclusive as 395 consultas), C6b e C7, e contraprova de C3 a C7 com boletim alterado de propósito, com segunda verificação independente.
+- [ ] **Pendente.** Contraprova da conta da eleição estadual e da dos eleitores em trânsito no 1º turno.
 - [x] Identificação da urna e dos cartões nos dois turnos, com revisão independente.
 - [ ] **Pendente.** Recontar com programa próprio as demais conferências de identificação (cartão de votação, modelo, mídia e código de carga).
 - [x] Carga no dia da votação no 1º turno (7 boletins, mais 3 reservas carregadas em 04/10 e usadas só no 2º turno), com segunda verificação independente.
-- [ ] **Pendente.** Pedir ao TRE-SE os registros de troca de urna das zonas 1 e 2 de Aracaju, e aos TREs do RJ e do AP e ao TSE (exterior) o procedimento de geração das mídias de resultado.
+- [ ] **Recomendação.** Pedir ao TRE-SE os registros de troca de urna das zonas 1 e 2 de Aracaju, e aos TREs do RJ e do AP e ao TSE (exterior) o procedimento de geração das mídias de resultado.

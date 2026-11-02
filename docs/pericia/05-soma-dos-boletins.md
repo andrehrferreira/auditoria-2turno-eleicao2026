@@ -30,9 +30,11 @@ A única diferença entre as somas é de quais seções entram: 41 seções no e
 - **Por estado e cargo (109 totais):** o resultado divulgado fecha com os boletins em todos os campos. Os 628.629 votos desses 250 números, mais 1.912 votos de legenda de 4 partidos ausentes, somam 630.541 e são exatamente o **"nulo técnico"** publicado (explicado abaixo).
 - **Onde essa classificação pesa:** no governo do RJ, o eleito no 1º turno (nº 22) teve 4.271.199 de 8.394.627 votos válidos (50,880%). Os 274.411 votos do nº 10, classificados como nulo técnico, são mais que os 147.771 votos válidos a mais que tirariam essa maioria. Se esses votos deveriam ou não contar depende da exclusão do nº 10, que está **Pendente**.
 
+**Veredito final sobre a hipótese de que a soma dos boletins difere do resultado oficial (H03): refutada.** A soma dos boletins é igual ao resultado oficial em todos os campos, nos dois turnos, e isso foi conferido por mais de um caminho independente (o arquivo digital do boletim e o texto do boletim impresso, e programas escritos à parte). As contas internas de cada boletim também fecham ([tópico 2](02-coerencia-entre-arquivos.md)). Entre o boletim e o resultado publicado, o efeito dessa hipótese sobre a diferença entre os candidatos é zero. O veredito vale para esse trecho do caminho; o que acontece dentro da urna, antes do boletim, é assunto dos tópicos 1, 2 e 4.
+
 **Limite:** isso mostra que os arquivos publicados pelo TSE concordam entre si. A conferência das assinaturas digitais foi feita nos dois turnos, nos 499.207 pacotes de cada um, com 0 falha de arquivo ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)): os pacotes publicados não mudaram depois de assinados. No 1º turno, o TSE não publica o arquivo que indica qual pacote foi totalizado em cada seção; por isso, ali, a assinatura não prova sozinha que o pacote conferido é o que o TSE somou (tópico 1).
 
-**Pendente (sem número):** situação e data da decisão sobre o registro do candidato nº 10 ao governo do RJ e dos demais números excluídos; auditoria da consulta popular de PE no 1º turno e das consultas populares do 2º turno; voto por candidato e por seção nos cargos que não são presidente. Ver "Próximos passos".
+**Pendente (sem número):** situação e data da decisão sobre o registro do candidato nº 10 ao governo do RJ e dos demais números excluídos; auditoria da consulta popular de PE no 1º turno (as do 2º turno não têm resultado oficial publicado para comparar, item 1); voto por candidato e por seção nos cargos que não são presidente. Ver "Próximos passos".
 
 ## Termos usados neste tópico
 
@@ -114,7 +116,7 @@ Nenhum número de candidato com voto no boletim falta no oficial, e nenhum apare
 
 Caso conferido: AC, Bujari, zona 9, seção 3, com LULA 81 e FLAVIO BOLSONARO 146 no boletim, no registro dos votos e no resultado oficial.
 
-**Pendente (sem número):** as consultas populares do 2º turno. Elas não estão no detalhe por seção, na votação por município e zona nem na divulgação de cargos, e por isso não há resultado oficial para comparar.
+**Limite (consultas populares do 2º turno):** elas não estão no detalhe por seção, na votação por município e zona nem na divulgação de cargos, e por isso não há resultado oficial publicado para comparar. O que se pôde conferir é o boletim por dentro: em cada uma das 395 seções com consulta do tipo "consulta", a soma dos votos é igual ao comparecimento da própria consulta gravado no boletim ([tópico 2](02-coerencia-entre-arquivos.md)).
 
 ### 2. 1º turno: quais seções entraram
 
@@ -333,5 +335,5 @@ A lista completa dos 254 itens (250 números de candidato e 4 legendas), com est
 - **Pendente:** voto por candidato e por seção nos cargos que não são presidente. O arquivo de dados abertos lido só traz presidente; para os outros cargos, o candidato é conferido por zona.
 - **Feito:** 2º turno, demais campos (aptos, comparecimento, brancos, nulos e legenda) de Presidente e Governador, seção a seção, e Governador candidato a candidato por zona, município e estado, com segunda verificação independente (item 1).
 - **Feito:** contraprova própria, com alteração feita de propósito, para as comparações do 2º turno por zona, município, estado e com os totais da noite da eleição, com segunda verificação independente ("Prova de que o teste funciona").
-- **Pendente:** consultas populares do 2º turno, sem resultado oficial publicado para comparar.
+- **Limite:** consultas populares do 2º turno, sem resultado oficial publicado para comparar; as contas internas do boletim delas fecham ([tópico 2](02-coerencia-entre-arquivos.md)).
 - **Pendente:** conferir se cada número omitido estava no arquivo de candidatos de todas as urnas do estado.

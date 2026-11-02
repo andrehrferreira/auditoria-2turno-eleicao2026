@@ -1,6 +1,6 @@
 # 11. Urnas trocadas por reserva no 2º turno
 
-> **Situação:** escrito em 30/10/2026. A pergunta foi estudada em duas frentes: os votos e o rastro técnico. As duas passaram por uma segunda verificação independente, que refez as contas sobre todas as seções dos dois turnos e concluiu "sustentado, com ressalvas". O texto usa só as afirmações que resistiram a essa verificação. Para este tópico, cada número foi conferido mais uma vez contra os resultados das duas frentes, da segunda verificação e do banco de dados da auditoria. Em 30/10/2026, uma nova conferência no arquivo original, voto a voto, corrigiu a contagem dos votos dados antes da troca (cópias do mesmo diário contadas uma vez) e acrescentou 3 reservas carregadas durante a votação do 1º turno (item 7). É a hipótese H14 do [quadro das hipóteses](10-quadro-das-hipoteses.md).
+> **Situação:** escrito em 30/10/2026. A pergunta foi estudada em duas frentes: os votos e o rastro técnico. As duas passaram por uma segunda verificação independente, que refez as contas sobre todas as seções dos dois turnos e concluiu "sustentado, com ressalvas". O texto usa só as afirmações que resistiram a essa verificação. Para este tópico, cada número foi conferido mais uma vez contra os resultados das duas frentes, da segunda verificação e do banco de dados da auditoria. Em 30/10/2026, uma nova conferência no arquivo original, voto a voto, corrigiu a contagem dos votos dados antes da troca (cópias do mesmo diário contadas uma vez) e acrescentou 3 reservas carregadas durante a votação do 1º turno (item 7). Em 02/11/2026, com o fechamento das hipóteses só com dados públicos, entraram a causa da queda de comparecimento no 1º turno (item 3), a contraprova por simulação (item 2), as reservas cujo leitor não reconhecia os mesários (item 8) e o veredito final. É a hipótese H14 do [quadro das hipóteses](10-quadro-das-hipoteses.md).
 
 ## A pergunta
 
@@ -16,6 +16,9 @@ Pedido do auditor (29/10/2026): as urnas trocadas por urna reserva no 2º turno 
 - **Fato (rastro técnico):** no diário da urna reserva das 2.818 seções não aparece nenhum dos sinais que uma adulteração **sem a assinatura do TSE**, ou uma verificação de assinatura pulada, deixaria: 0 inicialização para votar com etapa de verificação falhada, 0 pacote com lacre quebrado, a mesma versão de programa do resto do país, e mensagens de erro de assinatura dentro do esperado pela taxa das urnas comuns.
 - **Fato (Aracaju):** a concentração de trocas nas zonas 1 e 2 de Aracaju (SE) aparece no diário das reservas como uma troca de urnas entre as duas zonas, registrada em 17/10 e 19/10.
 - **Fato (lacuna de controle):** em 125 das trocas novas, a reserva tinha sido carregada para outra zona da mesma UF. A urna aceitou a troca e registrou a zona da carga. É uma lacuna de **bloqueio** (a urna não impede), não de **rastro** (fica registrado no diário e no boletim).
+- **Fato (02/11/2026, com segunda verificação independente):** o comparecimento menor das reservas herdadas no 1º turno é explicado pela interrupção da votação naquele dia, e não pela reserva. A falta de eleitores aparece só onde a urna original falhou no próprio dia do 1º turno e cresce com o tempo que a seção levou para trocar a urna. Onde a reserva já estava instalada antes do dia, sem troca no dia, não falta eleitor (item 3).
+- **Fato (lacuna de controle):** em duas reservas conferidas no arquivo original, o leitor de digital não reconhecia os mesários registrados na urna original: todas as comparações com eles deram nota zero, enquanto as comparações com digitais gravadas pela própria reserva naquele dia deram notas normais (item 8).
+- **Veredito final sobre a hipótese de manipulação das urnas trocadas por reserva (H14): fato que pede explicação, sem sinal de manipulação.** As seções com urna reserva votaram como as vizinhas. Há falhas de controle comprovadas: urna reserva aceita fora da zona para a qual foi preparada (item 6) e reservas cujo leitor não reconhecia os mesários (item 8). Não há sinal de manipulação nos votos nem no rastro técnico. O efeito máximo fica abaixo da diferença entre os candidatos: mesmo que todos os votos do 13 nessas seções tivessem sido tirados do 22, o 13 venceria (item 4). O que os dados públicos não alcançam: o motivo de cada troca e o estado do leitor dessas reservas, que só as atas e o registro de manutenção explicam.
 - **Não se pode afirmar:** que nenhuma reserva tinha programa adulterado **com** a assinatura oficial do TSE, porque um programa assim escreve um diário normal. Também não se pode afirmar que a mesa não liberou votos de ausentes em ritmo normal, porque isso deixa o mesmo rastro de uma votação legítima, com ou sem troca de urna.
 
 ## Termos usados neste tópico
@@ -114,7 +117,7 @@ Presidente, soma do boletim de cada grupo. As somas foram refeitas seção a se�
 - Os números do teste (o tamanho de cada diferença e a margem do acaso) estão na análise técnica separada da auditoria.
 - **Fato:** a segunda verificação refez a conta numa cópia isolada e obteve o mesmo resultado, também pelo sorteio. Feito também por UF (28, contando o exterior), por modelo de urna, por zona e por seção com troca, o teste não encontrou diferença em nenhuma delas, depois da correção para muitos testes. Isso vale também para as duas zonas de Aracaju (item 5).
 - **Fato:** as 57 seções citadas como as mais fora da curva foram conferidas no boletim original dos dois turnos: 0 divergência com o banco.
-- **Pendente (sem número):** o tamanho mínimo de desvio que este teste enxergaria é uma estimativa e fica fora deste relatório. Abaixo desse tamanho, o resultado é "não encontrado", não "provado ausente".
+- **Fato (com segunda verificação independente):** para saber o que o teste é capaz de ver, desvios de voto foram inseridos, por simulação, nos dados reais dessas seções, e se mediu a partir de que tamanho o teste os acusa. O teste veria um desvio de votos do 22 para o 13 nessas seções muito menor do que a diferença entre os candidatos, também nas reservas herdadas, onde o desvio seria igual nos dois turnos. Os números da simulação são estimativas e ficam fora deste relatório. Abaixo desse tamanho, o resultado é "não encontrado", não "provado ausente".
 
 ### 3. As reservas herdadas: nenhuma diferença encontrada em relação às vizinhas do mesmo local (Fato)
 
@@ -127,8 +130,16 @@ Presidente, soma do boletim de cada grupo. As somas foram refeitas seção a se�
 
 O que isso quer dizer: o teste não separou do acaso uma diferença entre a parcela do 13 dada pela mesma reserva, nos dois turnos, e a das urnas do mesmo prédio. Na comparação de variação (teste 1), o comparecimento das herdadas subiu mais que o da zona. O teste do nível mostra por quê: no 1º turno, essas seções tiveram menos eleitores que as vizinhas; no 2º turno, não ficaram acima das vizinhas. O teste não mostra eleitor a mais nelas no 2º turno.
 
-- **Hipótese:** a falha de urna no dia do 1º turno causou fila ou interrupção e fez parte dos eleitores desistir naquele dia.
-- **Pendente (sem número):** a causa da queda de comparecimento no 1º turno. Falta a varredura dos diários do 1º turno, com a hora e a duração de cada falha.
+**A causa da queda no 1º turno (Fato, 02/11/2026, com segunda verificação independente).** O diário do 1º turno das 3.033 seções que votaram com reserva naquele turno foi lido inteiro, sem nenhum erro de leitura, para saber quando e como cada troca aconteceu. As seções foram separadas pelo momento da troca e comparadas com as outras seções do mesmo prédio:
+
+- onde a urna original falhou no próprio dia 04/10, depois de já ter recebido votos, as seções tiveram menos eleitores que as vizinhas; onde ela falhou antes do primeiro voto, a falta foi menor;
+- onde a reserva já estava instalada antes do dia, sem troca durante a votação, não faltou eleitor;
+- quanto mais tempo a seção levou para fazer a troca, maior a falta de eleitores: menor com menos de 15 minutos, maior com 15 a 30, maior ainda com 30 a 60, e a maior com 1 hora ou mais. Essa subida em degraus é a prova mais forte.
+
+Os números do teste estão na análise técnica separada da auditoria.
+
+- **Leitura:** quem chegou com a seção parada e foi embora não votou naquele turno. Isso explica a falta de eleitores das herdadas no 1º turno sem envolver a reserva. No 2º turno, o teste não encontrou diferença de comparecimento entre essas seções e as vizinhas.
+- **Limite:** se esses eleitores desistiram por causa da fila, os arquivos públicos não dizem; o diário mostra a interrupção, não as pessoas que saíram.
 - **Pendente (sem número):** brancos + nulos das herdadas no 1º turno ficam um pouco abaixo dos das vizinhas no limite da correção; a segunda verificação marcou o ponto como exploratório (comparação escolhida depois de ver os dados), e ele fica fora deste relatório. Não envolve a divisão entre 13 e 22.
 
 ### 4. A escala: o máximo que essas urnas poderiam ter mudado (Fato aritmético)
@@ -173,7 +184,7 @@ O boletim dessa seção no 2º turno é do tipo "reserva", urna 1794072: 266 vot
 
 - **Fato (votos):** nas 16 seções da zona 0001 com reserva da zona 0002, a parcela do 13 foi de 60,38% para 63,48% (+3,10 pontos); nas seções sem troca da mesma zona, ela subiu 3,42 pontos. No teste por zona, o teste não encontrou diferença nas duas zonas de Aracaju.
 - **Hipótese:** troca planejada de urnas entre as duas zonas na preparação do 2º turno, feita pelo procedimento de contingência.
-- **Pendente:** o motivo das trocas. O diário mostra a troca, não a decisão. Pedir ao TRE-SE o registro das trocas de 17/10 e 19/10.
+- **Limite:** o motivo das trocas. O diário mostra a troca, não a decisão; só o registro do TRE-SE explica. **Recomendação:** pedir ao TRE-SE o registro das trocas de 17/10 e 19/10.
 
 ### 6. Reserva carregada para outra zona: lacuna de bloqueio, não de rastro (Fato)
 
@@ -228,12 +239,30 @@ O que se procurou é o que um programa adulterado **sem** a assinatura do TSE, o
 
 **Conclusão:** nas 2.818 seções, o diário da reserva não mostra nenhum dos sinais que uma adulteração **sem a assinatura do TSE**, ou uma verificação de assinatura pulada, deixaria. Também não há pacote com lacre quebrado nem versão diferente. **Os arquivos públicos não permitem detectar um programa adulterado e assinado com a chave oficial**, porque é o próprio programa que escreve o diário: um programa assim grava as mesmas mensagens de SUCESSO e a mesma versão.
 
+### 8. Reservas cujo leitor não reconhecia os mesários (Fato em 2 seções)
+
+Em algumas reservas, quase todos os eleitores foram liberados à mão. O diário mostra que o leitor **lê** o dedo (cada tentativa captura uma digital), mas não reconhece a do eleitor, e a liberação é autorizada por um dedo que a própria reserva tinha gravado naquele dia.
+
+Para entender o que segue: quando a urna compara duas digitais, ela anota uma **nota de semelhança**. Nota alta quer dizer "é o mesmo dedo"; nota baixa, "é outro dedo". Numa urna comum, comparar o dedo de uma pessoa com o de outra dá nota baixa, mas quase nunca exatamente zero.
+
+**Fato (2º turno, conferido no diário original de 2 seções):**
+
+| Seção (UF município/zona/seção) | Troca no dia | Boletim do 2º turno | Comparações do dedo de quem autorizou com os mesários registrados | Notas dessas comparações | Notas contra digitais gravadas pela própria reserva no dia |
+|---|---|---|---|---|---|
+| RJ 60011/0188/0082 | urna de 2015 trocada por reserva de 2013, às 09:41 | 269 votantes, 228 liberados à mão | 912 | **todas zero** | de 3 a 124 |
+| BA 37150/0078/0158 | urna de 2015 trocada por reserva de 2013, às 10:05 | 198 votantes, 121 liberados à mão | 444 | **todas zero** | de 3 a 218 |
+
+- **Fato:** nas duas, o comparador da reserva funciona contra o que ela mesma gravou no dia, mas dá **sempre exatamente zero** contra os mesários registrados na urna original: 1.356 comparações de 1.356. Uma pessoa sem registro pondo o dedo daria notas baixas e positivas, e não zero em sequência.
+- **Fato:** a falha também atinge os eleitores. No RJ, só 7 eleitores foram reconhecidos pela digital em 235 atendimentos em que o leitor capturou o dedo.
+- **Hipótese:** as digitais dos mesários, gravadas pela urna original (modelo 2015), não podem ser comparadas pela reserva (modelo 2013), por diferença de formato, de cartão ou de leitor. Isso enfraquece a leitura de que nenhum mesário registrado pôs o dedo em centenas de autorizações, mas não a elimina: o diário não diz de quem é o dedo.
+- **Não decidível com dados públicos:** o mecanismo. Só o registro técnico da troca e da manutenção do leitor dessas reservas explicaria. Quantas reservas do país têm esse mesmo desenho é uma contagem feita com um critério escolhido depois de ver os primeiros casos, e por isso fica fora deste relatório.
+
 ## Prova de que o teste funciona (contraprova)
 
 - **Fato (os sinais do diário disparam quando há o que mostrar):** a mensagem de erro de assinatura aparece em **31** seções de troca nova quando se olha qualquer diário do pacote, e em 6 quando se olha só o diário da reserva. A diferença está no diário da **urna substituída**, que vem no mesmo pacote: ela registrou o erro antes de ser trocada. **Hipótese:** o erro foi o motivo da troca (o motivo não está nos arquivos). Só o diário da reserva tem régua própria, e nele as 6 ficam dentro do esperado (item 7). O mesmo indicador que fica no normal na reserva acusa a urna com defeito.
 - **Fato (o rastro da carga acha o que está lá):** foi pela zona gravada na carga que a auditoria achou as 125 + 45 reservas de outra zona e a troca de Aracaju, e cada caso conferido no arquivo original bateu.
 - **Fato (o teste de votos vê efeito no comparecimento):** a mesma comparação que não acha nada nas trocas novas achou a diferença de comparecimento das reservas herdadas no 1º turno (item 3), confirmada pelo teste de nível.
-- **Pendente:** não há contraprova para a **parcela do 13**. Nenhum grupo de seções com desvio conhecido no voto foi usado para mostrar que o teste o acusaria.
+- **Fato (contraprova por simulação, com segunda verificação independente):** desvios na **parcela do 13** inseridos nos dados reais foram acusados pelo teste a partir de um tamanho muito menor que a diferença entre os candidatos (item 2). Os números da simulação ficam fora deste relatório.
 - **Fato (reprodução):** a segunda verificação rodou de novo, em cópia isolada, os programas das duas frentes. O resultado da frente dos votos saiu idêntico (só muda a data), e o da frente do rastro técnico, idêntico até o último caractere. As duas frentes usam o mesmo conjunto de 2.818 seções. Para este tópico, as somas por grupo foram refeitas seção a seção, e cada número citado aqui foi conferido contra os resultados das duas frentes e contra o resultado oficial.
 
 ## Limites (o que não se pode afirmar)
@@ -241,7 +270,7 @@ O que se procurou é o que um programa adulterado **sem** a assinatura do TSE, o
 1. **Programa adulterado e assinado.** Quem tivesse a chave de assinatura de programas do TSE poderia preparar uma carga que passa em todas as etapas, grava a versão oficial e escreve um diário normal. Nenhum teste deste tópico enxerga isso, nem em reserva, nem em urna de seção ([tópico 1](01-integridade-e-estrutura-dos-arquivos.md)).
 2. **Votos de ausentes liberados pela mesa em ritmo normal.** Um mesário que libera eleitores ausentes pelo título e ano de nascimento, sem pressa e sem rajada, gera o mesmo diário de uma liberação legítima, em qualquer urna ([tópico 4](04-liberacao-dos-eleitores.md)). O teste deste tópico só vê o que muda a votação da seção em relação às vizinhas ou ao 1º turno.
 3. **Desvio igual em todas as urnas do mesmo local.** O teste das herdadas compara com as urnas do mesmo prédio. Se todas tivessem o mesmo desvio, não haveria vizinha honesta para comparar. Esse caso é dos testes que comparam seções e zonas do país inteiro ([tópico 9](09-padroes-estatisticos.md)), não deste.
-4. **Desvio pequeno.** Um desvio menor que o tamanho que os testes enxergam não aparece (Pendente sem número, item 2). O limite da escala (item 4) vale para qualquer tamanho.
+4. **Desvio pequeno.** Um desvio menor que o tamanho que os testes enxergam não aparece (item 2; o tamanho é estimativa e fica fora deste relatório). O limite da escala (item 4) vale para qualquer tamanho.
 5. **Manipulação que mexe no 13 e no 22 juntos**, sem mudar a parcela nem o comparecimento, só é coberta em parte pela medida de brancos + nulos.
 6. **Por que cada urna foi trocada.** O diário grava a falha que vem antes da troca, mas não a decisão. A troca planejada e a troca por defeito usam o mesmo procedimento, decidido por pessoas (e, pela regra desta auditoria, o que depende só de pessoas não conta como controle).
 7. **Reservas que não votaram** não aparecem nos pacotes publicados.
@@ -249,19 +278,20 @@ O que se procurou é o que um programa adulterado **sem** a assinatura do TSE, o
 
 ## Pendentes (sem número)
 
-- **Reservas que liberaram quase todos os eleitores sem digital.** O padrão é mais comum nas reservas que nas urnas comuns, mas o teste não encontrou diferença entre os votos dessas seções e os da zona, e o comparecimento delas não subiu. O diário não separa leitor de digitais com defeito de mesa usando a digital de outra pessoa para liberar eleitores presentes. O critério foi escolhido depois de ver os casos, e por isso a contagem fica fora deste relatório. Faltam as atas das seções e o registro de manutenção do leitor dessas urnas.
-- **Causa da queda de comparecimento no 1º turno** nas seções com reserva herdada: falta a varredura dos diários do 1º turno.
-- **Motivo das trocas entre as zonas 1 e 2 de Aracaju:** pedido ao TRE-SE.
+- **Quantas reservas liberaram quase todos os eleitores sem digital, e quantas têm o leitor que não reconhece os mesários (item 8):** o critério foi escolhido depois de ver os casos, e por isso a contagem fica fora deste relatório. O teste não encontrou diferença entre os votos dessas seções e os da zona, e o comparecimento delas não subiu.
 - **Contingências feitas em 04/10 depois do encerramento do 1º turno**, com a reserva ficando na seção para o 2º turno: pedir as atas. Já existe uma contagem, mas ela não foi conferida caso a caso pela segunda verificação, e por isso fica fora deste relatório.
 - **O mesmo teste no 1º turno**, com as reservas que assumiram em 04/10.
-- **Tamanho mínimo de desvio que os testes enxergam** (estimativa, fora deste relatório).
 
 ## Próximos passos
 
 - [x] Votos das trocas novas e das herdadas, rastro técnico e escala, com segunda verificação independente.
-- [ ] **Pendente.** Pedir ao TRE-SE o registro das trocas de urna das zonas 0001 e 0002 de Aracaju em 17/10 e 19/10.
-- [ ] **Pendente.** Pedir ao TSE a regra que permite usar, na contingência, reserva carregada para outra zona, e a lista de reservas por zona.
-- [ ] **Pendente.** Pedir aos TREs as atas e o registro de manutenção do leitor de digitais das reservas que liberaram quase todos os eleitores sem digital.
-- [ ] **Pendente.** Varredura dos diários do 1º turno: hora e duração das falhas nas seções com reserva herdada, e o mesmo teste de rastro com as reservas que assumiram em 04/10.
-- [ ] **Pendente.** Atas das contingências feitas em 04/10 depois do encerramento.
-- [ ] **Pendente.** Uma contraprova para a parcela do 13 (grupo de seções com desvio conhecido no voto).
+- [x] Causa da queda de comparecimento das herdadas no 1º turno, pelos diários do 1º turno das 3.033 seções com reserva, com segunda verificação independente (item 3).
+- [x] Contraprova por simulação para a parcela do 13, com segunda verificação independente (item 2).
+- [x] Reservas cujo leitor não reconhecia os mesários: 2 seções conferidas no diário original (item 8).
+- [ ] **Pendente.** O mesmo teste de rastro com as reservas que assumiram em 04/10.
+- [ ] **Recomendação.** Pedir ao TRE-SE o registro das trocas de urna das zonas 0001 e 0002 de Aracaju em 17/10 e 19/10.
+- [ ] **Recomendação.** Pedir ao TSE a regra que permite usar, na contingência, reserva carregada para outra zona, e a lista de reservas por zona.
+- [ ] **Recomendação.** Pedir aos TREs as atas e o registro de manutenção do leitor de digitais das reservas que liberaram quase todos os eleitores sem digital, e o registro técnico das trocas das 2 seções do item 8.
+- [ ] **Recomendação.** Atas das contingências feitas em 04/10 depois do encerramento.
+
+O veredito final deste tópico não depende das respostas a esses pedidos.
